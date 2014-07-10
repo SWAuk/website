@@ -1,0 +1,1 @@
+<?phpinterface SWAUser {	private $username;	private $email;	private $privileges;}
