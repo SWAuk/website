@@ -2,9 +2,7 @@
 
 interface SWAEventTeam {
 
-	private $name;
-	private $club;
+	public function getName();
+	public function getClub();
 	
 }
-
-?>

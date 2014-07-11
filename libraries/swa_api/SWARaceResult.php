@@ -1,9 +1,9 @@
 <?php
 
+require_once 'SWAResult.php';
+
 interface SWARaceResult extends SWAResult {
 
-	private $member;
+	public function getMember();
 
 }
-
-?>

@@ -2,10 +2,10 @@
 
 interface SWAResult {
 
-	private $event;
-	private $season;
-	private $points;
+	public function getEvent();
+	public function getSeason();
+	
+	public function getPoints();
+	public function setPoints();
 
 }
-
-?>

@@ -2,32 +2,69 @@
 
 interface SWAEvent {
 
-	private $id;
-	private $name;
-	private $start_date;
-	private $end_date;
-	private $season;
-	private $organisers;
-	private $location;
+	public function getID();
+	public function getName();
 	
-	private $race;
-	private $freestyle;
-	private $wave;
-	private $team;
+	public function getOpenDate();
+	public function setOpenDate($date);
 	
-	private $uni_limit;
-	private $event_max;
-	private $event_max_beg;
-	private $event_max_int;
-	private $event_max_adv;
-	private $event_max_xswa;
+	public function getStartDate();
+	public function setStartDate($date);
 	
-	private $price;
-	private $host_price;
-	private $committee_price;
-	private $xswa_price;
-	private $instructor_price;
+	public function getEndDate();
+	public function setEndDate($date);
+	
+	public function getSeason();
+	
+	public function getOrganisers();
+	public function setOrganisers($organisers);
+	
+	public function getLocation();
+	public function setLocation($location);
+	
+	public function hasRaces();
+	public function setHasRaces($bool);
+	
+	public function hasTeamRaces();
+	public function setHasTeamRaces($bool);
+	
+	public function hasWave();
+	public function setHasWave($bool);
+	
+	public function hasFreestyle();
+	public function setHasFreestyle($bool);
+	
+	public function getUniLimit();
+	public function setUniLimit($limit);
+	
+	public function getEventMax();
+	public function setEventMax($limit);
+	
+	public function getEventMaxBeg();
+	public function setEventMaxBeg($limit);
+	
+	public function getEventMaxInt();
+	public function setEventMaxInt($limit);
+	
+	public function getEventMaxAdv();
+	public function setEventMaxAdv($limit);
+	
+	public function getEventMaxXSWA();
+	public function setEventMaxXSWA($limit);
+	
+	public function getPrice();
+	public function setPrice($price);
+	
+	public function getHostPrice();
+	public function setHostPrice($price);
+	
+	public function getCommitteePrice();
+	public function setCommitteePrice($price);
+	
+	public function getXSWAPrice();
+	public function setXSWAPrice($price);
+	
+	public function getInstructorPrice();
+	public function setInstructorPrice($price);
 
 }
-
-?>
