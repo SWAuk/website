@@ -17,5 +17,3 @@ interface SWAEventDamage {
 	public function setNature($details);
 
 }
-
-?>
