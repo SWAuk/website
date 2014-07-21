@@ -1,1 +1,0 @@
-<?phprequire_once '../SWAUser.php';class SWAUserJoomla implements SWAUser {		private $juser;		public function __construct($juser) {		$this->juser = $juser;	}}
