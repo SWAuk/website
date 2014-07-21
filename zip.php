@@ -5,13 +5,14 @@
 
 //TODO auto get all dirs
 $components = array(
-	'com_swa'
+	'com_swa',
+	'tpl_swa',
 );
 
 echo "Ziping all...\n";
 
 foreach( $components as $dir ) {
-	unlink(  __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip');
+	@unlink(  __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip');
 	zipRecurive( __DIR__ . DIRECTORY_SEPARATOR . $dir , __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip', __DIR__ );
 	echo "Done " . __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip' . "\n";
 }
