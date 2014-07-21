@@ -1,0 +1,40 @@
+#Ignore the zip files..
+*.zip
+
+#################
+## PhpStorm
+#################
+.idea/
+
+#################
+## Eclipse
+#################
+
+.project
+.metadata
+bin/
+target/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+
+# External tool builders
+.externalToolBuilders/
+
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# CDT-specific
+.cproject
+
+# PDT-specific
+.buildpath
+
+# Python-specific
+*.pydevproject
