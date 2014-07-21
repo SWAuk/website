@@ -1,6 +1,7 @@
 <?php
+namespace SWA;
 
-class SWASeason {
+interface SWASeason {
 	
 	public function getID();
 	public function getYear();

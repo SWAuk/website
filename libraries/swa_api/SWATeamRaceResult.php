@@ -1,4 +1,5 @@
 <?php
+namespace SWA;
 
 require_once 'SWAResult.php';
 

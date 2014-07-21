@@ -1,6 +1,7 @@
 <?php
+namespace SWA;
 
-class SWAEventGrant {
+interface SWAEventGrant {
 	
 	public function getID();
 	public function getApplicant();

@@ -1,4 +1,5 @@
 <?php
+namespace SWA\Joomla;
 
 require_once '../SWAResult.php';
 
