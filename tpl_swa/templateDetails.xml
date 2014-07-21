@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension version="2.5" client="site" type="template" method="upgrade">
+    <name>swa3_template_v2</name>
+    <creationDate>2014-07-21</creationDate>
+    <version>14</version>
+    <author>Beaker Lindley &amp;amp; Olivier Ayache</author>
+    <authorUrl/>
+    <description/>
+    <files>
+        <folder>css</folder>
+        <folder>html</folder>
+        <folder>images</folder>
+        <folder>language</folder>
+        <folder>library</folder>
+        <file>ReadMe.txt</file>
+        <file>component.php</file>
+        <file>favicon.ico</file>
+        <file>functions.php</file>
+        <file>index.html</file>
+        <file>index.php</file>
+        <file>jquery.js</file>
+        <file>script.js</file>
+        <file>script.responsive.js</file>
+        <file>templateDetails.xml</file>
+        <file>template_preview.png</file>
+        <file>template_thumbnail.png</file>
+    </files>
+    <positions>
+        <position>debug</position>
+        <position>position-1</position>
+        <position>position-2</position>
+        <position>position-3</position>
+        <position>position-4</position>
+        <position>position-5</position>
+        <position>position-6</position>
+        <position>position-7</position>
+        <position>position-8</position>
+        <position>position-9</position>
+        <position>position-10</position>
+        <position>position-11</position>
+        <position>position-12</position>
+        <position>position-15</position>
+        <position>position-16</position>
+        <position>position-17</position>
+        <position>position-18</position>
+        <position>position-19</position>
+        <position>position-20</position>
+        <position>position-21</position>
+        <position>position-22</position>
+        <position>position-23</position>
+        <position>position-24</position>
+        <position>position-25</position>
+        <position>position-26</position>
+        <position>position-27</position>
+        <position>position-28</position>
+        <position>position-29</position>
+        <position>position-30</position>
+    </positions>
+    <config>
+        <fields name="params">
+            <fieldset name="basic"/>
+        </fields>
+    </config>
+    <languages folder="language">
+        <language tag="en-GB">en-GB/en-GB.tpl_swa3_template_v2.ini</language>
+    </languages>
+</extension>
