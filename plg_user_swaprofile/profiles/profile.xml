@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="swaprofile">
+		<fieldset name="swaprofile"
+			label="PLG_USER_SWAPROFILE_SLIDER_LABEL">
+			<field
+				name="sex"
+				type="list"
+				id="sex"
+				label="PLG_USER_SWAPROFILE_FIELD_SEX_LABEL">
+				<option value="1">Male</option>
+				<option value="2">Female</option>
+			</field>
+			<field
+					name="dob"
+					type="calendar"
+					id="dob"
+					label="PLG_USER_SWAPROFILE_FIELD_DOB_LABEL">
+			</field>
+			<field
+					name="uni"
+					type="list"
+					id="uni"
+					label="PLG_USER_SWAPROFILE_FIELD_UNI_LABEL">
+				<option value="1">TODO - List to be driven by DB</option>
+			</field>
+			<field
+					name="course"
+					type="text"
+					id="course"
+					label="PLG_USER_SWAPROFILE_FIELD_COURSE_LABEL">
+			</field>
+			<!-- Should graduation just be a text / list rather than calender? -->
+			<field
+					name="graduation"
+					type="calendar"
+					id="graduation"
+					label="PLG_USER_SWAPROFILE_FIELD_GRADUATION_LABEL">
+			</field>
+			<field
+					name="discipline"
+					type="list"
+					id="discipline"
+					label="PLG_USER_SWAPROFILE_FIELD_DISCIPLINE_LABEL">
+				<option value="1">None</option>
+				<option value="2">Wave</option>
+				<option value="3">Freestyle</option>
+			</field>
+			<field
+					name="level"
+					type="list"
+					id="level"
+					label="PLG_USER_SWAPROFILE_FIELD_LEVEL_LABEL">
+				<option value="1">Beginner</option>
+				<option value="2">Intermediate</option>
+				<option value="3">Advanced</option>
+			</field>
+			<field
+					name="instructor"
+					type="checkbox"
+					id="instructor"
+					label="PLG_USER_SWAPROFILE_FIELD_Instructor_LABEL">
+				<option value="1">None</option>
+				<option value="2">Start</option>
+				<option value="3">Intermediate</option>
+				<option value="4">Advanced</option>
+			</field>
+			<field
+					name="shirt"
+					type="list"
+					id="shirt"
+					label="PLG_USER_SWAPROFILE_FIELD_SHIRT_LABEL">
+				<option value="1">XS</option>
+				<option value="2">S</option>
+				<option value="3">M</option>
+				<option value="4">L</option>
+				<option value="5">XL</option>
+			</field>
+			<field
+					name="econtact"
+					type="text"
+					id="econtact"
+					label="PLG_USER_SWAPROFILE_FIELD_EMERG_CONTACT_LABEL">
+			</field>
+			<field
+					name="enumber"
+					type="text"
+					id="enumber"
+					label="PLG_USER_SWAPROFILE_FIELD_EMERG_NUMBER_LABEL">
+			</field>
+			<field
+					name="swahelp"
+					type="list"
+					id="swahelp"
+					label="PLG_USER_SWAPROFILE_FIELD_SWAHELP_LABEL">
+				<option value="1">None</option>
+				<option value="2">Website</option>
+				<option value="3">Events</option>
+				<option value="4">Accounting</option>
+			</field>
+		</fieldset>
+	</fields>
+</form>
