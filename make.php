@@ -1,24 +1,37 @@
 <?php
-/**
- * Script to easily zip all components up
- */
 
-//TODO auto get all dirs
+//TODO auto get all dirs?
 $components = array(
 	'com_swa',
 	'tpl_swa',
+	'plg_user_swaprofile',
 );
+$rootDir = __DIR__ . DIRECTORY_SEPARATOR;
+$pkgDir = $rootDir . 'pkg_swa' . DIRECTORY_SEPARATOR . 'packages' . DIRECTORY_SEPARATOR;
 
+// Generate the individual zips
 echo "Ziping all...\n";
-
-foreach( $components as $dir ) {
-	@unlink(  __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip');
-	zipRecurive( __DIR__ . DIRECTORY_SEPARATOR . $dir , __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip', __DIR__ );
-	echo "Done " . __DIR__ . DIRECTORY_SEPARATOR . $dir . '.zip' . "\n";
+foreach( $components as $name ) {
+	@unlink(  $pkgDir . $name . '.zip');
+	zipRecurive( $rootDir . $name , $pkgDir . $name . '.zip' );
+	echo "Done " . $pkgDir . $name . '.zip' . "\n";
 }
 
-echo "All Done\n";
+// Generate the pkg zip
+$name = 'pkg_swa';
+@unlink ( $rootDir . 'pkg_swa.zip' );
+zipRecurive( $rootDir . $name , $rootDir . $name . '.zip' );
+echo "Done " . $rootDir . $name . '.zip' . "\n";
 
+echo "Done all!\n";
+
+
+/**
+ * @param string $source
+ * @param string $destination
+ *
+ * @return bool
+ */
 function zipRecurive($source, $destination) {
 	$source = realpath($source);
 
