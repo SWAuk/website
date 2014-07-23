@@ -45,6 +45,21 @@
 
 		<menu img="components/com_swa/assets/images/s_com_swa.png">COM_SWA</menu>
 		<submenu>
+			<menu>
+				COM_SWA_TITLE_EVENTS
+			</menu>
+			<menu>
+				COM_SWA_TITLE_TICKETS
+			</menu>
+			<menu>
+				COM_SWA_TITLE_DEPOSITS
+			</menu>
+			<menu>
+				COM_SWA_TITLE_DAMAGES
+			</menu>
+			<menu>
+				COM_SWA_TITLE_GRANTS
+			</menu>
 			<menu link="option=com_swa&amp;view=universities" view="universities"
 				  img="components/com_swa/assets/images/s_universities.png" alt="Swa/Universities">
 				COM_SWA_TITLE_UNIVERSITIES
