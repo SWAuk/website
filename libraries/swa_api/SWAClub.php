@@ -1,5 +1,4 @@
 <?php
-namespace SWA;
 
 interface SWAClub {
 

@@ -1,5 +1,4 @@
 <?php
-namespace SWA\Joomla;
 
 require_once '../SWAEventAttendee.php';
 

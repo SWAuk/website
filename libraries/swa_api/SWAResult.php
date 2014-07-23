@@ -1,5 +1,4 @@
 <?php
-namespace SWA;
 
 interface SWAResult {
 
@@ -7,6 +6,6 @@ interface SWAResult {
 	public function getSeason();
 	
 	public function getPoints();
-	public function setPoints($points);
+	public function setPoints();
 
 }
