@@ -3,6 +3,7 @@
 //TODO auto get all dirs?
 $components = array(
 	'com_swa',
+	'com_swa_universities',
 	'tpl_swa',
 	'plg_user_swaprofile',
 );
