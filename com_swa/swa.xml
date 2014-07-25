@@ -52,6 +52,9 @@
 				COM_SWA_TITLE_TICKETS
 			</menu>
 			<menu>
+				COM_SWA_TITLE_TICKET_TYPES
+			</menu>
+			<menu>
 				COM_SWA_TITLE_DEPOSITS
 			</menu>
 			<menu>
@@ -65,6 +68,15 @@
 			</menu>
 			<menu link="option=com_swa&amp;view=seasons" view="seasons" img="components/com_swa/assets/images/s_seasons.png" alt="Swa/Seasons">
 				COM_SWA_TITLE_SEASONS
+			</menu>
+			<menu>
+				COM_SWA_TITLE_RACES
+			</menu>
+			<menu>
+				COM_SWA_TITLE_RACE_TYPES
+			</menu>
+			<menu>
+				COM_SWA_TITLE_RESULTS
 			</menu>
 		</submenu>
 
