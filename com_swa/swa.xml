@@ -60,9 +60,11 @@
 			<menu>
 				COM_SWA_TITLE_GRANTS
 			</menu>
-			<menu link="option=com_swa&amp;view=universities" view="universities"
-				  img="components/com_swa/assets/images/s_universities.png" alt="Swa/Universities">
+			<menu link="option=com_swa&amp;view=universities" view="universities" img="components/com_swa/assets/images/s_universities.png" alt="Swa/Universities">
 				COM_SWA_TITLE_UNIVERSITIES
+			</menu>
+			<menu link="option=com_swa&amp;view=seasons" view="seasons" img="components/com_swa/assets/images/s_seasons.png" alt="Swa/Seasons">
+				COM_SWA_TITLE_SEASONS
 			</menu>
 		</submenu>
 

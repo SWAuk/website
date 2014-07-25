@@ -16,6 +16,11 @@ class SwaHelper {
 			'index.php?option=com_swa&view=universities',
 			$vName == 'universities'
 		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_SWA_TITLE_SEASONS'),
+			'index.php?option=com_swa&view=seasons',
+			$vName == 'seasons'
+		);
 
 	}
 
