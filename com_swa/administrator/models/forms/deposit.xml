@@ -10,10 +10,10 @@
 			   label="COM_SWA_FORM_LBL_DEPOSIT_CREATED_BY"
 			   description="COM_SWA_FORM_DESC_DEPOSIT_CREATED_BY"/>
 
-		<field name="university_id" type="text" size="40" class="inputbox"
+		<field name="university_id" type="sql" default="1" query="SELECT id AS value, name AS university_id FROM #__swa_university"
 
-			   label="COM_SWA_FORM_LBL_DEPOSIT_UNIVERSITY_ID"
-			   description="COM_SWA_FORM_DESC_DEPOSIT_UNIVERSITY_ID"
+			   label="COM_SWA_FORM_LBL_DEPOSIT_UNIVERSITY"
+			   description="COM_SWA_FORM_DESC_DEPOSIT_UNIVERSITY"
 
 
 			   required="true"

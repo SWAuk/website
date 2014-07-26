@@ -19,10 +19,10 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="university_id" type="text" size="40" class="inputbox"
+		<field name="university_id" type="sql" default="1" query="SELECT id AS value, name AS university_id FROM #__swa_university"
 
-			   label="COM_SWA_FORM_LBL_DAMAGE_UNIVERSITY_ID"
-			   description="COM_SWA_FORM_DESC_DAMAGE_UNIVERSITY_ID"
+			   label="COM_SWA_FORM_LBL_DAMAGE_UNIVERSITY"
+			   description="COM_SWA_FORM_DESC_DAMAGE_UNIVERSITY"
 
 
 			   filter="safehtml"/>

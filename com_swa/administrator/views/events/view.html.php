@@ -13,6 +13,8 @@ class SwaViewEvents extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
+	protected $universities;
+
 	/**
 	 * Display the view
 	 */
@@ -20,6 +22,8 @@ class SwaViewEvents extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
+
+		$this->universities = $this->getUniversities();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -32,6 +36,19 @@ class SwaViewEvents extends JViewLegacy {
 
 		$this->sidebar = JHtmlSidebar::render();
 		parent::display( $tpl );
+	}
+
+	/**
+	 * @todo code reuse
+	 */
+	private function getUniversities() {
+		$db = JFactory::getDBO();
+		$query = $db->getQuery(true);
+		$query->select('id,name');
+		$query->from('#__swa_university');
+		$db->setQuery((string)$query);
+		$unis = $db->loadObjectList('id');
+		return $unis;
 	}
 
 	/**

@@ -109,6 +109,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort',  'COM_SWA_DEPOSITS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DEPOSITS_TIME', 'a.time', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
@@ -175,6 +178,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 								<?php echo JHtml::_( 'jgrid.published', $item->state, $i, 'deposits.', $canChange, 'cb' ); ?>
 							</td>
 						<?php endif; ?>
+
+						<td>
+							<?php
+							if( array_key_exists( $item->university_id, $this->universities ) ) {
+								echo $this->universities[ $item->university_id ]->name;
+							} else {
+								echo $item->university_id;
+							}
+							?>
+						</td>
 
 						<td>
 
