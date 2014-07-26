@@ -10,13 +10,12 @@ jimport( 'joomla.application.component.view' );
 class SwaViewHome extends JViewLegacy {
 
 	// Overwriting JView display method
-	function display($tpl = null)
-	{
+	function display( $tpl = null ) {
 		// Assign data to the view
 		$this->msg = 'SWA home... (use the menu)';
 
 		// Display the view
-		parent::display($tpl);
+		parent::display( $tpl );
 	}
 
 }

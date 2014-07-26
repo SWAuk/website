@@ -22,14 +22,17 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 "text/javascript"
 >
 getScript
+
 (
 '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'
 ,
 function
+
 (
 )
 {
 jQuery
+
 (
 document
 
@@ -37,20 +40,25 @@ document
 .
 
 ready
+
 (
 function
+
 (
 )
 {
 jQuery
+
 (
 '#form-university'
 )
 .
 
 submit
+
 (
 function
+
 (
 event
 
@@ -379,18 +387,22 @@ div > <?php if (!JFactory::getUser()->authorise('core.admin','swa')): ?> < scrip
 jQuery.
 
 noConflict
+
 (
 )
 ;
 jQuery
+
 (
 '.tab-pane select'
 )
 .
 
 each
+
 (
 function
+
 (
 )
 {

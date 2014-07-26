@@ -1,19 +1,18 @@
 <?php
 
 // No direct access
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
-jimport('joomla.application.component.controllerform');
+jimport( 'joomla.application.component.controllerform' );
 
 /**
  * Tickettype controller class.
  */
-class SwaControllerTickettype extends JControllerForm
-{
+class SwaControllerTickettype extends JControllerForm {
 
-    function __construct() {
-        $this->view_list = 'tickettypes';
-        parent::__construct();
-    }
+	function __construct() {
+		$this->view_list = 'tickettypes';
+		parent::__construct();
+	}
 
 }

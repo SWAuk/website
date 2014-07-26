@@ -17,37 +17,37 @@ class SwaHelper {
 			$vName == 'universities'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_SEASONS'),
+			JText::_( 'COM_SWA_TITLE_SEASONS' ),
 			'index.php?option=com_swa&view=seasons',
 			$vName == 'seasons'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_EVENTS'),
+			JText::_( 'COM_SWA_TITLE_EVENTS' ),
 			'index.php?option=com_swa&view=events',
 			$vName == 'events'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_TICKETTYPES'),
+			JText::_( 'COM_SWA_TITLE_TICKETTYPES' ),
 			'index.php?option=com_swa&view=tickettypes',
 			$vName == 'tickettypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_RACETYPES'),
+			JText::_( 'COM_SWA_TITLE_RACETYPES' ),
 			'index.php?option=com_swa&view=racetypes',
 			$vName == 'racetypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_GRANTS'),
+			JText::_( 'COM_SWA_TITLE_GRANTS' ),
 			'index.php?option=com_swa&view=grants',
 			$vName == 'grants'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_DAMAGES'),
+			JText::_( 'COM_SWA_TITLE_DAMAGES' ),
 			'index.php?option=com_swa&view=damages',
 			$vName == 'damages'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('COM_SWA_TITLE_DEPOSITS'),
+			JText::_( 'COM_SWA_TITLE_DEPOSITS' ),
 			'index.php?option=com_swa&view=deposits',
 			$vName == 'deposits'
 		);

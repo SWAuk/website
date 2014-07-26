@@ -2,154 +2,147 @@
 <form>
 	<fieldset>
 
-              <field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_GRANT_ID"
-            readonly="true" class="readonly"
-            description="JGLOBAL_FIELD_ID_DESC" /> 
+		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_GRANT_ID"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-       <field name="created_by" type="createdby" default="" 
-            label="COM_SWA_FORM_LBL_GRANT_CREATED_BY"
-            description="COM_SWA_FORM_DESC_GRANT_CREATED_BY"  /> 
+		<field name="created_by" type="createdby" default=""
+			   label="COM_SWA_FORM_LBL_GRANT_CREATED_BY"
+			   description="COM_SWA_FORM_DESC_GRANT_CREATED_BY"/>
 
-       <field name="event_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_EVENT_ID"
-            description="COM_SWA_FORM_DESC_GRANT_EVENT_ID" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+		<field name="event_id" type="text" size="40" class="inputbox"
 
-       <field name="application_date" type="calendar" class="inputbox"
-         required="true" 
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_GRANT_APPLICATION_DATE"
-            description="COM_SWA_FORM_DESC_GRANT_APPLICATION_DATE" 
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_GRANT_EVENT_ID"
+			   description="COM_SWA_FORM_DESC_GRANT_EVENT_ID"
 
-       <field name="amount" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_AMOUNT"
-            description="COM_SWA_FORM_DESC_GRANT_AMOUNT"
-        
-        
-         required="true" 
-        filter="safehtml" /> 
 
-       <field name="fund_use" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_FUND_USE"
-            description="COM_SWA_FORM_DESC_GRANT_FUND_USE" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+			   required="true"
+			   filter="safehtml"/>
 
-       <field name="instructions" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_INSTRUCTIONS"
-            description="COM_SWA_FORM_DESC_GRANT_INSTRUCTIONS" 
-        
-        
-        
-        filter="safehtml" /> 
+		<field name="application_date" type="calendar" class="inputbox"
+			   required="true"
 
-       <field name="ac_sortcode" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_AC_SORTCODE"
-            description="COM_SWA_FORM_DESC_GRANT_AC_SORTCODE" 
-        
-        
-        
-        filter="safehtml" /> 
+			   default="0000-00-00"
 
-       <field name="ac_number" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_AC_NUMBER"
-            description="COM_SWA_FORM_DESC_GRANT_AC_NUMBER" 
-        
-        
-        
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_GRANT_APPLICATION_DATE"
+			   description="COM_SWA_FORM_DESC_GRANT_APPLICATION_DATE"
+			   filter="safehtml"/>
 
-       <field name="ac_name" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_AC_NAME"
-            description="COM_SWA_FORM_DESC_GRANT_AC_NAME" 
-        
-        
-        
-        filter="safehtml" /> 
+		<field name="amount" type="text" size="40" class="inputbox"
 
-       <field name="finances_date" type="calendar" class="inputbox"
-        
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_GRANT_FINANCES_DATE"
-            description="COM_SWA_FORM_DESC_GRANT_FINANCES_DATE" 
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_GRANT_AMOUNT"
+			   description="COM_SWA_FORM_DESC_GRANT_AMOUNT"
 
-       <field name="finances_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_FINANCES_ID"
-            description="COM_SWA_FORM_DESC_GRANT_FINANCES_ID" 
-        
-        
-        
-        filter="safehtml" /> 
 
-       <field name="auth_date" type="calendar" class="inputbox"
-        
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_GRANT_AUTH_DATE"
-            description="COM_SWA_FORM_DESC_GRANT_AUTH_DATE" 
-        filter="safehtml" /> 
+			   required="true"
+			   filter="safehtml"/>
 
-       <field name="auth_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_AUTH_ID"
-            description="COM_SWA_FORM_DESC_GRANT_AUTH_ID" 
-        
-        
-        
-        filter="safehtml" /> 
+		<field name="fund_use" type="text" size="40" class="inputbox"
 
-       <field name="payment_date" type="calendar" class="inputbox"
-        
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_GRANT_PAYMENT_DATE"
-            description="COM_SWA_FORM_DESC_GRANT_PAYMENT_DATE" 
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_GRANT_FUND_USE"
+			   description="COM_SWA_FORM_DESC_GRANT_FUND_USE"
 
-       <field name="payment_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_GRANT_PAYMENT_ID"
-            description="COM_SWA_FORM_DESC_GRANT_PAYMENT_ID" 
-        
-        
-        
-        filter="safehtml" /> 
 
-         <field
-        name="state"
-        type="list"
-        label="JSTATUS"
-        description="JFIELD_PUBLISHED_DESC"
-        class="inputbox"
-        size="1"
-        default="1">
-        <option value="1">JPUBLISHED</option>
-        <option value="0">JUNPUBLISHED</option>
-    </field> 
+			   required="true"
+			   filter="safehtml"/>
 
-                        <field name="checked_out" type="hidden" filter="unset" />
-        <field name="checked_out_time" type="hidden" filter="unset" />
+		<field name="instructions" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_INSTRUCTIONS"
+			   description="COM_SWA_FORM_DESC_GRANT_INSTRUCTIONS"
+
+
+			   filter="safehtml"/>
+
+		<field name="ac_sortcode" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_AC_SORTCODE"
+			   description="COM_SWA_FORM_DESC_GRANT_AC_SORTCODE"
+
+
+			   filter="safehtml"/>
+
+		<field name="ac_number" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_AC_NUMBER"
+			   description="COM_SWA_FORM_DESC_GRANT_AC_NUMBER"
+
+
+			   filter="safehtml"/>
+
+		<field name="ac_name" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_AC_NAME"
+			   description="COM_SWA_FORM_DESC_GRANT_AC_NAME"
+
+
+			   filter="safehtml"/>
+
+		<field name="finances_date" type="calendar" class="inputbox"
+
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_GRANT_FINANCES_DATE"
+			   description="COM_SWA_FORM_DESC_GRANT_FINANCES_DATE"
+			   filter="safehtml"/>
+
+		<field name="finances_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_FINANCES_ID"
+			   description="COM_SWA_FORM_DESC_GRANT_FINANCES_ID"
+
+
+			   filter="safehtml"/>
+
+		<field name="auth_date" type="calendar" class="inputbox"
+
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_GRANT_AUTH_DATE"
+			   description="COM_SWA_FORM_DESC_GRANT_AUTH_DATE"
+			   filter="safehtml"/>
+
+		<field name="auth_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_AUTH_ID"
+			   description="COM_SWA_FORM_DESC_GRANT_AUTH_ID"
+
+
+			   filter="safehtml"/>
+
+		<field name="payment_date" type="calendar" class="inputbox"
+
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_GRANT_PAYMENT_DATE"
+			   description="COM_SWA_FORM_DESC_GRANT_PAYMENT_DATE"
+			   filter="safehtml"/>
+
+		<field name="payment_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_GRANT_PAYMENT_ID"
+			   description="COM_SWA_FORM_DESC_GRANT_PAYMENT_ID"
+
+
+			   filter="safehtml"/>
+
+		<field
+				name="state"
+				type="list"
+				label="JSTATUS"
+				description="JFIELD_PUBLISHED_DESC"
+				class="inputbox"
+				size="1"
+				default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="checked_out" type="hidden" filter="unset"/>
+		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

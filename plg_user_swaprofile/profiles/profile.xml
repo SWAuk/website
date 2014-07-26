@@ -2,12 +2,12 @@
 <form>
 	<fields name="swaprofile">
 		<fieldset name="swaprofile"
-			label="PLG_USER_SWAPROFILE_SLIDER_LABEL">
+				  label="PLG_USER_SWAPROFILE_SLIDER_LABEL">
 			<field
-				name="sex"
-				type="list"
-				id="sex"
-				label="PLG_USER_SWAPROFILE_FIELD_SEX_LABEL">
+					name="sex"
+					type="list"
+					id="sex"
+					label="PLG_USER_SWAPROFILE_FIELD_SEX_LABEL">
 				<option value="1">Male</option>
 				<option value="2">Female</option>
 			</field>

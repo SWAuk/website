@@ -2,91 +2,91 @@
 <form>
 	<fieldset>
 
-              <field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_EVENT_ID"
-            readonly="true" class="readonly"
-            description="JGLOBAL_FIELD_ID_DESC" /> 
+		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_EVENT_ID"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-       <field name="created_by" type="createdby" default="" 
-            label="COM_SWA_FORM_LBL_EVENT_CREATED_BY"
-            description="COM_SWA_FORM_DESC_EVENT_CREATED_BY"  /> 
+		<field name="created_by" type="createdby" default=""
+			   label="COM_SWA_FORM_LBL_EVENT_CREATED_BY"
+			   description="COM_SWA_FORM_DESC_EVENT_CREATED_BY"/>
 
-       <field name="name" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_EVENT_NAME"
-            description="COM_SWA_FORM_DESC_EVENT_NAME" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+		<field name="name" type="text" size="40" class="inputbox"
 
-       <field name="university_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_EVENT_UNIVERSITY_ID"
-            description="COM_SWA_FORM_DESC_EVENT_UNIVERSITY_ID" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_EVENT_NAME"
+			   description="COM_SWA_FORM_DESC_EVENT_NAME"
 
-       <field name="season_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_EVENT_SEASON_ID"
-            description="COM_SWA_FORM_DESC_EVENT_SEASON_ID" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
 
-       <field name="capacity" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_EVENT_CAPACITY"
-            description="COM_SWA_FORM_DESC_EVENT_CAPACITY" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+			   required="true"
+			   filter="safehtml"/>
 
-       <field name="date_open" type="calendar" class="inputbox"
-         required="true" 
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_EVENT_DATE_OPEN"
-            description="COM_SWA_FORM_DESC_EVENT_DATE_OPEN" 
-        filter="safehtml" /> 
+		<field name="university_id" type="text" size="40" class="inputbox"
 
-       <field name="date_close" type="calendar" class="inputbox"
-         required="true" 
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_EVENT_DATE_CLOSE"
-            description="COM_SWA_FORM_DESC_EVENT_DATE_CLOSE" 
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_EVENT_UNIVERSITY_ID"
+			   description="COM_SWA_FORM_DESC_EVENT_UNIVERSITY_ID"
 
-       <field name="date" type="calendar" class="inputbox"
-         required="true" 
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_EVENT_DATE"
-            description="COM_SWA_FORM_DESC_EVENT_DATE" 
-        filter="safehtml" /> 
 
-         <field
-        name="state"
-        type="list"
-        label="JSTATUS"
-        description="JFIELD_PUBLISHED_DESC"
-        class="inputbox"
-        size="1"
-        default="1">
-        <option value="1">JPUBLISHED</option>
-        <option value="0">JUNPUBLISHED</option>
-    </field> 
+			   required="true"
+			   filter="safehtml"/>
 
-                        <field name="checked_out" type="hidden" filter="unset" />
-        <field name="checked_out_time" type="hidden" filter="unset" />
+		<field name="season_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_EVENT_SEASON_ID"
+			   description="COM_SWA_FORM_DESC_EVENT_SEASON_ID"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="capacity" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_EVENT_CAPACITY"
+			   description="COM_SWA_FORM_DESC_EVENT_CAPACITY"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="date_open" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_EVENT_DATE_OPEN"
+			   description="COM_SWA_FORM_DESC_EVENT_DATE_OPEN"
+			   filter="safehtml"/>
+
+		<field name="date_close" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_EVENT_DATE_CLOSE"
+			   description="COM_SWA_FORM_DESC_EVENT_DATE_CLOSE"
+			   filter="safehtml"/>
+
+		<field name="date" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_EVENT_DATE"
+			   description="COM_SWA_FORM_DESC_EVENT_DATE"
+			   filter="safehtml"/>
+
+		<field
+				name="state"
+				type="list"
+				label="JSTATUS"
+				description="JFIELD_PUBLISHED_DESC"
+				class="inputbox"
+				size="1"
+				default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="checked_out" type="hidden" filter="unset"/>
+		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

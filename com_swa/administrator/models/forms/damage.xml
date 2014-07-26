@@ -2,64 +2,63 @@
 <form>
 	<fieldset>
 
-              <field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_DAMAGE_ID"
-            readonly="true" class="readonly"
-            description="JGLOBAL_FIELD_ID_DESC" /> 
+		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_DAMAGE_ID"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-       <field name="created_by" type="createdby" default="" 
-            label="COM_SWA_FORM_LBL_DAMAGE_CREATED_BY"
-            description="COM_SWA_FORM_DESC_DAMAGE_CREATED_BY"  /> 
+		<field name="created_by" type="createdby" default=""
+			   label="COM_SWA_FORM_LBL_DAMAGE_CREATED_BY"
+			   description="COM_SWA_FORM_DESC_DAMAGE_CREATED_BY"/>
 
-       <field name="event_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_DAMAGE_EVENT_ID"
-            description="COM_SWA_FORM_DESC_DAMAGE_EVENT_ID" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+		<field name="event_id" type="text" size="40" class="inputbox"
 
-       <field name="university_id" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_DAMAGE_UNIVERSITY_ID"
-            description="COM_SWA_FORM_DESC_DAMAGE_UNIVERSITY_ID" 
-        
-        
-        
-        filter="safehtml" /> 
+			   label="COM_SWA_FORM_LBL_DAMAGE_EVENT_ID"
+			   description="COM_SWA_FORM_DESC_DAMAGE_EVENT_ID"
 
-       <field name="date" type="calendar" class="inputbox"
-         required="true" 
-        
-         default="0000-00-00" 
-        
-            label="COM_SWA_FORM_LBL_DAMAGE_DATE"
-            description="COM_SWA_FORM_DESC_DAMAGE_DATE" 
-        filter="safehtml" /> 
 
-       <field name="cost" type="text" size="40" class="inputbox"
-        
-            label="COM_SWA_FORM_LBL_DAMAGE_COST"
-            description="COM_SWA_FORM_DESC_DAMAGE_COST" 
-        
-        
-         required="true" 
-        filter="safehtml" /> 
+			   required="true"
+			   filter="safehtml"/>
 
-         <field
-        name="state"
-        type="list"
-        label="JSTATUS"
-        description="JFIELD_PUBLISHED_DESC"
-        class="inputbox"
-        size="1"
-        default="1">
-        <option value="1">JPUBLISHED</option>
-        <option value="0">JUNPUBLISHED</option>
-    </field> 
+		<field name="university_id" type="text" size="40" class="inputbox"
 
-                        <field name="checked_out" type="hidden" filter="unset" />
-        <field name="checked_out_time" type="hidden" filter="unset" />
+			   label="COM_SWA_FORM_LBL_DAMAGE_UNIVERSITY_ID"
+			   description="COM_SWA_FORM_DESC_DAMAGE_UNIVERSITY_ID"
+
+
+			   filter="safehtml"/>
+
+		<field name="date" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_DAMAGE_DATE"
+			   description="COM_SWA_FORM_DESC_DAMAGE_DATE"
+			   filter="safehtml"/>
+
+		<field name="cost" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_DAMAGE_COST"
+			   description="COM_SWA_FORM_DESC_DAMAGE_COST"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field
+				name="state"
+				type="list"
+				label="JSTATUS"
+				description="JFIELD_PUBLISHED_DESC"
+				class="inputbox"
+				size="1"
+				default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="checked_out" type="hidden" filter="unset"/>
+		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

@@ -1,19 +1,18 @@
 <?php
 
 // No direct access
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
-jimport('joomla.application.component.controllerform');
+jimport( 'joomla.application.component.controllerform' );
 
 /**
  * Racetype controller class.
  */
-class SwaControllerRacetype extends JControllerForm
-{
+class SwaControllerRacetype extends JControllerForm {
 
-    function __construct() {
-        $this->view_list = 'racetypes';
-        parent::__construct();
-    }
+	function __construct() {
+		$this->view_list = 'racetypes';
+		parent::__construct();
+	}
 
 }
