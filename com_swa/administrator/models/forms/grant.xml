@@ -28,10 +28,10 @@
             description="COM_SWA_FORM_DESC_GRANT_APPLICATION_DATE" 
         filter="safehtml" /> 
 
-       <field name="ammount" type="text" size="40" class="inputbox"
+       <field name="amount" type="text" size="40" class="inputbox"
         
-            label="COM_SWA_FORM_LBL_GRANT_AMMOUNT"
-            description="COM_SWA_FORM_DESC_GRANT_AMMOUNT" 
+            label="COM_SWA_FORM_LBL_GRANT_AMOUNT"
+            description="COM_SWA_FORM_DESC_GRANT_AMOUNT"
         
         
          required="true" 

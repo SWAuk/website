@@ -25,7 +25,7 @@ class SwaModelGrants extends JModelList {
                 'created_by', 'a.created_by',
                 'event_id', 'a.event_id',
                 'application_date', 'a.application_date',
-                'ammount', 'a.ammount',
+                'amount', 'a.amount',
                 'fund_use', 'a.fund_use',
                 'instructions', 'a.instructions',
                 'ac_sortcode', 'a.ac_sortcode',

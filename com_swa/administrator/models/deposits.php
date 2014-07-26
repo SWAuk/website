@@ -25,7 +25,7 @@ class SwaModelDeposits extends JModelList {
                 'created_by', 'a.created_by',
                 'university_id', 'a.university_id',
                 'time', 'a.time',
-                'ammount', 'a.ammount',
+                'amount', 'a.amount',
 
             );
         }

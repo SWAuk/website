@@ -122,7 +122,7 @@ class SwaViewDeposits extends JViewLegacy {
 		'a.checked_out' => JText::_('COM_SWA_DEPOSITS_CHECKED_OUT'),
 		'a.checked_out_time' => JText::_('COM_SWA_DEPOSITS_CHECKED_OUT_TIME'),
 		'a.time' => JText::_('COM_SWA_DEPOSITS_TIME'),
-		'a.ammount' => JText::_('COM_SWA_DEPOSITS_AMMOUNT'),
+		'a.amount' => JText::_('COM_SWA_DEPOSITS_AMOUNT'),
 		);
 	}
 

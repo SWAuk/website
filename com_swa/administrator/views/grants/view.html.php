@@ -122,7 +122,7 @@ class SwaViewGrants extends JViewLegacy {
 		'a.checked_out' => JText::_('COM_SWA_GRANTS_CHECKED_OUT'),
 		'a.checked_out_time' => JText::_('COM_SWA_GRANTS_CHECKED_OUT_TIME'),
 		'a.application_date' => JText::_('COM_SWA_GRANTS_APPLICATION_DATE'),
-		'a.ammount' => JText::_('COM_SWA_GRANTS_AMMOUNT'),
+		'a.amount' => JText::_('COM_SWA_GRANTS_AMOUNT'),
 		'a.finances_date' => JText::_('COM_SWA_GRANTS_FINANCES_DATE'),
 		'a.auth_date' => JText::_('COM_SWA_GRANTS_AUTH_DATE'),
 		'a.payment_date' => JText::_('COM_SWA_GRANTS_PAYMENT_DATE'),

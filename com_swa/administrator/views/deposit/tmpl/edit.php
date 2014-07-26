@@ -72,8 +72,8 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 				<div class="controls"><?php echo $this->form->getInput('time'); ?></div>
 			</div>
 			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('ammount'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('ammount'); ?></div>
+				<div class="control-label"><?php echo $this->form->getLabel('amount'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('amount'); ?></div>
 			</div>
 
 

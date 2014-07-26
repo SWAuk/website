@@ -107,7 +107,7 @@ if (!empty($this->extra_sidebar)) {
 				<?php echo JHtml::_('grid.sort',  'COM_SWA_GRANTS_APPLICATION_DATE', 'a.application_date', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
-				<?php echo JHtml::_('grid.sort',  'COM_SWA_GRANTS_AMMOUNT', 'a.ammount', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort',  'COM_SWA_GRANTS_AMOUNT', 'a.amount', $listDirn, $listOrder); ?>
 				</th>
 				<th class='left'>
 				<?php echo JHtml::_('grid.sort',  'COM_SWA_GRANTS_FINANCES_DATE', 'a.finances_date', $listDirn, $listOrder); ?>
@@ -187,7 +187,7 @@ if (!empty($this->extra_sidebar)) {
 				</td>
 				<td>
 
-					<?php echo $item->ammount; ?>
+					<?php echo $item->amount; ?>
 				</td>
 				<td>
 

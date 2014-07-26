@@ -29,10 +29,10 @@
         format="%Y-%m-%d %H:%M:%S"
         filter="safehtml" /> 
 
-       <field name="ammount" type="text" size="40" class="inputbox"
+       <field name="amount" type="text" size="40" class="inputbox"
         
-            label="COM_SWA_FORM_LBL_DEPOSIT_AMMOUNT"
-            description="COM_SWA_FORM_DESC_DEPOSIT_AMMOUNT" 
+            label="COM_SWA_FORM_LBL_DEPOSIT_AMOUNT"
+            description="COM_SWA_FORM_DESC_DEPOSIT_AMOUNT"
         
         
          required="true" 
