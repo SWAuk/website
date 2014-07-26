@@ -33,7 +33,7 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `university_id` INT NOT NULL ,
-  `time` TIMESTAMP NOT NULL ,
+  `time` DATETIME NOT NULL ,
   `ammount` DECIMAL NOT NULL ,
   `asset_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
   `ordering` INT(11)  NOT NULL ,
@@ -96,7 +96,6 @@ DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_grant` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `user_id` INT NOT NULL ,
   `event_id` VARCHAR(45) NOT NULL ,
   `application_date` DATE NOT NULL ,
   `ammount` DECIMAL NOT NULL ,
@@ -118,7 +117,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_grant` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` INT(11)  NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_grants_user1_idx` (`user_id` ASC) ,
+  INDEX `fk_grants_createdby1_idx` (`created_by` ASC) ,
   INDEX `fk_grants_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 

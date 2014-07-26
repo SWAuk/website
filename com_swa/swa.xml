@@ -45,22 +45,22 @@
 
 		<menu img="components/com_swa/assets/images/s_com_swa.png">COM_SWA</menu>
 		<submenu>
-			<menu>
+			<menu link="option=com_swa&amp;view=events" view="events" img="components/com_swa/assets/images/s_events.png" alt="Swa/Events">
 				COM_SWA_TITLE_EVENTS
 			</menu>
 			<menu>
 				COM_SWA_TITLE_TICKETS
 			</menu>
-			<menu>
-				COM_SWA_TITLE_TICKET_TYPES
+			<menu link="option=com_swa&amp;view=tickettypes" view="tickettypes" img="components/com_swa/assets/images/s_tickettypes.png" alt="Swa/TicketTypes">
+				COM_SWA_TITLE_TICKETTYPES
 			</menu>
-			<menu>
+			<menu link="option=com_swa&amp;view=deposits" view="deposits" img="components/com_swa/assets/images/s_deposits.png" alt="Swa/Deposits">
 				COM_SWA_TITLE_DEPOSITS
 			</menu>
-			<menu>
+			<menu link="option=com_swa&amp;view=damages" view="damages" img="components/com_swa/assets/images/s_damages.png" alt="Swa/Damages">
 				COM_SWA_TITLE_DAMAGES
 			</menu>
-			<menu>
+			<menu link="option=com_swa&amp;view=grants" view="grants" img="components/com_swa/assets/images/s_grants.png" alt="Swa/Grants">
 				COM_SWA_TITLE_GRANTS
 			</menu>
 			<menu link="option=com_swa&amp;view=universities" view="universities" img="components/com_swa/assets/images/s_universities.png" alt="Swa/Universities">
@@ -72,8 +72,8 @@
 			<menu>
 				COM_SWA_TITLE_RACES
 			</menu>
-			<menu>
-				COM_SWA_TITLE_RACE_TYPES
+			<menu link="option=com_swa&amp;view=racetypes" view="racetypes" img="components/com_swa/assets/images/s_racetypes.png" alt="Swa/RaceTypes">
+				COM_SWA_TITLE_RACETYPES
 			</menu>
 			<menu>
 				COM_SWA_TITLE_RESULTS
