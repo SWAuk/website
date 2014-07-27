@@ -187,8 +187,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo $item->race_id; ?>
 						</td>
 						<td>
-
-							<?php echo $item->university_id; ?>
+							<?php
+							if ( array_key_exists( $item->university_id, $this->universities ) ) {
+								echo $this->universities[$item->university_id]->name;
+							} else {
+								echo $item->university_id;
+							}
+							?>
 						</td>
 						<td>
 

@@ -10,7 +10,8 @@
 			   label="COM_SWA_FORM_LBL_GRANT_CREATED_BY"
 			   description="COM_SWA_FORM_DESC_GRANT_CREATED_BY"/>
 
-		<field name="event_id" type="text" size="40" class="inputbox"
+		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT id, name FROM #__swa_event WHERE `state` = 1"
 
 			   label="COM_SWA_FORM_LBL_GRANT_EVENT_ID"
 			   description="COM_SWA_FORM_DESC_GRANT_EVENT_ID"
