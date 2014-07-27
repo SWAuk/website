@@ -1,5 +1,6 @@
 #Ignore the zip files..
 *.zip
+migrate.cnf.php
 
 #################
 ## PhpStorm
