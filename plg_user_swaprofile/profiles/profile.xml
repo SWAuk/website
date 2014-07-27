@@ -5,24 +5,31 @@
 				  label="PLG_USER_SWAPROFILE_SLIDER_LABEL">
 			<field
 					name="sex"
+					required="true"
 					type="list"
+					default="0"
 					id="sex"
 					label="PLG_USER_SWAPROFILE_FIELD_SEX_LABEL">
+				<option value="0">Rather not say</option>
 				<option value="1">Male</option>
 				<option value="2">Female</option>
 			</field>
 			<field
 					name="dob"
-					type="calendar"
+					required="true"
+					type="int"
 					id="dob"
 					label="PLG_USER_SWAPROFILE_FIELD_DOB_LABEL">
 			</field>
 			<field
 					name="uni"
-					type="list"
-					id="uni"
+					required="true"
+					type="sql"
+					default="1"
+					key_field="id"
+					value_field="name"
+					query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
 					label="PLG_USER_SWAPROFILE_FIELD_UNI_LABEL">
-				<option value="1">TODO - List to be driven by DB</option>
 			</field>
 			<field
 					name="course"
@@ -39,6 +46,7 @@
 			</field>
 			<field
 					name="discipline"
+					required="true"
 					type="list"
 					id="discipline"
 					label="PLG_USER_SWAPROFILE_FIELD_DISCIPLINE_LABEL">
@@ -48,6 +56,7 @@
 			</field>
 			<field
 					name="level"
+					required="true"
 					type="list"
 					id="level"
 					label="PLG_USER_SWAPROFILE_FIELD_LEVEL_LABEL">
@@ -59,14 +68,11 @@
 					name="instructor"
 					type="checkbox"
 					id="instructor"
-					label="PLG_USER_SWAPROFILE_FIELD_Instructor_LABEL">
-				<option value="1">None</option>
-				<option value="2">Start</option>
-				<option value="3">Intermediate</option>
-				<option value="4">Advanced</option>
+					label="PLG_USER_SWAPROFILE_FIELD_INSTRUCTOR_LABEL">
 			</field>
 			<field
 					name="shirt"
+					required="true"
 					type="list"
 					id="shirt"
 					label="PLG_USER_SWAPROFILE_FIELD_SHIRT_LABEL">
@@ -78,18 +84,21 @@
 			</field>
 			<field
 					name="econtact"
+					required="true"
 					type="text"
 					id="econtact"
 					label="PLG_USER_SWAPROFILE_FIELD_EMERG_CONTACT_LABEL">
 			</field>
 			<field
 					name="enumber"
+					required="true"
 					type="text"
 					id="enumber"
 					label="PLG_USER_SWAPROFILE_FIELD_EMERG_NUMBER_LABEL">
 			</field>
 			<field
 					name="swahelp"
+					required="true"
 					type="list"
 					id="swahelp"
 					label="PLG_USER_SWAPROFILE_FIELD_SWAHELP_LABEL">

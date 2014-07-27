@@ -5,7 +5,7 @@
 	<author>SWA Tech Team</author>
 	<authorUrl>http://www.studentwindsurfing.co.uk/</authorUrl>
 	<version>0.0.1</version>
-	<description>PLG_USER_SWAPROFILE_XML_DESCRIPTION</description>
+	<description>User SWA Profile Plug-in. This plugin needs to be enabled!</description>
 
 	<files>
 		<filename plugin="swaprofile">swaprofile.php</filename>
