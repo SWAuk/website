@@ -98,6 +98,14 @@
 
 				/>
 
+		<field name="instructor_confirmed" type="checkbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_INSTRUCTOR_CONFIRMED"
+			   description="COM_SWA_FORM_DESC_MEMBER_INSTRUCTOR_CONFIRMED"
+
+
+				/>
+
 		<field name="shirt" type="list"
 
 			   label="COM_SWA_FORM_LBL_MEMBER_SHIRT"

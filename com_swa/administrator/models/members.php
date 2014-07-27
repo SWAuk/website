@@ -32,6 +32,7 @@ class SwaModelMembers extends JModelList {
 				'discipline', 'a.discipline',
 				'level', 'a.level',
 				'instructor', 'a.instructor',
+				'instructor_confirmed', 'a.instructor_confirmed',
 				'shirt', 'a.shirt',
 				'econtact', 'a.econtact',
 				'enumber', 'a.enumber',

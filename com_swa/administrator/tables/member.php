@@ -39,6 +39,11 @@ class SwaTablemember extends JTable {
 			$array['instructor'] = 0;
 		}
 
+		//Support for checkbox field: instructor_confirmed
+		if ( !isset( $array['instructor_confirmed'] ) ) {
+			$array['instructor_confirmed'] = 0;
+		}
+
 		if ( isset( $array['params'] ) && is_array( $array['params'] ) ) {
 			$registry = new JRegistry();
 			$registry->loadArray( $array['params'] );
