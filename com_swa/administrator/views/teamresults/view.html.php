@@ -24,7 +24,8 @@ class SwaViewTeamresults extends JViewLegacy {
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
 
-		$this->universities = $this->getUniversities();
+		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
+		$this->universities = SwaHelperTableGetter::getUniversities();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -37,19 +38,6 @@ class SwaViewTeamresults extends JViewLegacy {
 
 		$this->sidebar = JHtmlSidebar::render();
 		parent::display( $tpl );
-	}
-
-	/**
-	 * @todo code reuse
-	 */
-	private function getUniversities() {
-		$db = JFactory::getDBO();
-		$query = $db->getQuery( true );
-		$query->select( 'id,name' );
-		$query->from( '#__swa_university' );
-		$db->setQuery( (string)$query );
-		$unis = $db->loadObjectList( 'id' );
-		return $unis;
 	}
 
 	/**
