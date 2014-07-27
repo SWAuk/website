@@ -20,7 +20,8 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="event_ticket_id" type="sql" default="1" key_field="id" value_field="event_ticket_name"
+		<field name="event_ticket_id" type="sql" default="1" key_field="id"
+			   value_field="event_ticket_name"
 			   query="SELECT event_ticket.id, CONCAT( event.name, ' - ' , ticket_type.name ) as event_ticket_name FROM #__swa_event_ticket AS event_ticket
 INNER JOIN #__swa_event AS event ON event_ticket.event_id=event.id
 INNER JOIN #__swa_ticket_type AS ticket_type ON event_ticket.ticket_type_id=ticket_type.id"

@@ -4,7 +4,6 @@
 $components = array(
 	'com_swa',
 	'tpl_swa',
-	'plg_user_swaprofile',
 );
 $rootDir = __DIR__ . DIRECTORY_SEPARATOR;
 $pkgDir = $rootDir . 'pkg_swa' . DIRECTORY_SEPARATOR . 'packages' . DIRECTORY_SEPARATOR;

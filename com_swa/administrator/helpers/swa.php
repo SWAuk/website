@@ -76,6 +76,11 @@ class SwaHelper {
 			'index.php?option=com_swa&view=races',
 			$vName == 'races'
 		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_MEMBERS' ),
+			'index.php?option=com_swa&view=members',
+			$vName == 'members'
+		);
 
 	}
 

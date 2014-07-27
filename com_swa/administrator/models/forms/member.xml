@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_MEMBER_ID"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
+
+		<field name="created_by" type="createdby" default=""
+			   label="COM_SWA_FORM_LBL_MEMBER_CREATED_BY"
+			   description="COM_SWA_FORM_DESC_MEMBER_CREATED_BY"/>
+
+		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT id, name FROM #__users"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_USER_ID"
+			   description="COM_SWA_FORM_DESC_MEMBER_USER_ID"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="sex" type="list"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_SEX"
+			   description="COM_SWA_FORM_DESC_MEMBER_SEX"
+			   default="none"
+
+			   required="true">
+			<option value="none">Rather not say</option>
+			<option value="Male">Male</option>
+			<option value="Female">Female</option>
+		</field>
+
+		<field name="dob" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_DOB"
+			   description="COM_SWA_FORM_DESC_MEMBER_DOB"
+			   filter="safehtml"/>
+
+		<field name="university" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_UNIVERSITY"
+			   description="COM_SWA_FORM_DESC_MEMBER_UNIVERSITY"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="course" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_COURSE"
+			   description="COM_SWA_FORM_DESC_MEMBER_COURSE"
+
+
+			   filter="safehtml"/>
+
+		<field name="graduation" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_GRADUATION"
+			   description="COM_SWA_FORM_DESC_MEMBER_GRADUATION"
+
+
+			   filter="safehtml"/>
+
+		<field name="discipline" type="list"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_DISCIPLINE"
+			   description="COM_SWA_FORM_DESC_MEMBER_DISCIPLINE"
+
+
+				>
+			<option value="None">None</option>
+			<option value="Wave">Wave</option>
+			<option value="Freestyle">Freestyle</option>
+		</field>
+
+		<field name="level" type="list"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_LEVEL"
+			   description="COM_SWA_FORM_DESC_MEMBER_LEVEL"
+
+
+			   required="true">
+			<option value="Beginner">Beginner</option>
+			<option value="Intermediate">Intermediate</option>
+			<option value="Advanced">Advanced</option>
+		</field>
+
+		<field name="instructor" type="checkbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_INSTRUCTOR"
+			   description="COM_SWA_FORM_DESC_MEMBER_INSTRUCTOR"
+
+
+				/>
+
+		<field name="shirt" type="list"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_SHIRT"
+			   description="COM_SWA_FORM_DESC_MEMBER_SHIRT"
+
+
+			   required="true">
+			<option value="XS">XS</option>
+			<option value="S">S</option>
+			<option value="M">M</option>
+			<option value="L">L</option>
+			<option value="XL">XL</option>
+		</field>
+
+		<field name="econtact" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_ECONTACT"
+			   description="COM_SWA_FORM_DESC_MEMBER_ECONTACT"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="enumber" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_ENUMBER"
+			   description="COM_SWA_FORM_DESC_MEMBER_ENUMBER"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="swahelp" type="list"
+
+			   label="COM_SWA_FORM_LBL_MEMBER_SWAHELP"
+			   description="COM_SWA_FORM_DESC_MEMBER_SWAHELP"
+			   default="None"
+
+			   required="true">
+			<option value="None">None</option>
+			<option value="Website">Website</option>
+			<option value="Events">Events</option>
+			<option value="Accounting">Accounting</option>
+		</field>
+
+		<field
+				name="state"
+				type="list"
+				label="JSTATUS"
+				description="JFIELD_PUBLISHED_DESC"
+				class="inputbox"
+				size="1"
+				default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="checked_out" type="hidden" filter="unset"/>
+		<field name="checked_out_time" type="hidden" filter="unset"/>
+
+	</fieldset>
+
+</form>

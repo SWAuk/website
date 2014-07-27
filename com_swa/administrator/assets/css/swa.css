@@ -28,6 +28,16 @@
     padding-left: 60px !important;
 }
 
+.icon-48-members {
+    background-image: url(../images/l_members.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-member {
+    background-image: url(../images/l_members.png);
+    padding-left: 60px !important;
+}
+
 .icon-48-tickettypes {
     background-image: url(../images/l_tickettypes.png);
     padding-left: 60px !important;

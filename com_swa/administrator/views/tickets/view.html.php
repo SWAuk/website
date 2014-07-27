@@ -27,7 +27,7 @@ class SwaViewTickets extends JViewLegacy {
 
 		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
 		$this->eventtickets = SwaHelperTableGetter::getEventTickets();
-		$this->users = SwaHelperTableGetter::getUsers();
+		$this->users = SwaHelperTableGetter::getMembers();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

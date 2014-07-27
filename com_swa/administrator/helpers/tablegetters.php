@@ -57,12 +57,11 @@ class SwaHelperTableGetter {
 		return $list;
 	}
 
-	public static function getUsers() {
+	public static function getMembers() {
 		$db = JFactory::getDBO();
-		$query = $db->getQuery( true );
-		$query->select( 'id,name' );
-		$query->from( '#__users' );
-		$db->setQuery( (string)$query );
+		$query = "SELECT member.id, users.name as name FROM #__swa_member AS member
+		INNER JOIN #__users AS users ON member.user_id=users.id";
+		$db->setQuery( $query );
 		$list = $db->loadObjectList( 'id' );
 		return $list;
 	}

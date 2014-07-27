@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS `#__swa_member`;
 DROP TABLE IF EXISTS `#__swa_university`;
 DROP TABLE IF EXISTS `#__swa_season`;
 DROP TABLE IF EXISTS `#__swa_deposit`;

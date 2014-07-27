@@ -8,14 +8,14 @@ jimport( 'joomla.application.component.view' );
 /**
  * View class for a list of Swa.
  */
-class SwaViewIndividualresults extends JViewLegacy {
+class SwaViewMembers extends JViewLegacy {
 
 	protected $items;
 	protected $pagination;
 	protected $state;
 
-	protected $races;
 	protected $users;
+	protected $universities;
 
 	/**
 	 * Display the view
@@ -26,15 +26,15 @@ class SwaViewIndividualresults extends JViewLegacy {
 		$this->pagination = $this->get( 'Pagination' );
 
 		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->races = SwaHelperTableGetter::getRaces();
 		$this->users = SwaHelperTableGetter::getMembers();
+		$this->universities = SwaHelperTableGetter::getUniversities();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
-		SwaHelper::addSubmenu( 'individualresults' );
+		SwaHelper::addSubmenu( 'members' );
 
 		$this->addToolbar();
 
@@ -53,18 +53,18 @@ class SwaViewIndividualresults extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_INDIVIDUALRESULTS' ), 'individualresults.png' );
+		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_MEMBERS' ), 'members.png' );
 
 		//Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/individualresult';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/member';
 		if ( file_exists( $formPath ) ) {
 
 			if ( $canDo->get( 'core.create' ) ) {
-				JToolBarHelper::addNew( 'individualresult.add', 'JTOOLBAR_NEW' );
+				JToolBarHelper::addNew( 'member.add', 'JTOOLBAR_NEW' );
 			}
 
 			if ( $canDo->get( 'core.edit' ) && isset( $this->items[0] ) ) {
-				JToolBarHelper::editList( 'individualresult.edit', 'JTOOLBAR_EDIT' );
+				JToolBarHelper::editList( 'member.edit', 'JTOOLBAR_EDIT' );
 			}
 		}
 
@@ -72,29 +72,29 @@ class SwaViewIndividualresults extends JViewLegacy {
 
 			if ( isset( $this->items[0]->state ) ) {
 				JToolBarHelper::divider();
-				JToolBarHelper::custom( 'individualresults.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true );
-				JToolBarHelper::custom( 'individualresults.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true );
+				JToolBarHelper::custom( 'members.publish', 'publish.png', 'publish_f2.png', 'JTOOLBAR_PUBLISH', true );
+				JToolBarHelper::custom( 'members.unpublish', 'unpublish.png', 'unpublish_f2.png', 'JTOOLBAR_UNPUBLISH', true );
 			} else if ( isset( $this->items[0] ) ) {
 				//If this component does not use state then show a direct delete button as we can not trash
-				JToolBarHelper::deleteList( '', 'individualresults.delete', 'JTOOLBAR_DELETE' );
+				JToolBarHelper::deleteList( '', 'members.delete', 'JTOOLBAR_DELETE' );
 			}
 
 			if ( isset( $this->items[0]->state ) ) {
 				JToolBarHelper::divider();
-				JToolBarHelper::archiveList( 'individualresults.archive', 'JTOOLBAR_ARCHIVE' );
+				JToolBarHelper::archiveList( 'members.archive', 'JTOOLBAR_ARCHIVE' );
 			}
 			if ( isset( $this->items[0]->checked_out ) ) {
-				JToolBarHelper::custom( 'individualresults.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true );
+				JToolBarHelper::custom( 'members.checkin', 'checkin.png', 'checkin_f2.png', 'JTOOLBAR_CHECKIN', true );
 			}
 		}
 
 		//Show trash and delete for components that uses the state field
 		if ( isset( $this->items[0]->state ) ) {
 			if ( $state->get( 'filter.state' ) == -2 && $canDo->get( 'core.delete' ) ) {
-				JToolBarHelper::deleteList( '', 'individualresults.delete', 'JTOOLBAR_EMPTY_TRASH' );
+				JToolBarHelper::deleteList( '', 'members.delete', 'JTOOLBAR_EMPTY_TRASH' );
 				JToolBarHelper::divider();
 			} else if ( $canDo->get( 'core.edit.state' ) ) {
-				JToolBarHelper::trash( 'individualresults.trash', 'JTOOLBAR_TRASH' );
+				JToolBarHelper::trash( 'members.trash', 'JTOOLBAR_TRASH' );
 				JToolBarHelper::divider();
 			}
 		}
@@ -104,7 +104,7 @@ class SwaViewIndividualresults extends JViewLegacy {
 		}
 
 		//Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=individualresults' );
+		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=members' );
 
 		$this->extra_sidebar = '';
 
@@ -125,11 +125,10 @@ class SwaViewIndividualresults extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_CHECKED_OUT_TIME' ),
-			'a.user_id' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_USER_ID' ),
-			'a.race_id' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_RACE_ID' ),
-			'a.result' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_RESULT' ),
+			'a.checked_out' => JText::_( 'COM_SWA_MEMBERS_CHECKED_OUT' ),
+			'a.checked_out_time' => JText::_( 'COM_SWA_MEMBERS_CHECKED_OUT_TIME' ),
+			'a.user_id' => JText::_( 'COM_SWA_MEMBERS_USER_ID' ),
+			'a.university' => JText::_( 'COM_SWA_MEMBERS_UNIVERSITY' ),
 		);
 	}
 

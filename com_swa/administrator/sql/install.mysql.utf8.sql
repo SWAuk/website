@@ -1,3 +1,29 @@
+CREATE TABLE IF NOT EXISTS `#__swa_member` (
+`id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+`ordering` INT(11)  NOT NULL ,
+`state` TINYINT(1)  NOT NULL ,
+`checked_out` INT(11)  NOT NULL ,
+`checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
+`created_by` INT(11)  NOT NULL ,
+`user_id` INT(11)  NOT NULL ,
+`sex` VARCHAR(255)  NOT NULL ,
+`dob` DATE NOT NULL DEFAULT '0000-00-00',
+`university` INT(11)  NOT NULL ,
+`course` VARCHAR(100)  NOT NULL ,
+`graduation` INT(11)  NOT NULL ,
+`discipline` VARCHAR(50)  NOT NULL ,
+`level` VARCHAR(255)  NOT NULL ,
+`instructor` INT(2)  NOT NULL ,
+`instructor_confirmed` INT(2)  NOT NULL DEFAULT 0 ,
+`shirt` VARCHAR(3)  NOT NULL ,
+`econtact` VARCHAR(255)  NOT NULL ,
+`enumber` VARCHAR(255)  NOT NULL ,
+`swahelp` VARCHAR(50)  NOT NULL ,
+PRIMARY KEY (`id`),
+  INDEX `fk_member_user_idx` (`user_id` ASC)
+)
+DEFAULT COLLATE=utf8_general_ci;
+
 CREATE  TABLE IF NOT EXISTS `#__swa_university` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(200) NOT NULL ,
