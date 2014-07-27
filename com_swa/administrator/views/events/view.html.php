@@ -14,6 +14,7 @@ class SwaViewEvents extends JViewLegacy {
 	protected $state;
 
 	protected $universities;
+	protected $seasons;
 
 	/**
 	 * Display the view
@@ -25,6 +26,7 @@ class SwaViewEvents extends JViewLegacy {
 
 		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
 		$this->universities = SwaHelperTableGetter::getUniversities();
+		$this->seasons = SwaHelperTableGetter::getSeasons();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

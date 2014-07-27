@@ -183,8 +183,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-
-							<?php echo $item->race_id; ?>
+							<?php
+							if ( array_key_exists( $item->race_id, $this->races ) ) {
+								echo $this->races[$item->race_id]->event_race_name;
+							} else {
+								echo $item->race_id;
+							}
+							?>
 						</td>
 						<td>
 							<?php

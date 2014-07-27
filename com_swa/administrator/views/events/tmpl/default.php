@@ -112,6 +112,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_NAME', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_SEASON', 'a.season', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
@@ -206,6 +209,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 								echo $this->universities[$item->university_id]->name;
 							} else {
 								echo $item->university_id;
+							}
+							?>
+						</td>
+
+						<td>
+							<?php
+							if ( array_key_exists( $item->season_id, $this->seasons ) ) {
+								echo $this->seasons[$item->season_id]->year;
+							} else {
+								echo $item->season_id;
 							}
 							?>
 						</td>

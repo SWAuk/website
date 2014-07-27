@@ -14,6 +14,9 @@ class SwaViewTickets extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
+	protected $eventtickets;
+	protected $users;
+
 	/**
 	 * Display the view
 	 */
@@ -21,6 +24,10 @@ class SwaViewTickets extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
+
+		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
+		$this->eventtickets = SwaHelperTableGetter::getEventTickets();
+		$this->users = SwaHelperTableGetter::getUsers();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

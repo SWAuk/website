@@ -109,6 +109,10 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_GRANTS_EVENT', 'a.application_date', $listDirn, $listOrder ); ?>
+					</th>
+
+					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_GRANTS_APPLICATION_DATE', 'a.application_date', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
@@ -184,6 +188,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 								<?php echo JHtml::_( 'jgrid.published', $item->state, $i, 'grants.', $canChange, 'cb' ); ?>
 							</td>
 						<?php endif; ?>
+
+						<td>
+							<?php
+							if ( array_key_exists( $item->event_id, $this->events ) ) {
+								echo $this->events[$item->event_id]->name;
+							} else {
+								echo $item->event_id;
+							}
+							?>
+						</td>
 
 						<td>
 

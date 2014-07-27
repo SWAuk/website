@@ -15,6 +15,7 @@ class SwaViewTeamresults extends JViewLegacy {
 	protected $state;
 
 	protected $universities;
+	protected $races;
 
 	/**
 	 * Display the view
@@ -26,6 +27,7 @@ class SwaViewTeamresults extends JViewLegacy {
 
 		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
 		$this->universities = SwaHelperTableGetter::getUniversities();
+		$this->races = SwaHelperTableGetter::getRaces();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

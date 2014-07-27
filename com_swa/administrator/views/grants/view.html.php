@@ -14,6 +14,8 @@ class SwaViewGrants extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
+	protected $events;
+
 	/**
 	 * Display the view
 	 */
@@ -21,6 +23,9 @@ class SwaViewGrants extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
+
+		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
+		$this->events = SwaHelperTableGetter::getEvents();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

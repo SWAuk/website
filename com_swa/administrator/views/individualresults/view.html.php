@@ -14,6 +14,9 @@ class SwaViewIndividualresults extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
+	protected $races;
+	protected $users;
+
 	/**
 	 * Display the view
 	 */
@@ -21,6 +24,10 @@ class SwaViewIndividualresults extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
+
+		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
+		$this->races = SwaHelperTableGetter::getRaces();
+		$this->users = SwaHelperTableGetter::getUsers();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

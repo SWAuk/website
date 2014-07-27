@@ -183,12 +183,22 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-
-							<?php echo $item->event_id; ?>
+							<?php
+							if ( array_key_exists( $item->event_id, $this->events ) ) {
+								echo $this->events[$item->event_id]->name;
+							} else {
+								echo $item->event_id;
+							}
+							?>
 						</td>
 						<td>
-
-							<?php echo $item->ticket_type_id; ?>
+							<?php
+							if ( array_key_exists( $item->ticket_type_id, $this->tickettypes ) ) {
+								echo $this->tickettypes[$item->ticket_type_id]->name;
+							} else {
+								echo $item->ticket_type_id;
+							}
+							?>
 						</td>
 						<td>
 

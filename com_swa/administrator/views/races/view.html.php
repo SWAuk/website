@@ -14,6 +14,9 @@ class SwaViewRaces extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
+	protected $events;
+	protected $racetypes;
+
 	/**
 	 * Display the view
 	 */
@@ -21,6 +24,10 @@ class SwaViewRaces extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
+
+		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
+		$this->events = SwaHelperTableGetter::getEvents();
+		$this->racetypes = SwaHelperTableGetter::getRaceTypes();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

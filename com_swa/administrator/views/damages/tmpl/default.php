@@ -112,6 +112,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DAMAGES_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DAMAGES_EVENT', 'a.event', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DAMAGES_DATE', 'a.date', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
@@ -185,6 +188,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 								echo $this->universities[$item->university_id]->name;
 							} else {
 								echo $item->university_id;
+							}
+							?>
+						</td>
+
+						<td>
+							<?php
+							if ( array_key_exists( $item->event_id, $this->events ) ) {
+								echo $this->events[$item->event_id]->name;
+							} else {
+								echo $item->event_id;
 							}
 							?>
 						</td>
