@@ -44,11 +44,11 @@ class SwaViewDeposits extends JViewLegacy {
 	 */
 	private function getUniversities() {
 		$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select('id,name');
-		$query->from('#__swa_university');
-		$db->setQuery((string)$query);
-		$unis = $db->loadObjectList('id');
+		$query = $db->getQuery( true );
+		$query->select( 'id,name' );
+		$query->from( '#__swa_university' );
+		$db->setQuery( (string)$query );
+		$unis = $db->loadObjectList( 'id' );
 		return $unis;
 	}
 

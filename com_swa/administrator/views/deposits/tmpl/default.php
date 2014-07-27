@@ -109,7 +109,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort',  'COM_SWA_DEPOSITS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DEPOSITS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_DEPOSITS_TIME', 'a.time', $listDirn, $listOrder ); ?>
@@ -181,8 +181,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 
 						<td>
 							<?php
-							if( array_key_exists( $item->university_id, $this->universities ) ) {
-								echo $this->universities[ $item->university_id ]->name;
+							if ( array_key_exists( $item->university_id, $this->universities ) ) {
+								echo $this->universities[$item->university_id]->name;
 							} else {
 								echo $item->university_id;
 							}

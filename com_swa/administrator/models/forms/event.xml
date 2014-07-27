@@ -19,7 +19,8 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="university_id" type="sql" default="1" query="SELECT id AS value, name AS university_id FROM #__swa_university WHERE `state` = 1"
+		<field name="university_id" type="sql" default="1"
+			   query="SELECT id AS value, name AS university_id FROM #__swa_university WHERE `state` = 1"
 
 			   label="COM_SWA_FORM_LBL_EVENT_UNIVERSITY"
 			   description="COM_SWA_FORM_DESC_EVENT_UNIVERSITY"

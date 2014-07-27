@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_TEAMRESULT_ID"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
+
+		<field name="created_by" type="createdby" default=""
+			   label="COM_SWA_FORM_LBL_TEAMRESULT_CREATED_BY"
+			   description="COM_SWA_FORM_DESC_TEAMRESULT_CREATED_BY"/>
+
+		<field name="race_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_TEAMRESULT_RACE_ID"
+			   description="COM_SWA_FORM_DESC_TEAMRESULT_RACE_ID"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="university_id" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_TEAMRESULT_UNIVERSITY_ID"
+			   description="COM_SWA_FORM_DESC_TEAMRESULT_UNIVERSITY_ID"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="team_number" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_TEAMRESULT_TEAM_NUMBER"
+			   description="COM_SWA_FORM_DESC_TEAMRESULT_TEAM_NUMBER"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="result" type="text" size="40" class="inputbox"
+
+			   label="COM_SWA_FORM_LBL_TEAMRESULT_RESULT"
+			   description="COM_SWA_FORM_DESC_TEAMRESULT_RESULT"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field
+				name="state"
+				type="list"
+				label="JSTATUS"
+				description="JFIELD_PUBLISHED_DESC"
+				class="inputbox"
+				size="1"
+				default="1">
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+
+		<field name="checked_out" type="hidden" filter="unset"/>
+		<field name="checked_out_time" type="hidden" filter="unset"/>
+
+	</fieldset>
+
+</form>

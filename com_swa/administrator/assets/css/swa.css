@@ -78,4 +78,55 @@
     padding-left: 60px !important;
 }
 
+.icon-48-tickets {
+    background-image: url(../images/l_tickets.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-ticket {
+    background-image: url(../images/l_tickets.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-teamresults {
+    background-image: url(../images/l_teamresults.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-teamresult {
+    background-image: url(../images/l_teamresults.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-individualresults {
+    background-image: url(../images/l_individualresults.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-individualresult {
+    background-image: url(../images/l_individualresults.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-eventtickets {
+    background-image: url(../images/l_eventtickets.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-eventticket {
+    background-image: url(../images/l_eventtickets.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-races {
+    background-image: url(../images/l_races.png);
+    padding-left: 60px !important;
+}
+
+.icon-48-race {
+    background-image: url(../images/l_races.png);
+    padding-left: 60px !important;
+}
+
+
 

@@ -51,6 +51,31 @@ class SwaHelper {
 			'index.php?option=com_swa&view=deposits',
 			$vName == 'deposits'
 		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_TICKETS' ),
+			'index.php?option=com_swa&view=tickets',
+			$vName == 'tickets'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_TEAMRESULTS' ),
+			'index.php?option=com_swa&view=teamresults',
+			$vName == 'teamresults'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_INDIVIDUALRESULTS' ),
+			'index.php?option=com_swa&view=individualresults',
+			$vName == 'individualresults'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_EVENTTICKETS' ),
+			'index.php?option=com_swa&view=eventtickets',
+			$vName == 'eventtickets'
+		);
+		JHtmlSidebar::addEntry(
+			JText::_( 'COM_SWA_TITLE_RACES' ),
+			'index.php?option=com_swa&view=races',
+			$vName == 'races'
+		);
 
 	}
 
