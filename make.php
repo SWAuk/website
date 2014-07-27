@@ -9,6 +9,10 @@ $components = array(
 $rootDir = __DIR__ . DIRECTORY_SEPARATOR;
 $pkgDir = $rootDir . 'pkg_swa' . DIRECTORY_SEPARATOR . 'packages' . DIRECTORY_SEPARATOR;
 
+if ( !file_exists($pkgDir) ) {
+	mkdir( $pkgDir, 0777, true );
+}
+
 // Generate the individual zips
 echo "Ziping all...\n";
 foreach ( $components as $name ) {
