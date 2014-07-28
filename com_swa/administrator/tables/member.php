@@ -34,14 +34,9 @@ class SwaTablemember extends JTable {
 			$array['state'] = 0;
 		}
 
-		//Support for checkbox field: instructor
-		if ( !isset( $array['instructor'] ) ) {
-			$array['instructor'] = 0;
-		}
-
-		//Support for checkbox field: instructor_confirmed
-		if ( !isset( $array['instructor_confirmed'] ) ) {
-			$array['instructor_confirmed'] = 0;
+		//Support for checkbox field: paid
+		if ( !isset( $array['paid'] ) ) {
+			$array['paid'] = 0;
 		}
 
 		if ( isset( $array['params'] ) && is_array( $array['params'] ) ) {

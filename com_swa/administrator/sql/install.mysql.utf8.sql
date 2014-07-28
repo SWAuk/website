@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `checked_out_time` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00',
   `created_by` INT(11)  NOT NULL ,
   `user_id` INT(11)  NOT NULL ,
+  `paid` TINYINT(1)  NOT NULL DEFAULT 0,
   `sex` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
   `dob` DATE NOT NULL DEFAULT '0000-00-00',
   `university_id` INT(11)  NOT NULL ,

@@ -18,6 +18,9 @@
 			   required="true"
 			   filter="safehtml"/>
 
+		<field name="paid" type="checkbox" label="Paid" default="0" readonly="true" class="readonly" disabled="disabled">
+		</field>
+
 		<field name="sex" type="list"
 
 			   label="Sex"
@@ -74,7 +77,7 @@
 
 		<field name="level" type="list"
 
-			   label="level"
+			   label="Level"
 
 
 			   required="true">

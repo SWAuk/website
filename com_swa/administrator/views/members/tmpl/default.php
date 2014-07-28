@@ -114,6 +114,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Paid', 'a.paid', $listDirn, $listOrder ); ?>
+					</th>
 
 
 					<?php if ( isset( $this->items[0]->id ) ): ?>
@@ -181,6 +184,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $item->university; ?>
+						</td>
+						<td>
+							<?php echo $item->paid; ?>
 						</td>
 
 						<?php if ( isset( $this->items[0]->id ) ): ?>
