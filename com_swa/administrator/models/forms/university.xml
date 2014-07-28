@@ -2,18 +2,16 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_UNIVERSITY_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_UNIVERSITY_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_UNIVERSITY_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="name" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_UNIVERSITY_NAME"
-			   description="COM_SWA_FORM_DESC_UNIVERSITY_NAME"
+			   label="Name"
 
 
 			   required="true"
@@ -21,8 +19,7 @@
 
 		<field name="code" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_UNIVERSITY_CODE"
-			   description="COM_SWA_FORM_DESC_UNIVERSITY_CODE"
+			   label="Code"
 
 
 			   required="true"
@@ -30,8 +27,7 @@
 
 		<field name="url" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_UNIVERSITY_URL"
-			   description="COM_SWA_FORM_DESC_UNIVERSITY_URL"
+			   label="Url"
 
 			   validate="url"
 
@@ -39,8 +35,7 @@
 
 		<field name="password" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_UNIVERSITY_PASSWORD"
-			   description="COM_SWA_FORM_DESC_UNIVERSITY_PASSWORD"
+			   label="Password"
 
 
 			   required="true"

@@ -46,7 +46,7 @@ class SwaViewSeasons extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_SEASONS' ), 'seasons.png' );
+		JToolBarHelper::title( JText::_( 'Seasons' ), 'seasons.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/season';
@@ -118,9 +118,9 @@ class SwaViewSeasons extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_SEASONS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_SEASONS_CHECKED_OUT_TIME' ),
-			'a.year' => JText::_( 'COM_SWA_SEASONS_YEAR' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.year' => JText::_( 'Year' ),
 		);
 	}
 

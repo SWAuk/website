@@ -109,13 +109,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_INDIVIDUALRESULTS_USER_ID', 'a.user_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'User', 'a.user', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_INDIVIDUALRESULTS_RACE_ID', 'a.race_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_INDIVIDUALRESULTS_RESULT', 'a.result', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Race type', 'a.race_type', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Result', 'a.result', $listDirn, $listOrder ); ?>
 					</th>
 
 
@@ -180,22 +183,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->user_id, $this->users ) ) {
-								echo $this->users[$item->user_id]->name;
-							} else {
-								echo $item->user_id;
-							}
-							?>
+
+							<?php echo $item->user; ?>
 						</td>
 						<td>
-							<?php
-							if ( array_key_exists( $item->race_id, $this->races ) ) {
-								echo $this->races[$item->race_id]->event_race_name;
-							} else {
-								echo $item->race_id;
-							}
-							?>
+
+							<?php echo $item->event; ?>
+						</td>
+						<td>
+
+							<?php echo $item->race_type; ?>
 						</td>
 						<td>
 

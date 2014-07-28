@@ -41,7 +41,7 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'COM_SWA_TITLE_MEMBER', true ) ); ?>
+		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Member', true ) ); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
@@ -77,8 +77,8 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'dob' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'university' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'university' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'university_id' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'university_id' ); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'course' ); ?></div>

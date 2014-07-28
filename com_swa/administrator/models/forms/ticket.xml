@@ -2,19 +2,17 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_TICKET_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_TICKET_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_TICKET_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__users WHERE `block` = 0"
 
-			   label="COM_SWA_FORM_LBL_TICKET_USER_ID"
-			   description="COM_SWA_FORM_DESC_TICKET_USER_ID"
+			   label="User"
 
 
 			   required="true"
@@ -26,8 +24,7 @@
 INNER JOIN #__swa_event AS event ON event_ticket.event_id=event.id
 INNER JOIN #__swa_ticket_type AS ticket_type ON event_ticket.ticket_type_id=ticket_type.id"
 
-			   label="COM_SWA_FORM_LBL_TICKET_EVENT_TICKET_ID"
-			   description="COM_SWA_FORM_DESC_TICKET_EVENT_TICKET_ID"
+			   label="Event ticket"
 
 
 			   required="true"

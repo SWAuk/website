@@ -109,10 +109,10 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_RACES_EVENT_ID', 'a.event_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_RACES_RACE_TYPE_ID', 'a.race_type_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Race type', 'a.race_type', $listDirn, $listOrder ); ?>
 					</th>
 
 
@@ -177,22 +177,10 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->event_id, $this->events ) ) {
-								echo $this->events[$item->event_id]->name;
-							} else {
-								echo $item->event_id;
-							}
-							?>
+							<?php echo $item->event; ?>
 						</td>
 						<td>
-							<?php
-							if ( array_key_exists( $item->race_type_id, $this->racetypes ) ) {
-								echo $this->racetypes[$item->race_type_id]->name;
-							} else {
-								echo $item->race_type_id;
-							}
-							?>
+							<?php echo $item->race_type; ?>
 						</td>
 
 

@@ -40,7 +40,7 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'COM_SWA_TITLE_UNIVERSITY', true ) ); ?>
+		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'University', true ) ); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
@@ -86,7 +86,7 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 		<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
 
 		<?php if ( JFactory::getUser()->authorise( 'core.admin', 'swa' ) ) : ?>
-			<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'permissions', JText::_( 'COM_SWA_FIELDSET_RULES', true ) ); ?>
+			<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'permissions', JText::_( 'Permissions', true ) ); ?>
 			<?php echo $this->form->getInput( 'rules' ); ?>
 			<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
 		<?php endif; ?>

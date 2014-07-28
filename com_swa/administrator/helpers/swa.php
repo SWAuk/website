@@ -12,72 +12,72 @@ class SwaHelper {
 	 */
 	public static function addSubmenu( $vName = '' ) {
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_MEMBERS' ),
+			JText::_( 'Members' ),
 			'index.php?option=com_swa&view=members',
 			$vName == 'members'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_EVENTS' ),
+			JText::_( 'Events' ),
 			'index.php?option=com_swa&view=events',
 			$vName == 'events'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_EVENTTICKETS' ),
+			JText::_( 'Event tickets' ),
 			'index.php?option=com_swa&view=eventtickets',
 			$vName == 'eventtickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_TICKETS' ),
+			JText::_( 'Tickets' ),
 			'index.php?option=com_swa&view=tickets',
 			$vName == 'tickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_TICKETTYPES' ),
+			JText::_( 'Ticket types' ),
 			'index.php?option=com_swa&view=tickettypes',
 			$vName == 'tickettypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_DEPOSITS' ),
+			JText::_( 'Deposits' ),
 			'index.php?option=com_swa&view=deposits',
 			$vName == 'deposits'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_DAMAGES' ),
+			JText::_( 'Damages' ),
 			'index.php?option=com_swa&view=damages',
 			$vName == 'damages'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_GRANTS' ),
+			JText::_( 'Grants' ),
 			'index.php?option=com_swa&view=grants',
 			$vName == 'grants'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_UNIVERSITIES' ),
+			JText::_( 'Universities' ),
 			'index.php?option=com_swa&view=universities',
 			$vName == 'universities'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_SEASONS' ),
+			JText::_( 'Seasons' ),
 			'index.php?option=com_swa&view=seasons',
 			$vName == 'seasons'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_RACES' ),
+			JText::_( 'Races' ),
 			'index.php?option=com_swa&view=races',
 			$vName == 'races'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_RACETYPES' ),
+			JText::_( 'Race types' ),
 			'index.php?option=com_swa&view=racetypes',
 			$vName == 'racetypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_TEAMRESULTS' ),
+			JText::_( 'Team results' ),
 			'index.php?option=com_swa&view=teamresults',
 			$vName == 'teamresults'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'COM_SWA_TITLE_INDIVIDUALRESULTS' ),
+			JText::_( 'Individual results' ),
 			'index.php?option=com_swa&view=individualresults',
 			$vName == 'individualresults'
 		);

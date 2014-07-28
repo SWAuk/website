@@ -45,7 +45,7 @@ class SwaViewUniversities extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_UNIVERSITIES' ), 'universities.png' );
+		JToolBarHelper::title( JText::_( 'Universities' ), 'universities.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university';
@@ -117,12 +117,12 @@ class SwaViewUniversities extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_UNIVERSITIES_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_UNIVERSITIES_CHECKED_OUT_TIME' ),
-			'a.name' => JText::_( 'COM_SWA_UNIVERSITIES_NAME' ),
-			'a.code' => JText::_( 'COM_SWA_UNIVERSITIES_CODE' ),
-			'a.url' => JText::_( 'COM_SWA_UNIVERSITIES_URL' ),
-			'a.password' => JText::_( 'COM_SWA_UNIVERSITIES_PASSWORD' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.name' => JText::_( 'Name' ),
+			'a.code' => JText::_( 'Code' ),
+			'a.url' => JText::_( 'Url' ),
+			'a.password' => JText::_( 'Password' ),
 		);
 	}
 

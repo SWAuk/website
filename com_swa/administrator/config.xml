@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
-	<fieldset description="COM_SWA_CONFIGURATION" label="COM_SWA" name="swa">
+	<fieldset description="SWA configuration" label="COM_SWA" name="swa">
 
 	</fieldset>
 	<fieldset

@@ -47,7 +47,7 @@ class SwaViewTickettypes extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_TICKETTYPES' ), 'tickettypes.png' );
+		JToolBarHelper::title( JText::_( 'Ticket types' ), 'tickettypes.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/tickettype';
@@ -119,9 +119,9 @@ class SwaViewTickettypes extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_TICKETTYPES_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_TICKETTYPES_CHECKED_OUT_TIME' ),
-			'a.name' => JText::_( 'COM_SWA_TICKETTYPES_NAME' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.name' => JText::_( 'Name' ),
 		);
 	}
 

@@ -14,8 +14,6 @@ class SwaViewGrants extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $events;
-
 	/**
 	 * Display the view
 	 */
@@ -23,9 +21,6 @@ class SwaViewGrants extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->events = SwaHelperTableGetter::getEvents();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -51,7 +46,7 @@ class SwaViewGrants extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_GRANTS' ), 'grants.png' );
+		JToolBarHelper::title( JText::_( 'Grants' ), 'grants.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/grant';
@@ -123,13 +118,13 @@ class SwaViewGrants extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_GRANTS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_GRANTS_CHECKED_OUT_TIME' ),
-			'a.application_date' => JText::_( 'COM_SWA_GRANTS_APPLICATION_DATE' ),
-			'a.amount' => JText::_( 'COM_SWA_GRANTS_AMOUNT' ),
-			'a.finances_date' => JText::_( 'COM_SWA_GRANTS_FINANCES_DATE' ),
-			'a.auth_date' => JText::_( 'COM_SWA_GRANTS_AUTH_DATE' ),
-			'a.payment_date' => JText::_( 'COM_SWA_GRANTS_PAYMENT_DATE' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.application_date' => JText::_( 'Application date' ),
+			'a.amount' => JText::_( 'Amount' ),
+			'a.finances_date' => JText::_( 'Finances date' ),
+			'a.auth_date' => JText::_( 'Auth date' ),
+			'a.payment_date' => JText::_( 'Payment date' ),
 		);
 	}
 

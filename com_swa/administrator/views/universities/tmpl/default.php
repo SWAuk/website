@@ -108,16 +108,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_UNIVERSITIES_NAME', 'a.name', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_UNIVERSITIES_CODE', 'a.code', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Code', 'a.code', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_UNIVERSITIES_URL', 'a.url', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Url', 'a.url', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_UNIVERSITIES_PASSWORD', 'a.password', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Password', 'a.password', $listDirn, $listOrder ); ?>
 					</th>
 
 

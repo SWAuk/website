@@ -46,7 +46,7 @@ class SwaViewGrant extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_GRANT' ), 'grant.png' );
+		JToolBarHelper::title( JText::_( 'Grant' ), 'grant.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

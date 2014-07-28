@@ -46,7 +46,7 @@ class SwaViewEvent extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_EVENT' ), 'event.png' );
+		JToolBarHelper::title( JText::_( 'Event' ), 'event.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

@@ -13,9 +13,6 @@ class SwaViewEvents extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $universities;
-	protected $seasons;
-
 	/**
 	 * Display the view
 	 */
@@ -23,10 +20,6 @@ class SwaViewEvents extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->universities = SwaHelperTableGetter::getUniversities();
-		$this->seasons = SwaHelperTableGetter::getSeasons();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -52,7 +45,7 @@ class SwaViewEvents extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_EVENTS' ), 'events.png' );
+		JToolBarHelper::title( JText::_( 'Events' ), 'events.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/event';
@@ -124,13 +117,13 @@ class SwaViewEvents extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_EVENTS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_EVENTS_CHECKED_OUT_TIME' ),
-			'a.name' => JText::_( 'COM_SWA_EVENTS_NAME' ),
-			'a.capacity' => JText::_( 'COM_SWA_EVENTS_CAPACITY' ),
-			'a.date_open' => JText::_( 'COM_SWA_EVENTS_DATE_OPEN' ),
-			'a.date_close' => JText::_( 'COM_SWA_EVENTS_DATE_CLOSE' ),
-			'a.date' => JText::_( 'COM_SWA_EVENTS_DATE' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.name' => JText::_( 'Name' ),
+			'a.capacity' => JText::_( 'Capacity' ),
+			'a.date_open' => JText::_( 'Date open' ),
+			'a.date_close' => JText::_( 'Date close' ),
+			'a.date' => JText::_( 'Date' ),
 		);
 	}
 

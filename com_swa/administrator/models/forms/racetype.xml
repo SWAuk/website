@@ -2,18 +2,16 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_RACETYPE_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_RACETYPE_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_RACETYPE_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="name" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_RACETYPE_NAME"
-			   description="COM_SWA_FORM_DESC_RACETYPE_NAME"
+			   label="Name"
 
 
 			   required="true"

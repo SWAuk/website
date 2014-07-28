@@ -14,9 +14,6 @@ class SwaViewIndividualresults extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $races;
-	protected $users;
-
 	/**
 	 * Display the view
 	 */
@@ -24,10 +21,6 @@ class SwaViewIndividualresults extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->races = SwaHelperTableGetter::getRaces();
-		$this->users = SwaHelperTableGetter::getMembers();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -53,7 +46,7 @@ class SwaViewIndividualresults extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_INDIVIDUALRESULTS' ), 'individualresults.png' );
+		JToolBarHelper::title( JText::_( 'Individual results' ), 'individualresults.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/individualresult';
@@ -125,11 +118,12 @@ class SwaViewIndividualresults extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_CHECKED_OUT_TIME' ),
-			'a.user_id' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_USER_ID' ),
-			'a.race_id' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_RACE_ID' ),
-			'a.result' => JText::_( 'COM_SWA_INDIVIDUALRESULTS_RESULT' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.user' => JText::_( 'User' ),
+			'a.event' => JText::_( 'Event' ),
+			'a.race_type' => JText::_( 'Race type' ),
+			'a.result' => JText::_( 'Result' ),
 		);
 	}
 

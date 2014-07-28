@@ -46,7 +46,7 @@ class SwaViewRace extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_RACE' ), 'race.png' );
+		JToolBarHelper::title( JText::_( 'Race' ), 'race.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

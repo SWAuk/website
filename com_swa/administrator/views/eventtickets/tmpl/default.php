@@ -109,16 +109,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTTICKETS_EVENT_ID', 'a.event_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTTICKETS_TICKET_TYPE_ID', 'a.ticket_type_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Ticket Type', 'a.ticket_type', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTTICKETS_QUANTITY', 'a.quantity', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Quantity', 'a.quantity', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTTICKETS_PRICE', 'a.price', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Price', 'a.price', $listDirn, $listOrder ); ?>
 					</th>
 
 
@@ -183,22 +183,12 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->event_id, $this->events ) ) {
-								echo $this->events[$item->event_id]->name;
-							} else {
-								echo $item->event_id;
-							}
-							?>
+
+							<?php echo $item->event; ?>
 						</td>
 						<td>
-							<?php
-							if ( array_key_exists( $item->ticket_type_id, $this->tickettypes ) ) {
-								echo $this->tickettypes[$item->ticket_type_id]->name;
-							} else {
-								echo $item->ticket_type_id;
-							}
-							?>
+
+							<?php echo $item->ticket_type; ?>
 						</td>
 						<td>
 

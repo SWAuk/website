@@ -2,31 +2,30 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_INDIVIDUALRESULT_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_INDIVIDUALRESULT_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_INDIVIDUALRESULT_CREATED_BY"/>
+			   label="Created by"/>
 
+		<!-- The below SQL will only select ids and name of MEMBERS! -->
 		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__users WHERE `block` = 0"
+			query="SELECT u.id as id, u.name as name FROM #__swa_member as m
+			INNER JOIN #__users AS u ON m.user_id=u.id"
 
-			   label="COM_SWA_FORM_LBL_INDIVIDUALRESULT_USER_ID"
-			   description="COM_SWA_FORM_DESC_INDIVIDUALRESULT_USER_ID"
+			   label="User"
 
 
 			   required="true"
 			   filter="safehtml"/>
 
 		<field name="race_id" type="sql" default="1" key_field="id" value_field="event_race_name"
-			   query="SELECT race.id, CONCAT( event.name, ' - ' , race_type.name ) as event_race_name FROM i9nrq_swa_race AS race
-INNER JOIN i9nrq_swa_event AS event ON race.event_id=event.id
-INNER JOIN i9nrq_swa_race_type AS race_type ON race.race_type_id=race_type.id"
+			   query="SELECT race.id, CONCAT( event.name, ' - ' , race_type.name ) as event_race_name FROM #__swa_race AS race
+INNER JOIN #__swa_event AS event ON race.event_id=event.id
+INNER JOIN #__swa_race_type AS race_type ON race.race_type_id=race_type.id"
 
-			   label="COM_SWA_FORM_LBL_INDIVIDUALRESULT_RACE_ID"
-			   description="COM_SWA_FORM_DESC_INDIVIDUALRESULT_RACE_ID"
+			   label="Race"
 
 
 			   required="true"
@@ -34,8 +33,7 @@ INNER JOIN i9nrq_swa_race_type AS race_type ON race.race_type_id=race_type.id"
 
 		<field name="result" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_INDIVIDUALRESULT_RESULT"
-			   description="COM_SWA_FORM_DESC_INDIVIDUALRESULT_RESULT"
+			   label="Result"
 
 
 			   required="true"

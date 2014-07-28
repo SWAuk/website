@@ -46,7 +46,7 @@ class SwaViewTickettype extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_TICKETTYPE' ), 'tickettype.png' );
+		JToolBarHelper::title( JText::_( 'Ticket type' ), 'tickettype.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

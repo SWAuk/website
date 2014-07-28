@@ -14,9 +14,6 @@ class SwaViewEventtickets extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $events;
-	protected $tickettypes;
-
 	/**
 	 * Display the view
 	 */
@@ -24,10 +21,6 @@ class SwaViewEventtickets extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->events = SwaHelperTableGetter::getEvents();
-		$this->tickettypes = SwaHelperTableGetter::getTicketTypes();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -53,7 +46,7 @@ class SwaViewEventtickets extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_EVENTTICKETS' ), 'eventtickets.png' );
+		JToolBarHelper::title( JText::_( 'Event tickets' ), 'eventtickets.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/eventticket';
@@ -125,12 +118,12 @@ class SwaViewEventtickets extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_EVENTTICKETS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_EVENTTICKETS_CHECKED_OUT_TIME' ),
-			'a.event_id' => JText::_( 'COM_SWA_EVENTTICKETS_EVENT_ID' ),
-			'a.ticket_type_id' => JText::_( 'COM_SWA_EVENTTICKETS_TICKET_TYPE_ID' ),
-			'a.quantity' => JText::_( 'COM_SWA_EVENTTICKETS_QUANTITY' ),
-			'a.price' => JText::_( 'COM_SWA_EVENTTICKETS_PRICE' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.event' => JText::_( 'Event' ),
+			'a.ticket_type' => JText::_( 'Ticket Type' ),
+			'a.quantity' => JText::_( 'Quantity' ),
+			'a.price' => JText::_( 'Price' ),
 		);
 	}
 

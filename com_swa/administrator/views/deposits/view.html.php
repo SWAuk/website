@@ -14,8 +14,6 @@ class SwaViewDeposits extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $universities;
-
 	/**
 	 * Display the view
 	 */
@@ -23,9 +21,6 @@ class SwaViewDeposits extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->universities = SwaHelperTableGetter::getUniversities();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -51,7 +46,7 @@ class SwaViewDeposits extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_DEPOSITS' ), 'deposits.png' );
+		JToolBarHelper::title( JText::_( 'Deposits' ), 'deposits.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/deposit';
@@ -123,10 +118,10 @@ class SwaViewDeposits extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_DEPOSITS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_DEPOSITS_CHECKED_OUT_TIME' ),
-			'a.time' => JText::_( 'COM_SWA_DEPOSITS_TIME' ),
-			'a.amount' => JText::_( 'COM_SWA_DEPOSITS_AMOUNT' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.time' => JText::_( 'Time' ),
+			'a.amount' => JText::_( 'Amount' ),
 		);
 	}
 

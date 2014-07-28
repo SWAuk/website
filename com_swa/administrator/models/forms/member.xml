@@ -2,19 +2,17 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_MEMBER_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_MEMBER_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_MEMBER_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__users"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_USER_ID"
-			   description="COM_SWA_FORM_DESC_MEMBER_USER_ID"
+			   label="User"
 
 
 			   required="true"
@@ -22,8 +20,7 @@
 
 		<field name="sex" type="list"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_SEX"
-			   description="COM_SWA_FORM_DESC_MEMBER_SEX"
+			   label="Sex"
 			   default="none"
 
 			   required="true">
@@ -37,14 +34,13 @@
 
 			   default="0000-00-00"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_DOB"
-			   description="COM_SWA_FORM_DESC_MEMBER_DOB"
+			   label="Dob"
 			   filter="safehtml"/>
 
-		<field name="university" type="text" size="40" class="inputbox"
+		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_UNIVERSITY"
-			   description="COM_SWA_FORM_DESC_MEMBER_UNIVERSITY"
+			   label="University"
 
 
 			   required="true"
@@ -52,24 +48,21 @@
 
 		<field name="course" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_COURSE"
-			   description="COM_SWA_FORM_DESC_MEMBER_COURSE"
+			   label="Course"
 
 
 			   filter="safehtml"/>
 
 		<field name="graduation" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_GRADUATION"
-			   description="COM_SWA_FORM_DESC_MEMBER_GRADUATION"
+			   label="Graduation Year"
 
 
 			   filter="safehtml"/>
 
 		<field name="discipline" type="list"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_DISCIPLINE"
-			   description="COM_SWA_FORM_DESC_MEMBER_DISCIPLINE"
+			   label="Discipline"
 
 
 				>
@@ -80,8 +73,7 @@
 
 		<field name="level" type="list"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_LEVEL"
-			   description="COM_SWA_FORM_DESC_MEMBER_LEVEL"
+			   label="level"
 
 
 			   required="true">
@@ -92,24 +84,20 @@
 
 		<field name="instructor" type="checkbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_INSTRUCTOR"
-			   description="COM_SWA_FORM_DESC_MEMBER_INSTRUCTOR"
+			   label="Instructor?"
 
 
 				/>
 
 		<field name="instructor_confirmed" type="checkbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_INSTRUCTOR_CONFIRMED"
-			   description="COM_SWA_FORM_DESC_MEMBER_INSTRUCTOR_CONFIRMED"
-
+			   label="Confirmed Instructor?"
 
 				/>
 
 		<field name="shirt" type="list"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_SHIRT"
-			   description="COM_SWA_FORM_DESC_MEMBER_SHIRT"
+			   label="Shirt"
 
 
 			   required="true">
@@ -122,8 +110,7 @@
 
 		<field name="econtact" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_ECONTACT"
-			   description="COM_SWA_FORM_DESC_MEMBER_ECONTACT"
+			   label="Emerg contact"
 
 
 			   required="true"
@@ -131,8 +118,7 @@
 
 		<field name="enumber" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_ENUMBER"
-			   description="COM_SWA_FORM_DESC_MEMBER_ENUMBER"
+			   label="Emerg number"
 
 
 			   required="true"
@@ -140,8 +126,7 @@
 
 		<field name="swahelp" type="list"
 
-			   label="COM_SWA_FORM_LBL_MEMBER_SWAHELP"
-			   description="COM_SWA_FORM_DESC_MEMBER_SWAHELP"
+			   label="SWA help?"
 			   default="None"
 
 			   required="true">

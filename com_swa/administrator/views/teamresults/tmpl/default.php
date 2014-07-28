@@ -109,16 +109,21 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TEAMRESULTS_RACE_ID', 'a.race_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TEAMRESULTS_UNIVERSITY_ID', 'a.university_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Team number', 'a.team_number', $listDirn, $listOrder ); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Race type', 'a.race_type', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TEAMRESULTS_TEAM_NUMBER', 'a.team_number', $listDirn, $listOrder ); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TEAMRESULTS_RESULT', 'a.result', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Result', 'a.result', $listDirn, $listOrder ); ?>
 					</th>
 
 
@@ -192,17 +197,19 @@ if ( !empty( $this->extra_sidebar ) ) {
 							?>
 						</td>
 						<td>
-							<?php
-							if ( array_key_exists( $item->university_id, $this->universities ) ) {
-								echo $this->universities[$item->university_id]->name;
-							} else {
-								echo $item->university_id;
-							}
-							?>
+							<?php echo $item->university; ?>
 						</td>
 						<td>
 
 							<?php echo $item->team_number; ?>
+						</td>
+						<td>
+
+							<?php echo $item->event; ?>
+						</td>
+						<td>
+
+							<?php echo $item->race_type; ?>
 						</td>
 						<td>
 

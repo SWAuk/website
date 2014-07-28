@@ -46,7 +46,7 @@ class SwaViewIndividualresult extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_INDIVIDUALRESULT' ), 'individualresult.png' );
+		JToolBarHelper::title( JText::_( 'Individual Result' ), 'individualresult.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

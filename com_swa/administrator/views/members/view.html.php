@@ -14,9 +14,6 @@ class SwaViewMembers extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $users;
-	protected $universities;
-
 	/**
 	 * Display the view
 	 */
@@ -24,10 +21,6 @@ class SwaViewMembers extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->users = SwaHelperTableGetter::getMembers();
-		$this->universities = SwaHelperTableGetter::getUniversities();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -53,7 +46,7 @@ class SwaViewMembers extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_MEMBERS' ), 'members.png' );
+		JToolBarHelper::title( JText::_( 'Members' ), 'members.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/member';
@@ -125,10 +118,10 @@ class SwaViewMembers extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_MEMBERS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_MEMBERS_CHECKED_OUT_TIME' ),
-			'a.user_id' => JText::_( 'COM_SWA_MEMBERS_USER_ID' ),
-			'a.university' => JText::_( 'COM_SWA_MEMBERS_UNIVERSITY' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.user' => JText::_( 'User' ),
+			'a.university' => JText::_( 'University' ),
 		);
 	}
 

@@ -14,9 +14,6 @@ class SwaViewTeamresults extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $universities;
-	protected $races;
-
 	/**
 	 * Display the view
 	 */
@@ -24,10 +21,6 @@ class SwaViewTeamresults extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->universities = SwaHelperTableGetter::getUniversities();
-		$this->races = SwaHelperTableGetter::getRaces();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -53,7 +46,7 @@ class SwaViewTeamresults extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_TEAMRESULTS' ), 'teamresults.png' );
+		JToolBarHelper::title( JText::_( 'Team results' ), 'teamresults.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/teamresult';
@@ -125,12 +118,13 @@ class SwaViewTeamresults extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_TEAMRESULTS_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_TEAMRESULTS_CHECKED_OUT_TIME' ),
-			'a.race_id' => JText::_( 'COM_SWA_TEAMRESULTS_RACE_ID' ),
-			'a.university_id' => JText::_( 'COM_SWA_TEAMRESULTS_UNIVERSITY_ID' ),
-			'a.team_number' => JText::_( 'COM_SWA_TEAMRESULTS_TEAM_NUMBER' ),
-			'a.result' => JText::_( 'COM_SWA_TEAMRESULTS_RESULT' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.race_type' => JText::_( 'Race type' ),
+			'a.event' => JText::_( 'Event' ),
+			'a.university' => JText::_( 'University' ),
+			'a.team_number' => JText::_( 'Team number' ),
+			'a.result' => JText::_( 'Result' ),
 		);
 	}
 

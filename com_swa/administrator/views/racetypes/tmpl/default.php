@@ -109,7 +109,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_RACETYPES_NAME', 'a.name', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 
 

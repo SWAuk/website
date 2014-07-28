@@ -2,18 +2,16 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_EVENT_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_EVENT_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_EVENT_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="name" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_EVENT_NAME"
-			   description="COM_SWA_FORM_DESC_EVENT_NAME"
+			   label="Name"
 
 
 			   required="true"
@@ -22,8 +20,7 @@
 		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
 
-			   label="COM_SWA_FORM_LBL_EVENT_UNIVERSITY"
-			   description="COM_SWA_FORM_DESC_EVENT_UNIVERSITY"
+			   label="University"
 
 
 			   required="true"
@@ -32,8 +29,7 @@
 		<field name="season_id" type="sql" default="1" key_field="id" value_field="year"
 			   query="SELECT id, year FROM #__swa_season WHERE `state` = 1"
 
-			   label="COM_SWA_FORM_LBL_EVENT_SEASON_ID"
-			   description="COM_SWA_FORM_DESC_EVENT_SEASON_ID"
+			   label="Season"
 
 
 			   required="true"
@@ -41,8 +37,7 @@
 
 		<field name="capacity" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_EVENT_CAPACITY"
-			   description="COM_SWA_FORM_DESC_EVENT_CAPACITY"
+			   label="Capacity"
 
 
 			   required="true"
@@ -53,8 +48,7 @@
 
 			   default="0000-00-00"
 
-			   label="COM_SWA_FORM_LBL_EVENT_DATE_OPEN"
-			   description="COM_SWA_FORM_DESC_EVENT_DATE_OPEN"
+			   label="Date open"
 			   filter="safehtml"/>
 
 		<field name="date_close" type="calendar" class="inputbox"
@@ -62,8 +56,7 @@
 
 			   default="0000-00-00"
 
-			   label="COM_SWA_FORM_LBL_EVENT_DATE_CLOSE"
-			   description="COM_SWA_FORM_DESC_EVENT_DATE_CLOSE"
+			   label="Date close"
 			   filter="safehtml"/>
 
 		<field name="date" type="calendar" class="inputbox"
@@ -71,8 +64,7 @@
 
 			   default="0000-00-00"
 
-			   label="COM_SWA_FORM_LBL_EVENT_DATE"
-			   description="COM_SWA_FORM_DESC_EVENT_DATE"
+			   label="Date"
 			   filter="safehtml"/>
 
 		<field

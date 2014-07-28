@@ -46,7 +46,7 @@ class SwaViewDeposit extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_DEPOSIT' ), 'deposit.png' );
+		JToolBarHelper::title( JText::_( 'Deposit' ), 'deposit.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

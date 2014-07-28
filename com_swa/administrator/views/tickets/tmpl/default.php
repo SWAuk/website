@@ -109,10 +109,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TICKETS_USER', 'a.user', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'User', 'a.user', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_TICKETS_EVENTTICKET', 'a.eventticket', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Ticket type', 'a.ticket_type', $listDirn, $listOrder ); ?>
 					</th>
 
 					<?php if ( isset( $this->items[0]->id ) ): ?>
@@ -177,23 +180,17 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->user_id, $this->users ) ) {
-								echo $this->users[$item->user_id]->name;
-							} else {
-								echo $item->user_id;
-							}
-							?>
+
+							<?php echo $item->user; ?>
 						</td>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->event_ticket_id, $this->eventtickets ) ) {
-								echo $this->eventtickets[$item->event_ticket_id]->event_ticket_name;
-							} else {
-								echo $item->event_ticket_id;
-							}
-							?>
+
+							<?php echo $item->event; ?>
+						</td>
+						<td>
+
+							<?php echo $item->ticket_type; ?>
 						</td>
 
 						<?php if ( isset( $this->items[0]->id ) ): ?>

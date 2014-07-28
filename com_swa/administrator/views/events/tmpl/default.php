@@ -109,25 +109,25 @@ if ( !empty( $this->extra_sidebar ) ) {
 		<?php endif; ?>
 
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_NAME', 'a.name', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_SEASON', 'a.season', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Season', 'a.season', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_CAPACITY', 'a.capacity', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Capacity', 'a.capacity', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_DATE_OPEN', 'a.date_open', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Date open', 'a.date_open', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_DATE_CLOSE', 'a.date_close', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Date close', 'a.date_close', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'COM_SWA_EVENTS_DATE', 'a.date', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Date', 'a.date', $listDirn, $listOrder ); ?>
 		</th>
 
 
@@ -204,23 +204,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 			</td>
 
 			<td>
-				<?php
-				if ( array_key_exists( $item->university_id, $this->universities ) ) {
-					echo $this->universities[$item->university_id]->name;
-				} else {
-					echo $item->university_id;
-				}
-				?>
+
+				<?php echo $item->university; ?>
 			</td>
 
 			<td>
-				<?php
-				if ( array_key_exists( $item->season_id, $this->seasons ) ) {
-					echo $this->seasons[$item->season_id]->year;
-				} else {
-					echo $item->season_id;
-				}
-				?>
+
+				<?php echo $item->season; ?>
 			</td>
 
 			<td>

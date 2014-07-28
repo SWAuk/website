@@ -14,9 +14,6 @@ class SwaViewDamages extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-	protected $universities;
-	protected $events;
-
 	/**
 	 * Display the view
 	 */
@@ -24,10 +21,6 @@ class SwaViewDamages extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->items = $this->get( 'Items' );
 		$this->pagination = $this->get( 'Pagination' );
-
-		require_once JPATH_COMPONENT . '/helpers/tablegetters.php';
-		$this->universities = SwaHelperTableGetter::getUniversities();
-		$this->events = SwaHelperTableGetter::getEvents();
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {
@@ -53,7 +46,7 @@ class SwaViewDamages extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_DAMAGES' ), 'damages.png' );
+		JToolBarHelper::title( JText::_( 'Damages' ), 'damages.png' );
 
 		//Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/damage';
@@ -125,10 +118,10 @@ class SwaViewDamages extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.ordering' => JText::_( 'JGRID_HEADING_ORDERING' ),
 			'a.state' => JText::_( 'JSTATUS' ),
-			'a.checked_out' => JText::_( 'COM_SWA_DAMAGES_CHECKED_OUT' ),
-			'a.checked_out_time' => JText::_( 'COM_SWA_DAMAGES_CHECKED_OUT_TIME' ),
-			'a.date' => JText::_( 'COM_SWA_DAMAGES_DATE' ),
-			'a.cost' => JText::_( 'COM_SWA_DAMAGES_COST' ),
+			'a.checked_out' => JText::_( 'Checked out' ),
+			'a.checked_out_time' => JText::_( 'Checked out time' ),
+			'a.date' => JText::_( 'Date' ),
+			'a.cost' => JText::_( 'Cost' ),
 		);
 	}
 

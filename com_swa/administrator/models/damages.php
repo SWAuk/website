@@ -104,6 +104,12 @@ class SwaModelDamages extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over the university field 'university_id'
+		$query->select( 'university_id.name AS university' );
+		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		// Join over for event_id
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );

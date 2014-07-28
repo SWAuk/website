@@ -102,6 +102,12 @@ class SwaModelRaces extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over for event_id
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
+		// Join over for race_type_id
+		$query->select( 'race_type_id.name AS race_type' );
+		$query->join( 'LEFT', '#__swa_race_type AS race_type_id ON race_type_id.id = a.race_type_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );

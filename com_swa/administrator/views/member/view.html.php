@@ -46,7 +46,7 @@ class SwaViewMember extends JViewLegacy {
 		}
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title( JText::_( 'COM_SWA_TITLE_MEMBER' ), 'member.png' );
+		JToolBarHelper::title( JText::_( 'Member' ), 'member.png' );
 
 		// If not checked out, can save the item.
 		if ( !$checkedOut && ( $canDo->get( 'core.edit' ) || ( $canDo->get( 'core.create' ) ) ) ) {

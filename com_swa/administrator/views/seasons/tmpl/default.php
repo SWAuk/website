@@ -109,7 +109,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_SEASONS_YEAR', 'a.year', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Year', 'a.year', $listDirn, $listOrder ); ?>
 					</th>
 
 

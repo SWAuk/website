@@ -26,7 +26,7 @@ class SwaModelMembers extends JModelList {
 				'user_id', 'a.user_id',
 				'sex', 'a.sex',
 				'dob', 'a.dob',
-				'university', 'a.university',
+				'university_id', 'a.university_id',
 				'course', 'a.course',
 				'graduation', 'a.graduation',
 				'discipline', 'a.discipline',
@@ -113,6 +113,12 @@ class SwaModelMembers extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over the user field 'user_id'
+		$query->select( 'user_id.name AS user' );
+		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
+		// Join over the user field 'university_id'
+		$query->select( 'university_id.name AS university' );
+		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );

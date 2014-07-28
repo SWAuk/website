@@ -114,6 +114,9 @@ class SwaModelGrants extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over for event_id
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );

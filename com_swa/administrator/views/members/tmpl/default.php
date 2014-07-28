@@ -109,10 +109,10 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php endif; ?>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_MEMBERS_USER_ID', 'a.user_id', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'User', 'a.user', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'COM_SWA_MEMBERS_UNIVERSITY', 'a.university', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 
 
@@ -177,24 +177,11 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php endif; ?>
 
 						<td>
-							<?php
-							if ( array_key_exists( $item->user_id, $this->users ) ) {
-								echo $this->users[$item->user_id]->name;
-							} else {
-								echo $item->user_id;
-							}
-							?>
+							<?php echo $item->user; ?>
 						</td>
 						<td>
-							<?php
-							if ( array_key_exists( $item->university_id, $this->universities ) ) {
-								echo $this->universities[$item->university_id]->name;
-							} else {
-								echo $item->university_id;
-							}
-							?>
+							<?php echo $item->university; ?>
 						</td>
-
 
 						<?php if ( isset( $this->items[0]->id ) ): ?>
 							<td class="center hidden-phone">

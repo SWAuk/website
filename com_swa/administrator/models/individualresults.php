@@ -103,6 +103,17 @@ class SwaModelIndividualresults extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over the user field 'user_id'
+		$query->select( 'user_id.name AS user' );
+		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
+		// Join over 'race_id'
+		$query->join( 'LEFT', '#__swa_race AS race_id ON race_id.id = a.race_id' );
+		// Join over 'event_id'
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = race_id.event_id' );
+		// Join over 'race_type_id'
+		$query->select( 'race_type_id.name AS race_type' );
+		$query->join( 'LEFT', '#__swa_race_type AS race_type_id ON race_type_id.id = race_id.race_type_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );

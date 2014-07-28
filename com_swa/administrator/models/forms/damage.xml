@@ -2,19 +2,17 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="COM_SWA_FORM_LBL_DAMAGE_ID"
+		<field name="id" type="text" default="0" label="Id"
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="created_by" type="createdby" default=""
-			   label="COM_SWA_FORM_LBL_DAMAGE_CREATED_BY"
-			   description="COM_SWA_FORM_DESC_DAMAGE_CREATED_BY"/>
+			   label="Created by"/>
 
 		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__swa_event WHERE `state` = 1"
 
-			   label="COM_SWA_FORM_LBL_DAMAGE_EVENT_ID"
-			   description="COM_SWA_FORM_DESC_DAMAGE_EVENT_ID"
+			   label="Event"
 
 
 			   required="true"
@@ -23,8 +21,7 @@
 		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
 
-			   label="COM_SWA_FORM_LBL_DAMAGE_UNIVERSITY"
-			   description="COM_SWA_FORM_DESC_DAMAGE_UNIVERSITY"
+			   label="University"
 
 
 			   filter="safehtml"/>
@@ -34,14 +31,12 @@
 
 			   default="0000-00-00"
 
-			   label="COM_SWA_FORM_LBL_DAMAGE_DATE"
-			   description="COM_SWA_FORM_DESC_DAMAGE_DATE"
+			   label="Date"
 			   filter="safehtml"/>
 
 		<field name="cost" type="text" size="40" class="inputbox"
 
-			   label="COM_SWA_FORM_LBL_DAMAGE_COST"
-			   description="COM_SWA_FORM_DESC_DAMAGE_COST"
+			   label="Cost"
 
 
 			   required="true"

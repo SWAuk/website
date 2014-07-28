@@ -102,6 +102,17 @@ class SwaModelTickets extends JModelList {
 		// Join over the user field 'created_by'
 		$query->select( 'created_by.name AS created_by' );
 		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
+		// Join over the user field 'user_id'
+		$query->select( 'user_id.name AS user' );
+		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
+		// Join over 'event_ticket_id'
+		$query->join( 'LEFT', '#__swa_event_ticket AS event_ticket_id ON event_ticket_id.id = a.event_ticket_id' );
+		// Join over 'event_id'
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = event_ticket_id.event_id' );
+		// Join over 'event_id'
+		$query->select( 'ticket_type_id.name AS ticket_type' );
+		$query->join( 'LEFT', '#__swa_ticket_type AS ticket_type_id ON ticket_type_id.id = event_ticket_id.ticket_type_id' );
 
 		// Filter by published state
 		$published = $this->getState( 'filter.state' );
