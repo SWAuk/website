@@ -6,8 +6,9 @@
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__users WHERE `block` = 0"
+		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
+			INNER JOIN #__users AS u ON m.user_id=u.id"
 
 			   label="User"
 

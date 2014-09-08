@@ -106,11 +106,11 @@ DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `user_id` INT NOT NULL ,
+  `member_id` INT NOT NULL ,
   `event_ticket_id` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_ticket_event_ticket1_idx` (`event_ticket_id` ASC) ,
-  INDEX `fk_ticket_user1_idx` (`user_id` ASC) )
+  INDEX `fk_ticket_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_race_type` (
@@ -130,12 +130,12 @@ DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_indi_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `user_id` INT NOT NULL ,
+  `member_id` INT NOT NULL ,
   `race_id` INT NOT NULL ,
   `result` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_indi_result_race1_idx` (`race_id` ASC) ,
-  INDEX `fk_indi_result_user1_idx` (`user_id` ASC) )
+  INDEX `fk_indi_result_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (

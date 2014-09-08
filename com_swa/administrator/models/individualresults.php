@@ -21,7 +21,7 @@ class SwaModelIndividualresults extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'user_id', 'a.user_id',
+				'member_id', 'a.member_id',
 				'race_id', 'a.race_id',
 				'result', 'a.result',
 
@@ -90,9 +90,12 @@ class SwaModelIndividualresults extends JModelList {
 		);
 		$query->from( '`#__swa_indi_result` AS a' );
 
-		// Join over the user field 'user_id'
+		// Join onto the member table
+		$query->select( 'member_id.user_id as user_id' );
+		$query->join( 'LEFT', '#__swa_member as member_id ON a.member_id = member_id.id' );
+		// Join over the user field 'member_id'
 		$query->select( 'user_id.name AS user' );
-		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
+		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
 		// Join over 'race_id'
 		$query->join( 'LEFT', '#__swa_race AS race_id ON race_id.id = a.race_id' );
 		// Join over 'event_id'
