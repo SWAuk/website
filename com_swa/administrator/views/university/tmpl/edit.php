@@ -54,10 +54,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'name' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'code' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'code' ); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'url' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'url' ); ?></div>
 					</div>

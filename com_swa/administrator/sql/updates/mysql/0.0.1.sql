@@ -28,11 +28,9 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_university` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(200) NOT NULL ,
-  `code` VARCHAR(10) NOT NULL ,
   `url` VARCHAR(200) NULL ,
   PRIMARY KEY (`id`) ,
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC) ,
-  UNIQUE INDEX `code_UNIQUE` (`code` ASC)
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC)
 )
 DEFAULT COLLATE=utf8_general_ci;
 

@@ -106,9 +106,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Code', 'a.code', $listDirn, $listOrder ); ?>
-					</th>
-					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Url', 'a.url', $listDirn, $listOrder ); ?>
 					</th>
 
@@ -174,10 +171,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php else : ?>
 								<?php echo $this->escape( $item->name ); ?>
 							<?php endif; ?>
-						</td>
-						<td>
-
-							<?php echo $item->code; ?>
 						</td>
 						<td>
 

@@ -77,7 +77,6 @@ class SwaViewUniversities extends JViewLegacy {
 		return array(
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.name' => JText::_( 'Name' ),
-			'a.code' => JText::_( 'Code' ),
 			'a.url' => JText::_( 'Url' ),
 		);
 	}

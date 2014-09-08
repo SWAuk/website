@@ -14,14 +14,6 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="code" type="text" size="40" class="inputbox"
-
-			   label="Code"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
 		<field name="url" type="text" size="40" class="inputbox"
 
 			   label="Url"
