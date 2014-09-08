@@ -9,7 +9,6 @@ class SwaControllerMemberRegistration extends SwaController {
 
 	public function submit() {
 		//TODO only allow logged in users here!
-		//TODO we need to add the user_id to the data
 
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -20,6 +19,12 @@ class SwaControllerMemberRegistration extends SwaController {
 
 		// Get the user data.
 		$data = JFactory::getApplication()->input->get('jform', array(), 'array');
+
+		// Inject the current user ID here
+		$data['user_id'] = JFactory::getUser()->id;
+		if( $data['user_id'] == 0 ) {
+			throw new Exception( 'Cant register user with id of 0' );
+		}
 
 		// Validate the posted data.
 		$form = $model->getForm();
@@ -52,12 +57,9 @@ class SwaControllerMemberRegistration extends SwaController {
 			$app->setUserState('com_swa.edit.memberregistration.data', $jform, array());
 
 			// Redirect back to the edit screen.
-			$id = (int) $app->getUserState('com_swa.edit.memberregistration.id');
 			$this->setRedirect(JRoute::_('index.php?option=com_swa&view=memberregistration', false));
 			return false;
 		}
-
-
 
 		// Attempt to save the data.
 		$return = $model->save($data);

@@ -2,6 +2,11 @@
 <form>
 	<fieldset>
 
+		<field name="user_id" type="text"
+			   label="User id"
+			   required="true"
+			   filter="safehtml"/>
+
 		<field name="sex" type="list"
 
 			   label="Sex"
@@ -72,10 +77,10 @@
 			   label="Instructor level"
 
 			   required="true">
-		<option value="None">None</option>
-		<option value="Start">Start</option>
-		<option value="Fast Forward">Fast Forward</option>
-		<option value="Advanced">Advanced</option>
+			<option value="None">None</option>
+			<option value="Start">Start</option>
+			<option value="Fast Forward">Fast Forward</option>
+			<option value="Advanced">Advanced</option>
 		</field>
 
 		<field name="shirt" type="list"
