@@ -35,7 +35,11 @@ class SwaViewMemberRegistration extends JViewLegacy {
 			$url.= '&return=' . base64_encode( JURI::getInstance()->toString() );
 			$app->redirect( JRoute::_( $url, false ) );
 		}
-		//TODO if user is already a member skip to payment
+
+		$this->item = $this->get( 'Item' );
+		if( !is_null( $this->item->id ) ) {
+			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=memberpayment' ) );
+		}
 
 		parent::display( $tpl );
 	}

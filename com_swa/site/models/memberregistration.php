@@ -18,6 +18,16 @@ class SwaModelMemberRegistration extends JModelForm {
 	}
 
 	/**
+	 * @return JTable
+	 */
+	public function getItem() {
+		$user = JFactory::getUser();
+		$table = $this->getTable();
+		$table->load( array( 'user_id' => $user->id ) );
+		return $table;
+	}
+
+	/**
 	 * Method to get the record form.
 	 */
 	public function getForm( $data = array(), $loadData = true ) {

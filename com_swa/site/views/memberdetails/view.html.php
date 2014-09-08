@@ -37,8 +37,9 @@ class SwaViewMemberDetails extends JViewLegacy {
 		}
 
 		$this->item = $this->get( 'Item' );
-
-		//TODO if user is not member go to registration
+		if ( !$this->item->paid ) {
+			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=memberpayment' ) );
+		}
 
 		parent::display( $tpl );
 	}
