@@ -36,6 +36,8 @@ class SwaViewMemberDetails extends JViewLegacy {
 			$app->redirect( JRoute::_( $url, false ) );
 		}
 
+		$this->item = $this->get( 'Item' );
+
 		//TODO if user is not member go to registration
 
 		parent::display( $tpl );
