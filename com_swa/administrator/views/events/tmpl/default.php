@@ -102,11 +102,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 		<th width="1%" class="hidden-phone">
 			<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>" onclick="Joomla.checkAll(this)"/>
 		</th>
-		<?php if ( isset( $this->items[0]->state ) ): ?>
-			<th width="1%" class="nowrap center">
-				<?php echo JHtml::_( 'grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder ); ?>
-			</th>
-		<?php endif; ?>
 
 		<th class='left'>
 			<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
@@ -185,16 +180,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<td class="center hidden-phone">
 				<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 			</td>
-			<?php if ( isset( $this->items[0]->state ) ): ?>
-				<td class="center">
-					<?php echo JHtml::_( 'jgrid.published', $item->state, $i, 'events.', $canChange, 'cb' ); ?>
-				</td>
-			<?php endif; ?>
 
 			<td>
-				<?php if ( isset( $item->checked_out ) && $item->checked_out ) : ?>
-					<?php echo JHtml::_( 'jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'events.', $canCheckin ); ?>
-				<?php endif; ?>
 				<?php if ( $canEdit ) : ?>
 					<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=event.edit&id=' . (int)$item->id ); ?>">
 						<?php echo $this->escape( $item->name ); ?></a>

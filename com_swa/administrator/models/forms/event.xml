@@ -6,9 +6,6 @@
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="created_by" type="createdby" default=""
-			   label="Created by"/>
-
 		<field name="name" type="text" size="40" class="inputbox"
 
 			   label="Name"
@@ -18,7 +15,7 @@
 			   filter="safehtml"/>
 
 		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
+			   query="SELECT id, name FROM #__swa_university"
 
 			   label="University"
 
@@ -27,7 +24,7 @@
 			   filter="safehtml"/>
 
 		<field name="season_id" type="sql" default="1" key_field="id" value_field="year"
-			   query="SELECT id, year FROM #__swa_season WHERE `state` = 1"
+			   query="SELECT id, year FROM #__swa_season"
 
 			   label="Season"
 
@@ -66,21 +63,6 @@
 
 			   label="Date"
 			   filter="safehtml"/>
-
-		<field
-				name="state"
-				type="list"
-				label="JSTATUS"
-				description="JFIELD_PUBLISHED_DESC"
-				class="inputbox"
-				size="1"
-				default="1">
-			<option value="1">JPUBLISHED</option>
-			<option value="0">JUNPUBLISHED</option>
-		</field>
-
-		<field name="checked_out" type="hidden" filter="unset"/>
-		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

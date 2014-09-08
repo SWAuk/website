@@ -49,20 +49,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="control-label"><?php echo $this->form->getLabel( 'id' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
 					</div>
-					<input type="hidden" name="jform[ordering]" value="<?php echo $this->item->ordering; ?>"/>
-					<input type="hidden" name="jform[state]" value="<?php echo $this->item->state; ?>"/>
-					<input type="hidden" name="jform[checked_out]" value="<?php echo $this->item->checked_out; ?>"/>
-					<input type="hidden" name="jform[checked_out_time]" value="<?php echo $this->item->checked_out_time; ?>"/>
-
-					<?php if ( empty( $this->item->created_by ) ) { ?>
-						<input type="hidden" name="jform[created_by]" value="<?php echo JFactory::getUser()->id; ?>"/>
-
-					<?php
-					} else {
-						?>
-						<input type="hidden" name="jform[created_by]" value="<?php echo $this->item->created_by; ?>"/>
-
-					<?php } ?>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'name' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'name' ); ?></div>
@@ -84,12 +70,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 			</div>
 		</div>
 		<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
-
-		<?php if ( JFactory::getUser()->authorise( 'core.admin', 'swa' ) ) : ?>
-			<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'permissions', JText::_( 'Permissions', true ) ); ?>
-			<?php echo $this->form->getInput( 'rules' ); ?>
-			<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
-		<?php endif; ?>
 
 		<?php echo JHtml::_( 'bootstrap.endTabSet' ); ?>
 

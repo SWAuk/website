@@ -88,25 +88,4 @@ class SwaModelGrant extends JModelAdmin {
 		return $item;
 	}
 
-	/**
-	 * Prepare and sanitise the table prior to saving.
-	 *
-	 * @since    1.6
-	 */
-	protected function prepareTable( $table ) {
-		jimport( 'joomla.filter.output' );
-
-		if ( empty( $table->id ) ) {
-
-			// Set ordering to the last item if not set
-			if ( @$table->ordering === '' ) {
-				$db = JFactory::getDbo();
-				$db->setQuery( 'SELECT MAX(ordering) FROM #__swa_grant' );
-				$max = $db->loadResult();
-				$table->ordering = $max + 1;
-			}
-
-		}
-	}
-
 }

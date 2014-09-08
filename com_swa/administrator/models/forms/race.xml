@@ -6,11 +6,8 @@
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="created_by" type="createdby" default=""
-			   label="Created by"/>
-
 		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_event WHERE `state` = 1"
+			   query="SELECT id, name FROM #__swa_event"
 
 			   label="Event"
 
@@ -19,28 +16,13 @@
 			   filter="safehtml"/>
 
 		<field name="race_type_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_race_type WHERE `state` = 1"
+			   query="SELECT id, name FROM #__swa_race_type"
 
 			   label="Race type"
 
 
 			   required="true"
 			   filter="safehtml"/>
-
-		<field
-				name="state"
-				type="list"
-				label="JSTATUS"
-				description="JFIELD_PUBLISHED_DESC"
-				class="inputbox"
-				size="1"
-				default="1">
-			<option value="1">JPUBLISHED</option>
-			<option value="0">JUNPUBLISHED</option>
-		</field>
-
-		<field name="checked_out" type="hidden" filter="unset"/>
-		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

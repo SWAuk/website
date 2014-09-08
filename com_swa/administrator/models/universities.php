@@ -20,9 +20,6 @@ class SwaModelUniversities extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'ordering', 'a.ordering',
-				'state', 'a.state',
-				'created_by', 'a.created_by',
 				'name', 'a.name',
 				'code', 'a.code',
 				'url', 'a.url',
@@ -47,9 +44,6 @@ class SwaModelUniversities extends JModelList {
 		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
-		$published = $app->getUserStateFromRequest( $this->context . '.filter.state', 'filter_published', '', 'string' );
-		$this->setState( 'filter.state', $published );
-
 		// Load the parameters.
 		$params = JComponentHelper::getParams( 'com_swa' );
 		$this->setState( 'params', $params );
@@ -73,7 +67,6 @@ class SwaModelUniversities extends JModelList {
 	protected function getStoreId( $id = '' ) {
 		// Compile the store id.
 		$id .= ':' . $this->getState( 'filter.search' );
-		$id .= ':' . $this->getState( 'filter.state' );
 
 		return parent::getStoreId( $id );
 	}
@@ -97,20 +90,6 @@ class SwaModelUniversities extends JModelList {
 		);
 		$query->from( '`#__swa_university` AS a' );
 
-		// Join over the users for the checked out user
-		$query->select( "uc.name AS editor" );
-		$query->join( "LEFT", "#__users AS uc ON uc.id=a.checked_out" );
-		// Join over the user field 'created_by'
-		$query->select( 'created_by.name AS created_by' );
-		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
-
-		// Filter by published state
-		$published = $this->getState( 'filter.state' );
-		if ( is_numeric( $published ) ) {
-			$query->where( 'a.state = ' . (int)$published );
-		} else if ( $published === '' ) {
-			$query->where( '(a.state IN (0, 1))' );
-		}
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );

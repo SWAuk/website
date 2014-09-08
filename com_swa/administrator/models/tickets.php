@@ -21,9 +21,6 @@ class SwaModelTickets extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'ordering', 'a.ordering',
-				'state', 'a.state',
-				'created_by', 'a.created_by',
 				'user_id', 'a.user_id',
 				'event_ticket_id', 'a.event_ticket_id',
 
@@ -45,9 +42,6 @@ class SwaModelTickets extends JModelList {
 		// Load the filter state.
 		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
-
-		$published = $app->getUserStateFromRequest( $this->context . '.filter.state', 'filter_published', '', 'string' );
-		$this->setState( 'filter.state', $published );
 
 		// Load the parameters.
 		$params = JComponentHelper::getParams( 'com_swa' );
@@ -72,7 +66,6 @@ class SwaModelTickets extends JModelList {
 	protected function getStoreId( $id = '' ) {
 		// Compile the store id.
 		$id .= ':' . $this->getState( 'filter.search' );
-		$id .= ':' . $this->getState( 'filter.state' );
 
 		return parent::getStoreId( $id );
 	}
@@ -96,12 +89,6 @@ class SwaModelTickets extends JModelList {
 		);
 		$query->from( '`#__swa_ticket` AS a' );
 
-		// Join over the users for the checked out user
-		$query->select( "uc.name AS editor" );
-		$query->join( "LEFT", "#__users AS uc ON uc.id=a.checked_out" );
-		// Join over the user field 'created_by'
-		$query->select( 'created_by.name AS created_by' );
-		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
 		// Join over the user field 'user_id'
 		$query->select( 'user_id.name AS user' );
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
@@ -113,14 +100,6 @@ class SwaModelTickets extends JModelList {
 		// Join over 'event_id'
 		$query->select( 'ticket_type_id.name AS ticket_type' );
 		$query->join( 'LEFT', '#__swa_ticket_type AS ticket_type_id ON ticket_type_id.id = event_ticket_id.ticket_type_id' );
-
-		// Filter by published state
-		$published = $this->getState( 'filter.state' );
-		if ( is_numeric( $published ) ) {
-			$query->where( 'a.state = ' . (int)$published );
-		} else if ( $published === '' ) {
-			$query->where( '(a.state IN (0, 1))' );
-		}
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );

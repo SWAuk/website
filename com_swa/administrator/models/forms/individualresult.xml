@@ -6,9 +6,6 @@
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="created_by" type="createdby" default=""
-			   label="Created by"/>
-
 		<!-- The below SQL will only select ids and name of MEMBERS! -->
 		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
 			query="SELECT u.id as id, u.name as name FROM #__swa_member as m
@@ -38,21 +35,6 @@ INNER JOIN #__swa_race_type AS race_type ON race.race_type_id=race_type.id"
 
 			   required="true"
 			   filter="safehtml"/>
-
-		<field
-				name="state"
-				type="list"
-				label="JSTATUS"
-				description="JFIELD_PUBLISHED_DESC"
-				class="inputbox"
-				size="1"
-				default="1">
-			<option value="1">JPUBLISHED</option>
-			<option value="0">JUNPUBLISHED</option>
-		</field>
-
-		<field name="checked_out" type="hidden" filter="unset"/>
-		<field name="checked_out_time" type="hidden" filter="unset"/>
 
 	</fieldset>
 

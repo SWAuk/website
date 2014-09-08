@@ -54,9 +54,6 @@ class SwaModelMembers extends JModelList {
 		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
-		$published = $app->getUserStateFromRequest( $this->context . '.filter.state', 'filter_published', '', 'string' );
-		$this->setState( 'filter.state', $published );
-
 		// Load the parameters.
 		$params = JComponentHelper::getParams( 'com_swa' );
 		$this->setState( 'params', $params );
@@ -80,7 +77,6 @@ class SwaModelMembers extends JModelList {
 	protected function getStoreId( $id = '' ) {
 		// Compile the store id.
 		$id .= ':' . $this->getState( 'filter.search' );
-		$id .= ':' . $this->getState( 'filter.state' );
 
 		return parent::getStoreId( $id );
 	}

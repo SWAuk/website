@@ -102,11 +102,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th width="1%" class="hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>" onclick="Joomla.checkAll(this)"/>
 					</th>
-					<?php if ( isset( $this->items[0]->state ) ): ?>
-						<th width="1%" class="nowrap center">
-							<?php echo JHtml::_( 'grid.sort', 'JSTATUS', 'a.state', $listDirn, $listOrder ); ?>
-						</th>
-					<?php endif; ?>
+
 
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.application_date', $listDirn, $listOrder ); ?>
@@ -183,11 +179,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-						<?php if ( isset( $this->items[0]->state ) ): ?>
-							<td class="center">
-								<?php echo JHtml::_( 'jgrid.published', $item->state, $i, 'grants.', $canChange, 'cb' ); ?>
-							</td>
-						<?php endif; ?>
 
 						<td>
 

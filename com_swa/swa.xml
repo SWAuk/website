@@ -105,7 +105,6 @@
 		</submenu>
 
 		<files folder="administrator">
-			<filename>access.xml</filename>
 			<filename>config.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
