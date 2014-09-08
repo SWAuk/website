@@ -20,9 +20,6 @@ class SwaModelMembers extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'ordering', 'a.ordering',
-				'state', 'a.state',
-				'created_by', 'a.created_by',
 				'user_id', 'a.user_id',
 				'sex', 'a.sex',
 				'dob', 'a.dob',
@@ -107,26 +104,12 @@ class SwaModelMembers extends JModelList {
 		);
 		$query->from( '`#__swa_member` AS a' );
 
-		// Join over the users for the checked out user
-		$query->select( "uc.name AS editor" );
-		$query->join( "LEFT", "#__users AS uc ON uc.id=a.checked_out" );
-		// Join over the user field 'created_by'
-		$query->select( 'created_by.name AS created_by' );
-		$query->join( 'LEFT', '#__users AS created_by ON created_by.id = a.created_by' );
 		// Join over the user field 'user_id'
 		$query->select( 'user_id.name AS user' );
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
 		// Join over the user field 'university_id'
 		$query->select( 'university_id.name AS university' );
 		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
-
-		// Filter by published state
-		$published = $this->getState( 'filter.state' );
-		if ( is_numeric( $published ) ) {
-			$query->where( 'a.state = ' . (int)$published );
-		} else if ( $published === '' ) {
-			$query->where( '(a.state IN (0, 1))' );
-		}
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
