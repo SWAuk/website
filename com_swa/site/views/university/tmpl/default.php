@@ -50,11 +50,4 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		</div>
 	</tr>
 
-	<tr>
-		<div class="control-group">
-			<td>Password:</td>
-			<td><?php echo $this->item->password ?></td>
-		</div>
-	</tr>
-
 </table>

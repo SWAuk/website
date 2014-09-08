@@ -60,7 +60,7 @@ class SwaViewUniversities extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'deposits.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'university.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );
@@ -79,7 +79,6 @@ class SwaViewUniversities extends JViewLegacy {
 			'a.name' => JText::_( 'Name' ),
 			'a.code' => JText::_( 'Code' ),
 			'a.url' => JText::_( 'Url' ),
-			'a.password' => JText::_( 'Password' ),
 		);
 	}
 

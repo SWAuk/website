@@ -30,14 +30,6 @@
 
 			   filter="safehtml"/>
 
-		<field name="password" type="text" size="40" class="inputbox"
-
-			   label="Password"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
 	</fieldset>
 
 </form>

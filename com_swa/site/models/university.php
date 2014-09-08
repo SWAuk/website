@@ -28,12 +28,12 @@ class SwaModelUniversity extends JModelItem {
 
 		// Select the required fields from the table.
 		$query->select( 'a.university_id AS university_id' );
+		$query->select( 'a.university_confirmed AS university_confirmed' );
 		$query->from( $db->quoteName('#__swa_member') . ' AS a' );
 		$query->where( 'a.user_id = ' . $user->id );
 		// Join over the university
 		$query->select( 'b.name AS university' );
 		$query->select( 'b.url AS url' );
-		$query->select( 'b.password AS password' );
 		$query->join( 'LEFT', '#__swa_university AS b ON a.university_id = b.id' );
 
 		// Load the result

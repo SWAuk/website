@@ -15,7 +15,7 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="paid" type="checkbox" label="Paid" default="0" readonly="true" class="readonly" disabled="disabled">
+		<field name="paid" type="checkbox" label="Paid" default="0">
 		</field>
 
 		<field name="sex" type="list"
@@ -45,6 +45,12 @@
 
 			   required="true"
 			   filter="safehtml"/>
+
+		<field name="university_confirmed" type="checkbox" label="Confirmed @ University" default="0">
+		</field>
+
+		<field name="club_committee" type="checkbox" label="Club Committee" default="0">
+		</field>
 
 		<field name="course" type="text" size="40" class="inputbox"
 
@@ -144,6 +150,9 @@
 			<option value="Website">Website</option>
 			<option value="Events">Events</option>
 			<option value="Media">Media / Marketing</option>
+		</field>
+
+		<field name="swa_committee" type="checkbox" label="SWA Committee" default="0">
 		</field>
 
 	</fieldset>
