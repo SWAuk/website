@@ -17,6 +17,11 @@ class SwaHelper {
 			$vName == 'members'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_( 'Instructors' ),
+			'index.php?option=com_swa&view=instructors',
+			$vName == 'instructors'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_( 'Events' ),
 			'index.php?option=com_swa&view=events',
 			$vName == 'events'

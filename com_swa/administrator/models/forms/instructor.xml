@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id" type="text" default="0" label="Id"
+			   readonly="true" class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
+
+		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
+			INNER JOIN #__users AS u ON m.user_id=u.id"
+
+			   label="User"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="level" type="text" size="50" class="inputbox"
+
+			   label="Level"
+
+
+			   required="true"
+			   filter="safehtml"/>
+
+		<field name="expiry_date" type="calendar" class="inputbox"
+			   required="true"
+
+			   default="0000-00-00"
+
+			   label="Expiry date"
+			   filter="safehtml"/>
+
+	</fieldset>
+
+</form>

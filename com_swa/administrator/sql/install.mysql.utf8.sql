@@ -12,8 +12,6 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `graduation` INT(11)  NOT NULL ,
   `discipline` VARCHAR(50)  NOT NULL ,
   `level` VARCHAR(20)  NOT NULL DEFAULT 'Beginner',
-  `instructor` VARCHAR(20)  NOT NULL DEFAULT 'None',
-  `instructor_confirmed` VARCHAR(20)  NOT NULL DEFAULT 'None',
   `shirt` VARCHAR(3)  NOT NULL ,
   `econtact` VARCHAR(255)  NOT NULL ,
   `enumber` VARCHAR(255)  NOT NULL ,
@@ -22,6 +20,15 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_member_user_idx` (`user_id` ASC),
   INDEX `fk_member_university_idx` (`university_id` ASC)
+)
+DEFAULT COLLATE=utf8_general_ci;
+
+CREATE  TABLE IF NOT EXISTS `#__swa_instructor` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `member_id` INT(11)  NOT NULL ,
+  `level` VARCHAR(50)  NOT NULL ,
+  `expiry_date` DATE NOT NULL ,
+  PRIMARY KEY (`id`)
 )
 DEFAULT COLLATE=utf8_general_ci;
 

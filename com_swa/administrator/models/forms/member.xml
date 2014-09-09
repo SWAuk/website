@@ -89,28 +89,6 @@
 			<option value="Advanced">Advanced</option>
 		</field>
 
-		<field name="instructor" type="list"
-
-			   label="Instructor level"
-
-			   required="true">
-		<option value="None">None</option>
-		<option value="Start">Start</option>
-		<option value="Fast Forward">Fast Forward</option>
-		<option value="Advanced">Advanced</option>
-		</field>
-
-		<field name="instructor_confirmed" type="list"
-
-			   label="Instructor confirmed level"
-
-			   required="true">
-			<option value="None">None</option>
-			<option value="Start">Start</option>
-			<option value="Fast Forward">Fast Forward</option>
-			<option value="Advanced">Advanced</option>
-		</field>
-
 		<field name="shirt" type="list"
 
 			   label="Shirt"

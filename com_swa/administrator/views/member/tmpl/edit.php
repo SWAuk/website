@@ -95,14 +95,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'level' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'instructor' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'instructor' ); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'instructor_confirmed' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'instructor_confirmed' ); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'shirt' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'shirt' ); ?></div>
 					</div>

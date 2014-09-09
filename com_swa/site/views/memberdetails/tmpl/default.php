@@ -103,20 +103,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 	<tr>
 		<div class="control-group">
-			<td>Instructor level:</td>
-			<td><?php echo $this->item->instructor ?></td>
-		</div>
-	</tr>
-
-	<tr>
-		<div class="control-group">
-			<td>Instructor confirmed level:</td>
-			<td><?php echo $this->item->instructor_confirmed ?></td>
-		</div>
-	</tr>
-
-	<tr>
-		<div class="control-group">
 			<td>Shirt:</td>
 			<td><?php echo $this->item->shirt ?></td>
 		</div>

@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelMembers extends JModelList {
+class SwaModelInstructors extends JModelList {
 	/**
 	 * Constructor.
 	 *
@@ -20,19 +20,8 @@ class SwaModelMembers extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'user_id', 'a.user_id',
-				'sex', 'a.sex',
-				'dob', 'a.dob',
-				'university_id', 'a.university_id',
-				'course', 'a.course',
-				'graduation', 'a.graduation',
-				'discipline', 'a.discipline',
-				'level', 'a.level',
-				'shirt', 'a.shirt',
-				'econtact', 'a.econtact',
-				'enumber', 'a.enumber',
-				'swahelp', 'a.swahelp',
-
+				'member_id', 'a.member_id',
+				'expiry_date', 'a.expiry_date',
 			);
 		}
 
@@ -96,14 +85,10 @@ class SwaModelMembers extends JModelList {
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from( '`#__swa_member` AS a' );
-
-		// Join over the user field 'user_id'
-		$query->select( 'user_id.name AS user' );
-		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
-		// Join over the user field 'university_id'
-		$query->select( 'university_id.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		$query->from( '`#__swa_instructor` AS a' );
+		$query->join( 'LEFT', '#__swa_member AS member ON member.id = a.member_id' );
+		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
+		$query->select( 'user.name AS user' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
