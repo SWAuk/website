@@ -41,7 +41,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->date . "</td>\n";
 		echo "<td>" . $item->event . "</td>\n";
-		echo "<td>" . $item->ticket_type . "</td>\n";
+		echo "<td>" . $item->ticket_name . "</td>\n";
 		echo "</tr>\n";
 		//array(1) { [0]=> object(stdClass)#151 (5) { ["id"]=> string(1) "1" ["event"]=> string(16) "Bruwe Wet Dreams" ["date"]=> string(10) "2014-09-12" ["ticket_type"]=> string(8) "Host Uni" } }
 	}

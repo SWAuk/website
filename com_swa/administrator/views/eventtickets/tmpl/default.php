@@ -107,7 +107,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Ticket Type', 'a.ticket_type', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Quantity', 'a.quantity', $listDirn, $listOrder ); ?>
@@ -115,7 +115,15 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Price', 'a.price', $listDirn, $listOrder ); ?>
 					</th>
-
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Needs SWA', 'a.need_swa', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Needs XSWA', 'a.need_xswa', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Needs Instructor', 'a.need_instructor', $listDirn, $listOrder ); ?>
+					</th>
 
 					<?php if ( isset( $this->items[0]->id ) ): ?>
 						<th width="1%" class="nowrap center hidden-phone">
@@ -173,20 +181,25 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 
 						<td>
-
 							<?php echo $item->event; ?>
 						</td>
 						<td>
-
-							<?php echo $item->ticket_type; ?>
+							<?php echo $item->name; ?>
 						</td>
 						<td>
-
 							<?php echo $item->quantity; ?>
 						</td>
 						<td>
-
 							<?php echo $item->price; ?>
+						</td>
+						<td>
+							<?php echo $item->need_swa; ?>
+						</td>
+						<td>
+							<?php echo $item->need_xswa; ?>
+						</td>
+						<td>
+							<?php echo $item->need_instructor; ?>
 						</td>
 
 

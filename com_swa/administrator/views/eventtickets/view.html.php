@@ -61,7 +61,7 @@ class SwaViewEventtickets extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'deposits.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'eventticket.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );
@@ -78,7 +78,7 @@ class SwaViewEventtickets extends JViewLegacy {
 		return array(
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.event' => JText::_( 'Event' ),
-			'a.ticket_type' => JText::_( 'Ticket Type' ),
+			'a.name' => JText::_( 'Name' ),
 			'a.quantity' => JText::_( 'Quantity' ),
 			'a.price' => JText::_( 'Price' ),
 		);

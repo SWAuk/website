@@ -66,12 +66,6 @@ CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   INDEX `fk_deposit_university_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
-CREATE  TABLE IF NOT EXISTS `#__swa_ticket_type` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `name` VARCHAR(45) NOT NULL ,
-  PRIMARY KEY (`id`) )
-DEFAULT COLLATE=utf8_general_ci;
-
 CREATE  TABLE IF NOT EXISTS `#__swa_event` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
@@ -89,12 +83,14 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
-  `ticket_type_id` INT NOT NULL ,
+  `name` VARCHAR(100) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` DECIMAL NOT NULL ,
+  `need_swa` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `need_xswa` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `need_instructor` TINYINT(1)  NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) ,
-  INDEX `fk_event_ticket_ticket_type1_idx` (`ticket_type_id` ASC) )
+  INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_grant` (

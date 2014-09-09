@@ -69,10 +69,6 @@
 				  img="components/com_swa/assets/images/s_tickets.png" alt="Swa/Tickets">
 				COM_SWA_TITLE_TICKETS
 			</menu>
-			<menu link="option=com_swa&amp;view=tickettypes" view="tickettypes"
-				  img="components/com_swa/assets/images/s_tickettypes.png" alt="Swa/TicketTypes">
-				COM_SWA_TITLE_TICKETTYPES
-			</menu>
 			<menu link="option=com_swa&amp;view=deposits" view="deposits"
 				  img="components/com_swa/assets/images/s_deposits.png" alt="Swa/Deposits">
 				COM_SWA_TITLE_DEPOSITS

@@ -110,7 +110,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Ticket type', 'a.ticket_type', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Ticket Name', 'a.ticket_name', $listDirn, $listOrder ); ?>
 					</th>
 
 					<?php if ( isset( $this->items[0]->id ) ): ?>
@@ -180,7 +180,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 
-							<?php echo $item->ticket_type; ?>
+							<?php echo $item->ticket_name; ?>
 						</td>
 
 						<?php if ( isset( $this->items[0]->id ) ): ?>

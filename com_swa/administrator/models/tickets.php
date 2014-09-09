@@ -97,12 +97,10 @@ class SwaModelTickets extends JModelList {
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
 		// Join over 'event_ticket_id'
 		$query->join( 'LEFT', '#__swa_event_ticket AS event_ticket_id ON event_ticket_id.id = a.event_ticket_id' );
+		$query->select( 'event_ticket_id.name as ticket_name' );
 		// Join over 'event_id'
 		$query->select( 'event_id.name AS event' );
 		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = event_ticket_id.event_id' );
-		// Join over 'event_id'
-		$query->select( 'ticket_type_id.name AS ticket_type' );
-		$query->join( 'LEFT', '#__swa_ticket_type AS ticket_type_id ON ticket_type_id.id = event_ticket_id.ticket_type_id' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );

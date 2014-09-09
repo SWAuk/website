@@ -15,12 +15,8 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="ticket_type_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_ticket_type"
-
-			   label="Ticket type"
-
-
+		<field name="name" type="text" size="100" class="inputbox"
+			   label="Name"
 			   required="true"
 			   filter="safehtml"/>
 
@@ -39,6 +35,13 @@
 
 			   required="true"
 			   filter="safehtml"/>
+
+		<field name="need_swa" type="checkbox" label="Needs SWA" default="0">
+		</field>
+		<field name="need_xswa" type="checkbox" label="Needs XSWA" default="0">
+		</field>
+		<field name="need_instructor" type="checkbox" label="Needs Instructor" default="0">
+		</field>
 
 	</fieldset>
 

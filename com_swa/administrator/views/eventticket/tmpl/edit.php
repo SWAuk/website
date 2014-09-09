@@ -55,8 +55,8 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'event_id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'ticket_type_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'ticket_type_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'name' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'name' ); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'quantity' ); ?></div>
@@ -65,6 +65,18 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'price' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'price' ); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel( 'need_swa' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'need_swa' ); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel( 'need_xswa' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'need_xswa' ); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel( 'need_instructor' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'need_instructor' ); ?></div>
 					</div>
 
 				</fieldset>

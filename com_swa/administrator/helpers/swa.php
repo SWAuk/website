@@ -42,11 +42,6 @@ class SwaHelper {
 			$vName == 'tickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Ticket types' ),
-			'index.php?option=com_swa&view=tickettypes',
-			$vName == 'tickettypes'
-		);
-		JHtmlSidebar::addEntry(
 			JText::_( 'Deposits' ),
 			'index.php?option=com_swa&view=deposits',
 			$vName == 'deposits'
