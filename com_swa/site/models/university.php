@@ -28,7 +28,6 @@ class SwaModelUniversity extends JModelItem {
 
 		// Select the required fields from the table.
 		$query->select( 'a.university_id AS university_id' );
-		$query->select( 'a.university_confirmed AS university_confirmed' );
 		$query->from( $db->quoteName('#__swa_member') . ' AS a' );
 		$query->where( 'a.user_id = ' . $user->id );
 		// Join over the university

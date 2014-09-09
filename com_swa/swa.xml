@@ -49,6 +49,10 @@
 				  img="components/com_swa/assets/images/s_members.png" alt="Swa/Members">
 				COM_SWA_TITLE_MEMBERS
 			</menu>
+			<menu link="option=com_swa&amp;view=universitymembers" view="universitymembers"
+				  img="components/com_swa/assets/images/s_universitymembers.png" alt="Swa/UniversityMembers">
+				COM_SWA_TITLE_UNIVERSITYMEMBERS
+			</menu>
 			<menu link="option=com_swa&amp;view=instructors" view="instructors"
 				  img="components/com_swa/assets/images/s_instructors.png" alt="Swa/Instructors">
 				COM_SWA_TITLE_INSTRUCTORS

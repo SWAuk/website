@@ -46,9 +46,6 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="university_confirmed" type="checkbox" label="Confirmed @ University" default="0">
-		</field>
-
 		<field name="club_committee" type="checkbox" label="Club Committee" default="0">
 		</field>
 

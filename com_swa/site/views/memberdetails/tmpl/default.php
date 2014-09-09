@@ -47,13 +47,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 	<tr>
 		<div class="control-group">
-			<td>Confirmed:</td>
-			<td><?php echo ( $this->item->university_confirmed ) ? 'Yes' : 'No' ?></td>
-		</div>
-	</tr>
-
-	<tr>
-		<div class="control-group">
 			<td>Sex:</td>
 			<td><?php echo $this->item->sex ?></td>
 		</div>

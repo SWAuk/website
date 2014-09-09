@@ -71,10 +71,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'university_id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'university_confirmed' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'university_confirmed' ); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'club_committee' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'club_committee' ); ?></div>
 					</div>

@@ -36,7 +36,6 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<tr>\n";
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->paid . "</td>\n";
-		echo "<td>" . $item->university_confirmed . "</td>\n";
 		echo "<td>" . $item->club_committee . "</td>\n";
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
