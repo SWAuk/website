@@ -46,67 +46,67 @@
 		<menu img="components/com_swa/assets/images/s_com_swa.png">COM_SWA</menu>
 		<submenu>
 			<menu link="option=com_swa&amp;view=members" view="members"
-				  img="components/com_swa/assets/images/s_members.png" alt="Swa/Members">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Members">
 				COM_SWA_TITLE_MEMBERS
 			</menu>
 			<menu link="option=com_swa&amp;view=universitymembers" view="universitymembers"
-				  img="components/com_swa/assets/images/s_universitymembers.png" alt="Swa/UniversityMembers">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/UniversityMembers">
 				COM_SWA_TITLE_UNIVERSITYMEMBERS
 			</menu>
 			<menu link="option=com_swa&amp;view=instructors" view="instructors"
-				  img="components/com_swa/assets/images/s_instructors.png" alt="Swa/Instructors">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Instructors">
 				COM_SWA_TITLE_INSTRUCTORS
 			</menu>
 			<menu link="option=com_swa&amp;view=events" view="events"
-				  img="components/com_swa/assets/images/s_events.png" alt="Swa/Events">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Events">
 				COM_SWA_TITLE_EVENTS
 			</menu>
 			<menu link="option=com_swa&amp;view=eventregistrations" view="eventregistrations"
-				  img="components/com_swa/assets/images/s_eventregistrations.png" alt="Swa/EventRegistrations">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/EventRegistrations">
 				COM_SWA_TITLE_EVENTREGISTRATIONS
 			</menu>
 			<menu link="option=com_swa&amp;view=eventtickets" view="eventtickets"
-				  img="components/com_swa/assets/images/s_eventtickets.png" alt="Swa/EventTickets">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/EventTickets">
 				COM_SWA_TITLE_EVENTTICKETS
 			</menu>
 			<menu link="option=com_swa&amp;view=tickets" view="tickets"
-				  img="components/com_swa/assets/images/s_tickets.png" alt="Swa/Tickets">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Tickets">
 				COM_SWA_TITLE_TICKETS
 			</menu>
 			<menu link="option=com_swa&amp;view=deposits" view="deposits"
-				  img="components/com_swa/assets/images/s_deposits.png" alt="Swa/Deposits">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Deposits">
 				COM_SWA_TITLE_DEPOSITS
 			</menu>
 			<menu link="option=com_swa&amp;view=damages" view="damages"
-				  img="components/com_swa/assets/images/s_damages.png" alt="Swa/Damages">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Damages">
 				COM_SWA_TITLE_DAMAGES
 			</menu>
 			<menu link="option=com_swa&amp;view=grants" view="grants"
-				  img="components/com_swa/assets/images/s_grants.png" alt="Swa/Grants">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Grants">
 				COM_SWA_TITLE_GRANTS
 			</menu>
 			<menu link="option=com_swa&amp;view=universities" view="universities"
-				  img="components/com_swa/assets/images/s_universities.png" alt="Swa/Universities">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Universities">
 				COM_SWA_TITLE_UNIVERSITIES
 			</menu>
 			<menu link="option=com_swa&amp;view=seasons" view="seasons"
-				  img="components/com_swa/assets/images/s_seasons.png" alt="Swa/Seasons">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Seasons">
 				COM_SWA_TITLE_SEASONS
 			</menu>
 			<menu link="option=com_swa&amp;view=races" view="races"
-				  img="components/com_swa/assets/images/s_races.png" alt="Swa/Races">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Races">
 				COM_SWA_TITLE_RACES
 			</menu>
 			<menu link="option=com_swa&amp;view=racetypes" view="racetypes"
-				  img="components/com_swa/assets/images/s_racetypes.png" alt="Swa/RaceTypes">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/RaceTypes">
 				COM_SWA_TITLE_RACETYPES
 			</menu>
 			<menu link="option=com_swa&amp;view=teamresults" view="teamresults"
-				  img="components/com_swa/assets/images/s_teamresults.png" alt="Swa/TeamResults">
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/TeamResults">
 				COM_SWA_TITLE_TEAMRESULTS
 			</menu>
 			<menu link="option=com_swa&amp;view=individualresults" view="individualresults"
-				  img="components/com_swa/assets/images/s_individualresults.png"
+				  img="components/com_swa/assets/images/s_default.png"
 				  alt="Swa/IndividualResults">
 				COM_SWA_TITLE_INDIVIDUALRESULTS
 			</menu>
