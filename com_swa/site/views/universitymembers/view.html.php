@@ -35,6 +35,12 @@ class SwaViewUniversityMembers extends JViewLegacy {
 			$app->redirect( JRoute::_( $url, false ) );
 		}
 
+		$this->member = $this->get( 'Member' );
+		if( !$this->member->club_committee ) {
+			//TODO better error message
+			die( 'You must be a committee member to view this page!' );
+		}
+
 		$this->items = $this->get( 'Items' );
 
 		parent::display( $tpl );
