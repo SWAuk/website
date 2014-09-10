@@ -29,14 +29,17 @@ class SwaControllerMemberPayment extends SwaController {
 			array_keys( $data )
 		);
 		if( !empty( $missingKeys ) ) {
+			JLog::add( 'MemberPayment callback called with missing $data items: ' . implode( ',', $missingKeys ), JLog::ERROR, 'com_swa' );
 			die( 'Posted data is missing stuff!' );
 		}
 
 		// Extra specific validation
 		if( intval( $data['amount'] ) != 5 ) {
+			JLog::add( 'MemberPayment callback called with wrong membership amount: ' . $data['amount'], JLog::ERROR, 'com_swa' );
 			die( 'Membership amount was wrong' );
 		}
 		if (substr( $data['order_id'] , 0, 13) != 'j3membership:') {
+			JLog::add( 'MemberPayment callback called with bad looking order_id: ' . $data['order_id'], JLog::ERROR, 'com_swa' );
 			die ( 'Order id looks wrong' );
 		}
 
@@ -51,12 +54,10 @@ class SwaControllerMemberPayment extends SwaController {
 		// Check the result from nochex
 		if (!strstr($response, "AUTHORISED")) {  // searches response to see if AUTHORISED is present if it isn’t a failure message is displayed
 			//NOTE: NOT AUTHORISED
-			$msg = "APC was not AUTHORISED.\r\n\r\n$debug";  // displays debug message
+			JLog::add( 'MemberPayment callback called and nochex did not authorise: ' . $debug, JLog::INFO, 'com_swa' );
 		}
 		else {
 			//NOTE: AUTHORISED
-			$msg = "APC was AUTHORISED."; // if AUTHORISED was found in the response then it was successful
-
 			// Update the membership status for the member!
 			$memberId = str_replace( 'j3membership:', '', $data['order_id'] );
 			$db = JFactory::getDbo();
@@ -73,6 +74,7 @@ class SwaControllerMemberPayment extends SwaController {
 			$result = $db->execute();
 
 			if( $result === false ) {
+				JLog::add( 'MemberPayment callback called and authed but failed to update db. order_id: ' . $data['order_id'] , JLog::ERROR, 'com_swa' );
 				die( 'Failed to update member in db' );
 			}
 		}

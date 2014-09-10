@@ -4,6 +4,19 @@ defined( '_JEXEC' ) or die;
 // Include dependancies
 jimport( 'joomla.application.component.controller' );
 
+JLog::addLogger(
+	array(
+		// Sets file name
+		'text_file' => 'com_swa.all.' . JFactory::getDate()->format('Y-m-d') . '.php',
+		// Sets the format of each line
+		'text_entry_format' => '{TIME} {CLIENTIP} {PRIORITY} {MESSAGE}'
+	),
+	// Sets all but DEBUG log level messages to be sent to the file
+	JLog::ALL,
+	// The log category which should be recorded in this file
+	array( 'com_swa' )
+);
+
 // Execute the task.
 $controller = JControllerLegacy::getInstance( 'Swa' );
 $controller->execute( JFactory::getApplication()->input->get( 'task' ) );
