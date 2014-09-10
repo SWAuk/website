@@ -27,6 +27,7 @@ class SwaViewMembers extends JViewLegacy {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
+		require_once JPATH_COMPONENT . '/helpers/swa.php';
 		SwaHelper::addSubmenu( 'members' );
 
 		$this->addToolbar();
@@ -41,8 +42,6 @@ class SwaViewMembers extends JViewLegacy {
 	 * @since    1.6
 	 */
 	protected function addToolbar() {
-		require_once JPATH_COMPONENT . '/helpers/swa.php';
-
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
@@ -61,7 +60,7 @@ class SwaViewMembers extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'deposits.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'members.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );

@@ -27,6 +27,7 @@ class SwaViewSeasons extends JViewLegacy {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
+		require_once JPATH_COMPONENT . '/helpers/swa.php';
 		SwaHelper::addSubmenu( 'seasons' );
 
 		$this->addToolbar();
@@ -41,8 +42,6 @@ class SwaViewSeasons extends JViewLegacy {
 	 * @since    1.6
 	 */
 	protected function addToolbar() {
-		require_once JPATH_COMPONENT . '/helpers/swa.php';
-
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
@@ -61,7 +60,7 @@ class SwaViewSeasons extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'deposits.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'seasons.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );

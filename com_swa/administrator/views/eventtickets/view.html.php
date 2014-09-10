@@ -27,6 +27,7 @@ class SwaViewEventtickets extends JViewLegacy {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
+		require_once JPATH_COMPONENT . '/helpers/swa.php';
 		SwaHelper::addSubmenu( 'eventtickets' );
 
 		$this->addToolbar();
@@ -41,8 +42,6 @@ class SwaViewEventtickets extends JViewLegacy {
 	 * @since    1.6
 	 */
 	protected function addToolbar() {
-		require_once JPATH_COMPONENT . '/helpers/swa.php';
-
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
@@ -61,7 +60,7 @@ class SwaViewEventtickets extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'eventticket.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'eventtickets.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );

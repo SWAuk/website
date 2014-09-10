@@ -28,6 +28,7 @@ class SwaViewInstructors extends JViewLegacy {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
+		require_once JPATH_COMPONENT . '/helpers/swa.php';
 		SwaHelper::addSubmenu( 'instructors' );
 
 		$this->addToolbar();
@@ -42,8 +43,6 @@ class SwaViewInstructors extends JViewLegacy {
 	 * @since    1.6
 	 */
 	protected function addToolbar() {
-		require_once JPATH_COMPONENT . '/helpers/swa.php';
-
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
@@ -62,7 +61,7 @@ class SwaViewInstructors extends JViewLegacy {
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'instructor.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'instructors.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );

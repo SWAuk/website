@@ -172,7 +172,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				<?php echo $item->event; ?>
 			</td>
 			<td>
-				<?php echo $item->member; ?>
+				<?php echo $item->user; ?>
 			</td>
 			<td>
 				<?php echo $item->date; ?>

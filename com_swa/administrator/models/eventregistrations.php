@@ -91,6 +91,8 @@ class SwaModelEventregistrations extends JModelList {
 		$query->join( 'LEFT', '#__swa_member AS member ON member.id = a.member_id' );
 		$query->select( 'user.name AS user' );
 		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
+		$query->select( 'event.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event ON event.id = a.event_id' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
