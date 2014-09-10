@@ -124,6 +124,15 @@ CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   INDEX `fk_ticket_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+CREATE  TABLE IF NOT EXISTS `#__swa_ticket_registration` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `member_id` INT NOT NULL ,
+  `event_id` INT NOT NULL ,
+  `date` DATE NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_ticket_event1_idx` (`event_id` ASC) )
+DEFAULT COLLATE=utf8_general_ci;
+
 CREATE  TABLE IF NOT EXISTS `#__swa_race_type` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
