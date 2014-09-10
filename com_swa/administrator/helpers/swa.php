@@ -32,6 +32,11 @@ class SwaHelper {
 			$vName == 'events'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_( 'Event Registrations' ),
+			'index.php?option=com_swa&view=eventregistrations',
+			$vName == 'eventregistrations'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_( 'Event tickets' ),
 			'index.php?option=com_swa&view=eventtickets',
 			$vName == 'eventtickets'

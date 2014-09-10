@@ -61,6 +61,10 @@
 				  img="components/com_swa/assets/images/s_events.png" alt="Swa/Events">
 				COM_SWA_TITLE_EVENTS
 			</menu>
+			<menu link="option=com_swa&amp;view=eventregistrations" view="eventregistrations"
+				  img="components/com_swa/assets/images/s_eventregistrations.png" alt="Swa/EventRegistrations">
+				COM_SWA_TITLE_EVENTREGISTRATIONS
+			</menu>
 			<menu link="option=com_swa&amp;view=eventtickets" view="eventtickets"
 				  img="components/com_swa/assets/images/s_eventtickets.png" alt="Swa/EventTickets">
 				COM_SWA_TITLE_EVENTTICKETS
