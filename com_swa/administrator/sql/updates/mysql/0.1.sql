@@ -69,15 +69,22 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_event` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
-  `university_id` INT NOT NULL ,
   `season_id` INT NOT NULL ,
   `capacity` INT NOT NULL ,
   `date_open` DATE NOT NULL ,
   `date_close` DATE NOT NULL ,
   `date` DATE NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_event_university1_idx` (`university_id` ASC) ,
   INDEX `fk_event_season1_idx` (`season_id` ASC) )
+DEFAULT COLLATE=utf8_general_ci;
+
+CREATE  TABLE IF NOT EXISTS `#__swa_event_host` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `event_id` INT NOT NULL ,
+  `university_id` INT NOT NULL ,
+  PRIMARY KEY (`id`) ,
+  INDEX `fk_event_host_event1_idx` (`event_id` ASC) ,
+  INDEX `fk_event_host_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (

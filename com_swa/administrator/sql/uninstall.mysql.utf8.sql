@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS `#__swa_season`;
 DROP TABLE IF EXISTS `#__swa_deposit`;
 DROP TABLE IF EXISTS `#__swa_ticket_type`;
 DROP TABLE IF EXISTS `#__swa_event`;
+DROP TABLE IF EXISTS `#__swa_event_host`;
 DROP TABLE IF EXISTS `#__swa_event_ticket`;
 DROP TABLE IF EXISTS `#__swa_grant`;
 DROP TABLE IF EXISTS `#__swa_ticket`;

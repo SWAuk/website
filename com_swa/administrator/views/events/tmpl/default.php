@@ -110,9 +110,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php echo JHtml::_( 'grid.sort', 'Season', 'a.season', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
-		</th>
-		<th class='left'>
 			<?php echo JHtml::_( 'grid.sort', 'Capacity', 'a.capacity', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
@@ -189,34 +186,21 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<?php echo $this->escape( $item->name ); ?>
 				<?php endif; ?>
 			</td>
-
 			<td>
-
-				<?php echo $item->university; ?>
-			</td>
-
-			<td>
-
 				<?php echo $item->season; ?>
 			</td>
-
 			<td>
-
 				<?php echo $item->capacity; ?>
 			</td>
 			<td>
-
 				<?php echo $item->date_open; ?>
 			</td>
 			<td>
-
 				<?php echo $item->date_close; ?>
 			</td>
 			<td>
-
 				<?php echo $item->date; ?>
 			</td>
-
 
 			<?php if ( isset( $this->items[0]->id ) ): ?>
 				<td class="center hidden-phone">

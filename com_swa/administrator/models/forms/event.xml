@@ -7,60 +7,36 @@
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="name" type="text" size="40" class="inputbox"
-
 			   label="Name"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university"
-
-			   label="University"
-
-
 			   required="true"
 			   filter="safehtml"/>
 
 		<field name="season_id" type="sql" default="1" key_field="id" value_field="year"
 			   query="SELECT id, year FROM #__swa_season"
-
 			   label="Season"
-
-
 			   required="true"
 			   filter="safehtml"/>
 
 		<field name="capacity" type="text" size="40" class="inputbox"
-
 			   label="Capacity"
-
-
 			   required="true"
 			   filter="safehtml"/>
 
 		<field name="date_open" type="calendar" class="inputbox"
 			   required="true"
-
 			   default="0000-00-00"
-
 			   label="Date open"
 			   filter="safehtml"/>
 
 		<field name="date_close" type="calendar" class="inputbox"
 			   required="true"
-
 			   default="0000-00-00"
-
 			   label="Date close"
 			   filter="safehtml"/>
 
 		<field name="date" type="calendar" class="inputbox"
 			   required="true"
-
 			   default="0000-00-00"
-
 			   label="Date"
 			   filter="safehtml"/>
 
