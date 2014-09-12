@@ -86,6 +86,12 @@ class SwaModelUniversityMembers extends JModelList {
 		);
 		$query->from( '`#__swa_university_member` AS a' );
 
+		$query->join( 'LEFT', '`#__swa_university` AS university ON a.university_id=university.id' );
+		$query->select( 'university.name as university' );
+
+		$query->join( 'LEFT', '`#__swa_member` AS member ON a.member_id=member.id' );
+		$query->join( 'LEFT', '`#__users` AS user ON member.user_id=user.id' );
+		$query->select( 'user.name as member' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );

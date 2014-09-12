@@ -172,6 +172,12 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
 
+						<?php if ( isset( $this->items[0]->id ) ): ?>
+							<td class="center hidden-phone">
+								<?php echo (int)$item->id; ?>
+							</td>
+						<?php endif; ?>
+
 						<td>
 							<?php echo $item->university; ?>
 						</td>
@@ -182,11 +188,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo $item->graduated; ?>
 						</td>
 
-						<?php if ( isset( $this->items[0]->id ) ): ?>
-							<td class="center hidden-phone">
-								<?php echo (int)$item->id; ?>
-							</td>
-						<?php endif; ?>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
