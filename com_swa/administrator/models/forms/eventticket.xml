@@ -40,6 +40,8 @@
 		</field>
 		<field name="need_xswa" type="checkbox" label="Needs XSWA" default="0">
 		</field>
+		<field name="need_host" type="checkbox" label="Needs Home" default="0">
+		</field>
 		<field name="need_instructor" type="checkbox" label="Needs Instructor" default="0">
 		</field>
 

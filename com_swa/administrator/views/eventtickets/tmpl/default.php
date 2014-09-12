@@ -122,6 +122,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Needs XSWA', 'a.need_xswa', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Needs Host', 'a.need_host', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Needs Instructor', 'a.need_instructor', $listDirn, $listOrder ); ?>
 					</th>
 
@@ -197,6 +200,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $item->need_xswa; ?>
+						</td>
+						<td>
+							<?php echo $item->need_host; ?>
 						</td>
 						<td>
 							<?php echo $item->need_instructor; ?>

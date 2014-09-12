@@ -95,6 +95,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `price` DECIMAL NOT NULL ,
   `need_swa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_xswa` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `need_host` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_instructor` TINYINT(1)  NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
