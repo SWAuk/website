@@ -44,10 +44,11 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td><ul>";
 		foreach( $this->events as $event ) {
 			//TODO provide links to register / unregister
-			//TODO give feed back depending on who is already registered / unregistered?
+			//TODO give feed back depending on who is already registered / unregistered? See $item->registered_event_ids
 			echo "<li>" . $event->name . "</li>\n";
 		}
 		echo "</ul></td>\n";
+		//TODO add graduate link!?
 		echo "</tr>\n";
 	}
 	?>
