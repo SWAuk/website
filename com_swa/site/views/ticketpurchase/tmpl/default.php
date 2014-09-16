@@ -47,7 +47,7 @@ if ( empty( $this->items ) ) {
 			echo "<td>" . $item->event . "</td>\n";
 			echo "<td>" . $item->event_date . "</td>\n";
 			echo "<td>" . $item->event_close . "</td>\n";
-			echo "<td>" . $item->ticket . "</td>\n";
+			echo "<td>" . $item->ticket_name . "</td>\n";
 			//TODO buy me link / nochex button!
 			echo "<td>Buy me</td>\n";
 			echo "</tr>\n";

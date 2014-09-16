@@ -37,6 +37,7 @@ class SwaModelTicketPurchase extends JModelList {
 
 		// Select all event tickets
 		$query->select( 'a.id as id' );
+		$query->select( 'a.name as ticket_name' );
 		$query->from( $db->quoteName('#__swa_event_ticket') . ' AS a' );
 
 		// Select details of the event
@@ -45,7 +46,8 @@ class SwaModelTicketPurchase extends JModelList {
 		$query->select( 'event.date as event_date' );
 		$query->select( 'event.date_close as event_close' );
 
-		// TODO Where event_close has not passed
+		// Where the event has not already closed
+		$query->where( 'event.date_close > NOW()' );
 
 		// Where we still have tickets remaining
 		$subQuery = $db->getQuery(true);
