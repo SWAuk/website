@@ -8,8 +8,6 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerMemberRegistration extends SwaController {
 
 	public function submit() {
-		//TODO only allow logged in users here!
-
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
