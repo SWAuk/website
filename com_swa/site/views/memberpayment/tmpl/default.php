@@ -33,6 +33,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 	<input type="hidden" name ="description" value="SWA Membership for <?php echo $this->user->name; ?>" />
 	<input type="hidden" name ="order_id" value="j3membership:<?php echo $this->item->id; ?>" />
 	<input type="hidden" name ="callback_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&task=memberpayment.callback' ?>" />
+	<input type="hidden" name ="success_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&view=memberdetails' ?>" />
+	<input type="hidden" name ="cancel_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&view=memberpayment' ?>" />
 	<!--TODO use an image relative to this install here-->
 	<input type="image" alt="Pay on Credit or Debit Card with Nochex" src="http://www.studentwindsurfing.co.uk/images/swacore/paybutton.gif"/>
 

@@ -59,6 +59,8 @@ if ( empty( $this->items ) ) {
 	<input type="hidden" name ="description" value="SWA Ticket for <?php echo $item->event; ?> - <?php echo $item->ticket_name; ?>" />
 	<input type="hidden" name ="order_id" value="j3ticket:<?php echo $item->id . '-' . $this->member->id; ?>" />
 	<input type="hidden" name ="callback_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&task=ticketpurchase.callback' ?>" />
+	<input type="hidden" name ="success_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&view=membertickets' ?>" />
+	<input type="hidden" name ="cancel_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&view=ticketpurchase' ?>" />
 	<a href="javascript:{}" onclick="document.getElementById('form-ticketpurchase-<?php echo $item->id ?>').submit(); return false;">(buy)</a>
 	<!-- test_transaction = 100 means TEST-->
 	<input type="hidden" name ="test_transaction" value="0" />
