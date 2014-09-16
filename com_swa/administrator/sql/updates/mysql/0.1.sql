@@ -136,7 +136,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_registration` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
   `member_id` INT NOT NULL ,
-  `date` DATE NOT NULL ,
+  `date` DATETIME NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_event_registration_event1_idx` (`event_id` ASC) ,
   INDEX `fk_event_registration_member1_idx` (`member_id` ASC) )

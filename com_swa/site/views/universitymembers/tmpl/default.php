@@ -42,13 +42,27 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td><ul>";
+		$item->registered_event_ids = explode( ',', $item->registered_event_ids );
 		foreach( $this->events as $event ) {
-			//TODO provide links to register / unregister
-			//TODO give feed back depending on who is already registered / unregistered? See $item->registered_event_ids
-			echo "<li>" . $event->name . "</li>\n";
+			echo "<li>" . $event->name . ' ';
+			if( in_array( $event->id, $item->registered_event_ids ) ) {
+				//registered for the event
+				echo '<form id="form-universitymembers-unregister" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.unregister' ) . '">' .
+					'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
+					'<input type="hidden" name ="event_id" value="' . $event->id . '" />' .
+					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister\').submit(); return false;">(unregister)</a>' .
+					'</form>';
+			} else {
+				//not registered for the event
+				echo '<form id="form-universitymembers-register" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.register' ) . '">' .
+					'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
+					'<input type="hidden" name ="event_id" value="' . $event->id . '" />' .
+					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register\').submit(); return false;">(register)</a>' .
+					'</form>';
+			}
+			echo "</li>\n";
 		}
 		echo "</ul></td>\n";
-		//TODO add graduate link!?
 		echo "</tr>\n";
 	}
 	?>
