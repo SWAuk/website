@@ -23,6 +23,7 @@ class SwaModelTicketPurchase extends JModelList {
 			$query->select( 'a.*' );
 			$query->from( $db->quoteName('#__swa_member') . ' AS a' );
 			$query->where( 'a.user_id = ' . $user->id );
+			$query->group( 'a.id' );
 
 			// Join onto the university_member table
 			$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS b ON a.id = b.member_id' );
@@ -39,7 +40,12 @@ class SwaModelTicketPurchase extends JModelList {
 			// Get event ids registered for!
 			$query->join( 'LEFT', '#__swa_event_registration AS event_registration ON event_registration.member_id = a.id' );
 			$query->select( 'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() - INTERVAL 3 DAY THEN event_registration.event_id END ) as registered_event_ids' );
-			$query->group( 'a.id' );
+
+			// Get event ids for tickets we have that are in the future
+			$query->join( 'LEFT', '#__swa_ticket AS ticket ON ticket.member_id = a.id' );
+			$query->join( 'LEFT', '#__swa_event_ticket AS event_ticket ON ticket.event_ticket_id = event_ticket.id' );
+			$query->join( 'LEFT', '#__swa_event AS event ON event_ticket.event_id = event.id' );
+			$query->select( 'GROUP_CONCAT( CASE WHEN event.date > NOW() THEN event_ticket.event_id END ) as ticketed_event_ids' );
 
 			// Load the result
 			$db->setQuery($query);
@@ -94,6 +100,11 @@ class SwaModelTicketPurchase extends JModelList {
 		$allowedTickets = array();
 
 		foreach( $tickets as $ticket ) {
+			// Ignore tickets for events that we have already bought
+			if( in_array( $ticket->event_id, explode( ',', $this->getMember()->ticketed_event_ids ) ) ) {
+				continue;
+			}
+			// Only allow tickets the member is allowed to buy
 			if(
 				( $ticket->need_xswa && $member->graduated ) ||
 				( $ticket->need_swa && $member->swa_committee ) ||
