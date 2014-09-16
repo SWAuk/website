@@ -26,6 +26,16 @@ foreach( $this->event_registrations as $reg ) {
 
 <h1>University Members</h1>
 
+<p>View:
+	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=pending' ) ?>" >Pending</a>
+	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=default' ) ?>" >Current</a>
+	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=graduated' ) ?>" >Graduated</a>
+</p>
+
+<p>
+	Here you can see all current registered members of your university that you have approved.
+</p>
+
 <table>
 	<tr>
 		<th>Id</th>
