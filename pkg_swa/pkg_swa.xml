@@ -11,7 +11,6 @@
 	<description>SWA package to combine multiple extensions</description>
 	<files folder="packages">
 		<file type="component" id="swa">com_swa.zip</file>
-		<file type="plugin" id="user_swaprofile" group="system">plg_user_swaprofile.zip</file>
 		<file type="template" id="swa" client="site">tpl_swa.zip</file>
 	</files>
 </extension>
