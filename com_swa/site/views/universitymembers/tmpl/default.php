@@ -7,6 +7,11 @@ JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
+
+$eventRegistrations = array();
+foreach( $this->event_registrations as $reg ) {
+	$eventRegistrations[$reg->member_id][$reg->event_id] = strtotime( $reg->date );;
+}
 ?>
 
 <!--</style>-->
@@ -42,10 +47,13 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td><ul>";
-		$item->registered_event_ids = explode( ',', $item->registered_event_ids );
 		foreach( $this->events as $event ) {
 			echo "<li>" . $event->name . ' ';
-			if( in_array( $event->id, $item->registered_event_ids ) ) {
+			if(
+				array_key_exists( $item->id, $eventRegistrations ) &&
+				array_key_exists( $event->id, $eventRegistrations[$item->id] ) &&
+				$eventRegistrations[$item->id][$event->id] >=  strtotime( '-3 day', time() )
+			) {
 				//registered for the event
 				echo '<form id="form-universitymembers-unregister" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.unregister' ) . '">' .
 					'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .

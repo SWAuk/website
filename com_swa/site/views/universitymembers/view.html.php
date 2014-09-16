@@ -12,6 +12,7 @@ class SwaViewUniversityMembers extends JViewLegacy {
 	protected $params;
 	protected $user;
 	protected $events;
+	protected $event_registrations;
 
 	/**
 	 * Display the view
@@ -44,6 +45,7 @@ class SwaViewUniversityMembers extends JViewLegacy {
 
 		$this->items = $this->get( 'Items' );
 		$this->events = $this->get( 'AvailableEvents' );
+		$this->event_registrations = $this->get( 'EventRegistrations' );
 
 		parent::display( $tpl );
 	}

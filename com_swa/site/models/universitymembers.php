@@ -8,6 +8,7 @@ jimport( 'joomla.application.component.modeladmin' );
 class SwaModelUniversityMembers extends JModelList {
 
 	protected $member;
+	protected $items;
 
 	/**
 	 * @param string $type
@@ -62,6 +63,13 @@ class SwaModelUniversityMembers extends JModelList {
 		return $query;
 	}
 
+	public function getItems() {
+		if( !isset( $this->items ) ) {
+			$this->items = parent::getItems();
+		}
+		return $this->items;
+	}
+
 	/**
 	 * Gets a list of event items that have not yet closed
 	 * @return array
@@ -83,6 +91,31 @@ class SwaModelUniversityMembers extends JModelList {
 		}
 
 		return $db->loadObjectList();
+	}
+
+	/**
+	 * Gets a list of event registrations for the members listed
+	 * @return array
+	 */
+	public function getEventRegistrations() {
+		$db = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$query->from( $db->quoteName('#__swa_event_registration') . ' AS event_registration' );
+		$query->select( 'event_registration.*' );
+		foreach( $this->getItems() as $member ) {
+			$query->where( 'event_registration.member_id = ' . $member->id, 'OR' );
+		}
+
+		$db->setQuery( $query );
+		$result = $db->execute();
+
+		if( !$result ) {
+			JLog::add( 'SwaModelUniversityMembers::getEventRegistrations failed to do db query', JLog::ERROR, 'com_swa' );
+			return array();
+		}
+
+		return $db->loadObjectList( 'id' );
 	}
 
 }
