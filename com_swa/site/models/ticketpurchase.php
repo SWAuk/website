@@ -75,6 +75,8 @@ class SwaModelTicketPurchase extends JModelList {
 
 		// Where the event has not already closed
 		$query->where( 'event.date_close > NOW()' );
+		// Where the event has opened!
+		$query->where( 'event.date_open < NOW()' );
 
 		// Where we still have tickets remaining
 		$subQuery = $db->getQuery(true);
