@@ -7,6 +7,56 @@ require_once JPATH_COMPONENT . '/controller.php';
 
 class SwaControllerUniversityMembers extends SwaController {
 
+	public function approve() {
+		$props = $this->getProperties();
+		/** @var JInput $input */
+		$input = $props['input'];
+		$data = $input->getArray();
+
+		$currentMember = $this->getCurrentMember();
+		if( $currentMember->club_committee != 1 ) {
+			die( 'Current member is not club committee' );
+		}
+
+		$targetMember = $this->getMember( $data['member_id'] );
+		if( $currentMember->university_id != $targetMember->university_id ) {
+			die( 'Current and target member are from different universities' );
+		}
+
+		// Approve the member for the university
+		$db = JFactory::getDbo();
+		$query = $db->getQuery(true);
+
+		$columns = array( 'member_id', 'university_id');
+		$values = array( $data['member_id'], $targetMember->university_id );
+
+		$query
+			->insert($db->quoteName('#__swa_university_member'))
+			->columns($db->quoteName($columns))
+			->values(implode(',', $values));
+
+		$db->setQuery($query);
+		if( !$db->execute() ) {
+			JLog::add( 'SwaControllerUniversityMembers failed to approve: Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		}
+		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers&layout=pending', false));
+	}
+
+	public function unapprove() {
+		//TODO unapprove functionality
+		die('Not yet implemented');
+	}
+
+	public function graduate() {
+		//TODO graduate functionality
+		die('Not yet implemented');
+	}
+
+	public function ungraduate() {
+		//TODO ungraduate functionality
+		die('Not yet implemented');
+	}
+
 	public function register() {
 		$props = $this->getProperties();
 		/** @var JInput $input */

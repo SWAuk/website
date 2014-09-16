@@ -52,8 +52,10 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td>" . $item->graduation . "</td>\n";
-		//TODO turn the below into a link to ungraduate
-		echo "<td>(ungraduate)</td>";
+		echo '<td><form id="form-universitymembers-ungraduate" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.ungraduate' ) . '">' .
+			'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-ungraduate\').submit(); return false;">(ungraduate)</a>' .
+			'</form></td>';
 		echo "</tr>\n";
 	}
 	?>

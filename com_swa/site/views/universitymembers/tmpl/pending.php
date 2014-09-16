@@ -52,8 +52,10 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td>" . $item->course . "</td>\n";
-		//TODO turn the below into a link to approve user
-		echo "<td>(approve)</td>";
+		echo '<td><form id="form-universitymembers-approve" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.approve' ) . '">' .
+			'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-approve\').submit(); return false;">(approve)</a>' .
+			'</form></td>';
 		echo "</tr>\n";
 	}
 	?>
