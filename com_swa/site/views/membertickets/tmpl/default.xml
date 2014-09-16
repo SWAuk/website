@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Member Tickets">
+		<message>
+			Allow a user to see what tickets they have purchased.
+		</message>
+	</layout>
+</metadata>
