@@ -45,6 +45,9 @@ JHtml::_('formbehavior.chosen', 'select');
 
 	<?php
 	foreach( $this->items as $item ) {
+		if( $item->confirmed_university ) {
+			continue;
+		}
 		echo "<tr>\n";
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->name . "</td>\n";

@@ -49,6 +49,9 @@ foreach( $this->event_registrations as $reg ) {
 
 	<?php
 	foreach( $this->items as $item ) {
+		if( !$item->confirmed_university || $item->graduated ) {
+			continue;
+		}
 		echo "<tr>\n";
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->name . "</td>\n";

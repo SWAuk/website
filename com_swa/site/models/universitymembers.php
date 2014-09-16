@@ -54,6 +54,11 @@ class SwaModelUniversityMembers extends JModelList {
 		$query->select( 'user.name AS name' );
 		$query->join( 'LEFT', '#__users AS user ON member.user_id = user.id' );
 
+		// Join onto the university_member table
+		$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS university_member ON member.id = university_member.member_id' );
+		$query->select( 'university_member.graduated as graduated' );
+		$query->select( 'count( university_member.id ) as confirmed_university' );
+
 		return $query;
 	}
 
