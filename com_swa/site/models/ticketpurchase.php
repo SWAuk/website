@@ -61,6 +61,7 @@ class SwaModelTicketPurchase extends JModelList {
 		// Select all event tickets
 		$query->select( 'a.id as id' );
 		$query->select( 'a.name as ticket_name' );
+		$query->select( 'a.price as price' );
 		$query->select( 'a.need_xswa as need_xswa' );
 		$query->select( 'a.need_swa as need_swa' );
 		$query->select( 'a.need_host as need_host' );

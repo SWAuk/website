@@ -38,6 +38,7 @@ if ( empty( $this->items ) ) {
 			<th>Date</th>
 			<th>Deadline</th>
 			<th>Ticket</th>
+			<th>Price</th>
 			<th>Buy</th>
 		</tr>
 
@@ -48,8 +49,23 @@ if ( empty( $this->items ) ) {
 			echo "<td>" . $item->event_date . "</td>\n";
 			echo "<td>" . $item->event_close . "</td>\n";
 			echo "<td>" . $item->ticket_name . "</td>\n";
-			//TODO buy me link / nochex button!
-			echo "<td>Buy me</td>\n";
+			echo "<td>" . $item->price . "</td>\n";
+			echo "<td>";
+			?>
+
+<form id="form-ticketpurchase-<?php echo $item->id ?>" method="POST" action="https://secure.nochex.com/">
+	<input type="hidden" name ="merchant_id" value="swa.web@gmail.com" />
+	<input type="hidden" name ="amount" value="<?php echo $item->price ?>" />
+	<input type="hidden" name ="description" value="SWA Ticket for <?php echo $item->event; ?> - <?php echo $item->ticket_name; ?>" />
+	<input type="hidden" name ="order_id" value="j3ticket:<?php echo $item->id . '-' . $this->member->id; ?>" />
+	<input type="hidden" name ="callback_url" value="<?php echo JUri::root() . 'index.php?option=com_swa&task=ticketpurchase.callback' ?>" />
+	<a href="javascript:{}" onclick="document.getElementById('form-ticketpurchase-<?php echo $item->id ?>').submit(); return false;">(buy)</a>
+	<!-- test_transaction = 100 means TEST-->
+	<input type="hidden" name ="test_transaction" value="0" />
+</form>
+
+			<?php
+			echo "</td>\n";
 			echo "</tr>\n";
 		}
 		?>
