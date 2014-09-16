@@ -15,17 +15,17 @@ $doc = JFactory::getDocument();
 $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 ?>
 
-<!--</style>-->
-<script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-		jQuery(document).ready(function() {
-			jQuery('#form-member').submit(function(event) {
+	<!--</style>-->
+	<script type="text/javascript">
+		getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
+			jQuery(document).ready(function() {
+				jQuery('#form-member').submit(function(event) {
+				});
 			});
 		});
-	});
-</script>
+	</script>
 
-<h1>Ticket Purchasing</h1>
+	<h1>Ticket Purchasing</h1>
 
 <?php
 if ( empty( $this->items ) ) {
@@ -55,6 +55,6 @@ if ( empty( $this->items ) ) {
 		?>
 
 	</table>
-	<?php
+<?php
 }
 ?>
