@@ -99,9 +99,14 @@ if ( !empty( $this->extra_sidebar ) ) {
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Name', 'a.name', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Member', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
-
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Level', 'a.level', $listDirn, $listOrder ); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_( 'grid.sort', 'Expiry', 'a.expiry', $listDirn, $listOrder ); ?>
+					</th>
 
 					<?php if ( isset( $this->items[0]->id ) ): ?>
 						<th width="1%" class="nowrap center hidden-phone">
@@ -161,12 +166,17 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td>
 							<?php if ( $canEdit ) : ?>
 								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=instructor.edit&id=' . (int)$item->id ); ?>">
-									<?php echo $this->escape( $item->name ); ?></a>
+									<?php echo $this->escape( $item->user ); ?></a>
 							<?php else : ?>
-								<?php echo $this->escape( $item->name ); ?>
+								<?php echo $this->escape( $item->user ); ?>
 							<?php endif; ?>
 						</td>
-
+						<td>
+							<?php echo $this->escape( $item->level ); ?>
+						</td>
+						<td>
+							<?php echo $this->escape( $item->expiry_date ); ?>
+						</td>
 
 						<?php if ( isset( $this->items[0]->id ) ): ?>
 							<td class="center hidden-phone">
