@@ -1,6 +1,6 @@
 <?php
 
-class ComponentMenuTest extends SwaTestCase {
+class ComponentMenuAdminTest extends SwaAdminTestCase {
 
 	public function testMenuItemsGoToCorrectPages() {
 		$this->setUp();

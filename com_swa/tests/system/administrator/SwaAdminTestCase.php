@@ -1,6 +1,6 @@
 <?php
 
-class SwaTestCase extends SeleniumJoomlaTestCase {
+class SwaAdminTestCase extends SeleniumJoomlaTestCase {
 
 	public function addSeason( $season ) {
 		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );

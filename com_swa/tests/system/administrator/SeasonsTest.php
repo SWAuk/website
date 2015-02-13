@@ -1,6 +1,6 @@
 <?php
 
-class SeasonsTest extends SwaTestCase {
+class SeasonsAdminTest extends SwaAdminTestCase {
 
 	public function testAddMultipleSeasons() {
 		$this->setUp();
