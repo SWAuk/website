@@ -16,7 +16,7 @@
 			   filter="safehtml"/>
 
 		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university WHERE `state` = 1"
+			   query="SELECT id, name FROM #__swa_university"
 
 			   label="University"
 

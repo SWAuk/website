@@ -135,8 +135,15 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'universitymembers' );
 	}
 
-	public function addAdminDamage() {
-		//TODO implement me (currently broken)..
+	public function addAdminDamage( $event, $university, $date, $cost ) {
+		echo "Adding damage for '$university'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=damages");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'damage.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->select( 'id=jform_university_id', $university );
+		$this->type( 'id=jform_date', $date );
+		$this->type( 'id=jform_cost', $cost );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}
 
 	public function clearAdminDamages() {
