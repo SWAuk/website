@@ -92,6 +92,7 @@ class SwaModelEvents extends JModelList {
 			)
 		);
 		$query->from( '`#__swa_event` AS a' );
+		$query->group( 'a.id' );
 
 		// Join over for season_id
 		$query->select( 'season_id.year AS season' );

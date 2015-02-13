@@ -22,6 +22,16 @@ class UniversitiesTest extends SwaTestCase {
 		foreach( $unis as $uni ) {
 			list( $name, $url ) = $uni;
 			$this->assertElementPresent( 'link=' . $name );
+			//TODO check the rest of the list table is correct
+		}
+
+		foreach( $unis as $uni ) {
+			list( $name, $url ) = $uni;
+			$this->open( '/j/administrator/index.php?option=com_swa&view=universities' );
+			$this->click( '//td/a[contains(text(),\'' . $name . '\')]/../preceding-sibling::td/input[@name=\'cid[]\']' );
+			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
+			$this->assertValue( 'id=jform_name', $name );
+			$this->assertValue( 'id=jform_url', $url );
 		}
 
 	}

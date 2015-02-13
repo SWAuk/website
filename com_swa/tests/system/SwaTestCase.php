@@ -71,6 +71,22 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'members' );
 	}
 
+	public function addAdminEvent( $name, $season, $capacity, $open, $close, $date ) {
+		$this->open("/j/administrator/index.php?option=com_swa&view=events");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'event.add\')"]');
+		$this->type("id=jform_name", $name);
+		$this->select( 'id=jform_season_id', $season );
+		$this->type("id=jform_capacity", $capacity);
+		$this->type("id=jform_date_open", $open);
+		$this->type("id=jform_date_close", $close);
+		$this->type("id=jform_date", $date);
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminEvents() {
+		$this->clearAdminList( 'events' );
+	}
+
 	public function createAdminJoomlaUser( $username, $password ) {
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
 		$this->click("link=Users");

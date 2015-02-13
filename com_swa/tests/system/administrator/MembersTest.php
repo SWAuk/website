@@ -36,6 +36,7 @@ class MembersTest extends SwaTestCase {
 		$this->open( '/j/administrator/index.php?option=com_swa&view=members' );
 		foreach( $members as $d ) {
 			$this->assertTextPresent( $d[0] );
+			//TODO check the rest of the list table is correct
 		}
 
 		//Make sure each user actually has the correct data
