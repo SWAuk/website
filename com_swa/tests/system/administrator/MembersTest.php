@@ -25,8 +25,8 @@ class MembersTest extends SwaTestCase {
 
 		$members = array(
 			// username, paid, sex, dob, uni, clubComm, course, grad, discipline, level, shirt, ename, enum, swahelp, swacomm
-			array( $users[0], false, 'Male', '12-01-1990', $unis[0], false, 'c1', 2017, 'Race', 'Intermediate', 'L', 'ename', '123', 'No thanks', false ),
-			array( $users[1], true, 'Female', '10-06-1989', $unis[1], true, 'c2', 2016, 'Freestyle', 'Advanced', 'XL', 'aname', '999', 'Website', true ),
+			array( $users[0], false, 'Male', '1990-01-24', $unis[0], false, 'c1', 2017, 'Race', 'Intermediate', 'L', 'ename', '123', 'No thanks', false ),
+			array( $users[1], true, 'Female', '1989-06-10', $unis[1], true, 'c2', 2016, 'Freestyle', 'Advanced', 'XL', 'aname', '999', 'Website', true ),
 		);
 
 		foreach( $members as $d ) {

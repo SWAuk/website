@@ -32,8 +32,6 @@
 		<field name="dob" type="calendar" class="inputbox"
 			   required="true"
 
-			   default="0000-00-00"
-
 			   label="Dob"
 			   filter="safehtml"/>
 
