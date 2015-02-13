@@ -1,3 +1,7 @@
+#Composer stuff
+vendor
+composer.lock
+
 #Ignore the zip files..
 *.zip
 migrate.cnf.php
