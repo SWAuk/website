@@ -135,6 +135,152 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'universitymembers' );
 	}
 
+	public function addAdminDamage() {
+		//TODO implement me (currently broken)..
+	}
+
+	public function clearAdminDamages() {
+		$this->clearAdminList( 'damages' );
+	}
+
+	public function addAdminDeposit( $university, $time, $amount ) {
+		echo "Adding deposit for '$university'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=deposits");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'deposit.add\')"]');
+		$this->select( 'id=jform_university_id', $university );
+		$this->type( 'id=jform_time', $time );
+		$this->type( 'id=jform_amount', $amount );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminDeposits() {
+		$this->clearAdminList( 'deposits' );
+	}
+
+	public function addAdminEventRegistration( $event, $user, $date ){
+		echo "Adding event registration for '$event' and '$user'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=eventregistrations");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventregistration.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->select( 'id=jform_member_id', $user );
+		$this->type( 'id=jform_date', $date );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminEventRegistrations() {
+		$this->clearAdminList( 'eventregistrations' );
+	}
+
+	public function addAdminEventTicket( $event, $name, $quantity, $price, $nSWA, $nXSWA, $nHost, $nInst ) {
+		echo "Adding event ticket for '$event' named '$name'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=eventtickets");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventticket.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->type( 'id=jform_name', $name );
+		$this->type( 'id=jform_quantity', $quantity );
+		$this->type( 'id=jform_price', $price );
+		if( $nSWA ) {
+			$this->click("id=jform_need_swa");
+		}
+		if( $nXSWA ) {
+			$this->click("id=jform_need_xswa");
+		}
+		if( $nHost ) {
+			$this->click("id=jform_need_host");
+		}
+		if( $nInst ) {
+			$this->click("id=jform_need_instructor");
+		}
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminEventTickets() {
+		$this->clearAdminList( 'eventtickets' );
+	}
+
+	public function addAdminGrant(
+		$event, $applyDate, $amount, $fundUse, $inst, $sortcode, $acNum, $acName,
+		$financeDate, $financeId, $authDate, $authId, $payDate, $payId
+	) {
+		echo "Adding grant for '$event'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=grants");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'grant.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->type( 'id=jform_application_date', $applyDate );
+		$this->type( 'id=jform_amount', $amount );
+		$this->type( 'id=jform_fund_use', $fundUse );
+		$this->type( 'id=jform_instructions', $inst );
+		$this->type( 'id=jform_ac_sortcode', $sortcode );
+		$this->type( 'id=jform_ac_number', $acNum );
+		$this->type( 'id=jform_ac_name', $acName );
+		$this->type( 'id=jform_finances_date', $financeDate );
+		$this->type( 'id=jform_finances_id', $financeId );
+		$this->type( 'id=jform_auth_date', $authDate );
+		$this->type( 'id=jform_auth_id', $authId );
+		$this->type( 'id=jform_payment_date', $payDate );
+		$this->type( 'id=jform_payment_id', $payId );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminGrants() {
+		$this->clearAdminList( 'grants' );
+	}
+
+	public function addAdminIndividualResult( $user, $race, $result ) {
+		echo "Adding individual result for '$user'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=individualresults");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'individualresult.add\')"]');
+		$this->select( 'id=jform_member_id', $user );
+		$this->select( 'id=jform_race_id', $race );
+		$this->type( 'id=jform_result', $result );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearIndividualResults() {
+		$this->clearAdminList( 'individualresults' );
+	}
+
+	public function addAdminTeamResult( $race, $uni, $teamNumber, $result ) {
+		echo "Adding team result for '$user'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=teamresults");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'teamresult.add\')"]');
+		$this->select( 'id=jform_race_id', $race );
+		$this->select( 'id=jform_university_id', $uni );
+		$this->select( 'id=jform_team_number', $teamNumber );
+		$this->type( 'id=jform_result', $result );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminTeamResults() {
+		$this->clearAdminList( 'teamresults' );
+	}
+
+	public function addAdminRace( $event, $raceType ) {
+		echo "Adding race for '$event' named '$raceType'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=races");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'race.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->select( 'id=jform_race_type_id', $raceType );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminRaces() {
+		$this->clearAdminList( 'races' );
+	}
+
+	public function addAdminTicket( $user, $eventTicket ) {
+		echo "Adding ticket for '$user' named '$eventTicket'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=tickets");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'ticket.add\')"]');
+		$this->select( 'id=jform_member_id', $user );
+		$this->select( 'id=jform_event_ticket_id', $eventTicket );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminTickets() {
+		$this->clearAdminList( 'tickets' );
+	}
+
 	public function createAdminJoomlaUser( $username, $password ) {
 		echo "Creating Joomla user '$username'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
