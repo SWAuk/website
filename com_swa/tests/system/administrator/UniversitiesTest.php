@@ -10,19 +10,23 @@ class UniversitiesTest extends SwaTestCase {
 
 		$unis = array(
 			array( 'Bristol University', 'https://www.ubu.org.uk/activities/societies/7666/' ),
-			array( 'University of the West of England', 'https://uwesu.org/sport/windsurfandkite/' ),
 			array( 'Exeter University', 'http://sport.exeter.ac.uk/studentsport/au/listofclubs/windriders/' ),
+			array( 'University of the West of England', 'https://uwesu.org/sport/windsurfandkite/' ),
 		);
 
 		foreach( $unis as $uni ) {
 			list( $name, $url ) = $uni;
 			$this->addAdminUniversity( $name, $url );
 		}
+
 		$this->open( '/j/administrator/index.php?option=com_swa&view=universities' );
-		foreach( $unis as $uni ) {
+		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
+		foreach( $unis as $key => $uni ) {
 			list( $name, $url ) = $uni;
 			$this->assertElementPresent( 'link=' . $name );
-			//TODO check the rest of the list table is correct
+			$tableRow = strval( $key + 1 );
+			$this->assertTable( 'universityList.' . $tableRow . '.1', $name );
+			$this->assertTable( 'universityList.' . $tableRow . '.2', $url );
 		}
 
 		foreach( $unis as $uni ) {

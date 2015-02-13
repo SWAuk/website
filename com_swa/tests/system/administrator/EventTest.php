@@ -23,11 +23,19 @@ class EventTest extends SwaTestCase {
 			list( $name, $season, $capacity, $open, $close, $date ) = $event;
 			$this->addAdminEvent( $name, $season, $capacity, $open, $close, $date );
 		}
+
 		$this->open( '/j/administrator/index.php?option=com_swa&view=events' );
-		foreach( $events as $event ) {
+		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
+		foreach( $events as $key => $event ) {
 			list( $name, $season, $capacity, $open, $close, $date ) = $event;
+			$tableRow = strval( $key + 1 );
 			$this->assertElementPresent( 'link=' . $name );
-			//TODO check the rest of the list table is correct
+			$this->assertTable( 'eventList.' . $tableRow . '.1', $name );
+			$this->assertTable( 'eventList.' . $tableRow . '.2', $season );
+			$this->assertTable( 'eventList.' . $tableRow . '.3', $capacity );
+			$this->assertTable( 'eventList.' . $tableRow . '.4', $open );
+			$this->assertTable( 'eventList.' . $tableRow . '.5', $close );
+			$this->assertTable( 'eventList.' . $tableRow . '.6', $date );
 		}
 
 		foreach( $events as $event ) {

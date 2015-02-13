@@ -17,10 +17,13 @@ class RaceTypesTest extends SwaTestCase {
 		foreach( $types as $type ) {
 			$this->addAdminRaceType( $type );
 		}
+
 		$this->open( '/j/administrator/index.php?option=com_swa&view=racetypes' );
-		foreach( $types as $type ) {
+		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
+		foreach( $types as $key => $type ) {
 			$this->assertElementPresent( 'link=' . $type );
-			//TODO check the rest of the list table is correct
+			$tableRow = strval( $key + 1 );
+			$this->assertTable( 'racetypeList.' . $tableRow . '.1', $type );
 		}
 
 		foreach( $types as $type ) {

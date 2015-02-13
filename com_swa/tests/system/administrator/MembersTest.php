@@ -32,11 +32,20 @@ class MembersTest extends SwaTestCase {
 		foreach( $members as $d ) {
 			$this->addAdminMember( $d[0], $d[1], $d[2], $d[3], $d[4], $d[5], $d[6], $d[7], $d[8], $d[9], $d[10], $d[11], $d[12], $d[13], $d[14] );
 		}
+
 		//Make sure the users appear in the list!
 		$this->open( '/j/administrator/index.php?option=com_swa&view=members' );
-		foreach( $members as $d ) {
+		foreach( $members as $key => $d ) {
 			$this->assertTextPresent( $d[0] );
-			//TODO check the rest of the list table is correct
+			$tableRow = strval( $key + 1 );
+			$this->assertTable( 'memberList.' . $tableRow . '.1', $d[0] );
+			$this->assertTable( 'memberList.' . $tableRow . '.2', $d[4] );
+			if( $d[1] ) {
+				$this->assertTable( 'memberList.' . $tableRow . '.3', '1' );
+			} else {
+				$this->assertTable( 'memberList.' . $tableRow . '.3', '0' );
+			}
+
 		}
 
 		//Make sure each user actually has the correct data

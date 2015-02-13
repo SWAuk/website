@@ -13,10 +13,13 @@ class SeasonsTest extends SwaTestCase {
 		foreach( $seasons as $season ) {
 			$this->addAdminSeason( $season );
 		}
+
 		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
-		foreach( $seasons as $season ) {
+		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
+		foreach( $seasons as $key => $season ) {
 			$this->assertElementPresent( 'link=' . $season );
-			//TODO check the rest of the list table is correct
+			$tableRow = strval( $key + 1 );
+			$this->assertTable( 'seasonList.' . $tableRow . '.1', $season );
 		}
 
 		foreach( $seasons as $season ) {

@@ -3,6 +3,7 @@
 class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminSeason( $season ) {
+		echo "Adding season '$season'\n";
 		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'season.add\')"]' );
 		$this->type( 'id=jform_year', $season );
@@ -14,6 +15,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminUniversity( $name, $url ) {
+		echo "Adding university '$name'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=universities");
 		$this->clickAndWait("//button[@onclick=\"Joomla.submitbutton('university.add')\"]");
 		$this->type("id=jform_name", $name);
@@ -26,6 +28,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminRaceType( $name ){
+		echo "Adding race type '$name'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=racetypes");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'racetype.add\')"]');
 		$this->type("id=jform_name", $name);
@@ -40,6 +43,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$username, $paid, $sex, $dob, $uni, $isClubComm, $course, $graduation,
 		$discipline, $level, $shirt, $econtact, $enum, $swahelp, $isSwaComm
 	) {
+		echo "Adding member '$username'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
 		$this->clickAndWait("//button[@onclick=\"Joomla.submitbutton('member.add')\"]");
 		$this->select( 'id=jform_user_id', $username );
@@ -72,6 +76,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminEvent( $name, $season, $capacity, $open, $close, $date ) {
+		echo "Adding event '$name'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=events");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'event.add\')"]');
 		$this->type("id=jform_name", $name);
@@ -87,7 +92,21 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'events' );
 	}
 
+	public function addAdminEventHost( $event, $uni ) {
+		echo "Adding event host '$event' and '$uni'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=eventhosts");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventhost.add\')"]');
+		$this->select( 'id=jform_event_id', $event );
+		$this->select( 'id=jform_university_id', $uni );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminEventHosts() {
+		$this->clearAdminList( 'eventhosts' );
+	}
+
 	public function createAdminJoomlaUser( $username, $password ) {
+		echo "Creating Joomla user '$username'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
 		$this->click("link=Users");
 		$this->clickAndWait("link=Add New User");
@@ -100,6 +119,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	private function clearAdminList( $viewName ) {
+		echo "Clearing $viewName List\n";
 		$this->open( '/j/administrator/index.php?option=com_swa&view=' . $viewName );
 		// Only bother clearing if there is at least 1 item...
 		if( $this->isElementPresent( 'id=cb0' ) ) {
