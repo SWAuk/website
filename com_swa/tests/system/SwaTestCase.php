@@ -105,6 +105,20 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'eventhosts' );
 	}
 
+	public function addAdminInstructor( $user, $level, $expiry ) {
+		echo "Adding instructor for '$user'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=instructors");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'instructor.add\')"]');
+		$this->select( 'id=jform_member_id', $user );
+		$this->type( 'id=jform_level', $level );
+		$this->type( 'id=jform_expiry_date', $expiry );
+		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
+	}
+
+	public function clearAdminInstructors() {
+		$this->clearAdminList( 'instructors' );
+	}
+
 	public function createAdminJoomlaUser( $username, $password ) {
 		echo "Creating Joomla user '$username'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
