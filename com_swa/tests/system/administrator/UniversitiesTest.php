@@ -1,12 +1,12 @@
 <?php
 
-class UniversitiesTest extends SwaAdminTestCase {
+class UniversitiesTest extends SwaTestCase {
 
-	public function testAddMultipleSeasons() {
+	public function testAddMultipleUniversities() {
 		$this->setUp();
 		$this->gotoAdmin();
 		$this->doAdminLogin();
-		$this->clearUniversities();
+		$this->clearAdminUniversities();
 
 		$unis = array(
 			array( 'Bristol University', 'https://www.ubu.org.uk/activities/societies/7666/' ),
@@ -16,7 +16,7 @@ class UniversitiesTest extends SwaAdminTestCase {
 
 		foreach( $unis as $uni ) {
 			list( $name, $url ) = $uni;
-			$this->addUniversity( $name, $url );
+			$this->addAdminUniversity( $name, $url );
 		}
 		$this->open( '/j/administrator/index.php?option=com_swa&view=universities' );
 		foreach( $unis as $uni ) {
@@ -26,4 +26,4 @@ class UniversitiesTest extends SwaAdminTestCase {
 
 	}
 
-} 
+}
