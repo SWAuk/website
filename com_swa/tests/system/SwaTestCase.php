@@ -248,12 +248,12 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminTeamResult( $race, $uni, $teamNumber, $result ) {
-		echo "Adding team result for '$user'\n";
+		echo "Adding team result for '$uni' team '$teamNumber'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=teamresults");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'teamresult.add\')"]');
 		$this->select( 'id=jform_race_id', $race );
 		$this->select( 'id=jform_university_id', $uni );
-		$this->select( 'id=jform_team_number', $teamNumber );
+		$this->type( 'id=jform_team_number', $teamNumber );
 		$this->type( 'id=jform_result', $result );
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}
