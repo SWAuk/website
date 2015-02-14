@@ -19,8 +19,8 @@ $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
 $saveOrder = $listOrder == 'a.ordering';
 if ( $saveOrder ) {
-	$saveOrderingUrl = 'index.php?option=com_swa&task=racetypes.saveOrderAjax&tmpl=component';
-	JHtml::_( 'sortablelist.sortable', 'racetypeList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
+	$saveOrderingUrl = 'index.php?option=com_swa&task=competitiontypes.saveOrderAjax&tmpl=component';
+	JHtml::_( 'sortablelist.sortable', 'competitiontypeList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
 }
 $sortFields = $this->getSortFields();
 ?>
@@ -45,7 +45,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 }
 ?>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=racetypes' ); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=competitiontypes' ); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if (!empty( $this->sidebar )): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -91,7 +91,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="racetypeList">
+			<table class="table table-striped" id="competitiontypeList">
 				<thead>
 				<tr>
 					<?php if ( isset( $this->items[0]->ordering ) ): ?>
@@ -161,7 +161,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 
 						<td>
 							<?php if ( $canEdit ) : ?>
-								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=racetype.edit&id=' . (int)$item->id ); ?>">
+								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=competitiontype.edit&id=' . (int)$item->id ); ?>">
 									<?php echo $this->escape( $item->name ); ?></a>
 							<?php else : ?>
 								<?php echo $this->escape( $item->name ); ?>

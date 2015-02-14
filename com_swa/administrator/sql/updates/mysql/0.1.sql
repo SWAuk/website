@@ -142,39 +142,39 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_registration` (
   INDEX `fk_event_registration_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
-CREATE  TABLE IF NOT EXISTS `#__swa_race_type` (
+CREATE  TABLE IF NOT EXISTS `#__swa_competition_type` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
 DEFAULT COLLATE=utf8_general_ci;
 
-CREATE  TABLE IF NOT EXISTS `#__swa_race` (
+CREATE  TABLE IF NOT EXISTS `#__swa_competition` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
-  `race_type_id` INT NOT NULL ,
+  `competition_type_id` INT NOT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_race_event1_idx` (`event_id` ASC) ,
-  INDEX `fk_race_race_type1_idx` (`race_type_id` ASC) )
+  INDEX `fk_competition_event1_idx` (`event_id` ASC) ,
+  INDEX `fk_competition_competition_type1_idx` (`competition_type_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_indi_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT NOT NULL ,
-  `race_id` INT NOT NULL ,
+  `competition_id` INT NOT NULL ,
   `result` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_indi_result_race1_idx` (`race_id` ASC) ,
+  INDEX `fk_indi_result_competition1_idx` (`competition_id` ASC) ,
   INDEX `fk_indi_result_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
-  `race_id` INT NOT NULL ,
+  `competition_id` INT NOT NULL ,
   `university_id` INT NOT NULL ,
   `team_number` INT NOT NULL ,
   `result` INT NULL ,
   PRIMARY KEY (`id`) ,
-  INDEX `fk_team_result_race1_idx` (`race_id` ASC) ,
+  INDEX `fk_team_result_competition1_idx` (`competition_id` ASC) ,
   INDEX `fk_team_result_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 

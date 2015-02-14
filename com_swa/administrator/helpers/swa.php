@@ -77,14 +77,14 @@ class SwaHelper {
 			$vName == 'seasons'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Races' ),
-			'index.php?option=com_swa&view=races',
-			$vName == 'races'
+			JText::_( 'Competitions' ),
+			'index.php?option=com_swa&view=competitions',
+			$vName == 'competitions'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Race types' ),
-			'index.php?option=com_swa&view=racetypes',
-			$vName == 'racetypes'
+			JText::_( 'Competition types' ),
+			'index.php?option=com_swa&view=competitiontypes',
+			$vName == 'competitiontypes'
 		);
 		JHtmlSidebar::addEntry(
 			JText::_( 'Team results' ),

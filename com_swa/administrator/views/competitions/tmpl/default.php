@@ -19,8 +19,8 @@ $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
 $saveOrder = $listOrder == 'a.ordering';
 if ( $saveOrder ) {
-	$saveOrderingUrl = 'index.php?option=com_swa&task=races.saveOrderAjax&tmpl=component';
-	JHtml::_( 'sortablelist.sortable', 'raceList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
+	$saveOrderingUrl = 'index.php?option=com_swa&task=competitions.saveOrderAjax&tmpl=component';
+	JHtml::_( 'sortablelist.sortable', 'competitionList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
 }
 $sortFields = $this->getSortFields();
 ?>
@@ -45,7 +45,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 }
 ?>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=races' ); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=competitions' ); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if (!empty( $this->sidebar )): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -91,7 +91,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="raceList">
+			<table class="table table-striped" id="competitionList">
 				<thead>
 				<tr>
 					<?php if ( isset( $this->items[0]->ordering ) ): ?>
@@ -107,7 +107,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Event', 'a.event', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Race type', 'a.race_type', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Competition type', 'a.competition_type', $listDirn, $listOrder ); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
@@ -166,7 +166,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo $item->event; ?>
 						</td>
 						<td>
-							<?php echo $item->race_type; ?>
+							<?php echo $item->competition_type; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>

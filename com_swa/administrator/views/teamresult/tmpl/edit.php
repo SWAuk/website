@@ -51,8 +51,8 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'race_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'race_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'competition_id' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'competition_id' ); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'university_id' ); ?></div>

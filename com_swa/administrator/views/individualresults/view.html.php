@@ -78,7 +78,7 @@ class SwaViewIndividualresults extends JViewLegacy {
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.user' => JText::_( 'User' ),
 			'a.event' => JText::_( 'Event' ),
-			'a.race_type' => JText::_( 'Race type' ),
+			'a.competition_type' => JText::_( 'Competition type' ),
 			'a.result' => JText::_( 'Result' ),
 		);
 	}

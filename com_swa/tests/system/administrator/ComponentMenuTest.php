@@ -23,8 +23,8 @@ class ComponentMenuAdminTest extends SwaTestCase {
 			array( 'Grants', 'Grants' ),
 			array( 'Universities', 'Universities' ),
 			array( 'Seasons', 'Seasons' ),
-			array( 'Races', 'Races' ),
-			array( 'Race Types', 'Race types' ),
+			array( 'Competitions', 'Competitions' ),
+			array( 'Competition Types', 'Competition types' ),
 			array( 'Team Results', 'Team results' ),
 			array( 'Individual Results', 'Individual results' ),
 		);

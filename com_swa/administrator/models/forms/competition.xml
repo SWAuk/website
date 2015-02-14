@@ -15,10 +15,10 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="race_type_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_race_type"
+		<field name="competition_type_id" type="sql" default="1" key_field="id" value_field="name"
+			   query="SELECT id, name FROM #__swa_competition_type"
 
-			   label="Race type"
+			   label="Competition type"
 
 
 			   required="true"

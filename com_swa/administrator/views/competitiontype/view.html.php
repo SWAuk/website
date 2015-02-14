@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.view' );
 /**
  * View to edit
  */
-class SwaViewRace extends JViewLegacy {
+class SwaViewCompetitiontype extends JViewLegacy {
 
 	protected $state;
 	protected $item;
@@ -39,20 +39,20 @@ class SwaViewRace extends JViewLegacy {
 
 		$isNew = ( $this->item->id == 0 );
 
-		JToolBarHelper::title( JText::_( 'Race' ), 'race.png' );
+		JToolBarHelper::title( JText::_( 'Competition type' ), 'competitiontype.png' );
 
-		JToolBarHelper::apply( 'race.apply', 'JTOOLBAR_APPLY' );
-		JToolBarHelper::save( 'race.save', 'JTOOLBAR_SAVE' );
-		JToolBarHelper::custom( 'race.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
+		JToolBarHelper::apply( 'competitiontype.apply', 'JTOOLBAR_APPLY' );
+		JToolBarHelper::save( 'competitiontype.save', 'JTOOLBAR_SAVE' );
+		JToolBarHelper::custom( 'competitiontype.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
 
 		// If an existing item, can save to a copy.
 		if ( !$isNew ) {
-			JToolBarHelper::custom( 'race.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
+			JToolBarHelper::custom( 'competitiontype.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
 		}
 		if ( empty( $this->item->id ) ) {
-			JToolBarHelper::cancel( 'race.cancel', 'JTOOLBAR_CANCEL' );
+			JToolBarHelper::cancel( 'competitiontype.cancel', 'JTOOLBAR_CANCEL' );
 		} else {
-			JToolBarHelper::cancel( 'race.cancel', 'JTOOLBAR_CLOSE' );
+			JToolBarHelper::cancel( 'competitiontype.cancel', 'JTOOLBAR_CLOSE' );
 		}
 	}
 

@@ -68,7 +68,7 @@
 
 				>
 			<option value="None">None</option>
-			<option value="Race">Race</option>
+			<option value="Competition">Competition</option>
 			<option value="Wave">Wave</option>
 			<option value="Freestyle">Freestyle</option>
 		</field>

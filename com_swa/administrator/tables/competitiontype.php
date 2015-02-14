@@ -4,9 +4,9 @@
 defined( '_JEXEC' ) or die;
 
 /**
- * race Table class
+ * competitiontype Table class
  */
-class SwaTablerace extends JTable {
+class SwaTablecompetitiontype extends JTable {
 
 	/**
 	 * Constructor
@@ -14,7 +14,7 @@ class SwaTablerace extends JTable {
 	 * @param JDatabase A database connector object
 	 */
 	public function __construct( &$db ) {
-		parent::__construct( '#__swa_race', 'id', $db );
+		parent::__construct( '#__swa_competition_type', 'id', $db );
 	}
 
 	/**

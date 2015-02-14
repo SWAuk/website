@@ -6,12 +6,12 @@ defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.controllerform' );
 
 /**
- * Racetype controller class.
+ * Competitiontype controller class.
  */
-class SwaControllerRacetype extends JControllerForm {
+class SwaControllerCompetitiontype extends JControllerForm {
 
 	function __construct() {
-		$this->view_list = 'racetypes';
+		$this->view_list = 'competitiontypes';
 		parent::__construct();
 	}
 

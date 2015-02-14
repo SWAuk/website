@@ -23,17 +23,17 @@ class TeamResultsTest extends SwaTestCase {
 		$this->addAdminEvent( 'event1', 2015, 100, '2015-01-01', '2015-01-10', '2015-01-15' );
 		$this->addAdminEvent( 'event2', 2015, 100, '2015-01-01', '2015-01-10', '2015-01-15' );
 
-		// Add race types
-		$this->clearAdminRaceTypes();
-		$this->addAdminRaceType( 'type1' );
-		$this->addAdminRaceType( 'type2' );
+		// Add competition types
+		$this->clearAdminCompetitionTypes();
+		$this->addAdminCompetitionType( 'type1' );
+		$this->addAdminCompetitionType( 'type2' );
 
-		// Add Races
-		$this->clearAdminRaces();
-		$this->addAdminRace( 'event1', 'type1' );
-		$this->addAdminRace( 'event1', 'type2' );
-		$this->addAdminRace( 'event2', 'type1' );
-		$this->addAdminRace( 'event2', 'type2' );
+		// Add Competitions
+		$this->clearAdminCompetitions();
+		$this->addAdminCompetition( 'event1', 'type1' );
+		$this->addAdminCompetition( 'event1', 'type2' );
+		$this->addAdminCompetition( 'event2', 'type1' );
+		$this->addAdminCompetition( 'event2', 'type2' );
 
 		$teamResults = array(
 			array( 'uni1', 1, 'event1', 'type1', 12 ),
@@ -45,27 +45,27 @@ class TeamResultsTest extends SwaTestCase {
 		);
 
 		foreach( $teamResults as $resultData ) {
-			list( $uni, $team, $event, $raceType, $result ) = $resultData;
-			$this->addAdminTeamResult( $event . ' - ' . $raceType, $uni, $team, $result );
+			list( $uni, $team, $event, $competitionType, $result ) = $resultData;
+			$this->addAdminTeamResult( $event . ' - ' . $competitionType, $uni, $team, $result );
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=teamresults' );
 		foreach( $teamResults as $key => $resultData ) {
-			list( $uni, $team, $event, $raceType, $result ) = $resultData;
+			list( $uni, $team, $event, $competitionType, $result ) = $resultData;
 			$tableRow = strval( $key + 1 );
 			$this->assertTable( 'teamresultList.' . $tableRow . '.1', $uni );
 			$this->assertTable( 'teamresultList.' . $tableRow . '.2', $team );
 			$this->assertTable( 'teamresultList.' . $tableRow . '.3', $event );
-			$this->assertTable( 'teamresultList.' . $tableRow . '.4', $raceType );
+			$this->assertTable( 'teamresultList.' . $tableRow . '.4', $competitionType );
 			$this->assertTable( 'teamresultList.' . $tableRow . '.5', $result );
 		}
 
 		foreach( $teamResults as $key => $resultData ) {
-			list( $uni, $team, $event, $raceType, $result ) = $resultData;
+			list( $uni, $team, $event, $competitionType, $result ) = $resultData;
 			$this->open( '/j/administrator/index.php?option=com_swa&view=teamresults' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
-			$this->assertSelectedLabel( 'id=jform_race_id', $event . ' - ' . $raceType );
+			$this->assertSelectedLabel( 'id=jform_competition_id', $event . ' - ' . $competitionType );
 			$this->assertSelectedLabel( 'id=jform_university_id', $uni );
 			$this->assertValue( 'id=jform_team_number', $team );
 			$this->assertValue( 'id=jform_result', $result );

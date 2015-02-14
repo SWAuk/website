@@ -6,14 +6,14 @@ defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.controlleradmin' );
 
 /**
- * Races list controller class.
+ * Competitiontypes list controller class.
  */
-class SwaControllerRaces extends JControllerAdmin {
+class SwaControllerCompetitiontypes extends JControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6
 	 */
-	public function getModel( $name = 'race', $prefix = 'SwaModel' ) {
+	public function getModel( $name = 'competitiontype', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
 		return $model;
 	}

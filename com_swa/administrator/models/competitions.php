@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelRacetypes extends JModelList {
+class SwaModelCompetitions extends JModelList {
 
 	/**
 	 * Constructor.
@@ -21,7 +21,8 @@ class SwaModelRacetypes extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'name', 'a.name',
+				'event_id', 'a.event_id',
+				'competition_type_id', 'a.competition_type_id',
 
 			);
 		}
@@ -86,7 +87,14 @@ class SwaModelRacetypes extends JModelList {
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from( '`#__swa_race_type` AS a' );
+		$query->from( '`#__swa_competition` AS a' );
+
+		// Join over for event_id
+		$query->select( 'event_id.name AS event' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
+		// Join over for competition_type_id
+		$query->select( 'competition_type_id.name AS competition_type' );
+		$query->join( 'LEFT', '#__swa_competition_type AS competition_type_id ON competition_type_id.id = a.competition_type_id' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
@@ -95,7 +103,7 @@ class SwaModelRacetypes extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( a.name LIKE ' . $search . ' )' );
+
 			}
 		}
 

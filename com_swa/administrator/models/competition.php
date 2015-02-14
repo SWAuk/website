@@ -1,5 +1,4 @@
 <?php
-
 // No direct access.
 defined( '_JEXEC' ) or die;
 
@@ -8,7 +7,7 @@ jimport( 'joomla.application.component.modeladmin' );
 /**
  * Swa model.
  */
-class SwaModelRacetype extends JModelAdmin {
+class SwaModelCompetition extends JModelAdmin {
 	/**
 	 * @var        string    The prefix to use with controller messages.
 	 * @since    1.6
@@ -25,7 +24,7 @@ class SwaModelRacetype extends JModelAdmin {
 	 * @return    JTable    A database object
 	 * @since    1.6
 	 */
-	public function getTable( $type = 'Racetype', $prefix = 'SwaTable', $config = array() ) {
+	public function getTable( $type = 'Competition', $prefix = 'SwaTable', $config = array() ) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}
 
@@ -43,7 +42,7 @@ class SwaModelRacetype extends JModelAdmin {
 		$app = JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm( 'com_swa.racetype', 'racetype', array( 'control' => 'jform', 'load_data' => $loadData ) );
+		$form = $this->loadForm( 'com_swa.competition', 'competition', array( 'control' => 'jform', 'load_data' => $loadData ) );
 
 		if ( empty( $form ) ) {
 			return false;
@@ -60,7 +59,7 @@ class SwaModelRacetype extends JModelAdmin {
 	 */
 	protected function loadFormData() {
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState( 'com_swa.edit.racetype.data', array() );
+		$data = JFactory::getApplication()->getUserState( 'com_swa.edit.competition.data', array() );
 
 		if ( empty( $data ) ) {
 			$data = $this->getItem();

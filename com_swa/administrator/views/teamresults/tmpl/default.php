@@ -115,7 +115,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Race type', 'a.race_type', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Competition type', 'a.competition_type', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Result', 'a.result', $listDirn, $listOrder ); ?>
@@ -186,7 +186,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 
-							<?php echo $item->race_type; ?>
+							<?php echo $item->competition_type; ?>
 						</td>
 						<td>
 

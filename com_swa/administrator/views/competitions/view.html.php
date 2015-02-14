@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.view' );
 /**
  * View class for a list of Swa.
  */
-class SwaViewRaces extends JViewLegacy {
+class SwaViewCompetitions extends JViewLegacy {
 
 	protected $items;
 	protected $pagination;
@@ -28,7 +28,7 @@ class SwaViewRaces extends JViewLegacy {
 		}
 
 		require_once JPATH_COMPONENT . '/helpers/swa.php';
-		SwaHelper::addSubmenu( 'races' );
+		SwaHelper::addSubmenu( 'competitions' );
 
 		$this->addToolbar();
 
@@ -45,29 +45,29 @@ class SwaViewRaces extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'Races' ), 'races.png' );
+		JToolBarHelper::title( JText::_( 'Competitions' ), 'competitions.png' );
 
 		//Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/race';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/competition';
 		if ( file_exists( $formPath ) ) {
 
 			if ( $canDo->get( 'core.create' ) ) {
-				JToolBarHelper::addNew( 'race.add', 'JTOOLBAR_NEW' );
+				JToolBarHelper::addNew( 'competition.add', 'JTOOLBAR_NEW' );
 			}
 
 			if ( $canDo->get( 'core.edit' ) && isset( $this->items[0] ) ) {
-				JToolBarHelper::editList( 'race.edit', 'JTOOLBAR_EDIT' );
+				JToolBarHelper::editList( 'competition.edit', 'JTOOLBAR_EDIT' );
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'races.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'competitions.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );
 		}
 
 		//Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=races' );
+		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=competitions' );
 
 		$this->extra_sidebar = '';
 
@@ -77,7 +77,7 @@ class SwaViewRaces extends JViewLegacy {
 		return array(
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.event' => JText::_( 'Event' ),
-			'a.race_type' => JText::_( 'Race type' ),
+			'a.competition_type' => JText::_( 'Competition type' ),
 		);
 	}
 

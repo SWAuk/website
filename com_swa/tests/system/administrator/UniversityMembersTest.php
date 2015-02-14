@@ -29,15 +29,15 @@ class UniversityMembersTest extends SwaTestCase {
 		$this->clearAdminMembers();
 		$this->addAdminMember(
 			$users[0], false, 'Male', '1993-02-25', 'uni1', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			2016, 'Competition', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 		$this->addAdminMember(
 			$users[1], false, 'Male', '1993-02-25', 'uni1', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			2016, 'Competition', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 		$this->addAdminMember(
 			$users[2], false, 'Male', '1993-02-25', 'uni2', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			2016, 'Competition', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 
 		$universityMembers = array(

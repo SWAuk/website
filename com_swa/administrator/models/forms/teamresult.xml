@@ -6,12 +6,12 @@
 			   readonly="true" class="readonly"
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="race_id" type="sql" default="1" key_field="id" value_field="event_race_name"
-			   query="SELECT race.id, CONCAT( event.name, ' - ' , race_type.name ) as event_race_name FROM #__swa_race AS race
-INNER JOIN #__swa_event AS event ON race.event_id=event.id
-INNER JOIN #__swa_race_type AS race_type ON race.race_type_id=race_type.id"
+		<field name="competition_id" type="sql" default="1" key_field="id" value_field="event_competition_name"
+			   query="SELECT competition.id, CONCAT( event.name, ' - ' , competition_type.name ) as event_competition_name FROM #__swa_competition AS competition
+INNER JOIN #__swa_event AS event ON competition.event_id=event.id
+INNER JOIN #__swa_competition_type AS competition_type ON competition.competition_type_id=competition_type.id"
 
-			   label="Race"
+			   label="Competition"
 
 
 			   required="true"

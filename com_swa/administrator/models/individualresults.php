@@ -22,7 +22,7 @@ class SwaModelIndividualresults extends JModelList {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
 				'member_id', 'a.member_id',
-				'race_id', 'a.race_id',
+				'competition_id', 'a.competition_id',
 				'result', 'a.result',
 
 			);
@@ -96,14 +96,14 @@ class SwaModelIndividualresults extends JModelList {
 		// Join over the user field 'member_id'
 		$query->select( 'user_id.name AS user' );
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
-		// Join over 'race_id'
-		$query->join( 'LEFT', '#__swa_race AS race_id ON race_id.id = a.race_id' );
+		// Join over 'competition_id'
+		$query->join( 'LEFT', '#__swa_competition AS competition_id ON competition_id.id = a.competition_id' );
 		// Join over 'event_id'
 		$query->select( 'event_id.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = race_id.event_id' );
-		// Join over 'race_type_id'
-		$query->select( 'race_type_id.name AS race_type' );
-		$query->join( 'LEFT', '#__swa_race_type AS race_type_id ON race_type_id.id = race_id.race_type_id' );
+		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = competition_id.event_id' );
+		// Join over 'competition_type_id'
+		$query->select( 'competition_type_id.name AS competition_type' );
+		$query->join( 'LEFT', '#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition_id.competition_type_id' );
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );

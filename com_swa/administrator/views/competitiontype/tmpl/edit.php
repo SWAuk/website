@@ -20,14 +20,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	});
 
 	Joomla.submitbutton = function (task) {
-		if (task == 'racetype.cancel') {
-			Joomla.submitform(task, document.getElementById('racetype-form'));
+		if (task == 'competitiontype.cancel') {
+			Joomla.submitform(task, document.getElementById('competitiontype-form'));
 		}
 		else {
 
-			if (task != 'racetype.cancel' && document.formvalidator.isValid(document.id('racetype-form'))) {
+			if (task != 'competitiontype.cancel' && document.formvalidator.isValid(document.id('competitiontype-form'))) {
 
-				Joomla.submitform(task, document.getElementById('racetype-form'));
+				Joomla.submitform(task, document.getElementById('competitiontype-form'));
 			}
 			else {
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
@@ -36,12 +36,12 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="racetype-form" class="form-validate">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="competitiontype-form" class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Race type', true ) ); ?>
+		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Competition type', true ) ); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">

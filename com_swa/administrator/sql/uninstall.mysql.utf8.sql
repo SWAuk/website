@@ -11,6 +11,8 @@ DROP TABLE IF EXISTS `#__swa_event_registration`;
 DROP TABLE IF EXISTS `#__swa_event_ticket`;
 DROP TABLE IF EXISTS `#__swa_grant`;
 DROP TABLE IF EXISTS `#__swa_ticket`;
+DROP TABLE IF EXISTS `#__swa_competition_type`;
+DROP TABLE IF EXISTS `#__swa_competition`;
 DROP TABLE IF EXISTS `#__swa_race_type`;
 DROP TABLE IF EXISTS `#__swa_race`;
 DROP TABLE IF EXISTS `#__swa_indi_result`;
