@@ -95,6 +95,11 @@
 			<option value="M">M</option>
 			<option value="L">L</option>
 			<option value="XL">XL</option>
+            <option value="8">8</option>
+            <option value="10">10</option>
+            <option value="12">12</option>
+            <option value="14">14</option>
+            <option value="16">16</option>
 		</field>
 
 		<field name="econtact" type="text" size="40" class="inputbox"
