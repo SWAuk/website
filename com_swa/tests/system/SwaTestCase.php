@@ -110,7 +110,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->open("/j/administrator/index.php?option=com_swa&view=qualifications");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'qualification.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
-		$this->type( 'id=jform_type', $type );
+		$this->select( 'id=jform_type', $type );
 		$this->type( 'id=jform_expiry_date', $expiry );
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}

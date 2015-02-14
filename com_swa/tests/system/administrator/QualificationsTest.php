@@ -31,10 +31,10 @@ class QualificationsTest extends SwaTestCase {
 		}
 
 		$qualifications = array(
-			array( $users[0], 'PB2', '2016-02-11' ),
-			array( $users[1], 'PB2', '2016-02-11' ),
-			array( $users[1], 'Start Windsurf', '2017-01-11' ),
-			array( $users[1], 'Intermediate Windsurf', '2017-01-11' ),
+			array( $users[0], 'Powerboat Level 2', '2016-02-11' ),
+			array( $users[1], 'Powerboat Level 2', '2016-02-11' ),
+			array( $users[1], 'Start Windsurfing Instructor', '2017-01-11' ),
+			array( $users[1], 'Intermediate Windsurfing Instructor', '2017-01-11' ),
 		);
 
 		foreach( $qualifications as $data ) {
@@ -58,7 +58,7 @@ class QualificationsTest extends SwaTestCase {
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );
-			$this->assertValue( 'id=jform_type', $type );
+			$this->assertSelectedLabel( 'id=jform_type', $type );
 			$this->assertValue( 'id=jform_expiry_date', $expiry );
 		}
 

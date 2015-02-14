@@ -16,13 +16,18 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="type" type="text" size="50" class="inputbox"
-
+		<field name="type" type="list"
 			   label="Type"
-
-
 			   required="true"
-			   filter="safehtml"/>
+			   filter="safehtml">
+            <option value="Powerboat Level 2">Powerboat Level 2</option>
+            <option value="Safety Boat">Safety Boat</option>
+            <option value="Start Windsurfing Instructor">Start Windsurfing Instructor</option>
+            <option value="Intermediate Windsurfing Instructor">Intermediate Windsurfing Instructor</option>
+            <option value="Advanced Windsurfing Instructor">Advanced Windsurfing Instructor</option>
+            <option value="Senior Windsurfing Instructor">Senior Windsurfing Instructor</option>
+            <option value="Racing Windsurfing Instructor">Racing Windsurfing Instructor</option>
+        </field>
 
 		<field name="expiry_date" type="calendar" class="inputbox"
 			   required="true"
