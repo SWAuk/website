@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelInstructors extends JModelList {
+class SwaModelQualifications extends JModelList {
 	/**
 	 * Constructor.
 	 *
@@ -85,7 +85,7 @@ class SwaModelInstructors extends JModelList {
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from( '`#__swa_instructor` AS a' );
+		$query->from( '`#__swa_qualification` AS a' );
 		$query->join( 'LEFT', '#__swa_member AS member ON member.id = a.member_id' );
 		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
 		$query->select( 'user.name AS user' );

@@ -12,7 +12,7 @@ class ComponentMenuAdminTest extends SwaTestCase {
 			array( 'SWA', 'SWA home' ),
 			array( 'Members', 'Members' ),
 			array( 'University Members', 'University Members' ),
-			array( 'Instructors', 'Instructors' ),
+			array( 'Qualifications', 'Qualifications' ),
 			array( 'Events', 'Events' ),
 			array( 'Event Hosts', 'Event hosts' ),
 			array( 'Event Registrations', 'Event Registrations' ),

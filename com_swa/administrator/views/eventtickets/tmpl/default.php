@@ -125,7 +125,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Needs Host', 'a.need_host', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Needs Instructor', 'a.need_instructor', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Needs Qualification', 'a.need_qualification', $listDirn, $listOrder ); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
@@ -201,7 +201,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo $item->need_host; ?>
 						</td>
 						<td>
-							<?php echo $item->need_instructor; ?>
+							<?php echo $item->need_qualification; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>

@@ -40,7 +40,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 }
 ?>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=instructors' ); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=qualifications' ); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if (!empty( $this->sidebar )): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -86,7 +86,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="instructorslist">
+			<table class="table table-striped" id="qualificationslist">
 				<thead>
 				<tr>
 					<?php if ( isset( $this->items[0]->ordering ) ): ?>
@@ -102,7 +102,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'Member', 'a.name', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Level', 'a.level', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Type', 'a.type', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Expiry', 'a.expiry', $listDirn, $listOrder ); ?>
@@ -161,14 +161,14 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php if ( $canEdit ) : ?>
-								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=instructor.edit&id=' . (int)$item->id ); ?>">
+								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=qualification.edit&id=' . (int)$item->id ); ?>">
 									<?php echo $this->escape( $item->user ); ?></a>
 							<?php else : ?>
 								<?php echo $this->escape( $item->user ); ?>
 							<?php endif; ?>
 						</td>
 						<td>
-							<?php echo $this->escape( $item->level ); ?>
+							<?php echo $this->escape( $item->type ); ?>
 						</td>
 						<td>
 							<?php echo $this->escape( $item->expiry_date ); ?>

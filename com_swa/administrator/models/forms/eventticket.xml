@@ -42,7 +42,7 @@
 		</field>
 		<field name="need_host" type="checkbox" label="Needs Host" default="0">
 		</field>
-		<field name="need_instructor" type="checkbox" label="Needs Instructor" default="0">
+		<field name="need_qualification" type="checkbox" label="Needs Qualification" default="0">
 		</field>
 
 	</fieldset>

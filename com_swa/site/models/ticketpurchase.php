@@ -30,12 +30,12 @@ class SwaModelTicketPurchase extends JModelList {
 			$query->select( 'b.graduated as graduated' );
 			$query->select( 'count( b.id ) as confirmed_university' );
 
-			// Get instructor info
+			// Get qualification info
 			$subQuery = $db->getQuery(true);
 			$subQuery->select( 'COUNT(*)' );
-			$subQuery->from( $db->quoteName('#__swa_instructor') . ' AS instructor' );
-			$subQuery->where( 'instructor.expiry_date > NOW()' );
-			$query->select( '(' . $subQuery->__toString() . ') as instructor' );
+			$subQuery->from( $db->quoteName('#__swa_qualification') . ' AS qualification' );
+			$subQuery->where( 'qualification.expiry_date > NOW()' );
+			$query->select( '(' . $subQuery->__toString() . ') as qualification' );
 
 			// Get event ids registered for!
 			$query->join( 'LEFT', '#__swa_event_registration AS event_registration ON event_registration.member_id = a.id' );
@@ -65,7 +65,7 @@ class SwaModelTicketPurchase extends JModelList {
 		$query->select( 'a.need_xswa as need_xswa' );
 		$query->select( 'a.need_swa as need_swa' );
 		$query->select( 'a.need_host as need_host' );
-		$query->select( 'a.need_instructor as need_instructor' );
+		$query->select( 'a.need_qualification as need_qualification' );
 		$query->from( $db->quoteName('#__swa_event_ticket') . ' AS a' );
 
 		// Select details of the event
@@ -109,7 +109,7 @@ class SwaModelTicketPurchase extends JModelList {
 			if(
 				( $ticket->need_xswa && $member->graduated ) ||
 				( $ticket->need_swa && $member->swa_committee ) ||
-				( $ticket->need_instructor && $member->instructor ) ||
+				( $ticket->need_qualification && $member->qualification ) ||
 				( $ticket->need_host && in_array( $member->university_id, explode( ',', $ticket->host_university_ids ) ) ) ||
 				( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) )
 			) {

@@ -6,12 +6,12 @@ defined( '_JEXEC' ) or die;
 jimport( 'joomla.application.component.controllerform' );
 
 /**
- * Instructor controller class.
+ * Qualification controller class.
  */
-class SwaControllerInstructor extends JControllerForm {
+class SwaControllerQualification extends JControllerForm {
 
 	function __construct() {
-		$this->view_list = 'instructors';
+		$this->view_list = 'qualifications';
 		parent::__construct();
 	}
 

@@ -22,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
-CREATE  TABLE IF NOT EXISTS `#__swa_instructor` (
+CREATE  TABLE IF NOT EXISTS `#__swa_qualification` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
-  `level` VARCHAR(50)  NOT NULL ,
+  `type` VARCHAR(50)  NOT NULL ,
   `expiry_date` DATE NOT NULL ,
   PRIMARY KEY (`id`)
 )
@@ -96,7 +96,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `need_swa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_xswa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_host` TINYINT(1)  NOT NULL DEFAULT 0 ,
-  `need_instructor` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `need_qualification` TINYINT(1)  NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;

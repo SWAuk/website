@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.view' );
 /**
  * View to edit
  */
-class SwaViewInstructor extends JViewLegacy {
+class SwaViewQualification extends JViewLegacy {
 
 	protected $state;
 	protected $item;
@@ -39,20 +39,20 @@ class SwaViewInstructor extends JViewLegacy {
 
 		$isNew = ( $this->item->id == 0 );
 
-		JToolBarHelper::title( JText::_( 'Instructor' ), 'instructor.png' );
+		JToolBarHelper::title( JText::_( 'Qualification' ), 'qualification.png' );
 
-		JToolBarHelper::apply( 'instructor.apply', 'JTOOLBAR_APPLY' );
-		JToolBarHelper::save( 'instructor.save', 'JTOOLBAR_SAVE' );
-		JToolBarHelper::custom( 'instructor.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
+		JToolBarHelper::apply( 'qualification.apply', 'JTOOLBAR_APPLY' );
+		JToolBarHelper::save( 'qualification.save', 'JTOOLBAR_SAVE' );
+		JToolBarHelper::custom( 'qualification.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
 
 		// If an existing item, can save to a copy.
 		if ( !$isNew ) {
-			JToolBarHelper::custom( 'instructor.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
+			JToolBarHelper::custom( 'qualification.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
 		}
 		if ( empty( $this->item->id ) ) {
-			JToolBarHelper::cancel( 'instructor.cancel', 'JTOOLBAR_CANCEL' );
+			JToolBarHelper::cancel( 'qualification.cancel', 'JTOOLBAR_CANCEL' );
 		} else {
-			JToolBarHelper::cancel( 'instructor.cancel', 'JTOOLBAR_CLOSE' );
+			JToolBarHelper::cancel( 'qualification.cancel', 'JTOOLBAR_CLOSE' );
 		}
 	}
 

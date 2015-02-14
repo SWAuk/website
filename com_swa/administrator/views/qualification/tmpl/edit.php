@@ -20,14 +20,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	});
 
 	Joomla.submitbutton = function (task) {
-		if (task == 'instructor.cancel') {
-			Joomla.submitform(task, document.getElementById('instructor-form'));
+		if (task == 'qualification.cancel') {
+			Joomla.submitform(task, document.getElementById('qualification-form'));
 		}
 		else {
 
-			if (task != 'instructor.cancel' && document.formvalidator.isValid(document.id('instructor-form'))) {
+			if (task != 'qualification.cancel' && document.formvalidator.isValid(document.id('qualification-form'))) {
 
-				Joomla.submitform(task, document.getElementById('instructor-form'));
+				Joomla.submitform(task, document.getElementById('qualification-form'));
 			}
 			else {
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
@@ -36,12 +36,12 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="instructor-form" class="form-validate">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="qualification-form" class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Instructor', true ) ); ?>
+		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Qualification', true ) ); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
@@ -55,8 +55,8 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'member_id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'level' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'level' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'type' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'type' ); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'expiry_date' ); ?></div>

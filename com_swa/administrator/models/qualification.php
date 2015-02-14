@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.modeladmin' );
 /**
  * Swa model.
  */
-class SwaModelInstructor extends JModelAdmin {
+class SwaModelQualification extends JModelAdmin {
 	/**
 	 * @var        string    The prefix to use with controller messages.
 	 * @since    1.6
@@ -25,7 +25,7 @@ class SwaModelInstructor extends JModelAdmin {
 	 * @return    JTable    A database object
 	 * @since    1.6
 	 */
-	public function getTable( $type = 'Instructor', $prefix = 'SwaTable', $config = array() ) {
+	public function getTable( $type = 'Qualification', $prefix = 'SwaTable', $config = array() ) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}
 
@@ -43,7 +43,7 @@ class SwaModelInstructor extends JModelAdmin {
 		$app = JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm( 'com_swa.instructor', 'instructor', array( 'control' => 'jform', 'load_data' => $loadData ) );
+		$form = $this->loadForm( 'com_swa.qualification', 'qualification', array( 'control' => 'jform', 'load_data' => $loadData ) );
 
 		if ( empty( $form ) ) {
 			return false;
@@ -60,7 +60,7 @@ class SwaModelInstructor extends JModelAdmin {
 	 */
 	protected function loadFormData() {
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState( 'com_swa.edit.instructor.data', array() );
+		$data = JFactory::getApplication()->getUserState( 'com_swa.edit.qualification.data', array() );
 
 		if ( empty( $data ) ) {
 			$data = $this->getItem();

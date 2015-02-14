@@ -4,7 +4,7 @@
 defined( '_JEXEC' ) or die;
 
 /**
- * instructor Table class
+ * University Member Table class
  */
 class SwaTableUniversityMember extends JTable {
 

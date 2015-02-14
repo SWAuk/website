@@ -16,9 +16,9 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="level" type="text" size="50" class="inputbox"
+		<field name="type" type="text" size="50" class="inputbox"
 
-			   label="Level"
+			   label="Type"
 
 
 			   required="true"

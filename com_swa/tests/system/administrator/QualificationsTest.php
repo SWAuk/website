@@ -1,12 +1,12 @@
 <?php
 
-class InstructorsTest extends SwaTestCase {
+class QualificationsTest extends SwaTestCase {
 
-	public function testAddMultipleInstructors() {
+	public function testAddMultipleQualifications() {
 		$this->setUp();
 		$this->gotoAdmin();
 		$this->doAdminLogin();
-		$this->clearAdminInstructors();
+		$this->clearAdminQualifications();
 
 		//Create joomla users
 		$timestring = strval( time() );
@@ -30,35 +30,35 @@ class InstructorsTest extends SwaTestCase {
 			);
 		}
 
-		$instructors = array(
+		$qualifications = array(
 			array( $users[0], 'PB2', '2016-02-11' ),
 			array( $users[1], 'PB2', '2016-02-11' ),
 			array( $users[1], 'Start Windsurf', '2017-01-11' ),
 			array( $users[1], 'Intermediate Windsurf', '2017-01-11' ),
 		);
 
-		foreach( $instructors as $data ) {
-			list( $user, $level, $expiry ) = $data;
-			$this->addAdminInstructor( $user, $level, $expiry );
+		foreach( $qualifications as $data ) {
+			list( $user, $type, $expiry ) = $data;
+			$this->addAdminQualification( $user, $type, $expiry );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=instructors' );
-		foreach( $instructors as $key => $data ) {
-			list( $user, $level, $expiry ) = $data;
+		$this->open( '/j/administrator/index.php?option=com_swa&view=qualifications' );
+		foreach( $qualifications as $key => $data ) {
+			list( $user, $type, $expiry ) = $data;
 			$this->assertElementPresent( 'link=' . $user );
 			$tableRow = strval( $key + 1 );
-			$this->assertTable( 'instructorslist.' . $tableRow . '.1', $user );
-			$this->assertTable( 'instructorslist.' . $tableRow . '.2', $level );
-			$this->assertTable( 'instructorslist.' . $tableRow . '.3', $expiry );
+			$this->assertTable( 'qualificationslist.' . $tableRow . '.1', $user );
+			$this->assertTable( 'qualificationslist.' . $tableRow . '.2', $type );
+			$this->assertTable( 'qualificationslist.' . $tableRow . '.3', $expiry );
 		}
 
-		foreach( $instructors as $key => $data ) {
-			list( $user, $level, $expiry ) = $data;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=instructors' );
+		foreach( $qualifications as $key => $data ) {
+			list( $user, $type, $expiry ) = $data;
+			$this->open( '/j/administrator/index.php?option=com_swa&view=qualifications' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );
-			$this->assertValue( 'id=jform_level', $level );
+			$this->assertValue( 'id=jform_type', $type );
 			$this->assertValue( 'id=jform_expiry_date', $expiry );
 		}
 

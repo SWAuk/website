@@ -53,9 +53,9 @@
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/UniversityMembers">
 				COM_SWA_TITLE_UNIVERSITYMEMBERS
 			</menu>
-			<menu link="option=com_swa&amp;view=instructors" view="instructors"
-				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Instructors">
-				COM_SWA_TITLE_INSTRUCTORS
+			<menu link="option=com_swa&amp;view=qualifications" view="qualifications"
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Qualifications">
+				COM_SWA_TITLE_QUALIFICATIONS
 			</menu>
 			<menu link="option=com_swa&amp;view=events" view="events"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Events">

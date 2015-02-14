@@ -3,7 +3,7 @@
 
 class UniversityMembersTest extends SwaTestCase {
 
-	public function testAddMultipleInstructors() {
+	public function testAddMultipleQualifications() {
 		$this->setUp();
 		$this->gotoAdmin();
 		$this->doAdminLogin();

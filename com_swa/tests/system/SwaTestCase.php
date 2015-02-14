@@ -105,18 +105,18 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'eventhosts' );
 	}
 
-	public function addAdminInstructor( $user, $level, $expiry ) {
-		echo "Adding instructor for '$user'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=instructors");
-		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'instructor.add\')"]');
+	public function addAdminQualification( $user, $type, $expiry ) {
+		echo "Adding qualification for '$user'\n";
+		$this->open("/j/administrator/index.php?option=com_swa&view=qualifications");
+		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'qualification.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
-		$this->type( 'id=jform_level', $level );
+		$this->type( 'id=jform_type', $type );
 		$this->type( 'id=jform_expiry_date', $expiry );
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}
 
-	public function clearAdminInstructors() {
-		$this->clearAdminList( 'instructors' );
+	public function clearAdminQualifications() {
+		$this->clearAdminList( 'qualifications' );
 	}
 
 	public function addAdminUniversityMember( $user, $university, $graduated ) {
@@ -196,7 +196,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 			$this->click("id=jform_need_host");
 		}
 		if( $nInst ) {
-			$this->click("id=jform_need_instructor");
+			$this->click("id=jform_need_qualification");
 		}
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}

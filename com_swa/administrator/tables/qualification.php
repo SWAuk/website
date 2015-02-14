@@ -4,9 +4,9 @@
 defined( '_JEXEC' ) or die;
 
 /**
- * instructor Table class
+ * qualification Table class
  */
-class SwaTableInstructor extends JTable {
+class SwaTableQualification extends JTable {
 
 	/**
 	 * Constructor
@@ -14,7 +14,7 @@ class SwaTableInstructor extends JTable {
 	 * @param JDatabase A database connector object
 	 */
 	public function __construct( &$db ) {
-		parent::__construct( '#__swa_instructor', 'id', $db );
+		parent::__construct( '#__swa_qualification', 'id', $db );
 	}
 
 	/**

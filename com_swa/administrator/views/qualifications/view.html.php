@@ -9,7 +9,7 @@ jimport( 'joomla.application.component.view' );
 /**
  * View class for a list of Swa.
  */
-class SwaViewInstructors extends JViewLegacy {
+class SwaViewQualifications extends JViewLegacy {
 
 	protected $items;
 	protected $pagination;
@@ -29,7 +29,7 @@ class SwaViewInstructors extends JViewLegacy {
 		}
 
 		require_once JPATH_COMPONENT . '/helpers/swa.php';
-		SwaHelper::addSubmenu( 'instructors' );
+		SwaHelper::addSubmenu( 'qualifications' );
 
 		$this->addToolbar();
 
@@ -46,29 +46,29 @@ class SwaViewInstructors extends JViewLegacy {
 		$state = $this->get( 'State' );
 		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
 
-		JToolBarHelper::title( JText::_( 'Instructors' ), 'instructors.png' );
+		JToolBarHelper::title( JText::_( 'Qualifications' ), 'qualifications.png' );
 
 		//Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/instructor';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/qualification';
 		if ( file_exists( $formPath ) ) {
 
 			if ( $canDo->get( 'core.create' ) ) {
-				JToolBarHelper::addNew( 'instructor.add', 'JTOOLBAR_NEW' );
+				JToolBarHelper::addNew( 'qualification.add', 'JTOOLBAR_NEW' );
 			}
 
 			if ( $canDo->get( 'core.edit' ) && isset( $this->items[0] ) ) {
-				JToolBarHelper::editList( 'instructor.edit', 'JTOOLBAR_EDIT' );
+				JToolBarHelper::editList( 'qualification.edit', 'JTOOLBAR_EDIT' );
 			}
 		}
 
-		JToolBarHelper::deleteList( '', 'instructors.delete', 'JTOOLBAR_DELETE' );
+		JToolBarHelper::deleteList( '', 'qualifications.delete', 'JTOOLBAR_DELETE' );
 
 		if ( $canDo->get( 'core.admin' ) ) {
 			JToolBarHelper::preferences( 'com_swa' );
 		}
 
 		//Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=instructors' );
+		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=qualifications' );
 
 		$this->extra_sidebar = '';
 

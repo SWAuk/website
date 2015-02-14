@@ -22,7 +22,7 @@ class EventTicketsTest extends SwaTestCase {
 			array( 'e1', 'Party', 200, 10, false, false, false, false ),
 			array( 'e1', 'Windsurf', 80, 17, false, false, false, false ),
 			array( 'e1', 'XSWA', 100, 20, false, false, true, false ),
-			array( 'e1', 'Instructor', 20, 12, false, false, false, true ),
+			array( 'e1', 'Qualification', 20, 12, false, false, false, true ),
 			array( 'e1', 'SWA', 20, 12, true, false, false, false ),
 			array( 'e2', 'host', 30, 0, false, false, true, false ),
 			array( 'e2', 'other', 30, 10, false, false, false, false ),
@@ -88,9 +88,9 @@ class EventTicketsTest extends SwaTestCase {
 				$this->assertValue( 'id=jform_need_host', 'off' );
 			}
 			if( $nInst ) {
-				$this->assertValue( 'id=jform_need_instructor', 'on' );
+				$this->assertValue( 'id=jform_need_qualification', 'on' );
 			} else {
-				$this->assertValue( 'id=jform_need_instructor', 'off' );
+				$this->assertValue( 'id=jform_need_qualification', 'off' );
 			}
 		}
 	}
