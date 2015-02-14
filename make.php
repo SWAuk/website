@@ -1,32 +1,12 @@
 <?php
 
-//TODO auto get all dirs?
-$components = array(
-	'com_swa',
-	'tpl_swa',
-);
 $rootDir = __DIR__ . DIRECTORY_SEPARATOR;
-$pkgDir = $rootDir . 'pkg_swa' . DIRECTORY_SEPARATOR . 'packages' . DIRECTORY_SEPARATOR;
 
-if ( !file_exists($pkgDir) ) {
-	mkdir( $pkgDir, 0777, true );
-}
-
-// Generate the individual zips
+// Generate the zip
 echo "Ziping all...\n";
-foreach ( $components as $name ) {
-	@unlink( $pkgDir . $name . '.zip' );
-	zipRecurive( $rootDir . $name, $pkgDir . $name . '.zip' );
-	echo "Done " . $pkgDir . $name . '.zip' . "\n";
-}
-
-// Generate the pkg zip
-$name = 'pkg_swa';
-@unlink( $rootDir . 'pkg_swa.zip' );
-zipRecurive( $rootDir . $name, $rootDir . $name . '.zip' );
-echo "Done " . $rootDir . $name . '.zip' . "\n";
-
-echo "Done all!\n";
+@unlink( $rootDir . 'com_swa.zip' );
+zipRecurive( $rootDir . 'src', $rootDir . 'com_swa.zip' );
+echo "Done " . $rootDir . 'com_swa.zip' . "\n";
 
 /**
  * @param string $source
