@@ -150,12 +150,12 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'damages' );
 	}
 
-	public function addAdminDeposit( $university, $time, $amount ) {
+	public function addAdminDeposit( $university, $date, $amount ) {
 		echo "Adding deposit for '$university'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=deposits");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'deposit.add\')"]');
 		$this->select( 'id=jform_university_id', $university );
-		$this->type( 'id=jform_time', $time );
+		$this->type( 'id=jform_date', $date );
 		$this->type( 'id=jform_amount', $amount );
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}

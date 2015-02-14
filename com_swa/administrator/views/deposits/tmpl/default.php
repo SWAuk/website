@@ -107,7 +107,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Time', 'a.time', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Date', 'a.date', $listDirn, $listOrder ); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Amount', 'a.amount', $listDirn, $listOrder ); ?>
@@ -175,7 +175,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 
-							<?php echo $item->time; ?>
+							<?php echo $item->date; ?>
 						</td>
 						<td>
 

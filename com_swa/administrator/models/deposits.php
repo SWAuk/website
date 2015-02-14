@@ -22,7 +22,7 @@ class SwaModelDeposits extends JModelList {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
 				'university_id', 'a.university_id',
-				'time', 'a.time',
+				'date', 'a.date',
 				'amount', 'a.amount',
 
 			);

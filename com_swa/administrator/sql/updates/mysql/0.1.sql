@@ -60,7 +60,7 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `university_id` INT NOT NULL ,
-  `time` DATETIME NOT NULL ,
+  `date` DATE NOT NULL ,
   `amount` DECIMAL NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_deposit_university_idx` (`university_id` ASC) )
@@ -179,7 +179,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
 DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
-  `id` INT NOT NULL ,
+  `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
   `university_id` INT NOT NULL ,
   `date` DATE NOT NULL ,

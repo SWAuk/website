@@ -15,14 +15,11 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="time" type="calendar" class="inputbox"
-			   required="true"
-
-			   default="0000-00-00 00:00:00"
-
-			   label="Time"
-			   format="%Y-%m-%d %H:%M:%S"
-			   filter="safehtml"/>
+        <field name="date" type="calendar" class="inputbox"
+               required="true"
+               default="0000-00-00"
+               label="Date"
+               filter="safehtml"/>
 
 		<field name="amount" type="text" size="40" class="inputbox"
 
