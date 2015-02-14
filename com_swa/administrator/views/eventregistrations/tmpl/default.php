@@ -54,7 +54,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 <?php else : ?>
 <div id="j-main-container">
 <?php endif; ?>
-
+	<div id="adminview-description" >
+		<p>Here you can register members to be able to buy tickets for events.</p>
+	</div>
 <div id="filter-bar" class="btn-toolbar">
 	<div class="filter-search btn-group pull-left">
 		<label for="filter_search" class="element-invisible"><?php echo JText::_( 'JSEARCH_FILTER' ); ?></label>
