@@ -243,7 +243,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}
 
-	public function clearIndividualResults() {
+	public function clearAdminIndividualResults() {
 		$this->clearAdminList( 'individualresults' );
 	}
 

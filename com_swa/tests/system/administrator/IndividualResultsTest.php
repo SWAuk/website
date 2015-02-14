@@ -7,7 +7,7 @@ class IndividualResultsTest extends SwaTestCase {
 		$this->setUp();
 		$this->gotoAdmin();
 		$this->doAdminLogin();
-		$this->clearIndividualResults();
+		$this->clearAdminIndividualResults();
 
 		//Create joomla users
 		$timestring = strval( time() );
