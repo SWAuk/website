@@ -113,13 +113,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php echo JHtml::_( 'grid.sort', 'Capacity', 'a.capacity', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'Date open', 'a.date_open', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Registration open', 'a.date_open', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'Date close', 'a.date_close', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Registration close', 'a.date_close', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'Date', 'a.date', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Event Start', 'a.date', $listDirn, $listOrder ); ?>
 		</th>
 		<th width="1%" class="nowrap center hidden-phone">
 			<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
