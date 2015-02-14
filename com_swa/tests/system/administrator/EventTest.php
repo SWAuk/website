@@ -25,7 +25,6 @@ class EventTest extends SwaTestCase {
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=events' );
-		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
 		foreach( $events as $key => $event ) {
 			list( $name, $season, $capacity, $open, $close, $date ) = $event;
 			$tableRow = strval( $key + 1 );

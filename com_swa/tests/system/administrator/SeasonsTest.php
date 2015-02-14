@@ -15,7 +15,6 @@ class SeasonsTest extends SwaTestCase {
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
-		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
 		foreach( $seasons as $key => $season ) {
 			$this->assertElementPresent( 'link=' . $season );
 			$tableRow = strval( $key + 1 );

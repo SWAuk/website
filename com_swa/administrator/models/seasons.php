@@ -47,7 +47,7 @@ class SwaModelSeasons extends JModelList {
 		$this->setState( 'params', $params );
 
 		// List state information.
-		parent::populateState( 'a.year', 'asc' );
+		parent::populateState( 'a.id', 'asc' );
 	}
 
 	/**

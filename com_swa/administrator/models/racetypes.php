@@ -47,7 +47,7 @@ class SwaModelRacetypes extends JModelList {
 		$this->setState( 'params', $params );
 
 		// List state information.
-		parent::populateState( 'a.name', 'asc' );
+		parent::populateState( 'a.id', 'asc' );
 	}
 
 	/**

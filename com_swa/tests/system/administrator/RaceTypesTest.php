@@ -19,7 +19,6 @@ class RaceTypesTest extends SwaTestCase {
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=racetypes' );
-		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
 		foreach( $types as $key => $type ) {
 			$this->assertElementPresent( 'link=' . $type );
 			$tableRow = strval( $key + 1 );

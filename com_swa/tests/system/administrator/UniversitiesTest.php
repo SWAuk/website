@@ -20,7 +20,6 @@ class UniversitiesTest extends SwaTestCase {
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=universities' );
-		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
 		foreach( $unis as $key => $uni ) {
 			list( $name, $url ) = $uni;
 			$this->assertElementPresent( 'link=' . $name );

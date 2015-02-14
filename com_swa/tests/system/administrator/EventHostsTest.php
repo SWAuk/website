@@ -36,7 +36,6 @@ class EventHostsTest extends SwaTestCase {
 		}
 
 		$this->open( '/j/administrator/index.php?option=com_swa&view=eventhosts' );
-		$this->clickAndWait("link=ID"); // Order by ID so we know the order!
 
 		foreach( $eventHosts as $key => $host ) {
 			list( $event, $uni ) = $host;
@@ -48,7 +47,6 @@ class EventHostsTest extends SwaTestCase {
 		foreach( $eventHosts as $key => $host ) {
 			list( $event, $uni ) = $host;
 			$this->open( '/j/administrator/index.php?option=com_swa&view=eventhosts' );
-			$this->clickAndWait( "link=ID" ); // Order by ID so we know the order!
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );
