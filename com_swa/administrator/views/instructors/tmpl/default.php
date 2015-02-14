@@ -107,12 +107,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Expiry', 'a.expiry', $listDirn, $listOrder ); ?>
 					</th>
-
-					<?php if ( isset( $this->items[0]->id ) ): ?>
-						<th width="1%" class="nowrap center hidden-phone">
-							<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
-						</th>
-					<?php endif; ?>
+					<th width="1%" class="nowrap center hidden-phone">
+						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
+					</th>
 				</tr>
 				</thead>
 				<tfoot>
@@ -162,7 +159,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-
 						<td>
 							<?php if ( $canEdit ) : ?>
 								<a href="<?php echo JRoute::_( 'index.php?option=com_swa&task=instructor.edit&id=' . (int)$item->id ); ?>">
@@ -177,12 +173,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td>
 							<?php echo $this->escape( $item->expiry_date ); ?>
 						</td>
-
-						<?php if ( isset( $this->items[0]->id ) ): ?>
-							<td class="center hidden-phone">
-								<?php echo (int)$item->id; ?>
-							</td>
-						<?php endif; ?>
+						<td class="center hidden-phone">
+							<?php echo (int)$item->id; ?>
+						</td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
@@ -196,4 +189,3 @@ if ( !empty( $this->extra_sidebar ) ) {
 		</div>
 </form>        
 
-		

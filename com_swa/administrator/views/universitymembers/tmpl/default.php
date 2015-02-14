@@ -102,14 +102,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th width="1%" class="hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>" onclick="Joomla.checkAll(this)"/>
 					</th>
-
-
-					<?php if ( isset( $this->items[0]->id ) ): ?>
-						<th width="1%" class="nowrap center hidden-phone">
-							<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
-						</th>
-					<?php endif; ?>
-
+					<th width="1%" class="nowrap center hidden-phone">
+						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
+					</th>
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
 					</th>
@@ -171,13 +166,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-
-						<?php if ( isset( $this->items[0]->id ) ): ?>
-							<td class="center hidden-phone">
-								<?php echo (int)$item->id; ?>
-							</td>
-						<?php endif; ?>
-
+						<td class="center hidden-phone">
+							<?php echo (int)$item->id; ?>
+						</td>
 						<td>
 							<?php echo $item->university; ?>
 						</td>

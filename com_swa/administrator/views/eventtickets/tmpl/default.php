@@ -127,12 +127,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Needs Instructor', 'a.need_instructor', $listDirn, $listOrder ); ?>
 					</th>
-
-					<?php if ( isset( $this->items[0]->id ) ): ?>
-						<th width="1%" class="nowrap center hidden-phone">
-							<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
-						</th>
-					<?php endif; ?>
+					<th width="1%" class="nowrap center hidden-phone">
+						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
+					</th>
 				</tr>
 				</thead>
 				<tfoot>
@@ -182,7 +179,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-
 						<td>
 							<?php echo $item->event; ?>
 						</td>
@@ -207,13 +203,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td>
 							<?php echo $item->need_instructor; ?>
 						</td>
-
-
-						<?php if ( isset( $this->items[0]->id ) ): ?>
-							<td class="center hidden-phone">
-								<?php echo (int)$item->id; ?>
-							</td>
-						<?php endif; ?>
+						<td class="center hidden-phone">
+							<?php echo (int)$item->id; ?>
+						</td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
