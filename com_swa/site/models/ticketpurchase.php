@@ -39,7 +39,7 @@ class SwaModelTicketPurchase extends JModelList {
 
 			// Get event ids registered for!
 			$query->join( 'LEFT', '#__swa_event_registration AS event_registration ON event_registration.member_id = a.id' );
-			$query->select( 'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() - INTERVAL 3 DAY THEN event_registration.event_id END ) as registered_event_ids' );
+			$query->select( 'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() THEN event_registration.event_id END ) as registered_event_ids' );
 
 			// Get event ids for tickets we have that are in the future
 			$query->join( 'LEFT', '#__swa_ticket AS ticket ON ticket.member_id = a.id' );

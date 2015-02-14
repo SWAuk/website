@@ -55,7 +55,6 @@ class SwaModelUniversityEventAttendees extends JModelList {
 		// Get all tickets for said events
 		$query->innerJoin( $db->quoteName('#__swa_event_ticket') . ' AS event_ticket ON event.id=event_ticket.event_id' );
 		$query->innerJoin( $db->quoteName('#__swa_ticket') . ' AS ticket ON event_ticket.id=ticket.event_ticket_id' );
-		$query->where( 'event.date > NOW() - INTERVAL 3 DAY' );
 		$query->select( 'event_ticket.name as ticket_name' );
 		$query->select( 'ticket.member_id as member_id' );
 

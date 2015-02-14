@@ -110,7 +110,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php echo JHtml::_( 'grid.sort', 'Member', 'a.member', $listDirn, $listOrder ); ?>
 		</th>
 		<th class='left'>
-			<?php echo JHtml::_( 'grid.sort', 'Date', 'a.date', $listDirn, $listOrder ); ?>
+			<?php echo JHtml::_( 'grid.sort', 'Expires', 'a.expires', $listDirn, $listOrder ); ?>
 		</th>
 		<th width="1%" class="nowrap center hidden-phone">
 			<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
@@ -172,7 +172,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				<?php echo $item->user; ?>
 			</td>
 			<td>
-				<?php echo $item->date; ?>
+				<?php echo $item->expires; ?>
 			</td>
 			<td class="center hidden-phone">
 				<?php echo (int)$item->id; ?>

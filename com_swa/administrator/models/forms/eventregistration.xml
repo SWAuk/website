@@ -25,12 +25,12 @@
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="date" type="calendar" class="inputbox"
+		<field name="expires" type="calendar" class="inputbox"
 			   required="true"
 
-			   default="NOW"
+               default="3 days"
 
-			   label="Date"
+			   label="Expires"
 			   filter="safehtml"/>
 
 	</fieldset>

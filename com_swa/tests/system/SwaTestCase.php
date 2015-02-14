@@ -164,13 +164,13 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'deposits' );
 	}
 
-	public function addAdminEventRegistration( $event, $user, $date ){
+	public function addAdminEventRegistration( $event, $user, $expires ){
 		echo "Adding event registration for '$event' and '$user'\n";
 		$this->open("/j/administrator/index.php?option=com_swa&view=eventregistrations");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventregistration.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->select( 'id=jform_member_id', $user );
-		$this->type( 'id=jform_date', $date );
+		$this->type( 'id=jform_expires', $expires );
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 	}
 
