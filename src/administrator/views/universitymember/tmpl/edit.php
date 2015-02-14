@@ -46,6 +46,9 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
+					<!-- Hidden field hack so that unchecked checkboxes are saved -->
+					<input type="hidden" name="jform[graduated]" value="0">
+
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'member_id' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'member_id' ); ?></div>

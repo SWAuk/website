@@ -80,4 +80,48 @@ class UniversityMembersTest extends SwaTestCase {
 
 	}
 
+	public function testChangeEntry() {
+		$this->setUp();
+		$this->gotoAdmin();
+		$this->doAdminLogin();
+		$this->clearAdminUniversityMembers();
+
+		//Create a joomla user
+		$user = 'TestUser-' . strval( time() ) . '-0';
+		$this->createAdminJoomlaUser( $user , 'somePass' );
+
+		//Add a university
+		$this->clearAdminUniversities();
+		$this->addAdminUniversity( 'uni1', 'http://foo.com' );
+		$this->addAdminUniversity( 'uni2', 'http://foo.com' );
+
+		//Create a member
+		$this->clearAdminMembers();
+		$this->addAdminMember(
+			$user, false, 'Male', '1993-02-25', 'uni1', false, 'course',
+			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+		);
+
+		//Add the starting entry
+		$this->addAdminUniversityMember( $user, 'uni1', false );
+		$this->open( '/j/administrator/index.php?option=com_swa&view=universitymembers' );
+		$this->click( 'id=cb0' );
+		$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
+
+		//graduate
+		$this->click("id=jform_graduated");
+		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
+		$this->assertValue( 'id=jform_graduated', 'on' );
+		//un-graduate
+		$this->click("id=jform_graduated");
+		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
+		$this->assertValue( 'id=jform_graduated', 'off' );
+		//change uni
+		$this->select( 'id=jform_university_id', 'uni2' );
+		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
+		$this->assertSelectedLabel( 'id=jform_university_id', 'uni2' );
+		//TODO check changing user?
+
+	}
+
 } 

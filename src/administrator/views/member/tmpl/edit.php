@@ -46,6 +46,11 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
+					<!-- Hidden field hack so that unchecked checkboxes are saved -->
+					<input type="hidden" name="jform[paid]" value="0">
+					<input type="hidden" name="jform[club_committee]" value="0">
+					<input type="hidden" name="jform[swa_committee]" value="0">
+
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'id' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
