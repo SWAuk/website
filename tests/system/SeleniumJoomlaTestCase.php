@@ -48,4 +48,18 @@ class SeleniumJoomlaTestCase extends PHPUnit_Extensions_SeleniumTestCase {
 		$this->waitForPageToLoad("30000");
 	}
 
+	function doLogin( $username, $password ) {
+		$this->open("/j/index.php/component/users");
+		$this->type("id=username", $username);
+		$this->type("id=password", $password);
+		$this->click("xpath=(//button[@type='submit'])[2]");
+		$this->waitForPageToLoad("30000");
+	}
+
+	function doLogout() {
+		$this->open("/j/index.php/component/users");
+		$this->click("//button[@type='submit']");
+		$this->waitForPageToLoad("30000");
+	}
+
 }
