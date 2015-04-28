@@ -13,6 +13,7 @@ class SwaViewUniversityMembers extends JViewLegacy {
 	protected $user;
 	protected $events;
 	protected $event_registrations;
+	protected $member;
 
 	/**
 	 * Display the view
@@ -38,6 +39,10 @@ class SwaViewUniversityMembers extends JViewLegacy {
 		}
 
 		$this->member = $this->get( 'Member' );
+		if( !is_object( $this->member ) ) {
+			//TODO better error message
+			die( 'You must be a member to view this page!' );
+		}
 		if( !$this->member->club_committee ) {
 			//TODO better error message
 			die( 'You must be a committee member to view this page!' );

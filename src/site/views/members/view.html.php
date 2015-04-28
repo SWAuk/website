@@ -40,6 +40,10 @@ class SwaViewMembers extends JViewLegacy {
 		}
 
 		$this->member = $this->get( 'Member' );
+		if( !is_object( $this->member ) ) {
+			//TODO better error message
+			die( 'You must be a member to view this page!' );
+		}
 		if ( !$this->member->paid ) {
 			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=memberpayment' ) );
 		}

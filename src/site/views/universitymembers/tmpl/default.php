@@ -10,7 +10,7 @@ JHtml::_('formbehavior.chosen', 'select');
 
 $eventRegistrations = array();
 foreach( $this->event_registrations as $reg ) {
-	$eventRegistrations[$reg->member_id][$reg->event_id] = strtotime( $reg->date );;
+	$eventRegistrations[$reg->member_id][$reg->event_id] = strtotime( $reg->expires );;
 }
 ?>
 
