@@ -7,7 +7,9 @@
 			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="user_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__users"
+			   query="SELECT users.id, users.name FROM #__users as users
+LEFT JOIN #__swa_member member ON member.user_id = users.id
+WHERE ISNULL(member.id)"
 
 			   label="User"
 
