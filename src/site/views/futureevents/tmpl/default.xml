@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="SeasonEvents">
+	<layout title="FutureEvents">
 		<message>
-			Show a list of all events in the current season.
+			Show a list of all events that are in the future.
 		</message>
 	</layout>
 </metadata>

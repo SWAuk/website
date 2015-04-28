@@ -2,7 +2,7 @@
 <metadata>
 	<layout title="SeasonEvents">
 		<message>
-			Show a list of all events in the current season.
+			Show a list of all events that have already happened.
 		</message>
 	</layout>
 </metadata>
