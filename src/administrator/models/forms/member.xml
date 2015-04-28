@@ -24,7 +24,6 @@
 			   default="none"
 
 			   required="true">
-			<option value="None">Rather not say</option>
 			<option value="Male">Male</option>
 			<option value="Female">Female</option>
 		</field>
