@@ -2,6 +2,9 @@
 vendor
 composer.lock
 
+#Out stuff
+.joomlaRoot
+
 #Ignore the zip files..
 *.zip
 
