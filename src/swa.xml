@@ -35,6 +35,7 @@
 		<folder>controllers</folder>
 		<folder>helpers</folder>
 		<folder>assets</folder>
+		<folder>language</folder>
 	</files>
 
 	<languages folder="site">
