@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="SeasonEvents">
+		<message>
+			Show a list of all events in the curretn season.
+		</message>
+	</layout>
+</metadata>
