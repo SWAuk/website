@@ -35,7 +35,7 @@ class SwaModelUniversities extends JModelList {
 	 */
 	protected function populateState( $ordering = null, $direction = null ) {
 		// Initialise variables.
-		$app = JFactory::getApplication( 'administrator' );
+		$app = JFactory::getApplication();
 
 		// Load the filter state.
 		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
