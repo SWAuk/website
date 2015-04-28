@@ -117,6 +117,13 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 	<tr>
 		<div class="control-group">
+			<td>Dietary Requirements:</td>
+			<td><?php echo $this->item->dietary ?></td>
+		</div>
+	</tr>
+
+	<tr>
+		<div class="control-group">
 			<td>SWA help?:</td>
 			<td><?php echo $this->item->swahelp ?></td>
 		</div>

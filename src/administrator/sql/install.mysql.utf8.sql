@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `shirt` VARCHAR(3)  NOT NULL ,
   `econtact` VARCHAR(255)  NOT NULL ,
   `enumber` VARCHAR(255)  NOT NULL ,
+  `dietary` VARCHAR(10),
   `swahelp` VARCHAR(50)  NOT NULL DEFAULT 'None',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),

@@ -105,6 +105,17 @@
 			   required="true"
 			   filter="safehtml"/>
 
+        <field name="dietary" type="list"
+
+               label="Dietary Requirements?"
+               default="None"
+
+               required="true">
+            <option value="NULL">None</option>
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Vegan">Vegan</option>
+        </field>
+
 		<field name="swahelp" type="list"
 
 			   label="SWA help?"

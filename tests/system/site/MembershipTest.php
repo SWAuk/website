@@ -29,6 +29,7 @@ class MembershipTest extends SwaTestCase {
 		$this->select( 'id=jform_shirt', 'L' );
 		$this->type("id=jform_econtact", "some person");
 		$this->type("id=jform_enumber", "123456789");
+		$this->select( 'id=jform_dietary', 'Vegan' );
 		$this->select( 'id=jform_swahelp', 'Events' );
 		$this->clickAndWait("//button[@type='submit']");
 		// Make sure we are redirect to the right place
@@ -42,7 +43,7 @@ class MembershipTest extends SwaTestCase {
 		$this->open("/j/administrator/index.php?option=com_swa&view=members");
 		$this->click( 'id=cb0' );
 		$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
-		$this->assertSelectedLabel( 'id=jform_user_id', $username );
+		$this->assertSelectedLabel( 'id=jform_user_id', $username . ' \(Already Member\)' );
 		$this->assertValue( 'id=jform_paid', 'off' );
 		$this->assertSelectedLabel( 'id=jform_sex', 'Male' );
 		$this->assertValue( 'id=jform_dob', '1990-02-02' );
@@ -55,9 +56,10 @@ class MembershipTest extends SwaTestCase {
 		$this->assertSelectedLabel( 'id=jform_shirt', 'L' );
 		$this->assertValue( 'id=jform_econtact', 'some person' );
 		$this->assertValue( 'id=jform_enumber', '123456789' );
+		$this->assertSelectedLabel( 'id=jform_dietary', 'Vegan' );
 		$this->assertSelectedLabel( 'id=jform_swahelp', 'Events' );
 		$this->assertValue( 'id=jform_swa_committee', 'off' );
-		// Now mark at paid!
+		// Now mark as paid!
 		$this->click("id=jform_paid");
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'member.apply\')"]' );
 		$this->assertValue( 'id=jform_paid', 'on' );
@@ -79,7 +81,8 @@ class MembershipTest extends SwaTestCase {
 		$this->assertTable( 'css=table.9.1', 'L' );
 		$this->assertTable( 'css=table.10.1', 'some person' );
 		$this->assertTable( 'css=table.11.1', '123456789' );
-		$this->assertTable( 'css=table.12.1', 'Events' );
+		$this->assertTable( 'css=table.12.1', 'Vegan' );
+		$this->assertTable( 'css=table.13.1', 'Events' );
 
 	}
 

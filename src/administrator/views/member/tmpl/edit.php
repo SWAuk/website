@@ -108,6 +108,10 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'enumber' ); ?></div>
 					</div>
 					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel( 'dietary' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'dietary' ); ?></div>
+					</div>
+					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'swahelp' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'swahelp' ); ?></div>
 					</div>
