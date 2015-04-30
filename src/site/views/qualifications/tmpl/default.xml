@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Qualifications">
+		<message>
+			Display all qualifications of members.
+			Accessible to Org Committee members.
+		</message>
+	</layout>
+</metadata>
