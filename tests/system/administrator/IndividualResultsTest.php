@@ -64,7 +64,7 @@ class IndividualResultsTest extends SwaTestCase {
 			$this->addAdminIndividualResult( $user, $event . ' - ' . $competitionType, $result );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=individualresults' );
+		$this->open( 'administrator/index.php?option=com_swa&view=individualresults' );
 		foreach( $individualResults as $key => $resultData ) {
 			list( $user, $event, $competitionType, $result ) = $resultData;
 			$tableRow = strval( $key + 1 );
@@ -76,7 +76,7 @@ class IndividualResultsTest extends SwaTestCase {
 
 		foreach( $individualResults as $key => $resultData ) {
 			list( $user, $event, $competitionType, $result ) = $resultData;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=individualresults' );
+			$this->open( 'administrator/index.php?option=com_swa&view=individualresults' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_competition_id', $event . ' - ' . $competitionType );

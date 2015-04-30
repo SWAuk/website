@@ -29,7 +29,7 @@ class ComponentMenuAdminTest extends SwaTestCase {
 			array( 'Individual Results', 'Individual results' ),
 		);
 
-		$this->open("/j/administrator/index.php?option=com_swa");
+		$this->open("administrator/index.php?option=com_swa");
 		foreach( $pages as $data ) {
 			list( $linkName, $expectedTitle ) = $data;
 			$this->click( "link=Components" );

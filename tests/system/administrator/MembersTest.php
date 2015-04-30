@@ -34,7 +34,7 @@ class MembersTest extends SwaTestCase {
 		}
 
 		//Make sure the users appear in the list!
-		$this->open( '/j/administrator/index.php?option=com_swa&view=members' );
+		$this->open( 'administrator/index.php?option=com_swa&view=members' );
 		foreach( $members as $key => $d ) {
 			$this->assertTextPresent( $d[0] );
 			$tableRow = strval( $key + 1 );
@@ -50,7 +50,7 @@ class MembersTest extends SwaTestCase {
 
 		//Make sure each user actually has the correct data
 		foreach( $members as $d ) {
-			$this->open( '/j/administrator/index.php?option=com_swa&view=members' );
+			$this->open( 'administrator/index.php?option=com_swa&view=members' );
 			$this->click( '//td[contains(text(),\'' . $d[0] . '\')]/preceding-sibling::td/input[@name=\'cid[]\']' );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_user_id', $d[0] );

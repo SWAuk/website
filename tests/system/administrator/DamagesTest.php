@@ -35,7 +35,7 @@ class DamagesTest extends SwaTestCase {
 		}
 
 		//Make sure the list appears correct
-		$this->open( '/j/administrator/index.php?option=com_swa&view=damages' );
+		$this->open( 'administrator/index.php?option=com_swa&view=damages' );
 		foreach( $damages as $key => $damage ) {
 			list( $event, $university, $date, $cost ) = $damage;
 			$tableRow = strval( $key + 1 );
@@ -48,7 +48,7 @@ class DamagesTest extends SwaTestCase {
 		//Make sure each item is actually correct
 		foreach( $damages as $key => $damage ) {
 			list( $event, $university, $date, $cost ) = $damage;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=damages' );
+			$this->open( 'administrator/index.php?option=com_swa&view=damages' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );

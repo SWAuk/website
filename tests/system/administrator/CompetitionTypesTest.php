@@ -18,7 +18,7 @@ class CompetitionTypesTest extends SwaTestCase {
 			$this->addAdminCompetitionType( $type );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=competitiontypes' );
+		$this->open( 'administrator/index.php?option=com_swa&view=competitiontypes' );
 		foreach( $types as $key => $type ) {
 			$this->assertElementPresent( 'link=' . $type );
 			$tableRow = strval( $key + 1 );
@@ -26,7 +26,7 @@ class CompetitionTypesTest extends SwaTestCase {
 		}
 
 		foreach( $types as $type ) {
-			$this->open( '/j/administrator/index.php?option=com_swa&view=competitiontypes' );
+			$this->open( 'administrator/index.php?option=com_swa&view=competitiontypes' );
 			$this->click( '//td/a[contains(text(),\'' . $type . '\')]/../preceding-sibling::td/input[@name=\'cid[]\']' );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertValue( 'id=jform_name', $type );

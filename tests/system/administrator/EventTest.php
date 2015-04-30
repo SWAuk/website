@@ -24,7 +24,7 @@ class EventTest extends SwaTestCase {
 			$this->addAdminEvent( $name, $season, $capacity, $open, $close, $date );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=events' );
+		$this->open( 'administrator/index.php?option=com_swa&view=events' );
 		foreach( $events as $key => $event ) {
 			list( $name, $season, $capacity, $open, $close, $date ) = $event;
 			$tableRow = strval( $key + 1 );
@@ -39,7 +39,7 @@ class EventTest extends SwaTestCase {
 
 		foreach( $events as $event ) {
 			list( $name, $season, $capacity, $open, $close, $date ) = $event;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=events' );
+			$this->open( 'administrator/index.php?option=com_swa&view=events' );
 			$this->click( '//td/a[contains(text(),\'' . $name . '\')]/../preceding-sibling::td/input[@name=\'cid[]\']' );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertValue( 'id=jform_name', $name );

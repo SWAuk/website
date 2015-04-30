@@ -30,7 +30,7 @@ class GrantsTest extends SwaTestCase {
 			$this->addAdminGrant( $event, $apDate, $amount, $use, $inst, $sort, $acc, $name, $fDate, $fId, $aDate, $aId, $pDate, $pId );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=grants' );
+		$this->open( 'administrator/index.php?option=com_swa&view=grants' );
 		foreach( $grants as $key => $grant ) {
 			list( $event, $apDate, $amount, $use, $inst, $sort, $acc, $name, $fDate, $fId, $aDate, $aId, $pDate, $pId ) = $grant;
 			$tableRow = strval( $key + 1 );
@@ -44,7 +44,7 @@ class GrantsTest extends SwaTestCase {
 
 		foreach( $grants as $key => $grant ) {
 			list( $event, $apDate, $amount, $use, $inst, $sort, $acc, $name, $fDate, $fId, $aDate, $aId, $pDate, $pId ) = $grant;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=grants' );
+			$this->open( 'administrator/index.php?option=com_swa&view=grants' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );

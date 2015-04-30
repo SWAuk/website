@@ -27,7 +27,7 @@ class DepositsTest extends SwaTestCase {
 		}
 
 		//Make sure the list appears correct
-		$this->open( '/j/administrator/index.php?option=com_swa&view=deposits' );
+		$this->open( 'administrator/index.php?option=com_swa&view=deposits' );
 		foreach( $deposits as $key => $deposit ) {
 			list( $university, $date, $amount ) = $deposit;
 			$tableRow = strval( $key + 1 );
@@ -39,7 +39,7 @@ class DepositsTest extends SwaTestCase {
 		//Make sure each item is actually correct
 		foreach( $deposits as $key => $deposit ) {
 			list( $university, $date, $amount ) = $deposit;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=deposits' );
+			$this->open( 'administrator/index.php?option=com_swa&view=deposits' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_university_id', $university );

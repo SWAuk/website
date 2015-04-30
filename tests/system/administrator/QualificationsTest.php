@@ -42,7 +42,7 @@ class QualificationsTest extends SwaTestCase {
 			$this->addAdminQualification( $user, $type, $expiry );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=qualifications' );
+		$this->open( 'administrator/index.php?option=com_swa&view=qualifications' );
 		foreach( $qualifications as $key => $data ) {
 			list( $user, $type, $expiry ) = $data;
 			$this->assertElementPresent( 'link=' . $user );
@@ -54,7 +54,7 @@ class QualificationsTest extends SwaTestCase {
 
 		foreach( $qualifications as $key => $data ) {
 			list( $user, $type, $expiry ) = $data;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=qualifications' );
+			$this->open( 'administrator/index.php?option=com_swa&view=qualifications' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );

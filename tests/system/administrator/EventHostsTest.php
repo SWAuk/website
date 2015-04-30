@@ -35,7 +35,7 @@ class EventHostsTest extends SwaTestCase {
 			$this->addAdminEventHost( $event, $uni );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=eventhosts' );
+		$this->open( 'administrator/index.php?option=com_swa&view=eventhosts' );
 
 		foreach( $eventHosts as $key => $host ) {
 			list( $event, $uni ) = $host;
@@ -46,7 +46,7 @@ class EventHostsTest extends SwaTestCase {
 
 		foreach( $eventHosts as $key => $host ) {
 			list( $event, $uni ) = $host;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=eventhosts' );
+			$this->open( 'administrator/index.php?option=com_swa&view=eventhosts' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );

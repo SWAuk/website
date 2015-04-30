@@ -6,25 +6,38 @@
  */
 class SeleniumJoomlaTestCase extends PHPUnit_Extensions_SeleniumTestCase {
 
+	/**
+	 * @var SeleniumConfig
+	 */
+	protected $cfg;
+
 	public function setUp() {
-		$cfg = new SeleniumConfig();
-		$this->setBrowser("*chrome");
-		$this->setBrowserUrl($cfg->path);
+		$this->cfg = new SeleniumConfig();
+		$this->setBrowser( "*chrome" );
+		$this->setBrowserUrl( $this->cfg->path );
+	}
+
+	/**
+	 * Wrapper around open to relate only to the site we are testing
+	 *
+	 * @param string $location
+	 * @return void
+	 */
+	public function open( $location ) {
+		parent::open( $this->cfg->path . $location );
 	}
 
 	function gotoAdmin() {
 		echo "Browsing to back end.\n";
-		$cfg = new SeleniumConfig();
-		$this->open($cfg->path . "administrator");
+		$this->open("administrator");
 		$this->waitForPageToLoad("30000");
 	}
 
 	function doAdminLogin($username = null,$password = null)
 	{
 		echo "Logging in to back end.\n";
-		$cfg = new SeleniumConfig();
-		if(!isset($username))$username=$cfg->username;
-		if(!isset($password))$password=$cfg->password;
+		if(!isset($username))$username = $this->cfg->username;
+		if(!isset($password))$password = $this->cfg->password;
 		if (!$this->isElementPresent("mod-login-username"))
 		{
 			$this->gotoAdmin();
@@ -49,7 +62,7 @@ class SeleniumJoomlaTestCase extends PHPUnit_Extensions_SeleniumTestCase {
 	}
 
 	function doLogin( $username, $password ) {
-		$this->open("/j/index.php/component/users");
+		$this->open( "index.php/component/users" );
 		$this->type("id=username", $username);
 		$this->type("id=password", $password);
 		$this->click("xpath=(//button[@type='submit'])[2]");
@@ -57,7 +70,7 @@ class SeleniumJoomlaTestCase extends PHPUnit_Extensions_SeleniumTestCase {
 	}
 
 	function doLogout() {
-		$this->open("/j/index.php/component/users");
+		$this->open( "index.php/component/users" );
 		$this->click("//button[@type='submit']");
 		$this->waitForPageToLoad("30000");
 	}

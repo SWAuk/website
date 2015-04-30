@@ -18,7 +18,7 @@ class MembershipTest extends SwaTestCase {
 
 		// Do first stage registration
 		$this->doLogin( $username, $password );
-		$this->open( '/j/index.php?option=com_swa&view=memberregistration' );
+		$this->open( 'index.php?option=com_swa&view=memberregistration' );
 		$this->select( 'id=jform_sex', 'Male' );
 		$this->type("id=jform_dob", '1990-02-02');
 		$this->select( 'id=jform_university_id', 'uni1' );
@@ -40,7 +40,7 @@ class MembershipTest extends SwaTestCase {
 		// Check the details have been saved correctly
 		$this->gotoAdmin();
 		$this->doAdminLogin();
-		$this->open("/j/administrator/index.php?option=com_swa&view=members");
+		$this->open("administrator/index.php?option=com_swa&view=members");
 		$this->click( 'id=cb0' );
 		$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 		$this->assertSelectedLabel( 'id=jform_user_id', $username . ' \(Already Member\)' );
@@ -63,26 +63,35 @@ class MembershipTest extends SwaTestCase {
 		$this->click("id=jform_paid");
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'member.apply\')"]' );
 		$this->assertValue( 'id=jform_paid', 'on' );
-		$this->open("/j/administrator/index.php?option=com_swa&view=members");
+		$this->open("administrator/index.php?option=com_swa&view=members");
 		$this->doAdminLogout();
 
 		//Check everything after payment
 		$this->doLogin( $username, $password );
-		$this->open( '/j/index.php?option=com_swa&view=memberregistration' );
-		$this->assertEquals("Membership Details", $this->getText("css=h1"));
-		$this->assertTable( 'css=table.1.1', 'Yes' );
-		$this->assertTable( 'css=table.2.1', 'Male' );
-		$this->assertTable( 'css=table.3.1', '1990-02-02' );
-		$this->assertTable( 'css=table.4.1', 'uni1' );
-		$this->assertTable( 'css=table.5.1', 'Computing' );
-		$this->assertTable( 'css=table.6.1', '2017' );
-		$this->assertTable( 'css=table.7.1', 'Race' );
-		$this->assertTable( 'css=table.8.1', 'Advanced' );
-		$this->assertTable( 'css=table.9.1', 'L' );
-		$this->assertTable( 'css=table.10.1', 'some person' );
-		$this->assertTable( 'css=table.11.1', '123456789' );
-		$this->assertTable( 'css=table.12.1', 'Vegan' );
-		$this->assertTable( 'css=table.13.1', 'Events' );
+		//Each one of these locations should redirect to the memberdetails view
+		$viewRedirectChain = array(
+			'index.php?option=com_swa&view=memberregistration',
+			'index.php?option=com_swa&view=memberpayment',
+			'index.php?option=com_swa&view=memberdetails',
+		);
+		foreach( $viewRedirectChain as $viewLocation ) {
+			$this->open( $viewLocation );
+			$this->assertEquals("Membership Details", $this->getText("css=h1"));
+			$this->assertTable( 'css=table.1.1', 'Yes' );
+			$this->assertTable( 'css=table.2.1', 'Male' );
+			$this->assertTable( 'css=table.3.1', '1990-02-02' );
+			$this->assertTable( 'css=table.4.1', 'uni1' );
+			$this->assertTable( 'css=table.5.1', 'Computing' );
+			$this->assertTable( 'css=table.6.1', '2017' );
+			$this->assertTable( 'css=table.7.1', 'Race' );
+			$this->assertTable( 'css=table.8.1', 'Advanced' );
+			$this->assertTable( 'css=table.9.1', 'L' );
+			$this->assertTable( 'css=table.10.1', 'some person' );
+			$this->assertTable( 'css=table.11.1', '123456789' );
+			$this->assertTable( 'css=table.12.1', 'Vegan' );
+			$this->assertTable( 'css=table.13.1', 'Events' );
+		}
+
 
 	}
 

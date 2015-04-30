@@ -55,7 +55,7 @@ class EventRegistrationsTest extends SwaTestCase {
 			$this->addAdminEventRegistration( $event, $member, $expires );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=eventregistrations' );
+		$this->open( 'administrator/index.php?option=com_swa&view=eventregistrations' );
 		foreach( $eventRegistrations as $key => $eventRegistration ) {
 			list( $event, $member, $expires ) = $eventRegistration;
 			$tableRow = strval( $key + 1 );
@@ -66,7 +66,7 @@ class EventRegistrationsTest extends SwaTestCase {
 
 		foreach( $eventRegistrations as $key => $eventRegistration ) {
 			list( $event, $member, $expires ) = $eventRegistration;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=eventregistrations' );
+			$this->open( 'administrator/index.php?option=com_swa&view=eventregistrations' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );

@@ -51,7 +51,7 @@ class UniversityMembersTest extends SwaTestCase {
 			$this->addAdminUniversityMember( $user, $uni, $graduated );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=universitymembers' );
+		$this->open( 'administrator/index.php?option=com_swa&view=universitymembers' );
 		foreach( $universityMembers as $key => $data ) {
 			list( $user, $uni, $graduated ) = $data;
 			$tableRow = strval( $key + 1 );
@@ -66,7 +66,7 @@ class UniversityMembersTest extends SwaTestCase {
 
 		foreach( $universityMembers as $key => $data ) {
 			list( $user, $uni, $graduated ) = $data;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=universitymembers' );
+			$this->open( 'administrator/index.php?option=com_swa&view=universitymembers' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );
@@ -104,7 +104,7 @@ class UniversityMembersTest extends SwaTestCase {
 
 		//Add the starting entry
 		$this->addAdminUniversityMember( $user, 'uni1', false );
-		$this->open( '/j/administrator/index.php?option=com_swa&view=universitymembers' );
+		$this->open( 'administrator/index.php?option=com_swa&view=universitymembers' );
 		$this->click( 'id=cb0' );
 		$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 

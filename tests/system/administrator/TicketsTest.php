@@ -58,7 +58,7 @@ class TicketsTest extends SwaTestCase {
 			$this->addAdminTicket( $user, $event . ' - ' . $ticketName );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=tickets' );
+		$this->open( 'administrator/index.php?option=com_swa&view=tickets' );
 		foreach( $tickets as $key => $ticket ) {
 			list( $user, $event, $ticketName ) = $ticket;
 			$tableRow = strval( $key + 1 );
@@ -69,7 +69,7 @@ class TicketsTest extends SwaTestCase {
 
 		foreach( $tickets as $key => $ticket ) {
 			list( $user, $event, $ticketName ) = $ticket;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=tickets' );
+			$this->open( 'administrator/index.php?option=com_swa&view=tickets' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );

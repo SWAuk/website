@@ -4,7 +4,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminSeason( $season ) {
 		echo "Adding season '$season'\n";
-		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
+		$this->open( 'administrator/index.php?option=com_swa&view=seasons' );
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'season.add\')"]' );
 		$this->type( 'id=jform_year', $season );
 		$this->clickAndWait( 'css=#toolbar-save > button.btn.btn-small' );
@@ -16,7 +16,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminUniversity( $name, $url ) {
 		echo "Adding university '$name'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=universities");
+		$this->open("administrator/index.php?option=com_swa&view=universities");
 		$this->clickAndWait("//button[@onclick=\"Joomla.submitbutton('university.add')\"]");
 		$this->type("id=jform_name", $name);
 		$this->type("id=jform_url", $url);
@@ -29,7 +29,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminCompetitionType( $name ){
 		echo "Adding competition type '$name'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=competitiontypes");
+		$this->open("administrator/index.php?option=com_swa&view=competitiontypes");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'competitiontype.add\')"]');
 		$this->type("id=jform_name", $name);
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
@@ -44,7 +44,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$discipline, $level, $shirt, $econtact, $enum, $swahelp, $isSwaComm
 	) {
 		echo "Adding member '$username'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=members");
+		$this->open("administrator/index.php?option=com_swa&view=members");
 		$this->clickAndWait("//button[@onclick=\"Joomla.submitbutton('member.add')\"]");
 		$this->select( 'id=jform_user_id', $username );
 		if( $paid ) {
@@ -77,7 +77,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminEvent( $name, $season, $capacity, $open, $close, $date ) {
 		echo "Adding event '$name'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=events");
+		$this->open("administrator/index.php?option=com_swa&view=events");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'event.add\')"]');
 		$this->type("id=jform_name", $name);
 		$this->select( 'id=jform_season_id', $season );
@@ -94,7 +94,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminEventHost( $event, $uni ) {
 		echo "Adding event host '$event' and '$uni'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=eventhosts");
+		$this->open("administrator/index.php?option=com_swa&view=eventhosts");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventhost.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->select( 'id=jform_university_id', $uni );
@@ -107,7 +107,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminQualification( $user, $type, $expiry ) {
 		echo "Adding qualification for '$user'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=qualifications");
+		$this->open("administrator/index.php?option=com_swa&view=qualifications");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'qualification.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_type', $type );
@@ -121,7 +121,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminUniversityMember( $user, $university, $graduated ) {
 		echo "Adding university member for '$user'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=universitymembers");
+		$this->open("administrator/index.php?option=com_swa&view=universitymembers");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'universitymember.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_university_id', $university );
@@ -137,7 +137,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminDamage( $event, $university, $date, $cost ) {
 		echo "Adding damage for '$university'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=damages");
+		$this->open("administrator/index.php?option=com_swa&view=damages");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'damage.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->select( 'id=jform_university_id', $university );
@@ -152,7 +152,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminDeposit( $university, $date, $amount ) {
 		echo "Adding deposit for '$university'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=deposits");
+		$this->open("administrator/index.php?option=com_swa&view=deposits");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'deposit.add\')"]');
 		$this->select( 'id=jform_university_id', $university );
 		$this->type( 'id=jform_date', $date );
@@ -166,7 +166,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminEventRegistration( $event, $user, $expires ){
 		echo "Adding event registration for '$event' and '$user'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=eventregistrations");
+		$this->open("administrator/index.php?option=com_swa&view=eventregistrations");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventregistration.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->select( 'id=jform_member_id', $user );
@@ -180,7 +180,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminEventTicket( $event, $name, $quantity, $price, $nSWA, $nXSWA, $nHost, $nInst ) {
 		echo "Adding event ticket for '$event' named '$name'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=eventtickets");
+		$this->open("administrator/index.php?option=com_swa&view=eventtickets");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'eventticket.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->type( 'id=jform_name', $name );
@@ -210,7 +210,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$financeDate, $financeId, $authDate, $authId, $payDate, $payId
 	) {
 		echo "Adding grant for '$event'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=grants");
+		$this->open("administrator/index.php?option=com_swa&view=grants");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'grant.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->type( 'id=jform_application_date', $applyDate );
@@ -235,7 +235,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminIndividualResult( $user, $competition, $result ) {
 		echo "Adding individual result for '$user'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=individualresults");
+		$this->open("administrator/index.php?option=com_swa&view=individualresults");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'individualresult.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_competition_id', $competition );
@@ -249,7 +249,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminTeamResult( $competition, $uni, $teamNumber, $result ) {
 		echo "Adding team result for '$uni' team '$teamNumber'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=teamresults");
+		$this->open("administrator/index.php?option=com_swa&view=teamresults");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'teamresult.add\')"]');
 		$this->select( 'id=jform_competition_id', $competition );
 		$this->select( 'id=jform_university_id', $uni );
@@ -264,7 +264,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminCompetition( $event, $competitionType ) {
 		echo "Adding competition for '$event' named '$competitionType'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=competitions");
+		$this->open("administrator/index.php?option=com_swa&view=competitions");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'competition.add\')"]');
 		$this->select( 'id=jform_event_id', $event );
 		$this->select( 'id=jform_competition_type_id', $competitionType );
@@ -277,7 +277,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function addAdminTicket( $user, $eventTicket ) {
 		echo "Adding ticket for '$user' named '$eventTicket'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=tickets");
+		$this->open("administrator/index.php?option=com_swa&view=tickets");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'ticket.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_event_ticket_id', $eventTicket );
@@ -290,7 +290,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	public function createAdminJoomlaUser( $username, $password ) {
 		echo "Creating Joomla user '$username'\n";
-		$this->open("/j/administrator/index.php?option=com_swa&view=members");
+		$this->open("administrator/index.php?option=com_swa&view=members");
 		$this->click("link=Users");
 		$this->clickAndWait("link=Add New User");
 		$this->type("id=jform_name", $username);
@@ -303,7 +303,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 
 	private function clearAdminList( $viewName ) {
 		echo "Clearing $viewName List\n";
-		$this->open( '/j/administrator/index.php?option=com_swa&view=' . $viewName );
+		$this->open( 'administrator/index.php?option=com_swa&view=' . $viewName );
 		// Only bother clearing if there is at least 1 item...
 		if( $this->isElementPresent( 'id=cb0' ) ) {
 			$this->click( 'name=checkall-toggle' );

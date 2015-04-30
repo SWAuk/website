@@ -41,7 +41,7 @@ class CompetitionsTest extends SwaTestCase {
 			$this->addAdminCompetition( $event, $type );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=competitions' );
+		$this->open( 'administrator/index.php?option=com_swa&view=competitions' );
 
 		foreach( $competitions as $key => $competition ) {
 			list( $event, $type ) = $competition;
@@ -52,7 +52,7 @@ class CompetitionsTest extends SwaTestCase {
 
 		foreach( $competitions as $key => $competition ) {
 			list( $event, $type ) = $competition;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=competitions' );
+			$this->open( 'administrator/index.php?option=com_swa&view=competitions' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_event_id', $event );

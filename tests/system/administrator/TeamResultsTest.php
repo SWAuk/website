@@ -49,7 +49,7 @@ class TeamResultsTest extends SwaTestCase {
 			$this->addAdminTeamResult( $event . ' - ' . $competitionType, $uni, $team, $result );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=teamresults' );
+		$this->open( 'administrator/index.php?option=com_swa&view=teamresults' );
 		foreach( $teamResults as $key => $resultData ) {
 			list( $uni, $team, $event, $competitionType, $result ) = $resultData;
 			$tableRow = strval( $key + 1 );
@@ -62,7 +62,7 @@ class TeamResultsTest extends SwaTestCase {
 
 		foreach( $teamResults as $key => $resultData ) {
 			list( $uni, $team, $event, $competitionType, $result ) = $resultData;
-			$this->open( '/j/administrator/index.php?option=com_swa&view=teamresults' );
+			$this->open( 'administrator/index.php?option=com_swa&view=teamresults' );
 			$this->click( 'id=cb' . $key );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_competition_id', $event . ' - ' . $competitionType );

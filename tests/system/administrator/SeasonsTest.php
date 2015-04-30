@@ -14,7 +14,7 @@ class SeasonsTest extends SwaTestCase {
 			$this->addAdminSeason( $season );
 		}
 
-		$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
+		$this->open( 'administrator/index.php?option=com_swa&view=seasons' );
 		foreach( $seasons as $key => $season ) {
 			$this->assertElementPresent( 'link=' . $season );
 			$tableRow = strval( $key + 1 );
@@ -22,7 +22,7 @@ class SeasonsTest extends SwaTestCase {
 		}
 
 		foreach( $seasons as $season ) {
-			$this->open( '/j/administrator/index.php?option=com_swa&view=seasons' );
+			$this->open( 'administrator/index.php?option=com_swa&view=seasons' );
 			$this->click( '//td/a[contains(text(),\'' . $season . '\')]/../preceding-sibling::td/input[@name=\'cid[]\']' );
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertValue( 'id=jform_year', $season );
