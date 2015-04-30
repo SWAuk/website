@@ -3,6 +3,7 @@
 	<layout title="University Event Attendees">
 		<message>
 			Allow a club committee member to view club attendees of future events.
+			Accessible to club committee members.
 		</message>
 	</layout>
 </metadata>

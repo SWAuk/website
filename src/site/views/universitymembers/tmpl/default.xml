@@ -3,6 +3,7 @@
 	<layout title="University Members">
 		<message>
 			Allow a club committee member to view club members and perform actions on them.
+			Accessible to club committee members.
 		</message>
 	</layout>
 </metadata>

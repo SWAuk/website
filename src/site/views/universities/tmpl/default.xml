@@ -3,6 +3,7 @@
 	<layout title="Universities">
 		<message>
 			Show a list of all universities.
+			Accessible to all.
 		</message>
 	</layout>
 </metadata>

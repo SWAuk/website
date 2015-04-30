@@ -3,6 +3,7 @@
 	<layout title="Member Payment">
 		<message>
 			Allow a member to pay their membership fee.
+			Accessible to logged in users that have completed stage 1 registration but not yet paid.
 		</message>
 	</layout>
 </metadata>

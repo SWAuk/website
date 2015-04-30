@@ -3,6 +3,7 @@
 	<layout title="SeasonEvents">
 		<message>
 			Show a list of all events in the current season.
+			Accessible to all.
 		</message>
 	</layout>
 </metadata>

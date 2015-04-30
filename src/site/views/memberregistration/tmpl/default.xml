@@ -3,6 +3,7 @@
 	<layout title="Member Registration">
 		<message>
 			Allow a user to register as an swa member.
+			Accessible to logged in users that have not started registering.
 		</message>
 	</layout>
 </metadata>

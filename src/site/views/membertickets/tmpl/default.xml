@@ -2,7 +2,8 @@
 <metadata>
 	<layout title="Member Tickets">
 		<message>
-			Allow a user to see what tickets they have purchased.
+			Allow a member to see what tickets they have purchased.
+			Accessible to members.
 		</message>
 	</layout>
 </metadata>

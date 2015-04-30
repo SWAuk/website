@@ -3,6 +3,7 @@
 	<layout title="University">
 		<message>
 			Allow a member to see the details of their university.
+			Accessible to members.
 		</message>
 	</layout>
 </metadata>

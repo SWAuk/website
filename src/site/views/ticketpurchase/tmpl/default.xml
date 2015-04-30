@@ -3,6 +3,7 @@
 	<layout title="Ticket Purchase">
 		<message>
 			Allow a member to purchase a ticket.
+			Accessible to members.
 		</message>
 	</layout>
 </metadata>

@@ -3,6 +3,7 @@
 	<layout title="Members">
 		<message>
 			Display all members.
+			Accessible to Org Committee members.
 		</message>
 	</layout>
 </metadata>

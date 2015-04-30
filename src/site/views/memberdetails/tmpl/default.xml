@@ -3,6 +3,7 @@
 	<layout title="Member Details">
 		<message>
 			Show membership details of the current user.
+			Accessible to members.
 		</message>
 	</layout>
 </metadata>
