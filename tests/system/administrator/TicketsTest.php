@@ -26,8 +26,7 @@ class TicketsTest extends SwaTestCase {
 		$this->clearAdminMembers();
 		foreach( $users as $user ) {
 			$this->addAdminMember(
-				$user, false, 'Male', '1993-02-25', 'uni1', false, 'course',
-				2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+				$user, false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 			);
 		}
 

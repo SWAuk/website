@@ -40,7 +40,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminMember(
-		$username, $paid, $sex, $dob, $uni, $isClubComm, $course, $graduation,
+		$username, $paid, $sex, $dob, $tel, $uni, $isClubComm, $course, $graduation,
 		$discipline, $level, $shirt, $econtact, $enum, $swahelp, $isSwaComm
 	) {
 		echo "Adding member '$username'\n";
@@ -52,6 +52,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		}
 		$this->select( 'id=jform_sex', $sex );
 		$this->type("id=jform_dob", $dob);
+		$this->type("id=jform_tel", $tel);
 		$this->select( 'id=jform_university_id', $uni );
 		if( $isClubComm ){
 			$this->click("id=jform_club_committee");

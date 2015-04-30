@@ -35,6 +35,14 @@ LEFT JOIN titan_swa_member member ON member.user_id = users.id"
 			   label="Dob"
 			   filter="safehtml"/>
 
+		<field name="tel" type="tel" class="inputbox"
+			   required="true"
+
+			   label="Phone Number"
+			   filter="safehtml"
+			   validate="tel"
+				/>
+
 		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT id, name FROM #__swa_university"
 

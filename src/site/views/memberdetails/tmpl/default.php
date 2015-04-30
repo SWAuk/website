@@ -61,6 +61,13 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 	<tr>
 		<div class="control-group">
+			<td>Phone number:</td>
+			<td><?php echo $this->item->tel ?></td>
+		</div>
+	</tr>
+
+	<tr>
+		<div class="control-group">
 			<td>University:</td>
 			<td><?php echo $this->item->university ?></td>
 		</div>

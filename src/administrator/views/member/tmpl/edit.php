@@ -72,6 +72,10 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'dob' ); ?></div>
 					</div>
 					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel( 'tel' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'tel' ); ?></div>
+					</div>
+					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'university_id' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'university_id' ); ?></div>
 					</div>

@@ -28,16 +28,13 @@ class UniversityMembersTest extends SwaTestCase {
 		//Create some members
 		$this->clearAdminMembers();
 		$this->addAdminMember(
-			$users[0], false, 'Male', '1993-02-25', 'uni1', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$users[0], false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 		$this->addAdminMember(
-			$users[1], false, 'Male', '1993-02-25', 'uni1', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$users[1], false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 		$this->addAdminMember(
-			$users[2], false, 'Male', '1993-02-25', 'uni2', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$users[2], false, 'Male', '1993-02-25', '+441803111111', 'uni2', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 
 		$universityMembers = array(
@@ -98,8 +95,7 @@ class UniversityMembersTest extends SwaTestCase {
 		//Create a member
 		$this->clearAdminMembers();
 		$this->addAdminMember(
-			$user, false, 'Male', '1993-02-25', 'uni1', false, 'course',
-			2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$user, false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
 		);
 
 		//Add the starting entry

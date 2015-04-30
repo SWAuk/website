@@ -21,6 +21,7 @@ class MembershipTest extends SwaTestCase {
 		$this->open( 'index.php?option=com_swa&view=memberregistration' );
 		$this->select( 'id=jform_sex', 'Male' );
 		$this->type("id=jform_dob", '1990-02-02');
+		$this->type("id=jform_tel", '+4401112223334');
 		$this->select( 'id=jform_university_id', 'uni1' );
 		$this->type("id=jform_course", "Computing");
 		$this->type("id=jform_graduation", "2017");
@@ -47,6 +48,7 @@ class MembershipTest extends SwaTestCase {
 		$this->assertValue( 'id=jform_paid', 'off' );
 		$this->assertSelectedLabel( 'id=jform_sex', 'Male' );
 		$this->assertValue( 'id=jform_dob', '1990-02-02' );
+		$this->assertValue( 'id=jform_tel', '\+4401112223334' );
 		$this->assertSelectedLabel( 'id=jform_university_id', 'uni1' );
 		$this->assertValue( 'id=jform_club_committee', 'off' );
 		$this->assertValue( 'id=jform_course', 'Computing' );
@@ -77,21 +79,26 @@ class MembershipTest extends SwaTestCase {
 		foreach( $viewRedirectChain as $viewLocation ) {
 			$this->open( $viewLocation );
 			$this->assertEquals("Membership Details", $this->getText("css=h1"));
-			$this->assertTable( 'css=table.1.1', 'Yes' );
-			$this->assertTable( 'css=table.2.1', 'Male' );
-			$this->assertTable( 'css=table.3.1', '1990-02-02' );
-			$this->assertTable( 'css=table.4.1', 'uni1' );
-			$this->assertTable( 'css=table.5.1', 'Computing' );
-			$this->assertTable( 'css=table.6.1', '2017' );
-			$this->assertTable( 'css=table.7.1', 'Race' );
-			$this->assertTable( 'css=table.8.1', 'Advanced' );
-			$this->assertTable( 'css=table.9.1', 'L' );
-			$this->assertTable( 'css=table.10.1', 'some person' );
-			$this->assertTable( 'css=table.11.1', '123456789' );
-			$this->assertTable( 'css=table.12.1', 'Vegan' );
-			$this->assertTable( 'css=table.13.1', 'Events' );
+			$expectedRows = array(
+				'Yes',
+				'Male',
+				'1990-02-02',
+				'\+4401112223334',
+				'uni1',
+				'Computing',
+				'2017',
+				'Race',
+				'Advanced',
+				'L',
+				'some person',
+				'123456789',
+				'Vegan',
+				'Events',
+			);
+			foreach( $expectedRows as $key => $rowValue ) {
+				$this->assertTable( 'css=table.' . ($key + 1) . '.1', $rowValue );
+			}
 		}
-
 
 	}
 
