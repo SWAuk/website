@@ -39,7 +39,7 @@ class SwaViewUniversity extends JViewLegacy {
 		$this->item = $this->get( 'Item' );
 
 		if( is_null( $this->item ) ) {
-			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=memberregistration' ) );
+			throw new Exception( 'You must be a member to view this page.' );
 		}
 
 		parent::display( $tpl );
