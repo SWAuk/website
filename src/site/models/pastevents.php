@@ -6,7 +6,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelPastEvents extends JModelList {
+class SwaModelPastEvents extends SwaModelList {
 
 	/**
 	 * Constructor.

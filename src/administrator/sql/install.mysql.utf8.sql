@@ -2,8 +2,6 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT(11)  NOT NULL ,
   `paid` TINYINT(1)  NOT NULL DEFAULT 0,
-  `club_committee` TINYINT(1)  NOT NULL DEFAULT 0,
-  `swa_committee` TINYINT(1)  NOT NULL DEFAULT 0,
   `sex` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
   `dob` DATE NOT NULL DEFAULT '0000-00-00',
   `university_id` INT(11)  NOT NULL ,
@@ -21,6 +19,17 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_member_user_idx` (`user_id` ASC),
   INDEX `fk_member_university_idx` (`university_id` ASC)
+)
+DEFAULT COLLATE=utf8_general_ci;
+
+CREATE  TABLE IF NOT EXISTS `#__swa_committee` (
+  `id` INT NOT NULL AUTO_INCREMENT ,
+  `member_id` INT(11)  NOT NULL ,
+  `position` VARCHAR(50)  NOT NULL ,
+  `blurb` VARCHAR(2000)  NOT NULL ,
+  `image` VARCHAR(100)  NOT NULL ,
+  PRIMARY KEY (`id`),
+  INDEX `fk_committee_member_idx` (`member_id` ASC)
 )
 DEFAULT COLLATE=utf8_general_ci;
 
@@ -47,6 +56,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
   `university_id` INT(11)  NOT NULL ,
+  `committee` TINYINT(1)  NOT NULL DEFAULT 0,
   `graduated` TINYINT(1)  NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_university_member_member_idx` (`member_id` ASC),

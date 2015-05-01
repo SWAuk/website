@@ -24,13 +24,13 @@ class MembersTest extends SwaTestCase {
 		$this->addAdminUniversity( $unis[1], 'http://foo.com' );
 
 		$members = array(
-			// username, paid, sex, dob, uni, clubComm, course, grad, discipline, level, shirt, ename, enum, swahelp, swacomm
-			array( $users[0], false, 'Male', '1990-01-24', '+441803155555', $unis[0], false, 'c1', 2017, 'Race', 'Intermediate', 'L', 'ename', '123', 'No thanks', false ),
-			array( $users[1], true, 'Female', '1989-06-10', '+441803111111', $unis[1], true, 'c2', 2016, 'Freestyle', 'Advanced', '12', 'aname', '999', 'Website', true ),
+			// username, paid, sex, dob, uni, course, grad, discipline, level, shirt, ename, enum, swahelp
+			array( $users[0], false, 'Male', '1990-01-24', '+441803155555', $unis[0], 'c1', 2017, 'Race', 'Intermediate', 'L', 'ename', '123', 'No thanks' ),
+			array( $users[1], true, 'Female', '1989-06-10', '+441803111111', $unis[1], 'c2', 2016, 'Freestyle', 'Advanced', '12', 'aname', '999', 'Website' ),
 		);
 
 		foreach( $members as $d ) {
-			$this->addAdminMember($d[0], $d[1], $d[2], $d[3], $d[4], $d[5], $d[6], $d[7], $d[8], $d[9], $d[10], $d[11], $d[12], $d[13], $d[14], $d[15]);
+			$this->addAdminMember($d[0], $d[1], $d[2], $d[3], $d[4], $d[5], $d[6], $d[7], $d[8], $d[9], $d[10], $d[11], $d[12], $d[13]);
 		}
 
 		//Make sure the users appear in the list!
@@ -39,7 +39,7 @@ class MembersTest extends SwaTestCase {
 			$this->assertTextPresent( $d[0] );
 			$tableRow = strval( $key + 1 );
 			$this->assertTable( 'memberList.' . $tableRow . '.1', $d[0] );
-			$this->assertTable( 'memberList.' . $tableRow . '.2', preg_quote( $d[5] ) );
+			$this->assertTable( 'memberList.' . $tableRow . '.2', preg_quote( $d[4] ) );
 			if( $d[1] ) {
 				$this->assertTable( 'memberList.' . $tableRow . '.3', '1' );
 			} else {
@@ -63,24 +63,14 @@ class MembersTest extends SwaTestCase {
 			$this->assertValue( 'id=jform_dob', $d[3] );
 			$this->assertValue( 'id=jform_tel', preg_quote( $d[4] ) );
 			$this->assertSelectedLabel( 'id=jform_university_id', $d[5] );
-			if( $d[6] ) {
-				$this->assertValue( 'id=jform_club_committee', 'on' );
-			} else {
-				$this->assertValue( 'id=jform_club_committee', 'off' );
-			}
-			$this->assertValue( 'id=jform_course', $d[7] );
-			$this->assertValue( 'id=jform_graduation', $d[8] );
-			$this->assertSelectedLabel( 'id=jform_discipline', $d[9] );
-			$this->assertSelectedLabel( 'id=jform_level', $d[10] );
-			$this->assertSelectedLabel( 'id=jform_shirt', $d[11] );
-			$this->assertValue( 'id=jform_econtact', $d[12] );
-			$this->assertValue( 'id=jform_enumber', $d[13] );
-			$this->assertSelectedLabel( 'id=jform_swahelp', $d[14] );
-			if( $d[15] ) {
-				$this->assertValue( 'id=jform_swa_committee', 'on' );
-			} else {
-				$this->assertValue( 'id=jform_swa_committee', 'off' );
-			}
+			$this->assertValue( 'id=jform_course', $d[6] );
+			$this->assertValue( 'id=jform_graduation', $d[7] );
+			$this->assertSelectedLabel( 'id=jform_discipline', $d[8] );
+			$this->assertSelectedLabel( 'id=jform_level', $d[9] );
+			$this->assertSelectedLabel( 'id=jform_shirt', $d[10] );
+			$this->assertValue( 'id=jform_econtact', $d[11] );
+			$this->assertValue( 'id=jform_enumber', $d[12] );
+			$this->assertSelectedLabel( 'id=jform_swahelp', $d[13] );
 		}
 
 	}

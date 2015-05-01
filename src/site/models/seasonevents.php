@@ -6,7 +6,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelSeasonEvents extends JModelList {
+class SwaModelSeasonEvents extends SwaModelList {
 
 	/**
 	 * Constructor.

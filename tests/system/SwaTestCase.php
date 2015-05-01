@@ -40,8 +40,8 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 	}
 
 	public function addAdminMember(
-		$username, $paid, $sex, $dob, $tel, $uni, $isClubComm, $course, $graduation,
-		$discipline, $level, $shirt, $econtact, $enum, $swahelp, $isSwaComm
+		$username, $paid, $sex, $dob, $tel, $uni, $course, $graduation,
+		$discipline, $level, $shirt, $econtact, $enum, $swahelp
 	) {
 		echo "Adding member '$username'\n";
 		$this->open("administrator/index.php?option=com_swa&view=members");
@@ -54,9 +54,6 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->type("id=jform_dob", $dob);
 		$this->type("id=jform_tel", $tel);
 		$this->select( 'id=jform_university_id', $uni );
-		if( $isClubComm ){
-			$this->click("id=jform_club_committee");
-		}
 		$this->type("id=jform_course", $course);
 		$this->type("id=jform_graduation", $graduation);
 		$this->select( 'id=jform_discipline', $discipline );
@@ -65,9 +62,6 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->type("id=jform_econtact", $econtact);
 		$this->type("id=jform_enumber", $enum);
 		$this->select( 'id=jform_swahelp', $swahelp );
-		if( $isSwaComm ){
-			$this->click("id=jform_swa_committee");
-		}
 		$this->clickAndWait("css=#toolbar-save > button.btn.btn-small");
 
 	}
@@ -120,12 +114,15 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clearAdminList( 'qualifications' );
 	}
 
-	public function addAdminUniversityMember( $user, $university, $graduated ) {
+	public function addAdminUniversityMember( $user, $university, $committee, $graduated ) {
 		echo "Adding university member for '$user'\n";
 		$this->open("administrator/index.php?option=com_swa&view=universitymembers");
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'universitymember.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_university_id', $university );
+		if( $committee ) {
+			$this->click("id=jform_committee");
+		}
 		if( $graduated ) {
 			$this->click("id=jform_graduated");
 		}

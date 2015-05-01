@@ -50,6 +50,10 @@
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Members">
 				COM_SWA_TITLE_MEMBERS
 			</menu>
+			<menu link="option=com_swa&amp;view=committee" view="committee"
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Committee">
+				COM_SWA_TITLE_COMMITTEE
+			</menu>
 			<menu link="option=com_swa&amp;view=universitymembers" view="universitymembers"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/UniversityMembers">
 				COM_SWA_TITLE_UNIVERSITYMEMBERS

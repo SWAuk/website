@@ -20,14 +20,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	});
 
 	Joomla.submitbutton = function (task) {
-		if (task == 'universitymember.cancel') {
-			Joomla.submitform(task, document.getElementById('universitymember-form'));
+		if (task == 'committeemember.cancel') {
+			Joomla.submitform(task, document.getElementById('committeemember-form'));
 		}
 		else {
 
-			if (task != 'universitymember.cancel' && document.formvalidator.isValid(document.id('universitymember-form'))) {
+			if (task != 'committeemember.cancel' && document.formvalidator.isValid(document.id('committeemember-form'))) {
 
-				Joomla.submitform(task, document.getElementById('universitymember-form'));
+				Joomla.submitform(task, document.getElementById('committeemember-form'));
 			}
 			else {
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
@@ -36,35 +36,31 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="universitymember-form" class="form-validate">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="committeemember-form" class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'University Member', true ) ); ?>
+		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Committee Member', true ) ); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
-
-					<!-- Hidden field hack so that unchecked checkboxes are saved -->
-					<input type="hidden" name="jform[graduated]" value="0">
-					<input type="hidden" name="jform[committee]" value="0">
 
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'member_id' ); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'member_id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'university_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'university_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'position' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'position' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'committee' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'committee' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'blurb' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'blurb' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'graduated' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'graduated' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel( 'image' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'image' ); ?></div>
 					</div>
 
 				</fieldset>

@@ -5,9 +5,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.modeladmin' );
 
-class SwaModelTicketPurchase extends JModelList {
-
-	protected $member;
+class SwaModelTicketPurchase extends SwaModelList {
 
 	/**
 	 * @return JTable|mixed
@@ -25,10 +23,15 @@ class SwaModelTicketPurchase extends JModelList {
 			$query->where( 'a.user_id = ' . $user->id );
 			$query->group( 'a.id' );
 
+			// Join on committee table
+			$query->leftJoin( '#__swa_committee as committee on committee.member_id = a.id' );
+			$query->select( '!ISNULL(committee.id) as swa_committee' );
+
 			// Join onto the university_member table
 			$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS b ON a.id = b.member_id' );
 			$query->select( 'b.graduated as graduated' );
 			$query->select( 'count( b.id ) as confirmed_university' );
+			$query->select( 'b.committee as club_committee' );
 
 			// Get qualification info
 			$subQuery = $db->getQuery(true);

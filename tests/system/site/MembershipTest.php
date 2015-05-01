@@ -50,7 +50,6 @@ class MembershipTest extends SwaTestCase {
 		$this->assertValue( 'id=jform_dob', '1990-02-02' );
 		$this->assertValue( 'id=jform_tel', '\+4401112223334' );
 		$this->assertSelectedLabel( 'id=jform_university_id', 'uni1' );
-		$this->assertValue( 'id=jform_club_committee', 'off' );
 		$this->assertValue( 'id=jform_course', 'Computing' );
 		$this->assertValue( 'id=jform_graduation', '2017' );
 		$this->assertSelectedLabel( 'id=jform_discipline', 'Race' );
@@ -60,7 +59,6 @@ class MembershipTest extends SwaTestCase {
 		$this->assertValue( 'id=jform_enumber', '123456789' );
 		$this->assertSelectedLabel( 'id=jform_dietary', 'Vegan' );
 		$this->assertSelectedLabel( 'id=jform_swahelp', 'Events' );
-		$this->assertValue( 'id=jform_swa_committee', 'off' );
 		// Now mark as paid!
 		$this->click("id=jform_paid");
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'member.apply\')"]' );

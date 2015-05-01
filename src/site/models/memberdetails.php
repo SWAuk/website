@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.modeladmin' );
 
-class SwaModelMemberDetails extends JModelItem {
+class SwaModelMemberDetails extends SwaModelItem {
 
 	/**
 	 * @param string $type

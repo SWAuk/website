@@ -20,6 +20,7 @@ class SwaModelUniversityMembers extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
+				'committee', 'a.committee',
 				'graduated', 'a.graduated',
 			);
 		}

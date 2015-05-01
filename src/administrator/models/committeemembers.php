@@ -6,7 +6,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelUniversities extends SwaModelList {
+class SwaModelCommitteeMembers extends JModelList {
 
 	/**
 	 * Constructor.
@@ -20,8 +20,7 @@ class SwaModelUniversities extends SwaModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id', 'a.id',
-				'name', 'a.name',
-				'url', 'a.url',
+				'position', 'a.position',
 			);
 		}
 
@@ -35,7 +34,7 @@ class SwaModelUniversities extends SwaModelList {
 	 */
 	protected function populateState( $ordering = null, $direction = null ) {
 		// Initialise variables.
-		$app = JFactory::getApplication();
+		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
 		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
@@ -46,7 +45,7 @@ class SwaModelUniversities extends SwaModelList {
 		$this->setState( 'params', $params );
 
 		// List state information.
-		parent::populateState( 'a.name', 'asc' );
+		parent::populateState( 'a.id', 'asc' );
 	}
 
 	/**
@@ -85,7 +84,28 @@ class SwaModelUniversities extends SwaModelList {
 				'list.select', 'DISTINCT a.*'
 			)
 		);
-		$query->from( '`#__swa_university` AS a' );
+		$query->from( '`#__swa_committee` AS a' );
+		$query->join( 'LEFT', '`#__swa_member` AS member ON a.member_id=member.id' );
+		$query->join( 'LEFT', '`#__users` AS user ON member.user_id=user.id' );
+		$query->select( 'user.name as member' );
+
+		// Filter by search in title
+		$search = $this->getState( 'filter.search' );
+		if ( !empty( $search ) ) {
+			if ( stripos( $search, 'id:' ) === 0 ) {
+				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+			} else {
+				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$query->where( '( a.name LIKE ' . $search . '  OR  a.code LIKE ' . $search . '  OR  a.url LIKE ' . $search . '  OR  a.password LIKE ' . $search . ' )' );
+			}
+		}
+
+		// Add the list ordering clause.
+		$orderCol = $this->state->get( 'list.ordering' );
+		$orderDirn = $this->state->get( 'list.direction' );
+		if ( $orderCol && $orderDirn ) {
+			$query->order( $db->escape( $orderCol . ' ' . $orderDirn ) );
+		}
 
 		return $query;
 	}

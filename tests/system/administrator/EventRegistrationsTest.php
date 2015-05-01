@@ -35,10 +35,10 @@ class EventRegistrationsTest extends SwaTestCase {
 		//Create some members
 		$this->clearAdminMembers();
 		$this->addAdminMember(
-			$users[0], false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$users[0], false, 'Male', '1993-02-25', '+441803111111', 'uni1', 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks'
 		);
 		$this->addAdminMember(
-			$users[1], false, 'Male', '1993-02-25', '+441803111111', 'uni1', false, 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks', false
+			$users[1], false, 'Male', '1993-02-25', '+441803111111', 'uni1', 'course', 2016, 'Race', 'Intermediate', 'L', 'nm', '11', 'No thanks'
 		);
 
 		$eventRegistrations = array(

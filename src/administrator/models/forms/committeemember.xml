@@ -9,24 +9,22 @@
 		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
 			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
 			INNER JOIN #__users AS u ON m.user_id=u.id"
-
 			   label="User"
-
-
 			   required="true"
 			   filter="safehtml"/>
-
-		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university"
-
-			   label="University"
-
-
-			   required="true"
-			   filter="safehtml"/>
-		<field name="committee" type="checkbox" label="Committee" default="0">
-		</field>
-		<field name="graduated" type="checkbox" label="Graduated" default="0">
-		</field>
+		<field name="position" type="text" size="50" class="inputbox"
+				label="Position"
+				required="true"
+				filter="safehtml"/>
+		<field name="blurb" type="editor" size="2000" width="300" class="inputbox"
+				label="Blurb"
+				required="true"
+				filter="safehtml"/>
+		<field name="image" type="text" size="100" class="inputbox"
+				label="Image URL"
+				required="true"
+				validate="url"
+				filter="safehtml"/>
 	</fieldset>
+
 </form>

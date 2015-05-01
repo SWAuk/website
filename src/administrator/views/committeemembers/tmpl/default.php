@@ -19,8 +19,8 @@ $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
 $saveOrder = $listOrder == 'a.ordering';
 if ( $saveOrder ) {
-	$saveOrderingUrl = 'index.php?option=com_swa&task=universitymembers.saveOrderAjax&tmpl=component';
-	JHtml::_( 'sortablelist.sortable', 'universitymemberList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
+	$saveOrderingUrl = 'index.php?option=com_swa&task=committeemembers.saveOrderAjax&tmpl=component';
+	JHtml::_( 'sortablelist.sortable', 'committeememberList', 'adminForm', strtolower( $listDirn ), $saveOrderingUrl );
 }
 $sortFields = $this->getSortFields();
 ?>
@@ -39,13 +39,13 @@ $sortFields = $this->getSortFields();
 </script>
 
 <?php
-//Joomla Component Creator code to allow adding non select list filters
+
 if ( !empty( $this->extra_sidebar ) ) {
 	$this->sidebar .= $this->extra_sidebar;
 }
 ?>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers' ); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=committeemembers' ); ?>" method="post" name="adminForm" id="adminForm">
 	<?php if (!empty( $this->sidebar )): ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
@@ -55,7 +55,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description" >
-				<p>Here you can see and add members of a university.</p>
+				<p>Here you can see and add members of the Org committee.</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
@@ -93,7 +93,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="universitymemberList">
+			<table class="table table-striped" id="committeememberList">
 				<thead>
 				<tr>
 					<?php if ( isset( $this->items[0]->ordering ) ): ?>
@@ -107,20 +107,13 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_( 'grid.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder ); ?>
 					</th>
-					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'University', 'a.university', $listDirn, $listOrder ); ?>
-					</th>
 
 					<th class='left'>
 						<?php echo JHtml::_( 'grid.sort', 'Member', 'a.member', $listDirn, $listOrder ); ?>
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Committee', 'a.committee', $listDirn, $listOrder ); ?>
-					</th>
-
-					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Graduated', 'a.graduated', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Position', 'a.position', $listDirn, $listOrder ); ?>
 					</th>
 
 				</tr>
@@ -176,17 +169,12 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo (int)$item->id; ?>
 						</td>
 						<td>
-							<?php echo $item->university; ?>
-						</td>
-						<td>
 							<?php echo $item->member; ?>
 						</td>
 						<td>
-							<?php echo $item->committee; ?>
+							<?php echo $item->position; ?>
 						</td>
-						<td>
-							<?php echo $item->graduated; ?>
-						</td>
+
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
@@ -198,5 +186,5 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			<?php echo JHtml::_( 'form.token' ); ?>
 		</div>
-</form>
+</form>        
 

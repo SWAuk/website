@@ -17,6 +17,11 @@ JLog::addLogger(
 	array( 'com_swa' )
 );
 
+// Inclue other stuff
+require_once( __DIR__ . '/ModelItem.php' );
+require_once( __DIR__ . '/ModelList.php' );
+require_once( __DIR__ . '/ModelForm.php' );
+
 // Execute the task.
 $controller = JControllerLegacy::getInstance( 'Swa' );
 $controller->execute( JFactory::getApplication()->input->get( 'task' ) );
