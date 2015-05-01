@@ -120,9 +120,7 @@ class SwaTestCase extends SeleniumJoomlaTestCase {
 		$this->clickAndWait('//button[@onclick="Joomla.submitbutton(\'universitymember.add\')"]');
 		$this->select( 'id=jform_member_id', $user );
 		$this->select( 'id=jform_university_id', $university );
-		if( $committee ) {
-			$this->click("id=jform_committee");
-		}
+		$this->select( 'id=jform_committee', $committee );
 		if( $graduated ) {
 			$this->click("id=jform_graduated");
 		}

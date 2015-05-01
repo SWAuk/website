@@ -78,6 +78,7 @@ class SwaViewUniversityMembers extends JViewLegacy {
 		return array(
 			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
 			'a.graduated' => JText::_( 'Graduated' ),
+			'a.committee' => JText::_( 'Committee Position' ),
 		);
 	}
 

@@ -3,7 +3,7 @@
 
 class UniversityMembersTest extends SwaTestCase {
 
-	public function testAddMultipleQualifications() {
+	public function testAddMultipleUniversityMembers() {
 		$this->setUp();
 		$this->gotoAdmin();
 		$this->doAdminLogin();
@@ -38,9 +38,9 @@ class UniversityMembersTest extends SwaTestCase {
 		);
 
 		$universityMembers = array(
-			array( $users[0], 'uni1', false, false ),
-			array( $users[1], 'uni1', true, true ),
-			array( $users[2], 'uni2', true, false ),
+			array( $users[0], 'uni1', 'None', false ),
+			array( $users[1], 'uni1', 'President', true ),
+			array( $users[2], 'uni2', 'Treasurer', false ),
 		);
 
 		foreach( $universityMembers as $data ) {
@@ -54,11 +54,7 @@ class UniversityMembersTest extends SwaTestCase {
 			$tableRow = strval( $key + 1 );
 			$this->assertTable( 'universitymemberList.' . $tableRow . '.2', $uni );
 			$this->assertTable( 'universitymemberList.' . $tableRow . '.3', $user );
-			if( $committee ) {
-				$this->assertTable( 'universitymemberList.' . $tableRow . '.4', '1' );
-			} else {
-				$this->assertTable( 'universitymemberList.' . $tableRow . '.4', '0' );
-			}
+			$this->assertTable( 'universitymemberList.' . $tableRow . '.4', $committee );
 			if( $graduated ) {
 				$this->assertTable( 'universitymemberList.' . $tableRow . '.5', '1' );
 			} else {
@@ -73,11 +69,7 @@ class UniversityMembersTest extends SwaTestCase {
 			$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
 			$this->assertSelectedLabel( 'id=jform_member_id', $user );
 			$this->assertSelectedLabel( 'id=jform_university_id', $uni );
-			if( $committee ) {
-				$this->assertValue( 'id=jform_committee', 'on' );
-			} else {
-				$this->assertValue( 'id=jform_committee', 'off' );
-			}
+			$this->assertSelectedLabel( 'id=jform_committee', $committee );
 			if( $graduated ) {
 				$this->assertValue( 'id=jform_graduated', 'on' );
 			} else {
@@ -109,7 +101,7 @@ class UniversityMembersTest extends SwaTestCase {
 		);
 
 		//Add the starting entry
-		$this->addAdminUniversityMember( $user, 'uni1', false, false );
+		$this->addAdminUniversityMember( $user, 'uni1', 'None', false );
 		$this->open( 'administrator/index.php?option=com_swa&view=universitymembers' );
 		$this->click( 'id=cb0' );
 		$this->clickAndWait( 'css=#toolbar-edit > button.btn.btn-small' );
@@ -122,14 +114,18 @@ class UniversityMembersTest extends SwaTestCase {
 		$this->click("id=jform_graduated");
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
 		$this->assertValue( 'id=jform_graduated', 'off' );
-		//committee
-		$this->click("id=jform_committee");
+		//committee VP
+		$this->select( 'id=jform_committee', 'Vice President' );
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
-		$this->assertValue( 'id=jform_committee', 'on' );
-		//un-committee
-		$this->click("id=jform_committee");
+		$this->assertSelectedLabel( 'id=jform_committee', 'Vice President' );
+		//un-committee OTHER
+		$this->select( 'id=jform_committee', 'Other' );
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
-		$this->assertValue( 'id=jform_committee', 'off' );
+		$this->assertSelectedLabel( 'id=jform_committee', 'Other' );
+		//un-committee None
+		$this->select( 'id=jform_committee', 'None' );
+		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );
+		$this->assertSelectedLabel( 'id=jform_committee', 'None' );
 		//change uni
 		$this->select( 'id=jform_university_id', 'uni2' );
 		$this->clickAndWait( '//button[@onclick="Joomla.submitbutton(\'universitymember.apply\')"]' );

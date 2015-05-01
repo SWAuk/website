@@ -48,7 +48,6 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 
 					<!-- Hidden field hack so that unchecked checkboxes are saved -->
 					<input type="hidden" name="jform[graduated]" value="0">
-					<input type="hidden" name="jform[committee]" value="0">
 
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel( 'member_id' ); ?></div>

@@ -24,7 +24,15 @@
 
 			   required="true"
 			   filter="safehtml"/>
-		<field name="committee" type="checkbox" label="Committee" default="0">
+		<field name="committee" type="list"
+				label="Committee Position"
+				default="None"
+				required="false">
+			<option value="None">None</option>
+			<option value="President">President</option>
+			<option value="Vice President">Vice President</option>
+			<option value="Treasurer">Treasurer</option>
+			<option value="Other">Other</option>
 		</field>
 		<field name="graduated" type="checkbox" label="Graduated" default="0">
 		</field>

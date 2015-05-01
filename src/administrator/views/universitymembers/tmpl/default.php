@@ -116,7 +116,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_( 'grid.sort', 'Committee', 'a.committee', $listDirn, $listOrder ); ?>
+						<?php echo JHtml::_( 'grid.sort', 'Committee Position', 'a.committee', $listDirn, $listOrder ); ?>
 					</th>
 
 					<th class='left'>

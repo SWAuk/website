@@ -80,11 +80,11 @@ class SwaModelUniversityMembers extends JModelList {
 		$query = $db->getQuery( true );
 
 		// Select the required fields from the table.
-		$query->select(
-			$this->getState(
-				'list.select', 'DISTINCT a.*'
-			)
-		);
+		$query->select( array(
+			'a.id as id',
+			'a.graduated as graduated',
+			'IF(a.committee="NULL", "None", a.committee) as committee',
+			) );
 		$query->from( '`#__swa_university_member` AS a' );
 
 		$query->join( 'LEFT', '`#__swa_university` AS university ON a.university_id=university.id' );
