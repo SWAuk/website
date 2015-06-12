@@ -27,6 +27,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 <h1>Season Events</h1>
 
+<p>Events listed below are in the current season.</p>
+
 <table>
 	<tr>
 		<th>Name</th>

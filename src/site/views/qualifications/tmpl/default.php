@@ -33,6 +33,10 @@ $sortFields = $this->getSortFields();
 	}
 </script>
 
+<h1>Members with Qualifications</h1>
+
+<p>Below is a list of all members with Qualifications.</p>
+
 <form action="<?php echo JRoute::_( 'index.php?option=com_swa&view=qualifications' ); ?>" method="post" name="adminForm" id="adminForm">
 			<div class="clearfix"></div>
 			<table class="table table-striped" id="qualificationsList">

@@ -46,7 +46,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 	<tr>
 		<div class="control-group">
 			<td>Url:</td>
-			<td><?php echo ( $this->item->url ) ? 'Yes' : 'No' ?></td>
+			<td><a href="<?php echo $this->item->url ?>"><?php echo $this->item->url ?></a></td>
 		</div>
 	</tr>
 

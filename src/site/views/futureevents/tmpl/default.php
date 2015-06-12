@@ -27,19 +27,28 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 <h1>Future Events</h1>
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Date</th>
-	</tr>
-
-	<?php
-	foreach( $this->items as $item ) {
-		echo "<tr>\n";
-		echo "<td>" . $item->name . "</td>\n";
-		echo "<td>" . $item->date . "</td>\n";
-		echo "</tr>\n";
-	}
+<?php
+if( empty( $this->items ) ) {
+	echo "<p>There are no future events to display</p>";
+} else {
 	?>
 
-</table>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+		</tr>
+
+		<?php
+		foreach( $this->items as $item ) {
+			echo "<tr>\n";
+			echo "<td>" . $item->name . "</td>\n";
+			echo "<td>" . $item->date . "</td>\n";
+			echo "</tr>\n";
+		}
+		?>
+	</table>
+
+<?php
+}
+?>

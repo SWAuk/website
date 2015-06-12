@@ -41,7 +41,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		echo "<td>" . $item->name . "</td>\n";
 		echo "<td>" . $item->position . "</td>\n";
 		echo "<td>" . $item->blurb . "</td>\n";
-		echo "<td><img src=\"" . $item->image . "\"/></td>\n";
+		echo "<td><img width=\"200\" src=\"" . $item->image . "\"/></td>\n";
 		echo "</tr>\n";
 	}
 	?>
