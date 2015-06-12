@@ -109,6 +109,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `name` VARCHAR(100) NOT NULL ,
   `quantity` INT NOT NULL ,
   `price` DECIMAL NOT NULL ,
+  `need_level` VARCHAR(20) DEFAULT NULL ,
   `need_swa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_xswa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_host` TINYINT(1)  NOT NULL DEFAULT 0 ,
