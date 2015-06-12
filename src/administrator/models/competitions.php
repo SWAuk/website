@@ -103,7 +103,7 @@ class SwaModelCompetitions extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-
+                $query->where( '( event_id.name LIKE ' . $search . '  OR  competition_type_id.name LIKE ' . $search . ' )' );
 			}
 		}
 

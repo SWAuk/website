@@ -99,6 +99,9 @@ class SwaModelEventregistrations extends JModelList {
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+			} else {
+				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$query->where( '( event.name LIKE ' . $search . '  OR  user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )' );
 			}
 		}
 

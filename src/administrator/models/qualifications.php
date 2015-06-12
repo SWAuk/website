@@ -97,7 +97,7 @@ class SwaModelQualifications extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-
+				$query->where( '( user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )' );
 			}
 		}
 

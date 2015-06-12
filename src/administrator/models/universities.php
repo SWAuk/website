@@ -98,7 +98,7 @@ class SwaModelUniversities extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( a.name LIKE ' . $search . '  OR  a.code LIKE ' . $search . '  OR  a.url LIKE ' . $search . '  OR  a.password LIKE ' . $search . ' )' );
+				$query->where( '( a.name LIKE ' . $search . ' OR  a.url LIKE ' . $search . ' )' );
 			}
 		}
 

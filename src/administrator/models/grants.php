@@ -109,17 +109,6 @@ class SwaModelGrants extends JModelList {
 		$query->select( 'event_id.name AS event' );
 		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
 
-		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
-		if ( !empty( $search ) ) {
-			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
-			} else {
-				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-
-			}
-		}
-
 		// Add the list ordering clause.
 		$orderCol = $this->state->get( 'list.ordering' );
 		$orderDirn = $this->state->get( 'list.direction' );

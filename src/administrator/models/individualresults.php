@@ -112,7 +112,7 @@ class SwaModelIndividualresults extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-
+				$query->where( '( user_id.name LIKE ' . $search . '  OR  user_id.username LIKE ' . $search . ' OR  competition_type_id.name LIKE ' . $search . 'OR  event_id.name LIKE ' . $search . ' )' );
 			}
 		}
 

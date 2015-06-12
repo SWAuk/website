@@ -94,17 +94,6 @@ class SwaModelDeposits extends JModelList {
 		$query->select( 'university_id.name AS university' );
 		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
 
-		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
-		if ( !empty( $search ) ) {
-			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
-			} else {
-				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-
-			}
-		}
-
 		// Add the list ordering clause.
 		$orderCol = $this->state->get( 'list.ordering' );
 		$orderDirn = $this->state->get( 'list.direction' );
