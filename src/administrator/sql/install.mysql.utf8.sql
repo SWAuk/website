@@ -199,7 +199,7 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
-  `university_id` INT NOT NULL ,
+  `university_id` INT ,
   `date` DATE NOT NULL ,
   `cost` DECIMAL(6,2) NOT NULL ,
   PRIMARY KEY (`id`) ,
