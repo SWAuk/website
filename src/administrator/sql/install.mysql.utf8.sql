@@ -189,7 +189,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `competition_id` INT NOT NULL ,
   `university_id` INT NOT NULL ,
-  `team_number` INT NOT NULL ,
+  `team_number` INT NOT NULL DEFAULT 1 ,
   `result` INT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_team_result_competition1_idx` (`competition_id` ASC) ,
