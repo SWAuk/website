@@ -74,9 +74,10 @@ DEFAULT COLLATE=utf8_general_ci;
 
 CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   `id` INT NOT NULL AUTO_INCREMENT ,
+  `event_id` INT NOT NULL ,
   `university_id` INT NOT NULL ,
   `date` DATE NOT NULL ,
-  `amount` DECIMAL NOT NULL ,
+  `amount` DECIMAL(6,2) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_deposit_university_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
