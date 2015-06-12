@@ -144,6 +144,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT NOT NULL ,
   `event_ticket_id` INT NOT NULL ,
+  `paid` DECIMAL(6,2) NOT NULL ,
   PRIMARY KEY (`id`) ,
   INDEX `fk_ticket_event_ticket1_idx` (`event_ticket_id` ASC) ,
   INDEX `fk_ticket_member1_idx` (`member_id` ASC) )
