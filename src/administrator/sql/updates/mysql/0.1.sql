@@ -206,3 +206,18 @@ CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
   INDEX `fk_damages_event1_idx` (`event_id` ASC) ,
   INDEX `fk_damages_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
+
+/* Add 2 view level if they do not already exist */
+INSERT INTO `#__viewlevels` (title, ordering, rules)
+SELECT 'Club Committee', 0, '[]'
+FROM dual
+ WHERE NOT EXISTS (SELECT 1
+                     FROM `#__viewlevels`
+                    WHERE title = 'Club Committee');
+
+INSERT INTO `#__viewlevels` (title, ordering, rules)
+SELECT 'Org Committee', 0, '[]'
+FROM dual
+ WHERE NOT EXISTS (SELECT 1
+                     FROM `#__viewlevels`
+                    WHERE title = 'Org Committee');
