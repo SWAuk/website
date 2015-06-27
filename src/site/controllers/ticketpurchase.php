@@ -8,6 +8,19 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerTicketPurchase extends SwaController {
 
 	public function callback() {
+		try{
+			$this->processCallback();
+		}
+		catch( Exception $e ) {
+			JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa' );
+			die( 'Something went wrong, get the site administrator to check the log.' );
+		}
+	}
+
+	/**
+	 * @throws Exception
+	 */
+	private function processCallback(){
 		// Get the data from the call
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -29,21 +42,18 @@ class SwaControllerTicketPurchase extends SwaController {
 			array_keys( $data )
 		);
 		if( !empty( $missingKeys ) ) {
-			JLog::add( 'TicketPurchase callback called with missing $data items: ' . implode( ',', $missingKeys ), JLog::ERROR, 'com_swa' );
-			die( 'Posted data is missing stuff!' );
+			throw new Exception( 'TicketPurchase callback called with missing $data items: ' . implode( ',', $missingKeys ) );
 		}
 
 		// NOTE: ths receives ... 'j3ticket:' . $item->id . '-' . $this->member->id;
 		if (substr( $data['order_id'] , 0, 9) != 'j3ticket:') {
-			JLog::add( 'TicketPurchase callback called with bad looking order_id1: ' . $data['order_id'], JLog::ERROR, 'com_swa' );
-			die ( 'Order id looks wrong, pt1' );
+			throw new Exception( 'TicketPurchase callback called with bad looking order_id1: ' . $data['order_id'] );
 		}
 
 		//Extract info from the order_id!
 		$orderIdParts = explode( ':', $data['order_id'] );
 		if( !strstr( '-', $orderIdParts[1] ) ) {
-			JLog::add( 'TicketPurchase callback called with bad looking order_id2: ' . $data['order_id'], JLog::ERROR, 'com_swa' );
-			die ( 'Order id looks wrong, pt2' );
+			throw new Exception( 'TicketPurchase callback called with bad looking order_id2: ' . $data['order_id'] );
 		}
 		$orderIdParts = explode( '-', $data['order_id'] );
 		$eventTicketId = $orderIdParts[0];
@@ -57,14 +67,12 @@ class SwaControllerTicketPurchase extends SwaController {
 		$query->where( 'event_ticket.id = ' . $eventTicketId );
 		$db->setQuery( $query );
 		if( !$db->execute() ) {
-			JLog::add( 'TicketPurchase db check 1 failed', JLog::ERROR, 'com_swa' );
-			die ( 'TicketPurchase db check 1 failed' );
+			throw new Exception( 'TicketPurchase db check 1 failed' );
 		}
 		$eventTicket = $db->loadObject();
 		// Validate the price of event ticket
 		if( intval( $data['amount'] ) != intval( $eventTicket->price ) ) {
-			JLog::add( 'TicketPurchase callback called with wrong ticket amount: ' . $data['amount'] . ' expected:' . $eventTicket->price, JLog::ERROR, 'com_swa' );
-			die( 'Ticket amount was wrong' );
+			throw new Exception( 'TicketPurchase callback called with wrong ticket amount: ' . $data['amount'] . ' expected:' . $eventTicket->price );
 		}
 
 		// Post back to nochex
@@ -93,8 +101,7 @@ class SwaControllerTicketPurchase extends SwaController {
 			$result = $db->execute();
 
 			if( $result === false ) {
-				JLog::add( 'TicketPurchase callback called and authed but failed to update db. order_id: ' . $data['order_id'] , JLog::ERROR, 'com_swa' );
-				die( 'Failed to update db' );
+				throw new Exception( 'TicketPurchase callback called and authed but failed to update db. order_id: ' . $data['order_id'] );
 			}
 		}
 	}
