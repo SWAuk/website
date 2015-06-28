@@ -2,8 +2,6 @@
 // No direct access
 defined( '_JEXEC' ) or die;
 
-require_once( __DIR__ . '/load.php' );
-
 /**
  * @param    array    A named array
  *
