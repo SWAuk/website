@@ -101,7 +101,7 @@ class SwaModelUniversityMembers extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( a.name LIKE ' . $search . ' OR  user.name LIKE ' . $search . ' OR  user.username LIKE ' . $search . ' )' );
+				$query->where( '( user.name LIKE ' . $search . ' OR  user.username LIKE ' . $search . ' )' );
 			}
 		}
 
