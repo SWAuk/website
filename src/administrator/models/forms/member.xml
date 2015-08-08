@@ -52,9 +52,6 @@ LEFT JOIN #__swa_member member ON member.user_id = users.id"
 			   required="true"
 			   filter="safehtml"/>
 
-		<field name="club_committee" type="checkbox" label="Club Committee" default="0">
-		</field>
-
 		<field name="course" type="text" size="40" class="inputbox"
 
 			   label="Course"
@@ -147,9 +144,6 @@ LEFT JOIN #__swa_member member ON member.user_id = users.id"
 			<option value="Website">Website</option>
 			<option value="Events">Events</option>
 			<option value="Media">Media / Marketing</option>
-		</field>
-
-		<field name="swa_committee" type="checkbox" label="SWA Committee" default="0">
 		</field>
 
 	</fieldset>
