@@ -1,15 +1,15 @@
 Joomla SWA AccessList plugin
 ==================
 
-This plugin uses a custom event **onJUserGetAuthorisedViewLevels**.
+This plugin uses a custom event **onJAccessGetAuthorisedViewLevels**.
 
 This plugin works along side com_swa to add access levels to users based on decisions made by the component.
 
 #### Adding the event
 
-The event must be added to the **getAuthorisedViewLevels::getAuthorisedViewLevels**.
+The event must be added to the **JAccess::getAuthorisedViewLevels**.
 
-To avoid recursion we must only load the 'swa' plugins ONCe here.
+To avoid recursion we must only load the 'swa' plugins Once here.
 
 Add the following code just before the return of the method:
 
