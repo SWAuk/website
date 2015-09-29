@@ -56,6 +56,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php endif; ?>
 			<div id="adminview-description" >
 				<p>Here you can see and add members of a university.</p>
+				<p>Members marked as 'graduated' can purchase tickets marked as 'Needs XSWA'.</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">

@@ -55,7 +55,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description" >
-				<p>Here you can see and add members of the SWA. This list is different to the Joomla Users list.</p>
+				<p>Here you can see and add members of the Org. This list is different to the Joomla Users list.</p>
+				<p>People must register on the site (Joomla) before they can become a member of the Org.</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">

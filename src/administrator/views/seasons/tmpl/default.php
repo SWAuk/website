@@ -56,6 +56,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php endif; ?>
 			<div id="adminview-description" >
 				<p>Here you can see and add seasons.</p>
+				<p>This is only used once a year to add a new season.</p>
+				<p>The year is the year of the season start, so for 2014-2015 the year is 2014.</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">

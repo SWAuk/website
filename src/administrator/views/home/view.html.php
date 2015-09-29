@@ -17,10 +17,6 @@ class SwaViewHome extends JViewLegacy {
 		SwaHelper::addSubmenu( 'home' );
 		$this->sidebar = JHtmlSidebar::render();
 
-		// Assign data to the view
-		$this->header = 'Welcome!';
-		$this->message = 'Nothing is here yet, please use the menu to select the correct view.';
-
 		// Display the view
 		parent::display( $tpl );
 	}

@@ -55,7 +55,14 @@ if ( !empty( $this->extra_sidebar ) ) {
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description" >
-				<p>Here you can see and add tickets for specific events that can be bought by members.</p>
+				<p>Here you can see, add and edit tickets for specific events that can be bought by members.</p>
+				<ul>
+					<li>Quantity: The total number of this ticket availible.</li>
+					<li>Needs SWA: Member needs to be on the 'Org Committee' to buy this ticket.</li>
+					<li>Needs XSWA: Member needs to be marked as a graduate of a unit to buy this ticket.</li>
+					<li>Needs Host: Member needs to be from one of the host universities to buy this ticket.</li>
+					<li>Needs Qualification: Member needs to have a registered qualification to buy this ticket.</li>
+				</ul>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">

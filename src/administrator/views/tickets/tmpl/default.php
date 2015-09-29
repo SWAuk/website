@@ -56,6 +56,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php endif; ?>
 			<div id="adminview-description" >
 				<p>Here you can see and add tickets for members for events. (Basically tickets purchased).</p>
+				<p>If you need to swap tickets this is the place to do it!</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">

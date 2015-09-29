@@ -51,6 +51,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php endif; ?>
 			<div id="adminview-description" >
 				<p>Here you can see and add qualifications for members.</p>
+				<p>Being added here allows these members to purchase tickets marked as 'Needs Qualification'.</p>
+				<p>There is currently no granularity as to what qualification they need.</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
