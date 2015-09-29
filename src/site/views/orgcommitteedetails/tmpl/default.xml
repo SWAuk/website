@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+	<layout title="Committee Details">
+		<message>
+			Allow an org committee member to change their details.
+			Accessible to the logged in org committee member.
+		</message>
+	</layout>
+</metadata>
