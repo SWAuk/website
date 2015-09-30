@@ -7,11 +7,12 @@
  * The location of the joomlaRoot to copy from is taken from .joomlaRoot
  *     For example: X:\web\pub\joomla
  */
-$joomlaRoot = file_get_contents( __DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot' );
+$joomlaRoot = trim(file_get_contents( __DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot' ));
 if( $joomlaRoot === false ) {
 	die( 'Please create a .joomlaRoot file.' );
 }
 
+#die($joomlaRoot . '/components/com_swa');
 #Copy all files
 recurse_copy(
 	$joomlaRoot . '/components/com_swa',
