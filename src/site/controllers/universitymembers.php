@@ -14,7 +14,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		$data = $input->getArray();
 
 		$currentMember = $this->getCurrentMember();
-		if( $currentMember->club_committee != 1 ) {
+		if( !$currentMember->club_committee ) {
 			die( 'Current member is not club committee' );
 		}
 
@@ -186,6 +186,12 @@ class SwaControllerUniversityMembers extends SwaController {
 		$query->select( 'a.*' );
 		$query->from( $db->quoteName('#__swa_member') . ' AS a' );
 		$query->where( 'a.user_id = ' . $user->id );
+
+		//Join on university_member
+		$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS university_member ON a.id = university_member.member_id' );
+		$query->select( 'COALESCE( university_member.graduated, 0 ) as graduated' );
+		$query->select( '!ISNULL( university_member.member_id ) as confirmed_university' );
+		$query->select( 'university_member.committee as club_committee' );
 
 		// Load the result
 		$db->setQuery($query);
