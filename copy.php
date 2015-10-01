@@ -10,7 +10,7 @@
  */
 $joomlaRoot = trim(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot'));
 if ($joomlaRoot === false) {
-    die('Please create a .joomlaRoot file.');
+	die('Please create a .joomlaRoot file.');
 }
 
 #Copy all files
@@ -28,16 +28,16 @@ echo "Done!";
  * http://php.net/manual/en/function.copy.php#91010
  */
 function recurse_copy($src, $dst) {
-    $dir = opendir($src);
-    @mkdir($dst);
-    while (false !== ( $file = readdir($dir))) {
-	if (( $file != '.' ) && ( $file != '..' )) {
-	    if (is_dir($src . '/' . $file)) {
-		recurse_copy($src . '/' . $file, $dst . '/' . $file);
-	    } else {
-		copy($src . '/' . $file, $dst . '/' . $file);
-	    }
+	$dir = opendir($src);
+	@mkdir($dst);
+	while (false !== ( $file = readdir($dir))) {
+		if (( $file != '.' ) && ( $file != '..' )) {
+			if (is_dir($src . '/' . $file)) {
+				recurse_copy($src . '/' . $file, $dst . '/' . $file);
+			} else {
+				copy($src . '/' . $file, $dst . '/' . $file);
+			}
+		}
 	}
-    }
-    closedir($dir);
+	closedir($dir);
 }
