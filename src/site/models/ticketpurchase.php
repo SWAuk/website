@@ -99,6 +99,9 @@ class SwaModelTicketPurchase extends SwaModelList {
 	}
 
 	public function getItems() {
+		//NEVER limit this list
+		$this->setState( 'list.limit', '0' );
+
 		$tickets = parent::getItems();
 		$member = $this->getMember();
 		$allowedTickets = array();

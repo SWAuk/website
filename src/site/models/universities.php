@@ -91,6 +91,9 @@ class SwaModelUniversities extends SwaModelList {
 	}
 
 	public function getItems() {
+		//NEVER limit this list
+		$this->setState( 'list.limit', '0' );
+
 		$items = parent::getItems();
 
 		return $items;

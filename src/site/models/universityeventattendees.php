@@ -19,6 +19,13 @@ class SwaModelUniversityEventAttendees extends SwaModelList {
 		return JTable::getInstance( $type, $prefix, $config );
 	}
 
+	public function getItems() {
+		//NEVER limit this list
+		$this->setState( 'list.limit', '0' );
+		$this->items = parent::getItems();
+		return $this->items;
+	}
+
 	public function getListQuery() {
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);

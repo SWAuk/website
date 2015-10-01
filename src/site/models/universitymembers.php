@@ -43,9 +43,11 @@ class SwaModelUniversityMembers extends SwaModelList {
 	public function getItems() {
 		//NEVER limit this list
 		$this->setState( 'list.limit', '0' );
+
 		if( !isset( $this->items ) ) {
 			$this->items = parent::getItems();
 		}
+
 		return $this->items;
 	}
 
