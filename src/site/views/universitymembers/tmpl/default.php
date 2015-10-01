@@ -55,7 +55,11 @@ foreach( $this->event_registrations as $reg ) {
 		echo "<tr>\n";
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->name . "</td>\n";
-		echo "<td>" . ( $item->paid ? 'Yes' : 'No' ) . "</td>\n";
+		if( $item->paid ) {
+			echo "<td bgcolor='#CCFF33'>Yes</td>\n";
+		} else {
+			echo "<td bgcolor='#FF6666'>No</td>\n";
+		}
 		echo "<td>" . ( $item->club_committee ? 'Yes' : 'No' ) . "</td>\n";
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
