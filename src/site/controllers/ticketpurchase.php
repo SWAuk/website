@@ -102,6 +102,8 @@ class SwaControllerTicketPurchase extends SwaController {
 
 			if( $result === false ) {
 				throw new Exception( 'TicketPurchase callback called and authed but failed to update db. order_id: ' . $data['order_id'] );
+			} else {
+				JLog::add( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId, JLog::INFO, 'com_swa.audit_frontend' );
 			}
 		}
 	}

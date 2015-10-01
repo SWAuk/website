@@ -38,6 +38,8 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db->setQuery($query);
 		if( !$db->execute() ) {
 			JLog::add( 'SwaControllerUniversityMembers failed to approve: Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		} else {
+			JLog::add( 'Member ' . $currentMember->id . ' approved member ' . $data['member_id'], JLog::INFO, 'com_swa.audit_frontend' );
 		}
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers&layout=pending', false));
 	}
@@ -75,6 +77,8 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db->setQuery($query);
 		if( !$db->execute() ) {
 			JLog::add( 'SwaControllerUniversityMembers failed to graduate: Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		} else {
+			JLog::add( 'Member ' . $currentMember->id . ' graduated member ' . $data['member_id'], JLog::INFO, 'com_swa.audit_frontend' );
 		}
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers&layout=default', false));
 	}
@@ -107,6 +111,8 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db->setQuery($query);
 		if( !$db->execute() ) {
 			JLog::add( 'SwaControllerUniversityMembers failed to ungraduate: Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		} else {
+			JLog::add( 'Member ' . $currentMember->id . ' ungraduated member ' . $data['member_id'], JLog::INFO, 'com_swa.audit_frontend' );
 		}
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers&layout=graduated', false));
 	}
@@ -147,6 +153,8 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db->setQuery($query);
 		if( !$db->execute() ) {
 			JLog::add( 'SwaControllerUniversityMembers failed to register: Event:' . $data['event_id'] . ' Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		} else {
+			JLog::add( 'Member ' . $currentMember->id . ' registered member ' . $data['member_id'] . ' for event ' . $data['event_id'], JLog::INFO, 'com_swa.audit_frontend' );
 		}
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers', false));
 	}
@@ -187,6 +195,8 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db->setQuery($query);
 		if( !$db->execute() ) {
 			JLog::add( 'SwaControllerUniversityMembers failed to unregister: Event:' . $data['event_id'] . ' Member:' . $data['member_id'], JLog::INFO, 'com_swa' );
+		} else {
+			JLog::add( 'Member ' . $currentMember->id . ' unregistered member ' . $data['member_id'] . ' for event ' . $data['event_id'], JLog::INFO, 'com_swa.audit_frontend' );
 		}
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers', false));
 	}

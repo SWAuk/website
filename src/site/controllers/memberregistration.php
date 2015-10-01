@@ -72,6 +72,8 @@ class SwaControllerMemberRegistration extends SwaController {
 			$this->setMessage(JText::sprintf('Save failed', $model->getError()), 'warning');
 			$this->setRedirect(JRoute::_('index.php?option=com_swa&view=memberregistration&layout=edit&id=' . $id, false));
 			return false;
+		} else {
+			JLog::add( 'User ' . $data['user_id'] . ' registered their membership details', JLog::INFO, 'com_swa.audit_frontend' );
 		}
 
 		// Check in the profile.

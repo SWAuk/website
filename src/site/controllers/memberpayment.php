@@ -76,6 +76,8 @@ class SwaControllerMemberPayment extends SwaController {
 			if( $result === false ) {
 				JLog::add( 'MemberPayment callback called and authed but failed to update db. order_id: ' . $data['order_id'] , JLog::ERROR, 'com_swa.payment_callback' );
 				die( 'Failed to update member in db' );
+			} else {
+				JLog::add( 'Member ' . $memberId . ' bought membership', JLog::INFO, 'com_swa.audit_frontend' );
 			}
 		}
 	}
