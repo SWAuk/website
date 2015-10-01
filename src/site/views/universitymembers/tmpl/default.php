@@ -44,6 +44,7 @@ foreach( $this->event_registrations as $reg ) {
 		<th>Committee</th>
 		<th>Discipline</th>
 		<th>Level</th>
+		<th>Graduate</th>
 		<th>Event Registration</th>
 	</tr>
 
@@ -63,6 +64,12 @@ foreach( $this->event_registrations as $reg ) {
 		echo "<td>" . ( $item->club_committee ? 'Yes' : 'No' ) . "</td>\n";
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
+
+		echo '<td><form id="form-universitymembers-graduate-' . $item->id . '" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.graduate' ) . '">' .
+			'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-graduate-' . $item->id . '\').submit(); return false;">(graduate)</a>' .
+			'</form></td>';
+
 		echo "<td><ul>";
 		foreach( $this->events as $event ) {
 			echo "<li>" . $event->name . ' ';
