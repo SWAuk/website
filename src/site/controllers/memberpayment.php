@@ -29,17 +29,17 @@ class SwaControllerMemberPayment extends SwaController {
 			array_keys( $data )
 		);
 		if( !empty( $missingKeys ) ) {
-			JLog::add( 'MemberPayment callback called with missing $data items: ' . implode( ',', $missingKeys ), JLog::ERROR, 'com_swa' );
+			JLog::add( 'MemberPayment callback called with missing $data items: ' . implode( ',', $missingKeys ), JLog::ERROR, 'com_swa.payment_callback' );
 			die( 'Posted data is missing stuff!' );
 		}
 
 		// Extra specific validation
 		if( intval( $data['amount'] ) != 5 ) {
-			JLog::add( 'MemberPayment callback called with wrong membership amount: ' . $data['amount'], JLog::ERROR, 'com_swa' );
+			JLog::add( 'MemberPayment callback called with wrong membership amount: ' . $data['amount'], JLog::ERROR, 'com_swa.payment_callback' );
 			die( 'Membership amount was wrong' );
 		}
 		if (substr( $data['order_id'] , 0, 13) != 'j3membership:') {
-			JLog::add( 'MemberPayment callback called with bad looking order_id: ' . $data['order_id'], JLog::ERROR, 'com_swa' );
+			JLog::add( 'MemberPayment callback called with bad looking order_id: ' . $data['order_id'], JLog::ERROR, 'com_swa.payment_callback' );
 			die ( 'Order id looks wrong' );
 		}
 
@@ -54,7 +54,7 @@ class SwaControllerMemberPayment extends SwaController {
 		// Check the result from nochex
 		if (!strstr($response, "AUTHORISED")) {  // searches response to see if AUTHORISED is present if it isn’t a failure message is displayed
 			//NOTE: NOT AUTHORISED
-			JLog::add( 'MemberPayment callback called and nochex did not authorise: ' . $debug, JLog::INFO, 'com_swa' );
+			JLog::add( 'MemberPayment callback called and nochex did not authorise: ' . $debug, JLog::INFO, 'com_swa.payment_callback' );
 		}
 		else {
 			//NOTE: AUTHORISED
@@ -74,7 +74,7 @@ class SwaControllerMemberPayment extends SwaController {
 			$result = $db->execute();
 
 			if( $result === false ) {
-				JLog::add( 'MemberPayment callback called and authed but failed to update db. order_id: ' . $data['order_id'] , JLog::ERROR, 'com_swa' );
+				JLog::add( 'MemberPayment callback called and authed but failed to update db. order_id: ' . $data['order_id'] , JLog::ERROR, 'com_swa.payment_callback' );
 				die( 'Failed to update member in db' );
 			}
 		}

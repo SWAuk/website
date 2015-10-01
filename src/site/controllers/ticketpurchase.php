@@ -12,7 +12,7 @@ class SwaControllerTicketPurchase extends SwaController {
 			$this->processCallback();
 		}
 		catch( Exception $e ) {
-			JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa' );
+			JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_callback' );
 			die( 'Something went wrong, get the site administrator to check the log.' );
 		}
 	}
@@ -86,7 +86,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		// Check the result from nochex
 		if (!strstr($response, "AUTHORISED")) {  // searches response to see if AUTHORISED is present if it isn’t a failure message is displayed
 			//NOTE: NOT AUTHORISED
-			JLog::add( 'TicketPurchase callback called and nochex did not authorise: ' . $debug, JLog::INFO, 'com_swa' );
+			JLog::add( 'TicketPurchase callback called and nochex did not authorise: ' . $debug, JLog::INFO, 'com_swa.payment_callback' );
 		}
 		else {
 			//NOTE: AUTHORISED
