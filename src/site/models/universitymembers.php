@@ -33,13 +33,16 @@ class SwaModelUniversityMembers extends SwaModelList {
 
 		// Join onto the university_member table
 		$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS university_member ON member.id = university_member.member_id' );
-		$query->select( 'university_member.graduated as graduated' );
+		$query->select( 'COALESCE( university_member.graduated, 0 ) as graduated' );
 		$query->select( '!ISNULL( university_member.member_id ) as confirmed_university' );
+		$query->select( 'university_member.committee as club_committee' );
 
 		return $query;
 	}
 
 	public function getItems() {
+		//NEVER limit this list
+		$this->setState( 'list.limit', '0' );
 		if( !isset( $this->items ) ) {
 			$this->items = parent::getItems();
 		}
