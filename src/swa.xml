@@ -129,6 +129,8 @@
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
 			<filename>swa.php</filename>
+			<filename>ControllerAdmin.php</filename>
+			<filename>ControllerForm.php</filename>
 			<folder>controllers</folder>
 			<folder>assets</folder>
 			<folder>helpers</folder>
