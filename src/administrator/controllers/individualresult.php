@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * Individualresult controller class.
  */
-class SwaControllerIndividualresult extends JControllerForm {
+class SwaControllerIndividualresult extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'individualresults';

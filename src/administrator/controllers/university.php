@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * University controller class.
  */
-class SwaControllerUniversity extends JControllerForm {
+class SwaControllerUniversity extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'universities';

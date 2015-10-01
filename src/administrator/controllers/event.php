@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * Event controller class.
  */
-class SwaControllerEvent extends JControllerForm {
+class SwaControllerEvent extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'events';

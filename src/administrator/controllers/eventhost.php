@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.controllerform' );
 
-class SwaControllerEventhost extends JControllerForm {
+class SwaControllerEventhost extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'eventhosts';

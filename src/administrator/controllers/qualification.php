@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * Qualification controller class.
  */
-class SwaControllerQualification extends JControllerForm {
+class SwaControllerQualification extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'qualifications';

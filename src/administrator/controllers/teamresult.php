@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * Teamresult controller class.
  */
-class SwaControllerTeamresult extends JControllerForm {
+class SwaControllerTeamresult extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'teamresults';

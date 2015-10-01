@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controllerform' );
 /**
  * Grant controller class.
  */
-class SwaControllerGrant extends JControllerForm {
+class SwaControllerGrant extends SwaControllerForm {
 
 	function __construct() {
 		$this->view_list = 'grants';
