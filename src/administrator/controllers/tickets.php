@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Tickets list controller class.
  */
-class SwaControllerTickets extends JControllerAdmin {
+class SwaControllerTickets extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

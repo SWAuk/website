@@ -25,6 +25,7 @@ JLog::addLogger(
 
 // Inclue other stuff
 require_once( __DIR__ . '/ControllerForm.php' );
+require_once( __DIR__ . '/ControllerAdmin.php' );
 
 $controller = JControllerLegacy::getInstance( 'Swa' );
 $controller->execute( JFactory::getApplication()->input->get( 'task' ) );

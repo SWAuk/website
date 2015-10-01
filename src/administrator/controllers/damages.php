@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Damages list controller class.
  */
-class SwaControllerDamages extends JControllerAdmin {
+class SwaControllerDamages extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

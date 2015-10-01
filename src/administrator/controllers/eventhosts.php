@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.controlleradmin' );
 
-class SwaControllerEventhosts extends JControllerAdmin {
+class SwaControllerEventhosts extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

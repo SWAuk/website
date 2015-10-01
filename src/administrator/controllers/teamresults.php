@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Teamresults list controller class.
  */
-class SwaControllerTeamresults extends JControllerAdmin {
+class SwaControllerTeamresults extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

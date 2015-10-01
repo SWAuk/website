@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Deposits list controller class.
  */
-class SwaControllerDeposits extends JControllerAdmin {
+class SwaControllerDeposits extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

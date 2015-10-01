@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Grants list controller class.
  */
-class SwaControllerGrants extends JControllerAdmin {
+class SwaControllerGrants extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6

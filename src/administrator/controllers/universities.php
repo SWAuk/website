@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Universities list controller class.
  */
-class SwaControllerUniversities extends JControllerAdmin {
+class SwaControllerUniversities extends SwaControllerAdmin {
 	/**
 	 * Proxy for getModel.
 	 * @since    1.6
