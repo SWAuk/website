@@ -56,6 +56,16 @@ class SwaModelUniversityMembers extends SwaModelList {
 	}
 
 	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 */
+	protected function populateState( $ordering = null, $direction = null ) {
+		// List state information.
+		parent::populateState( 'name', 'desc' );
+	}
+
+	/**
 	 * Gets a list of event items that have not yet closed
 	 * @return array
 	 */
