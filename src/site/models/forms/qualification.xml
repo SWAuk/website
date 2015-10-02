@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="type"
+			type="list"
+			label="Type"
+			required="true"
+			filter="safehtml">
+			<option value="Powerboat Level 2">Powerboat Level 2</option>
+			<option value="Safety Boat">Safety Boat</option>
+			<option value="Start Windsurfing Instructor">Start Windsurfing Instructor</option>
+			<option value="Intermediate Windsurfing Instructor">Intermediate Windsurfing
+				Instructor
+			</option>
+			<option value="Advanced Windsurfing Instructor">Advanced Windsurfing Instructor</option>
+			<option value="Senior Windsurfing Instructor">Senior Windsurfing Instructor</option>
+			<option value="Racing Windsurfing Instructor">Racing Windsurfing Instructor</option>
+		</field>
+
+		<field name="expiry_date"
+			type="calendar"
+			class="inputbox"
+			required="true"
+
+			default="0000-00-00"
+
+			label="Expiry date"
+			filter="safehtml"/>
+
+	</fieldset>
+
+</form>

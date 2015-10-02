@@ -27,6 +27,8 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <h1>Qualifications</h1>
 
+<p>Below you are able to manage your current qualifications.</p>
+
 <?php
 if( empty( $this->items ) ) {
 	echo "<p>You do not have any qualifications registered with us!</p>";
@@ -64,4 +66,41 @@ if( empty( $this->items ) ) {
 
 <h2>Add new qualification</h2>
 
-<p>Not yet implemented!</p>
+<div class="qualification front-end-edit">
+	<form id="form-qualification" method="post"
+		  action="<?php echo JRoute::_( 'index.php?option=com_swa&task=qualifications' ); ?>"
+		  class="form-validate form-horizontal" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<td><?php echo $this->form->getLabel( 'type' ); ?></td>
+				<td><?php echo $this->form->getInput( 'type' ); ?></td>
+			</tr>
+			<tr>
+				<td><?php echo $this->form->getLabel( 'expiry_date' ); ?></td>
+				<td><?php echo $this->form->getInput( 'expiry_date' ); ?></td>
+			</tr>
+
+			<tr>
+				<td>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit"
+									class="validate btn btn-primary"><?php echo JText::_(
+									'JSUBMIT'
+								); ?></button>
+							<a class="btn" href="<?php echo JRoute::_(
+								'index.php?option=com_swa&task=qualifications.cancel'
+							); ?>" title="<?php echo JText::_( 'JCANCEL' ); ?>"><?php echo JText::_(
+									'JCANCEL'
+								); ?></a>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<input type="hidden" name="option" value="com_swa"/>
+			<input type="hidden" name="task" value="qualifications.add"/>
+			<?php echo JHtml::_( 'form.token' ); ?>
+		</table>
+	</form>
+</div>

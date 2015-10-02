@@ -12,6 +12,7 @@ class SwaViewQualifications extends JViewLegacy {
 	protected $params;
 	protected $user;
 	protected $member;
+	protected $form;
 
 	/**
 	 * Display the view
@@ -22,6 +23,7 @@ class SwaViewQualifications extends JViewLegacy {
 		$this->state = $this->get( 'State' );
 		$this->params = $app->getParams( 'com_swa' );
 		$this->user = JFactory::getUser();
+		$this->form = $this->get( 'Form' );
 
 		// Check for errors.
 		if ( count( $errors = $this->get( 'Errors' ) ) ) {

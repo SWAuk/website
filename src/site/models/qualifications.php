@@ -102,4 +102,19 @@ class SwaModelQualifications extends SwaModelList {
 		return $items;
 	}
 
+	public function getForm() {
+		$form =
+			$this->loadForm(
+				'com_swa.qualification',
+				'qualification',
+				array( 'control' => 'jform' )
+			);
+
+		if ( empty( $form ) ) {
+			return false;
+		}
+
+		return $form;
+	}
+
 }
