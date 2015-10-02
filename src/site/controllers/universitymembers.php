@@ -58,8 +58,46 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function unapprove() {
-		//TODO unapprove functionality
-		die( 'Not yet implemented' );
+		$props = $this->getProperties();
+		/** @var JInput $input */
+		$input = $props['input'];
+		$data = $input->getArray();
+
+		$currentMember = $this->getCurrentMember();
+		if ( !$currentMember->club_committee ) {
+			die( 'Current member is not club committee' );
+		}
+
+		$targetMember = $this->getMember( $data['member_id'] );
+		if ( $currentMember->university_id != $targetMember->university_id ) {
+			die( 'Current and target member are from different universities' );
+		}
+
+		// Unapprove the member for the university
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+
+		$query
+			->delete( $db->quoteName( '#__swa_university_member' ) )
+			->where( 'member_id = ' . $db->quote( $data['member_id'] ) );
+
+		$db->setQuery( $query );
+		if ( !$db->execute() ) {
+			JLog::add(
+				'SwaControllerUniversityMembers failed to unapprove: Member:' . $data['member_id'],
+				JLog::INFO,
+				'com_swa'
+			);
+		} else {
+			JLog::add(
+				'Member ' . $currentMember->id . ' unapproved member ' . $data['member_id'],
+				JLog::INFO,
+				'com_swa.audit_frontend'
+			);
+		}
+		$this->setRedirect(
+			JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=default', false )
+		);
 	}
 
 	public function graduate() {

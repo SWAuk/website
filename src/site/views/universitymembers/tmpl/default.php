@@ -47,7 +47,7 @@ foreach ( $this->event_registrations as $reg ) {
 		<th>Committee</th>
 		<th>Discipline</th>
 		<th>Level</th>
-		<th>Graduate</th>
+		<th>Action</th>
 		<th>Event Registration</th>
 	</tr>
 
@@ -68,7 +68,8 @@ foreach ( $this->event_registrations as $reg ) {
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 
-		echo '<td><form id="form-universitymembers-graduate-' .
+		echo '<td>';
+		echo '<form id="form-universitymembers-graduate-' .
 			$item->id .
 			'" method="POST" action="' .
 			JRoute::_( 'index.php?option=com_swa&task=universitymembers.graduate' ) .
@@ -79,7 +80,20 @@ foreach ( $this->event_registrations as $reg ) {
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-graduate-' .
 			$item->id .
 			'\').submit(); return false;">(graduate)</a>' .
-			'</form></td>';
+			'</form>';
+		echo '<form id="form-universitymembers-unapprove-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_( 'index.php?option=com_swa&task=universitymembers.unapprove' ) .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unapprove-' .
+			$item->id .
+			'\').submit(); return false;">(unapprove)</a>' .
+			'</form>';
+		echo '</td>';
 
 		echo "<td><ul>";
 		foreach ( $this->events as $event ) {
