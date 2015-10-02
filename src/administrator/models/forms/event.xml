@@ -2,43 +2,63 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="name" type="text" size="40" class="inputbox"
-			   label="Name"
-			   required="true"
-			   filter="safehtml"/>
+		<field name="name"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Name"
+			required="true"
+			filter="safehtml"/>
 
-		<field name="season_id" type="sql" default="1" key_field="id" value_field="year"
-			   query="SELECT id, year FROM #__swa_season"
-			   label="Season"
-			   required="true"
-			   filter="safehtml"/>
+		<field name="season_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="year"
+			query="SELECT id, year FROM #__swa_season"
+			label="Season"
+			required="true"
+			filter="safehtml"/>
 
-		<field name="capacity" type="text" size="40" class="inputbox"
-			   label="Capacity"
-			   required="true"
-			   filter="safehtml"/>
+		<field name="capacity"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Capacity"
+			required="true"
+			filter="safehtml"/>
 
-		<field name="date_open" type="calendar" class="inputbox"
-			   required="true"
-			   default="0000-00-00"
-			   label="Registration open date"
-			   filter="safehtml"/>
+		<field name="date_open"
+			type="calendar"
+			class="inputbox"
+			required="true"
+			default="0000-00-00"
+			label="Registration open date"
+			filter="safehtml"/>
 
-		<field name="date_close" type="calendar" class="inputbox"
-			   required="true"
-			   default="0000-00-00"
-			   label="Registration close date"
-			   filter="safehtml"/>
+		<field name="date_close"
+			type="calendar"
+			class="inputbox"
+			required="true"
+			default="0000-00-00"
+			label="Registration close date"
+			filter="safehtml"/>
 
-		<field name="date" type="calendar" class="inputbox"
-			   required="true"
-			   default="0000-00-00"
-			   label="Event start date"
-			   filter="safehtml"/>
+		<field name="date"
+			type="calendar"
+			class="inputbox"
+			required="true"
+			default="0000-00-00"
+			label="Event start date"
+			filter="safehtml"/>
 
 	</fieldset>
 

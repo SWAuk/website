@@ -2,25 +2,29 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="name" type="text" size="40" class="inputbox"
+		<field name="name"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Name"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Name"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="url" type="text" size="40" class="inputbox"
-
-			   label="Url"
-
-			   validate="url"
-
-			   filter="safehtml"/>
+		<field name="url"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Url"
+			validate="url"
+			filter="safehtml"/>
 
 	</fieldset>
 

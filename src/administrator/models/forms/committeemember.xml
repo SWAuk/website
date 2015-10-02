@@ -2,29 +2,51 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
+		<field name="member_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
 			INNER JOIN #__users AS u ON m.user_id=u.id"
-			   label="User"
-			   required="true"
-			   filter="safehtml"/>
-		<field name="position" type="text" size="50" class="inputbox"
-				label="Position"
-				required="true"
-				filter="safehtml"/>
-		<field name="blurb" type="editor" size="2000" width="300" class="inputbox"
-				label="Blurb"
-				required="true"
-				filter="safehtml"/>
-		<field name="image" type="text" size="100" class="inputbox"
-				label="Image URL"
-				required="true"
-				validate="url"
-				filter="safehtml"/>
+			label="User"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="position"
+			type="text"
+			size="50"
+			class="inputbox"
+			label="Position"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="blurb"
+			type="editor"
+			size="2000"
+			width="300"
+			class="inputbox"
+			label="Blurb"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="image"
+			type="text"
+			size="100"
+			class="inputbox"
+			label="Image URL"
+			required="true"
+			validate="url"
+			filter="safehtml"/>
+
 	</fieldset>
 
 </form>

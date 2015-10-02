@@ -2,39 +2,52 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
+		<field name="member_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
 			INNER JOIN #__users AS u ON m.user_id=u.id"
+			label="User"
+			required="true"
+			filter="safehtml"/>
 
-			   label="User"
+		<field name="university_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_university"
+			label="University"
+			required="true"
+			filter="safehtml"/>
 
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university"
-
-			   label="University"
-
-
-			   required="true"
-			   filter="safehtml"/>
-		<field name="committee" type="list"
-				label="Committee Position"
-				default="None"
-				required="false">
+		<field name="committee"
+			type="list"
+			label="Committee Position"
+			default="None"
+			required="false">
 			<option value="None">None</option>
 			<option value="President">President</option>
 			<option value="Vice President">Vice President</option>
 			<option value="Treasurer">Treasurer</option>
 			<option value="Other">Other</option>
 		</field>
-		<field name="graduated" type="checkbox" label="Graduated" default="0">
+
+		<field name="graduated"
+			type="checkbox"
+			label="Graduated"
+			default="0">
 		</field>
+
 	</fieldset>
 </form>

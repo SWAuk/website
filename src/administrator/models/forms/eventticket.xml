@@ -2,47 +2,70 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_event"
+		<field name="event_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_event"
+			label="Event"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Event"
+		<field name="name"
+			type="text"
+			size="100"
+			class="inputbox"
+			label="Name"
+			required="true"
+			filter="safehtml"/>
 
+		<field name="quantity"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Quantity"
+			required="true"
+			filter="safehtml"/>
 
-			   required="true"
-			   filter="safehtml"/>
+		<field name="price"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Price"
+			required="true"
+			filter="safehtml"/>
 
-		<field name="name" type="text" size="100" class="inputbox"
-			   label="Name"
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="quantity" type="text" size="40" class="inputbox"
-
-			   label="Quantity"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="price" type="text" size="40" class="inputbox"
-
-			   label="Price"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="need_swa" type="checkbox" label="Needs SWA" default="0">
+		<field name="need_swa"
+			type="checkbox"
+			label="Needs SWA"
+			default="0">
 		</field>
-		<field name="need_xswa" type="checkbox" label="Needs XSWA" default="0">
+
+		<field name="need_xswa"
+			type="checkbox"
+			label="Needs XSWA"
+			default="0">
 		</field>
-		<field name="need_host" type="checkbox" label="Needs Host" default="0">
+
+		<field name="need_host"
+			type="checkbox"
+			label="Needs Host"
+			default="0">
 		</field>
-		<field name="need_qualification" type="checkbox" label="Needs Qualification" default="0">
+
+		<field name="need_qualification"
+			type="checkbox"
+			label="Needs Qualification"
+			default="0">
 		</field>
 
 	</fieldset>

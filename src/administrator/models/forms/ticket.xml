@@ -2,30 +2,35 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="member_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT m.id as id, u.name as name FROM #__swa_member as m
+		<field name="member_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
 			INNER JOIN #__users AS u ON m.user_id=u.id"
+			label="User"
+			required="true"
+			filter="safehtml"/>
 
-			   label="User"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="event_ticket_id" type="sql" default="1" key_field="id"
-			   value_field="event_ticket_name"
-			   query="SELECT event_ticket.id, CONCAT( event.name, ' - ' , event_ticket.name ) as event_ticket_name FROM #__swa_event_ticket AS event_ticket
+		<field name="event_ticket_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="event_ticket_name"
+			query="SELECT event_ticket.id, CONCAT( event.name, ' - ' , event_ticket.name ) as event_ticket_name FROM #__swa_event_ticket AS event_ticket
 INNER JOIN #__swa_event AS event ON event_ticket.event_id=event.id"
-
-			   label="Event ticket"
-
-
-			   required="true"
-			   filter="safehtml"/>
+			label="Event ticket"
+			required="true"
+			filter="safehtml"/>
 
 	</fieldset>
 

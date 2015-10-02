@@ -2,42 +2,48 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_event"
+		<field name="event_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_event"
+			label="Event"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Event"
+		<field name="university_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_university"
+			label="University"
+			filter="safehtml"/>
 
+		<field name="date"
+			type="calendar"
+			class="inputbox"
+			required="true"
+			default="0000-00-00"
+			label="Date"
+			filter="safehtml"/>
 
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university"
-
-			   label="University"
-
-
-			   filter="safehtml"/>
-
-		<field name="date" type="calendar" class="inputbox"
-			   required="true"
-
-			   default="0000-00-00"
-
-			   label="Date"
-			   filter="safehtml"/>
-
-		<field name="cost" type="text" size="40" class="inputbox"
-
-			   label="Cost"
-
-
-			   required="true"
-			   filter="safehtml"/>
+		<field name="cost"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Cost"
+			required="true"
+			filter="safehtml"/>
 
 	</fieldset>
 

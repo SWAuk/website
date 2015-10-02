@@ -2,44 +2,51 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="competition_id" type="sql" default="1" key_field="id" value_field="event_competition_name"
-			   query="SELECT competition.id, CONCAT( event.name, ' - ' , competition_type.name ) as event_competition_name FROM #__swa_competition AS competition
+		<field name="competition_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="event_competition_name"
+			query="SELECT competition.id, CONCAT( event.name, ' - ' , competition_type.name ) as event_competition_name FROM #__swa_competition AS competition
 INNER JOIN #__swa_event AS event ON competition.event_id=event.id
 INNER JOIN #__swa_competition_type AS competition_type ON competition.competition_type_id=competition_type.id"
+			label="Competition"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Competition"
+		<field name="university_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_university"
+			label="University"
+			required="true"
+			filter="safehtml"/>
 
+		<field name="team_number"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Team number"
+			required="true"
+			filter="safehtml"/>
 
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="university_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_university"
-
-			   label="University"
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="team_number" type="text" size="40" class="inputbox"
-
-			   label="Team number"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="result" type="text" size="40" class="inputbox"
-
-			   label="Result"
-
-
-			   required="true"
-			   filter="safehtml"/>
+		<field name="result"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Result"
+			required="true"
+			filter="safehtml"/>
 
 	</fieldset>
 

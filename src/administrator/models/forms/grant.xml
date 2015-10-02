@@ -2,115 +2,117 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_event"
+		<field name="event_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_event"
+			label="Event"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Event"
+		<field name="application_date"
+			type="calendar"
+			class="inputbox"
+			required="true"
+			default="0000-00-00"
+			label="Application date"
+			filter="safehtml"/>
 
+		<field name="amount"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Amount"
+			required="true"
+			filter="safehtml"/>
 
-			   required="true"
-			   filter="safehtml"/>
+		<field name="fund_use"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Fund use"
+			required="true"
+			filter="safehtml"/>
 
-		<field name="application_date" type="calendar" class="inputbox"
-			   required="true"
+		<field name="instructions"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Instructions"
+			filter="safehtml"/>
 
-			   default="0000-00-00"
+		<field name="ac_sortcode"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Sortcode"
+			filter="safehtml"/>
 
-			   label="Application date"
-			   filter="safehtml"/>
+		<field name="ac_number"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="AC number"
+			filter="safehtml"/>
 
-		<field name="amount" type="text" size="40" class="inputbox"
+		<field name="ac_name"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="AC name"
+			filter="safehtml"/>
 
-			   label="Amount"
+		<field name="finances_date"
+			type="calendar"
+			class="inputbox"
+			default="0000-00-00"
+			label="Finances date"
+			filter="safehtml"/>
 
+		<field name="finances_id"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Finances ID"
+			filter="safehtml"/>
 
-			   required="true"
-			   filter="safehtml"/>
+		<field name="auth_date"
+			type="calendar"
+			class="inputbox"
+			default="0000-00-00"
+			label="Auth date"
+			filter="safehtml"/>
 
-		<field name="fund_use" type="text" size="40" class="inputbox"
+		<field name="auth_id"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Auth ID"
+			filter="safehtml"/>
 
-			   label="Fund use"
+		<field name="payment_date"
+			type="calendar"
+			class="inputbox"
+			default="0000-00-00"
+			label="Payment date"
+			filter="safehtml"/>
 
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="instructions" type="text" size="40" class="inputbox"
-
-			   label="Instructions"
-
-
-			   filter="safehtml"/>
-
-		<field name="ac_sortcode" type="text" size="40" class="inputbox"
-
-			   label="Sortcode"
-
-
-			   filter="safehtml"/>
-
-		<field name="ac_number" type="text" size="40" class="inputbox"
-
-			   label="AC number"
-
-
-			   filter="safehtml"/>
-
-		<field name="ac_name" type="text" size="40" class="inputbox"
-
-			   label="AC name"
-
-
-			   filter="safehtml"/>
-
-		<field name="finances_date" type="calendar" class="inputbox"
-
-
-			   default="0000-00-00"
-
-			   label="Finances date"
-			   filter="safehtml"/>
-
-		<field name="finances_id" type="text" size="40" class="inputbox"
-
-			   label="Finances ID"
-
-
-			   filter="safehtml"/>
-
-		<field name="auth_date" type="calendar" class="inputbox"
-
-
-			   default="0000-00-00"
-
-			   label="Auth date"
-			   filter="safehtml"/>
-
-		<field name="auth_id" type="text" size="40" class="inputbox"
-
-			   label="Auth ID"
-
-
-			   filter="safehtml"/>
-
-		<field name="payment_date" type="calendar" class="inputbox"
-
-
-			   default="0000-00-00"
-
-			   label="Payment date"
-			   filter="safehtml"/>
-
-		<field name="payment_id" type="text" size="40" class="inputbox"
-
-			   label="Payment ID"
-
-
-			   filter="safehtml"/>
+		<field name="payment_id"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Payment ID"
+			filter="safehtml"/>
 
 	</fieldset>
 

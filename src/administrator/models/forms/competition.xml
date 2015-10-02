@@ -2,27 +2,33 @@
 <form>
 	<fieldset>
 
-		<field name="id" type="text" default="0" label="Id"
-			   readonly="true" class="readonly"
-			   description="JGLOBAL_FIELD_ID_DESC"/>
+		<field name="id"
+			type="text"
+			default="0"
+			label="Id"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="event_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_event"
+		<field name="event_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_event"
+			label="Event"
+			required="true"
+			filter="safehtml"/>
 
-			   label="Event"
-
-
-			   required="true"
-			   filter="safehtml"/>
-
-		<field name="competition_type_id" type="sql" default="1" key_field="id" value_field="name"
-			   query="SELECT id, name FROM #__swa_competition_type"
-
-			   label="Competition type"
-
-
-			   required="true"
-			   filter="safehtml"/>
+		<field name="competition_type_id"
+			type="sql"
+			default="1"
+			key_field="id"
+			value_field="name"
+			query="SELECT id, name FROM #__swa_competition_type"
+			label="Competition type"
+			required="true"
+			filter="safehtml"/>
 
 	</fieldset>
 
