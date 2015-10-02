@@ -6,7 +6,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelFutureEvents extends SwaModelList {
+class SwaModelEvents extends SwaModelList {
 
 	/**
 	 * Constructor.
@@ -50,7 +50,7 @@ class SwaModelFutureEvents extends SwaModelList {
 		$this->setState( 'params', $params );
 
 		// List state information.
-		parent::populateState( 'a.name', 'asc' );
+		parent::populateState( 'event.id', 'desc' );
 	}
 
 	/**
@@ -84,8 +84,10 @@ class SwaModelFutureEvents extends SwaModelList {
 		$query = $db->getQuery( true );
 
 		$query->select( array( 'event.name', 'event.date' ) );
-		$query->from( '`#__swa_event` AS event' );
-		$query->where( 'event.date > CURDATE()' );
+		$query->from( '`#__swa_season` AS season' );
+		$query->join( 'RIGHT', '#__swa_event as event ON season.id = event.season_id' );
+		$query->select( 'season.year as season_year' );
+		$query->order( $this->getState( 'list.ordering' ) . ' ' . $this->getState( 'list.direction' ) );
 
 		return $query;
 	}

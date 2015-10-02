@@ -41,6 +41,10 @@ if ( empty( $this->items ) ) {
 
 		<?php
 		foreach ( $this->items as $item ) {
+			// Skip if date is in the past!
+			if( new DateTime( $item->date ) > new DateTime() ) {
+				continue;
+			}
 			echo "<tr>\n";
 			echo "<td>" . $item->name . "</td>\n";
 			echo "<td>" . $item->date . "</td>\n";

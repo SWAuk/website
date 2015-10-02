@@ -5,7 +5,7 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view' );
 
-class SwaViewSeasonEvents extends JViewLegacy {
+class SwaViewEvents extends JViewLegacy {
 
 	protected $state;
 	protected $items;
