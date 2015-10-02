@@ -32,6 +32,9 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	<a href="<?php echo JRoute::_(
 		'index.php?option=com_swa&view=universitymembers&layout=graduated'
 	) ?>">Graduated</a>
+	<a href="<?php echo JRoute::_(
+		'index.php?option=com_swa&view=universitymembers&layout=committee'
+	) ?>">Committee</a>
 </p>
 
 <p>
