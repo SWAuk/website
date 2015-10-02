@@ -8,7 +8,7 @@ jimport( 'joomla.application.component.view' );
 /**
  * View class for a list of Swa.
  */
-class SwaViewQualifications extends JViewLegacy {
+class SwaViewOrgMemberQualifications extends JViewLegacy {
 
 	protected $items;
 	protected $pagination;

@@ -7,7 +7,7 @@ jimport( 'joomla.application.component.modellist' );
 /**
  * Methods supporting a list of Swa records.
  */
-class SwaModelQualifications extends SwaModelList {
+class SwaModelOrgMemberQualifications extends SwaModelList {
 
 	/**
 	 * Method to auto-populate the model state.

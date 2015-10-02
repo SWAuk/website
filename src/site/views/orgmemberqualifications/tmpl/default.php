@@ -33,7 +33,7 @@ $sortFields = $this->getSortFields();
 	}
 </script>
 
-<h1>Members with Qualifications</h1>
+<h1>Org Members with Qualifications</h1>
 
 <p>Below is a list of all members with Qualifications.</p>
 
