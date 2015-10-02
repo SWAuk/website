@@ -40,6 +40,7 @@ if( empty( $this->items ) ) {
 			<th>Id</th>
 			<th>Type</th>
 			<th>Expiry</th>
+			<th>Approved</th>
 			<th>File</th>
 		</tr>
 
@@ -54,6 +55,13 @@ if( empty( $this->items ) ) {
 				echo "<td>";
 			}
 			echo $item->expiry;
+			echo "</td>";
+			if ( !$item->approved ) {
+				echo "<td bgcolor='#FF6666'>";
+			} else {
+				echo "<td>";
+			}
+			echo $item->approved;
 			echo "</td>";
 			$imgSrc =
 				JRoute::_(

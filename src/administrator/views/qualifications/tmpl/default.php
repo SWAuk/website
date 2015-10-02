@@ -167,6 +167,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							$listOrder
 						); ?>
 					</th>
+					<th>Approved</th>
 					<th>File</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
@@ -246,6 +247,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $this->escape( $item->expiry_date ); ?>
+						</td>
+						<td>
+							<?php echo $this->escape( $item->approved ); ?>
 						</td>
 						<td>
 							<?php

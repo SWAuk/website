@@ -50,6 +50,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_qualification` (
   `expiry_date` DATE NOT NULL ,
   `file` MEDIUMBLOB NOT NULL ,
   `file_type` VARCHAR(50) NOT NULL ,
+  `approved` TINYINT(1) NOT NULL ,
   PRIMARY KEY (`id`),
   INDEX `fk_qualification_member_idx` (`member_id` ASC)
 )

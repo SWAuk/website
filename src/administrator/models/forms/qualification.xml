@@ -47,6 +47,12 @@
 			label="Expiry date"
 			filter="safehtml"/>
 
+		<field name="approved"
+			type="checkbox"
+			label="Approved"
+			default="0">
+		</field>
+
 	</fieldset>
 
 </form>

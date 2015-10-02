@@ -68,6 +68,7 @@ class SwaModelOrgMemberQualifications extends SwaModelList {
 				'users.name as member',
 				'a.type as type',
 				'a.expiry_date as expiry',
+				'a.approved as approved',
 			)
 		);
 		$query->from( '`#__swa_qualification` AS a' );

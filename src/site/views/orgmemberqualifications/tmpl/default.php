@@ -67,6 +67,7 @@ $sortFields = $this->getSortFields();
 			<th class='left'>
 				<?php echo JHtml::_( 'grid.sort', 'Expiry', 'a.expiry', $listDirn, $listOrder ); ?>
 			</th>
+			<th class='left'>Approved</th>
 		</tr>
 		</thead>
 		<tfoot>
@@ -113,6 +114,15 @@ $sortFields = $this->getSortFields();
 				}
 				echo $item->expiry;
 				echo "</td>";
+
+				if ( !$item->approved ) {
+					echo "<td bgcolor='#FF6666'>";
+				} else {
+					echo "<td>";
+				}
+				echo $item->approved;
+				echo "</td>";
+
 				?>
 			</tr>
 		<?php endforeach; ?>

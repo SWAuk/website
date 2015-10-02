@@ -41,6 +41,9 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="qualification-form"
 	  class="form-validate">
 
+	<!-- Hidden field hack so that unchecked checkboxes are saved -->
+	<input type="hidden" name="jform[approved]" value="0">
+
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
@@ -81,6 +84,13 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput(
 								'expiry_date'
 							); ?></div>
+					</div>
+
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'approved'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'approved' ); ?></div>
 					</div>
 
 					<p>Note: there is currently no way to change an uploaded image file.</p>
