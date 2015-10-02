@@ -21,9 +21,9 @@ class SwaModelOrgCommitteeDetails extends SwaModelForm {
 	 * @return JTable
 	 */
 	public function getItem() {
-		$user = JFactory::getUser();
+		$member = $this->getMember();
 		$table = $this->getTable();
-		$table->load(array('member_id' => $user->id));
+		$table->load(array('member_id' => $member->id));
 		return $table;
 	}
 
@@ -42,7 +42,14 @@ class SwaModelOrgCommitteeDetails extends SwaModelForm {
 
 	protected function loadFormData() {
 		// Check the session for previously entered form data.
-		return JFactory::getApplication()->getUserState('com_swa.edit.orgcommitteedetails.data', array());
+		$data = JFactory::getApplication()->getUserState('com_swa.edit.orgcommitteedetails.data', array());
+
+		if ( empty( $data ) ) {
+			$data = $this->getItem();
+
+		}
+
+		return $data;
 	}
 
 	protected function prepareTable($table) {

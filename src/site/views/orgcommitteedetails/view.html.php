@@ -12,6 +12,7 @@ class SwaViewOrgCommitteeDetails extends JViewLegacy {
 	protected $form;
 	protected $params;
 	protected $user;
+	protected $member;
 
 	/**
 	 * Display the view
@@ -46,9 +47,6 @@ class SwaViewOrgCommitteeDetails extends JViewLegacy {
 		}
 
 		$this->item = $this->get('Item');
-		if (!is_null($this->item->id)) {
-			$app->redirect(JRoute::_('index.php?option=com_swa&view=orgcommitteedetails'));
-		}
 
 		parent::display($tpl);
 	}
