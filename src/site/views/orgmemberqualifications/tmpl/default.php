@@ -105,9 +105,15 @@ $sortFields = $this->getSortFields();
 				<td>
 					<?php echo $item->type; ?>
 				</td>
-				<td>
-					<?php echo $item->expiry; ?>
-				</td>
+				<?php
+				if ( new DateTime( $item->expiry ) < new DateTime() ) {
+					echo "<td bgcolor='#FF6666'>";
+				} else {
+					echo "<td>";
+				}
+				echo $item->expiry;
+				echo "</td>";
+				?>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>
