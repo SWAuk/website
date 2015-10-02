@@ -48,6 +48,7 @@ class SwaTabledamage extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

@@ -53,6 +53,7 @@ class SwaTablemember extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

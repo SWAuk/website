@@ -4,7 +4,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 ?>
 
-<?php if (!empty( $this->sidebar )): ?>
+<?php if ( !empty( $this->sidebar ) ): ?>
 <div id="j-sidebar-container" class="span2">
 	<?php echo $this->sidebar; ?>
 </div>
@@ -19,8 +19,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 		<h2>Installation / Composition</h2>
 
-		<p>The component is currently made of com_swa and plg_swa_viewlevels both of which can be found on <a href="https://github.com/SWAuk">github</a>.</p>
-		<p>To install the most recent versions clone the repositories, run make.php (which creates a zip) and upload that zip to Joomla (Extensions > Manage).</p>
+		<p>The component is currently made of com_swa and plg_swa_viewlevels both of which can be
+			found on <a href="https://github.com/SWAuk">github</a>.</p>
+
+		<p>To install the most recent versions clone the repositories, run make.php (which creates a
+			zip) and upload that zip to Joomla (Extensions > Manage).</p>
 
 		<h2>General Logic & Flow</h2>
 
@@ -34,7 +37,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 			<li>They will then be a member!</li>
 		</ol>
 
-		<p>This can be seen as slightly confusing and may be tackeled before the 2016-2017 season.</p>
+		<p>This can be seen as slightly confusing and may be tackeled before the 2016-2017
+			season.</p>
 
 		<p>TODO: Qualifications</p>
 
@@ -42,9 +46,13 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 		<ul>
 			<li>First an 'Event' must be created.</li>
-			<li>In order to mark a uni or collection of unis as an event host they must be added to the 'Event Host' table.</li>
+			<li>In order to mark a uni or collection of unis as an event host they must be added to
+				the 'Event Host' table.
+			</li>
 			<li>Next 'Event Tickets' must be created for the event.</li>
-			<li>Members of clubs must be registered for an event in order to buy a ticket. This would add them to the 'Event Registrations' table.</li>
+			<li>Members of clubs must be registered for an event in order to buy a ticket. This
+				would add them to the 'Event Registrations' table.
+			</li>
 			<li>When members buy a ticket an entry will be added to the 'Tickets' table.</li>
 		</ul>
 

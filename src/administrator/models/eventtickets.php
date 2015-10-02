@@ -20,15 +20,24 @@ class SwaModelEventtickets extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'event_id', 'a.event_id',
-				'name', 'a.name',
-				'quantity', 'a.quantity',
-				'price', 'a.price',
-				'need_swa', 'a.need_swa',
-				'need_xswa', 'a.need_xswa',
-				'need_host', 'a.need_host',
-				'need_qualification', 'a.need_qualification',
+				'id',
+				'a.id',
+				'event_id',
+				'a.event_id',
+				'name',
+				'a.name',
+				'quantity',
+				'a.quantity',
+				'price',
+				'a.price',
+				'need_swa',
+				'a.need_swa',
+				'need_xswa',
+				'a.need_xswa',
+				'need_host',
+				'a.need_host',
+				'need_qualification',
+				'a.need_qualification',
 			);
 		}
 
@@ -45,7 +54,8 @@ class SwaModelEventtickets extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -89,7 +99,8 @@ class SwaModelEventtickets extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_event_ticket` AS a' );

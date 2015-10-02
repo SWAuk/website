@@ -28,7 +28,8 @@ class JFormFieldTimecreated extends JFormField {
 		$time_created = $this->value;
 		if ( !strtotime( $time_created ) ) {
 			$time_created = date( "Y-m-d H:i:s" );
-			$html[] = '<input type="hidden" name="' . $this->name . '" value="' . $time_created . '" />';
+			$html[] =
+				'<input type="hidden" name="' . $this->name . '" value="' . $time_created . '" />';
 		}
 		$hidden = (boolean)$this->element['hidden'];
 		if ( $hidden == null || !$hidden ) {
@@ -36,6 +37,7 @@ class JFormFieldTimecreated extends JFormField {
 			$pretty_date = $jdate->format( JText::_( 'DATE_FORMAT_LC2' ) );
 			$html[] = "<div>" . $pretty_date . "</div>";
 		}
+
 		return implode( $html );
 	}
 }

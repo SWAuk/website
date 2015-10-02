@@ -20,9 +20,12 @@ class SwaModelEventregistrations extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'member_id', 'a.member_id',
-				'event_id', 'a.event_id',
+				'id',
+				'a.id',
+				'member_id',
+				'a.member_id',
+				'event_id',
+				'a.event_id',
 			);
 		}
 
@@ -39,7 +42,8 @@ class SwaModelEventregistrations extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -83,7 +87,8 @@ class SwaModelEventregistrations extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_event_registration` AS a' );
@@ -101,7 +106,15 @@ class SwaModelEventregistrations extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( event.name LIKE ' . $search . '  OR  user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )' );
+				$query->where(
+					'( event.name LIKE ' .
+					$search .
+					'  OR  user.name LIKE ' .
+					$search .
+					'  OR  user.username LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

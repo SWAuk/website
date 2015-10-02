@@ -19,9 +19,12 @@ class SwaModelQualifications extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'member_id', 'a.member_id',
-				'expiry_date', 'a.expiry_date',
+				'id',
+				'a.id',
+				'member_id',
+				'a.member_id',
+				'expiry_date',
+				'a.expiry_date',
 			);
 		}
 
@@ -38,7 +41,8 @@ class SwaModelQualifications extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -82,7 +86,8 @@ class SwaModelQualifications extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_qualification` AS a' );
@@ -97,7 +102,9 @@ class SwaModelQualifications extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )' );
+				$query->where(
+					'( user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )'
+				);
 			}
 		}
 

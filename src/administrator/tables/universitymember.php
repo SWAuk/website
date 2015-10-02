@@ -48,6 +48,7 @@ class SwaTableUniversityMember extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

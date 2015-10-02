@@ -15,55 +15,79 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
-	js(document).ready(function () {
+	js( document ).ready( function () {
 
-	});
+	} );
 
-	Joomla.submitbutton = function (task) {
-		if (task == 'teamresult.cancel') {
-			Joomla.submitform(task, document.getElementById('teamresult-form'));
+	Joomla.submitbutton = function ( task ) {
+		if ( task == 'teamresult.cancel' ) {
+			Joomla.submitform( task, document.getElementById( 'teamresult-form' ) );
 		}
 		else {
 
-			if (task != 'teamresult.cancel' && document.formvalidator.isValid(document.id('teamresult-form'))) {
+			if ( task != 'teamresult.cancel' && document.formvalidator.isValid( document.id( 'teamresult-form' ) ) ) {
 
-				Joomla.submitform(task, document.getElementById('teamresult-form'));
+				Joomla.submitform( task, document.getElementById( 'teamresult-form' ) );
 			}
 			else {
-				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
+				alert( '<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>' );
 			}
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="teamresult-form" class="form-validate">
+<form action="<?php echo JRoute::_(
+	'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id
+); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="teamresult-form"
+	  class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
 
-		<?php echo JHtml::_( 'bootstrap.addTab', 'myTab', 'general', JText::_( 'Team result', true ) ); ?>
+		<?php echo JHtml::_(
+			'bootstrap.addTab',
+			'myTab',
+			'general',
+			JText::_( 'Team result', true )
+		); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'id'
+							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'competition_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'competition_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'competition_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'competition_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'university_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'university_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'university_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'university_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'team_number' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'team_number' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'team_number'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'team_number'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'result' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'result'
+							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'result' ); ?></div>
 					</div>
 

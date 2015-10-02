@@ -48,6 +48,7 @@ class SwaTableeventregistration extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

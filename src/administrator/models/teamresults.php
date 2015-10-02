@@ -20,11 +20,16 @@ class SwaModelTeamresults extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'competition_id', 'a.competition_id',
-				'university_id', 'a.university_id',
-				'team_number', 'a.team_number',
-				'result', 'a.result',
+				'id',
+				'a.id',
+				'competition_id',
+				'a.competition_id',
+				'university_id',
+				'a.university_id',
+				'team_number',
+				'a.team_number',
+				'result',
+				'a.result',
 
 			);
 		}
@@ -42,7 +47,8 @@ class SwaModelTeamresults extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -86,22 +92,32 @@ class SwaModelTeamresults extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_team_result` AS a' );
 
 		// Join over the university field 'university_id'
 		$query->select( 'university_id.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university_id ON university_id.id = a.university_id'
+		);
 		// Join over 'competition_id'
-		$query->join( 'LEFT', '#__swa_competition AS competition_id ON competition_id.id = a.competition_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_competition AS competition_id ON competition_id.id = a.competition_id'
+		);
 		// Join over 'event_id'
 		$query->select( 'event_id.name AS event' );
 		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = competition_id.event_id' );
 		// Join over 'competition_type_id'
 		$query->select( 'competition_type_id.name AS competition_type' );
-		$query->join( 'LEFT', '#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition_id.competition_type_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition_id.competition_type_id'
+		);
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
@@ -110,7 +126,13 @@ class SwaModelTeamresults extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( university_id.name LIKE ' . $search . '  OR  a.team_number LIKE ' . $search . ' )' );
+				$query->where(
+					'( university_id.name LIKE ' .
+					$search .
+					'  OR  a.team_number LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

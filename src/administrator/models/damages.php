@@ -20,11 +20,16 @@ class SwaModelDamages extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'event_id', 'a.event_id',
-				'university_id', 'a.university_id',
-				'date', 'a.date',
-				'cost', 'a.cost',
+				'id',
+				'a.id',
+				'event_id',
+				'a.event_id',
+				'university_id',
+				'a.university_id',
+				'date',
+				'a.date',
+				'cost',
+				'a.cost',
 
 			);
 		}
@@ -42,7 +47,8 @@ class SwaModelDamages extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -86,14 +92,18 @@ class SwaModelDamages extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_damages` AS a' );
 
 		// Join over the university field 'university_id'
 		$query->select( 'university_id.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university_id ON university_id.id = a.university_id'
+		);
 		// Join over for event_id
 		$query->select( 'event_id.name AS event' );
 		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );

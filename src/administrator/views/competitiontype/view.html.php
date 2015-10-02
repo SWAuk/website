@@ -43,11 +43,23 @@ class SwaViewCompetitiontype extends JViewLegacy {
 
 		JToolBarHelper::apply( 'competitiontype.apply', 'JTOOLBAR_APPLY' );
 		JToolBarHelper::save( 'competitiontype.save', 'JTOOLBAR_SAVE' );
-		JToolBarHelper::custom( 'competitiontype.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
+		JToolBarHelper::custom(
+			'competitiontype.save2new',
+			'save-new.png',
+			'save-new_f2.png',
+			'JTOOLBAR_SAVE_AND_NEW',
+			false
+		);
 
 		// If an existing item, can save to a copy.
 		if ( !$isNew ) {
-			JToolBarHelper::custom( 'competitiontype.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
+			JToolBarHelper::custom(
+				'competitiontype.save2copy',
+				'save-copy.png',
+				'save-copy_f2.png',
+				'JTOOLBAR_SAVE_AS_COPY',
+				false
+			);
 		}
 		if ( empty( $this->item->id ) ) {
 			JToolBarHelper::cancel( 'competitiontype.cancel', 'JTOOLBAR_CANCEL' );

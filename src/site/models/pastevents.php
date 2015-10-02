@@ -19,9 +19,12 @@ class SwaModelPastEvents extends SwaModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'name', 'a.name',
-				'url', 'a.url',
+				'id',
+				'a.id',
+				'name',
+				'a.name',
+				'url',
+				'a.url',
 			);
 		}
 
@@ -38,7 +41,8 @@ class SwaModelPastEvents extends SwaModelList {
 		$app = JFactory::getApplication();
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.

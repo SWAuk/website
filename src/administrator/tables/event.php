@@ -48,6 +48,7 @@ class SwaTableevent extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

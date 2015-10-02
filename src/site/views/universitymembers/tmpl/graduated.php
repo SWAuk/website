@@ -1,31 +1,37 @@
 <?php
 
 // no direct access
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('formbehavior.chosen', 'select');
+JHtml::_( 'behavior.keepalive' );
+JHtml::_( 'behavior.tooltip' );
+JHtml::_( 'behavior.formvalidation' );
+JHtml::_( 'formbehavior.chosen', 'select' );
 
 ?>
 
 <!--</style>-->
 <script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-		jQuery(document).ready(function() {
-			jQuery('#form-member').submit(function(event) {
-			});
-		});
-	});
+	getScript( '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+		jQuery( document ).ready( function () {
+			jQuery( '#form-member' ).submit( function ( event ) {
+			} );
+		} );
+	} );
 </script>
 
 <h1>University Members - Graduated</h1>
 
 <p>View:
-	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=pending' ) ?>" >Pending</a>
-	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=default' ) ?>" >Current</a>
-	<a href="<?php echo JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=graduated' ) ?>" >Graduated</a>
+	<a href="<?php echo JRoute::_(
+		'index.php?option=com_swa&view=universitymembers&layout=pending'
+	) ?>">Pending</a>
+	<a href="<?php echo JRoute::_(
+		'index.php?option=com_swa&view=universitymembers&layout=default'
+	) ?>">Current</a>
+	<a href="<?php echo JRoute::_(
+		'index.php?option=com_swa&view=universitymembers&layout=graduated'
+	) ?>">Graduated</a>
 </p>
 
 <p>
@@ -44,8 +50,8 @@ JHtml::_('formbehavior.chosen', 'select');
 	</tr>
 
 	<?php
-	foreach( $this->items as $item ) {
-		if( !$item->graduated ) {
+	foreach ( $this->items as $item ) {
+		if ( !$item->graduated ) {
 			continue;
 		}
 		echo "<tr>\n";
@@ -55,9 +61,17 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td>" . $item->graduation . "</td>\n";
-		echo '<td><form id="form-universitymembers-ungraduate-' . $item->id . '" method="POST" action="' . JRoute::_( 'index.php?option=com_swa&task=universitymembers.ungraduate' ) . '">' .
-			'<input type="hidden" name ="member_id" value="' . $item->id . '" />' .
-			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-ungraduate-' . $item->id . '\').submit(); return false;">(ungraduate)</a>' .
+		echo '<td><form id="form-universitymembers-ungraduate-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_( 'index.php?option=com_swa&task=universitymembers.ungraduate' ) .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-ungraduate-' .
+			$item->id .
+			'\').submit(); return false;">(ungraduate)</a>' .
 			'</form></td>';
 		echo "</tr>\n";
 	}

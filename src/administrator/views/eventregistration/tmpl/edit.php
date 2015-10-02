@@ -15,28 +15,31 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
-	js(document).ready(function () {
+	js( document ).ready( function () {
 
-	});
+	} );
 
-	Joomla.submitbutton = function (task) {
-		if (task == 'eventregistration.cancel') {
-			Joomla.submitform(task, document.getElementById('eventregistration-form'));
+	Joomla.submitbutton = function ( task ) {
+		if ( task == 'eventregistration.cancel' ) {
+			Joomla.submitform( task, document.getElementById( 'eventregistration-form' ) );
 		}
 		else {
 
-			if (task != 'eventregistration.cancel' && document.formvalidator.isValid(document.id('eventregistration-form'))) {
+			if ( task != 'eventregistration.cancel' && document.formvalidator.isValid( document.id( 'eventregistration-form' ) ) ) {
 
-				Joomla.submitform(task, document.getElementById('eventregistration-form'));
+				Joomla.submitform( task, document.getElementById( 'eventregistration-form' ) );
 			}
 			else {
-				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
+				alert( '<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>' );
 			}
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="eventregistration-form" class="form-validate">
+<form action="<?php echo JRoute::_(
+	'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id
+); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="eventregistration-form"
+	  class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
@@ -47,20 +50,34 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'id'
+							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'event_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'event_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'event_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'event_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'member_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'member_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'member_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'member_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'expires' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'expires' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'expires'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'expires'
+							); ?></div>
 					</div>
 				</fieldset>
 			</div>

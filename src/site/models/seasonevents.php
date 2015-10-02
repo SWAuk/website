@@ -19,9 +19,12 @@ class SwaModelSeasonEvents extends SwaModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'name', 'a.name',
-				'url', 'a.url',
+				'id',
+				'a.id',
+				'name',
+				'a.name',
+				'url',
+				'a.url',
 			);
 		}
 
@@ -38,7 +41,8 @@ class SwaModelSeasonEvents extends SwaModelList {
 		$app = JFactory::getApplication();
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -97,9 +101,10 @@ class SwaModelSeasonEvents extends SwaModelList {
 		$currentYear = intval( date( "Y" ) );
 		$currentMonth = intval( date( "n" ) );//1-12
 		// 1 July onwards counts as the new season
-		if( $currentMonth <= 06 ) {
+		if ( $currentMonth <= 06 ) {
 			return $currentYear - 1;
 		}
+
 		return $currentYear;
 	}
 

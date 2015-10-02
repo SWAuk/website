@@ -15,6 +15,7 @@ class SwaControllerMembers extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'member', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

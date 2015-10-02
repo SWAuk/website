@@ -15,6 +15,7 @@ class SwaControllerDamages extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'damage', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

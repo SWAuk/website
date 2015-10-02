@@ -20,10 +20,14 @@ class SwaModelDeposits extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'university_id', 'a.university_id',
-				'date', 'a.date',
-				'amount', 'a.amount',
+				'id',
+				'a.id',
+				'university_id',
+				'a.university_id',
+				'date',
+				'a.date',
+				'amount',
+				'a.amount',
 
 			);
 		}
@@ -41,7 +45,8 @@ class SwaModelDeposits extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -85,14 +90,18 @@ class SwaModelDeposits extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_deposit` AS a' );
 
 		// Join over the university field 'university_id'
 		$query->select( 'university_id.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university_id ON university_id.id = a.university_id'
+		);
 
 		// Add the list ordering clause.
 		$orderCol = $this->state->get( 'list.ordering' );

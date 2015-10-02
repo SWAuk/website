@@ -48,6 +48,7 @@ class SwaTabledeposit extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

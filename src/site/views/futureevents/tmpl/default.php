@@ -1,34 +1,34 @@
 <?php
 
 // no direct access
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('formbehavior.chosen', 'select');
+JHtml::_( 'behavior.keepalive' );
+JHtml::_( 'behavior.tooltip' );
+JHtml::_( 'behavior.formvalidation' );
+JHtml::_( 'formbehavior.chosen', 'select' );
 
 //Load admin language file
 $lang = JFactory::getLanguage();
-$lang->load('com_swa', JPATH_ADMINISTRATOR);
+$lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 $doc = JFactory::getDocument();
-$doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
+$doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 ?>
 
-<!--</style>-->
-<script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-		jQuery(document).ready(function() {
-			jQuery('#form-member').submit(function(event) {
-			});
-		});
-	});
-</script>
+	<!--</style>-->
+	<script type="text/javascript">
+		getScript( '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+			jQuery( document ).ready( function () {
+				jQuery( '#form-member' ).submit( function ( event ) {
+				} );
+			} );
+		} );
+	</script>
 
-<h1>Future Events</h1>
+	<h1>Future Events</h1>
 
 <?php
-if( empty( $this->items ) ) {
+if ( empty( $this->items ) ) {
 	echo "<p>There are no future events to display</p>";
 } else {
 	?>
@@ -40,7 +40,7 @@ if( empty( $this->items ) ) {
 		</tr>
 
 		<?php
-		foreach( $this->items as $item ) {
+		foreach ( $this->items as $item ) {
 			echo "<tr>\n";
 			echo "<td>" . $item->name . "</td>\n";
 			echo "<td>" . $item->date . "</td>\n";
@@ -49,6 +49,6 @@ if( empty( $this->items ) ) {
 		?>
 	</table>
 
-<?php
+	<?php
 }
 ?>

@@ -13,9 +13,9 @@ jimport( 'joomla.application.component.controller' );
 JLog::addLogger(
 	array(
 		// Sets file name
-		'text_file' => 'com_swa.audit_backend.' . JFactory::getDate()->format('Y-m-d') . '.php',
+		'text_file' => 'com_swa.audit_backend.' . JFactory::getDate()->format( 'Y-m-d' ) . '.php',
 		// Sets the format of each line
-		'text_entry_format' => '{TIME} {CLIENTIP} {PRIORITY} {MESSAGE}'
+		'text_entry_format' => '{TIME} {CLIENTIP} {PRIORITY} {MESSAGE}',
 	),
 	// Sets all but DEBUG log level messages to be sent to the file
 	JLog::ALL,

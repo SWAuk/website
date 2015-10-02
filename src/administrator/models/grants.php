@@ -20,22 +20,38 @@ class SwaModelGrants extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'created_by', 'a.created_by',
-				'event_id', 'a.event_id',
-				'application_date', 'a.application_date',
-				'amount', 'a.amount',
-				'fund_use', 'a.fund_use',
-				'instructions', 'a.instructions',
-				'ac_sortcode', 'a.ac_sortcode',
-				'ac_number', 'a.ac_number',
-				'ac_name', 'a.ac_name',
-				'finances_date', 'a.finances_date',
-				'finances_id', 'a.finances_id',
-				'auth_date', 'a.auth_date',
-				'auth_id', 'a.auth_id',
-				'payment_date', 'a.payment_date',
-				'payment_id', 'a.payment_id',
+				'id',
+				'a.id',
+				'created_by',
+				'a.created_by',
+				'event_id',
+				'a.event_id',
+				'application_date',
+				'a.application_date',
+				'amount',
+				'a.amount',
+				'fund_use',
+				'a.fund_use',
+				'instructions',
+				'a.instructions',
+				'ac_sortcode',
+				'a.ac_sortcode',
+				'ac_number',
+				'a.ac_number',
+				'ac_name',
+				'a.ac_name',
+				'finances_date',
+				'a.finances_date',
+				'finances_id',
+				'a.finances_id',
+				'auth_date',
+				'a.auth_date',
+				'auth_id',
+				'a.auth_id',
+				'payment_date',
+				'a.payment_date',
+				'payment_id',
+				'a.payment_id',
 
 			);
 		}
@@ -53,7 +69,8 @@ class SwaModelGrants extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -97,7 +114,8 @@ class SwaModelGrants extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_grant` AS a' );

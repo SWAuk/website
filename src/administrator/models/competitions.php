@@ -20,9 +20,12 @@ class SwaModelCompetitions extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'event_id', 'a.event_id',
-				'competition_type_id', 'a.competition_type_id',
+				'id',
+				'a.id',
+				'event_id',
+				'a.event_id',
+				'competition_type_id',
+				'a.competition_type_id',
 
 			);
 		}
@@ -40,7 +43,8 @@ class SwaModelCompetitions extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -84,7 +88,8 @@ class SwaModelCompetitions extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_competition` AS a' );
@@ -94,7 +99,10 @@ class SwaModelCompetitions extends JModelList {
 		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
 		// Join over for competition_type_id
 		$query->select( 'competition_type_id.name AS competition_type' );
-		$query->join( 'LEFT', '#__swa_competition_type AS competition_type_id ON competition_type_id.id = a.competition_type_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = a.competition_type_id'
+		);
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
@@ -103,7 +111,13 @@ class SwaModelCompetitions extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-                $query->where( '( event_id.name LIKE ' . $search . '  OR  competition_type_id.name LIKE ' . $search . ' )' );
+				$query->where(
+					'( event_id.name LIKE ' .
+					$search .
+					'  OR  competition_type_id.name LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

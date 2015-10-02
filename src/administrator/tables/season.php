@@ -48,6 +48,7 @@ class SwaTableseason extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

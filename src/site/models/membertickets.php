@@ -11,6 +11,7 @@ class SwaModelMemberTickets extends SwaModelList {
 	 * @param string $type
 	 * @param string $prefix
 	 * @param array $config
+	 *
 	 * @return JTable
 	 */
 	public function getTable( $type = 'Ticket', $prefix = 'SwaTable', $config = array() ) {
@@ -19,10 +20,10 @@ class SwaModelMemberTickets extends SwaModelList {
 
 	public function getListQuery() {
 		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery( true );
 
 		$query->select( 'a.id as id' );
-		$query->from( $db->quoteName('#__swa_ticket') . ' AS a' );
+		$query->from( $db->quoteName( '#__swa_ticket' ) . ' AS a' );
 		$query->where( 'a.member_id = ' . $this->getMember()->id );
 		$query->join( 'LEFT', '#__swa_event_ticket AS b ON a.event_ticket_id = b.id' );
 		$query->select( 'b.name as ticket_name' );

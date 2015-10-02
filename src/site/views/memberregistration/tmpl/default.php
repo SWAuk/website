@@ -1,35 +1,37 @@
 <?php
 
 // no direct access
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
-JHtml::_('behavior.keepalive');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('formbehavior.chosen', 'select');
+JHtml::_( 'behavior.keepalive' );
+JHtml::_( 'behavior.tooltip' );
+JHtml::_( 'behavior.formvalidation' );
+JHtml::_( 'formbehavior.chosen', 'select' );
 
 //Load admin language file
 $lang = JFactory::getLanguage();
-$lang->load('com_swa', JPATH_ADMINISTRATOR);
+$lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 $doc = JFactory::getDocument();
-$doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
+$doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 ?>
 
 <!--</style>-->
 <script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-		jQuery(document).ready(function() {
-			jQuery('#form-member').submit(function(event) {
-			});
-		});
-	});
+	getScript( '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+		jQuery( document ).ready( function () {
+			jQuery( '#form-member' ).submit( function ( event ) {
+			} );
+		} );
+	} );
 </script>
 
 <div class="member-edit front-end-edit">
 
 	<h1>Member Registration</h1>
 
-	<form id="form-member" action="<?php echo JRoute::_('index.php?option=com_swa&task=memberregistration.submit'); ?>" method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
+	<form id="form-member" action="<?php echo JRoute::_(
+		'index.php?option=com_swa&task=memberregistration.submit'
+	); ?>" method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
 
 		<table>
 
@@ -124,18 +126,27 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 				</div>
 			</tr>
 
-			<tr><td>
+			<tr>
+				<td>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="validate btn btn-primary"><?php echo JText::_('JSUBMIT'); ?></button>
-							<a class="btn" href="<?php echo JRoute::_('index.php?option=com_swa&task=memberregistration.cancel'); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_('JCANCEL'); ?></a>
+							<button type="submit"
+									class="validate btn btn-primary"><?php echo JText::_(
+									'JSUBMIT'
+								); ?></button>
+							<a class="btn" href="<?php echo JRoute::_(
+								'index.php?option=com_swa&task=memberregistration.cancel'
+							); ?>" title="<?php echo JText::_( 'JCANCEL' ); ?>"><?php echo JText::_(
+									'JCANCEL'
+								); ?></a>
 						</div>
 					</div>
-				</td></tr>
+				</td>
+			</tr>
 
-			<input type="hidden" name="option" value="com_swa" />
-			<input type="hidden" name="task" value="memberregistration.submit" />
-			<?php echo JHtml::_('form.token'); ?>
+			<input type="hidden" name="option" value="com_swa"/>
+			<input type="hidden" name="task" value="memberregistration.submit"/>
+			<?php echo JHtml::_( 'form.token' ); ?>
 		</table>
 	</form>
 </div>

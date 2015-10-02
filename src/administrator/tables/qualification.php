@@ -48,6 +48,7 @@ class SwaTableQualification extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

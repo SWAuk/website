@@ -9,7 +9,7 @@ class SwaControllerOrgcommitteedetails extends SwaController {
 
 	public function submit() {
 		//TODO implement me
-		die('not yet implemented');
+		die( 'not yet implemented' );
 	}
 
 }

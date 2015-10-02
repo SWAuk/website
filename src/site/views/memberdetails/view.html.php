@@ -30,9 +30,9 @@ class SwaViewMemberDetails extends JViewLegacy {
 		}
 
 		// If not logged in
-		if( $this->user->id === 0 ) {
+		if ( $this->user->id === 0 ) {
 			$url = 'index.php?option=com_users';
-			$url.= '&return=' . base64_encode( JURI::getInstance()->toString() );
+			$url .= '&return=' . base64_encode( JURI::getInstance()->toString() );
 			$app->redirect( JRoute::_( $url, false ) );
 		}
 

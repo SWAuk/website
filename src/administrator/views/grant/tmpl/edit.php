@@ -15,28 +15,31 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
-	js(document).ready(function () {
+	js( document ).ready( function () {
 
-	});
+	} );
 
-	Joomla.submitbutton = function (task) {
-		if (task == 'grant.cancel') {
-			Joomla.submitform(task, document.getElementById('grant-form'));
+	Joomla.submitbutton = function ( task ) {
+		if ( task == 'grant.cancel' ) {
+			Joomla.submitform( task, document.getElementById( 'grant-form' ) );
 		}
 		else {
 
-			if (task != 'grant.cancel' && document.formvalidator.isValid(document.id('grant-form'))) {
+			if ( task != 'grant.cancel' && document.formvalidator.isValid( document.id( 'grant-form' ) ) ) {
 
-				Joomla.submitform(task, document.getElementById('grant-form'));
+				Joomla.submitform( task, document.getElementById( 'grant-form' ) );
 			}
 			else {
-				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
+				alert( '<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>' );
 			}
 		}
 	}
 </script>
 
-<form action="<?php echo JRoute::_( 'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="grant-form" class="form-validate">
+<form action="<?php echo JRoute::_(
+	'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id
+); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="grant-form"
+	  class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
@@ -47,64 +50,120 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'id'
+							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'event_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'event_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'event_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'event_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'application_date' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'application_date' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'application_date'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'application_date'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'amount' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'amount'
+							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'amount' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'fund_use' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'fund_use' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'fund_use'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'fund_use'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'instructions' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'instructions' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'instructions'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'instructions'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'ac_sortcode' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'ac_sortcode' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'ac_sortcode'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'ac_sortcode'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'ac_number' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'ac_number' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'ac_number'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'ac_number'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'ac_name' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'ac_name' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'ac_name'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'ac_name'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'finances_date' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'finances_date' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'finances_date'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'finances_date'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'finances_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'finances_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'finances_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'finances_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'auth_date' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'auth_date' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'auth_date'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'auth_date'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'auth_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'auth_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'auth_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'auth_id'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'payment_date' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'payment_date' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'payment_date'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'payment_date'
+							); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel( 'payment_id' ); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'payment_id' ); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'payment_id'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'payment_id'
+							); ?></div>
 					</div>
 
 				</fieldset>

@@ -48,6 +48,7 @@ class SwaTableteamresult extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

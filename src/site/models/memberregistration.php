@@ -11,6 +11,7 @@ class SwaModelMemberRegistration extends SwaModelForm {
 	 * @param string $type
 	 * @param string $prefix
 	 * @param array $config
+	 *
 	 * @return JTable
 	 */
 	public function getTable( $type = 'Member', $prefix = 'SwaTable', $config = array() ) {
@@ -24,6 +25,7 @@ class SwaModelMemberRegistration extends SwaModelForm {
 		$user = JFactory::getUser();
 		$table = $this->getTable();
 		$table->load( array( 'user_id' => $user->id ) );
+
 		return $table;
 	}
 
@@ -31,18 +33,26 @@ class SwaModelMemberRegistration extends SwaModelForm {
 	 * Method to get the record form.
 	 */
 	public function getForm( $data = array(), $loadData = true ) {
-		$form = $this->loadForm( 'com_swa.memberregistration', 'memberregistration', array( 'control' => 'jform', 'load_data' => $loadData ) );
+		$form =
+			$this->loadForm(
+				'com_swa.memberregistration',
+				'memberregistration',
+				array( 'control' => 'jform', 'load_data' => $loadData )
+			);
 
-		if( empty( $form ) ) {
+		if ( empty( $form ) ) {
 			return false;
 		}
 
 		return $form;
 	}
 
-	protected function loadFormData () {
+	protected function loadFormData() {
 		// Check the session for previously entered form data.
-		return JFactory::getApplication()->getUserState( 'com_swa.edit.memberregistration.data', array() );
+		return JFactory::getApplication()->getUserState(
+			'com_swa.edit.memberregistration.data',
+			array()
+		);
 	}
 
 	protected function prepareTable( $table ) {
@@ -64,10 +74,10 @@ class SwaModelMemberRegistration extends SwaModelForm {
 		$table = $this->getTable();
 		$result = $table->bind( $data );
 
-		if( !$result ) {
+		if ( !$result ) {
 			return $result;
 		}
 
-		return JFactory::getDbo()->insertObject('#__swa_member', $table);
+		return JFactory::getDbo()->insertObject( '#__swa_member', $table );
 	}
 }

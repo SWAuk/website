@@ -19,7 +19,8 @@ class SwaModelQualifications extends SwaModelList {
 		$app = JFactory::getApplication();
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -61,18 +62,23 @@ class SwaModelQualifications extends SwaModelList {
 		$query = $db->getQuery( true );
 
 		// Select the required fields from the table.
-		$query->select( array(
-			'a.id as id',
-			'users.name as member',
-			'a.type as type',
-			'a.expiry_date as expiry',
-		) );
+		$query->select(
+			array(
+				'a.id as id',
+				'users.name as member',
+				'a.type as type',
+				'a.expiry_date as expiry',
+			)
+		);
 		$query->from( '`#__swa_qualification` AS a' );
 
 		// Join over the user field 'user_id'
 		$query->join( 'LEFT', '#__swa_member AS member ON member.id = a.member_id' );
 		$query->join( 'LEFT', '#__users AS users ON users.id = member.user_id' );
-		$query->join( 'LEFT', '#__swa_university AS university ON university.id = member.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university ON university.id = member.university_id'
+		);
 
 		// Add the list ordering clause.
 		$orderCol = $this->state->get( 'list.ordering' );

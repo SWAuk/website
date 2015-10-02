@@ -48,6 +48,7 @@ class SwaTableeventhost extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

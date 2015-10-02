@@ -15,6 +15,7 @@ class SwaControllerSeasons extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'season', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

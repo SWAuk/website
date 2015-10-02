@@ -13,6 +13,7 @@ class SwaModelUniversityMembers extends SwaModelList {
 	 * @param string $type
 	 * @param string $prefix
 	 * @param array $config
+	 *
 	 * @return JTable
 	 */
 	public function getTable( $type = 'Member', $prefix = 'SwaTable', $config = array() ) {
@@ -21,10 +22,10 @@ class SwaModelUniversityMembers extends SwaModelList {
 
 	public function getListQuery() {
 		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery( true );
 
 		$query->select( 'member.*' );
-		$query->from( $db->quoteName('#__swa_member') . ' AS member' );
+		$query->from( $db->quoteName( '#__swa_member' ) . ' AS member' );
 		$query->where( 'member.university_id = ' . $this->getMember()->university_id );
 
 		// Join onto joomla user table
@@ -32,7 +33,10 @@ class SwaModelUniversityMembers extends SwaModelList {
 		$query->join( 'LEFT', '#__users AS user ON member.user_id = user.id' );
 
 		// Join onto the university_member table
-		$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS university_member ON member.id = university_member.member_id' );
+		$query->leftJoin(
+			$db->quoteName( '#__swa_university_member' ) .
+			' AS university_member ON member.id = university_member.member_id'
+		);
 		$query->select( 'COALESCE( university_member.graduated, 0 ) as graduated' );
 		$query->select( '!ISNULL( university_member.member_id ) as confirmed_university' );
 		$query->select( 'university_member.committee as club_committee' );
@@ -44,7 +48,7 @@ class SwaModelUniversityMembers extends SwaModelList {
 		//NEVER limit this list
 		$this->setState( 'list.limit', '0' );
 
-		if( !isset( $this->items ) ) {
+		if ( !isset( $this->items ) ) {
 			$this->items = parent::getItems();
 		}
 
@@ -57,17 +61,22 @@ class SwaModelUniversityMembers extends SwaModelList {
 	 */
 	public function getAvailableEvents() {
 		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery( true );
 
 		$query->select( 'event.*' );
-		$query->from( $db->quoteName('#__swa_event') . ' AS event' );
+		$query->from( $db->quoteName( '#__swa_event' ) . ' AS event' );
 		$query->where( 'event.date_close >= CURDATE()' );
 
 		$db->setQuery( $query );
 		$result = $db->execute();
 
-		if( !$result ) {
-			JLog::add( 'SwaModelUniversityMembers::getAvailableEvents failed to do db query', JLog::ERROR, 'com_swa' );
+		if ( !$result ) {
+			JLog::add(
+				'SwaModelUniversityMembers::getAvailableEvents failed to do db query',
+				JLog::ERROR,
+				'com_swa'
+			);
+
 			return array();
 		}
 
@@ -80,19 +89,24 @@ class SwaModelUniversityMembers extends SwaModelList {
 	 */
 	public function getEventRegistrations() {
 		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery( true );
 
-		$query->from( $db->quoteName('#__swa_event_registration') . ' AS event_registration' );
+		$query->from( $db->quoteName( '#__swa_event_registration' ) . ' AS event_registration' );
 		$query->select( 'event_registration.*' );
-		foreach( $this->getItems() as $member ) {
+		foreach ( $this->getItems() as $member ) {
 			$query->where( 'event_registration.member_id = ' . $member->id, 'OR' );
 		}
 
 		$db->setQuery( $query );
 		$result = $db->execute();
 
-		if( !$result ) {
-			JLog::add( 'SwaModelUniversityMembers::getEventRegistrations failed to do db query', JLog::ERROR, 'com_swa' );
+		if ( !$result ) {
+			JLog::add(
+				'SwaModelUniversityMembers::getEventRegistrations failed to do db query',
+				JLog::ERROR,
+				'com_swa'
+			);
+
 			return array();
 		}
 

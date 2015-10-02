@@ -11,15 +11,15 @@ class SwaModelTicketPurchase extends SwaModelList {
 	 * @return JTable|mixed
 	 */
 	public function getMember() {
-		if( !isset( $this->member ) ) {
+		if ( !isset( $this->member ) ) {
 			// Create a new query object.
 			$db = $this->getDbo();
-			$query = $db->getQuery(true);
+			$query = $db->getQuery( true );
 			$user = JFactory::getUser();
 
 			// Select the required fields from the table.
 			$query->select( 'a.*' );
-			$query->from( $db->quoteName('#__swa_member') . ' AS a' );
+			$query->from( $db->quoteName( '#__swa_member' ) . ' AS a' );
 			$query->where( 'a.user_id = ' . $user->id );
 			$query->group( 'a.id' );
 
@@ -28,38 +28,51 @@ class SwaModelTicketPurchase extends SwaModelList {
 			$query->select( '!ISNULL(committee.id) as swa_committee' );
 
 			// Join onto the university_member table
-			$query->leftJoin( $db->quoteName('#__swa_university_member') . ' AS b ON a.id = b.member_id' );
+			$query->leftJoin(
+				$db->quoteName( '#__swa_university_member' ) . ' AS b ON a.id = b.member_id'
+			);
 			$query->select( 'b.graduated as graduated' );
 			$query->select( 'count( b.id ) as confirmed_university' );
 			$query->select( 'b.committee as club_committee' );
 
 			// Get qualification info
-			$subQuery = $db->getQuery(true);
+			$subQuery = $db->getQuery( true );
 			$subQuery->select( 'COUNT(*)' );
-			$subQuery->from( $db->quoteName('#__swa_qualification') . ' AS qualification' );
+			$subQuery->from( $db->quoteName( '#__swa_qualification' ) . ' AS qualification' );
 			$subQuery->where( 'qualification.expiry_date > NOW()' );
 			$query->select( '(' . $subQuery->__toString() . ') as qualification' );
 
 			// Get event ids registered for!
-			$query->join( 'LEFT', '#__swa_event_registration AS event_registration ON event_registration.member_id = a.id' );
-			$query->select( 'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() THEN event_registration.event_id END ) as registered_event_ids' );
+			$query->join(
+				'LEFT',
+				'#__swa_event_registration AS event_registration ON event_registration.member_id = a.id'
+			);
+			$query->select(
+				'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() THEN event_registration.event_id END ) as registered_event_ids'
+			);
 
 			// Get event ids for tickets we have that are in the future
 			$query->join( 'LEFT', '#__swa_ticket AS ticket ON ticket.member_id = a.id' );
-			$query->join( 'LEFT', '#__swa_event_ticket AS event_ticket ON ticket.event_ticket_id = event_ticket.id' );
+			$query->join(
+				'LEFT',
+				'#__swa_event_ticket AS event_ticket ON ticket.event_ticket_id = event_ticket.id'
+			);
 			$query->join( 'LEFT', '#__swa_event AS event ON event_ticket.event_id = event.id' );
-			$query->select( 'GROUP_CONCAT( CASE WHEN event.date > NOW() THEN event_ticket.event_id END ) as ticketed_event_ids' );
+			$query->select(
+				'GROUP_CONCAT( CASE WHEN event.date > NOW() THEN event_ticket.event_id END ) as ticketed_event_ids'
+			);
 
 			// Load the result
-			$db->setQuery($query);
+			$db->setQuery( $query );
 			$this->member = $db->loadObject();
 		}
+
 		return $this->member;
 	}
 
 	public function getListQuery() {
 		$db = $this->getDbo();
-		$query = $db->getQuery(true);
+		$query = $db->getQuery( true );
 
 		// Select all event tickets
 		$query->select( 'a.id as id' );
@@ -69,7 +82,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'a.need_swa as need_swa' );
 		$query->select( 'a.need_host as need_host' );
 		$query->select( 'a.need_qualification as need_qualification' );
-		$query->from( $db->quoteName('#__swa_event_ticket') . ' AS a' );
+		$query->from( $db->quoteName( '#__swa_event_ticket' ) . ' AS a' );
 
 		// Select details of the event
 		$query->innerJoin( '#__swa_event as event ON a.event_id=event.id' );
@@ -79,7 +92,10 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'event.date_close as event_close' );
 
 		// Select details of the event hosts
-		$query->join( 'LEFT', '#__swa_event_host AS event_host ON event_host.event_id = a.event_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_event_host AS event_host ON event_host.event_id = a.event_id'
+		);
 		$query->select( 'GROUP_CONCAT( event_host.university_id ) as host_university_ids' );
 		$query->group( 'a.id' );
 
@@ -89,7 +105,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->where( 'event.date_open < NOW()' );
 
 		// Where we still have tickets remaining
-		$subQuery = $db->getQuery(true);
+		$subQuery = $db->getQuery( true );
 		$subQuery->select( 'COUNT( ticket.id )' );
 		$subQuery->from( '#__swa_ticket as ticket' );
 		$subQuery->where( 'ticket.event_ticket_id=a.id' );
@@ -106,17 +122,24 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$member = $this->getMember();
 		$allowedTickets = array();
 
-		foreach( $tickets as $ticket ) {
+		foreach ( $tickets as $ticket ) {
 			// Ignore tickets for events that we have already bought
-			if( in_array( $ticket->event_id, explode( ',', $this->getMember()->ticketed_event_ids ) ) ) {
+			if ( in_array(
+				$ticket->event_id,
+				explode( ',', $this->getMember()->ticketed_event_ids )
+			) ) {
 				continue;
 			}
 			// Only allow tickets the member is allowed to buy
-			if(
+			if (
 				( $ticket->need_xswa && $member->graduated ) ||
 				( $ticket->need_swa && $member->swa_committee ) ||
 				( $ticket->need_qualification && $member->qualification ) ||
-				( $ticket->need_host && in_array( $member->university_id, explode( ',', $ticket->host_university_ids ) ) ) ||
+				( $ticket->need_host &&
+					in_array(
+						$member->university_id,
+						explode( ',', $ticket->host_university_ids )
+					) ) ||
 				( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) )
 			) {
 				$allowedTickets[] = $ticket;

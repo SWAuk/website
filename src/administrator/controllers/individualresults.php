@@ -15,6 +15,7 @@ class SwaControllerIndividualresults extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'individualresult', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

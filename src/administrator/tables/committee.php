@@ -48,6 +48,7 @@ class SwaTableCommittee extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

@@ -24,7 +24,11 @@ class SwaModelUniversitymember extends JModelAdmin {
 	 * @return    JTable    A database object
 	 * @since    1.6
 	 */
-	public function getTable( $type = 'UniversityMember', $prefix = 'SwaTable', $config = array() ) {
+	public function getTable(
+		$type = 'UniversityMember',
+		$prefix = 'SwaTable',
+		$config = array()
+	) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}
 
@@ -32,7 +36,8 @@ class SwaModelUniversitymember extends JModelAdmin {
 	 * Method to get the record form.
 	 *
 	 * @param    array $data An optional array of data for the form to interogate.
-	 * @param    boolean $loadData True if the form is to load its own data (default case), false if not.
+	 * @param    boolean $loadData True if the form is to load its own data (default case), false
+	 *     if not.
 	 *
 	 * @return    JForm    A JForm object on success, false on failure
 	 * @since    1.6
@@ -42,7 +47,12 @@ class SwaModelUniversitymember extends JModelAdmin {
 		$app = JFactory::getApplication();
 
 		// Get the form.
-		$form = $this->loadForm( 'com_swa.universitymember', 'universitymember', array( 'control' => 'jform', 'load_data' => $loadData ) );
+		$form =
+			$this->loadForm(
+				'com_swa.universitymember',
+				'universitymember',
+				array( 'control' => 'jform', 'load_data' => $loadData )
+			);
 
 		if ( empty( $form ) ) {
 			return false;
@@ -59,7 +69,11 @@ class SwaModelUniversitymember extends JModelAdmin {
 	 */
 	protected function loadFormData() {
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState( 'com_swa.edit.universitymember.data', array() );
+		$data =
+			JFactory::getApplication()->getUserState(
+				'com_swa.edit.universitymember.data',
+				array()
+			);
 
 		if ( empty( $data ) ) {
 			$data = $this->getItem();

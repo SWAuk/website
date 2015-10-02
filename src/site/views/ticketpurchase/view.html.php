@@ -29,14 +29,14 @@ class SwaViewTicketpurchase extends JViewLegacy {
 		}
 
 		// If not logged in
-		if( $this->user->id === 0 ) {
+		if ( $this->user->id === 0 ) {
 			$url = 'index.php?option=com_users';
-			$url.= '&return=' . base64_encode( JURI::getInstance()->toString() );
+			$url .= '&return=' . base64_encode( JURI::getInstance()->toString() );
 			$app->redirect( JRoute::_( $url, false ) );
 		}
 
 		$this->member = $this->get( 'Member' );
-		if( !is_object( $this->member ) ) {
+		if ( !is_object( $this->member ) ) {
 			throw new Exception( 'You must be a member to view this page.' );
 		}
 		if ( !$this->member->paid ) {

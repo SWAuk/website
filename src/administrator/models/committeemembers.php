@@ -19,8 +19,10 @@ class SwaModelCommitteeMembers extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'position', 'a.position',
+				'id',
+				'a.id',
+				'position',
+				'a.position',
 			);
 		}
 
@@ -37,7 +39,8 @@ class SwaModelCommitteeMembers extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -81,7 +84,8 @@ class SwaModelCommitteeMembers extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_committee` AS a' );
@@ -96,7 +100,15 @@ class SwaModelCommitteeMembers extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( a.position LIKE ' . $search . '  OR  user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )' );
+				$query->where(
+					'( a.position LIKE ' .
+					$search .
+					'  OR  user.name LIKE ' .
+					$search .
+					'  OR  user.username LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

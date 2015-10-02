@@ -43,11 +43,23 @@ class SwaViewUniversityMember extends JViewLegacy {
 
 		JToolBarHelper::apply( 'universitymember.apply', 'JTOOLBAR_APPLY' );
 		JToolBarHelper::save( 'universitymember.save', 'JTOOLBAR_SAVE' );
-		JToolBarHelper::custom( 'universitymember.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
+		JToolBarHelper::custom(
+			'universitymember.save2new',
+			'save-new.png',
+			'save-new_f2.png',
+			'JTOOLBAR_SAVE_AND_NEW',
+			false
+		);
 
 		// If an existing item, can save to a copy.
 		if ( !$isNew ) {
-			JToolBarHelper::custom( 'universitymember.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
+			JToolBarHelper::custom(
+				'universitymember.save2copy',
+				'save-copy.png',
+				'save-copy_f2.png',
+				'JTOOLBAR_SAVE_AS_COPY',
+				false
+			);
 		}
 		if ( empty( $this->item->id ) ) {
 			JToolBarHelper::cancel( 'universitymember.cancel', 'JTOOLBAR_CANCEL' );

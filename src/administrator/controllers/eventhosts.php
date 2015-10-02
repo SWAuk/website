@@ -12,6 +12,7 @@ class SwaControllerEventhosts extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'eventhost', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

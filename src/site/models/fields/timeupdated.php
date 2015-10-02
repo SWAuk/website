@@ -37,7 +37,8 @@ class JFormFieldTimeupdated extends JFormField {
 			}
 		}
 		$time_updated = date( "Y-m-d H:i:s" );
-		$html[] = '<input type="hidden" name="' . $this->name . '" value="' . $time_updated . '" />';
+		$html[] =
+			'<input type="hidden" name="' . $this->name . '" value="' . $time_updated . '" />';
 
 		return implode( $html );
 	}

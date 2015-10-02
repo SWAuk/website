@@ -48,6 +48,7 @@ class SwaTableticket extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

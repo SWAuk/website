@@ -20,9 +20,12 @@ class SwaModelTickets extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'user_id', 'a.user_id',
-				'event_ticket_id', 'a.event_ticket_id',
+				'id',
+				'a.id',
+				'user_id',
+				'a.user_id',
+				'event_ticket_id',
+				'a.event_ticket_id',
 
 			);
 		}
@@ -40,7 +43,8 @@ class SwaModelTickets extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -84,7 +88,8 @@ class SwaModelTickets extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_ticket` AS a' );
@@ -96,11 +101,17 @@ class SwaModelTickets extends JModelList {
 		$query->select( 'user_id.name AS user' );
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
 		// Join over 'event_ticket_id'
-		$query->join( 'LEFT', '#__swa_event_ticket AS event_ticket_id ON event_ticket_id.id = a.event_ticket_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_event_ticket AS event_ticket_id ON event_ticket_id.id = a.event_ticket_id'
+		);
 		$query->select( 'event_ticket_id.name as ticket_name' );
 		// Join over 'event_id'
 		$query->select( 'event_id.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = event_ticket_id.event_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_event AS event_id ON event_id.id = event_ticket_id.event_id'
+		);
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
@@ -109,7 +120,15 @@ class SwaModelTickets extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( user_id.name LIKE ' . $search . '  OR  user_id.username LIKE ' . $search . ' OR  event_id.name LIKE ' . $search . ' )' );
+				$query->where(
+					'( user_id.name LIKE ' .
+					$search .
+					'  OR  user_id.username LIKE ' .
+					$search .
+					' OR  event_id.name LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

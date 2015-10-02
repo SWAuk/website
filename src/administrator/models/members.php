@@ -19,19 +19,32 @@ class SwaModelMembers extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'user_id', 'a.user_id',
-				'sex', 'a.sex',
-				'dob', 'a.dob',
-				'university_id', 'a.university_id',
-				'course', 'a.course',
-				'graduation', 'a.graduation',
-				'discipline', 'a.discipline',
-				'level', 'a.level',
-				'shirt', 'a.shirt',
-				'econtact', 'a.econtact',
-				'enumber', 'a.enumber',
-				'swahelp', 'a.swahelp',
+				'id',
+				'a.id',
+				'user_id',
+				'a.user_id',
+				'sex',
+				'a.sex',
+				'dob',
+				'a.dob',
+				'university_id',
+				'a.university_id',
+				'course',
+				'a.course',
+				'graduation',
+				'a.graduation',
+				'discipline',
+				'a.discipline',
+				'level',
+				'a.level',
+				'shirt',
+				'a.shirt',
+				'econtact',
+				'a.econtact',
+				'enumber',
+				'a.enumber',
+				'swahelp',
+				'a.swahelp',
 
 			);
 		}
@@ -49,7 +62,8 @@ class SwaModelMembers extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -93,7 +107,8 @@ class SwaModelMembers extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_member` AS a' );
@@ -103,7 +118,10 @@ class SwaModelMembers extends JModelList {
 		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = a.user_id' );
 		// Join over the user field 'university_id'
 		$query->select( 'university_id.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university_id ON university_id.id = a.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university_id ON university_id.id = a.university_id'
+		);
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
@@ -112,7 +130,13 @@ class SwaModelMembers extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( user_id.name LIKE ' . $search . '  OR  user_id.username LIKE ' . $search . ' )' );
+				$query->where(
+					'( user_id.name LIKE ' .
+					$search .
+					'  OR  user_id.username LIKE ' .
+					$search .
+					' )'
+				);
 			}
 		}
 

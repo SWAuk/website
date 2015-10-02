@@ -19,9 +19,12 @@ class SwaModelUniversityMembers extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'committee', 'a.committee',
-				'graduated', 'a.graduated',
+				'id',
+				'a.id',
+				'committee',
+				'a.committee',
+				'graduated',
+				'a.graduated',
 			);
 		}
 
@@ -38,7 +41,8 @@ class SwaModelUniversityMembers extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -80,14 +84,19 @@ class SwaModelUniversityMembers extends JModelList {
 		$query = $db->getQuery( true );
 
 		// Select the required fields from the table.
-		$query->select( array(
-			'a.id as id',
-			'a.graduated as graduated',
-			'IF(a.committee="NULL", "None", a.committee) as committee',
-			) );
+		$query->select(
+			array(
+				'a.id as id',
+				'a.graduated as graduated',
+				'IF(a.committee="NULL", "None", a.committee) as committee',
+			)
+		);
 		$query->from( '`#__swa_university_member` AS a' );
 
-		$query->join( 'LEFT', '`#__swa_university` AS university ON a.university_id=university.id' );
+		$query->join(
+			'LEFT',
+			'`#__swa_university` AS university ON a.university_id=university.id'
+		);
 		$query->select( 'university.name as university' );
 
 		$query->join( 'LEFT', '`#__swa_member` AS member ON a.member_id=member.id' );
@@ -101,7 +110,9 @@ class SwaModelUniversityMembers extends JModelList {
 				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
-				$query->where( '( user.name LIKE ' . $search . ' OR  user.username LIKE ' . $search . ' )' );
+				$query->where(
+					'( user.name LIKE ' . $search . ' OR  user.username LIKE ' . $search . ' )'
+				);
 			}
 		}
 

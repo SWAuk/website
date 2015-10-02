@@ -15,6 +15,7 @@ class SwaControllerEvents extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'event', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 

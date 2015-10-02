@@ -43,11 +43,23 @@ class SwaViewGrant extends JViewLegacy {
 
 		JToolBarHelper::apply( 'grant.apply', 'JTOOLBAR_APPLY' );
 		JToolBarHelper::save( 'grant.save', 'JTOOLBAR_SAVE' );
-		JToolBarHelper::custom( 'grant.save2new', 'save-new.png', 'save-new_f2.png', 'JTOOLBAR_SAVE_AND_NEW', false );
+		JToolBarHelper::custom(
+			'grant.save2new',
+			'save-new.png',
+			'save-new_f2.png',
+			'JTOOLBAR_SAVE_AND_NEW',
+			false
+		);
 
 		// If an existing item, can save to a copy.
 		if ( !$isNew ) {
-			JToolBarHelper::custom( 'grant.save2copy', 'save-copy.png', 'save-copy_f2.png', 'JTOOLBAR_SAVE_AS_COPY', false );
+			JToolBarHelper::custom(
+				'grant.save2copy',
+				'save-copy.png',
+				'save-copy_f2.png',
+				'JTOOLBAR_SAVE_AS_COPY',
+				false
+			);
 		}
 		if ( empty( $this->item->id ) ) {
 			JToolBarHelper::cancel( 'grant.cancel', 'JTOOLBAR_CANCEL' );

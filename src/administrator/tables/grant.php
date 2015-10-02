@@ -48,6 +48,7 @@ class SwaTablegrant extends JTable {
 		if ( $result ) {
 
 		}
+
 		return $result;
 	}
 

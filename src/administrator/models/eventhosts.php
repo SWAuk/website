@@ -20,9 +20,12 @@ class SwaModelEventhosts extends JModelList {
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'event_id', 'a.event_id',
-				'university_id', 'a.university_id',
+				'id',
+				'a.id',
+				'event_id',
+				'a.event_id',
+				'university_id',
+				'a.university_id',
 			);
 		}
 
@@ -39,7 +42,8 @@ class SwaModelEventhosts extends JModelList {
 		$app = JFactory::getApplication( 'administrator' );
 
 		// Load the filter state.
-		$search = $app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
+		$search =
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
 		$this->setState( 'filter.search', $search );
 
 		// Load the parameters.
@@ -83,7 +87,8 @@ class SwaModelEventhosts extends JModelList {
 		// Select the required fields from the table.
 		$query->select(
 			$this->getState(
-				'list.select', 'DISTINCT a.*'
+				'list.select',
+				'DISTINCT a.*'
 			)
 		);
 		$query->from( '`#__swa_event_host` AS a' );
@@ -93,7 +98,10 @@ class SwaModelEventhosts extends JModelList {
 		$query->join( 'LEFT', '#__swa_event AS event ON event.id = a.event_id' );
 		// Join over for university
 		$query->select( 'university.name AS university' );
-		$query->join( 'LEFT', '#__swa_university AS university ON university.id = a.university_id' );
+		$query->join(
+			'LEFT',
+			'#__swa_university AS university ON university.id = a.university_id'
+		);
 
 		return $query;
 	}

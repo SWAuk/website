@@ -51,7 +51,7 @@ class JFormFieldForeignKey extends JFormField {
 			->select(
 				array(
 					$this->key_field,
-					$this->value_field
+					$this->value_field,
 				)
 			)
 			->from( $this->table );
@@ -62,14 +62,19 @@ class JFormFieldForeignKey extends JFormField {
 		$input_options = 'class="' . $this->getAttribute( 'class' ) . '"';
 
 		//Depends of the type of input, the field will show a type or another
-		switch( $this->input_type ) {
+		switch ( $this->input_type ) {
 			case 'list':
 			default:
 				$options = array();
 
 				//Iterate through all the results
 				foreach ( $results as $result ) {
-					$options[] = JHtml::_( 'select.option', $result->{$this->key_field}, $result->{$this->value_field} );
+					$options[] =
+						JHtml::_(
+							'select.option',
+							$result->{$this->key_field},
+							$result->{$this->value_field}
+						);
 				}
 
 				$value = $this->value;
@@ -77,7 +82,9 @@ class JFormFieldForeignKey extends JFormField {
 				//If the value is a string -> Only one result
 				if ( is_string( $value ) ) {
 					$value = array( $value );
-				} else if ( is_object( $value ) ) { //If the value is an object, let's get its properties.
+				} else if ( is_object(
+					$value
+				) ) { //If the value is an object, let's get its properties.
 					$value = get_object_vars( $value );
 				}
 
@@ -88,9 +95,19 @@ class JFormFieldForeignKey extends JFormField {
 					array_unshift( $options, JHtml::_( 'select.option', '', '' ) );
 				}
 
-				$html = JHtml::_( 'select.genericlist', $options, $this->name, $input_options, 'value', 'text', $value );
+				$html =
+					JHtml::_(
+						'select.genericlist',
+						$options,
+						$this->name,
+						$input_options,
+						'value',
+						'text',
+						$value
+					);
 				break;
 		}
+
 		return $html;
 	}
 

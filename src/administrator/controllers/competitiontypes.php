@@ -15,6 +15,7 @@ class SwaControllerCompetitiontypes extends SwaControllerAdmin {
 	 */
 	public function getModel( $name = 'competitiontype', $prefix = 'SwaModel' ) {
 		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+
 		return $model;
 	}
 
