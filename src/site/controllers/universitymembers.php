@@ -271,13 +271,91 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function addcommittee() {
-		//TODO implement me
-		die( 'not yet implemented' );
+		$props = $this->getProperties();
+		/** @var JInput $input */
+		$input = $props['input'];
+		$data = $input->getArray();
+
+		$currentMember = $this->getCurrentMember();
+		if ( !$currentMember->club_committee ) {
+			die( 'Current member is not club committee' );
+		}
+
+		$targetMember = $this->getMember( $data['member_id'] );
+		if ( $currentMember->university_id != $targetMember->university_id ) {
+			die( 'Current and target member are from different universities' );
+		}
+
+		// Graduate the member for the university
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+
+		$query
+			->update( $db->quoteName( '#__swa_university_member' ) )
+			->where( 'member_id = ' . $db->quote( $data['member_id'] ) )
+			->set( 'committee=' . $db->quote( 'Committee' ) );
+
+		$db->setQuery( $query );
+		if ( !$db->execute() ) {
+			JLog::add(
+				'SwaControllerUniversityMembers failed to promote: Member:' . $data['member_id'],
+				JLog::INFO,
+				'com_swa'
+			);
+		} else {
+			JLog::add(
+				'Member ' . $currentMember->id . ' promoted member ' . $data['member_id'],
+				JLog::INFO,
+				'com_swa.audit_frontend'
+			);
+		}
+		$this->setRedirect(
+			JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=committee', false )
+		);
 	}
 
 	public function removecommittee() {
-		//TODO implement me
-		die( 'not yet implemented' );
+		$props = $this->getProperties();
+		/** @var JInput $input */
+		$input = $props['input'];
+		$data = $input->getArray();
+
+		$currentMember = $this->getCurrentMember();
+		if ( !$currentMember->club_committee ) {
+			die( 'Current member is not club committee' );
+		}
+
+		$targetMember = $this->getMember( $data['member_id'] );
+		if ( $currentMember->university_id != $targetMember->university_id ) {
+			die( 'Current and target member are from different universities' );
+		}
+
+		// Graduate the member for the university
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+
+		$query
+			->update( $db->quoteName( '#__swa_university_member' ) )
+			->where( 'member_id = ' . $db->quote( $data['member_id'] ) )
+			->set( 'committee=' . $db->quote( '' ) );
+
+		$db->setQuery( $query );
+		if ( !$db->execute() ) {
+			JLog::add(
+				'SwaControllerUniversityMembers failed to demote: Member:' . $data['member_id'],
+				JLog::INFO,
+				'com_swa'
+			);
+		} else {
+			JLog::add(
+				'Member ' . $currentMember->id . ' demoted member ' . $data['member_id'],
+				JLog::INFO,
+				'com_swa.audit_frontend'
+			);
+		}
+		$this->setRedirect(
+			JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=committee', false )
+		);
 	}
 
 	/**
