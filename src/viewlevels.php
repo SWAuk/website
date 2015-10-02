@@ -34,7 +34,7 @@ class plgSwaViewLevels extends JPlugin
 		$query->select( '!ISNULL(committee.id) as swa_committee' );
 		// Join on committee table
 		$query->leftJoin( '#__swa_university_member as uni_member on uni_member.member_id = a.id' );
-		$query->select( 'IF( uni_member.committee = "None", NULL, 1 ) as club_committee' );
+		$query->select( 'uni_member.committee as club_committee' );
 		// Load the result
 		$db->setQuery($query);
 		$member = $db->loadObject();
@@ -58,7 +58,7 @@ class plgSwaViewLevels extends JPlugin
 			return;
 		}
 
-		if( is_object( $member ) && $member->club_committee ){
+		if( is_object( $member ) && $member->club_committee && !empty( $member->club_committee ) ){
 			$authorised[] = $aclClubCommittee;
 		}
 		if( is_object( $member ) && $member->swa_committee ){
