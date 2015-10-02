@@ -40,6 +40,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 			$subQuery->select( 'COUNT(*)' );
 			$subQuery->from( $db->quoteName( '#__swa_qualification' ) . ' AS qualification' );
 			$subQuery->where( 'qualification.expiry_date > NOW()' );
+			$subQuery->where( 'qualification.approved=1' );
 			$query->select( '(' . $subQuery->__toString() . ') as qualification' );
 
 			// Get event ids registered for!
