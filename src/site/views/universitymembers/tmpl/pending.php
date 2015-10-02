@@ -20,7 +20,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	} );
 </script>
 
-<h1>University Members - Pending</h1>
+<h1>University Members (pending)</h1>
 
 <p>View:
 	<a href="<?php echo JRoute::_(

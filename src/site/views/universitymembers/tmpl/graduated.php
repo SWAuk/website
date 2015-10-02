@@ -20,7 +20,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	} );
 </script>
 
-<h1>University Members - Graduated</h1>
+<h1>University Members (graduated)</h1>
 
 <p>View:
 	<a href="<?php echo JRoute::_(

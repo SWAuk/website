@@ -24,7 +24,7 @@ foreach ( $this->event_registrations as $reg ) {
 	} );
 </script>
 
-<h1>University Members</h1>
+<h1>University Members (current)</h1>
 
 <p>View:
 	<a href="<?php echo JRoute::_(
