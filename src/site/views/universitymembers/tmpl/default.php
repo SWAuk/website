@@ -28,9 +28,9 @@ foreach ( $this->event_registrations as $reg ) {
 
 <p>View:
 	<?php
-	foreach( $this->layouts as $layout ) {
+	foreach( $this->layouts as $layout => $text ) {
 		$href = JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=' . $layout );
-		echo "<a href='$href'>" . ucfirst( $layout ) . "</a>\n";
+		echo "<a href='$href' title='$text'>" . ucfirst( $layout ) . "</a>\n";
 	}
 	?>
 </p>

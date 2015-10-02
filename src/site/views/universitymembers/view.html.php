@@ -14,6 +14,7 @@ class SwaViewUniversityMembers extends JViewLegacy {
 	protected $events;
 	protected $event_registrations;
 	protected $member;
+	protected $layouts;
 
 	/**
 	 * Display the view
@@ -51,10 +52,10 @@ class SwaViewUniversityMembers extends JViewLegacy {
 		$this->event_registrations = $this->get( 'EventRegistrations' );
 
 		$this->layouts = array(
-			'default',
-			'pending',
-			'graduated',
-			'committee',
+			'default' => 'Lists approved members, giving you the ability to graduate them and register them for events.',
+			'pending' => 'Lists pending members, giving you the ability to approve them.',
+			'graduated' => 'Lists graduated members, giving you the ability to ungraduate them.',
+			'committee' => 'Lists committee members, giving you the ability to remove them. Also allows you to promote other members.',
 		);
 
 		parent::display( $tpl );
