@@ -96,6 +96,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel(
+								'need_level'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput(
+								'need_level'
+							); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel(
 								'need_swa'
 							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput(

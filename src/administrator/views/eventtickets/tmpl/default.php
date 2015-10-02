@@ -66,6 +66,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 					members.</p>
 				<ul>
 					<li>Quantity: The total number of this ticket availible.</li>
+					<li>Needs Level: Member needs to be this level to buy this ticket.</li>
 					<li>Needs SWA: Member needs to be on the 'Org Committee' to buy this ticket.
 					</li>
 					<li>Needs XSWA: Member needs to be marked as a graduate of a unit to buy this
@@ -200,6 +201,15 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
+							'Needs Level',
+							'a.need_level',
+							$listDirn,
+							$listOrder
+						); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_(
+							'grid.sort',
 							'Needs SWA',
 							'a.need_swa',
 							$listDirn,
@@ -306,6 +316,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $item->price; ?>
+						</td>
+						<td>
+							<?php echo $item->need_level; ?>
 						</td>
 						<td>
 							<?php echo $item->need_swa; ?>

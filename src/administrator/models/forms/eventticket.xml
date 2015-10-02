@@ -44,6 +44,14 @@
 			required="true"
 			filter="safehtml"/>
 
+		<field name="need_level"
+			type="text"
+			size="20"
+			class="inputbox"
+			label="Needs Level"
+			default="">
+		</field>
+
 		<field name="need_swa"
 			type="checkbox"
 			label="Needs SWA"
