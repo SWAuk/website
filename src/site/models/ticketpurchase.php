@@ -131,22 +131,49 @@ class SwaModelTicketPurchase extends SwaModelList {
 				continue;
 			}
 			// Only allow tickets the member is allowed to buy
-			if (
-				( $ticket->need_xswa && $member->graduated ) ||
-				( $ticket->need_swa && $member->swa_committee ) ||
-				( $ticket->need_qualification && $member->qualification ) ||
-				( $ticket->need_host &&
-					in_array(
-						$member->university_id,
-						explode( ',', $ticket->host_university_ids )
-					) ) ||
-				( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) )
-			) {
+			if ( $this->memberAllowedToBuyTicket( $member, $ticket ) ) {
 				$allowedTickets[] = $ticket;
 			}
 		}
 
 		return $allowedTickets;
+	}
+
+	/**
+	 * Should the given user be allowed to purchase the given ticket?
+	 *
+	 * Note: This could easily be tested at come point...
+	 *
+	 * @param object $member
+	 * @param object $ticket
+	 *
+	 * @return bool
+	 */
+	private function memberAllowedToBuyTicket( $member, $ticket ) {
+		$levelOkay = ( !empty( $ticket->need_level ) && ( $ticket->need_level == $member->level ) );
+		$xswaOkay = ( $ticket->need_xswa && $member->graduated );
+		$orgCommitteeOkay = ( $ticket->need_swa && $member->swa_committee );
+		$qualificationOkay = ( $ticket->need_qualification && $member->qualification );
+		$hostOkay = ($ticket->need_host &&
+			in_array(
+				$member->university_id,
+				explode( ',', $ticket->host_university_ids )
+			)
+		);
+
+		$isRegisteredForEvent = ( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) );
+
+		// If anything says we are not allowed to buy this ticket then return false
+		if( !$levelOkay || !$xswaOkay || !$orgCommitteeOkay || !$qualificationOkay || !$hostOkay ) {
+			return false;
+		}
+		// Allow XSWA, registered members and org committee to buy the ticket
+		if( $member->graduated || $isRegisteredForEvent || $member->swa_committee ) {
+			return true;
+		}
+
+		// Everyone else can not buy the ticket...
+		return false;
 	}
 
 }
