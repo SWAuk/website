@@ -121,5 +121,6 @@ if( empty( $this->items ) ) {
 			<input type="hidden" name="task" value="qualifications.add"/>
 			<?php echo JHtml::_( 'form.token' ); ?>
 		</table>
+		<small>Note: If there is no expiry date pick a large date such as 3000-01-01.</small>
 	</form>
 </div>
