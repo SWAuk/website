@@ -19,4 +19,28 @@ class SwaControllerQualifications extends SwaControllerAdmin {
 		return $model;
 	}
 
+	public function viewImage() {
+		$input = JFactory::getApplication()->input;
+		$data = $input->getArray();
+		$qualificationId = $data['id'];
+
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+
+		$query->select( 'a.*' );
+		$query->from( '#__swa_qualification as a' );
+		$query->where( 'id=' . $db->quote( $qualificationId ) );
+
+		$db->setQuery( $query );
+		if( !$db->execute() ) {
+			die( 'something went wrong selecting the image' );
+		}
+		$qualification = $db->loadObject();
+
+		//output the file?
+		header("Content-type: " . $qualification->file_type );
+		print( $qualification->file );
+		exit();
+	}
+
 }

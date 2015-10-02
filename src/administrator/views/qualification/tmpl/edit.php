@@ -83,6 +83,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 							); ?></div>
 					</div>
 
+					<?php
+					$input = JFactory::getApplication()->input;
+					$data = $input->getArray();
+					$qualificationId = $data['id'];
+					$imgSrc = "http://localhost/j/administrator/index.php?option=com_swa&task=qualifications.viewimage&id=" . $qualificationId;
+					echo "<a href='$imgSrc'><img src='$imgSrc' width='500' height='500'/></a>";
+					?>
+
 				</fieldset>
 			</div>
 		</div>

@@ -167,6 +167,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							$listOrder
 						); ?>
 					</th>
+					<th>File</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
 							'grid.sort',
@@ -245,6 +246,12 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $this->escape( $item->expiry_date ); ?>
+						</td>
+						<td>
+							<?php
+							$imgSrc = "http://localhost/j/administrator/index.php?option=com_swa&task=qualifications.viewimage&id=" . $item->id;
+							echo "<a href='$imgSrc'><img src='$imgSrc' width='50' height='50'/></a>";
+							?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>
