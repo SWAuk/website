@@ -40,6 +40,7 @@ if( empty( $this->items ) ) {
 			<th>Id</th>
 			<th>Type</th>
 			<th>Expiry</th>
+			<th>File</th>
 		</tr>
 
 		<?php
@@ -54,6 +55,12 @@ if( empty( $this->items ) ) {
 			}
 			echo $item->expiry;
 			echo "</td>";
+			$imgSrc =
+				JRoute::_(
+					'index.php?option=com_swa&task=qualifications.viewImage&qualification=' .
+					$item->id
+				);
+			echo "<td><a href='$imgSrc'><img src='$imgSrc' height='50' width='50'/></a></td>";
 			echo "</tr>\n";
 		}
 		?>
