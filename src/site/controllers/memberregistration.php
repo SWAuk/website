@@ -83,11 +83,7 @@ class SwaControllerMemberRegistration extends SwaController {
 
 			return false;
 		} else {
-			JLog::add(
-				'User ' . $data['user_id'] . ' registered their membership details',
-				JLog::INFO,
-				'com_swa.audit_frontend'
-			);
+			$this->logAuditFrontend( 'registered their membership details' );
 		}
 
 		// Check in the profile.

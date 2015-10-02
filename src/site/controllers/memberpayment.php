@@ -107,11 +107,7 @@ class SwaControllerMemberPayment extends SwaController {
 				);
 				die( 'Failed to update member in db' );
 			} else {
-				JLog::add(
-					'Member ' . $memberId . ' bought membership',
-					JLog::INFO,
-					'com_swa.audit_frontend'
-				);
+				$this->logAuditFrontend( 'bought membership' );
 			}
 		}
 	}

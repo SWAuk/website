@@ -27,4 +27,19 @@ class SwaController extends JControllerLegacy {
 		return $this;
 	}
 
+	/**
+	 * Logs the given message to the frontend audit log.
+	 * Automatically adds the current users name
+	 *
+	 * @param string $message
+	 */
+	protected function logAuditFrontend( $message ) {
+		$user = JFactory::getUser();
+		JLog::add(
+			$user->name . ' ' . $message,
+			JLog::INFO,
+			'com_swa.audit_frontend'
+		);
+	}
+
 }

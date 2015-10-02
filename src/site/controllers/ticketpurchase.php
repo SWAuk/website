@@ -131,11 +131,7 @@ class SwaControllerTicketPurchase extends SwaController {
 					$data['order_id']
 				);
 			} else {
-				JLog::add(
-					'Member ' . $memberId . ' bought event ticket ' . $eventTicketId,
-					JLog::INFO,
-					'com_swa.audit_frontend'
-				);
+				$this->logAuditFrontend( 'bought event ticket ' . $eventTicketId );
 			}
 		}
 	}
