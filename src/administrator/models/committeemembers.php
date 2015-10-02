@@ -48,7 +48,7 @@ class SwaModelCommitteeMembers extends JModelList {
 		$this->setState( 'params', $params );
 
 		// List state information.
-		parent::populateState( 'a.id', 'asc' );
+		parent::populateState( 'a.id', 'desc' );
 	}
 
 	/**
