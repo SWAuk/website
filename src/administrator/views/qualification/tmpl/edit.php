@@ -83,6 +83,9 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 							); ?></div>
 					</div>
 
+					<p>Note: there is currently no way to change an uploaded image file.</p>
+					<p>Note: these is also no way to add a qualification with a file in the backend.</p>
+
 					<?php
 					$input = JFactory::getApplication()->input;
 					$data = $input->getArray();
