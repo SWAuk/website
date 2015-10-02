@@ -50,6 +50,13 @@ class SwaViewUniversityMembers extends JViewLegacy {
 		$this->events = $this->get( 'AvailableEvents' );
 		$this->event_registrations = $this->get( 'EventRegistrations' );
 
+		$this->layouts = array(
+			'default',
+			'pending',
+			'graduated',
+			'committee',
+		);
+
 		parent::display( $tpl );
 	}
 

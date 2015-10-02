@@ -27,18 +27,12 @@ foreach ( $this->event_registrations as $reg ) {
 <h1>University Members (current)</h1>
 
 <p>View:
-	<a href="<?php echo JRoute::_(
-		'index.php?option=com_swa&view=universitymembers&layout=pending'
-	) ?>">Pending</a>
-	<a href="<?php echo JRoute::_(
-		'index.php?option=com_swa&view=universitymembers&layout=default'
-	) ?>">Current</a>
-	<a href="<?php echo JRoute::_(
-		'index.php?option=com_swa&view=universitymembers&layout=graduated'
-	) ?>">Graduated</a>
-	<a href="<?php echo JRoute::_(
-		'index.php?option=com_swa&view=universitymembers&layout=committee'
-	) ?>">Committee</a>
+	<?php
+	foreach( $this->layouts as $layout ) {
+		$href = JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=' . $layout );
+		echo "<a href='$href'>" . ucfirst( $layout ) . "</a>\n";
+	}
+	?>
 </p>
 
 <p>
