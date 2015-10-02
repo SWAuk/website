@@ -1,3 +1,7 @@
+-- member
+--
+-- Table representing a user that has at least started becoming an SWA member
+-- The user may not actually be a member yet as they may not have paid (see paid col)
 CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT(11)  NOT NULL ,
@@ -22,6 +26,9 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- committee
+--
+-- Table holding members that are on the SWA / org committee
 CREATE  TABLE IF NOT EXISTS `#__swa_committee` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
@@ -33,6 +40,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_committee` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- qualification
+--
+-- Table holding qualifications that members hold
 CREATE  TABLE IF NOT EXISTS `#__swa_qualification` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
@@ -43,6 +53,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_qualification` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- university
+--
+-- Table holding universities that members can be a part of
 CREATE  TABLE IF NOT EXISTS `#__swa_university` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(200) NOT NULL ,
@@ -52,6 +65,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- university member
+--
+-- Table holding confirmed univiersity members
+-- Note the committee files for makring members are university committee members
 CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
@@ -64,6 +81,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- season
+--
+-- Table holding seasons
 CREATE  TABLE IF NOT EXISTS `#__swa_season` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `year` VARCHAR(4) NOT NULL ,
@@ -72,6 +92,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_season` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- deposit
+--
+-- Table holding deposits info
+-- This is basically a copy from the old site
 CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -82,6 +106,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
   INDEX `fk_deposit_university_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- event
+--
+-- Table holding event information
 CREATE  TABLE IF NOT EXISTS `#__swa_event` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(100) NOT NULL ,
@@ -94,6 +121,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event` (
   INDEX `fk_event_season1_idx` (`season_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- event host
+--
+-- Table holding event hosts
+-- Note: An event can exist with no hosts
 CREATE  TABLE IF NOT EXISTS `#__swa_event_host` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -103,6 +134,11 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_host` (
   INDEX `fk_event_host_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- event ticket
+--
+-- Table holding event ticket information.
+-- These are types of ticket that can be purchased for an event rather than individual tickets.
+-- The need_* fields are ugly and we may want to think og a nicer solution here
 CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -118,6 +154,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- grant
+--
+-- Table holding grant info
+-- This is basically a copy from the old site
 CREATE  TABLE IF NOT EXISTS `#__swa_grant` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` VARCHAR(45) NOT NULL ,
@@ -140,6 +180,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_grant` (
   INDEX `fk_grants_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- ticket
+--
+-- Table holding event ticket information.
+-- Each record here represents an individual ticket
 CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT NOT NULL ,
@@ -150,6 +194,11 @@ CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   INDEX `fk_ticket_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- event registration
+--
+-- Table holding event registration information
+-- This table exists to maintain the concept of event registration from the old site
+-- University members should be registered for an event in order to buy a ticket...
 CREATE  TABLE IF NOT EXISTS `#__swa_event_registration` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -160,12 +209,18 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_registration` (
   INDEX `fk_event_registration_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- competition type
+--
+-- Table holding types of competitions that can be held at events
 CREATE  TABLE IF NOT EXISTS `#__swa_competition_type` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`id`) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- competition
+--
+-- Table holding competitions that have been / are going to be held at events
 CREATE  TABLE IF NOT EXISTS `#__swa_competition` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -175,6 +230,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_competition` (
   INDEX `fk_competition_competition_type1_idx` (`competition_type_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- indi result
+--
+-- Individual member results in competitions
 CREATE  TABLE IF NOT EXISTS `#__swa_indi_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT NOT NULL ,
@@ -185,6 +243,9 @@ CREATE  TABLE IF NOT EXISTS `#__swa_indi_result` (
   INDEX `fk_indi_result_member1_idx` (`member_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- team result
+--
+-- University team results in competitions
 CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `competition_id` INT NOT NULL ,
@@ -196,6 +257,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
   INDEX `fk_team_result_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
+-- damages
+--
+-- Table holding damages info
+-- This is basically a copy from the old site
 CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `event_id` INT NOT NULL ,
@@ -207,7 +272,10 @@ CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
   INDEX `fk_damages_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
-/* Add 2 view level if they do not already exist */
+-- viewlevels
+--
+-- Add 2 view level if they do not already exist
+-- These are used to control the availability of menus for Org / Club committee members
 INSERT INTO `#__viewlevels` (title, ordering, rules)
 SELECT 'Club Committee', 0, '[]'
 FROM dual
