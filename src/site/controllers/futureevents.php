@@ -8,7 +8,8 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerFutureEvents extends SwaController {
 
 	public function display() {
-		die();
+		//TODO implement?
+		die( 'not yet implemented' );
 	}
 
 }

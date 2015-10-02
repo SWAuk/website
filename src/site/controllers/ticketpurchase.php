@@ -71,7 +71,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		$query = $db->getQuery( true );
 		$query->select( 'event_ticket.*' );
 		$query->from( $db->quoteName( '#__swa_event_ticket' ) . ' as event_ticket' );
-		$query->where( 'event_ticket.id = ' . $eventTicketId );
+		$query->where( 'event_ticket.id = ' . $db->quote( $eventTicketId ) );
 		$db->setQuery( $query );
 		if ( !$db->execute() ) {
 			throw new Exception( 'TicketPurchase db check 1 failed' );
@@ -116,7 +116,12 @@ class SwaControllerTicketPurchase extends SwaController {
 			$query
 				->insert( $db->quoteName( '#__swa_ticket' ) )
 				->columns( $db->quoteName( array( 'member_id', 'event_ticket_id' ) ) )
-				->values( implode( ',', array( $memberId, $eventTicketId ) ) );
+				->values(
+					implode(
+						',',
+						array( $db->quote( $memberId ), $db->quote( $eventTicketId ) )
+					)
+				);
 			$db->setQuery( $query );
 			$result = $db->execute();
 

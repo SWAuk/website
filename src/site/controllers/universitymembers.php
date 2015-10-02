@@ -28,7 +28,10 @@ class SwaControllerUniversityMembers extends SwaController {
 		$query = $db->getQuery( true );
 
 		$columns = array( 'member_id', 'university_id' );
-		$values = array( $data['member_id'], $targetMember->university_id );
+		$values = array(
+			$db->quote( $data['member_id'] ),
+			$db->quote( $targetMember->university_id )
+		);
 
 		$query
 			->insert( $db->quoteName( '#__swa_university_member' ) )
@@ -173,7 +176,11 @@ class SwaControllerUniversityMembers extends SwaController {
 		$query = $db->getQuery( true );
 
 		$columns = array( 'event_id', 'member_id', 'date' );
-		$values = array( $data['event_id'], $data['member_id'], 'NOW()' );
+		$values = array(
+			$db->quote( $data['event_id'] ),
+			$db->quote( $data['member_id'] ),
+			'NOW()'
+		);
 
 		$query
 			->insert( $db->quoteName( '#__swa_event_registration' ) )
@@ -285,7 +292,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		// Select the required fields from the table.
 		$query->select( 'a.*' );
 		$query->from( $db->quoteName( '#__swa_event' ) . ' AS a' );
-		$query->where( 'a.id = ' . $eventId );
+		$query->where( 'a.id = ' . $db->quote( $eventId ) );
 
 		// Load the result
 		$db->setQuery( $query );
@@ -305,7 +312,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		// Select the required fields from the table.
 		$query->select( 'a.*' );
 		$query->from( $db->quoteName( '#__swa_member' ) . ' AS a' );
-		$query->where( 'a.id = ' . $memberId );
+		$query->where( 'a.id = ' . $db->quote( $memberId ) );
 
 		// Load the result
 		$db->setQuery( $query );
@@ -325,7 +332,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		// Select the required fields from the table.
 		$query->select( 'a.*' );
 		$query->from( $db->quoteName( '#__swa_member' ) . ' AS a' );
-		$query->where( 'a.user_id = ' . $user->id );
+		$query->where( 'a.user_id = ' . $db->quote( $user->id ) );
 
 		//Join on university_member
 		$query->leftJoin(

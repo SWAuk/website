@@ -91,7 +91,7 @@ class SwaControllerMemberPayment extends SwaController {
 				)
 				->where(
 					array(
-						$db->quoteName( 'id' ) . ' = ' . $memberId,
+						$db->quoteName( 'id' ) . ' = ' . $db->quote( $memberId ),
 						$db->quoteName( 'paid' ) . ' = 0',
 					)
 				);
