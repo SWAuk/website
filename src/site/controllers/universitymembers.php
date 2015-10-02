@@ -8,6 +8,9 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerUniversityMembers extends SwaController {
 
 	public function approve() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -54,6 +57,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function unapprove() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -94,6 +100,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function graduate() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -135,6 +144,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function ungraduate() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -175,6 +187,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function register() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -230,6 +245,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function unregister() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -281,6 +299,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function addcommittee() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];
@@ -321,6 +342,9 @@ class SwaControllerUniversityMembers extends SwaController {
 	}
 
 	public function removecommittee() {
+		// Check for request forgeries.
+		JSession::checkToken() or jexit( JText::_( 'JINVALID_TOKEN' ) );
+
 		$props = $this->getProperties();
 		/** @var JInput $input */
 		$input = $props['input'];

@@ -80,6 +80,7 @@ foreach ( $this->event_registrations as $reg ) {
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-graduate-' .
 			$item->id .
 			'\').submit(); return false;">(graduate)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form>';
 		echo '<form id="form-universitymembers-unapprove-' .
 			$item->id .
@@ -92,6 +93,7 @@ foreach ( $this->event_registrations as $reg ) {
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unapprove-' .
 			$item->id .
 			'\').submit(); return false;">(unapprove)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form>';
 		echo '</td>';
 
@@ -114,6 +116,7 @@ foreach ( $this->event_registrations as $reg ) {
 					$event->id .
 					'" />' .
 					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister\').submit(); return false;">(unregister)</a>' .
+					JHtml::_( 'form.token' ) .
 					'</form>';
 			} else {
 				//not registered for the event
@@ -127,6 +130,7 @@ foreach ( $this->event_registrations as $reg ) {
 					$event->id .
 					'" />' .
 					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register\').submit(); return false;">(register)</a>' .
+					JHtml::_( 'form.token' ) .
 					'</form>';
 			}
 			echo "</li>\n";

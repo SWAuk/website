@@ -69,6 +69,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-ungraduate-' .
 			$item->id .
 			'\').submit(); return false;">(ungraduate)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form></td>';
 		echo "</tr>\n";
 	}

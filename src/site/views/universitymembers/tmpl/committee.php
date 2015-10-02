@@ -63,6 +63,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-removecommittee-' .
 			$item->id .
 			'\').submit(); return false;">(demote)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form></td>';
 		echo "</tr>\n";
 		echo "</tr>\n";
@@ -102,6 +103,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-addcommittee-' .
 			$item->id .
 			'\').submit(); return false;">(add to committee)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form></td>';
 		echo "</tr>\n";
 	}

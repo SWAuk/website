@@ -74,6 +74,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-approve-' .
 			$item->id .
 			'\').submit(); return false;">(approve)</a>' .
+			JHtml::_( 'form.token' ) .
 			'</form></td>';
 		echo "</tr>\n";
 	}
