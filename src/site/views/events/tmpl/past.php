@@ -25,11 +25,11 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 		} );
 	</script>
 
-	<h1>Future Events</h1>
+	<h1>Past Events</h1>
 
 <?php
 if ( empty( $this->items ) ) {
-	echo "<p>There are no future events to display</p>";
+	echo "<p>There are no past events to display</p>";
 } else {
 	?>
 
