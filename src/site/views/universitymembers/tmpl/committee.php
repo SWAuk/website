@@ -40,6 +40,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 		<th>Id</th>
 		<th>Name</th>
 		<th>Position</th>
+		<th>Demote</th>
 	</tr>
 
 	<?php
@@ -51,6 +52,57 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->name . "</td>\n";
 		echo "<td>" . $item->club_committee . "</td>\n";
+		echo '<td><form id="form-universitymembers-removecommittee-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_( 'index.php?option=com_swa&task=universitymembers.removecommittee' ) .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-removecommittee-' .
+			$item->id .
+			'\').submit(); return false;">(demote)</a>' .
+			'</form></td>';
+		echo "</tr>\n";
+		echo "</tr>\n";
+	}
+	?>
+
+</table>
+
+<p>
+	Here you can promote people to your committee!
+	Doing so given them extra access to the SWA website!
+</p>
+
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Promote</th>
+	</tr>
+
+	<?php
+	foreach ( $this->items as $item ) {
+		if ( $item->club_committee ) {
+			continue;
+		}
+		echo "<tr>\n";
+		echo "<td>" . $item->id . "</td>\n";
+		echo "<td>" . $item->name . "</td>\n";
+		echo '<td><form id="form-universitymembers-addcommittee-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_( 'index.php?option=com_swa&task=universitymembers.addcommittee' ) .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-addcommittee-' .
+			$item->id .
+			'\').submit(); return false;">(add to committee)</a>' .
+			'</form></td>';
 		echo "</tr>\n";
 	}
 	?>

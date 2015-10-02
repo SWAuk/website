@@ -263,6 +263,16 @@ class SwaControllerUniversityMembers extends SwaController {
 		$this->setRedirect( JRoute::_( 'index.php?option=com_swa&view=universitymembers', false ) );
 	}
 
+	public function addcommittee() {
+		//TODO implement me
+		die( 'not yet implemented' );
+	}
+
+	public function removecommittee() {
+		//TODO implement me
+		die( 'not yet implemented' );
+	}
+
 	/**
 	 * @param int $eventId
 	 *
