@@ -79,6 +79,10 @@ if( empty( $this->items ) ) {
 				<td><?php echo $this->form->getLabel( 'expiry_date' ); ?></td>
 				<td><?php echo $this->form->getInput( 'expiry_date' ); ?></td>
 			</tr>
+			<tr>
+				<td><?php echo $this->form->getLabel( 'file_upload' ); ?></td>
+				<td><?php echo $this->form->getInput( 'file_upload' ); ?></td>
+			</tr>
 
 			<tr>
 				<td>

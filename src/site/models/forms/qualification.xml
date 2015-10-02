@@ -28,6 +28,13 @@
 			label="Expiry date"
 			filter="safehtml"/>
 
+		<field name="file_upload"
+			type="file"
+			label="Image"
+			description="Choose an image from your computer"
+			size="10"
+			accept="image/*"/>
+
 	</fieldset>
 
 </form>
