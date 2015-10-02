@@ -28,6 +28,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 <h1>Membership Details</h1>
 
 <p>You can not currently edit your details!</p>
+<p>If you need to make any changes then please email webmaster@swa.co.uk!</p>
 
 <table>
 
