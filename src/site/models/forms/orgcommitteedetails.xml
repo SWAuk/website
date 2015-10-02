@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+    <fieldset>
+        <field name="id" type="text" class='readonly' label="ID" readonly='true' 
+               required="true" filter="safehtml" />
+	<field name="member_id" type="text" class='readonly' readonly='true'
+               label="User id" required="true" filter="safehtml" />
+        <field name="position" type="text" class='readonly' readonly='true'
+               label="Position" required="true" filter="safehtml" />
+        <field name="blurb" type="text" class="inputbox" label="blurb"
+               required="true" filter="safehtml" />
+        <field name="image" type="text" class='readonly' readonly='true'
+               label="Image" required="true" filter="safehtml" />
+    </fieldset>
+</form>
