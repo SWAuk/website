@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Qualifications">
+		<message>
+			Show a list of all member qualifications.
+			Accessible to all.
+		</message>
+	</layout>
+</metadata>
