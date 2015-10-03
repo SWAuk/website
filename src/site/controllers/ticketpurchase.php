@@ -57,7 +57,7 @@ class SwaControllerTicketPurchase extends SwaController {
 
 		//Extract info from the order_id!
 		$orderIdParts = explode( ':', $data['order_id'] );
-		if ( !strstr( '-', $orderIdParts[1] ) ) {
+		if ( !strstr( $orderIdParts[1], '-' ) ) {
 			throw new Exception(
 				'TicketPurchase callback called with bad looking order_id2: ' . $data['order_id']
 			);
