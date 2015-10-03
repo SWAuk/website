@@ -79,6 +79,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'a.id as id' );
 		$query->select( 'a.name as ticket_name' );
 		$query->select( 'a.price as price' );
+		$query->select( 'a.need_level as need_level' );
 		$query->select( 'a.need_xswa as need_xswa' );
 		$query->select( 'a.need_swa as need_swa' );
 		$query->select( 'a.need_host as need_host' );
@@ -152,30 +153,30 @@ class SwaModelTicketPurchase extends SwaModelList {
 	 * @return bool
 	 */
 	private function memberAllowedToBuyTicket( $member, $ticket ) {
-		$levelOkay = ( empty( $ticket->need_level ) || ( $ticket->need_level == $member->level ) );
-		$xswaOkay = ( !$ticket->need_xswa || $member->graduated );
-		$orgCommitteeOkay = ( !$ticket->need_swa || $member->swa_committee );
-		$qualificationOkay = ( !$ticket->need_qualification || $member->qualification );
-		$hostOkay = ( !$ticket->need_host ||
-			in_array(
-				$member->university_id,
-				explode( ',', $ticket->host_university_ids )
-			)
-		);
-
 		$isRegisteredForEvent = ( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) );
 
-		// If anything says we are not allowed to buy this ticket then return false
-		if( !$levelOkay || !$xswaOkay || !$orgCommitteeOkay || !$qualificationOkay || !$hostOkay ) {
+		if( $ticket->need_swa && !$member->swa_committee ) {
 			return false;
 		}
-		// Allow XSWA, registered members and org committee to buy the ticket
-		if( $member->graduated || $isRegisteredForEvent || $member->swa_committee ) {
-			return true;
+		if( $ticket->need_xswa && !$member->graduated ) {
+			return false;
+		}
+		if( !empty( $ticket->need_level ) && $member->level != $ticket->need_level ) {
+			return false;
+		}
+		if( $ticket->need_qualification && !$member->qualification ) {
+			return false;
+		}
+		if( $ticket->need_host && !in_array( $member->university_id, explode( ',', $ticket->host_university_ids ) ) ) {
+			return false;
 		}
 
-		// Everyone else can not buy the ticket...
-		return false;
+		//Allow following ticket types to be bought when not registered for the event
+		if( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
+			return false;
+		}
+
+		return true;
 	}
 
 }
