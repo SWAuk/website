@@ -26,6 +26,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		/** @var JInput $input */
 		$input = $props['input'];
 		$data = $input->getArray();
+		JLog::add( 'New callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
 
 		// Die is some data is missing
 		$missingKeys = array_diff_key(
@@ -115,11 +116,15 @@ class SwaControllerTicketPurchase extends SwaController {
 			$query = $db->getQuery( true );
 			$query
 				->insert( $db->quoteName( '#__swa_ticket' ) )
-				->columns( $db->quoteName( array( 'member_id', 'event_ticket_id' ) ) )
+				->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid' ) ) )
 				->values(
 					implode(
 						',',
-						array( $db->quote( $memberId ), $db->quote( $eventTicketId ) )
+						array(
+							$db->quote( $memberId ),
+							$db->quote( str_replace( 'j3ticket:', '', $eventTicketId ) ),
+							$db->quote( $data['amount'] )
+						)
 					)
 				);
 			$db->setQuery( $query );
@@ -131,7 +136,7 @@ class SwaControllerTicketPurchase extends SwaController {
 					$data['order_id']
 				);
 			} else {
-				$this->logAuditFrontend( 'bought event ticket ' . $eventTicketId );
+				$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
 			}
 		}
 	}
