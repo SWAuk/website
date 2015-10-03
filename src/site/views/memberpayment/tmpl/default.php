@@ -46,3 +46,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	<!-- test_transaction = 100 means TEST-->
 	<input type="hidden" name="test_transaction" value="0"/>
 </form>
+
+<p>Note: If you have bee redirected here after already paying try refreshing.</p>
+<p>Payments may take up to 30 mins to appear on the site.</p>
+<p>If your payment seems to get stuck please email webmaster@swa.co.uk</p>
