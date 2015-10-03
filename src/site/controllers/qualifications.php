@@ -70,7 +70,11 @@ class SwaControllerQualifications extends SwaController {
 			die( 'Coudnln\'t get member id to add qualification');
 		}
 
-		// Graduate the member for the university
+		$expiryDate = date('Y-m-d', strtotime($data['expiry_date']));
+		if( new DateTime( $expiryDate ) < new DateTime() ) {
+			die( 'Expiry date can not be in the past!' );
+		}
+
 		$db = JFactory::getDbo();
 		$query = $db->getQuery( true );
 
@@ -83,7 +87,7 @@ class SwaControllerQualifications extends SwaController {
 		$values = array(
 			$db->quote( $currentMember->id ),
 			$db->quote( $data['type'] ),
-			$db->quote( $data['expiry_date'] ),
+			$db->quote( $expiryDate ),
 			$db->quote( $file ),
 			$db->quote( $fileType ),
 		);

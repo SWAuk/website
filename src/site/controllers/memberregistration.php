@@ -63,6 +63,14 @@ class SwaControllerMemberRegistration extends SwaController {
 			return false;
 		}
 
+		//TODO this should be in the model?
+		$dobDate = date('Y-m-d', strtotime($data['dob']));
+		if( new DateTime( $dobDate ) > new DateTime() ) {
+			die( 'DOB can not be in the future!' );
+		}
+		//Set dob to be db format....
+		$data['dob'] = $dobDate;
+
 		// Attempt to save the data.
 		$return = $model->save( $data );
 

@@ -21,7 +21,8 @@
 			type="calendar"
 			class="inputbox"
 			required="true"
-			default="0000-00-00"
+			format="%d-%m-%Y"
+			default="NOW"
 			label="Dob"
 			filter="safehtml"/>
 

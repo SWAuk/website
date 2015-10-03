@@ -22,9 +22,8 @@
 			type="calendar"
 			class="inputbox"
 			required="true"
-
-			default="0000-00-00"
-
+			format="%d-%m-%Y"
+			default="NOW"
 			label="Expiry date"
 			filter="safehtml"/>
 
@@ -33,6 +32,7 @@
 			label="Image"
 			description="Choose an image from your computer"
 			size="10"
+			required="true"
 			accept="image/*"/>
 
 	</fieldset>

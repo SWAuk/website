@@ -56,7 +56,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	<tr>
 		<div class="control-group">
 			<td>Dob:</td>
-			<td><?php echo $this->item->dob ?></td>
+			<td><?php echo date('d-m-Y', strtotime($this->item->dob)) ?></td>
 		</div>
 	</tr>
 

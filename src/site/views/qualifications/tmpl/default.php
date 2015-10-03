@@ -54,7 +54,7 @@ if( empty( $this->items ) ) {
 			} else {
 				echo "<td>";
 			}
-			echo $item->expiry;
+			echo date('d-m-Y', strtotime($item->expiry));
 			echo "</td>";
 			if ( !$item->approved ) {
 				echo "<td bgcolor='#FF6666'>";
