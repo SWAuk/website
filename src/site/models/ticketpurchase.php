@@ -49,7 +49,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 				'#__swa_event_registration AS event_registration ON event_registration.member_id = a.id'
 			);
 			$query->select(
-				'GROUP_CONCAT( CASE WHEN event_registration.date > NOW() THEN event_registration.event_id END ) as registered_event_ids'
+				'GROUP_CONCAT( CASE WHEN event_registration.expires > NOW() THEN event_registration.event_id END ) as registered_event_ids'
 			);
 
 			// Get event ids for tickets we have that are in the future
@@ -132,7 +132,8 @@ class SwaModelTicketPurchase extends SwaModelList {
 				continue;
 			}
 			// Only allow tickets the member is allowed to buy
-			if ( $this->memberAllowedToBuyTicket( $member, $ticket ) ) {
+			$isAllowedToBuy = $this->memberAllowedToBuyTicket( $member, $ticket );
+			if ( $isAllowedToBuy ) {
 				$allowedTickets[] = $ticket;
 			}
 		}
@@ -151,11 +152,11 @@ class SwaModelTicketPurchase extends SwaModelList {
 	 * @return bool
 	 */
 	private function memberAllowedToBuyTicket( $member, $ticket ) {
-		$levelOkay = ( !empty( $ticket->need_level ) && ( $ticket->need_level == $member->level ) );
-		$xswaOkay = ( $ticket->need_xswa && $member->graduated );
-		$orgCommitteeOkay = ( $ticket->need_swa && $member->swa_committee );
-		$qualificationOkay = ( $ticket->need_qualification && $member->qualification );
-		$hostOkay = ($ticket->need_host &&
+		$levelOkay = ( empty( $ticket->need_level ) || ( $ticket->need_level == $member->level ) );
+		$xswaOkay = ( !$ticket->need_xswa || $member->graduated );
+		$orgCommitteeOkay = ( !$ticket->need_swa || $member->swa_committee );
+		$qualificationOkay = ( !$ticket->need_qualification || $member->qualification );
+		$hostOkay = ( !$ticket->need_host ||
 			in_array(
 				$member->university_id,
 				explode( ',', $ticket->host_university_ids )
