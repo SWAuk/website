@@ -13,6 +13,7 @@ class SwaControllerMemberPayment extends SwaController {
 		/** @var JInput $input */
 		$input = $props['input'];
 		$data = $input->getArray();
+		JLog::add( 'New member callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
 
 		// Die is some data is missing
 		$missingKeys = array_diff_key(
@@ -83,7 +84,7 @@ class SwaControllerMemberPayment extends SwaController {
 			$memberId = str_replace( 'j3membership:', '', $data['order_id'] );
 			$db = JFactory::getDbo();
 			$query = $db->getQuery( true );
-			$query->update( $db->quoteName( '#__swa_membership' ) )
+			$query->update( $db->quoteName( '#__swa_member' ) )
 				->set(
 					array(
 						$db->quoteName( 'paid' ) . ' = 1',

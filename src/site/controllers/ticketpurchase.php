@@ -26,7 +26,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		/** @var JInput $input */
 		$input = $props['input'];
 		$data = $input->getArray();
-		JLog::add( 'New callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
+		JLog::add( 'New ticket callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
 
 		// Die is some data is missing
 		$missingKeys = array_diff_key(
