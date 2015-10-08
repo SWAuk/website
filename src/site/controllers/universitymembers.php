@@ -196,7 +196,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		$data = $input->getArray();
 
 		$currentMember = $this->getCurrentMember();
-		if ( $currentMember->club_committee != 1 ) {
+		if ( !$currentMember->club_committee ) {
 			die( 'Current member is not club committee' );
 		}
 
@@ -214,11 +214,11 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db = JFactory::getDbo();
 		$query = $db->getQuery( true );
 
-		$columns = array( 'event_id', 'member_id', 'date' );
+		$columns = array( 'event_id', 'member_id', 'expires' );
 		$values = array(
 			$db->quote( $data['event_id'] ),
 			$db->quote( $data['member_id'] ),
-			'NOW()'
+			'NOW() + INTERVAL 3 DAY'
 		);
 
 		$query
@@ -254,7 +254,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		$data = $input->getArray();
 
 		$currentMember = $this->getCurrentMember();
-		if ( $currentMember->club_committee != 1 ) {
+		if ( !$currentMember->club_committee ) {
 			die( 'Current member is not club committee' );
 		}
 
