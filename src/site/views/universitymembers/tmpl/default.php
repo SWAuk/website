@@ -106,7 +106,7 @@ foreach ( $this->event_registrations as $reg ) {
 				$eventRegistrations[$item->id][$event->id] >= strtotime( '-3 day', time() )
 			) {
 				//registered for the event
-				echo '<form id="form-universitymembers-unregister" method="POST" action="' .
+				echo '<form id="form-universitymembers-unregister' . $item->id . '" method="POST" action="' .
 					JRoute::_( 'index.php?option=com_swa&task=universitymembers.unregister' ) .
 					'">' .
 					'<input type="hidden" name ="member_id" value="' .
@@ -115,12 +115,12 @@ foreach ( $this->event_registrations as $reg ) {
 					'<input type="hidden" name ="event_id" value="' .
 					$event->id .
 					'" />' .
-					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister\').submit(); return false;">(unregister)</a>' .
+					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister-' . $item->id . '\').submit(); return false;">(unregister)</a>' .
 					JHtml::_( 'form.token' ) .
 					'</form>';
 			} else {
 				//not registered for the event
-				echo '<form id="form-universitymembers-register" method="POST" action="' .
+				echo '<form id="form-universitymembers-register-' . $item->id . '" method="POST" action="' .
 					JRoute::_( 'index.php?option=com_swa&task=universitymembers.register' ) .
 					'">' .
 					'<input type="hidden" name ="member_id" value="' .
@@ -129,7 +129,7 @@ foreach ( $this->event_registrations as $reg ) {
 					'<input type="hidden" name ="event_id" value="' .
 					$event->id .
 					'" />' .
-					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register\').submit(); return false;">(register)</a>' .
+					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-' . $item->id . '\').submit(); return false;">(register)</a>' .
 					JHtml::_( 'form.token' ) .
 					'</form>';
 			}
