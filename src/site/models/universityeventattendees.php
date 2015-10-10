@@ -54,6 +54,9 @@ class SwaModelUniversityEventAttendees extends SwaModelList {
 		$query->leftJoin(
 			$db->quoteName( '#__swa_member' ) . ' AS member ON member.id = ticket.member_id'
 		);
+		$member = $this->getMember();
+		$query->where( 'member.university_id = ' . $query->quote( $member->university_id ) );
+
 		$query->leftJoin( $db->quoteName( '#__users' ) . ' AS user ON member.user_id = user.id' );
 		$query->select( 'user.name as member_name' );
 
