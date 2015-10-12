@@ -49,7 +49,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 				'#__swa_event_registration AS event_registration ON event_registration.member_id = a.id'
 			);
 			$query->select(
-				'GROUP_CONCAT( CASE WHEN event_registration.expires > NOW() THEN event_registration.event_id END ) as registered_event_ids'
+				'GROUP_CONCAT( event_registration.event_id ) as registered_event_ids'
 			);
 
 			// Get event ids for tickets we have that are in the future
