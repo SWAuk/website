@@ -111,7 +111,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$subQuery->select( 'COUNT( ticket.id )' );
 		$subQuery->from( '#__swa_ticket as ticket' );
 		$subQuery->where( 'ticket.event_ticket_id=a.id' );
-		$query->where( '( a.quantity - ( ' . $subQuery->__toString() . ' ) ) > 0' );
+		$query->select( '( a.quantity - ( ' . $subQuery->__toString() . ' ) ) as quantity_remaining' );
 
 		return $query;
 	}
