@@ -53,6 +53,8 @@ if ( empty( $this->items ) ) {
 		?>
 	</table>
 
+	<p>Yes, we know there have been more events than this... but these events predate this lovely website!</p>
+
 	<?php
 }
 ?>
