@@ -77,16 +77,16 @@ class SwaControllerTicketPurchase extends SwaController {
 		if ( !$db->execute() ) {
 			throw new Exception( 'TicketPurchase db check 1 failed' );
 		}
-		$eventTicket = $db->loadObject();
-		// Validate the price of event ticket
-		if ( intval( $data['amount'] ) != intval( $eventTicket->price ) ) {
-			throw new Exception(
-				'TicketPurchase callback called with wrong ticket amount: ' .
-				$data['amount'] .
-				' expected:' .
-				$eventTicket->price
-			);
-		}
+//		$eventTicket = $db->loadObject();
+//		// Validate the price of event ticket
+//		if ( intval( $data['amount'] ) != intval( $eventTicket->price ) ) {
+//			throw new Exception(
+//				'TicketPurchase callback called with wrong ticket amount: ' .
+//				$data['amount'] .
+//				' expected:' .
+//				$eventTicket->price
+//			);
+//		}
 
 		// Post back to nochex
 		$response = $this->http_post( "www.nochex.com", 80, "/nochex.dll/apc/apc", $data );
