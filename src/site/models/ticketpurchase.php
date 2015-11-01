@@ -50,7 +50,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 				'#__swa_event_registration AS event_registration ON event_registration.member_id = a.id'
 			);
 			$query->select(
-				'GROUP_CONCAT( event_registration.event_id ) as registered_event_ids'
+				'GROUP_CONCAT( DISTINCT event_registration.event_id ) as registered_event_ids'
 			);
 
 			// Get event ids for tickets we have that are in the future
