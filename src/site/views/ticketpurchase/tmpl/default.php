@@ -54,7 +54,7 @@ if ( empty( $this->items ) ) {
 			echo "<td>" . $item->price . "</td>\n";
 			echo "<td>";
 
-			if( $item->quantity_remaining > 0 ) {
+			if( $item->quantity_remaining > 0 && $item->capacity_remaining > 0 ) {
 				?>
 
 				<form id="form-ticketpurchase-<?php echo $item->id ?>" method="POST"

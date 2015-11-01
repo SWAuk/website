@@ -93,6 +93,16 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'event.id as event_id' );
 		$query->select( 'event.date as event_date' );
 		$query->select( 'event.date_close as event_close' );
+		$query->select( 'event.capacity as capacity' );
+
+		// Where we still have capacity left in the event
+		$subQuerySold = $db->getQuery( true );
+		$subQuerySold->select( 'COUNT( ticket.id )' );
+		$subQuerySold->from( '#__swa_ticket as ticket' );
+		$subQuerySold->rightJoin( '#__swa_event_ticket AS event_ticket ON ticket.event_ticket_id = event_ticket.id' );
+		$subQuerySold->where( 'event_ticket.event_id=event.id' );
+		$query->select( '( ' . $subQuerySold->__toString() . ' ) as sold' );
+		$query->select( '( event.capacity - ( ' . $subQuerySold->__toString() . ' ) ) as capacity_remaining' );
 
 		// Select details of the event hosts
 		$query->join(
