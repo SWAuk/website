@@ -54,7 +54,13 @@ if ( empty( $this->items ) ) {
 			echo "<td>" . $item->price . "</td>\n";
 			echo "<td>";
 
-			if( $item->quantity_remaining > 0 && $item->capacity_remaining > 0 ) {
+			if( !$item->event_has_opened ) {
+				echo "Event not yet open";
+			} elseif ( $item->event_has_closed ) {
+				echo "SALES CLOSED";
+			} elseif ( $item->quantity_remaining <= 0 || $item->capacity_remaining <= 0 ) {
+				echo "SOLD OUT";
+			} else {
 				?>
 
 				<form id="form-ticketpurchase-<?php echo $item->id ?>" method="POST"
@@ -78,8 +84,6 @@ if ( empty( $this->items ) ) {
 				</form>
 
 				<?php
-			} else {
-				echo "SOLD OUT";
 			}
 
 			echo "</td>\n";

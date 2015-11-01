@@ -112,10 +112,11 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'GROUP_CONCAT( event_host.university_id ) as host_university_ids' );
 		$query->group( 'a.id' );
 
-		// Where the event has not already closed
-		$query->where( 'event.date_close > NOW()' );
-		// Where the event has opened!
-		$query->where( 'event.date_open < NOW()' );
+		// Select event closed & open indicators
+		$query->select( '( event.date_close < NOW() ) as event_has_closed' );
+		$query->select( '( event.date_open < NOW() ) as event_has_opened' );
+		// Where the event is in the future!
+		$query->where( 'event.date > NOW()' );
 
 		// Where we still have tickets remaining
 		$subQuery = $db->getQuery( true );
