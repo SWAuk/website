@@ -10,7 +10,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 
 $eventRegistrations = array();
 foreach ( $this->event_registrations as $reg ) {
-	$eventRegistrations[$reg->member_id][$reg->event_id] = strtotime( $reg->expires );;
+	$eventRegistrations[$reg->member_id][$reg->event_id] = true;
 }
 ?>
 
@@ -102,8 +102,7 @@ foreach ( $this->event_registrations as $reg ) {
 			echo "<li>" . $event->name . ' ';
 			if (
 				array_key_exists( $item->id, $eventRegistrations ) &&
-				array_key_exists( $event->id, $eventRegistrations[$item->id] ) &&
-				$eventRegistrations[$item->id][$event->id] >= strtotime( '-3 day', time() )
+				array_key_exists( $event->id, $eventRegistrations[$item->id] )
 			) {
 				//registered for the event
 				echo '<form id="form-universitymembers-unregister' . $item->id . '" method="POST" action="' .

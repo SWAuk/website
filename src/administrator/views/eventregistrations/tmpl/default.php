@@ -165,15 +165,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 							$listOrder
 						); ?>
 					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Expires',
-							'a.expires',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
 							'grid.sort',
@@ -242,9 +233,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						</td>
 						<td>
 							<?php echo $item->user; ?>
-						</td>
-						<td>
-							<?php echo $item->expires; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>

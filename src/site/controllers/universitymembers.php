@@ -214,7 +214,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		$db = JFactory::getDbo();
 		$query = $db->getQuery( true );
 
-		$columns = array( 'event_id', 'member_id', 'expires' );
+		$columns = array( 'event_id', 'member_id' );
 		$values = array(
 			$db->quote( $data['event_id'] ),
 			$db->quote( $data['member_id'] ),

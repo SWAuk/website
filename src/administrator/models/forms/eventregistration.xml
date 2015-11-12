@@ -31,14 +31,6 @@
 			required="true"
 			filter="safehtml"/>
 
-		<field name="expires"
-			type="calendar"
-			class="inputbox"
-			required="true"
-			default="3 days"
-			label="Expires"
-			filter="safehtml"/>
-
 	</fieldset>
 
 </form>
