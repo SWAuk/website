@@ -217,8 +217,7 @@ class SwaControllerUniversityMembers extends SwaController {
 		$columns = array( 'event_id', 'member_id' );
 		$values = array(
 			$db->quote( $data['event_id'] ),
-			$db->quote( $data['member_id'] ),
-			'NOW() + INTERVAL 3 DAY'
+			$db->quote( $data['member_id'] )
 		);
 
 		$query
