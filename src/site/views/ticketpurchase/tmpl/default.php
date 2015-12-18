@@ -37,8 +37,8 @@ if ( empty( $this->items ) ) {
 	<table>
 		<tr>
 			<th>Event</th>
-			<th>Date</th>
-			<th>Deadline</th>
+			<th>Event Date</th>
+			<th>Ticket Deadline</th>
 			<th>Ticket</th>
 			<th>Price</th>
 			<th>Buy</th>
