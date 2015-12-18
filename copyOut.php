@@ -19,8 +19,8 @@ recurse_copy( __DIR__ . '/src/site', $joomlaRoot . '/components/com_swa');
 
 recurse_copy(__DIR__ . '/src/administrator', $joomlaRoot . '/administrator/components/com_swa');
 
-#This file needs to be moved
-rename(__DIR__ . '/src/swa.xml', __DIR__ . '/src/administrator/swa.xml');
+#This file needs to go too!
+copy(__DIR__ . '/src/swa.xml', $joomlaRoot . '/administrator/components/com_swa/swa.xml');
 
 echo "Done!";
 
