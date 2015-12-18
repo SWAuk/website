@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * Joomla Install -> GIT
+ *
  * This file allows you to copy changes from a deployed version of the component
  * back to the git repo!
  * This means that you can develop on your live test code!
