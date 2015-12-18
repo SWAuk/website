@@ -137,6 +137,25 @@ class SwaControllerTicketPurchase extends SwaController {
 				);
 			} else {
 				$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
+
+				// Send a confirmation email!
+				$mailer = JFactory::getMailer();
+				$config = JFactory::getConfig();
+				$sender = array(
+					$config->get('mailfrom'),
+					$config->get('fromname')
+				);
+				$mailer->setSender($sender);
+				$user = SwaFactory::getUserFromMemberId($memberId);
+				$recipient = $user->email;
+				$mailer->addRecipient($recipient);
+				$body = "Your SWA ticket purchase has been confirmed!\n\nThe Web Team!";
+				$mailer->setSubject('Your SWA ticket purchase');
+				$mailer->setBody($body);
+				$send = $mailer->Send();
+				if ($send !== true) {
+					//TODO log this
+				}
 			}
 		}
 	}

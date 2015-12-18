@@ -109,6 +109,26 @@ class SwaControllerMemberPayment extends SwaController {
 				die( 'Failed to update member in db' );
 			} else {
 				$this->logAuditFrontend( 'bought membership' );
+
+				// Send a confirmation email!
+				$mailer = JFactory::getMailer();
+				$config = JFactory::getConfig();
+				$sender = array(
+					$config->get( 'mailfrom' ),
+					$config->get( 'fromname' )
+				);
+				$mailer->setSender($sender);
+				$user = SwaFactory::getUserFromMemberId( $memberId );
+				$recipient = $user->email;
+				$mailer->addRecipient($recipient);
+				$body   = "Your SWA membership purchase has been confirmed!\n\nThe Web Team!";
+				$mailer->setSubject('Your SWA membership');
+				$mailer->setBody($body);
+				$send = $mailer->Send();
+				if ( $send !== true ) {
+					//TODO log this
+				}
+
 			}
 		}
 	}

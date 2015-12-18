@@ -46,6 +46,7 @@ JLog::addLogger(
 );
 
 // Inclue other stuff
+require_once( __DIR__ . '/SwaFactory.php' );
 require_once( __DIR__ . '/ModelItem.php' );
 require_once( __DIR__ . '/ModelList.php' );
 require_once( __DIR__ . '/ModelForm.php' );
