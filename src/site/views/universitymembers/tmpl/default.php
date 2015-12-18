@@ -10,7 +10,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 
 $eventRegistrations = array();
 foreach ( $this->event_registrations as $reg ) {
-	$eventRegistrations[$reg->member_id][$reg->event_id] = true;
+	@$eventRegistrations[$reg->member_id][$reg->event_id] = true;
 }
 ?>
 
@@ -38,6 +38,35 @@ foreach ( $this->event_registrations as $reg ) {
 <p>
 	Here you can see all current registered members of your university that you have approved.
 </p>
+
+<?php
+// EWWWW allow people to register ALL people that are currently unregistered for an event
+$memberIds = array();
+foreach ($this->items as $item) {
+	if ($item->confirmed_university && !$item->graduated) {
+		$memberIds[] = $item->id;
+	}
+}
+foreach ($this->events as $event) {
+	$toRegisterForThisEvent = array();
+	foreach( $memberIds as $memberId ) {
+		if (
+			!array_key_exists( $memberId, $eventRegistrations ) ||
+			!array_key_exists( $event->id, $eventRegistrations[$memberId] )
+		) {
+			$toRegisterForThisEvent[] = $memberId;
+		}
+	}
+	//TODO it is stupid to send the member ids like this... We shouldnt do this...
+	echo '<form id="form-universitymembers-register-all-' . $event->id . '" method="POST" action="' .
+		JRoute::_( 'index.php?option=com_swa&task=universitymembers.register' ) . '">' .
+		'<input type="hidden" name ="member_ids" value="' . implode( '|', $toRegisterForThisEvent ) . '" />' .
+		'<input type="hidden" name ="event_id" value="' . $event->id . '" />' .
+		'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-all-' . $event->id . '\').submit(); return false;">Register all for ' . $event->name . '</a>' .
+		JHtml::_( 'form.token' ) .
+		'</form></br>';
+}
+?>
 
 <table>
 	<tr>

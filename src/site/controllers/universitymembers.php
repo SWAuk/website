@@ -200,66 +200,78 @@ class SwaControllerUniversityMembers extends SwaController {
 			die( 'Current member is not club committee' );
 		}
 
-		$targetMember = $this->getMember( $data['member_id'] );
-		if ( $currentMember->university_id != $targetMember->university_id ) {
-			die( 'Current and target member are from different universities' );
-		}
-
-		$targetEvents = $this->getEvents( $data['event_id'] );
-		if ( empty( $targetEvents ) ) {
-			die( 'Event does not exist with given id' );
-		}
-
-		// Add a new registration row
-		$db = JFactory::getDbo();
-		$query = $db->getQuery( true );
-
-		$columns = array( 'event_id', 'member_id' );
-		$values = array(
-			$db->quote( $data['event_id'] ),
-			$db->quote( $data['member_id'] )
-		);
-
-		$query
-			->insert( $db->quoteName( '#__swa_event_registration' ) )
-			->columns( $db->quoteName( $columns ) )
-			->values( implode( ',', $values ) );
-
-		$db->setQuery( $query );
-		if ( !$db->execute() ) {
-			JLog::add(
-				'SwaControllerUniversityMembers failed to register: Event:' .
-				$data['event_id'] .
-				' Member:' .
-				$data['member_id'],
-				JLog::INFO,
-				'com_swa'
-			);
+		if( array_key_exists( 'member_id', $data ) ) {
+			$memberIds = array( $data['member_id'] );
+		} elseif( array_key_exists( 'member_ids', $data ) ) {
+			$memberIds = explode( '|', $data['member_ids'] );
 		} else {
-			$this->logAuditFrontend(
-				'registered member ' . $data['member_id'] . ' for event ' . $data['event_id']
+			$memberIds = array();
+		}
+
+		foreach( $memberIds as $memberId ) {
+			$data['member_id'] = $memberId;
+			$targetMember = $this->getMember( $memberId );
+			if ( $currentMember->university_id != $targetMember->university_id ) {
+				die( 'Current and target member are from different universities' );
+			}
+
+			$targetEvents = $this->getEvents( $data['event_id'] );
+			if ( empty( $targetEvents ) ) {
+				die( 'Event does not exist with given id' );
+			}
+
+			// Add a new registration row
+			$db = JFactory::getDbo();
+			$query = $db->getQuery( true );
+
+			$columns = array( 'event_id', 'member_id' );
+			$values = array(
+				$db->quote( $data['event_id'] ),
+				$db->quote( $memberId )
 			);
 
-			// Send a confirmation email!
-			$mailer = JFactory::getMailer();
-			$config = JFactory::getConfig();
-			$sender = array(
-				$config->get('mailfrom'),
-				$config->get('fromname')
-			);
-			$mailer->setSender($sender);
-			$user = SwaFactory::getUserFromMemberId($data['member_id']);
-			$recipient = $user->email;
-			$mailer->addRecipient($recipient);
-			$body = "You have been registered for a new SWA event!\n\nThe Web Team!";
-			$mailer->setSubject('New SWA event registration');
-			$mailer->setBody($body);
-			$send = $mailer->Send();
-			if ($send !== true) {
-				//TODO log this
+			$query
+				->insert( $db->quoteName( '#__swa_event_registration' ) )
+				->columns( $db->quoteName( $columns ) )
+				->values( implode( ',', $values ) );
+
+			$db->setQuery( $query );
+			if ( !$db->execute() ) {
+				JLog::add(
+					'SwaControllerUniversityMembers failed to register: Event:' .
+					$data['event_id'] .
+					' Member:' .
+					$memberId,
+					JLog::INFO,
+					'com_swa'
+				);
+			} else {
+				$this->logAuditFrontend(
+					'registered member ' . $memberId . ' for event ' . $data['event_id']
+				);
+
+				// Send a confirmation email!
+				$mailer = JFactory::getMailer();
+				$config = JFactory::getConfig();
+				$sender = array(
+					$config->get('mailfrom'),
+					$config->get('fromname')
+				);
+				$mailer->setSender($sender);
+				$user = SwaFactory::getUserFromMemberId($memberId);
+				$recipient = $user->email;
+				$mailer->addRecipient($recipient);
+				$body = "You have been registered for a new SWA event!\n\nThe Web Team!";
+				$mailer->setSubject('New SWA event registration');
+				$mailer->setBody($body);
+				$send = $mailer->Send();
+				if ($send !== true) {
+					//TODO log this
+				}
 			}
+			$this->setRedirect( JRoute::_( 'index.php?option=com_swa&view=universitymembers', false ) );
+
 		}
-		$this->setRedirect( JRoute::_( 'index.php?option=com_swa&view=universitymembers', false ) );
 	}
 
 	public function unregister() {
