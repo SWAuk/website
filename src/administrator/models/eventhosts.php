@@ -103,6 +103,13 @@ class SwaModelEventhosts extends JModelList {
 			'#__swa_university AS university ON university.id = a.university_id'
 		);
 
+		// Add the list ordering clause.
+		$orderCol = $this->state->get( 'list.ordering' );
+		$orderDirn = $this->state->get( 'list.direction' );
+		if ( $orderCol && $orderDirn ) {
+			$query->order( $db->escape( $orderCol . ' ' . $orderDirn ) );
+		}
+
 		return $query;
 	}
 
