@@ -127,6 +127,7 @@
 
 		<files folder="administrator">
 			<filename>config.xml</filename>
+			<filename>access.xml</filename>
 			<filename>controller.php</filename>
 			<filename>index.html</filename>
 			<filename>swa.php</filename>
