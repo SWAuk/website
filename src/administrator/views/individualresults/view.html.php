@@ -42,8 +42,7 @@ class SwaViewIndividualresults extends JViewLegacy {
 	 * @since    1.6
 	 */
 	protected function addToolbar() {
-		$state = $this->get( 'State' );
-		$canDo = SwaHelper::getActions( $state->get( 'filter.category_id' ) );
+		$canDo = SwaHelper::getActions();
 
 		JToolBarHelper::title( JText::_( 'Individual results' ), 'individualresults.png' );
 
