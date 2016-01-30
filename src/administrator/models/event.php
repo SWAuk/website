@@ -76,22 +76,4 @@ class SwaModelEvent extends JModelAdmin {
 		return $data;
 	}
 
-	/**
-	 * Method to get a single record.
-	 *
-	 * @param    integer    The id of the primary key.
-	 *
-	 * @return    mixed    Object on success, false on failure.
-	 * @since    1.6
-	 */
-	public function getItem( $pk = null ) {
-		if ( $item = parent::getItem( $pk ) ) {
-
-			//Do any procesing on fields here if needed
-
-		}
-
-		return $item;
-	}
-
 }
