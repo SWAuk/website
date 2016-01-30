@@ -59,25 +59,13 @@ class SwaModelGrants extends JModelList {
 		parent::__construct( $config );
 	}
 
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * Note. Calling getState in this method will result in recursion.
-	 */
 	protected function populateState( $ordering = null, $direction = null ) {
-		// Initialise variables.
 		$app = JFactory::getApplication( 'administrator' );
-
-		// Load the filter state.
-		$search =
-			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
-		$this->setState( 'filter.search', $search );
-
-		// Load the parameters.
-		$params = JComponentHelper::getParams( 'com_swa' );
-		$this->setState( 'params', $params );
-
-		// List state information.
+		$this->setState(
+			'filter.search',
+			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
+		);
+		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
 		parent::populateState( 'a.id', 'desc' );
 	}
 
