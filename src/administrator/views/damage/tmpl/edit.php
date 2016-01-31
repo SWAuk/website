@@ -1,5 +1,4 @@
 <?php
-// no direct access
 defined( '_JEXEC' ) or die;
 
 JHtml::addIncludePath( JPATH_COMPONENT . '/helpers/html' );

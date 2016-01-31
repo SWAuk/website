@@ -1,17 +1,11 @@
 <?php
 
-// No direct access
 defined( '_JEXEC' ) or die;
 
-/**
- * eventhost Table class
- */
 class SwaTableeventhost extends JTable {
 
 	/**
-	 * Constructor
-	 *
-	 * @param JDatabase A database connector object
+	 * @param JDatabase $db A database connector object
 	 */
 	public function __construct( &$db ) {
 		parent::__construct( '#__swa_event_host', 'id', $db );
@@ -20,11 +14,10 @@ class SwaTableeventhost extends JTable {
 	/**
 	 * Overloaded bind function to pre-process the params.
 	 *
-	 * @param    array        Named array
+	 * @param array $array Named array
 	 *
 	 * @return    null|string    null is operation was satisfactory, otherwise returns an error
 	 * @see        JTable:bind
-	 * @since    1.5
 	 */
 	public function bind( $array, $ignore = '' ) {
 		if ( isset( $array['params'] ) && is_array( $array['params'] ) ) {
@@ -45,9 +38,6 @@ class SwaTableeventhost extends JTable {
 	public function delete( $pk = null ) {
 		$this->load( $pk );
 		$result = parent::delete( $pk );
-		if ( $result ) {
-
-		}
 
 		return $result;
 	}

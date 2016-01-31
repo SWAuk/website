@@ -1,5 +1,4 @@
 <?php
-// No direct access
 defined( '_JEXEC' ) or die;
 
 class SwaController extends JControllerLegacy {
@@ -12,7 +11,6 @@ class SwaController extends JControllerLegacy {
 	 *     valid values see {@link JFilterInput::clean()}.
 	 *
 	 * @return    JController        This object to support chaining.
-	 * @since    1.5
 	 */
 	public function display( $cachable = false, $urlparams = false ) {
 		require_once JPATH_COMPONENT . '/helpers/swa.php';

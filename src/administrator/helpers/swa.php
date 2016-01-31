@@ -1,5 +1,4 @@
 <?php
-// No direct access
 defined( '_JEXEC' ) or die;
 
 /**
@@ -108,7 +107,6 @@ class SwaHelper {
 	 * Gets a list of the actions that can be performed.
 	 *
 	 * @return    JObject
-	 * @since    1.6
 	 */
 	public static function getActions() {
 		$user = JFactory::getUser();

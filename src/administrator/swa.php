@@ -1,5 +1,4 @@
 <?php
-// no direct access
 defined( '_JEXEC' ) or die;
 
 // Access check.
@@ -7,7 +6,7 @@ if ( !JFactory::getUser()->authorise( 'core.manage', 'com_swa' ) ) {
 	throw new Exception( JText::_( 'JERROR_ALERTNOAUTHOR' ) );
 }
 
-// Include dependancies
+// Include dependencies
 jimport( 'joomla.application.component.controller' );
 
 JLog::addLogger(
@@ -23,7 +22,7 @@ JLog::addLogger(
 	array( 'com_swa.audit_backend' )
 );
 
-// Inclue other stuff
+// Include other stuff
 require_once( __DIR__ . '/ControllerForm.php' );
 require_once( __DIR__ . '/ControllerAdmin.php' );
 

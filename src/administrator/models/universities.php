@@ -3,18 +3,12 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.modellist' );
 
-/**
- * Methods supporting a list of Swa records.
- */
 class SwaModelUniversities extends JModelList {
 
 	/**
-	 * Constructor.
-	 *
-	 * @param    array    An optional associative array of configuration settings.
+	 * @param array $config An optional associative array of configuration settings.
 	 *
 	 * @see        JController
-	 * @since    1.6
 	 */
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) ) {
@@ -56,7 +50,6 @@ class SwaModelUniversities extends JModelList {
 	 * @param    string $id A prefix for the store id.
 	 *
 	 * @return    string        A store id.
-	 * @since    1.6
 	 */
 	protected function getStoreId( $id = '' ) {
 		// Compile the store id.
@@ -69,7 +62,6 @@ class SwaModelUniversities extends JModelList {
 	 * Build an SQL query to load the list data.
 	 *
 	 * @return    JDatabaseQuery
-	 * @since    1.6
 	 */
 	protected function getListQuery() {
 		// Create a new query object.

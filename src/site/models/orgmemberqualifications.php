@@ -38,7 +38,6 @@ class SwaModelOrgMemberQualifications extends SwaModelList {
 	 * @param    string $id A prefix for the store id.
 	 *
 	 * @return    string        A store id.
-	 * @since    1.6
 	 */
 	protected function getStoreId( $id = '' ) {
 		// Compile the store id.
@@ -51,7 +50,6 @@ class SwaModelOrgMemberQualifications extends SwaModelList {
 	 * Build an SQL query to load the list data.
 	 *
 	 * @return    JDatabaseQuery
-	 * @since    1.6
 	 */
 	protected function getListQuery() {
 		// Create a new query object.

@@ -1,5 +1,4 @@
 <?php
-// No direct access
 defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view' );
@@ -38,7 +37,6 @@ class SwaViewEvents extends JViewLegacy {
 	/**
 	 * Add the page title and toolbar.
 	 *
-	 * @since    1.6
 	 */
 	protected function addToolbar() {
 		$canDo = SwaHelper::getActions();
