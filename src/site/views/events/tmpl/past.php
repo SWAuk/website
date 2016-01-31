@@ -46,7 +46,7 @@ if ( empty( $this->items ) ) {
 				continue;
 			}
 			echo "<tr>\n";
-			echo "<td>" . $item->name . "</td>\n";
+			echo "<td><a href=''>" . $item->name . "</a></td>\n";
 			echo "<td>" . $item->date . "</td>\n";
 			echo "</tr>\n";
 		}

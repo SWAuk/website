@@ -83,7 +83,7 @@ class SwaModelEvents extends SwaModelList {
 		$db = $this->getDbo();
 		$query = $db->getQuery( true );
 
-		$query->select( array( 'event.name', 'event.date' ) );
+		$query->select( array( 'event.id', 'event.name', 'event.date' ) );
 		$query->from( '`#__swa_season` AS season' );
 		$query->join( 'RIGHT', '#__swa_event as event ON season.id = event.season_id' );
 		$query->select( 'season.year as season_year' );

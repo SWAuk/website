@@ -45,8 +45,9 @@ if ( empty( $this->items ) ) {
 			if( new DateTime( $item->date ) < new DateTime() ) {
 				continue;
 			}
+			$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&event=' . $item->id );
 			echo "<tr>\n";
-			echo "<td>" . $item->name . "</td>\n";
+			echo "<td><a href='$eventUrl'>" . $item->name . "</a></td>\n";
 			echo "<td>" . $item->date . "</td>\n";
 			echo "</tr>\n";
 		}
