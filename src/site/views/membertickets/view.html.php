@@ -13,9 +13,6 @@ class SwaViewMemberTickets extends JViewLegacy {
 	protected $user;
 	protected $items;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

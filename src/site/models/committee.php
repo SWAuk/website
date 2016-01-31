@@ -3,14 +3,9 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.modellist' );
 
-/**
- * Methods supporting a list of Swa records.
- */
 class SwaModelCommittee extends SwaModelList {
 
 	/**
-	 * Constructor.
-	 *
 	 * @param    array    An optional associative array of configuration settings.
 	 *
 	 * @see        JController

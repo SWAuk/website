@@ -13,9 +13,6 @@ class SwaViewUniversityEventAttendees extends JViewLegacy {
 	protected $user;
 	protected $member;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

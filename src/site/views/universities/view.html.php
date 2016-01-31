@@ -11,9 +11,6 @@ class SwaViewUniversities extends JViewLegacy {
 	protected $items;
 	protected $params;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

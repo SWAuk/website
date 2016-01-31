@@ -13,9 +13,6 @@ class SwaViewMemberRegistration extends JViewLegacy {
 	protected $params;
 	protected $user;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

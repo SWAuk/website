@@ -14,9 +14,6 @@ class SwaViewQualifications extends JViewLegacy {
 	protected $member;
 	protected $form;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

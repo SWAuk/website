@@ -5,9 +5,6 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.view' );
 
-/**
- * View class for a list of Swa.
- */
 class SwaViewOrgMemberQualifications extends JViewLegacy {
 
 	protected $items;
@@ -16,9 +13,6 @@ class SwaViewOrgMemberQualifications extends JViewLegacy {
 	protected $user;
 	protected $member;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

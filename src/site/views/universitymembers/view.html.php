@@ -16,9 +16,6 @@ class SwaViewUniversityMembers extends JViewLegacy {
 	protected $member;
 	protected $layouts;
 
-	/**
-	 * Display the view
-	 */
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
 

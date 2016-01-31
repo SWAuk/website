@@ -7,13 +7,6 @@ jimport( 'joomla.application.component.modeladmin' );
 
 class SwaModelOrgCommitteeDetails extends SwaModelForm {
 
-	/**
-	 * @param string $type
-	 * @param string $prefix
-	 * @param array $config
-	 *
-	 * @return JTable
-	 */
 	public function getTable( $type = 'Committee', $prefix = 'SwaTable', $config = array() ) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}

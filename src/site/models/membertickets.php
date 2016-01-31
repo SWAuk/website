@@ -7,13 +7,6 @@ jimport( 'joomla.application.component.modeladmin' );
 
 class SwaModelMemberTickets extends SwaModelList {
 
-	/**
-	 * @param string $type
-	 * @param string $prefix
-	 * @param array $config
-	 *
-	 * @return JTable
-	 */
 	public function getTable( $type = 'Ticket', $prefix = 'SwaTable', $config = array() ) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}

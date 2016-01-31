@@ -7,13 +7,6 @@ jimport( 'joomla.application.component.modeladmin' );
 
 class SwaModelEvent extends SwaModelItem {
 
-	/**
-	 * @param string $type
-	 * @param string $prefix
-	 * @param array $config
-	 *
-	 * @return JTable
-	 */
 	public function getTable( $type = 'Event', $prefix = 'SwaTable', $config = array() ) {
 		return JTable::getInstance( $type, $prefix, $config );
 	}
