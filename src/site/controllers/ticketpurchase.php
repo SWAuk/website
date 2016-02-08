@@ -110,8 +110,24 @@ class SwaControllerTicketPurchase extends SwaController {
 			);
 		} else {
 			//NOTE: AUTHORISED
+			// Make sure the member does not have this event ticket already
+			// This is a dumb check and can be removed once we actually store transaction IDS and things
+			$query = $db->getQuery( true );
+			$query->select( 'COUNT(*)' );
+			$query->from( $db->quoteName( '#__swa_ticket' ) . ' as ticket' );
+			$query->where( 'ticket.member_id = ' . $db->quote( $memberId ) );
+			$query->where( 'ticket.event_ticket_id = ' . $db->quote( $eventTicketId ) );
+			$db->setQuery( $query );
+			$count = $db->loadResult();
+
+			if ( $count === null ) {
+				throw new Exception( 'TicketPurchase db check 2 failed' );
+			}
+			if( $count >= 1 ) {
+				throw new Exception( 'Ticket already seems to appears in the DB' );
+			}
+
 			// Update / add the ticket to the db
-			$db = JFactory::getDbo();
 			$query = $db->getQuery( true );
 			$query
 				->insert( $db->quoteName( '#__swa_ticket' ) )
