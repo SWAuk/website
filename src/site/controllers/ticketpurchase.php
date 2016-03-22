@@ -190,6 +190,7 @@ class SwaControllerTicketPurchase extends SwaController {
 			);   // returns portion of string, everything but last character
 
 		$headers = "POST $url HTTP/1.0\r\n"  // headers to be sent to the server
+			. "Host: www.nochex.com\r\n"
 			. "Content-Type: application/x-www-form-urlencoded\r\n"
 			. "Content-Length: " . strlen( $urlencoded ) . "\r\n\r\n";  // length of the string
 
