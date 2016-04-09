@@ -65,6 +65,12 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 							); ?></div>
 						<div class="controls"><?php echo $this->form->getInput( 'name' ); ?></div>
 					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel(
+								'series'
+							); ?></div>
+						<div class="controls"><?php echo $this->form->getInput( 'series' ); ?></div>
+					</div>
 
 				</fieldset>
 			</div>

@@ -217,6 +217,7 @@ DEFAULT COLLATE=utf8_general_ci;
 CREATE  TABLE IF NOT EXISTS `#__swa_competition_type` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `name` VARCHAR(45) NOT NULL ,
+  `series` VARCHAR(10) NOT NULL ,
   PRIMARY KEY (`id`) )
 DEFAULT COLLATE=utf8_general_ci;
 

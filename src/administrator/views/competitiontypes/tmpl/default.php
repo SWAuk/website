@@ -156,6 +156,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							$listOrder
 						); ?>
 					</th>
+					<th>Series</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
 							'grid.sort',
@@ -230,6 +231,11 @@ if ( !empty( $this->extra_sidebar ) ) {
 								<?php echo $this->escape( $item->name ); ?>
 							<?php endif; ?>
 						</td>
+
+						<td>
+							<?php echo $this->escape( $item->series ); ?>
+						</td>
+
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>
 						</td>

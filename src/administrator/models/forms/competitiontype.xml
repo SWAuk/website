@@ -18,6 +18,14 @@
 			required="true"
 			filter="safehtml"/>
 
+		<field name="series"
+			type="text"
+			size="10"
+			class="inputbox"
+			label="Series"
+			required="true"
+			filter="safehtml"/>
+
 	</fieldset>
 
 </form>
