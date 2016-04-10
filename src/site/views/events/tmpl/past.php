@@ -45,7 +45,7 @@ if ( empty( $this->items ) ) {
 				continue;
 			}
 			echo "<tr>\n";
-			$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&event=' . $item->id );
+			$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&layout=past&event=' . $item->id );
 			echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
 			echo "<td>" . $item->date . "</td>\n";
 			echo "</tr>\n";

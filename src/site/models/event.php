@@ -11,14 +11,23 @@ class SwaModelEvent extends SwaModelItem {
 	}
 
 	/**
-	 * @return JTable
+	 * @return int
+	 * @throws Exception
 	 */
-	public function getItem() {
+	private function getEventId() {
 		$app = JFactory::getApplication();
 		$eventId = $app->input->getInt( 'event' );
 		if( !is_int( $eventId ) ) {
-			return null;
+			throw new InvalidArgumentException( "No event ID given" );
 		}
+		return $eventId;
+	}
+
+	/**
+	 * @return JTable
+	 */
+	public function getItem() {
+		$eventId = $this->getEventId();
 
 		// Create a new query object.
 		$db = $this->getDbo();
@@ -47,6 +56,65 @@ class SwaModelEvent extends SwaModelItem {
 		$db->setQuery( $query );
 
 		return $db->loadObject();
+	}
+
+	public function getTeamResults() {
+		$eventId = $this->getEventId();
+
+		$db = $this->getDbo();
+		$query = $db->getQuery( true );
+
+		$query->select(
+			array(
+				'university.name',
+				'team_result.*',
+			)
+		);
+		$query->from( '`#__swa_competition` AS comp' );
+		$query->where( 'comp.event_id = ' . $db->quote( $eventId ) );
+		$query->join( 'LEFT', '#__swa_competition_type AS comp_type ON comp_type.id = comp.competition_type_id' );
+		$query->join( 'LEFT', '#__swa_team_result AS team_result ON comp.id = team_result.competition_id' );
+		$query->join( 'LEFT', '#__swa_university AS university ON university.id = team_result.university_id' );
+		$query->order( 'team_result.result' );
+		$query->where( 'team_result.result IS NOT NULL' );
+
+		$db->setQuery( $query );
+
+		return $db->loadAssocList();
+	}
+
+	public function getIndiResults() {
+		$eventId = $this->getEventId();
+
+		$db = $this->getDbo();
+		$query = $db->getQuery( true );
+
+		$query->select(
+			array(
+				'user.name',
+				'indi_result.*',
+				'comp_type.name as comp_name',
+			)
+		);
+		$query->from( '`#__swa_competition` AS comp' );
+		$query->where( 'comp.event_id = ' . $db->quote( $eventId ) );
+		$query->join( 'LEFT', '#__swa_competition_type AS comp_type ON comp_type.id = comp.competition_type_id' );
+		$query->join( 'LEFT', '#__swa_indi_result AS indi_result ON comp.id = indi_result.competition_id' );
+		$query->join( 'LEFT', '#__swa_member AS member ON member.id = indi_result.member_id' );
+		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
+		$query->order( 'indi_result.result' );
+		$query->where( 'indi_result.result IS NOT NULL' );
+
+		$db->setQuery( $query );
+
+		$result = $db->loadAssocList();
+
+		$items = array();
+		foreach( $result as $row ) {
+			$items[$row['comp_name']][] = $row;
+		}
+
+		return $items;
 	}
 
 }
