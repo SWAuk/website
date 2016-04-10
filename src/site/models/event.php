@@ -117,4 +117,31 @@ class SwaModelEvent extends SwaModelItem {
 		return $items;
 	}
 
+	public function getTicketSales() {
+		$eventId = $this->getEventId();
+
+		$db = $this->getDbo();
+		$query = $db->getQuery( true );
+
+		$query->select(
+			array(
+				'event_ticket.name',
+				'round(event_ticket.price,0) as price',
+				'concat(round((count(*)/event_ticket.quantity*100),0),\'%\') as percentage_sold',
+				'count(*) as sold',
+				'event_ticket.quantity',
+				'(event_ticket.quantity-count(*)) as remaining',
+			)
+		);
+		$query->from( '`#__swa_ticket` AS ticket' );
+		$query->rightJoin( '`#__swa_event_ticket` AS event_ticket ON ticket.event_ticket_id = event_ticket.id' );
+		$query->join( 'INNER', '`#__swa_event` as event ON event_ticket.event_id = event.id' );
+		$query->where( 'event_ticket.event_id = ' . $db->quote( $eventId ) );
+		$query->group( 'event_ticket_id' );
+
+		$db->setQuery( $query );
+
+		return $db->loadAssocList();
+	}
+
 }

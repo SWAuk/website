@@ -10,6 +10,7 @@ class SwaViewEvent extends JViewLegacy {
 	protected $item;
 	protected $params;
 	protected $user;
+	protected $member;
 
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
@@ -28,6 +29,8 @@ class SwaViewEvent extends JViewLegacy {
 		if( $this->item === null ) {
 			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=events' ) );
 		}
+
+		$this->member = $this->get( 'Member' );
 
 		parent::display( $tpl );
 	}
