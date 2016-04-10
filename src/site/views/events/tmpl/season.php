@@ -56,7 +56,8 @@ $currentSeasonYear = getCurrentSeasonYear();
 			continue;
 		}
 		echo "<tr>\n";
-		echo "<td><a href=''>" . $item->name . "</a></td>\n";
+		$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&event=' . $item->id );
+		echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
 		echo "<td>" . $item->date . "</td>\n";
 		echo "</tr>\n";
 	}
