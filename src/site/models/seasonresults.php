@@ -8,11 +8,9 @@ class SwaModelSeasonResults extends SwaModelList {
     private $seasonId = 15;
 
     /**
-     * @todo team series?
-     * @todo university series?
      * @return array
      */
-    public function getItems() {
+    public function getIndividualItems() {
         // Get the data from the DB
         $indiSeriesDetails = array_merge( $this->getMainSeriesDetails(), $this->getSexSeriesDetails() );
 
@@ -178,10 +176,132 @@ LEFT JOIN swan_swa_member as member
 ON indi_result.member_id = member.id
 LEFT JOIN swan_users as user
 ON member.user_id = user.id
-WHERE season.id = 15
+WHERE season.id = {$this->seasonId}
 AND comp_type.name IS NOT NULL
 AND comp_type.name != 'Team'
 GROUP BY comp_type.series, member.id;"
+        );
+
+        $db->setQuery( $query );
+        return $db->loadAssocList();
+    }
+
+    public function getTeamItems(){
+        // Create a map of the results per event per uni
+        $eventUniResultMap = array();
+        foreach( $this->getTeamResults() as $result ) {
+            $eventUniResultMap[$result['event_id']][$result['name']][] = $result['result'];
+        }
+
+        $items = array();
+
+        // Sort the results for each uni at each event
+        foreach ( $eventUniResultMap as $eventId => &$eventUnis ) {
+            foreach ( $eventUnis as $uniName => &$results ) {
+                sort( $results, SORT_NUMERIC  );
+                foreach ( $results as $teamNumber => $result ) {
+                    $teamNumber = $teamNumber + 1; // 0 index so add 1 so it makes sense
+                    $items[$uniName][$teamNumber]['name'] = $uniName;
+                    $items[$uniName][$teamNumber]['team'] = $teamNumber;
+                    @$items[$uniName][$teamNumber]['competitions']++;
+                    @$items[$uniName][$teamNumber]['result'] += $result;
+                }
+            }
+        }
+
+        $details = $this->getTeamSeriesDetails();
+
+        // Add DNCs
+        foreach( $items as $uniName => $uniTeams ) {
+            foreach( $uniTeams as $teamNumber => $teamDetails ) {
+                $missedEvents = $details['competitions'] - $teamDetails['competitions'];
+                $items[$uniName][$teamNumber]['dnc_count'] = $missedEvents;
+                if( $missedEvents >= 1 ) {
+                    $items[$uniName][$teamNumber]['result'] += ( $details['dnc_score'] * $missedEvents );
+                }
+            }
+        }
+
+        $details['results'] = $items;
+
+        return $details;
+    }
+
+
+    /**
+     * @return array that looks like:
+     *
+     * array(
+     *     'competitions' => 4,
+     *     'universities' => 10,
+     *     'teams' => 13,
+     *     'dnc_score' => 15
+     * )
+     */
+    private function getTeamSeriesDetails() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
+        $query->setQuery(
+            "SELECT
+	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
+	COUNT( DISTINCT team_result.university_id ) as universities,
+	COUNT( DISTINCT team_result.university_id, team_result.team_number ) as teams,
+	COUNT( DISTINCT team_result.university_id, team_result.team_number ) + 2 as dnc_score
+FROM jwhitwor_swaj.swan_swa_season as season
+LEFT JOIN swan_swa_event as event
+ON season.id = event.season_id
+LEFT JOIN swan_swa_competition as comp
+ON event.id = comp.event_id
+LEFT JOIN swan_swa_competition_type as comp_type
+ON comp.competition_type_id = comp_type.id
+LEFT JOIN swan_swa_team_result as team_result
+ON team_result.competition_id = comp.id
+WHERE season.id = {$this->seasonId}
+AND comp_type.name = 'Team';"
+        );
+
+        $db->setQuery( $query );
+        $list = $db->loadAssocList();
+        return array_shift( $list );
+    }
+
+
+    /**
+     * @return array that looks like:
+     *
+     * array(
+     *     array(
+     *         'university_id' => 13,
+     *         'name' => 'UWE',
+     *         'team_number' => 1,
+     *         'event_id' => 165,
+     *         'result' => 3,
+     *     ),
+     * )
+     */
+    private function getTeamResults() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
+        $query->setQuery(
+            "SELECT
+	team_result.university_id,
+	university.name,
+	team_result.team_number,
+	event.id as event_id,
+	team_result.result
+FROM jwhitwor_swaj.swan_swa_season as season
+LEFT JOIN swan_swa_event as event
+ON season.id = event.season_id
+LEFT JOIN swan_swa_competition as comp
+ON event.id = comp.event_id
+LEFT JOIN swan_swa_competition_type as comp_type
+ON comp.competition_type_id = comp_type.id
+LEFT JOIN swan_swa_team_result as team_result
+ON team_result.competition_id = comp.id
+LEFT JOIN swan_swa_university as university
+ON team_result.university_id = university.id
+WHERE season.id = {$this->seasonId}
+AND comp_type.name = 'Team';"
         );
 
         $db->setQuery( $query );

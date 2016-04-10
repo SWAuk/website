@@ -7,8 +7,10 @@ jimport( 'joomla.application.component.view' );
 class SwaViewSeasonResults extends JViewLegacy {
 
 	protected $state;
-	protected $items;
 	protected $params;
+
+	protected $individualItems;
+	protected $teamItems;
 
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
@@ -21,7 +23,8 @@ class SwaViewSeasonResults extends JViewLegacy {
 			throw new Exception( implode( "\n", $errors ) );
 		}
 
-		$this->items = $this->get( 'Items' );
+		$this->individualItems = $this->get( 'IndividualItems' );
+		$this->teamItems = $this->get( 'TeamItems' );
 
 		parent::display( $tpl );
 	}
