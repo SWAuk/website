@@ -195,16 +195,22 @@ GROUP BY comp_type.series, member.id;"
 
         $items = array();
 
-        // Sort the results for each uni at each event
         foreach ( $eventUniResultMap as $eventId => &$eventUnis ) {
             foreach ( $eventUnis as $uniName => &$results ) {
+                /**
+                 * Sort this universities teams results at this one event,
+                 * we can then assume the first score is the best!
+                 * Then use the key in the array to reassign a new team number.
+                 * This means the best scores always go to team 1!
+                 */
                 sort( $results, SORT_NUMERIC  );
-                foreach ( $results as $teamNumber => $result ) {
-                    $teamNumber = $teamNumber + 1; // 0 index so add 1 so it makes sense
-                    $items[$uniName][$teamNumber]['name'] = $uniName;
-                    $items[$uniName][$teamNumber]['team'] = $teamNumber;
-                    @$items[$uniName][$teamNumber]['competitions']++;
-                    @$items[$uniName][$teamNumber]['result'] += $result;
+                foreach ( $results as $key => $result ) {
+                    $teamNumber = $key + 1; // 0 index so add 1 so it makes sense
+                    $items[$uniName . '-' . $teamNumber]['name'] = $uniName;
+                    $items[$uniName . '-' . $teamNumber]['team'] = $teamNumber;
+                    // Also count the number of competitions for the team and add up the final result.
+                    @$items[$uniName . '-' . $teamNumber]['competitions']++;
+                    @$items[$uniName . '-' . $teamNumber]['result'] += $result;
                 }
             }
         }
@@ -212,15 +218,21 @@ GROUP BY comp_type.series, member.id;"
         $details = $this->getTeamSeriesDetails();
 
         // Add DNCs
-        foreach( $items as $uniName => $uniTeams ) {
-            foreach( $uniTeams as $teamNumber => $teamDetails ) {
-                $missedEvents = $details['competitions'] - $teamDetails['competitions'];
-                $items[$uniName][$teamNumber]['dnc_count'] = $missedEvents;
-                if( $missedEvents >= 1 ) {
-                    $items[$uniName][$teamNumber]['result'] += ( $details['dnc_score'] * $missedEvents );
-                }
+        foreach( $items as $uniNameTeamNumberCombo => $teamDetails ) {
+            $missedEvents = $details['competitions'] - $teamDetails['competitions'];
+            $items[$uniNameTeamNumberCombo]['dnc_count'] = $missedEvents;
+            if( $missedEvents >= 1 ) {
+                $items[$uniNameTeamNumberCombo]['result'] += ( $details['dnc_score'] * $missedEvents );
             }
         }
+
+        // Sort the results
+        usort( $items, function( $a, $b ) {
+            if( $a['result'] < $b['result'] ) {
+                return false;
+            }
+            return true;
+        } );
 
         $details['results'] = $items;
 

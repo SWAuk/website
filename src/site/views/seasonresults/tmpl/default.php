@@ -36,13 +36,11 @@ echo "<table border=\"1\">\n";
 echo "<th><td><strong>Uni</strong></td><td><strong>Team</strong></td><td><strong>Points</strong></td></th>\n";
 
 $positionCounter = 0;
-foreach ( $this->teamItems['results'] as $uniName => $teams ) {
-	foreach( $teams as $teamNumber => $teamDetails ) {
-		$positionCounter++;
-		// Name is technically use input so strip it just in case..
-		$name = strip_tags( $teamDetails['name'] );
-		echo "<tr><td>{$positionCounter}</td><td>{$name}</td><td>{$teamDetails['team']}</td><td>{$teamDetails['result']}</td></tr>";
-	}
+foreach ( $this->teamItems['results'] as $teamDetails ) {
+	$positionCounter++;
+	// Name is technically use input so strip it just in case..
+	$name = strip_tags( $teamDetails['name'] );
+	echo "<tr><td>{$positionCounter}</td><td>{$name}</td><td>{$teamDetails['team']}</td><td>{$teamDetails['result']}</td></tr>";
 }
 
 echo "</table>\n";
