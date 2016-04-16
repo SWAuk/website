@@ -313,7 +313,8 @@ ON team_result.competition_id = comp.id
 LEFT JOIN swan_swa_university as university
 ON team_result.university_id = university.id
 WHERE season.id = {$this->seasonId}
-AND comp_type.name = 'Team';"
+AND comp_type.name = 'Team'
+AND result IS NOT NULL;"
         );
 
         $db->setQuery( $query );
