@@ -160,7 +160,7 @@ GROUP BY LCASE( member.sex );"
 	indi_result.member_id,
 	user.name,
 	LCASE( member.sex ) as sex,
-	SUM( indi_result.result ) as result,
+	SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
 	COUNT( indi_result.result ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions
 FROM jwhitwor_swaj.swan_swa_season as season
@@ -300,7 +300,7 @@ AND comp_type.name = 'Team';"
 	university.name,
 	team_result.team_number,
 	event.id as event_id,
-	team_result.result
+	IF( team_result.result = 1, 0.5, team_result.result ) as result
 FROM jwhitwor_swaj.swan_swa_season as season
 LEFT JOIN swan_swa_event as event
 ON season.id = event.season_id
