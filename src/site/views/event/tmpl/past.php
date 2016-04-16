@@ -21,17 +21,19 @@ $item = $this->item;
 $indiResults = $this->get( 'IndiResults' );
 $teamResults = $this->get( 'TeamResults' );
 
-echo "<h2>Team Results</h2>\n";
-echo "<table border=\"1\">\n";
-echo "<th><td><strong>Uni</strong></td><td><strong>Team</strong></td><td><strong>Points</strong></td></th>\n";
+if( $teamResults ) {
+    echo "<h2>Team Results</h2>\n";
+    echo "<table border=\"1\">\n";
+    echo "<th><td><strong>Uni</strong></td><td><strong>Team</strong></td><td><strong>Points</strong></td></th>\n";
 
-$positionCounter = 0;
-foreach( $teamResults as $result ) {
-    $positionCounter++;
-    echo "<tr><td>{$positionCounter}</td><td>{$result['name']}</td><td>{$result['team_number']}</td><td>{$result['result']}</td></tr>\n";
+    $positionCounter = 0;
+    foreach( $teamResults as $result ) {
+        $positionCounter++;
+        echo "<tr><td>{$positionCounter}</td><td>{$result['name']}</td><td>{$result['team_number']}</td><td>{$result['result']}</td></tr>\n";
+    }
+
+    echo "</table>\n";
 }
-
-echo "</table>\n";
 
 foreach( $indiResults as $compName => $results ) {
     echo "<h2>{$compName} Results</h2>\n";
