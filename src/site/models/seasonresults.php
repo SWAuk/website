@@ -11,7 +11,7 @@ class SwaModelSeasonResults extends SwaModelList {
      * @return array
      */
     public function getIndividualItems() {
-        // Get the data from the DB
+        // Get the series details from the DB
         $indiSeriesDetails = array_merge( $this->getMainSeriesDetails(), $this->getSexSeriesDetails() );
 
         // Split the individual results up into maps of (series => name => result details)
@@ -29,6 +29,24 @@ class SwaModelSeasonResults extends SwaModelList {
                 $result['dnc_count'] = $competitionsMissed;
                 if ( $competitionsMissed >= 1 ) {
                     $result['result'] += ( $competitionsMissed * $dncScore );
+                }
+                $result['discards'] = 0;
+                $result['discard_points'] = 0;
+            }
+        }
+
+        // Remove a single freestyle discard if possible
+        foreach ( $indiSeriesDetails as $seriesName => &$seriesDetails ) {
+            foreach ( $seriesDetails['results'] as &$result ) {
+                if ( $result['series'] == 'freestyle' ) {
+                    if( $result['dnc_count'] > 0 ) {
+                        $discardValue = max( array($indiSeriesDetails['freestyle']['dnc_score'], $result['max_result']) );
+                    } else {
+                        $discardValue = $result['max_result'];
+                    }
+                    $result['result'] -= $discardValue;
+                    $result['discards']++;
+                    $result['discard_points'] += $discardValue;
                 }
             }
         }
@@ -70,7 +88,7 @@ class SwaModelSeasonResults extends SwaModelList {
         $query = $db->getQuery( true );
         $query->setQuery(
             "SELECT
-	comp_type.series as series,
+	LCASE( comp_type.series ) as series,
 	COUNT( DISTINCT event.id ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
@@ -156,11 +174,12 @@ GROUP BY LCASE( member.sex );"
         $query = $db->getQuery( true );
         $query->setQuery(
             "SELECT
-	comp_type.series as series,
+	LCASE( comp_type.series ) as series,
 	indi_result.member_id,
 	user.name,
 	LCASE( member.sex ) as sex,
 	SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
+	MAX( indi_result.result ) as max_result,
 	COUNT( indi_result.result ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions
 FROM jwhitwor_swaj.swan_swa_season as season
@@ -211,6 +230,13 @@ GROUP BY comp_type.series, member.id;"
                     // Also count the number of competitions for the team and add up the final result.
                     @$items[$uniName . '-' . $teamNumber]['competitions']++;
                     @$items[$uniName . '-' . $teamNumber]['result'] += $result;
+                    // Also keep track of the highest score of the team
+                    if (
+                        !array_key_exists( 'max_result', $items[$uniName . '-' . $teamNumber] )
+                        || $result > $items[$uniName . '-' . $teamNumber]['max_result']
+                    ) {
+                        $items[$uniName . '-' . $teamNumber]['max_result'] = $result;
+                    }
                 }
             }
         }
@@ -224,6 +250,18 @@ GROUP BY comp_type.series, member.id;"
             if( $missedEvents >= 1 ) {
                 $items[$uniNameTeamNumberCombo]['result'] += ( $details['dnc_score'] * $missedEvents );
             }
+        }
+
+        // Remove 1 discard per team!
+        foreach( $items as $uniNameTeamNumberCombo => $teamDetails ) {
+            if( $teamDetails['dnc_count'] > 0 ) {
+                $discardValue = max( array( $details['dnc_score'], $teamDetails['max_result'] ) );
+            } else {
+                $discardValue = $teamDetails['max_result'];
+            }
+            $items[$uniNameTeamNumberCombo]['result'] -= $discardValue;
+            $items[$uniNameTeamNumberCombo]['discards'] = 1;
+            $items[$uniNameTeamNumberCombo]['discard_points'] = $discardValue;
         }
 
         // Sort the results
