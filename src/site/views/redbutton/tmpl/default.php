@@ -14,6 +14,9 @@ $buttons = array(
 	'http://thebrotherhoodofevilgeeks.files.wordpress.com/2013/12/big-red-button.gif',
 	'http://scontent-lhr3-1.xx.fbcdn.net/hphotos-xfl1/v/t34.0-12/13045643_10154767188369128_296960_n.jpg?oh=10769732df9a8d2f7b3ca50bde138436&oe=571B9F7A',
 	'http://scontent-lhr3-1.xx.fbcdn.net/hphotos-xta1/v/t34.0-12/13023423_10154767198419128_2085263434_n.jpg?oh=ff0b929bf867191c7a513e058d2f85b8&oe=571BA228',
+	'http://i.kinja-img.com/gawker-media/image/upload/s--t3kW_XqA--/c_scale,fl_progressive,q_80,w_800/1415914174402575245.png',
+	'http://1.bp.blogspot.com/-cvVFQZgvlSg/TkAS976zaYI/AAAAAAAAAg8/fLt7iWAngMg/s400/bigredbutton.jpg',
+	'http://fatpenguinblog.com/wp-content/uploads/2006/03/button.jpg',
 );
 $button = $buttons[array_rand( $buttons )];
 ?>
