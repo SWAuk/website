@@ -68,6 +68,7 @@ foreach( $this->individualItems as $seriesName => $seriesDetails ) {
 	echo "<td><strong>Points</strong></td>\n";
 	if( $seriesName == 'race' ) {
 		echo "<td>Level</td>\n";
+		echo "<td>Offset</td>\n";
 	}
 	echo "<td>Competitions</td>\n";
 	echo "<td>Discarded</td>\n";
@@ -85,6 +86,7 @@ foreach( $this->individualItems as $seriesName => $seriesDetails ) {
 		if( $seriesName == 'race' ) {
 			$resultDetails['comp_type'] = str_replace( ' race', '', $resultDetails['comp_type'] );
 			echo "<td>{$resultDetails['comp_type']}</td>\n";
+			echo "<td>{$resultDetails['offset']}</td>\n";
 		}
 		echo "<td>{$resultDetails['competitions']}</td>\n";
 		echo "<td>{$resultDetails['discard_points']}</td>\n";

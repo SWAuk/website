@@ -22,11 +22,11 @@ class SwaModelSeasonResults extends SwaModelList {
                 $individualResult['offset'] = 0;
                 switch ($individualResult['comp_type']) {
                     case 'beginner race':
-                        $individualResult['result'] += $compTypeEntrantCounts['beginner race']['entrants'];
-                        $individualResult['offset'] += $compTypeEntrantCounts['beginner race']['entrants'];
-                    case 'intermediate race':
                         $individualResult['result'] += $compTypeEntrantCounts['intermediate race']['entrants'];
                         $individualResult['offset'] += $compTypeEntrantCounts['intermediate race']['entrants'];
+                    case 'intermediate race':
+                        $individualResult['result'] += $compTypeEntrantCounts['advanced race']['entrants'];
+                        $individualResult['offset'] += $compTypeEntrantCounts['advanced race']['entrants'];
                         break;
                 }
             }
