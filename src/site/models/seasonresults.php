@@ -13,9 +13,27 @@ class SwaModelSeasonResults extends SwaModelList {
     public function getIndividualItems() {
         // Get the series details from the DB
         $indiSeriesDetails = array_merge( $this->getMainSeriesDetails(), $this->getSexSeriesDetails() );
+        $compTypeEntrantCounts = $this->getCompTypeEntrantCounts();
+        $individualResults = $this->getIndividualResults();
+
+        // Add the offsets for different levels
+        foreach ( $individualResults as &$individualResult ) {
+            if( $individualResult['series'] == 'race' ) {
+                $individualResult['offset'] = 0;
+                switch ($individualResult['comp_type']) {
+                    case 'beginner race':
+                        $individualResult['result'] += $compTypeEntrantCounts['beginner race']['entrants'];
+                        $individualResult['offset'] += $compTypeEntrantCounts['beginner race']['entrants'];
+                    case 'intermediate race':
+                        $individualResult['result'] += $compTypeEntrantCounts['intermediate race']['entrants'];
+                        $individualResult['offset'] += $compTypeEntrantCounts['intermediate race']['entrants'];
+                        break;
+                }
+            }
+        }
 
         // Split the individual results up into maps of (series => name => result details)
-        foreach ( $this->getIndividualResults() as $individualResult ) {
+        foreach ( $individualResults as $individualResult ) {
             $indiSeriesDetails[$individualResult['series']]['results'][$individualResult['name']] = $individualResult;
             $indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']] = $individualResult;
         }
@@ -161,11 +179,15 @@ GROUP BY LCASE( member.sex );"
      *
      * array(
      *     array(
-     *         'series' => 'Race',
+     *         'series' => 'race',
+     *         'series' => 'intermediate race',
      *         'member_id' => 4,
      *         'name' => 'Mark Smith',
+     *         'sex' => 'male',
      *         'result' => 20,
+     *         'max_result' => 143,
      *         'events' => 3,
+     *         'competitions' => 3,
      *     ),
      * )
      */
@@ -175,6 +197,7 @@ GROUP BY LCASE( member.sex );"
         $query->setQuery(
             "SELECT
 	LCASE( comp_type.series ) as series,
+	LCASE( comp_type.name ) as comp_type,
 	indi_result.member_id,
 	user.name,
 	LCASE( member.sex ) as sex,
@@ -198,11 +221,32 @@ ON member.user_id = user.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name IS NOT NULL
 AND comp_type.name != 'Team'
-GROUP BY comp_type.series, member.id;"
+GROUP BY comp_type.name, member.id;"
         );
 
         $db->setQuery( $query );
         return $db->loadAssocList();
+    }
+
+    private function getCompTypeEntrantCounts() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
+        $query->setQuery(
+            "SELECT
+	comp_type.id as comp_type_id,
+	LCASE( comp_type.name ) as comp_type,
+	COUNT(*) as entrants
+FROM swan_swa_indi_result as result
+JOIN swan_swa_competition as comp ON result.competition_id = comp.id
+JOIN swan_swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
+JOIN swan_swa_event as event ON comp.event_id = event.id
+WHERE event.season_id = 15
+AND LCASE( comp_type.series ) = 'race'
+GROUP BY comp_type.id;"
+        );
+
+        $db->setQuery( $query );
+        return $db->loadAssocList( 'comp_type' );
     }
 
     public function getTeamItems(){
