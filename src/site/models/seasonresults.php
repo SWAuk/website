@@ -112,16 +112,15 @@ class SwaModelSeasonResults extends SwaModelList {
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
 	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
 FROM jwhitwor_swaj.swan_swa_season as season
-LEFT JOIN swan_swa_event as event
+JOIN swan_swa_event as event
 ON season.id = event.season_id
-LEFT JOIN swan_swa_competition as comp
+JOIN swan_swa_competition as comp
 ON event.id = comp.event_id
-LEFT JOIN swan_swa_competition_type as comp_type
+JOIN swan_swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-LEFT JOIN swan_swa_indi_result as indi_result
+JOIN swan_swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
 WHERE season.id = {$this->seasonId}
-AND comp_type.name IS NOT NULL
 AND comp_type.name != 'Team'
 GROUP BY comp_type.series;"
         );
@@ -154,18 +153,17 @@ GROUP BY comp_type.series;"
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
 	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
 FROM jwhitwor_swaj.swan_swa_season as season
-LEFT JOIN swan_swa_event as event
+JOIN swan_swa_event as event
 ON season.id = event.season_id
-LEFT JOIN swan_swa_competition as comp
+JOIN swan_swa_competition as comp
 ON event.id = comp.event_id
-LEFT JOIN swan_swa_competition_type as comp_type
+JOIN swan_swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-LEFT JOIN swan_swa_indi_result as indi_result
+JOIN swan_swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
-LEFT JOIN swan_swa_member as member
+JOIN swan_swa_member as member
 ON indi_result.member_id = member.id
 WHERE season.id = {$this->seasonId}
-AND comp_type.name IS NOT NULL
 AND comp_type.name != 'Team'
 GROUP BY LCASE( member.sex );"
         );
@@ -206,20 +204,19 @@ GROUP BY LCASE( member.sex );"
 	COUNT( indi_result.result ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions
 FROM jwhitwor_swaj.swan_swa_season as season
-LEFT JOIN swan_swa_event as event
+JOIN swan_swa_event as event
 ON season.id = event.season_id
-LEFT JOIN swan_swa_competition as comp
+JOIN swan_swa_competition as comp
 ON event.id = comp.event_id
-LEFT JOIN swan_swa_competition_type as comp_type
+JOIN swan_swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-LEFT JOIN swan_swa_indi_result as indi_result
+JOIN swan_swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
-LEFT JOIN swan_swa_member as member
+JOIN swan_swa_member as member
 ON indi_result.member_id = member.id
-LEFT JOIN swan_users as user
+JOIN swan_users as user
 ON member.user_id = user.id
 WHERE season.id = {$this->seasonId}
-AND comp_type.name IS NOT NULL
 AND comp_type.name != 'Team'
 GROUP BY comp_type.name, member.id;"
         );
@@ -342,13 +339,13 @@ GROUP BY comp_type.id;"
 	COUNT( DISTINCT team_result.university_id, team_result.team_number ) as teams,
 	COUNT( DISTINCT team_result.university_id, team_result.team_number ) + 2 as dnc_score
 FROM jwhitwor_swaj.swan_swa_season as season
-LEFT JOIN swan_swa_event as event
+JOIN swan_swa_event as event
 ON season.id = event.season_id
-LEFT JOIN swan_swa_competition as comp
+JOIN swan_swa_competition as comp
 ON event.id = comp.event_id
-LEFT JOIN swan_swa_competition_type as comp_type
+JOIN swan_swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-LEFT JOIN swan_swa_team_result as team_result
+JOIN swan_swa_team_result as team_result
 ON team_result.competition_id = comp.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name = 'Team';"
@@ -384,19 +381,18 @@ AND comp_type.name = 'Team';"
 	event.id as event_id,
 	IF( team_result.result = 1, 0.5, team_result.result ) as result
 FROM jwhitwor_swaj.swan_swa_season as season
-LEFT JOIN swan_swa_event as event
+JOIN swan_swa_event as event
 ON season.id = event.season_id
-LEFT JOIN swan_swa_competition as comp
+JOIN swan_swa_competition as comp
 ON event.id = comp.event_id
-LEFT JOIN swan_swa_competition_type as comp_type
+JOIN swan_swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-LEFT JOIN swan_swa_team_result as team_result
+JOIN swan_swa_team_result as team_result
 ON team_result.competition_id = comp.id
-LEFT JOIN swan_swa_university as university
+JOIN swan_swa_university as university
 ON team_result.university_id = university.id
 WHERE season.id = {$this->seasonId}
-AND comp_type.name = 'Team'
-AND result IS NOT NULL;"
+AND comp_type.name = 'Team';"
         );
 
         $db->setQuery( $query );
