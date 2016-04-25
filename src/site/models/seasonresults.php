@@ -35,7 +35,15 @@ class SwaModelSeasonResults extends SwaModelList {
         // Split the individual results up into maps of (series => name => result details)
         foreach ( $individualResults as $individualResult ) {
             $indiSeriesDetails[$individualResult['series']]['results'][$individualResult['name']] = $individualResult;
-            $indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']] = $individualResult;
+            // For the sex series we need to add things!
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['series'] = $individualResult['sex'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['member_id'] = $individualResult['member_id'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['name'] = $individualResult['name'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['sex'] = $individualResult['sex'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['result'] += $individualResult['result'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['events'] += $individualResult['events'];
+            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['competitions'] += $individualResult['competitions'];
+            // max_result is not added for sex as it is only needed for freestyle..
         }
 
         // Add DNC scores for people that missed competitions
