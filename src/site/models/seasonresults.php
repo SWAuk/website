@@ -7,6 +7,8 @@ class SwaModelSeasonResults extends SwaModelList {
 
     private $seasonId = 15;
 
+    private $cachedMethodDbMap = array();
+
     /**
      * @return array
      */
@@ -167,6 +169,9 @@ class SwaModelSeasonResults extends SwaModelList {
      * )
      */
     private function getMainSeriesDetails() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -191,7 +196,8 @@ GROUP BY comp_type.series;"
         );
 
         $db->setQuery( $query );
-        return $db->loadAssocList( 'series' );
+        $this->cachedMethodDbMap[__METHOD__] = $db->loadAssocList( 'series' );
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
     /**
@@ -208,6 +214,9 @@ GROUP BY comp_type.series;"
      * )
      */
     private function getSexSeriesDetails() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -234,7 +243,8 @@ GROUP BY LCASE( member.sex );"
         );
 
         $db->setQuery( $query );
-        return $db->loadAssocList( 'series' );
+        $this->cachedMethodDbMap[__METHOD__] = $db->loadAssocList( 'series' );
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
     /**
@@ -255,6 +265,9 @@ GROUP BY LCASE( member.sex );"
      * )
      */
     private function getIndividualResults() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -287,10 +300,14 @@ GROUP BY comp_type.name, member.id;"
         );
 
         $db->setQuery( $query );
-        return $db->loadAssocList();
+        $this->cachedMethodDbMap[__METHOD__] = $db->loadAssocList();
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
     private function getCompTypeEntrantCounts() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -308,7 +325,8 @@ GROUP BY comp_type.id;"
         );
 
         $db->setQuery( $query );
-        return $db->loadAssocList( 'comp_type' );
+        $this->cachedMethodDbMap[__METHOD__] =  $db->loadAssocList( 'comp_type' );
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
     public function getTeamItems(){
@@ -395,6 +413,9 @@ GROUP BY comp_type.id;"
      * )
      */
     private function getTeamSeriesDetails() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -418,7 +439,8 @@ AND comp_type.name = 'Team';"
 
         $db->setQuery( $query );
         $list = $db->loadAssocList();
-        return array_shift( $list );
+        $this->cachedMethodDbMap[__METHOD__] = array_shift( $list );
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
 
@@ -436,6 +458,9 @@ AND comp_type.name = 'Team';"
      * )
      */
     private function getTeamResults() {
+        if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
+            return $this->cachedMethodDbMap[__METHOD__];
+        }
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -461,7 +486,8 @@ AND comp_type.name = 'Team';"
         );
 
         $db->setQuery( $query );
-        return $db->loadAssocList();
+        $this->cachedMethodDbMap[__METHOD__] = $db->loadAssocList();
+        return $this->cachedMethodDbMap[__METHOD__];
     }
 
 }
