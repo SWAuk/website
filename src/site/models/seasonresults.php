@@ -10,15 +10,16 @@ class SwaModelSeasonResults extends SwaModelList {
     /**
      * @return array
      */
-    public function getIndividualItems() {
+    public function getIndividualItems()
+    {
         // Get the series details from the DB
-        $indiSeriesDetails = array_merge( $this->getMainSeriesDetails(), $this->getSexSeriesDetails() );
+        $indiSeriesDetails = $this->getMainSeriesDetails();
         $compTypeEntrantCounts = $this->getCompTypeEntrantCounts();
         $individualResults = $this->getIndividualResults();
 
         // Add the offsets for different levels
-        foreach ( $individualResults as &$individualResult ) {
-            if( $individualResult['series'] == 'race' ) {
+        foreach ($individualResults as &$individualResult) {
+            if ($individualResult['series'] == 'race') {
                 $individualResult['offset'] = 0;
                 switch ($individualResult['comp_type']) {
                     case 'beginner race':
@@ -33,28 +34,20 @@ class SwaModelSeasonResults extends SwaModelList {
         }
 
         // Split the individual results up into maps of (series => name => result details)
-        foreach ( $individualResults as $individualResult ) {
+        foreach ($individualResults as $individualResult) {
             $indiSeriesDetails[$individualResult['series']]['results'][$individualResult['name']] = $individualResult;
-            // For the sex series we need to add things!
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['series'] = $individualResult['sex'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['member_id'] = $individualResult['member_id'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['name'] = $individualResult['name'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['sex'] = $individualResult['sex'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['result'] += $individualResult['result'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['events'] += $individualResult['events'];
-            @$indiSeriesDetails[$individualResult['sex']]['results'][$individualResult['name']]['competitions'] += $individualResult['competitions'];
-            // max_result is not added for sex as it is only needed for freestyle..
         }
 
         // Add DNC scores for people that missed competitions
-        foreach ( $indiSeriesDetails as $seriesName => &$seriesDetails ) {
+        foreach ($indiSeriesDetails as $seriesName => &$seriesDetails) {
             $dncScore = $seriesDetails['dnc_score'];
             $competitions = $seriesDetails['competitions'];
-            foreach ( $seriesDetails['results'] as &$result ) {
+            foreach ($seriesDetails['results'] as &$result) {
                 $competitionsMissed = $competitions - $result['competitions'];
                 $result['dnc_count'] = $competitionsMissed;
-                if ( $competitionsMissed >= 1 ) {
-                    $result['result'] += ( $competitionsMissed * $dncScore );
+                $result['dnc_points'] = ($competitionsMissed * $dncScore);
+                if ($competitionsMissed >= 1) {
+                    $result['result'] += ($competitionsMissed * $dncScore);
                 }
                 $result['discards'] = 0;
                 $result['discard_points'] = 0;
@@ -62,11 +55,11 @@ class SwaModelSeasonResults extends SwaModelList {
         }
 
         // Remove a single freestyle discard if possible
-        foreach ( $indiSeriesDetails as $seriesName => &$seriesDetails ) {
-            foreach ( $seriesDetails['results'] as &$result ) {
-                if ( $result['series'] == 'freestyle' ) {
-                    if( $result['dnc_count'] > 0 ) {
-                        $discardValue = max( array($indiSeriesDetails['freestyle']['dnc_score'], $result['max_result']) );
+        foreach ($indiSeriesDetails as $seriesName => &$seriesDetails) {
+            foreach ($seriesDetails['results'] as &$result) {
+                if ($result['series'] == 'freestyle') {
+                    if ($result['dnc_count'] > 0) {
+                        $discardValue = max(array($indiSeriesDetails['freestyle']['dnc_score'], $result['max_result']));
                     } else {
                         $discardValue = $result['max_result'];
                     }
@@ -78,7 +71,71 @@ class SwaModelSeasonResults extends SwaModelList {
         }
 
         // Sort the results of each series (lowest score first)
-        foreach ( $indiSeriesDetails as $seriesName => &$seriesDetails ) {
+        foreach ($indiSeriesDetails as $seriesName => &$seriesDetails) {
+            uasort($seriesDetails['results'], function ($a, $b) {
+                // A smaller result score is better
+                if ($a['result'] != $b['result']) {
+                    return $a['result'] > $b['result'];
+                }
+                // A smaller dnc_count is better
+                if ($a['dnc_count'] != $b['dnc_count']) {
+                    return $a['dnc_count'] > $b['dnc_count'];
+                }
+                // They are equal!
+                return 0;
+            });
+        }
+
+        return $indiSeriesDetails;
+
+    }
+
+    public function getSexItems() {
+        $sexSeriesDetails = $this->getSexSeriesDetails();
+
+        // Split the individual results up into maps of (series => name => result details)
+        foreach( $this->getIndividualItems() as $seriesName => &$seriesDetails ) {
+            foreach ( $seriesDetails['results'] as &$result ) {
+                $sex = $result['sex'];
+                $name = $result['name'];
+                @$sexSeriesDetails[$sex]['results'][$name]['name'] = $name;
+                @$sexSeriesDetails[$sex]['results'][$name]['series'] = $sex;
+                @$sexSeriesDetails[$sex]['results'][$name]['sex'] = $sex;
+                @$sexSeriesDetails[$sex]['results'][$name]['member_id'] = $result['member_id'];
+                @$sexSeriesDetails[$sex]['results'][$name]['result'] += $result['result'];
+                @$sexSeriesDetails[$sex]['results'][$name]['events'] += $result['events'];
+                @$sexSeriesDetails[$sex]['results'][$name]['competitions'] += $result['competitions'];
+                @$sexSeriesDetails[$sex]['results'][$name]['discards'] += $result['discards'];
+                @$sexSeriesDetails[$sex]['results'][$name]['discard_points'] += $result['discard_points'];
+                @$sexSeriesDetails[$sex]['results'][$name]['dnc_count'] += $result['dnc_count'];
+                @$sexSeriesDetails[$sex]['results'][$name]['dnc_points'] += $result['dnc_points'];
+            }
+        }
+
+        $indiSeriesDetails = $this->getIndividualItems();
+
+        // Add extra DNC numbers for the sex series where people didn't enter any discipline in a series..
+        // Also account for the freestyle discard
+        foreach( $sexSeriesDetails as &$sexDetails ) {
+            foreach( $sexDetails['results'] as &$result ) {
+                foreach( array_keys( $indiSeriesDetails ) as $seriesName ) {
+                    if( !array_key_exists( $result['name'], $indiSeriesDetails[$seriesName]['results'] ) ) {
+                        $seriesDetails = $indiSeriesDetails[$seriesName];
+                        $result['result'] += $seriesDetails['dnc_score'] * $seriesDetails['competitions'];
+                        $result['dnc_points'] += $seriesDetails['dnc_score'] * $seriesDetails['competitions'];
+                        $result['dnc_count'] += $seriesDetails['competitions'];
+                        if( $seriesName == 'freestyle' ) {
+                            $result['discards']++;
+                            $result['discard_points'] += $seriesDetails['dnc_score'];
+                            $result['result'] -= $seriesDetails['dnc_score'];
+                        }
+                    }
+                }
+            }
+        }
+
+        // Sort the results of each series (lowest score first)
+        foreach ( $sexSeriesDetails as $seriesName => &$seriesDetails ) {
             uasort( $seriesDetails['results'], function( $a, $b ) {
                 // A smaller result score is better
                 if ( $a['result'] != $b['result'] ) {
@@ -93,7 +150,7 @@ class SwaModelSeasonResults extends SwaModelList {
             } );
         }
 
-        return $indiSeriesDetails;
+        return $sexSeriesDetails;
     }
 
     /**

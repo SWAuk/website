@@ -10,6 +10,7 @@ class SwaViewSeasonResults extends JViewLegacy {
 	protected $params;
 
 	protected $individualItems;
+	protected $sexItems;
 	protected $teamItems;
 
 	public function display( $tpl = null ) {
@@ -24,6 +25,7 @@ class SwaViewSeasonResults extends JViewLegacy {
 		}
 
 		$this->individualItems = $this->get( 'IndividualItems' );
+		$this->sexItems = $this->get( 'SexItems' );
 		$this->teamItems = $this->get( 'TeamItems' );
 
 		parent::display( $tpl );

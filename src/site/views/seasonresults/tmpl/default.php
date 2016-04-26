@@ -58,10 +58,16 @@ foreach ( $this->teamItems['results'] as $teamDetails ) {
 
 echo "</table>\n";
 
-foreach( $this->individualItems as $seriesName => $seriesDetails ) {
+foreach( array( $this->individualItems, $this->sexItems ) as $items ) {
+foreach( $items as $seriesName => $seriesDetails ) {
 
 	echo "<h2>" . ucfirst( $seriesName ) . " Series</h2>\n";
-	echo "<p>Competitions: {$seriesDetails['competitions']}, DNC score: {$seriesDetails['dnc_score']}</p>";
+	echo "<p>";
+	echo "Competitions: {$seriesDetails['competitions']}";
+	if( $seriesName != 'male' && $seriesName != 'female' ) {
+		echo ", DNC score: {$seriesDetails['dnc_score']}";
+	}
+	echo "</p>";
 	echo "<table border=\"1\">\n";
 	echo "<th>\n";
 	echo "<td><strong>Name</strong></td>\n";
@@ -71,6 +77,8 @@ foreach( $this->individualItems as $seriesName => $seriesDetails ) {
 		echo "<td>Offset</td>\n";
 	}
 	echo "<td>Competitions</td>\n";
+	echo "<td>DNCs</td>\n";
+	echo "<td>DNC points</td>\n";
 	echo "<td>Discarded</td>\n";
 	echo "</th>\n";
 
@@ -89,6 +97,8 @@ foreach( $this->individualItems as $seriesName => $seriesDetails ) {
 			echo "<td>{$resultDetails['offset']}</td>\n";
 		}
 		echo "<td>{$resultDetails['competitions']}</td>\n";
+		echo "<td>{$resultDetails['dnc_count']}</td>\n";
+		echo "<td>{$resultDetails['dnc_points']}</td>\n";
 		echo "<td>{$resultDetails['discard_points']}</td>\n";
 		echo "</tr>\n";
 	}
@@ -96,4 +106,5 @@ foreach( $this->individualItems as $seriesName => $seriesDetails ) {
 
 	echo "</table>\n";
 
+}
 }
