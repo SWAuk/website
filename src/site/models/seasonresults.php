@@ -96,8 +96,8 @@ class SwaModelSeasonResults extends SwaModelList {
         $sexSeriesDetails = $this->getSexSeriesDetails();
 
         // Split the individual results up into maps of (series => name => result details)
-        foreach( $this->getIndividualItems() as $seriesName => &$seriesDetails ) {
-            foreach ( $seriesDetails['results'] as &$result ) {
+        foreach( $this->getIndividualItems() as $seriesName => $seriesDetails ) {
+            foreach ( $seriesDetails['results'] as $result ) {
                 $sex = $result['sex'];
                 $name = $result['name'];
                 @$sexSeriesDetails[$sex]['results'][$name]['name'] = $name;
