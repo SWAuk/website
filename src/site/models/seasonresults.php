@@ -101,6 +101,7 @@ class SwaModelSeasonResults extends SwaModelList {
                 $sex = $result['sex'];
                 $name = $result['name'];
                 @$sexSeriesDetails[$sex]['results'][$name]['name'] = $name;
+                @$sexSeriesDetails[$sex]['results'][$name]['university'] = $result['university'];
                 @$sexSeriesDetails[$sex]['results'][$name]['series'] = $sex;
                 @$sexSeriesDetails[$sex]['results'][$name]['sex'] = $sex;
                 @$sexSeriesDetails[$sex]['results'][$name]['member_id'] = $result['member_id'];
@@ -276,6 +277,7 @@ GROUP BY LCASE( member.sex );"
 	LCASE( comp_type.name ) as comp_type,
 	indi_result.member_id,
 	user.name,
+	university.name as university,
 	LCASE( member.sex ) as sex,
 	SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
 	MAX( indi_result.result ) as max_result,
@@ -292,6 +294,8 @@ JOIN swan_swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
 JOIN swan_swa_member as member
 ON indi_result.member_id = member.id
+JOIN swan_swa_university as university
+ON member.university_id = university.id
 JOIN swan_users as user
 ON member.user_id = user.id
 WHERE season.id = {$this->seasonId}

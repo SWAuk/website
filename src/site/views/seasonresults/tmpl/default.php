@@ -71,6 +71,7 @@ foreach( $items as $seriesName => $seriesDetails ) {
 	echo "<table border=\"1\">\n";
 	echo "<th>\n";
 	echo "<td><strong>Name</strong></td>\n";
+	echo "<td><strong>Uni</strong></td>\n";
 	echo "<td><strong>Points</strong></td>\n";
 	if( $seriesName == 'race' ) {
 		echo "<td>Level</td>\n";
@@ -87,9 +88,11 @@ foreach( $items as $seriesName => $seriesDetails ) {
 		$positionCounter++;
 		// Name is technically use input so strip it just in case..
 		$name = strip_tags( $resultDetails['name'] );
+		$uni = strip_tags( $resultDetails['university'] );
 		echo "<tr>\n";
 		echo "<td>{$positionCounter}</td>\n";
 		echo "<td>{$name}</td>\n";
+		echo "<td>{$uni}</td>\n";
 		echo "<td>{$resultDetails['result']}</td>\n";
 		if( $seriesName == 'race' ) {
 			$resultDetails['comp_type'] = str_replace( ' race', '', $resultDetails['comp_type'] );
