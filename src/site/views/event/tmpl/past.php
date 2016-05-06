@@ -38,12 +38,14 @@ if( $teamResults ) {
 foreach( $indiResults as $compName => $results ) {
     echo "<h2>{$compName} Results</h2>\n";
     echo "<table border=\"1\">\n";
-    echo "<th><td><strong>Name</strong></td><td><strong>Points</strong></td></th>\n";
+    echo "<th><td><strong>Name</strong></td><td><strong>University</strong></td><td><strong>Points</strong></td></th>\n";
 
     $positionCounter = 0;
     foreach( $results as $result ) {
         $positionCounter++;
-        echo "<tr><td>{$positionCounter}</td><td>{$result['name']}</td><td>{$result['result']}</td></tr>\n";
+        $name = strip_tags( $result['name'] );
+        $uni = strip_tags( $result['university'] );
+        echo "<tr><td>{$positionCounter}</td><td>{$name}</td><td>{$uni}</td><td>{$result['result']}</td></tr>\n";
     }
 
     echo "</table>\n";

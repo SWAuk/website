@@ -92,6 +92,7 @@ class SwaModelEvent extends SwaModelItem {
 		$query->select(
 			array(
 				'user.name',
+				'university.name as university',
 				'indi_result.*',
 				'comp_type.name as comp_name',
 			)
@@ -101,6 +102,7 @@ class SwaModelEvent extends SwaModelItem {
 		$query->join( 'LEFT', '#__swa_competition_type AS comp_type ON comp_type.id = comp.competition_type_id' );
 		$query->join( 'LEFT', '#__swa_indi_result AS indi_result ON comp.id = indi_result.competition_id' );
 		$query->join( 'LEFT', '#__swa_member AS member ON member.id = indi_result.member_id' );
+		$query->join( 'LEFT', '#__swa_university AS university ON member.university_id = university.id' );
 		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
 		$query->order( 'indi_result.result' );
 		$query->where( 'indi_result.result IS NOT NULL' );
