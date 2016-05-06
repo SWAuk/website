@@ -36,8 +36,9 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 	<?php
 	foreach ( $this->items as $item ) {
+		$nameParts = explode( ' ', $item->name );
 		echo "<tr>\n";
-		echo "<td>" . $item->name . "</td>\n";
+		echo "<td>" . $nameParts[0] . "</td>\n";
 		echo "<td>" . $item->position . "</td>\n";
 		echo "<td>" . $item->blurb . "</td>\n";
 		echo "<td><img width=\"200\" src=\"" . $item->image . "\"/></td>\n";
