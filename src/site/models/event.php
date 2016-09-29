@@ -130,7 +130,7 @@ class SwaModelEvent extends SwaModelItem {
 				'event_ticket.name',
 				'round(event_ticket.price,0) as price',
 				'concat(round((count(*)/event_ticket.quantity*100),0),\'%\') as percentage_sold',
-				'count(*) as sold',
+				'count(ticket.id) as sold',
 				'event_ticket.quantity',
 				'(event_ticket.quantity-count(*)) as remaining',
 			)
