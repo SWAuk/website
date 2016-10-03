@@ -77,7 +77,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 					'index.php?option=com_swa&task=orgmemberqualifications.viewImage&qualification=' .
 					$item->id
 				);
-			echo "<td><a href='$imgSrc'><img src='$imgSrc' height='50' width='50'/></a></td>\n";
+			echo "<td><a href='$imgSrc'>View Upload</a></td>\n";
 			?>
 				<td>
 					<?php
