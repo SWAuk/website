@@ -9,6 +9,8 @@ This plugin works along side com_swa to add access levels to users based on deci
 
 The event must be added to the **JAccess::getAuthorisedViewLevels**.
 
+The JAccess class can be found in libraries\joomla\access\access.php
+
 To avoid recursion we must only load the 'swa' plugins Once here.
 
 Add the following code just before the return of the method:
