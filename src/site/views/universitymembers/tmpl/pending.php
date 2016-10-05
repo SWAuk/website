@@ -35,48 +35,50 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	(i.e. freshers)
 </p>
 
-<table>
-	<tr>
-		<th>Id</th>
-		<th>Name</th>
-		<th>Paid</th>
-		<th>Discipline</th>
-		<th>Level</th>
-		<th>Course</th>
-		<th>Approve</th>
-	</tr>
-
-	<?php
-	foreach ( $this->items as $item ) {
-		if ( $item->confirmed_university ) {
-			continue;
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Paid</th>
+			<th>Discipline</th>
+			<th>Level</th>
+			<th>Course</th>
+			<th>Approve</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ( $this->items as $item ) {
+			if ( $item->confirmed_university ) {
+				continue;
+			}
+			echo "<tr>\n";
+			echo "<td>" . $item->id . "</td>\n";
+			echo "<td>" . $item->name . "</td>\n";
+			if ( $item->paid ) {
+				echo "<td bgcolor='#CCFF33'>Yes</td>\n";
+			} else {
+				echo "<td bgcolor='#FF6666'>No</td>\n";
+			}
+			echo "<td>" . $item->discipline . "</td>\n";
+			echo "<td>" . $item->level . "</td>\n";
+			echo "<td>" . $item->course . "</td>\n";
+			echo '<td><form id="form-universitymembers-approve-' .
+				$item->id .
+				'" method="POST" action="' .
+				JRoute::_( 'index.php?option=com_swa&task=universitymembers.approve' ) .
+				'">' .
+				'<input type="hidden" name ="member_id" value="' .
+				$item->id .
+				'" />' .
+				'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-approve-' .
+				$item->id .
+				'\').submit(); return false;">(approve)</a>' .
+				JHtml::_( 'form.token' ) .
+				'</form></td>';
+			echo "</tr>\n";
 		}
-		echo "<tr>\n";
-		echo "<td>" . $item->id . "</td>\n";
-		echo "<td>" . $item->name . "</td>\n";
-		if ( $item->paid ) {
-			echo "<td bgcolor='#CCFF33'>Yes</td>\n";
-		} else {
-			echo "<td bgcolor='#FF6666'>No</td>\n";
-		}
-		echo "<td>" . $item->discipline . "</td>\n";
-		echo "<td>" . $item->level . "</td>\n";
-		echo "<td>" . $item->course . "</td>\n";
-		echo '<td><form id="form-universitymembers-approve-' .
-			$item->id .
-			'" method="POST" action="' .
-			JRoute::_( 'index.php?option=com_swa&task=universitymembers.approve' ) .
-			'">' .
-			'<input type="hidden" name ="member_id" value="' .
-			$item->id .
-			'" />' .
-			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-approve-' .
-			$item->id .
-			'\').submit(); return false;">(approve)</a>' .
-			JHtml::_( 'form.token' ) .
-			'</form></td>';
-		echo "</tr>\n";
-	}
-	?>
-
+		?>
+	</tbody>
 </table>

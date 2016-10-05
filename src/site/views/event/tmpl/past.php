@@ -22,31 +22,59 @@ $indiResults = $this->get( 'IndiResults' );
 $teamResults = $this->get( 'TeamResults' );
 
 if( $teamResults ) {
-    echo "<h2>Team Results</h2>\n";
-    echo "<table border=\"1\">\n";
-    echo "<th><td><strong>Uni</strong></td><td><strong>Team</strong></td><td><strong>Points</strong></td></th>\n";
-
+?>
+    <h2>Team Results</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Uni</th>
+                <th>Team</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody>
+<?php
     $positionCounter = 0;
     foreach( $teamResults as $result ) {
         $positionCounter++;
-        echo "<tr><td>{$positionCounter}</td><td>{$result['name']}</td><td>{$result['team_number']}</td><td>{$result['result']}</td></tr>\n";
+        echo "<tr>\n";
+        echo "<td>{$positionCounter}</td>\n";
+        echo "<td>{$result['name']}</td>\n";
+        echo "<td>{$result['team_number']}</td>\n";
+        echo "<td>{$result['result']}</td>\n";
+        echo "</tr>\n";
     }
 
+    echo "</tbody>\n";
     echo "</table>\n";
 }
 
 foreach( $indiResults as $compName => $results ) {
     echo "<h2>{$compName} Results</h2>\n";
-    echo "<table border=\"1\">\n";
-    echo "<th><td><strong>Name</strong></td><td><strong>University</strong></td><td><strong>Points</strong></td></th>\n";
-
+?>
+    <table class="table table-hover">
+        <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>University</th>
+            <th>Points</th>
+        </thead>
+        <tbody>
+<?php
     $positionCounter = 0;
     foreach( $results as $result ) {
         $positionCounter++;
         $name = strip_tags( $result['name'] );
         $uni = strip_tags( $result['university'] );
-        echo "<tr><td>{$positionCounter}</td><td>{$name}</td><td>{$uni}</td><td>{$result['result']}</td></tr>\n";
+        echo "<tr>\n";
+        echo "<td>{$positionCounter}</td>\n";
+        echo "<td>{$name}</td>\n";
+        echo "<td>{$uni}</td>\n";
+        echo "<td>{$result['result']}</td>\n";
+        echo "</tr>\n";
     }
 
+    echo "</tbody>\n";
     echo "</table>\n";
 }

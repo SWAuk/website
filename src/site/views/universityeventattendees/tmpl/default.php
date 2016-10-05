@@ -44,19 +44,23 @@ foreach ( $this->items as $item ) {
 
 <?php
 foreach ( $eventData as $eventId => $event ) {
-	echo "<h2>" . $event['name'] . "</h2>\n";
-	echo "<p>Date open: " .
-		$event['date_open'] .
-		", Date close: " .
-		$event['date_close'] .
-		"Date: " .
-		$event['date'] .
-		"</p>";
-	echo "<table><tr>
-		<th>Id</th>
-		<th>Name</th>
-		<th>Ticket</th>
-	</tr>";
+?>
+	<h2><?php echo "{$event['name']}" ?></h2>
+	<p>
+		<label>Date open: </label> <?php echo " {$event['date_open']}" ?>,
+		<label>Date close: </label> <?php echo " {$event['date_close']}" ?>,
+		<label>Date : </label> <?php echo " {$event['date']}" ?>,
+	</p>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Ticket</th>
+			</tr>
+		</thead>
+		<tbody>
+<?php
 	foreach ( $ticketData[$eventId] as $ticket ) {
 		echo "<tr>";
 		echo "<td>" . $ticket['member_id'] . "</td>";
@@ -64,6 +68,7 @@ foreach ( $eventData as $eventId => $event ) {
 		echo "<td>" . $ticket['ticket_name'] . "</td>";
 		echo "</tr>";
 	}
+	echo "</tbody>";
 	echo "</table>";
 }
 ?>

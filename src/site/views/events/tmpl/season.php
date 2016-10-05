@@ -43,24 +43,26 @@ $currentSeasonYear = getCurrentSeasonYear();
 
 <p>Events listed below are in the current season.</p>
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Date</th>
-	</tr>
-
-	<?php
-	foreach ( $this->items as $item ) {
-		//Skip events that dont have this seaosn year!
-		if( $item->season_year != $currentSeasonYear ) {
-			continue;
+<table class="table">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Date</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ( $this->items as $item ) {
+			//Skip events that dont have this seaosn year!
+			if( $item->season_year != $currentSeasonYear ) {
+				continue;
+			}
+			echo "<tr>\n";
+			$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&layout=past&event=' . $item->id );
+			echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
+			echo "<td>" . $item->date . "</td>\n";
+			echo "</tr>\n";
 		}
-		echo "<tr>\n";
-		$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&layout=past&event=' . $item->id );
-		echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
-		echo "<td>" . $item->date . "</td>\n";
-		echo "</tr>\n";
-	}
-	?>
-
+		?>
+	</tbody>
 </table>

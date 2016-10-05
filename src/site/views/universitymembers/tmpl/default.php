@@ -67,104 +67,106 @@ foreach ($this->events as $event) {
 }
 ?>
 
-<table>
-	<tr>
-		<th>Id</th>
-		<th>Name</th>
-		<th>Paid</th>
-		<th>Committee</th>
-		<th>Discipline</th>
-		<th>Level</th>
-		<th>Action</th>
-		<th>Event Registration</th>
-	</tr>
-
-	<?php
-	foreach ( $this->items as $item ) {
-		if ( !$item->confirmed_university || $item->graduated ) {
-			continue;
-		}
-		echo "<tr>\n";
-		echo "<td>" . $item->id . "</td>\n";
-		echo "<td>" . $item->name . "</td>\n";
-		if ( $item->paid ) {
-			echo "<td bgcolor='#CCFF33'>Yes</td>\n";
-		} else {
-			echo "<td bgcolor='#FF6666'>No</td>\n";
-		}
-		echo "<td>" . ( $item->club_committee ? 'Yes' : 'No' ) . "</td>\n";
-		echo "<td>" . $item->discipline . "</td>\n";
-		echo "<td>" . $item->level . "</td>\n";
-
-		echo '<td>';
-		echo '<form id="form-universitymembers-graduate-' .
-			$item->id .
-			'" method="POST" action="' .
-			JRoute::_( 'index.php?option=com_swa&task=universitymembers.graduate' ) .
-			'">' .
-			'<input type="hidden" name ="member_id" value="' .
-			$item->id .
-			'" />' .
-			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-graduate-' .
-			$item->id .
-			'\').submit(); return false;">(graduate)</a>' .
-			JHtml::_( 'form.token' ) .
-			'</form>';
-		echo '<form id="form-universitymembers-unapprove-' .
-			$item->id .
-			'" method="POST" action="' .
-			JRoute::_( 'index.php?option=com_swa&task=universitymembers.unapprove' ) .
-			'">' .
-			'<input type="hidden" name ="member_id" value="' .
-			$item->id .
-			'" />' .
-			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unapprove-' .
-			$item->id .
-			'\').submit(); return false;">(unapprove)</a>' .
-			JHtml::_( 'form.token' ) .
-			'</form>';
-		echo '</td>';
-
-		echo "<td><ul>";
-		foreach ( $this->events as $event ) {
-			echo "<li>" . $event->name . ' ';
-			if (
-				array_key_exists( $item->id, $eventRegistrations ) &&
-				array_key_exists( $event->id, $eventRegistrations[$item->id] )
-			) {
-				//registered for the event
-				echo '<form id="form-universitymembers-unregister-' . $item->id . '-' . $event->id . '" method="POST" action="' .
-					JRoute::_( 'index.php?option=com_swa&task=universitymembers.unregister' ) .
-					'">' .
-					'<input type="hidden" name ="member_id" value="' .
-					$item->id .
-					'" />' .
-					'<input type="hidden" name ="event_id" value="' .
-					$event->id .
-					'" />' .
-					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister-' . $item->id . '-' . $event->id . '\').submit(); return false;">(unregister)</a>' .
-					JHtml::_( 'form.token' ) .
-					'</form>';
-			} else {
-				//not registered for the event
-				echo '<form id="form-universitymembers-register-' . $item->id . '-' . $event->id . '" method="POST" action="' .
-					JRoute::_( 'index.php?option=com_swa&task=universitymembers.register' ) .
-					'">' .
-					'<input type="hidden" name ="member_id" value="' .
-					$item->id .
-					'" />' .
-					'<input type="hidden" name ="event_id" value="' .
-					$event->id .
-					'" />' .
-					'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-' . $item->id . '-' . $event->id . '\').submit(); return false;">(register)</a>' .
-					JHtml::_( 'form.token' ) .
-					'</form>';
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Paid</th>
+			<th>Committee</th>
+			<th>Discipline</th>
+			<th>Level</th>
+			<th>Action</th>
+			<th>Event Registration</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ( $this->items as $item ) {
+			if ( !$item->confirmed_university || $item->graduated ) {
+				continue;
 			}
-			echo "</li>\n";
-		}
-		echo "</ul></td>\n";
-		echo "</tr>\n";
-	}
-	?>
+			echo "<tr>\n";
+			echo "<td>" . $item->id . "</td>\n";
+			echo "<td>" . $item->name . "</td>\n";
+			if ( $item->paid ) {
+				echo "<td bgcolor='#CCFF33'>Yes</td>\n";
+			} else {
+				echo "<td bgcolor='#FF6666'>No</td>\n";
+			}
+			echo "<td>" . ( $item->club_committee ? 'Yes' : 'No' ) . "</td>\n";
+			echo "<td>" . $item->discipline . "</td>\n";
+			echo "<td>" . $item->level . "</td>\n";
 
+			echo '<td>';
+			echo '<form id="form-universitymembers-graduate-' .
+				$item->id .
+				'" method="POST" action="' .
+				JRoute::_( 'index.php?option=com_swa&task=universitymembers.graduate' ) .
+				'">' .
+				'<input type="hidden" name ="member_id" value="' .
+				$item->id .
+				'" />' .
+				'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-graduate-' .
+				$item->id .
+				'\').submit(); return false;">(graduate)</a>' .
+				JHtml::_( 'form.token' ) .
+				'</form>';
+			echo '<form id="form-universitymembers-unapprove-' .
+				$item->id .
+				'" method="POST" action="' .
+				JRoute::_( 'index.php?option=com_swa&task=universitymembers.unapprove' ) .
+				'">' .
+				'<input type="hidden" name ="member_id" value="' .
+				$item->id .
+				'" />' .
+				'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unapprove-' .
+				$item->id .
+				'\').submit(); return false;">(unapprove)</a>' .
+				JHtml::_( 'form.token' ) .
+				'</form>';
+			echo '</td>';
+
+			echo "<td><ul>";
+			foreach ( $this->events as $event ) {
+				echo "<li>" . $event->name . ' ';
+				if (
+					array_key_exists( $item->id, $eventRegistrations ) &&
+					array_key_exists( $event->id, $eventRegistrations[$item->id] )
+				) {
+					//registered for the event
+					echo '<form id="form-universitymembers-unregister-' . $item->id . '-' . $event->id . '" method="POST" action="' .
+						JRoute::_( 'index.php?option=com_swa&task=universitymembers.unregister' ) .
+						'">' .
+						'<input type="hidden" name ="member_id" value="' .
+						$item->id .
+						'" />' .
+						'<input type="hidden" name ="event_id" value="' .
+						$event->id .
+						'" />' .
+						'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister-' . $item->id . '-' . $event->id . '\').submit(); return false;">(unregister)</a>' .
+						JHtml::_( 'form.token' ) .
+						'</form>';
+				} else {
+					//not registered for the event
+					echo '<form id="form-universitymembers-register-' . $item->id . '-' . $event->id . '" method="POST" action="' .
+						JRoute::_( 'index.php?option=com_swa&task=universitymembers.register' ) .
+						'">' .
+						'<input type="hidden" name ="member_id" value="' .
+						$item->id .
+						'" />' .
+						'<input type="hidden" name ="event_id" value="' .
+						$event->id .
+						'" />' .
+						'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-' . $item->id . '-' . $event->id . '\').submit(); return false;">(register)</a>' .
+						JHtml::_( 'form.token' ) .
+						'</form>';
+				}
+				echo "</li>\n";
+			}
+			echo "</ul></td>\n";
+			echo "</tr>\n";
+		}
+		?>
+	</tbody>
 </table>
