@@ -132,7 +132,7 @@ class SwaModelEvent extends SwaModelItem {
 				'concat(round((count(ticket.id)/event_ticket.quantity*100),0),\'%\') as percentage_sold',
 				'count(ticket.id) as sold',
 				'event_ticket.quantity',
-				'(event_ticket.quantity-count(*)) as remaining',
+				'(event_ticket.quantity-count(ticket.id)) as remaining',
 			)
 		);
 		$query->from( '`#__swa_ticket` AS ticket' );
