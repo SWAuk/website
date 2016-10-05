@@ -37,7 +37,15 @@ if( $this->member && $this->member->swa_committee ) {
     <tbody>
 <?php
     $ticketSales = $this->get( 'TicketSales' );
+    $totalSold = 0;
+    $totalQuantity = 0;
+    $totalRemaining = 0;
+
     foreach( $ticketSales as $ticket ){
+        $totalSold += $ticket['sold'];
+        $totalQuantity += $ticket['quantity'];
+        $totalRemaining += $ticket['remaining'];
+
         echo "<tr>\n";
         echo "<td>{$ticket['name']}</td>";
         echo "<td>£{$ticket['price']}</td>";
@@ -47,7 +55,20 @@ if( $this->member && $this->member->swa_committee ) {
         echo "<td>{$ticket['remaining']}</td>";
         echo "</tr>\n";
     }
-    echo "</tbody>\n";
-    echo "</table>\n";
-}
+
+    $totalPercentSold = round($totalSold / $totalQuantity * 100);
 ?>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td><label>Totals</label></td>
+            <td><label>-</label></td>
+            <td><label><?php echo $totalPercentSold ?>%</label></td>
+            <td><label><?php echo $totalSold ?></label></td>
+            <td><label><?php echo $totalQuantity ?></label></td>
+            <td><label><?php echo $totalRemaining ?></label></td>
+        </tr>
+    </tfoot>
+</table>
+<?php
+}
