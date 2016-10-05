@@ -35,11 +35,11 @@ foreach ( $this->items as $item ) {
 		} );
 	</script>
 
-	<h1>University Event Attendees</h1>
+	<h1><?php echo $this->get('UniversityName') ?> Event Attendees</h1>
 
 	<p>
 		This lists attendees for your university to future events,
-		if you do not see an event it is possible noone has yet bought a ticket.
+		if you do not see an event it is possible no one has yet bought a ticket.
 	</p>
 
 <?php
@@ -49,7 +49,7 @@ foreach ( $eventData as $eventId => $event ) {
 	<p>
 		<label>Date open: </label> <?php echo " {$event['date_open']}" ?>,
 		<label>Date close: </label> <?php echo " {$event['date_close']}" ?>,
-		<label>Date : </label> <?php echo " {$event['date']}" ?>,
+		<label>Date : </label> <?php echo " {$event['date']}" ?>
 	</p>
 	<table class="table table-hover">
 		<thead>
