@@ -44,6 +44,14 @@
 			required="true"
 			filter="safehtml"/>
 
+		<field name="notes"
+			   type="text"
+			   size="500"
+			   class="inputbox"
+			   label="Notes"
+			   required="false"
+			   filter="safehtml"/>
+
 		<field name="need_level"
 			type="text"
 			size="20"
