@@ -32,54 +32,57 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	<form id="form-committee-details" method="post"
 		  action="<?php echo JRoute::_( 'index.php?option=com_swa&task=orgcommitteedetails' ); ?>"
 		  class="form-validate form-horizontal" enctype="multipart/form-data">
-		<table>
-			<tr>
-				<td>Name</td>
-				<td><?php echo $this->user->name; ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel( 'id' ); ?></td>
-				<td><?php echo $this->form->getInput( 'id' ); ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel( 'member_id' ); ?></td>
-				<td><?php echo $this->form->getInput( 'member_id' ); ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel( 'position' ); ?></td>
-				<td><?php echo $this->form->getInput( 'position' ); ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel( 'blurb' ); ?></td>
-				<td><?php echo $this->form->getInput( 'blurb' ); ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel( 'image' ); ?></td>
-				<td><?php echo $this->form->getInput( 'image' ); ?></td>
-			</tr>
+		<table class="table">
+			<thead></thead>
+			<tbody>
+				<tr>
+					<td><label>Name</label></td>
+					<td><?php echo $this->user->name; ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->form->getLabel( 'id' ); ?></td>
+					<td><?php echo $this->form->getInput( 'id' ); ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->form->getLabel( 'member_id' ); ?></td>
+					<td><?php echo $this->form->getInput( 'member_id' ); ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->form->getLabel( 'position' ); ?></td>
+					<td><?php echo $this->form->getInput( 'position' ); ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->form->getLabel( 'blurb' ); ?></td>
+					<td><?php echo $this->form->getInput( 'blurb' ); ?></td>
+				</tr>
+				<tr>
+					<td><?php echo $this->form->getLabel( 'image' ); ?></td>
+					<td><?php echo $this->form->getInput( 'image' ); ?></td>
+				</tr>
 
-			<tr>
-				<td>
-					<div class="control-group">
-						<div class="controls">
-							<button type="submit"
-									class="validate btn btn-primary"><?php echo JText::_(
-									'JSUBMIT'
-								); ?></button>
-							<a class="btn" href="<?php echo JRoute::_(
-								'index.php?option=com_swa&task=orgcommitteedetails.cancel'
-							); ?>" title="<?php echo JText::_( 'JCANCEL' ); ?>"><?php echo JText::_(
-									'JCANCEL'
-								); ?></a>
+				<tr>
+					<td>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit"
+										class="validate btn btn-primary"><?php echo JText::_(
+										'JSUBMIT'
+									); ?></button>
+								<a class="btn" href="<?php echo JRoute::_(
+									'index.php?option=com_swa&task=orgcommitteedetails.cancel'
+								); ?>" title="<?php echo JText::_( 'JCANCEL' ); ?>"><?php echo JText::_(
+										'JCANCEL'
+									); ?></a>
+							</div>
 						</div>
-					</div>
-				</td>
-			</tr>
-
-			<input type="hidden" name="option" value="com_swa"/>
-			<input type="hidden" name="task" value="orgcommitteedetails.submit"/>
-			<?php echo JHtml::_( 'form.token' ); ?>
-
+					</td>
+				</tr>
+			</tbody>
 		</table>
+
+		<input type="hidden" name="option" value="com_swa"/>
+		<input type="hidden" name="task" value="orgcommitteedetails.submit"/>
+		<?php echo JHtml::_( 'form.token' ); ?>
+
 	</form>
 </div>

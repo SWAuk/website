@@ -32,25 +32,28 @@ if ( empty( $this->items ) ) {
 } else {
 	?>
 
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Date</th>
-		</tr>
-
-		<?php
-		foreach ( $this->items as $item ) {
-			// Skip if date is in the past!
-			if( new DateTime( $item->date ) > new DateTime() ) {
-				continue;
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Date</th>
+			</tr>
+		</thead>
+		<tbody>
+			<?php
+			foreach ( $this->items as $item ) {
+				// Skip if date is in the past!
+				if( new DateTime( $item->date ) > new DateTime() ) {
+					continue;
+				}
+				echo "<tr>\n";
+				$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&layout=past&event=' . $item->id );
+				echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
+				echo "<td>" . $item->date . "</td>\n";
+				echo "</tr>\n";
 			}
-			echo "<tr>\n";
-			$eventUrl = JRoute::_( 'index.php?option=com_swa&view=event&layout=past&event=' . $item->id );
-			echo "<td><a href=$eventUrl>" . $item->name . "</a></td>\n";
-			echo "<td>" . $item->date . "</td>\n";
-			echo "</tr>\n";
-		}
-		?>
+			?>
+		</tbody>
 	</table>
 
 	<p>Yes, we know there have been more events than this... but these events predate this lovely website!</p>

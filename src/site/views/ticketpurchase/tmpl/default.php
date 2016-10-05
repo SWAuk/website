@@ -33,17 +33,19 @@ if ( empty( $this->items ) ) {
 	?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>
 	<p>Keep an eye on social media as we will post about all ticket releases there!</p>
-	<table>
-		<tr>
-			<th>Event</th>
-			<th>Event Date</th>
-			<th>Ticket Deadline</th>
-			<th>Ticket</th>
-			<th>Price</th>
-			<th>Notes</th>
-			<th>Buy</th>
-		</tr>
-
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Event</th>
+				<th>Event Date</th>
+				<th>Ticket Deadline</th>
+				<th>Ticket</th>
+				<th>Price</th>
+				<th>Notes</th>
+				<th>Buy</th>
+			</tr>
+		</thead>
+		<tbody>
 		<?php
 		foreach ( $this->items as $item ) {
 			echo "<tr>\n";
@@ -91,7 +93,7 @@ if ( empty( $this->items ) ) {
 			echo "</tr>\n";
 		}
 		?>
-
+		</tbody>
 	</table>
 	<?php
 }

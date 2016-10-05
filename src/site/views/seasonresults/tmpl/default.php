@@ -28,86 +28,90 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <p>Below are the results for the current season so far.</p>
 
+<h2>Team Series</h2>
+<p>Competitions: <?php echo "{$this->teamItems['competitions']}, DNC score: {$this->teamItems['dnc_score']}" ?></p>
+<table class="table table-hover">
+	<thead>
+		<th>#</th>
+		<th>Uni</th>
+		<th>Team</th>
+		<th>Points</th>
+		<th>Competitions</th>
+		<th>Discarded</th>
+	</thead>
+	<tbody>
 <?php
-
-echo "<h2>Team Series</h2>\n";
-echo "<p>Competitions: {$this->teamItems['competitions']}, DNC score: {$this->teamItems['dnc_score']}</p>";
-echo "<table border=\"1\">\n";
-echo "<th>\n";
-echo "<td><strong>Uni</strong></td>\n";
-echo "<td><strong>Team</strong></td>\n";
-echo "<td><strong>Points</strong></td>\n";
-echo "<td>Competitions</td>\n";
-echo "<td>Discarded</td>\n";
-echo "</th>\n";
-
-$positionCounter = 0;
-foreach ( $this->teamItems['results'] as $teamDetails ) {
-	$positionCounter++;
-	// Name is technically use input so strip it just in case..
-	$name = strip_tags( $teamDetails['name'] );
-	echo "<tr>\n";
-	echo "<td>{$positionCounter}</td>\n";
-	echo "<td>{$name}</td>\n";
-	echo "<td>{$teamDetails['team']}</td>\n";
-	echo "<td>{$teamDetails['result']}</td>\n";
-	echo "<td>{$teamDetails['competitions']}</td>\n";
-	echo "<td>{$teamDetails['discard_points']}</td>\n";
-	echo "</tr>\n";
-}
-
-echo "</table>\n";
-
-foreach( array( $this->individualItems, $this->sexItems ) as $items ) {
-foreach( $items as $seriesName => $seriesDetails ) {
-
-	echo "<h2>" . ucfirst( $seriesName ) . " Series</h2>\n";
-	echo "<p>";
-	echo "Competitions: {$seriesDetails['competitions']}";
-	if( $seriesName != 'male' && $seriesName != 'female' ) {
-		echo ", DNC score: {$seriesDetails['dnc_score']}";
-	}
-	echo "</p>";
-	echo "<table border=\"1\">\n";
-	echo "<th>\n";
-	echo "<td><strong>Name</strong></td>\n";
-	echo "<td><strong>Uni</strong></td>\n";
-	echo "<td><strong>Points</strong></td>\n";
-	if( $seriesName == 'race' ) {
-		echo "<td>Level</td>\n";
-		echo "<td>Offset</td>\n";
-	}
-	echo "<td>Competitions</td>\n";
-	echo "<td>DNCs</td>\n";
-	echo "<td>DNC points</td>\n";
-	echo "<td>Discarded</td>\n";
-	echo "</th>\n";
-
 	$positionCounter = 0;
-	foreach ( $seriesDetails['results'] as $resultDetails ) {
+	foreach ( $this->teamItems['results'] as $teamDetails ) {
 		$positionCounter++;
 		// Name is technically use input so strip it just in case..
-		$name = strip_tags( $resultDetails['name'] );
-		$uni = strip_tags( $resultDetails['university'] );
+		$name = strip_tags( $teamDetails['name'] );
 		echo "<tr>\n";
 		echo "<td>{$positionCounter}</td>\n";
 		echo "<td>{$name}</td>\n";
-		echo "<td>{$uni}</td>\n";
-		echo "<td>{$resultDetails['result']}</td>\n";
-		if( $seriesName == 'race' ) {
-			$resultDetails['comp_type'] = str_replace( ' race', '', $resultDetails['comp_type'] );
-			echo "<td>{$resultDetails['comp_type']}</td>\n";
-			echo "<td>{$resultDetails['offset']}</td>\n";
-		}
-		echo "<td>{$resultDetails['competitions']}</td>\n";
-		echo "<td>{$resultDetails['dnc_count']}</td>\n";
-		echo "<td>{$resultDetails['dnc_points']}</td>\n";
-		echo "<td>{$resultDetails['discard_points']}</td>\n";
+		echo "<td>{$teamDetails['team']}</td>\n";
+		echo "<td>{$teamDetails['result']}</td>\n";
+		echo "<td>{$teamDetails['competitions']}</td>\n";
+		echo "<td>{$teamDetails['discard_points']}</td>\n";
 		echo "</tr>\n";
 	}
+echo "</tbody>\n";
+echo "</table>\n";
 
+foreach( array( $this->individualItems, $this->sexItems ) as $items ) {
+	foreach( $items as $seriesName => $seriesDetails ) {
 
-	echo "</table>\n";
+		echo "<h2>" . ucfirst( $seriesName ) . " Series</h2>\n";
+		echo "<p>";
+		echo "Competitions: {$seriesDetails['competitions']}";
+		if( $seriesName != 'male' && $seriesName != 'female' ) {
+			echo ", DNC score: {$seriesDetails['dnc_score']}";
+		}
+		echo "</p>";
+?>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Name</th>
+				<th>Uni</th>
+				<th>Points</th>
+				<?php if( $seriesName == 'race' ) {
+					echo "<th>Level</th>\n";
+					echo "<th>Offset</th>\n";
+				} ?>
+				<th>Competitions</th>
+				<th>DNCs</th>
+				<th>DNC points</th>
+				<th>Discarded</th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php
+		$positionCounter = 0;
+		foreach ( $seriesDetails['results'] as $resultDetails ) {
+			$positionCounter++;
+			// Name is technically use input so strip it just in case..
+			$name = strip_tags($resultDetails['name']);
+			$uni = strip_tags($resultDetails['university']);
+			echo "<tr>\n";
+			echo "<td>{$positionCounter}</td>\n";
+			echo "<td>{$name}</td>\n";
+			echo "<td>{$uni}</td>\n";
+			echo "<td>{$resultDetails['result']}</td>\n";
+			if ($seriesName == 'race') {
+				$resultDetails['comp_type'] = str_replace(' race', '', $resultDetails['comp_type']);
+				echo "<td>{$resultDetails['comp_type']}</td>\n";
+				echo "<td>{$resultDetails['offset']}</td>\n";
+			}
+			echo "<td>{$resultDetails['competitions']}</td>\n";
+			echo "<td>{$resultDetails['dnc_count']}</td>\n";
+			echo "<td>{$resultDetails['dnc_points']}</td>\n";
+			echo "<td>{$resultDetails['discard_points']}</td>\n";
+			echo "</tr>\n";
+		}
 
-}
-}
+		echo "</tbody>\n";
+		echo "</table>\n";
+	}
+} ?>

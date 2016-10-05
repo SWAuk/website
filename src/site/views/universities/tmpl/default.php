@@ -28,23 +28,25 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <p>Below is a list of universities registered with the SWA.</p>
 
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Url</th>
-	</tr>
-
-	<?php
-	foreach ( $this->items as $item ) {
-		echo "<tr>\n";
-		echo "<td>" . $item->name . "</td>\n";
-		if ( empty( $item->url ) ) {
-			echo "<td></td>";
-		} else {
-			echo "<td><a href=\"" . $item->url . "\">" . $item->url . "</a></td>\n";
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Url</th>
+		</tr>
+	</thead>
+	<tbody>
+		<?php
+		foreach ( $this->items as $item ) {
+			echo "<tr>\n";
+			echo "<td>" . $item->name . "</td>\n";
+			if ( empty( $item->url ) ) {
+				echo "<td></td>";
+			} else {
+				echo "<td><a href=\"" . $item->url . "\">" . $item->url . "</a></td>\n";
+			}
+			echo "</tr>\n";
 		}
-		echo "</tr>\n";
-	}
-	?>
-
+		?>
+	</tbody>
 </table>

@@ -20,16 +20,22 @@ $item = $this->item;
 <?php
 //Only show for SWA committee currently
 if( $this->member && $this->member->swa_committee ) {
-    echo "<h2>Ticket Sales</h2>";
-    echo "<table border=\"1\">\n";
-    echo "<th>\n";
-    echo "<td><strong>Price</strong></td>\n";
-    echo "<td><strong>% Sold</strong></td>\n";
-    echo "<td><strong>Sold</strong></td>\n";
-    echo "<td><strong>Quantity</strong></td>\n";
-    echo "<td><strong>Remaining</strong></td>\n";
-    echo "</th>\n";
+?>
 
+<h2>Ticket Sales</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Ticket Type</th>
+            <th>Price</th>
+            <th>% Sold</th>
+            <th>Sold</th>
+            <th>Quantity</th>
+            <th>Remaining</th>
+        </tr>
+    </thead>
+    <tbody>
+<?php
     $ticketSales = $this->get( 'TicketSales' );
     foreach( $ticketSales as $ticket ){
         echo "<tr>\n";
@@ -41,5 +47,7 @@ if( $this->member && $this->member->swa_committee ) {
         echo "<td>{$ticket['remaining']}</td>";
         echo "</tr>\n";
     }
+    echo "</tbody>\n";
     echo "</table>\n";
 }
+?>
