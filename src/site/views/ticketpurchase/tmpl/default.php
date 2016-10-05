@@ -40,6 +40,7 @@ if ( empty( $this->items ) ) {
 			<th>Ticket Deadline</th>
 			<th>Ticket</th>
 			<th>Price</th>
+			<th>Notes</th>
 			<th>Buy</th>
 		</tr>
 
@@ -51,6 +52,7 @@ if ( empty( $this->items ) ) {
 			echo "<td>" . $item->event_close . "</td>\n";
 			echo "<td>" . $item->ticket_name . "</td>\n";
 			echo "<td>" . $item->price . "</td>\n";
+			echo "<td>" . $item->notes . "</td>\n";
 			echo "<td>";
 
 			if( !$item->event_has_opened ) {

@@ -79,6 +79,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'a.id as id' );
 		$query->select( 'a.name as ticket_name' );
 		$query->select( 'a.price as price' );
+		$query->select( 'a.notes as notes' );
 		$query->select( 'a.need_level as need_level' );
 		$query->select( 'a.need_xswa as need_xswa' );
 		$query->select( 'a.need_swa as need_swa' );
