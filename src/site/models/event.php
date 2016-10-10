@@ -128,7 +128,7 @@ class SwaModelEvent extends SwaModelItem {
 		$query->select(
 			array(
 				'event_ticket.name',
-				'round(event_ticket.price,0) as price',
+				'round(event_ticket.price,2) as price',
 				'concat(round((count(ticket.id)/event_ticket.quantity*100),0),\'%\') as percentage_sold',
 				'count(ticket.id) as sold',
 				'event_ticket.quantity',
