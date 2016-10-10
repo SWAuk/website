@@ -32,6 +32,7 @@ if ( empty( $this->items ) ) {
 } else {
 	?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>
+	<p>If you can not see any tickets here then maybe there are no events? Make sure you president has registered you for the event! If you want an instructor ticket make sure you have submitted your qualifications.</p>
 	<p>Keep an eye on social media as we will post about all ticket releases there!</p>
 	<table class="table table-hover">
 		<thead>
@@ -42,7 +43,7 @@ if ( empty( $this->items ) ) {
 				<th>Ticket</th>
 				<th>Price</th>
 				<th>Notes</th>
-				<th>Buy</th>
+				<th>Purchase</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -62,7 +63,7 @@ if ( empty( $this->items ) ) {
 			} elseif ( $item->event_has_closed ) {
 				echo "SALES CLOSED";
 			} elseif ( $item->quantity_remaining <= 0 || $item->capacity_remaining <= 0 ) {
-				echo "SOLD OUT";
+				echo "Currently SOLD OUT";
 			} else {
 				?>
 
@@ -81,7 +82,7 @@ if ( empty( $this->items ) ) {
 					<input type="hidden" name="cancel_url" value="<?php echo JUri::root() .
 						'index.php?option=com_swa&view=ticketpurchase' ?>"/>
 					<a href="javascript:{}"
-					   onclick="document.getElementById('form-ticketpurchase-<?php echo $item->id ?>').submit(); return false;">(buy)</a>
+					   onclick="document.getElementById('form-ticketpurchase-<?php echo $item->id ?>').submit(); return false;">Buy now!</a>
 					<!-- test_transaction = 100 means TEST-->
 					<input type="hidden" name="test_transaction" value="0"/>
 				</form>
