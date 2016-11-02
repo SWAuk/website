@@ -33,7 +33,7 @@ $button = $buttons[array_rand( $buttons )];
 						if( prompt( "Cool, well, type it again", ";_;" ) == "YES" ) {
 							if( prompt( "What is the square root of 876 to the nearest whole number?" ) == "30" ) {
 								alert("ooh, clever cloggs, not far to go...");
-								if( prompt( "Who wrote the original button?", "a cat" ) == "beaker" ) {
+								if( prompt( "Who wrote this button?", "a cat" ) == "adam" ) {
 									alert("okay, I'm running out of time to see if you actually know what you are doing.");
 									if( prompt("What year is it?") == new Date().getFullYear() ) {
 										alert(
