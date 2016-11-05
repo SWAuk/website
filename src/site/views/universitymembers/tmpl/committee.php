@@ -19,7 +19,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	} );
 </script>
 
-<h1>University Members (committee)</h1>
+<h1><?php echo $this->member->university_name ?> Members (committee)</h1>
 
 <p>View:
 	<?php

@@ -35,7 +35,7 @@ foreach ( $this->items as $item ) {
 		} );
 	</script>
 
-	<h1><?php echo $this->get('UniversityName') ?> Event Attendees</h1>
+	<h1><?php echo $this->member->university_name ?> Event Attendees</h1>
 
 	<p>
 		This lists attendees for your university to future events,
@@ -71,4 +71,3 @@ foreach ( $eventData as $eventId => $event ) {
 	echo "</tbody>";
 	echo "</table>";
 }
-?>

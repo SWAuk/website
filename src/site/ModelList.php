@@ -32,6 +32,9 @@ abstract class SwaModelList extends JModelList {
 			);
 			$query->select( 'uni_member.committee as club_committee' );
 
+			$query->leftJoin('#__swa_university as uni on uni.id = uni_member.university_id');
+			$query->select('uni.name as university_name');
+
 			// Load the result
 			$db->setQuery( $query );
 			$this->member = $db->loadObject();

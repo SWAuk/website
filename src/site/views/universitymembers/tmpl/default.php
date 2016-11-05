@@ -23,7 +23,7 @@ foreach ( $this->event_registrations as $reg ) {
 	} );
 </script>
 
-<h1>University Members (current)</h1>
+<h1><?php echo $this->member->university_name ?> Members (current)</h1>
 
 <p>View:
 	<?php

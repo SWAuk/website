@@ -19,7 +19,7 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 	} );
 </script>
 
-<h1>University Members (pending)</h1>
+<h1><?php echo $this->member->university_name ?> Members (pending)</h1>
 
 <p>View:
 	<?php

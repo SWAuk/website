@@ -54,22 +54,4 @@ class SwaModelUniversityEventAttendees extends SwaModelList {
 
 		return $query;
 	}
-
-	public function getUniversityName() {
-		$db = $this->getDbo();
-		$query = $db->getQuery( true );
-
-		// Get the university name
-		$query->select( 'uni.name' );
-		$query->from( $db->quoteName( '#__swa_university' ) . ' AS uni' );
-		$member = $this->getMember();
-		$query->where('uni.id = ' .  $query->quote($member->university_id));
-
-		$db->setQuery( $query );
-
-		$dbResult = $db->loadAssocList();
-
-		return $dbResult[0]['name'];
-	}
-
 }
