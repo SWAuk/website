@@ -28,7 +28,8 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <?php
 if ( empty( $this->items ) ) {
-	echo "<p><b>There are currently no tickets that you can buy!</b></p>";
+	$reason = $this->get('ReasonForNoTickets');
+	echo "<p><b>" . (is_null($reason) ? "There are currently no tickets that you can buy!" : $reason) . "</b></p>";
 } else {
 	?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>

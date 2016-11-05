@@ -154,6 +154,27 @@ class SwaModelTicketPurchase extends SwaModelList {
 		return $allowedTickets;
 	}
 
+	/***
+	 * Determines the reason a user can't buy a ticket and returns a string explaining why.
+	 *
+	 * @return null|string
+	 */
+	public function getReasonForNoTickets() {
+		$noTicketReason = null;
+		$member = $this->getMember();
+		// check the member has been accepted into their club
+		if ($member->confirmed_university == "0") {
+			$noTicketReason = "You can't buy a ticket because you have not been accepted into your club. Please ask
+			your  committee to accept you from the pending section of the club->members page.";
+		// check the member has been registered for an event
+		} elseif (!isset($member->registered_event_ids)) {
+			$noTicketReason = "You can't buy a ticket because you have not been registered to an event. Please ask your
+			committee to register you on the club->members page.";
+		}
+
+		return $noTicketReason;
+	}
+
 	/**
 	 * Should the given user be allowed to purchase the given ticket?
 	 *
