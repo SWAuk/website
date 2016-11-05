@@ -135,11 +135,11 @@ class SwaModelEvent extends SwaModelItem {
 				'(event_ticket.quantity-count(ticket.id)) as remaining',
 			)
 		);
-		$query->from( '`#__swa_ticket` AS ticket' );
-		$query->rightJoin( '`#__swa_event_ticket` AS event_ticket ON ticket.event_ticket_id = event_ticket.id' );
-		$query->join( 'INNER', '`#__swa_event` as event ON event_ticket.event_id = event.id' );
+
+		$query->from( '#__swa_event_ticket AS event_ticket ' );
+		$query->leftJoin( '#__swa_ticket AS ticket ON ticket.event_ticket_id = event_ticket.id' );
 		$query->where( 'event_ticket.event_id = ' . $db->quote( $eventId ) );
-		$query->group( 'event_ticket_id' );
+		$query->group( 'event_ticket.id' );
 
 		$db->setQuery( $query );
 
