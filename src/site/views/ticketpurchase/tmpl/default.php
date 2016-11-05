@@ -28,7 +28,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <?php
 if ( empty( $this->items ) ) {
-	$reason =  $this->get('ReasonForNoTickets');
+	$reason = $this->get('ReasonForNoTickets');
 	echo "<p><b>" . (is_null($reason) ? "There are currently no tickets that you can buy!" : $reason) . "</b></p>";
 } else {
 	?>
