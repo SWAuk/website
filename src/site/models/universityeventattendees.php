@@ -54,5 +54,4 @@ class SwaModelUniversityEventAttendees extends SwaModelList {
 
 		return $query;
 	}
-
 }
