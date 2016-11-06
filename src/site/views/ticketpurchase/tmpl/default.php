@@ -28,8 +28,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <?php
 if ( empty( $this->items ) ) {
-	$reason = $this->get('ReasonForNoTickets');
-	echo "<p><b>" . (is_null($reason) ? "There are currently no tickets that you can buy!" : $reason) . "</b></p>";
+	echo "<p><b>There are currently no tickets that you can buy!</b></p>";
 } else {
 	?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>
@@ -51,20 +50,16 @@ if ( empty( $this->items ) ) {
 		<?php
 		foreach ( $this->items as $item ) {
 			echo "<tr>\n";
-			echo "<td>" . $item->event . "</td>\n";
+			echo "<td>" . $item->event_name . "</td>\n";
 			echo "<td>" . $item->event_date . "</td>\n";
-			echo "<td>" . $item->event_close . "</td>\n";
+			echo "<td>" . $item->ticket_close . "</td>\n";
 			echo "<td>" . $item->ticket_name . "</td>\n";
 			echo "<td>" . $item->price . "</td>\n";
 			echo "<td>" . $item->notes . "</td>\n";
 			echo "<td>";
 
-			if( !$item->event_has_opened ) {
-				echo "Event not yet open";
-			} elseif ( $item->event_has_closed ) {
-				echo "SALES CLOSED";
-			} elseif ( $item->quantity_remaining <= 0 || $item->capacity_remaining <= 0 ) {
-				echo "Currently SOLD OUT";
+			if( $item->reason ) {
+				echo $item->reason;
 			} else {
 				?>
 
