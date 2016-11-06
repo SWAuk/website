@@ -116,10 +116,21 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$member = $this->getMember();
 
 		$allowedTickets = array();
+		$totalTicketsSold = 0;
+
+		// count total number of tickets sold
+		foreach ($tickets as $ticket) {
+			$totalTicketsSold += $ticket->tickets_sold;
+		}
 
 		foreach ($tickets as $ticket) {
 			// get whether the ticket should displayed and the reason it can't be bought if there is one
 			list($displayTicket, $ticket->reason) = $this->memberAllowedToViewBuyTicket( $member, $ticket );
+
+			// if the event capacity is full display SOLD OUT message
+			if ($totalTicketsSold >= $ticket->event_capacity) {
+				$ticket->reason = 'Currently SOLD OUT!';
+			}
 
 			// Only display tickets the member are allowed to see
 			if ( $displayTicket ) {
