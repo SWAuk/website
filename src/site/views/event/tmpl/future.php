@@ -11,15 +11,17 @@ $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 $item = $this->item;
 ?>
 
-<h1><?php echo $item->name ?></h1>
+<h1><?php echo $item->event_name ?></h1>
 
-<p>This event is on: <?php echo $item->date;?></p>
-<p>You must buy tickets by: <?php echo $item->date_close;?></p>
+<p>This event is on: <?php echo $item->event_date;?></p>
+<p>You must buy tickets by: <?php echo $item->event_date_close;?></p>
 <p>This event is part of the: <?php echo $item->season;?> season</p>
 
 <?php
-//Only show for SWA committee currently
-if( $this->member && $this->member->swa_committee ) {
+// Only show for the SWA committee or the hosts of the event
+if( $this->member ) {
+    $isHostCommittee = in_array($this->member->uni_id, explode(',', $item->hosts)) && $this->member->club_committee;
+    if ($this->member->swa_committee || $isHostCommittee) {
 ?>
 
 <h2>Ticket Sales</h2>
@@ -71,4 +73,4 @@ if( $this->member && $this->member->swa_committee ) {
     </tfoot>
 </table>
 <?php
-}
+}}

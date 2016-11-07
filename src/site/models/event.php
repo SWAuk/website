@@ -27,30 +27,46 @@ class SwaModelEvent extends SwaModelItem {
 	 * @return JTable
 	 */
 	public function getItem() {
+		/** SQL Query used below. Not all of this query is currently used
+		 * left here to demonstrate how to list the uni_ids and the uni_names
+
+		SELECT
+		event.id AS event_id,
+		event.name AS event_name,
+		event.date AS event_date,
+		event.date_close AS event_date_close,
+		season.year AS season,
+		GROUP_CONCAT(event_host.university_id) AS host_ids,
+		GROUP_CONCAT(uni.name) AS host_names
+
+		FROM swan_swa_event AS event
+		JOIN swan_swa_season AS season ON season.id = event.season_id
+		LEFT JOIN swan_swa_event_host AS event_host ON event.id = event_host.event_id
+		JOIN swan_swa_university AS uni ON event_host.university_id = uni.id
+
+		WHERE event.id = 122
+		 */
+
 		$eventId = $this->getEventId();
 
 		// Create a new query object.
 		$db = $this->getDbo();
 		$query = $db->getQuery( true );
 
-		$event = new stdClass();
-		$event->id = 1;
+		$query->select( array(
+			'event.id AS event_id',
+			'event.name AS event_name',
+			'event.date AS event_date',
+			'event.date_close AS event_date_close',
+			'season.year AS season',
+			'GROUP_CONCAT(event_host.university_id) AS hosts'
+		) );
 
-		$query->select( 'event.*' );
-		$query->from( '`#__swa_event` AS event' );
+		$query->from( '#__swa_event AS event' );
+		$query->innerJoin( '#__swa_season AS season ON season.id = event.season_id' );
+		$query->leftJoin( '#__swa_event_host AS event_host ON event.id = event_host.event_id' );
+
 		$query->where( 'event.id = ' . $db->quote( $eventId ) );
-
-		// Join over for season_id
-		$query->select( 'season.year as season' );
-		$query->join( 'LEFT', '#__swa_season AS season ON season.id = event.season_id' );
-
-		// Join for hosts
-		$query->select( 'GROUP_CONCAT(university.name) AS hosts' );
-		$query->join( 'LEFT', '#__swa_event_host AS event_host ON event.id = event_host.id' );
-		$query->join(
-			'LEFT',
-			'#__swa_university AS university ON event_host.university_id = university.id'
-		);
 
 		// Load the result
 		$db->setQuery( $query );

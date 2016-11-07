@@ -34,9 +34,9 @@
 		<field name="committee"
 			type="list"
 			label="Committee Position"
-			default="None"
+			default="0"
 			required="false">
-			<option value="None">None</option>
+			<option value="0">None</option>
 			<option value="President">President</option>
 			<option value="Vice President">Vice President</option>
 			<option value="Treasurer">Treasurer</option>
