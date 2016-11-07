@@ -31,6 +31,7 @@ abstract class SwaModelItem extends JModelItem {
 				'#__swa_university_member as uni_member on uni_member.member_id = a.id'
 			);
 			$query->select( 'uni_member.committee as club_committee' );
+			$query->select( 'uni_member.university_id as uni_id' );
 
 			// Load the result
 			$db->setQuery( $query );

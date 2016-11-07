@@ -11,9 +11,9 @@ $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 $item = $this->item;
 ?>
 
-<h1><?php echo $item->name ?></h1>
+<h1><?php echo $item->event_name ?></h1>
 
-<p>This event was on: <?php echo $item->date;?></p>
+<p>This event was on: <?php echo $item->event_date;?></p>
 <p>This event is part of the: <?php echo $item->season;?> season</p>
 
 <?php
