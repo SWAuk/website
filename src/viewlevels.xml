@@ -5,7 +5,7 @@
 	<creationDate>June 2015</creationDate>
 	<copyright>Copyright (C) 2015 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<description>Plugin to give inject extra view levels for SWA members.</description>
 	<files>
 		<filename plugin="viewlevels">viewlevels.php</filename>

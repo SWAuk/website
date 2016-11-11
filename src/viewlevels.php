@@ -58,7 +58,9 @@ class plgSwaViewLevels extends JPlugin
 			return;
 		}
 
-		if( is_object( $member ) && $member->club_committee && !empty( $member->club_committee ) ){
+		// club_committee is "0", when not in the committee, which will evaluate to false 
+		// or, when they are in the committee, is a string that will evaluate to true
+		if( is_object( $member ) && $member->club_committee ){
 			$authorised[] = $aclClubCommittee;
 		}
 		if( is_object( $member ) && $member->swa_committee ){
