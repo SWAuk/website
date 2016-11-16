@@ -178,7 +178,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		} elseif( $ticket->need_xswa && !$member->graduated ) {
 			$reason = 'You need to be graduated to buy this ticket';
 		} elseif( !empty( $ticket->need_level ) && $member->level != $ticket->need_level ) {
-			$reason = "You need to be level '{$member->need_level}' to buy this ticket";
+			$reason = "You need to be level '{$ticket->need_level}' to buy this ticket";
 			$display = in_array( strtolower($ticket->need_level), array('beginner', 'intermediate', 'advanced') );
 		} elseif( $ticket->need_qualification && !$member->qualification ) {
 			$reason = 'You need to have an approved qualification to buy this ticket';
