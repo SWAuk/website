@@ -12,22 +12,26 @@
 
 		<field name="member_id"
 			type="sql"
-			default="1"
 			key_field="id"
-			value_field="name"
-			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
-			INNER JOIN #__users AS u ON m.user_id=u.id"
+			value_field="member_uni"
+			query="SELECT member.id AS id, CONCAT(user.name, ' - ', uni.name) AS member_uni
+			FROM #__swa_member AS member
+			INNER JOIN #__users AS user ON member.user_id=user.id
+			INNER JOIN #__swa_university_member AS uni_member ON uni_member.member_id = member.id
+			INNER JOIN #__swa_university AS uni ON uni_member.university_id = uni.id
+			ORDER BY member.id DESC"
 			label="User"
 			required="true"
 			filter="safehtml"/>
 
 		<field name="event_ticket_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="event_ticket_name"
-			query="SELECT event_ticket.id, CONCAT( event.name, ' - ' , event_ticket.name ) as event_ticket_name FROM #__swa_event_ticket AS event_ticket
-INNER JOIN #__swa_event AS event ON event_ticket.event_id=event.id"
+			query="SELECT event_ticket.id, CONCAT( event.name, ' - ' , event_ticket.name ) AS event_ticket_name
+			FROM #__swa_event_ticket AS event_ticket
+			INNER JOIN #__swa_event AS event ON event_ticket.event_id=event.id
+			ORDER BY event_ticket.id DESC"
 			label="Event ticket"
 			required="true"
 			filter="safehtml"/>
