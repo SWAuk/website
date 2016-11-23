@@ -12,17 +12,15 @@
 
 		<field name="event_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
-			query="SELECT id, name FROM #__swa_event"
+			query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
 			label="Event"
 			required="true"
 			filter="safehtml"/>
 
 		<field name="university_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
 			query="SELECT id, name FROM #__swa_university"

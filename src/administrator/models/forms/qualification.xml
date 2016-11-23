@@ -3,54 +3,53 @@
 	<fieldset>
 
 		<field name="id"
-			type="text"
-			default="0"
-			label="Id"
-			readonly="true"
-			class="readonly"
-			description="JGLOBAL_FIELD_ID_DESC"/>
+			   type="text"
+			   default="0"
+			   label="Id"
+			   readonly="true"
+			   class="readonly"
+			   description="JGLOBAL_FIELD_ID_DESC"/>
 
 		<field name="member_id"
-			type="sql"
-			default="1"
-			key_field="id"
-			value_field="name"
-			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
-			INNER JOIN #__users AS u ON m.user_id=u.id"
-			label="User"
-			required="true"
-			filter="safehtml"/>
+			   type="sql"
+			   key_field="id"
+			   value_field="member_uni"
+			   query="SELECT member.id AS id, CONCAT(user.name, ' - ', uni.name) AS member_uni
+			FROM #__swa_member AS member
+			INNER JOIN #__users AS user ON member.user_id = user.id
+			INNER JOIN #__swa_university_member AS uni_member ON uni_member.member_id = member.id
+			INNER JOIN #__swa_university AS uni ON uni_member.university_id = uni.id
+			ORDER BY member.id DESC"
+			   label="User"
+			   required="true"
+			   filter="safehtml"/>
 
 		<field name="type"
-			type="list"
-			label="Type"
-			required="true"
-			filter="safehtml">
+			   type="list"
+			   label="Type"
+			   required="true"
+			   filter="safehtml">
 			<option value="Powerboat Level 2">Powerboat Level 2</option>
 			<option value="Safety Boat">Safety Boat</option>
 			<option value="Start Windsurfing Instructor">Start Windsurfing Instructor</option>
-			<option value="Intermediate Windsurfing Instructor">Intermediate Windsurfing
-				Instructor
-			</option>
+			<option value="Intermediate Windsurfing Instructor">Intermediate Windsurfing Instructor</option>
 			<option value="Advanced Windsurfing Instructor">Advanced Windsurfing Instructor</option>
 			<option value="Senior Windsurfing Instructor">Senior Windsurfing Instructor</option>
 			<option value="Racing Windsurfing Instructor">Racing Windsurfing Instructor</option>
 		</field>
 
 		<field name="expiry_date"
-			type="calendar"
-			class="inputbox"
-			required="true"
-
-			default="0000-00-00"
-
-			label="Expiry date"
-			filter="safehtml"/>
+			   type="calendar"
+			   class="inputbox"
+			   required="true"
+			   default="NOW"
+			   label="Expiry date"
+			   filter="safehtml"/>
 
 		<field name="approved"
-			type="checkbox"
-			label="Approved"
-			default="0">
+			   type="checkbox"
+			   label="Approved"
+			   default="0">
 		</field>
 
 	</fieldset>

@@ -12,18 +12,18 @@
 
 		<field name="member_id"
 			type="sql"
-			default="1"
 			key_field="id"
-			value_field="name"
-			query="SELECT m.id as id, u.name as name FROM #__swa_member as m
-			INNER JOIN #__users AS u ON m.user_id=u.id"
+			value_field="id_name"
+			query="SELECT m.id AS id, CONCAT(m.id, ' - ', u.name) AS id_name
+			FROM #__swa_member AS m
+			INNER JOIN #__users AS u ON m.user_id=u.id
+			ORDER BY m.id DESC"
 			label="User"
 			required="true"
 			filter="safehtml"/>
 
 		<field name="university_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
 			query="SELECT id, name FROM #__swa_university"

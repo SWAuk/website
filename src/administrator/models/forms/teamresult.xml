@@ -12,19 +12,19 @@
 
 		<field name="competition_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="event_competition_name"
-			query="SELECT competition.id, CONCAT( event.name, ' - ' , competition_type.name ) as event_competition_name FROM #__swa_competition AS competition
-INNER JOIN #__swa_event AS event ON competition.event_id=event.id
-INNER JOIN #__swa_competition_type AS competition_type ON competition.competition_type_id=competition_type.id"
+			query="SELECT competition.id, CONCAT( event.name, ' - ' , competition_type.name ) AS event_competition_name
+			FROM #__swa_competition AS competition
+			INNER JOIN #__swa_event AS event ON competition.event_id = event.id
+			INNER JOIN #__swa_competition_type AS competition_type ON competition.competition_type_id = competition_type.id
+			ORDER BY competition.id DESC"
 			label="Competition"
 			required="true"
 			filter="safehtml"/>
 
 		<field name="university_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
 			query="SELECT id, name FROM #__swa_university"

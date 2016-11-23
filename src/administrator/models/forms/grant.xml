@@ -12,10 +12,9 @@
 
 		<field name="event_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
-			query="SELECT id, name FROM #__swa_event"
+			query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
 			label="Event"
 			required="true"
 			filter="safehtml"/>
@@ -24,7 +23,7 @@
 			type="calendar"
 			class="inputbox"
 			required="true"
-			default="0000-00-00"
+			default="NOW"
 			label="Application date"
 			filter="safehtml"/>
 
@@ -75,7 +74,7 @@
 		<field name="finances_date"
 			type="calendar"
 			class="inputbox"
-			default="0000-00-00"
+			default="NOW"
 			label="Finances date"
 			filter="safehtml"/>
 
@@ -89,7 +88,7 @@
 		<field name="auth_date"
 			type="calendar"
 			class="inputbox"
-			default="0000-00-00"
+			default="NOW"
 			label="Auth date"
 			filter="safehtml"/>
 
@@ -103,7 +102,7 @@
 		<field name="payment_date"
 			type="calendar"
 			class="inputbox"
-			default="0000-00-00"
+			default="NOW"
 			label="Payment date"
 			filter="safehtml"/>
 

@@ -12,11 +12,12 @@
 
 		<field name="user_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="value"
-			query="SELECT users.id, CONCAT(users.name, ' ', IF(ISNULL(member.id), '', '(Already Member)')) as value FROM #__users as users
-LEFT JOIN #__swa_member member ON member.user_id = users.id"
+			query="SELECT users.id, CONCAT(users.name, ' ', IF(ISNULL(member.id), '', '(Already Member)')) AS value
+			FROM #__users AS users
+			LEFT JOIN #__swa_member member ON member.user_id = users.id
+			ORDER BY users.id DESC"
 			label="User"
 			required="true"
 			filter="safehtml"/>
@@ -54,7 +55,6 @@ LEFT JOIN #__swa_member member ON member.user_id = users.id"
 
 		<field name="university_id"
 			type="sql"
-			default="1"
 			key_field="id"
 			value_field="name"
 			query="SELECT id, name FROM #__swa_university"
