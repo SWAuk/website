@@ -15,11 +15,9 @@ class SwaModelEventregistrations extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'member_id',
-				'a.member_id',
-				'event_id',
-				'a.event_id',
+				'event',
+				'member',
+				'university',
 			);
 		}
 
@@ -33,7 +31,7 @@ class SwaModelEventregistrations extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'event_registration.id', 'desc' );
 	}
 
 	/**
@@ -65,35 +63,40 @@ class SwaModelEventregistrations extends JModelList {
 		$query = $db->getQuery( true );
 
 		// Select the required fields from the table.
-		$query->select(
-			$this->getState(
-				'list.select',
-				'DISTINCT a.*'
-			)
-		);
-		$query->from( '`#__swa_event_registration` AS a' );
-
-		$query->join( 'LEFT', '#__swa_member AS member ON member.id = a.member_id' );
-		$query->select( 'user.name AS user' );
-		$query->join( 'LEFT', '#__users AS user ON user.id = member.user_id' );
+		$query->select( 'event_registration.id AS id' );
+		$query->select( 'user.name AS member' );
 		$query->select( 'event.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event ON event.id = a.event_id' );
+		$query->select( 'uni.name AS university' );
+
+		$query->from( '`#__swa_event_registration` AS event_registration' );
+
+		$query->leftJoin( '#__swa_member AS member ON member.id = event_registration.member_id' );
+		$query->leftJoin( '#__users AS user ON user.id = member.user_id' );
+		$query->leftJoin( '#__swa_event AS event ON event.id = event_registration.event_id' );
+		$query->leftJoin( '#__swa_university_member AS uni_member ON uni_member.member_id = member.id' );
+		$query->leftJoin( '#__swa_university AS uni ON uni.id = uni_member.university_id' );
 
 		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
+		// clean up the search term
+		$search = trim($this->getState( 'filter.search' ));
+		// replace 2 or more consecutive whitespaces with a single space
+		$search = preg_replace('/\s{2,}/', ' ', $search);
+
+		// replace the current search term with the cleaned up one
+		$this->setState('filter.search', $search);
+
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+				$query->where( 'event_registration.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = str_replace(' ', '%', $search);
+
 				$query->where(
-					'( event.name LIKE ' .
-					$search .
-					'  OR  user.name LIKE ' .
-					$search .
-					'  OR  user.username LIKE ' .
-					$search .
-					' )'
+					'( event.name LIKE ' . $search .
+					' OR user.name LIKE ' . $search .
+					' OR user.username LIKE ' . $search .
+					' OR uni.name LIKE ' . $search . ' )'
 				);
 			}
 		}
