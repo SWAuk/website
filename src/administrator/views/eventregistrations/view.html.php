@@ -70,7 +70,10 @@ class SwaViewEventregistrations extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
+			'event' => JText::_( 'Event' ),
+			'member' => JText::_( 'Member' ),
+			'university' => JText::_( 'University' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' )
 		);
 	}
 

@@ -16,10 +16,9 @@ $userId = $user->get( 'id' );
 $listOrder = $this->state->get( 'list.ordering' );
 $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
-$saveOrder = $listOrder == 'a.ordering';
+$saveOrder = $listOrder == 'event_registration.ordering';
 if ( $saveOrder ) {
-	$saveOrderingUrl =
-		'index.php?option=com_swa&task=eventregistrations.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_swa&task=eventregistrations.saveOrderAjax&tmpl=component';
 	JHtml::_(
 		'sortablelist.sortable',
 		'eventregistrationList',
@@ -85,15 +84,15 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
 							onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_( 'JFIELD_ORDERING_DESC' ); ?></option>
@@ -106,9 +105,9 @@ if ( !empty( $this->extra_sidebar ) ) {
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
 							onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_( 'JGLOBAL_SORT_BY' ); ?></option>
@@ -131,7 +130,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_(
 								'grid.sort',
 								'<i class="icon-menu-2"></i>',
-								'a.ordering',
+								'event_registration.ordering',
 								$listDirn,
 								$listOrder,
 								null,
@@ -145,12 +144,11 @@ if ( !empty( $this->extra_sidebar ) ) {
 							   title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>"
 							   onclick="Joomla.checkAll(this)"/>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Event',
-							'a.event',
+							'event',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -159,7 +157,16 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Member',
-							'a.member',
+							'member',
+							$listDirn,
+							$listOrder
+						); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_(
+							'grid.sort',
+							'University',
+							'university',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -168,7 +175,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -191,7 +198,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</tfoot>
 				<tbody>
 				<?php foreach ( $this->items as $i => $item ) :
-					$ordering = ( $listOrder == 'a.ordering' );
+					$ordering = ( $listOrder == 'event_registration.ordering' );
 					$canCreate = $user->authorise( 'core.create', 'com_swa' );
 					$canEdit = $user->authorise( 'core.edit', 'com_swa' );
 					$canCheckin = $user->authorise( 'core.manage', 'com_swa' );
@@ -211,27 +218,29 @@ if ( !empty( $this->extra_sidebar ) ) {
 									<span
 										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
 										title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 									<input type="text" style="display:none" name="order[]" size="5"
 										   value="<?php echo $item->ordering; ?>"
 										   class="width-20 text-area-order "/>
 								<?php else : ?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-
 						<td>
 							<?php echo $item->event; ?>
 						</td>
 						<td>
-							<?php echo $item->user; ?>
+							<?php echo $item->member; ?>
+						</td>
+						<td>
+							<?php echo $item->university; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>
