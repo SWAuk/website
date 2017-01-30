@@ -49,6 +49,9 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 			'general',
 			JText::_( 'Ticket', true )
 		); ?>
+		
+		<p>If a user does not appear here it may be due to them not being part of a university yet.</p>
+		
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
