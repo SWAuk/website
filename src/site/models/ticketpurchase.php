@@ -116,11 +116,11 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$member = $this->getMember();
 
 		$allowedTickets = array();
-		$totalTicketsSold = 0;
+		$totalTicketsSold = array();
 
 		// count total number of tickets sold
 		foreach ($tickets as $ticket) {
-			$totalTicketsSold += $ticket->tickets_sold;
+			@$totalTicketsSold[$ticket->event_id] += $ticket->tickets_sold;
 		}
 
 		foreach ($tickets as $ticket) {
@@ -128,9 +128,8 @@ class SwaModelTicketPurchase extends SwaModelList {
 			list($displayTicket, $ticket->reason) = $this->memberAllowedToViewBuyTicket( $member, $ticket );
 
 			// if the event capacity is full display SOLD OUT message
-			if ($totalTicketsSold >= $ticket->event_capacity) {
-				// Addshore commented out on 09/02/2017 to fix this message overriding messages from memberAllowedToViewBuyTicket
-				//$ticket->reason = 'Currently SOLD OUT!';
+			if ($totalTicketsSold[$ticket->event_id] >= $ticket->event_capacity) {
+				$ticket->reason = 'Event currently SOLD OUT!';
 			}
 
 			// Only display tickets the member are allowed to see
@@ -168,7 +167,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 			// ticket sales close at midnight of the chosen day (hence the +24*60*60)
 			$reason = 'SALES CLOSED!';
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
-			$reason = 'Currently SOLD OUT!';
+			$reason = 'Ticket currently SOLD OUT!';
 		}
 		elseif( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
