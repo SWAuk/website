@@ -129,7 +129,8 @@ class SwaModelTicketPurchase extends SwaModelList {
 
 			// if the event capacity is full display SOLD OUT message
 			if ($totalTicketsSold >= $ticket->event_capacity) {
-				$ticket->reason = 'Currently SOLD OUT!';
+				// Addshore commented out on 09/02/2017 to fix this message overriding messages from memberAllowedToViewBuyTicket
+				//$ticket->reason = 'Currently SOLD OUT!';
 			}
 
 			// Only display tickets the member are allowed to see
