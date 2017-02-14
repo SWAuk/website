@@ -93,16 +93,17 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'event.date_close AS ticket_close' );
 		$query->select( 'event.capacity AS event_capacity' );
 		$query->select( 'event_ticket.quantity AS ticket_quantity' );
-		$query->select('COUNT(ticket.id) AS tickets_sold');
-		$query->select('GROUP_CONCAT( DISTINCT event_host.university_id ) AS host_university_ids');
+		$query->select( 'COUNT(ticket.id) AS tickets_sold' );
+		$query->select( 'GROUP_CONCAT( DISTINCT event_host.university_id ) AS host_university_ids' );
 
-		$query->from('#__swa_event_ticket AS event_ticket' );
+		$query->from( '#__swa_event_ticket AS event_ticket' );
 		$query->innerJoin( '#__swa_event AS event ON event_ticket.event_id = event.id' );
 		$query->leftJoin( '#__swa_event_host AS event_host ON event_host.event_id = event.id' );
-		$query->leftJoin('#__swa_ticket AS ticket ON ticket.event_ticket_id = event_ticket.id');
+		$query->leftJoin( '#__swa_ticket AS ticket ON ticket.event_ticket_id = event_ticket.id' );
 
-		$query->where('event.date > NOW()');
-		$query->group('id');
+		$query->where( 'event.date > NOW()' );
+		$query->group( 'id' );
+		$query->order('event_id ASC', 'id ASC');
 
 		return $query;
 	}
@@ -116,11 +117,11 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$member = $this->getMember();
 
 		$allowedTickets = array();
-		$totalTicketsSold = array();
+		$totalTicketsSold = 0;
 
 		// count total number of tickets sold
 		foreach ($tickets as $ticket) {
-			@$totalTicketsSold[$ticket->event_id] += $ticket->tickets_sold;
+			$totalTicketsSold += $ticket->tickets_sold;
 		}
 
 		foreach ($tickets as $ticket) {
@@ -128,8 +129,8 @@ class SwaModelTicketPurchase extends SwaModelList {
 			list($displayTicket, $ticket->reason) = $this->memberAllowedToViewBuyTicket( $member, $ticket );
 
 			// if the event capacity is full display SOLD OUT message
-			if ($totalTicketsSold[$ticket->event_id] >= $ticket->event_capacity) {
-				$ticket->reason = 'Event currently SOLD OUT!';
+			if ($totalTicketsSold >= $ticket->event_capacity) {
+				$ticket->reason = 'Currently SOLD OUT!';
 			}
 
 			// Only display tickets the member are allowed to see
@@ -167,7 +168,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 			// ticket sales close at midnight of the chosen day (hence the +24*60*60)
 			$reason = 'SALES CLOSED!';
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
-			$reason = 'Ticket currently SOLD OUT!';
+			$reason = 'Currently SOLD OUT!';
 		}
 		elseif( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
