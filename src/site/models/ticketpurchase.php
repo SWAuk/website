@@ -93,16 +93,17 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'event.date_close AS ticket_close' );
 		$query->select( 'event.capacity AS event_capacity' );
 		$query->select( 'event_ticket.quantity AS ticket_quantity' );
-		$query->select('COUNT(ticket.id) AS tickets_sold');
-		$query->select('GROUP_CONCAT( DISTINCT event_host.university_id ) AS host_university_ids');
+		$query->select( 'COUNT(ticket.id) AS tickets_sold' );
+		$query->select( 'GROUP_CONCAT( DISTINCT event_host.university_id ) AS host_university_ids' );
 
-		$query->from('#__swa_event_ticket AS event_ticket' );
+		$query->from( '#__swa_event_ticket AS event_ticket' );
 		$query->innerJoin( '#__swa_event AS event ON event_ticket.event_id = event.id' );
 		$query->leftJoin( '#__swa_event_host AS event_host ON event_host.event_id = event.id' );
-		$query->leftJoin('#__swa_ticket AS ticket ON ticket.event_ticket_id = event_ticket.id');
+		$query->leftJoin( '#__swa_ticket AS ticket ON ticket.event_ticket_id = event_ticket.id' );
 
-		$query->where('event.date > NOW()');
-		$query->group('id');
+		$query->where( 'event.date > NOW()' );
+		$query->group( 'id' );
+		$query->order('event_id ASC', 'id ASC');
 
 		return $query;
 	}
