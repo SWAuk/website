@@ -5,7 +5,7 @@ jimport( 'joomla.application.component.modellist' );
 
 class SwaModelSeasonResults extends SwaModelList {
 
-    private $seasonId = 15;
+    private $seasonId = 16;
 
     private $cachedMethodDbMap = array();
 
@@ -323,7 +323,7 @@ FROM swan_swa_indi_result as result
 JOIN swan_swa_competition as comp ON result.competition_id = comp.id
 JOIN swan_swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
 JOIN swan_swa_event as event ON comp.event_id = event.id
-WHERE event.season_id = 15
+WHERE event.season_id = {$this->seasonId}
 AND LCASE( comp_type.series ) = 'race'
 GROUP BY comp_type.id;"
         );
