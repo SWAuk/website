@@ -15,12 +15,8 @@ class SwaModelCompetitions extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'event_id',
-				'a.event_id',
-				'competition_type_id',
-				'a.competition_type_id',
-
+				'event',
+				'competition_type'
 			);
 		}
 
@@ -34,7 +30,7 @@ class SwaModelCompetitions extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'competition.id', 'desc' );
 	}
 
 	/**
@@ -69,34 +65,38 @@ class SwaModelCompetitions extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				$db->quoteName(
+					array('competition.id', 'event.name', 'comp_type.name'),
+					array('id', 'event', 'competition_type')
+				)
 			)
 		);
-		$query->from( '`#__swa_competition` AS a' );
-
-		// Join over for event_id
-		$query->select( 'event_id.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
-		// Join over for competition_type_id
-		$query->select( 'competition_type_id.name AS competition_type' );
-		$query->join(
-			'LEFT',
-			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = a.competition_type_id'
+		$query->from( $db->quoteName('#__swa_competition', 'competition') );
+		$query->leftJoin($db->quoteName('#__swa_event', 'event') . ' ON event.id = competition.event_id');
+		$query->leftJoin(
+			$db->quoteName('#__swa_competition_type', 'comp_type') .
+			' ON comp_type.id = competition.competition_type_id'
 		);
 
 		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
+		// clean up the search term
+		$search = trim($this->getState( 'filter.search' ));
+		// replace 2 or more consecutive whitespaces with a single space
+		$search = preg_replace('/\s{2,}/', ' ', $search);
+
+		// replace the current search term with the cleaned up one
+		$this->setState('filter.search', $search);
+
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+				$query->where( $db->quoteName('competition.id') . ' = ' . (int)substr( $search, 3 ) );
 			} else {
-				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = $db->quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = str_replace(' ', '%', $search);
+
 				$query->where(
-					'( event_id.name LIKE ' .
-					$search .
-					'  OR  competition_type_id.name LIKE ' .
-					$search .
-					' )'
+					'(' . $db->quoteName('event.name') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('comp_type.name') . ' LIKE ' . $search . ' )'
 				);
 			}
 		}

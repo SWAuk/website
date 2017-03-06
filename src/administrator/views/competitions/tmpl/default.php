@@ -16,7 +16,7 @@ $userId = $user->get( 'id' );
 $listOrder = $this->state->get( 'list.ordering' );
 $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
-$saveOrder = $listOrder == 'a.ordering';
+$saveOrder = $listOrder == 'competition.ordering';
 if ( $saveOrder ) {
 	$saveOrderingUrl = 'index.php?option=com_swa&task=competitions.saveOrderAjax&tmpl=component';
 	JHtml::_(
@@ -130,7 +130,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_(
 								'grid.sort',
 								'<i class="icon-menu-2"></i>',
-								'a.ordering',
+								'competition.ordering',
 								$listDirn,
 								$listOrder,
 								null,
@@ -144,12 +144,11 @@ if ( !empty( $this->extra_sidebar ) ) {
 							   title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>"
 							   onclick="Joomla.checkAll(this)"/>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Event',
-							'a.event',
+							'event',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -157,8 +156,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
-							'Competition type',
-							'a.competition_type',
+							'Competition Type',
+							'competition_type',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -167,7 +166,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -190,7 +189,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</tfoot>
 				<tbody>
 				<?php foreach ( $this->items as $i => $item ) :
-					$ordering = ( $listOrder == 'a.ordering' );
+					$ordering = ( $listOrder == 'competition.ordering' );
 					$canCreate = $user->authorise( 'core.create', 'com_swa' );
 					$canEdit = $user->authorise( 'core.edit', 'com_swa' );
 					$canCheckin = $user->authorise( 'core.manage', 'com_swa' );
@@ -225,7 +224,6 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<td class="center hidden-phone">
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
-
 						<td>
 							<?php echo $item->event; ?>
 						</td>
