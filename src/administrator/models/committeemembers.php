@@ -14,9 +14,8 @@ class SwaModelCommitteeMembers extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'position',
-				'a.position',
+				'member',
+				'position'
 			);
 		}
 
@@ -30,7 +29,7 @@ class SwaModelCommitteeMembers extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'committee.id', 'desc' );
 	}
 
 	/**
@@ -65,29 +64,36 @@ class SwaModelCommitteeMembers extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				$db->quoteName(
+					array('committee.id', 'user.name', 'committee.position'),
+					array('id', 'member', 'position')
+				)
 			)
 		);
-		$query->from( '`#__swa_committee` AS a' );
-		$query->join( 'LEFT', '`#__swa_member` AS member ON a.member_id=member.id' );
-		$query->join( 'LEFT', '`#__users` AS user ON member.user_id=user.id' );
-		$query->select( 'user.name as member' );
+		$query->from( '`#__swa_committee` AS committee' );
+		$query->leftJoin( '`#__swa_member` AS member ON committee.member_id=member.id' );
+		$query->leftJoin( '`#__users` AS user ON member.user_id=user.id' );
 
 		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
+		// clean up the search term
+		$search = trim($this->getState( 'filter.search' ));
+		// replace 2 or more consecutive whitespaces with a single space
+		$search = preg_replace('/\s{2,}/', ' ', $search);
+
+		// replace the current search term with the cleaned up one
+		$this->setState('filter.search', $search);
+
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+				$query->where( 'committee.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = str_replace(' ', '%', $search);
+
 				$query->where(
-					'( a.position LIKE ' .
-					$search .
-					'  OR  user.name LIKE ' .
-					$search .
-					'  OR  user.username LIKE ' .
-					$search .
-					' )'
+					'( committee.position LIKE ' . $search .
+					' OR  user.name LIKE ' . $search .
+					' OR  user.username LIKE ' . $search . ' )'
 				);
 			}
 		}

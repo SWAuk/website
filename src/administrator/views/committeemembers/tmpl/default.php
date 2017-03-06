@@ -16,7 +16,7 @@ $userId = $user->get( 'id' );
 $listOrder = $this->state->get( 'list.ordering' );
 $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
-$saveOrder = $listOrder == 'a.ordering';
+$saveOrder = $listOrder == 'committee.ordering';
 if ( $saveOrder ) {
 	$saveOrderingUrl =
 		'index.php?option=com_swa&task=committeemembers.saveOrderAjax&tmpl=component';
@@ -136,7 +136,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_(
 								'grid.sort',
 								'<i class="icon-menu-2"></i>',
-								'a.ordering',
+								'committee.ordering',
 								$listDirn,
 								$listOrder,
 								null,
@@ -154,7 +154,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -164,7 +164,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Member',
-							'a.member',
+							'member',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -174,7 +174,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Position',
-							'a.position',
+							'position',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -198,7 +198,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</tfoot>
 				<tbody>
 				<?php foreach ( $this->items as $i => $item ) :
-					$ordering = ( $listOrder == 'a.ordering' );
+					$ordering = ( $listOrder == 'committee.ordering' );
 					$canCreate = $user->authorise( 'core.create', 'com_swa' );
 					$canEdit = $user->authorise( 'core.edit', 'com_swa' );
 					$canCheckin = $user->authorise( 'core.manage', 'com_swa' );
@@ -255,4 +255,3 @@ if ( !empty( $this->extra_sidebar ) ) {
 			<?php echo JHtml::_( 'form.token' ); ?>
 		</div>
 </form>        
-
