@@ -15,15 +15,10 @@ class SwaModelDamages extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'event_id',
-				'a.event_id',
-				'university_id',
-				'a.university_id',
+				'university',
+				'event',
 				'date',
-				'a.date',
 				'cost',
-				'a.cost',
 
 			);
 		}
@@ -38,7 +33,7 @@ class SwaModelDamages extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'damages.id', 'desc' );
 	}
 
 	/**
@@ -73,20 +68,40 @@ class SwaModelDamages extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				$db->quoteName(
+					array('uni.name', 'event.name', 'event.date', 'damages.cost', 'damages.id'),
+					array('university', 'event', 'date', 'cost', 'id')
+				)
 			)
 		);
-		$query->from( '`#__swa_damages` AS a' );
+		$query->from( '`#__swa_damages` AS damages' );
+		$query->leftJoin( $db->quoteName('#__swa_university','uni') . 'ON uni.id = damages.university_id');
+		$query->leftJoin( $db->quoteName('#__swa_event', 'event') . 'ON event.id = damages.event_id' );
 
-		// Join over the university field 'university_id'
-		$query->select( 'university_id.name AS university' );
-		$query->join(
-			'LEFT',
-			'#__swa_university AS university_id ON university_id.id = a.university_id'
-		);
-		// Join over for event_id
-		$query->select( 'event_id.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = a.event_id' );
+		// Filter by search in title
+		// clean up the search term
+		$search = trim($this->getState( 'filter.search' ));
+		// replace 2 or more consecutive whitespaces with a single space
+		$search = preg_replace('/\s{2,}/', ' ', $search);
+
+		// replace the current search term with the cleaned up one
+		$this->setState('filter.search', $search);
+
+		if ( !empty( $search ) ) {
+			if ( stripos( $search, 'id:' ) === 0 ) {
+				$query->where( $db->quoteName('id') . ' = ' . (int)substr( $search, 3 ) );
+			} else {
+				$search = $db->quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = str_replace(' ', '%', $search);
+
+				$query->where(
+					'(' . $db->quoteName('university') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('event') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('date') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('cost') . ' LIKE ' . $search . ' )'
+				);
+			}
+		}
 
 		// Add the list ordering clause.
 		$orderCol = $this->state->get( 'list.ordering' );

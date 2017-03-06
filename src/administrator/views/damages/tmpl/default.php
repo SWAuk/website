@@ -16,7 +16,7 @@ $userId = $user->get( 'id' );
 $listOrder = $this->state->get( 'list.ordering' );
 $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
-$saveOrder = $listOrder == 'a.ordering';
+$saveOrder = $listOrder == 'damages.ordering';
 if ( $saveOrder ) {
 	$saveOrderingUrl = 'index.php?option=com_swa&task=damages.saveOrderAjax&tmpl=component';
 	JHtml::_(
@@ -111,7 +111,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_(
 								'grid.sort',
 								'<i class="icon-menu-2"></i>',
-								'a.ordering',
+								'damages.ordering',
 								$listDirn,
 								$listOrder,
 								null,
@@ -130,7 +130,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'University',
-							'a.university',
+							'university',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -139,7 +139,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Event',
-							'a.event',
+							'event',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -148,7 +148,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Date',
-							'a.date',
+							'date',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -157,7 +157,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Cost',
-							'a.cost',
+							'cost',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -166,7 +166,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -189,7 +189,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</tfoot>
 				<tbody>
 				<?php foreach ( $this->items as $i => $item ) :
-					$ordering = ( $listOrder == 'a.ordering' );
+					$ordering = ( $listOrder == 'damages.ordering' );
 					$canCreate = $user->authorise( 'core.create', 'com_swa' );
 					$canEdit = $user->authorise( 'core.edit', 'com_swa' );
 					$canCheckin = $user->authorise( 'core.manage', 'com_swa' );

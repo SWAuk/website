@@ -72,9 +72,11 @@ class SwaViewDamages extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
-			'a.date' => JText::_( 'Date' ),
-			'a.cost' => JText::_( 'Cost' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' ),
+			'university' => JText::_( 'University' ),
+			'event' => JText::_( 'Event' ),
+			'date' => JText::_( 'Date' ),
+			'cost' => JText::_( 'Cost' ),
 		);
 	}
 
