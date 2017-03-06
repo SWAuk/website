@@ -2,8 +2,8 @@
 
 class SwaControllerForm extends JControllerForm {
 
-	public function save() {
-		$saveResult = parent::save();
+	public function save($key = null, $urlVar = null) {
+		$saveResult = parent::save( $key, $urlVar );
 
 		JLog::add(
 			implode(
