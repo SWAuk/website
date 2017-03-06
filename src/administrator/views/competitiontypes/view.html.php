@@ -72,8 +72,9 @@ class SwaViewCompetitiontypes extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
-			'a.name' => JText::_( 'Name' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' ),
+			'name' => JText::_( 'Name' ),
+			'series' => JText::_( 'Series' )
 		);
 	}
 
