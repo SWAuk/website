@@ -15,14 +15,9 @@ class SwaModelIndividualresults extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'member_id',
-				'a.member_id',
-				'competition_id',
-				'a.competition_id',
-				'result',
-				'a.result',
-
+				'user',
+				'event',
+				'result'
 			);
 		}
 
@@ -36,7 +31,7 @@ class SwaModelIndividualresults extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'id', 'desc' );
 	}
 
 	/**
@@ -71,49 +66,44 @@ class SwaModelIndividualresults extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				$db->quoteName(
+					array('result.id', 'user.name', 'event.name', 'competition_type.name', 'result.result'),
+					array('id', 'user', 'event', 'competition_type', 'result')
+				)
 			)
 		);
-		$query->from( '`#__swa_indi_result` AS a' );
-
-		// Join onto the member table
-		$query->select( 'member_id.user_id as user_id' );
-		$query->join( 'LEFT', '#__swa_member as member_id ON a.member_id = member_id.id' );
-		// Join over the user field 'member_id'
-		$query->select( 'user_id.name AS user' );
-		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
-		// Join over 'competition_id'
-		$query->join(
-			'LEFT',
-			'#__swa_competition AS competition_id ON competition_id.id = a.competition_id'
+		$query->from( $db->quoteName('#__swa_indi_result', 'result') );
+		$query->leftJoin( $db->quoteName('#__swa_member', 'member') . ' ON member.id = result.member_id' );
+		$query->leftJoin( $db->quoteName('#__users', 'user') . ' ON user.id = member.user_id' );
+		$query->leftJoin(
+			$db->quoteName('#__swa_competition', 'competition') . ' ON competition.id = result.competition_id'
 		);
-		// Join over 'event_id'
-		$query->select( 'event_id.name AS event' );
-		$query->join( 'LEFT', '#__swa_event AS event_id ON event_id.id = competition_id.event_id' );
-		// Join over 'competition_type_id'
-		$query->select( 'competition_type_id.name AS competition_type' );
-		$query->join(
-			'LEFT',
-			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition_id.competition_type_id'
+		$query->leftJoin( $db->quoteName('#__swa_event', 'event') . ' ON event.id = competition.event_id' );
+		$query->leftJoin(
+			$db->quoteName('#__swa_competition_type', 'competition_type')
+			. ' ON competition_type.id = competition.competition_type_id'
 		);
 
-		// Filter by search in title
-		$search = $this->getState( 'filter.search' );
+        // Filter by search in title
+		// clean up the search term
+		$search = trim($this->getState( 'filter.search' ));
+		// replace 2 or more consecutive whitespaces with a single space
+		$search = preg_replace('/\s{2,}/', ' ', $search);
+
+		// replace the current search term with the cleaned up one
+		$this->setState('filter.search', $search);
+
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+				$query->where( $db->quoteName('result.id') . ' = ' . (int)substr( $search, 3 ) );
 			} else {
-				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = $db->quote( '%' . $db->escape( $search, true ) . '%' );
+				$search = str_replace(' ', '%', $search);
+
 				$query->where(
-					'( user_id.name LIKE ' .
-					$search .
-					'  OR  user_id.username LIKE ' .
-					$search .
-					' OR  competition_type_id.name LIKE ' .
-					$search .
-					'OR  event_id.name LIKE ' .
-					$search .
-					' )'
+					'(' . $db->quoteName('user_id.name') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('competition_type.name') . ' LIKE ' . $search .
+					' OR ' . $db->quoteName('event.name') . ' LIKE ' . $search . ' )'
 				);
 			}
 		}
@@ -124,7 +114,8 @@ class SwaModelIndividualresults extends JModelList {
 		if ( $orderCol && $orderDirn ) {
 			$query->order( $db->escape( $orderCol . ' ' . $orderDirn ) );
 		}
-
+//		printf($query->dump());
+//		die;
 		return $query;
 	}
 

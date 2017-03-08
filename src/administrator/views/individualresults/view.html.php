@@ -72,11 +72,11 @@ class SwaViewIndividualresults extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
-			'a.user' => JText::_( 'User' ),
-			'a.event' => JText::_( 'Event' ),
-			'a.competition_type' => JText::_( 'Competition type' ),
-			'a.result' => JText::_( 'Result' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' ),
+			'user' => JText::_( 'User' ),
+			'event' => JText::_( 'Event' ),
+			'competition_type' => JText::_( 'Competition type' ),
+			'result' => JText::_( 'Result' ),
 		);
 	}
 
