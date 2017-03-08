@@ -72,11 +72,11 @@ class SwaViewEventtickets extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
-			'a.event' => JText::_( 'Event' ),
-			'a.name' => JText::_( 'Name' ),
-			'a.quantity' => JText::_( 'Quantity' ),
-			'a.price' => JText::_( 'Price' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' ),
+			'event' => JText::_( 'Event' ),
+			'name' => JText::_( 'Name' ),
+			'quantity' => JText::_( 'Quantity' ),
+			'price' => JText::_( 'Price' ),
 		);
 	}
 

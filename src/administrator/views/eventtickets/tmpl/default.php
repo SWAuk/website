@@ -16,7 +16,7 @@ $userId = $user->get( 'id' );
 $listOrder = $this->state->get( 'list.ordering' );
 $listDirn = $this->state->get( 'list.direction' );
 $canOrder = $user->authorise( 'core.edit.state', 'com_swa' );
-$saveOrder = $listOrder == 'a.ordering';
+$saveOrder = $listOrder == 'event_ticket.ordering';
 if ( $saveOrder ) {
 	$saveOrderingUrl = 'index.php?option=com_swa&task=eventtickets.saveOrderAjax&tmpl=component';
 	JHtml::_(
@@ -146,7 +146,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_(
 								'grid.sort',
 								'<i class="icon-menu-2"></i>',
-								'a.ordering',
+								'event_ticket.ordering',
 								$listDirn,
 								$listOrder,
 								null,
@@ -165,7 +165,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Event',
-							'a.event',
+							'event',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -174,7 +174,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Name',
-							'a.name',
+							'name',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -183,7 +183,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Quantity',
-							'a.quantity',
+							'quantity',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -192,7 +192,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Price',
-							'a.price',
+							'price',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -201,7 +201,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Needs Level',
-							'a.need_level',
+							'need_level',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -210,7 +210,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Needs SWA',
-							'a.need_swa',
+							'need_swa',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -219,7 +219,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Needs XSWA',
-							'a.need_xswa',
+							'need_xswa',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -228,7 +228,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Needs Host',
-							'a.need_host',
+							'need_host',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -237,7 +237,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Needs Qualification',
-							'a.need_qualification',
+							'need_qualification',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -246,7 +246,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -269,7 +269,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				</tfoot>
 				<tbody>
 				<?php foreach ( $this->items as $i => $item ) :
-					$ordering = ( $listOrder == 'a.ordering' );
+					$ordering = ( $listOrder == 'event_ticket.ordering' );
 					$canCreate = $user->authorise( 'core.create', 'com_swa' );
 					$canEdit = $user->authorise( 'core.edit', 'com_swa' );
 					$canCheckin = $user->authorise( 'core.manage', 'com_swa' );
