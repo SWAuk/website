@@ -75,10 +75,22 @@ class SwaModelEvents extends SwaModelList {
 		$db = $this->getDbo();
 		$query = $db->getQuery( true );
 
-		$query->select( array( 'event.id', 'event.name', 'event.date' ) );
-		$query->from( '`#__swa_season` AS season' );
-		$query->join( 'RIGHT', '#__swa_event as event ON season.id = event.season_id' );
-		$query->select( 'season.year as season_year' );
+		/**
+		 * SELECT event.id as id, event.name as name, event.date as date, season.year as season_year, event_ticket.id AS event_ticket_id
+		FROM swan_swa_event AS event
+		LEFT JOIN swan_swa_season AS season ON season.id = event.season_id
+		LEFT JOIN swan_swa_event_ticket AS event_ticket ON event_ticket.event_id = event.id
+		GROUP BY event.id
+		 */
+
+		$query->select( $db->quoteName(
+			array('event.id', 'event.name', 'event.date', 'season.year', 'event_ticket.id'),
+			array('id', 'name', 'date', 'season_year', 'event_ticket')
+		));
+		$query->from( $db->quoteName('#__swa_event', 'event') );
+		$query->leftJoin( $db->quoteName('#__swa_season', 'season') . ' ON season.id = event.season_id' );
+		$query->leftJoin( $db->quoteName('#__swa_event_ticket', 'event_ticket') . ' ON event_ticket.event_id = event.id' );
+		$query->group( 'event.id' );
 		$query->order( $this->getState( 'list.ordering' ) . ' ' . $this->getState( 'list.direction' ) );
 
 		return $query;
