@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Events">
+		<message>
+			Show a list of all events.
+			Accessible to all.
+		</message>
+	</layout>
+</metadata>

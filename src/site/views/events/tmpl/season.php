@@ -54,6 +54,7 @@ $currentSeasonYear = getCurrentSeasonYear();
 		<?php
 		foreach ( $this->items as $item ) {
 			//Skip events that dont have this seaosn year!
+			var_dump($item->season_year, $currentSeasonYear, $item->season_year != $currentSeasonYear);
 			if( $item->season_year != $currentSeasonYear ) {
 				continue;
 			}
