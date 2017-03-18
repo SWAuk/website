@@ -15,12 +15,10 @@ class SwaModelTickets extends JModelList {
 		if ( empty( $config['filter_fields'] ) ) {
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'user_id',
-				'a.user_id',
-				'event_ticket_id',
-				'a.event_ticket_id',
-
+				'name',
+				'event',
+				'ticket_type',
+				'paid',
 			);
 		}
 
@@ -34,7 +32,7 @@ class SwaModelTickets extends JModelList {
 			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' )
 		);
 		$this->setState( 'params', JComponentHelper::getParams( 'com_swa' ) );
-		parent::populateState( 'a.id', 'desc' );
+		parent::populateState( 'ticket.id', 'desc' );
 	}
 
 	/**
@@ -69,44 +67,31 @@ class SwaModelTickets extends JModelList {
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				$db->quoteName(
+					array('user.name', 'event.name', 'event_ticket.name', 'ticket.paid', 'ticket.id'),
+					array('name', 'event', 'ticket_type', 'paid', 'id')
+				)
 			)
 		);
-		$query->from( '`#__swa_ticket` AS a' );
-
-		// Join onto the member table
-		$query->select( 'member_id.user_id as user_id' );
-		$query->join( 'LEFT', '#__swa_member as member_id ON a.member_id = member_id.id' );
-		// Join over the user field 'member_id'
-		$query->select( 'user_id.name AS user' );
-		$query->join( 'LEFT', '#__users AS user_id ON user_id.id = member_id.user_id' );
-		// Join over 'event_ticket_id'
-		$query->join(
-			'LEFT',
-			'#__swa_event_ticket AS event_ticket_id ON event_ticket_id.id = a.event_ticket_id'
+		$query->from( $db->quoteName('#__swa_ticket', 'ticket') );
+		$query->leftJoin( $db->quoteName('#__swa_member', 'member') . ' ON ticket.member_id = member.id' );
+		$query->leftJoin( $db->quoteName('#__users', 'user') . ' ON member.user_id = user.id' );
+		$query->leftJoin(
+			$db->quoteName('#__swa_event_ticket', 'event_ticket') . ' ON ticket.event_ticket_id = event_ticket.id'
 		);
-		$query->select( 'event_ticket_id.name as ticket_name' );
-		// Join over 'event_id'
-		$query->select( 'event_id.name AS event' );
-		$query->join(
-			'LEFT',
-			'#__swa_event AS event_id ON event_id.id = event_ticket_id.event_id'
-		);
+		$query->leftJoin( $db->quoteName('#__swa_event', 'event') . ' ON event_ticket.event_id = event.id');
 
 		// Filter by search in title
 		$search = $this->getState( 'filter.search' );
 		if ( !empty( $search ) ) {
 			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'a.id = ' . (int)substr( $search, 3 ) );
+				$query->where( 'ticket.id = ' . (int)substr( $search, 3 ) );
 			} else {
 				$search = $db->Quote( '%' . $db->escape( $search, true ) . '%' );
 				$query->where(
-					'( user_id.name LIKE ' .
-					$search .
-					'  OR  user_id.username LIKE ' .
-					$search .
-					' OR  event_id.name LIKE ' .
-					$search .
+					'( user.name LIKE ' . $search .
+					'  OR  user.username LIKE ' . $search .
+					' OR  event.name LIKE ' . $search .
 					' )'
 				);
 			}

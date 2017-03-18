@@ -72,7 +72,11 @@ class SwaViewTickets extends JViewLegacy {
 
 	protected function getSortFields() {
 		return array(
-			'a.id' => JText::_( 'JGRID_HEADING_ID' ),
+			'id' => JText::_( 'JGRID_HEADING_ID' ),
+			'name' => JText::_( 'Name' ),
+			'event' => JText::_( 'Event' ),
+			'ticket_type' => JText::_( 'Ticket Type' ),
+			'paid' => JText::_( 'Paid' )
 		);
 	}
 
