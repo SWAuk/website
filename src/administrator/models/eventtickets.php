@@ -104,24 +104,26 @@ class SwaModelEventtickets extends JModelList {
 
 		// Filter by search in title
 		// clean up the search term
-		$search = trim($this->getState( 'filter.search' ));
-		// replace 2 or more consecutive whitespaces with a single space
-		$search = preg_replace('/\s{2,}/', ' ', $search);
+		$searchStr = trim($this->getState( 'filter.search' ));
 
 		// replace the current search term with the cleaned up one
-		$this->setState('filter.search', $search);
+		$this->setState('filter.search', $searchStr);
 
-		if ( !empty( $search ) ) {
-			if ( stripos( $search, 'id:' ) === 0 ) {
-				$query->where( 'event_ticket.id = ' . (int)substr( $search, 3 ) );
+		if ( !empty( $searchStr ) ) {
+			if ( stripos( $searchStr, 'id:' ) === 0 ) {
+				$query->where( 'event_ticket.id = ' . (int)substr( $searchStr, 3 ) );
 			} else {
-				$search = $db->quote( '%' . $db->escape( $search, true ) . '%' );
-				$search = str_replace(' ', '%', $search);
+				$searchItems = explode(' ', $searchStr);
+				foreach ($searchItems as $item) {
+					$search = $db->quote('%' . $db->escape($item, true) . '%');
+					$search = str_replace('+', '%', $search);
 
-				$query->where(
-					'(' . $db->quoteName('event_ticket.name') . ' LIKE ' . $search .
-					' OR ' . $db->quoteName('event.name') . ' LIKE ' . $search . ' )'
-				);
+					$where = '( event_ticket.name LIKE ' . $search;
+					$where .= ' OR event.name LIKE ' . $search;
+					$where .= ' OR event.name LIKE ' . $search . ' )';
+
+					$query->where($where, 'AND');
+				}
 			}
 		}
 
