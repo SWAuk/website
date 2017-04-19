@@ -11,18 +11,13 @@ $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 $item = $this->item;
 ?>
 
-<h1><?php echo $item->event_name ?></h1>
+<div class="lead"><h1><?php echo $item->event_name ?></h1></div>
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseDetails">
-                <div>
-                    <span class="glyphicon glyphicon-triangle-bottom"></span>
-                    Event Details
-                </div>
-            </a>
-        </h4>
+        <h3 class="panel-title">
+            <div>Event Details</div>
+        </h3>
     </div>
     <div id="collapseDetails" class="panel-collapse collapse in">
         <div class="panel-body">
@@ -41,16 +36,13 @@ if( $this->member ) {
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseSales">
-                <div>
-                    <span class="glyphicon glyphicon-triangle-right"></span>
-                    Ticket Sales
-                </div>
-            </a>
-        </h4>
+        <h3 class="panel-title">
+            <div>
+                Ticket Sales
+            </div>
+        </h3>
     </div>
-    <div id="collapseSales" class="panel-collapse collapse">
+    <div id="collapseSales" class="panel-collapse collapse in">
         <div class="panel-body">
             <?php
             $ticketSales = $this->get( 'TicketSales' );
@@ -112,83 +104,77 @@ if( $this->member ) {
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" href="#collapseResults">
-                <div>
-                    <span class="glyphicon glyphicon-triangle-right"></span>
-                    Event Results
-                </div>
-            </a>
-        </h4>
-    </div>
-    <div id="collapseResults" class="panel-collapse collapse">
-        <div class="panel-body">
-        <?php
-
-        $indiResults = $this->get( 'IndiResults' );
-        $teamResults = $this->get( 'TeamResults' );
-
-        if ( empty($indiResults) && empty($teamResults) ) {
-            echo "There are no results to show at this time.";
-        } else {
-            if( $teamResults ) {
-        ?>
-            <h2>Team Results</h2>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th width="10%">#</th>
-                        <th width="45%">Uni</th>
-                        <th width="40%">Team</th>
-                        <th width="5%">Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $positionCounter = 0;
-                    foreach( $teamResults as $result ) {
-                        $positionCounter++;
-                        echo "<tr>\n";
-                        echo "<td>{$positionCounter}</td>\n";
-                        echo "<td>{$result['name']}</td>\n";
-                        echo "<td>{$result['team_number']}</td>\n";
-                        echo "<td>{$result['result']}</td>\n";
-                        echo "</tr>\n";
-                    }?>
-                </tbody>
-            </table>
-            <?php }
-
-            foreach( $indiResults as $compName => $results ) {
-                echo "<h2>{$compName} Results</h2>\n";
-            ?>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th width="10%">#</th>
-                        <th width="45%">Name</th>
-                        <th width="40%">University</th>
-                        <th width="5%">Points</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                    $positionCounter = 0;
-                    foreach( $results as $result ) {
-                        $positionCounter++;
-                        $name = strip_tags( $result['name'] );
-                        $uni = strip_tags( $result['university'] );
-                        echo "<tr>\n";
-                        echo "<td>{$positionCounter}</td>\n";
-                        echo "<td>{$name}</td>\n";
-                        echo "<td>{$uni}</td>\n";
-                        echo "<td>{$result['result']}</td>\n";
-                        echo "</tr>\n";
-                    } ?>
-
-                </tbody>
-                </table>
-            <?php }} ?>
+        <div>
+            Event Results
         </div>
+    </div>
+
+    <div class="panel-body">
+    <?php
+
+    $indiResults = $this->get( 'IndiResults' );
+    $teamResults = $this->get( 'TeamResults' );
+
+    if ( empty($indiResults) && empty($teamResults) ) {
+        echo "There are no results to show at this time.";
+    } else {
+        if( $teamResults ) {
+    ?>
+        <h2>Team Results</h2>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="10%">#</th>
+                    <th width="45%">Uni</th>
+                    <th width="40%">Team</th>
+                    <th width="5%">Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $positionCounter = 0;
+                foreach( $teamResults as $result ) {
+                    $positionCounter++;
+                    echo "<tr>\n";
+                    echo "<td>{$positionCounter}</td>\n";
+                    echo "<td>{$result['name']}</td>\n";
+                    echo "<td>{$result['team_number']}</td>\n";
+                    echo "<td>{$result['result']}</td>\n";
+                    echo "</tr>\n";
+                }?>
+            </tbody>
+        </table>
+        <?php }
+
+        foreach( $indiResults as $compName => $results ) {
+            echo "<h2>{$compName} Results</h2>\n";
+        ?>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th width="10%">#</th>
+                    <th width="45%">Name</th>
+                    <th width="40%">University</th>
+                    <th width="5%">Points</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $positionCounter = 0;
+                foreach( $results as $result ) {
+                    $positionCounter++;
+                    $name = strip_tags( $result['name'] );
+                    $uni = strip_tags( $result['university'] );
+                    echo "<tr>\n";
+                    echo "<td>{$positionCounter}</td>\n";
+                    echo "<td>{$name}</td>\n";
+                    echo "<td>{$uni}</td>\n";
+                    echo "<td>{$result['result']}</td>\n";
+                    echo "</tr>\n";
+                } ?>
+
+            </tbody>
+            </table>
+        <?php }} ?>
     </div>
 </div>

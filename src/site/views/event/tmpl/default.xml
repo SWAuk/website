@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Event">
+		<message>
+			Show information about a specific event.
+			Accessible to all.
+			Committee can see the ticket sales if available.
+		</message>
+	</layout>
+</metadata>
