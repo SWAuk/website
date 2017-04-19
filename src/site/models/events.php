@@ -75,14 +75,6 @@ class SwaModelEvents extends SwaModelList {
 		$db = $this->getDbo();
 		$query = $db->getQuery( true );
 
-		/**
-		 * SELECT event.id as id, event.name as name, event.date as date, season.year as season_year, event_ticket.id AS event_ticket_id
-		FROM swan_swa_event AS event
-		LEFT JOIN swan_swa_season AS season ON season.id = event.season_id
-		LEFT JOIN swan_swa_event_ticket AS event_ticket ON event_ticket.event_id = event.id
-		GROUP BY event.id
-		 */
-
 		$query->select( $db->quoteName(
 			array('event.id', 'event.name', 'event.date', 'season.year', 'event_ticket.id'),
 			array('id', 'name', 'date', 'season_year', 'event_ticket')
