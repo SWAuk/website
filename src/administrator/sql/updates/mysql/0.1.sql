@@ -80,7 +80,8 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
   `graduated` TINYINT(1)  NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_university_member_member_idx` (`member_id` ASC),
-  INDEX `fk_university_member_university_idx` (`member_id` ASC)
+  INDEX `fk_university_member_university_idx` (`member_id` ASC),
+  CONSTRAINT unique_member_id_university_id UNIQUE(member_id, university_id)
 )
 DEFAULT COLLATE=utf8_general_ci;
 
