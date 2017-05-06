@@ -24,7 +24,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	} );
 </script>
 
-<h1>Season results</h1>
+<h1>Season Results</h1>
 
 <p>Below are the results for the current season so far.</p>
 

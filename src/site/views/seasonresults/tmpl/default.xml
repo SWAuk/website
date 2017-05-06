@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="Universities">
+	<layout title="Season Results">
 		<message>
-			Show a list of all universities.
+			Show a list of the season results as they stand.
 			Accessible to all.
 		</message>
 	</layout>
