@@ -3,211 +3,184 @@
 defined( '_JEXEC' ) or die;
 
 require_once JPATH_COMPONENT . '/controller.php';
+require_once JPATH_COMPONENT . '/assets/stripe-config.php';
 
 class SwaControllerTicketPurchase extends SwaController {
 
-	public function callback() {
-		try {
-			$this->processCallback();
-		}
-		catch ( Exception $e ) {
-			JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_callback' );
-			die( 'Something went wrong, get the site administrator to check the log.' );
-		}
-	}
+	public function submit()
+	{
+		// get the POST data
+		$token = $this->input->getString('stripeToken');
+		$ticketId = $this->input->getString('ticketId');
 
-	/**
-	 * @throws Exception
-	 */
-	private function processCallback() {
-		// Get the data from the call
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$data = $input->getArray();
-		JLog::add( 'New ticket callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
+		// initialise useful variables
+		$model = $this->getModel('ticketpurchase');
+		$tickets = $model->getItems();
+		$member = $model->getMember();
+		$user = JFactory::getUser();
 
-		// Die is some data is missing
-		$missingKeys = array_diff_key(
-			array(
-				'to_email',
-				'from_email',
-				'transaction_id',
-				'transaction_date',
-				'order_id',
-				'amount',
-				'security_key',
-				'status',
-			),
-			array_keys( $data )
-		);
-		if ( !empty( $missingKeys ) ) {
-			throw new Exception(
-				'TicketPurchase callback called with missing $data items: ' .
-				implode( ',', $missingKeys )
-			);
-		}
-
-		// NOTE: ths receives ... 'j3ticket:' . $item->id . '-' . $this->member->id;
-		if ( substr( $data['order_id'], 0, 9 ) != 'j3ticket:' ) {
-			throw new Exception(
-				'TicketPurchase callback called with bad looking order_id1: ' . $data['order_id']
-			);
-		}
-
-		//Extract info from the order_id!
-		$orderIdParts = explode( ':', $data['order_id'] );
-		if ( !strstr( $orderIdParts[1], '-' ) ) {
-			throw new Exception(
-				'TicketPurchase callback called with bad looking order_id2: ' . $data['order_id']
-			);
-		}
-		$orderIdParts = explode( '-', $data['order_id'] );
-		$eventTicketId = $orderIdParts[0];
-		$memberId = $orderIdParts[1];
-
-		// Make sure the eventTicket stuff is right
-		$db = JFactory::getDbo();
-		$query = $db->getQuery( true );
-		$query->select( 'event_ticket.*' );
-		$query->from( $db->quoteName( '#__swa_event_ticket' ) . ' as event_ticket' );
-		$query->where( 'event_ticket.id = ' . $db->quote( $eventTicketId ) );
-		$db->setQuery( $query );
-		if ( !$db->execute() ) {
-			throw new Exception( 'TicketPurchase db check 1 failed' );
-		}
-//		$eventTicket = $db->loadObject();
-//		// Validate the price of event ticket
-//		if ( intval( $data['amount'] ) != intval( $eventTicket->price ) ) {
-//			throw new Exception(
-//				'TicketPurchase callback called with wrong ticket amount: ' .
-//				$data['amount'] .
-//				' expected:' .
-//				$eventTicket->price
-//			);
-//		}
-
-		// Post back to nochex
-		$response = $this->http_post( "www.nochex.com", 80, "/nochex.dll/apc/apc", $data );
-		// stores the response from the Nochex server
-		$debug = "IP -> " . $_SERVER['REMOTE_ADDR'] . "\r\n\r\nPOST DATA:\r\n";
-		foreach ( $data as $Index => $Value ) {
-			$debug .= "$Index -> $Value\r\n";
-		}
-		$debug .= "\r\nRESPONSE:\r\n$response";
-
-		// Check the result from nochex
-		if ( !strstr(
-			$response,
-			"AUTHORISED"
-		)
-		) {  // searches response to see if AUTHORISED is present if it isn’t a failure message is displayed
-			//NOTE: NOT AUTHORISED
-			JLog::add(
-				'TicketPurchase callback called and nochex did not authorise: ' . $debug,
-				JLog::INFO,
-				'com_swa.payment_callback'
-			);
-		} else {
-			//NOTE: AUTHORISED
-			// Make sure the member does not have this event ticket already
-			// This is a dumb check and can be removed once we actually store transaction IDS and things
-			$query = $db->getQuery( true );
-			$query->select( 'COUNT(*)' );
-			$query->from( $db->quoteName( '#__swa_ticket' ) . ' as ticket' );
-			$query->where( 'ticket.member_id = ' . $db->quote( $memberId ) );
-			$query->where( 'ticket.event_ticket_id = ' . $db->quote( $eventTicketId ) );
-			$db->setQuery( $query );
-			$count = $db->loadResult();
-
-			if ( $count === null ) {
-				throw new Exception( 'TicketPurchase db check 2 failed' );
+		// get the ticket the user wants to buy by matching the form data with the tickets available
+		$ticket = null;
+		foreach ($tickets as $t) {
+			if ($t->id == $ticketId) {
+				$ticket = $t;
+				break;
 			}
-			if( $count >= 1 ) {
-				throw new Exception( 'Ticket already seems to appears in the DB' );
-			}
+		}
 
-			// Update / add the ticket to the db
-			$query = $db->getQuery( true );
-			$query
-				->insert( $db->quoteName( '#__swa_ticket' ) )
-				->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid' ) ) )
-				->values(
-					implode(
-						',',
-						array(
-							$db->quote( $memberId ),
-							$db->quote( str_replace( 'j3ticket:', '', $eventTicketId ) ),
-							$db->quote( $data['amount'] )
+		$this->checkUniqueTicket($member->id, $ticket->id);
+
+		// make sure the we managed to find the ticket
+		if ($ticket != null) {
+			try {
+				$charge = \Stripe\Charge::create(
+					array(
+						'description' => $ticket->event_name . ' - ' . $ticket->ticket_name,
+						'amount' => $ticket->price * 100,
+						'currency' => 'GBP',
+						'receipt_email' => $user->email,
+						'source' => $token,
+						'metadata' => array(
+							'event_ticket_id' => $ticket->id,
+							'member_id' => $member->id,
+							'user_id' => $member->user_id,
+							'user_name' => $user->name
 						)
 					)
 				);
-			$db->setQuery( $query );
-			$result = $db->execute();
-
-			if ( $result === false ) {
-				throw new Exception(
-					'TicketPurchase callback called and authed but failed to update db. order_id: ' .
-					$data['order_id']
-				);
-			} else {
-				$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
-
-				// Send a confirmation email!
-				$mailer = JFactory::getMailer();
-				$config = JFactory::getConfig();
-				$sender = array(
-					$config->get('mailfrom'),
-					$config->get('fromname')
-				);
-				$mailer->setSender($sender);
-				$user = SwaFactory::getUserFromMemberId($memberId);
-				$recipient = $user->email;
-				$mailer->addRecipient($recipient);
-				$body = "Your SWA ticket purchase has been confirmed!\n\nThe Web Team!";
-				$mailer->setSubject('Your SWA ticket purchase');
-				$mailer->setBody($body);
-				$send = $mailer->Send();
-				if ($send !== true) {
-					//TODO log this
-				}
+			} catch(\Stripe\Error\Card $e) {
+				// Card declined
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				die("You're card was declined. Please contact webmaster@swa.co.uk if this continues to happen.");
+			} catch (\Stripe\Error\RateLimit $e) {
+				// Too many requests made to the API too quickly
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "This event is in high demand and we were unable to process your payment at this time";
+				$error_msg .= " - try again later. \r\nPlease contact webmaster@swa.co.uk if this continues to happen.";
+				die($error_msg);
+			} catch (\Stripe\Error\InvalidRequest $e) {
+				// Invalid parameters were supplied to Stripe's API
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! We sent the wrong data to our payment provider.\r\n";
+				$error_msg .= "Please contact webmaster@swa.co.uk to tell them they screwed up.\r\n";
+				$error_msg .= "Don't worry, your card has not been charged.";
+				die($error_msg);
+			} catch (\Stripe\Error\Authentication $e) {
+				// Authentication with Stripe's API failed (maybe you changed API keys recently)
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! We were unable to authenticate with our payment provider. ";
+				$error_msg .= "Please contact webmaster@swa.co.uk and tell them they screwed up.\r\n";
+				die($error_msg);
+			} catch (\Stripe\Error\ApiConnection $e) {
+				// Network communication with Stripe failed
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! There was a network communication error - please try again.\r\n";
+				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+				die($error_msg);
+			} catch (\Stripe\Error\Base $e) {
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+				die($error_msg);
+			} catch (Exception $e) {
+				JLog::add( $e->getMessage(), JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+				die($error_msg);
 			}
+
+			// do some sense checking to make sure the payment didn't fail - probably not needed
+			if ($charge->failure_code != null and $charge->failure_message != null
+				and $charge->paid != true and $charge->captured != true) {
+				JLog::add( "Stripe charge didn't return successful.", JLog::ERROR, 'com_swa.payment_process' );
+				$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+				die($error_msg);
+			}
+
+			// assign ticket to member
+			$this->addTicketToDb($member->id, $ticket->id, $charge);
+
+		} else {
+			JLog::add("Unable to find ticket with id \"{$ticketId}\"", JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+			die($error_msg);
+		}
+
+		$this->setRedirect( JRoute::_( 'index.php?option=com_swa&view=membertickets' ) );
+	}
+
+	// TODO: Do we need this?
+	private function checkUniqueTicket($memberId, $eventTicketId) {
+		// Make sure the member does not have this event ticket already
+		// This is a dumb check and can be removed once we actually store transaction IDS and things
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+		$query->select( 'COUNT(*)' );
+		$query->from( $db->quoteName( '#__swa_ticket' ) . ' as ticket' );
+		$query->where( 'ticket.member_id = ' . $db->quote( $memberId ) );
+		$query->where( 'ticket.event_ticket_id = ' . $db->quote( $eventTicketId ) );
+		$db->setQuery( $query );
+		$count = $db->loadResult();
+
+		if ( $count === null ) {
+			JLog::add( "Unable to check if member already has ticket.", JLog::ERROR, 'com_swa.payment_process' );
+			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+			die($error_msg);
+		}
+		if( $count >= 1 ) {
+			JLog::add( "Member {$memberId} already has a ticket to this event.", JLog::ERROR, 'com_swa.payment_process' );
+			die("You have already bought a ticket to this event.");
 		}
 	}
 
-	private function http_post( $server, $port, $url, $vars ) {
-		// get urlencoded vesion of $vars array
-		$urlencoded = "";
-		foreach ( $vars as $Index => $Value ) // loop round variables and encode them to be used in query
-		{
-			$urlencoded .= urlencode( $Index ) . "=" . urlencode( $Value ) . "&";
+	private function addTicketToDb($memberId, $eventTicketId, $charge) {
+		// Add the ticket to the db
+		$db = JFactory::getDbo();
+		$query = $db->getQuery( true );
+		$query->insert( $db->quoteName( '#__swa_ticket' ) );
+		$query->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid' ) ) );
+		$query->values( "{$db->quote($memberId)}, {$db->quote($eventTicketId)}, {$db->quote($charge->amount )}" );
+		$db->setQuery( $query );
+		$result = $db->execute();
+
+		if ( $result === false ) {
+			JLog::add(
+				"Ticket paid for but failed to add ticket db. Charge ID: {$charge->id}",
+				JLog::ERROR,
+				'com_swa.payment_process'
+			);
+			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
+			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			die($error_msg);
+		} else {
+			$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
+
+			// do we need to send confirmation email if Stripe does it for us?
+			//$this->sendConfirmationEmail();
 		}
-		$urlencoded =
-			substr(
-				$urlencoded,
-				0,
-				-1
-			);   // returns portion of string, everything but last character
+	}
 
-		$headers = "POST $url HTTP/1.0\r\n"  // headers to be sent to the server
-			. "Host: www.nochex.com\r\n"
-			. "Content-Type: application/x-www-form-urlencoded\r\n"
-			. "Content-Length: " . strlen( $urlencoded ) . "\r\n\r\n";  // length of the string
-
-		$fp = fsockopen( $server, $port, $errno, $errstr, 10 );  // returns file pointer
-		if ( !$fp ) {
-			return "ERROR: fsockopen failed.\r\nError no: $errno - $errstr";
-		}  // if cannot open socket then display error message
-
-		fputs( $fp, $headers );  //writes to file pointer
-		fputs( $fp, $urlencoded );
-
-		$ret = "";
-		while ( !feof( $fp ) ) {
-			$ret .= fgets( $fp, 1024 );
-		} // while it’s not the end of the file it will loop
-		fclose( $fp );  // closes the connection
-		return $ret; // array
+	// Might not be needed anymore due to Stripe being able to do this.
+	private function sendConfirmationEmail( $email ) {
+		// Send a confirmation email!
+		$mailer = JFactory::getMailer();
+		$config = JFactory::getConfig();
+		$sender = array(
+			$config->get('mailfrom'),
+			$config->get('fromname')
+		);
+		$mailer->setSender($sender);
+		$mailer->addRecipient($email);
+		$body = "Your SWA ticket purchase has been confirmed!\n\nThe Web Team!";
+		$mailer->setSubject('Your SWA ticket purchase');
+		$mailer->setBody($body);
+		$send = $mailer->Send();
+		if ($send !== true) {
+			//TODO log this
+		}
 	}
 
 }

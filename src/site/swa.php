@@ -20,7 +20,7 @@ JLog::addLogger(
 JLog::addLogger(
 	array(
 		// Sets file name
-		'text_file' => 'com_swa.payment_callback.' .
+		'text_file' => 'com_swa.payment_process.' .
 			JFactory::getDate()->format( 'Y-m-d' ) .
 			'.php',
 		// Sets the format of each line
@@ -29,7 +29,7 @@ JLog::addLogger(
 	// Sets all but DEBUG log level messages to be sent to the file
 	JLog::ALL,
 	// The log category which should be recorded in this file
-	array( 'com_swa.payment_callback' )
+	array( 'com_swa.payment_process' )
 );
 
 JLog::addLogger(
