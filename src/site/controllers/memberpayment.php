@@ -3,168 +3,104 @@
 defined( '_JEXEC' ) or die;
 
 require_once JPATH_COMPONENT . '/controller.php';
+require_once JPATH_COMPONENT . '/assets/stripe-config.php';
 
 class SwaControllerMemberPayment extends SwaController {
 
-	public function callback() {
-		// Get the data from the call
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$data = $input->getArray();
-		JLog::add( 'New member callback ' . json_encode( $data ), JLog::INFO, 'com_swa.payment_callback' );
+    public function submit() {
+        // get the POST data
+        $token = $this->input->getString('stripeToken');
 
-		// Die is some data is missing
-		$missingKeys = array_diff_key(
-			array(
-				'to_email',
-				'from_email',
-				'transaction_id',
-				'transaction_date',
-				'order_id',
-				'amount',
-				'security_key',
-				'status',
-			),
-			array_keys( $data )
-		);
-		if ( !empty( $missingKeys ) ) {
-			JLog::add(
-				'MemberPayment callback called with missing $data items: ' .
-				implode( ',', $missingKeys ),
-				JLog::ERROR,
-				'com_swa.payment_callback'
-			);
-			die( 'Posted data is missing stuff!' );
-		}
+        $user = JFactory::getUser();
 
-		// Extra specific validation
-		if ( intval( $data['amount'] ) != 5 ) {
-			JLog::add(
-				'MemberPayment callback called with wrong membership amount: ' . $data['amount'],
-				JLog::ERROR,
-				'com_swa.payment_callback'
-			);
-			die( 'Membership amount was wrong' );
-		}
-		if ( substr( $data['order_id'], 0, 13 ) != 'j3membership:' ) {
-			JLog::add(
-				'MemberPayment callback called with bad looking order_id: ' . $data['order_id'],
-				JLog::ERROR,
-				'com_swa.payment_callback'
-			);
-			die ( 'Order id looks wrong' );
-		}
+        try {
+            $charge = \Stripe\Charge::create(
+                array(
+                    'description' => "SWA Membership for $user->name",
+                    'amount' => 500,
+                    'currency' => 'GBP',
+                    'receipt_email' => $user->email,
+                    'source' => $token,
+                    'metadata' => array(
+                        'user_id' => $user->id,
+                        'user_name' => $user->name
+                    )
+                )
+            );
+        } catch (\Stripe\Error\Card $e) {
+            // Card declined
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            die( "You're card was declined. Please contact webmaster@swa.co.uk if this continues to happen." );
+        } catch (\Stripe\Error\RateLimit $e) {
+            // Too many requests made to the API too quickly
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "The website is in high demand and we were unable to process your payment at this time";
+            $error_msg .= " - try again later. \r\nPlease contact webmaster@swa.co.uk if this continues to happen.";
+            die( $error_msg );
+        } catch (\Stripe\Error\InvalidRequest $e) {
+            // Invalid parameters were supplied to Stripe's API
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! We sent the wrong data to our payment provider.\r\n";
+            $error_msg .= "Please contact webmaster@swa.co.uk to tell them they screwed up.";
+            die( $error_msg );
+        } catch (\Stripe\Error\Authentication $e) {
+            // Authentication with Stripe's API failed (maybe you changed API keys recently)
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! We were unable to authenticate with our payment provider. ";
+            $error_msg .= "Please contact webmaster@swa.co.uk and tell them they screwed up.\r\n";
+            die( $error_msg );
+        } catch (\Stripe\Error\ApiConnection $e) {
+            // Network communication with Stripe failed
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! There was a network communication error - please try again.\r\n";
+            $error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+            die( $error_msg );
+        } catch (\Stripe\Error\Base $e) {
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+            $error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+            die( $error_msg );
+        } catch (Exception $e) {
+            JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+            $error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+            die( $error_msg );
+        }
 
-		// Post back to nochex
-		$response = $this->http_post( "www.nochex.com", 80, "/nochex.dll/apc/apc", $data );
-		// stores the response from the Nochex server
-		$debug = "IP -> " . $_SERVER['REMOTE_ADDR'] . "\r\n\r\nPOST DATA:\r\n";
-		foreach ( $data as $Index => $Value ) {
-			$debug .= "$Index -> $Value\r\n";
-		}
-		$debug .= "\r\nRESPONSE:\r\n$response";
+        // do some sense checking to make sure the payment didn't fail - probably not needed
+        if ($charge->failure_code != null and $charge->failure_message != null
+            and $charge->paid != true and $charge->captured != true) {
+            JLog::add("Stripe charge didn't return successful.", JLog::ERROR, 'com_swa.payment_process');
+            $error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+            $error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+            die( $error_msg );
+        }
 
-		// Check the result from nochex
-		if ( !strstr(
-			$response,
-			"AUTHORISED"
-		)
-		) {  // searches response to see if AUTHORISED is present if it isn’t a failure message is displayed
-			//NOTE: NOT AUTHORISED
-			JLog::add(
-				'MemberPayment callback called and nochex did not authorise: ' . $debug,
-				JLog::INFO,
-				'com_swa.payment_callback'
-			);
-		} else {
-			//NOTE: AUTHORISED
-			// Update the membership status for the member!
-			$memberId = str_replace( 'j3membership:', '', $data['order_id'] );
-			$db = JFactory::getDbo();
-			$query = $db->getQuery( true );
-			$query->update( $db->quoteName( '#__swa_member' ) )
-				->set(
-					array(
-						$db->quoteName( 'paid' ) . ' = 1',
-					)
-				)
-				->where(
-					array(
-						$db->quoteName( 'id' ) . ' = ' . $db->quote( $memberId ),
-						$db->quoteName( 'paid' ) . ' = 0',
-					)
-				);
-			$db->setQuery( $query );
-			$result = $db->execute();
+        // set member paid
+        $this->setMemberPaid($user->id);
 
-			if ( $result === false ) {
-				JLog::add(
-					'MemberPayment callback called and authed but failed to update db. order_id: ' .
-					$data['order_id'],
-					JLog::ERROR,
-					'com_swa.payment_callback'
-				);
-				die( 'Failed to update member in db' );
-			} else {
-				$this->logAuditFrontend( 'bought membership' );
+        $this->setRedirect(JRoute::_('index.php'));
+    }
 
-				// Send a confirmation email!
-				$mailer = JFactory::getMailer();
-				$config = JFactory::getConfig();
-				$sender = array(
-					$config->get( 'mailfrom' ),
-					$config->get( 'fromname' )
-				);
-				$mailer->setSender($sender);
-				$user = SwaFactory::getUserFromMemberId( $memberId );
-				$recipient = $user->email;
-				$mailer->addRecipient($recipient);
-				$body   = "Your SWA membership purchase has been confirmed!\n\nThe Web Team!";
-				$mailer->setSubject('Your SWA membership');
-				$mailer->setBody($body);
-				$send = $mailer->Send();
-				if ( $send !== true ) {
-					//TODO log this
-				}
+    private function setMemberPaid($user_id) {
+        // Update the membership status for the member!
+        $db = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->update($db->quoteName('#__swa_member'));
+        $query->set("{$db->quoteName('paid')} = 1");
+        $query->where("{$db->quoteName('user_id')} = {$db->quote($user_id)}");
+        $db->setQuery($query);
+        $result = $db->execute();
 
-			}
-		}
-	}
+        if ($result === false) {
+            JLog::add(
+                "MemberPayment authorized but failed to update db. user_id: {$user_id}",
+                JLog::ERROR, 'com_swa.payment_process'
+            );
+            die('Failed to record payment. Please contact webmaster@swa.co.uk ASAP to resolve this.');
+        }
 
-	private function http_post( $server, $port, $url, $vars ) {
-		// get urlencoded vesion of $vars array
-		$urlencoded = "";
-		foreach ( $vars as $Index => $Value ) // loop round variables and encode them to be used in query
-		{
-			$urlencoded .= urlencode( $Index ) . "=" . urlencode( $Value ) . "&";
-		}
-		$urlencoded =
-			substr(
-				$urlencoded,
-				0,
-				-1
-			);   // returns portion of string, everything but last character
-
-		$headers = "POST $url HTTP/1.0\r\n"  // headers to be sent to the server
-			. "Host: www.nochex.com\r\n"
-			. "Content-Type: application/x-www-form-urlencoded\r\n"
-			. "Content-Length: " . strlen( $urlencoded ) . "\r\n\r\n";  // length of the string
-
-		$fp = fsockopen( $server, $port, $errno, $errstr, 10 );  // returns file pointer
-		if ( !$fp ) {
-			return "ERROR: fsockopen failed.\r\nError no: $errno - $errstr";
-		}  // if cannot open socket then display error message
-
-		fputs( $fp, $headers );  //writes to file pointer
-		fputs( $fp, $urlencoded );
-
-		$ret = "";
-		while ( !feof( $fp ) ) {
-			$ret .= fgets( $fp, 1024 );
-		} // while it’s not the end of the file it will loop
-		fclose( $fp );  // closes the connection
-		return $ret; // array
-	}
+        $this->logAuditFrontend("({$user_id}) bought their membership");
+    }
 
 }
