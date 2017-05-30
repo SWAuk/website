@@ -7,6 +7,8 @@ JHtml::_( 'behavior.tooltip' );
 JHtml::_( 'behavior.formvalidation' );
 JHtml::_( 'formbehavior.chosen', 'select' );
 
+require_once JPATH_COMPONENT . '/assets/stripe-config.php';
+
 //Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
@@ -61,28 +63,27 @@ if ( empty( $this->items ) ) {
 			if( $item->reason ) {
 				echo $item->reason;
 			} else {
+
 				?>
-
-				<form id="form-ticketpurchase-<?php echo $item->id ?>" method="POST"
-					  action="https://secure.nochex.com/">
-					<input type="hidden" name="merchant_id" value="swa.web@gmail.com"/>
-					<input type="hidden" name="amount" value="<?php echo $item->price ?>"/>
-					<input type="hidden" name="description"
-						   value="SWA Ticket for <?php echo $item->event; ?> - <?php echo $item->ticket_name; ?>"/>
-					<input type="hidden" name="order_id"
-						   value="j3ticket:<?php echo $item->id . '-' . $this->member->id; ?>"/>
-					<input type="hidden" name="callback_url" value="<?php echo JUri::root() .
-						'index.php?option=com_swa&task=ticketpurchase.callback' ?>"/>
-					<input type="hidden" name="success_url" value="<?php echo JUri::root() .
-						'index.php?option=com_swa&view=membertickets' ?>"/>
-					<input type="hidden" name="cancel_url" value="<?php echo JUri::root() .
-						'index.php?option=com_swa&view=ticketpurchase' ?>"/>
-					<a href="javascript:{}"
-					   onclick="document.getElementById('form-ticketpurchase-<?php echo $item->id ?>').submit(); return false;">Buy now!</a>
-					<!-- test_transaction = 100 means TEST-->
-					<input type="hidden" name="test_transaction" value="0"/>
+				<form action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" method="POST" >
+					<input type="hidden" name="option" value="com_swa" />
+					<input type="hidden" name="task" value="ticketpurchase.submit" />
+					<input type="hidden" name="ticketId" value="<?php echo $item->id ?>" />
+					<script
+						src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+						data-key="pk_test_tDaDvORCWuyXb0VRIHtMStDR"
+						data-amount="<?php echo $item->price * 100 ?>"
+						data-currency="GBP"
+						data-label="Buy now!"
+						data-name="SWA"
+						data-description="<?php echo $item->event_name . ' - ' . $item->ticket_name; ?>"
+						data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+						data-locale="auto"
+						data-zip-code="true"
+						data-email="<?php echo $this->user->email ?>"
+						data-allow-remember-me="false">
+					</script>
 				</form>
-
 				<?php
 			}
 
@@ -94,4 +95,3 @@ if ( empty( $this->items ) ) {
 	</table>
 	<?php
 }
-?>
