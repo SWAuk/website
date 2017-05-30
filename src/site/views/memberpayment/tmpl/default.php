@@ -26,6 +26,25 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 
 <h1>Membership Payment</h1>
 
+<form action="<?php echo JRoute::_('index.php?option=com_swa&task=memberpayment'); ?>" method="POST" >
+	<input type="hidden" name="option" value="com_swa" />
+	<input type="hidden" name="task" value="memberpayment.submit" />
+	<script
+		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		data-key="pk_test_tDaDvORCWuyXb0VRIHtMStDR"
+		data-amount="500"
+		data-currency="GBP"
+		data-label="Buy Membership"
+		data-name="SWA"
+		data-description="SWA Membership"
+		data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+		data-locale="auto"
+		data-zip-code="true"
+		data-email="<?php echo $this->user->email ?>"
+		data-allow-remember-me="false">
+	</script>
+</form>
+
 <form method="POST" action="https://secure.nochex.com/">
 	<input type="hidden" name="merchant_id" value="swa.web@gmail.com"/>
 	<input type="hidden" name="amount" value="5.00"/>
@@ -46,6 +65,5 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	<input type="hidden" name="test_transaction" value="0"/>
 </form>
 
-<p>Note: If you have bee redirected here after already paying try refreshing.</p>
-<p>Payments may take up to 30 mins to appear on the site.</p>
-<p>If your payment seems to get stuck please email webmaster@swa.co.uk</p>
+<p>Note: If you have been redirected here after already paying try refreshing.</p>
+<p>If the problem continues please email webmaster@swa.co.uk.</p>

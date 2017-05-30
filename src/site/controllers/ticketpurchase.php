@@ -94,7 +94,7 @@ class SwaControllerTicketPurchase extends SwaController {
 				and $charge->paid != true and $charge->captured != true) {
 				JLog::add( "Stripe charge didn't return successful.", JLog::ERROR, 'com_swa.payment_process' );
 				$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+				$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
 				die($error_msg);
 			}
 
@@ -127,7 +127,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		if ( $count === null ) {
 			JLog::add( "Unable to check if member already has ticket.", JLog::ERROR, 'com_swa.payment_process' );
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
+			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
 			die($error_msg);
 		}
 		if( $count >= 1 ) {
