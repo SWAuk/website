@@ -39,6 +39,7 @@ class SwaControllerTicketPurchase extends SwaController {
 						'amount' => $ticket->price * 100,
 						'currency' => 'GBP',
 						'receipt_email' => $user->email,
+						'statement_descriptor' => "SWA Ticket {$ticket->id}",
 						'source' => $token,
 						'metadata' => array(
 							'event_ticket_id' => $ticket->id,
