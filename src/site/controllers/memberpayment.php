@@ -16,10 +16,11 @@ class SwaControllerMemberPayment extends SwaController {
         try {
             $charge = \Stripe\Charge::create(
                 array(
-                    'description' => "SWA Membership for $user->name",
+                    'description' => "SWA Membership for {$user->name}",
                     'amount' => 500,
                     'currency' => 'GBP',
                     'receipt_email' => $user->email,
+                    'statement_descriptor' => "SWA Membership",
                     'source' => $token,
                     'metadata' => array(
                         'user_id' => $user->id,
