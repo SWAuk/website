@@ -71,7 +71,7 @@ if ( empty( $this->items ) ) {
 					<input type="hidden" name="ticketId" value="<?php echo $item->id ?>" />
 					<script
 						src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-						data-key="pk_test_tDaDvORCWuyXb0VRIHtMStDR"
+						data-key="<?php echo $stripe['publishable_key']; ?>"
 						data-amount="<?php echo $item->price * 100 ?>"
 						data-currency="GBP"
 						data-label="Buy now!"

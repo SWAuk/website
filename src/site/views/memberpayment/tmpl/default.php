@@ -31,7 +31,7 @@ $doc->addScript( JUri::base() . '/components/com_swa/assets/js/form.js' );
 	<input type="hidden" name="task" value="memberpayment.submit" />
 	<script
 		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		data-key="pk_test_tDaDvORCWuyXb0VRIHtMStDR"
+		data-key="<?php echo $stripe['publishable_key']; ?>"
 		data-amount="500"
 		data-currency="GBP"
 		data-label="Buy Membership"
