@@ -142,7 +142,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		$query = $db->getQuery( true );
 		$query->insert( $db->quoteName( '#__swa_ticket' ) );
 		$query->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid' ) ) );
-		$query->values( "{$db->quote($memberId)}, {$db->quote($eventTicketId)}, {$db->quote($charge->amount )}" );
+		$query->values( "{$db->quote($memberId)}, {$db->quote($eventTicketId)}, {$db->quote($charge->amount/100.0)}" );
 		$db->setQuery( $query );
 		$result = $db->execute();
 
