@@ -156,32 +156,9 @@ class SwaControllerTicketPurchase extends SwaController {
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
 			die($error_msg);
-		} else {
-			$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
-
-			// do we need to send confirmation email if Stripe does it for us?
-			//$this->sendConfirmationEmail();
 		}
-	}
 
-	// Might not be needed anymore due to Stripe being able to do this.
-	private function sendConfirmationEmail( $email ) {
-		// Send a confirmation email!
-		$mailer = JFactory::getMailer();
-		$config = JFactory::getConfig();
-		$sender = array(
-			$config->get('mailfrom'),
-			$config->get('fromname')
-		);
-		$mailer->setSender($sender);
-		$mailer->addRecipient($email);
-		$body = "Your SWA ticket purchase has been confirmed!\n\nThe Web Team!";
-		$mailer->setSubject('Your SWA ticket purchase');
-		$mailer->setBody($body);
-		$send = $mailer->Send();
-		if ($send !== true) {
-			//TODO log this
-		}
+		$this->logAuditFrontend( 'Member ' . $memberId . ' bought event ticket ' . $eventTicketId );
 	}
 
 }
