@@ -173,6 +173,9 @@ class SwaModelSeasonResults extends SwaModelList {
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -182,14 +185,14 @@ class SwaModelSeasonResults extends SwaModelList {
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
 	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
-FROM jwhitwor_swaj.swan_swa_season as season
-JOIN swan_swa_event as event
+FROM {$dbname}.{$prefix}swa_season as season
+JOIN {$prefix}swa_event as event
 ON season.id = event.season_id
-JOIN swan_swa_competition as comp
+JOIN {$prefix}swa_competition as comp
 ON event.id = comp.event_id
-JOIN swan_swa_competition_type as comp_type
+JOIN {$prefix}swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_indi_result as indi_result
+JOIN {$prefix}swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name != 'Team'
@@ -218,6 +221,9 @@ GROUP BY comp_type.series;"
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -227,16 +233,16 @@ GROUP BY comp_type.series;"
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
 	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
-FROM jwhitwor_swaj.swan_swa_season as season
-JOIN swan_swa_event as event
+FROM {$dbname}.{$prefix}swa_season as season
+JOIN {$prefix}swa_event as event
 ON season.id = event.season_id
-JOIN swan_swa_competition as comp
+JOIN {$prefix}swa_competition as comp
 ON event.id = comp.event_id
-JOIN swan_swa_competition_type as comp_type
+JOIN {$prefix}swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_indi_result as indi_result
+JOIN {$prefix}swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
-JOIN swan_swa_member as member
+JOIN {$prefix}swa_member as member
 ON indi_result.member_id = member.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name != 'Team'
@@ -269,6 +275,9 @@ GROUP BY LCASE( member.sex );"
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -283,20 +292,20 @@ GROUP BY LCASE( member.sex );"
 	MAX( indi_result.result ) as max_result,
 	COUNT( indi_result.result ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions
-FROM jwhitwor_swaj.swan_swa_season as season
-JOIN swan_swa_event as event
+FROM {$dbname}.{$prefix}swa_season as season
+JOIN {$prefix}swa_event as event
 ON season.id = event.season_id
-JOIN swan_swa_competition as comp
+JOIN {$prefix}swa_competition as comp
 ON event.id = comp.event_id
-JOIN swan_swa_competition_type as comp_type
+JOIN {$prefix}swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_indi_result as indi_result
+JOIN {$prefix}swa_indi_result as indi_result
 ON indi_result.competition_id = comp.id
-JOIN swan_swa_member as member
+JOIN {$prefix}swa_member as member
 ON indi_result.member_id = member.id
-JOIN swan_swa_university as university
+JOIN {$prefix}swa_university as university
 ON member.university_id = university.id
-JOIN swan_users as user
+JOIN {$prefix}users as user
 ON member.user_id = user.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name != 'Team'
@@ -312,6 +321,9 @@ GROUP BY comp_type.name, member.id;"
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -319,10 +331,10 @@ GROUP BY comp_type.name, member.id;"
 	comp_type.id as comp_type_id,
 	LCASE( comp_type.name ) as comp_type,
 	COUNT(*) as entrants
-FROM swan_swa_indi_result as result
-JOIN swan_swa_competition as comp ON result.competition_id = comp.id
-JOIN swan_swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_event as event ON comp.event_id = event.id
+FROM {$prefix}swa_indi_result as result
+JOIN {$prefix}swa_competition as comp ON result.competition_id = comp.id
+JOIN {$prefix}swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
+JOIN {$prefix}swa_event as event ON comp.event_id = event.id
 WHERE event.season_id = {$this->seasonId}
 AND LCASE( comp_type.series ) = 'race'
 GROUP BY comp_type.id;"
@@ -420,6 +432,9 @@ GROUP BY comp_type.id;"
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -428,14 +443,14 @@ GROUP BY comp_type.id;"
 	COUNT( DISTINCT team_result.university_id ) as universities,
 	COUNT( DISTINCT team_result.university_id, team_result.team_number ) as teams,
 	COUNT( DISTINCT team_result.university_id, team_result.team_number ) + 2 as dnc_score
-FROM jwhitwor_swaj.swan_swa_season as season
-JOIN swan_swa_event as event
+FROM {$dbname}.{$prefix}swa_season as season
+JOIN {$prefix}swa_event as event
 ON season.id = event.season_id
-JOIN swan_swa_competition as comp
+JOIN {$prefix}swa_competition as comp
 ON event.id = comp.event_id
-JOIN swan_swa_competition_type as comp_type
+JOIN {$prefix}swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_team_result as team_result
+JOIN {$prefix}swa_team_result as team_result
 ON team_result.competition_id = comp.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name = 'Team';"
@@ -465,6 +480,9 @@ AND comp_type.name = 'Team';"
         if( isset( $this->cachedMethodDbMap[__METHOD__] ) ) {
             return $this->cachedMethodDbMap[__METHOD__];
         }
+		$app = JFactory::getApplication(); 
+		$prefix = $app->get('dbprefix');
+		$dbname = $app->get('db');
         $db = $this->getDbo();
         $query = $db->getQuery( true );
         $query->setQuery(
@@ -474,16 +492,16 @@ AND comp_type.name = 'Team';"
 	team_result.team_number,
 	event.id as event_id,
 	IF( team_result.result = 1, 0.5, team_result.result ) as result
-FROM jwhitwor_swaj.swan_swa_season as season
-JOIN swan_swa_event as event
+FROM {$dbname}.{$prefix}swa_season as season
+JOIN {$prefix}swa_event as event
 ON season.id = event.season_id
-JOIN swan_swa_competition as comp
+JOIN {$prefix}swa_competition as comp
 ON event.id = comp.event_id
-JOIN swan_swa_competition_type as comp_type
+JOIN {$prefix}swa_competition_type as comp_type
 ON comp.competition_type_id = comp_type.id
-JOIN swan_swa_team_result as team_result
+JOIN {$prefix}swa_team_result as team_result
 ON team_result.competition_id = comp.id
-JOIN swan_swa_university as university
+JOIN {$prefix}swa_university as university
 ON team_result.university_id = university.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name = 'Team';"
