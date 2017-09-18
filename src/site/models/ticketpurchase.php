@@ -85,6 +85,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$query->select( 'event_ticket.need_swa AS need_swa' );
 		$query->select( 'event_ticket.need_host AS need_host' );
 		$query->select( 'event_ticket.need_qualification AS need_qualification' );
+		$query->select( 'event_ticket.details AS details' );
 
 		$query->select( 'event.id AS event_id' );
 		$query->select( 'event.name AS event_name' );
@@ -125,6 +126,12 @@ class SwaModelTicketPurchase extends SwaModelList {
 		}
 
 		foreach ($tickets as $ticket) {
+			// decode the json ticket details
+			$ticket->details = json_decode($ticket->details);
+			if ($ticket->details === null){
+				$ticket->details = new stdClass();
+			}
+
 			// get whether the ticket should displayed and the reason it can't be bought if there is one
 			list($displayTicket, $ticket->reason) = $this->memberAllowedToViewBuyTicket( $member, $ticket );
 

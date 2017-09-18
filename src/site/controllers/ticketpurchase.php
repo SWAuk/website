@@ -7,11 +7,26 @@ require_once JPATH_COMPONENT . '/assets/stripe-config.php';
 
 class SwaControllerTicketPurchase extends SwaController {
 
+	public function select() {
+		$app = JFactory::getApplication();
+		$jinput = $app->input;
+		$option = $jinput->get('option');
+		$ticketId = $this->input->getString('ticketId');
+		$app->setUserState("$option.ticket_id", $ticketId);
+
+		$this->setRedirect( JRoute::_('index.php?option=com_swa&layout=terms') );
+	}
+
 	public function submit()
 	{
 		// get the POST data
 		$token = $this->input->getString('stripeToken');
 		$ticketId = $this->input->getString('ticketId');
+		$tshirt_size = $this->input->getString('tshirt_size');
+
+		// create the class that will later be converted to json to be stored in the database
+		$details = new stdClass();
+		$details->tshirt_size = $tshirt_size;
 
 		// initialise useful variables
 		$model = $this->getModel('ticketpurchase');
@@ -100,7 +115,7 @@ class SwaControllerTicketPurchase extends SwaController {
 			}
 
 			// assign ticket to member
-			$this->addTicketToDb($member->id, $ticket->id, $charge);
+			$this->addTicketToDb($member->id, $ticket->id, $charge, $details);
 
 		} else {
 			JLog::add("Unable to find ticket with id \"{$ticketId}\"", JLog::ERROR, 'com_swa.payment_process');
@@ -137,13 +152,18 @@ class SwaControllerTicketPurchase extends SwaController {
 		}
 	}
 
-	private function addTicketToDb($memberId, $eventTicketId, $charge) {
+	private function addTicketToDb($memberId, $eventTicketId, $charge, $details) {
 		// Add the ticket to the db
 		$db = JFactory::getDbo();
 		$query = $db->getQuery( true );
 		$query->insert( $db->quoteName( '#__swa_ticket' ) );
-		$query->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid' ) ) );
-		$query->values( "{$db->quote($memberId)}, {$db->quote($eventTicketId)}, {$db->quote($charge->amount/100.0)}" );
+		$query->columns( $db->quoteName( array( 'member_id', 'event_ticket_id', 'paid', 'details' ) ) );
+		$query->values(
+			"{$db->quote($memberId)}, " .
+			"{$db->quote($eventTicketId)}, " .
+			"{$db->quote($charge->amount/100.0)}, ".
+			"{$db->quote(json_encode($details))}"
+		);
 		$db->setQuery( $query );
 		$result = $db->execute();
 
