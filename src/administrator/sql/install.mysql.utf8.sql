@@ -155,6 +155,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `need_xswa` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_host` TINYINT(1)  NOT NULL DEFAULT 0 ,
   `need_qualification` TINYINT(1)  NOT NULL DEFAULT 0 ,
+  `details` TEXT,
   PRIMARY KEY (`id`) ,
   INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
@@ -194,6 +195,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_ticket` (
   `member_id` INT NOT NULL ,
   `event_ticket_id` INT NOT NULL ,
   `paid` DECIMAL(6,2) NOT NULL ,
+  `details` TEXT,
   PRIMARY KEY (`id`) ,
   INDEX `fk_ticket_event_ticket1_idx` (`event_ticket_id` ASC) ,
   INDEX `fk_ticket_member1_idx` (`member_id` ASC) )

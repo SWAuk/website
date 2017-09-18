@@ -38,15 +38,15 @@ if ( empty( $this->items ) ) {
 	<p>Keep an eye on social media as we will post about all ticket releases there!</p>
 	<table class="table table-hover">
 		<thead>
-			<tr>
-				<th>Event</th>
-				<th>Event Date</th>
-				<th>Ticket Deadline</th>
-				<th>Ticket</th>
-				<th>Price</th>
-				<th>Notes</th>
-				<th>Purchase</th>
-			</tr>
+		<tr>
+			<th>Event</th>
+			<th>Event Date</th>
+			<th>Ticket Deadline</th>
+			<th>Ticket</th>
+			<th>Price</th>
+			<th>Notes</th>
+			<th></th>
+		</tr>
 		</thead>
 		<tbody>
 		<?php
@@ -65,26 +65,13 @@ if ( empty( $this->items ) ) {
 			} else {
 
 				?>
-				<form action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" method="POST" >
+				<form action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase') ?>" method="POST" >
 					<input type="hidden" name="option" value="com_swa" />
-					<input type="hidden" name="task" value="ticketpurchase.submit" />
+					<input type="hidden" name="task" value="ticketpurchase.select" />
 					<input type="hidden" name="ticketId" value="<?php echo $item->id ?>" />
-					<script
-						src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-						data-key="<?php echo $stripe['publishable_key']; ?>"
-						data-amount="<?php echo $item->price * 100 ?>"
-						data-currency="GBP"
-						data-label="Buy now!"
-						data-name="SWA"
-						data-description="<?php echo $item->event_name . ' - ' . $item->ticket_name; ?>"
-						data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-						data-locale="auto"
-						data-zip-code="true"
-						data-email="<?php echo $this->user->email ?>"
-						data-allow-remember-me="false">
-					</script>
+					<button class="btn favth-btn-small" type="submit" >Select</button>
 				</form>
-				<?php
+			<?php
 			}
 
 			echo "</td>\n";
@@ -93,5 +80,5 @@ if ( empty( $this->items ) ) {
 		?>
 		</tbody>
 	</table>
-	<?php
+<?php
 }
