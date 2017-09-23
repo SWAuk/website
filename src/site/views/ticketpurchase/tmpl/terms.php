@@ -9,7 +9,8 @@ $lang = JFactory::getLanguage();
 $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
 
 // load the article model
-JLoader::import( 'Article', 'components/com_content/models' );
+JLoader::import('joomla.application.component.model');
+JModelLegacy::addIncludePath(JPATH_SITE.'/components/com_content/models', 'ContentModel');
 $model = JModelItem::getInstance( 'Article', 'ContentModel' );
 
 // get everything from the database
