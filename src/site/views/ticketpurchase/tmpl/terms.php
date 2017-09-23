@@ -2,7 +2,7 @@
 
 defined( '_JEXEC' ) or die;
 
-$ARTICLE_ID = 425;
+$ARTICLE_ID = 726;
 
 // load admin language file
 $lang = JFactory::getLanguage();
