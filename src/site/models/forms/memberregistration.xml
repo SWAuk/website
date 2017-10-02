@@ -80,7 +80,7 @@
 
 		<field name="shirt"
 			type="list"
-			label="Shirt"
+			label="T-shirt size"
 			required="true">
 			<option value="XS">XS</option>
 			<option value="S">S</option>
