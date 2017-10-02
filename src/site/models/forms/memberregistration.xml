@@ -98,7 +98,7 @@
 			type="text"
 			size="40"
 			class="inputbox"
-			label="Emerg contact"
+			label="Emergency contact"
 			required="true"
 			filter="safehtml"/>
 
@@ -106,7 +106,7 @@
 			type="text"
 			size="40"
 			class="inputbox"
-			label="Emerg number"
+			label="Emergency number"
 			required="true"
 			filter="safehtml"/>
 
