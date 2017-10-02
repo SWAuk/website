@@ -65,7 +65,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 				<p>Here you can see, add and edit members of the Org committee.</p>
 
 				<p>Everyone in this list will appear in the 'committee' frontend view and also be
-					given access anything with the 'Org committie' view level.</p>
+					given access anything with the 'Org committee' view level.</p>
 
 				<p>Members in this list can also purchase tickets marked as 'Needs SWA'.</p>
 			</div>
