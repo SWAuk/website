@@ -22,7 +22,10 @@ foreach ($this->items as $item) {
 }
 
 if ($ticket === null) {
-    echo "<p><b>There has been an error retrieving the selected ticket. If this problem continues contact us at webmaster@swa.co.uk</b></p>";
+    echo "<p><b>There has been an error retrieving the selected ticket. ";
+	echo "If this problem continues contact us at webmaster@swa.co.uk</b>";
+	echo "<a href='{JRoute::_('index.php?option=com_swa&task=ticketpurchase')}'>";
+	echo "Click here to return to the ticket purchase page.</a></p>";
     die;
 }
 
