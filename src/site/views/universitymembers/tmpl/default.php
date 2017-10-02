@@ -25,14 +25,14 @@ foreach ( $this->event_registrations as $reg ) {
 
 <h1><?php echo $this->member->university_name ?> Members (current)</h1>
 
-<p>View:
+<p><strong>View:
 	<?php
 	foreach( $this->layouts as $layout => $text ) {
 		$href = JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=' . $layout );
-		echo "<a href='$href' title='$text'>" . ucfirst( $layout ) . "</a>\n";
+		echo "<a href='$href' title='$text' style='padding: 5px'>" . ucfirst( $layout ) . "</a>\n";
 	}
 	?>
-</p>
+</strong></p>
 
 <p>
 	Here you can see all current registered members of your university that you have approved.
@@ -47,6 +47,10 @@ foreach ($this->items as $item) {
 	}
 }
 foreach ($this->events as $event) {
+	// skip this event if registration hasn't opened
+	if ($event->date_open > date("Y-m-d")) {
+		continue;
+	}
 	$toRegisterForThisEvent = array();
 	foreach( $memberIds as $memberId ) {
 		if (
@@ -129,6 +133,10 @@ foreach ($this->events as $event) {
 
 			echo "<td><ul>";
 			foreach ( $this->events as $event ) {
+				// skip this event if registration hasn't opened
+				if ($event->date_open > date("Y-m-d")) {
+					continue;
+				}
 				echo "<li>" . $event->name . ' ';
 				if (
 					array_key_exists( $item->id, $eventRegistrations ) &&
