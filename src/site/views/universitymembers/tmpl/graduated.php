@@ -21,14 +21,14 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 
 <h1><?php echo $this->member->university_name ?> Members (graduated)</h1>
 
-<p>View:
+<p><strong>View:
 	<?php
 	foreach( $this->layouts as $layout => $text ) {
 		$href = JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=' . $layout );
-		echo "<a href='$href' title='$text'>" . ucfirst( $layout ) . "</a>\n";
+		echo "<a href='$href' title='$text' style='padding: 5px'>" . ucfirst( $layout ) . "</a>\n";
 	}
 	?>
-</p>
+</strong></p>
 
 <p>
 	Here you can see all current registered members of your university that have already graduated.
