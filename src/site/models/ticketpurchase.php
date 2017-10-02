@@ -177,15 +177,23 @@ class SwaModelTicketPurchase extends SwaModelList {
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
 			$reason = 'Ticket currently SOLD OUT!';
 		}
-		elseif( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
+		elseif( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
 			$reason = 'You have not been registered for this event by your club committee!';
 		} elseif( $ticket->need_swa && !$member->swa_committee ) {
 			$reason = 'You have to be SWA committee to buy this ticket';
 			$display = false;
-		} elseif( $ticket->need_xswa && !$member->graduated ) {
-			$reason = 'You need to be graduated to buy this ticket';
-		} elseif( !empty( $ticket->need_level ) && $member->level != $ticket->need_level ) {
+		} elseif(
+			(
+				!empty($ticket->details->level->whitelist) &&
+				!in_array($member->level, $ticket->details->level->whitelist)
+			)
+			||
+			(
+				!empty($ticket->details->level->blacklist) &&
+				in_array($member->level, $ticket->details->level->blacklist)
+			)
+		) {
 			$reason = "You need to be level '{$ticket->need_level}' to buy this ticket";
 			$display = in_array( strtolower($ticket->need_level), array('beginner', 'intermediate', 'advanced') );
 		} elseif( $ticket->need_qualification && !$member->qualification ) {
