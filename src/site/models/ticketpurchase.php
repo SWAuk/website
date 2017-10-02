@@ -179,7 +179,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		}
 		elseif( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
-			$reason = 'You have not been registered for this event';
+			$reason = 'You have not been registered for this event by your club committie!';
 		} elseif( $ticket->need_swa && !$member->swa_committee ) {
 			$reason = 'You have to be SWA committee to buy this ticket';
 			$display = false;
