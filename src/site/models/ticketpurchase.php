@@ -160,12 +160,80 @@ class SwaModelTicketPurchase extends SwaModelList {
 	 * @return array(bool, string) array($display, $reason)
 	 */
 	private function memberAllowedToViewBuyTicket( $member, $ticket ) {
+		
 		$display = true;
 		$reason = '';
 
 		$isRegisteredForEvent = ( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) );
 		$dateNow = time();
+		
+		// Set visible to default of All if not set
+		if ( !isset($ticket->details->visible) ) {
+			$ticket->details->visible = "All";
+		}
 
+		if ( $ticket->details->visible == "None" ) {
+			$reason = 'No one can see this ticket';
+			$display = false;
+		} 
+		
+		if ( $ticket->details->visible == "Committee" && !$member->swa_committee ) {
+			$reason = 'You have to be SWA committee to see this ticket';
+			$display = false;
+		} 
+		
+		if ( $ticket->need_swa && !$member->swa_committee ) {
+			// TODO delete when no longer using these feilds
+			$reason = 'You have to be SWA committee to buy this ticket';
+			$display = false;
+		} 
+		
+		if (!empty($ticket->details->member->whitelist) &&
+			!in_array($member->id, $ticket->details->member->whitelist)) {
+			$reason = "This ticket is only available for specific members.";
+			// don't display if visible is set to "Match" and member is not committee
+			$display = $display && !($ticket->details->visible == "Match" && !$member->swa_committee)
+		} 
+		
+		if (!empty($ticket->details->member->blacklist) &&
+			in_array($member->id, $ticket->details->member->blacklist)
+		) {
+			$reason = "This ticket is only available for specific members.";
+			// don't display if visible is set to "Match" and member is not committee
+			$display = $display && !($ticket->details->visible == "Match" && !$member->swa_committee)
+		} 
+		
+		if (!empty($ticket->details->university->whitelist) &&
+			!in_array($member->university_id, $ticket->details->university->whitelist)) {
+			$reason = "This ticket is only available for specific universities.";
+			// don't display if visible is set to "Match" and member is not committee
+			$display = $display && !($ticket->details->visible == "Match" && !$member->swa_committee)
+		} 
+		
+		if (!empty($ticket->details->university->blacklist) &&
+			in_array($member->university_id, $ticket->details->university->blacklist)
+		) {
+			$reason = "This ticket is only available for specific universities.";
+			// don't display if visible is set to "Match" and member is not committee
+			$display = !($ticket->details->visible == "Match" && !$member->swa_committee)
+		} elseif (!empty($ticket->details->level->whitelist) &&
+			!in_array($member->level, $ticket->details->level->whitelist)
+		) {
+			$reason = 'You need to be one of the following levels ['; 
+			$reason .= implode(', ', $ticket->details->level->whitelist) . ']';
+			// don't display if visible is set to "Match" and member is not committee
+			$display = !($ticket->details->visible == "Match" && !$member->swa_committee)
+		} elseif (!empty($ticket->details->level->blacklist) &&
+			in_array($member->level, $ticket->details->level->blacklist)
+		) {				
+			$reason = "You can't be one of the following levels ["; 
+			$reason .= implode(', ', $ticket->details->level->blacklist) . ']';
+			// don't display if visible is set to "Match" and member is not committee
+			$display = !($ticket->details->visible == "Match" && !$member->swa_committee)
+		}
+		
+		
+		
 		// check if member has already bought a ticket to that event
 		if ( in_array($ticket->event_id, explode( ',', $member->ticketed_event_ids )) ) {
 			$reason = 'You have already bought a ticket to this event';
@@ -180,10 +248,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 		elseif( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
 			$reason = 'You have not been registered for this event by your club committee!';
-		} elseif( $ticket->need_swa && !$member->swa_committee ) {
-			$reason = 'You have to be SWA committee to buy this ticket';
-			$display = false;
-		} elseif(
+		}  elseif(
 			(
 				!empty($ticket->details->level->whitelist) &&
 				!in_array($member->level, $ticket->details->level->whitelist)
