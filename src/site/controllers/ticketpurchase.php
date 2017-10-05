@@ -33,6 +33,12 @@ class SwaControllerTicketPurchase extends SwaController {
 		$tickets = $model->getItems();
 		$member = $model->getMember();
 		$user = JFactory::getUser();
+		
+		// make sure the member was successfully retrieved
+		if (!$member || !ctype_digit($member->id)) {
+			JLog::add( "Unable to identify user. Member: " . var_export($member, true), JLog::ERROR, 'com_swa.payment_process' );
+			die("Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.");
+		}
 
 		// get the ticket the user wants to buy by matching the form data with the tickets available
 		$ticket = null;
