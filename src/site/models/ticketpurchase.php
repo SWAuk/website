@@ -269,11 +269,16 @@ class SwaModelTicketPurchase extends SwaModelList {
 			$reason = 'SALES CLOSED!';
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
 			$reason = 'Ticket currently SOLD OUT!';
-		} elseif( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
+		} elseif ( $member->graduated && !$ticket->details->xswa ) {
+			$reason = "This ticket is not available to XSWA members."
+		} elseif ( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
 			$reason = 'You have not been registered for this event by your club committee!';
-		} elseif( $ticket->need_qualification && !$member->qualification ) {
-			$reason = 'You need to have an approved qualification to buy this ticket';
+		} elseif ( $ticket->details->qualification && !member->qualification ) {
+			$reason = "You need to have an approved qualification to buy this ticket";
+		} elseif ( $ticket->need_qualification && !$member->qualification ) {
+			// TODO delete when no longer using these fields
+			$reason = "You need to have an approved qualification to buy this ticket";
 		}
 
 		return array($display, $reason);
