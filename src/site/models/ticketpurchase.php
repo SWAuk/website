@@ -268,18 +268,18 @@ class SwaModelTicketPurchase extends SwaModelList {
 		
 		// check if member has already bought a ticket to that event
 		if ( in_array($ticket->event_id, explode( ',', $member->ticketed_event_ids )) ) {
-			$reason = 'You have already bought a ticket to this event';
-		} elseif ( $dateNow < strtotime($ticket->ticket_open) ) {
-			$reason = 'Tickets sales haven\'t opened yet';
-		} elseif ( $dateNow > strtotime($ticket->ticket_close) + 24*60*60 ) {
-			$reason = 'SALES CLOSED!';
+			$reason = "You have already bought a ticket to this event";
+		} elseif ( $dateNow < $ticketOpen ) {
+			$reason = "Tickets sales haven't opened yet";
+		} elseif ( $dateNow > $ticketClose ) {
+			$reason = "SALES CLOSED!";
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
-			$reason = 'Ticket currently SOLD OUT!';
+			$reason = "Ticket currently SOLD OUT!";
 		} elseif ( $member->graduated && !$ticket->details->xswa ) {
 			$reason = "This ticket is not available to XSWA members."
 		} elseif ( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
 			// Allow XSWA and SWA to buy tickets when not registered for the event
-			$reason = 'You have not been registered for this event by your club committee!';
+			$reason = "You have not been registered for this event by your club committee!";
 		} elseif ( $ticket->details->qualification && !member->qualification ) {
 			$reason = "You need to have an approved qualification to buy this ticket";
 		} elseif ( $ticket->need_qualification && !$member->qualification ) {
