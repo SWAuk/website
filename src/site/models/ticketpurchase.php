@@ -165,7 +165,15 @@ class SwaModelTicketPurchase extends SwaModelList {
 		$reason = array();
 
 		$isRegisteredForEvent = ( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) );
-		$dateNow = time();
+		
+		// specifiy a timezone in code incase the server time is wrong
+		$timezone = new DateTimeZone('Europe/London');
+		$dateNow = new DateTime('now', $timezone);
+		$ticketOpen = new DateTime($ticket->ticket_open, $timezone);
+		$ticketClose = new DateTime($ticket->ticket_close, $timezone);
+		// ticket sales close at midnight of the chosen day (hence the setTime)
+		$ticketClose->setTime(23, 59, 59);
+		
 		
 		// Check if the ticket should be displayed
 		if ( !isset($ticket->details->visible) ) {
@@ -258,14 +266,12 @@ class SwaModelTicketPurchase extends SwaModelList {
 			}
 		}
 		
-		
 		// check if member has already bought a ticket to that event
 		if ( in_array($ticket->event_id, explode( ',', $member->ticketed_event_ids )) ) {
 			$reason = 'You have already bought a ticket to this event';
 		} elseif ( $dateNow < strtotime($ticket->ticket_open) ) {
 			$reason = 'Tickets sales haven\'t opened yet';
 		} elseif ( $dateNow > strtotime($ticket->ticket_close) + 24*60*60 ) {
-			// ticket sales close at midnight of the chosen day (hence the +24*60*60)
 			$reason = 'SALES CLOSED!';
 		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
 			$reason = 'Ticket currently SOLD OUT!';
