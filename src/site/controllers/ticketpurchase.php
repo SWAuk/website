@@ -35,8 +35,9 @@ class SwaControllerTicketPurchase extends SwaController {
 		$user = JFactory::getUser();
 		
 		// make sure the member was successfully retrieved
-		if (!$member || !ctype_digit($member->id)) {
-			JLog::add( "Unable to identify user. Member: " . var_export($member, true), JLog::ERROR, 'com_swa.payment_process' );
+		if ( !$member || !isset($member->id) || !ctype_digit($member->id) ) {
+			$message = "Unable to identify member. " . var_export($member, true);
+			JLog::add( $message, JLog::ERROR, 'com_swa.payment_process' );
 			die("Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.");
 		}
 

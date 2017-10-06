@@ -12,6 +12,13 @@ class SwaControllerMemberPayment extends SwaController {
         $token = $this->input->getString('stripeToken');
 
         $user = JFactory::getUser();
+		
+		// check successfully got the user and all the info we need to process the transaction
+		if ( !$user || !isset($user->id) || !isset($user->name) || !isset($user->email) ){
+			$message = "Unable to retrieve user. " . var_export($user, true);
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			die("Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.");
+		}
 
         try {
             $charge = \Stripe\Charge::create(
