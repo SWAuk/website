@@ -24,16 +24,8 @@ class SwaModelEventtickets extends JModelList {
 				'a.quantity',
 				'price',
 				'a.price',
-				'a.need_level',
-				'need_level',
-				'need_swa',
-				'a.need_swa',
-				'need_xswa',
-				'a.need_xswa',
-				'need_host',
-				'a.need_host',
-				'need_qualification',
-				'a.need_qualification',
+				'details',
+				'a.details',
 			);
 		}
 

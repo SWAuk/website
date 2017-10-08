@@ -64,19 +64,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 				<p>Here you can see, add and edit tickets for specific events that can be bought by
 					members.</p>
 				<ul>
-					<li>Quantity: The total number of this ticket availible.</li>
-					<li>Needs Level: Member needs to be this level to buy this ticket.</li>
-					<li>Needs SWA: Member needs to be on the 'Org Committee' to buy this ticket.
-					</li>
-					<li>Needs XSWA: Member needs to be marked as a graduate of a unit to buy this
-						ticket.
-					</li>
-					<li>Needs Host: Member needs to be from one of the host universities to buy this
-						ticket.
-					</li>
-					<li>Needs Qualification: Member needs to have a registered qualification to buy
-						this ticket.
-					</li>
+					<li>Quantity: The total number of this ticket available.</li>
+					<li>Details: This is a JSON string representing who can view and buy a ticket.</li>
 				</ul>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
@@ -160,12 +149,11 @@ if ( !empty( $this->extra_sidebar ) ) {
 							   title="<?php echo JText::_( 'JGLOBAL_CHECK_ALL' ); ?>"
 							   onclick="Joomla.checkAll(this)"/>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
-							'Event',
-							'a.event',
+							'Name',
+							'a.name',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -173,8 +161,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
-							'Name',
-							'a.name',
+							'Event',
+							'a.event',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -200,44 +188,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
-							'Needs Level',
-							'a.need_level',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Needs SWA',
-							'a.need_swa',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Needs XSWA',
-							'a.need_xswa',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Needs Host',
-							'a.need_host',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Needs Qualification',
-							'a.need_qualification',
+							'Details',
+							'a.details',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -289,8 +241,8 @@ if ( !empty( $this->extra_sidebar ) ) {
 									<span
 										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
 										title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 									<input type="text" style="display:none" name="order[]" size="5"
 										   value="<?php echo $item->ordering; ?>"
 										   class="width-20 text-area-order "/>
@@ -305,10 +257,18 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
 						<td>
-							<?php echo $item->event; ?>
+							<?php
+							$url = JRoute::_('index.php?option=com_swa&task=eventticket.edit&id=' . (int)$item->id);
+							if ($canEdit): ?>
+								<a href="<?php echo $url ?>" >
+									<?php echo $item->name; ?>
+								</a>
+							<?php else: ?>
+								<?php echo $item->name; ?>
+							<?php endif; ?>
 						</td>
 						<td>
-							<?php echo $item->name; ?>
+							<?php echo $item->event; ?>
 						</td>
 						<td>
 							<?php echo $item->quantity; ?>
@@ -317,19 +277,7 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo $item->price; ?>
 						</td>
 						<td>
-							<?php echo $item->need_level; ?>
-						</td>
-						<td>
-							<?php echo $item->need_swa; ?>
-						</td>
-						<td>
-							<?php echo $item->need_xswa; ?>
-						</td>
-						<td>
-							<?php echo $item->need_host; ?>
-						</td>
-						<td>
-							<?php echo $item->need_qualification; ?>
+							<?php echo $item->details; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int)$item->id; ?>

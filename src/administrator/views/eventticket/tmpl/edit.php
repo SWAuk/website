@@ -100,44 +100,12 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="controls"><?php echo $this->form->getInput( 'notes' ); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'need_level'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'need_level'
-							); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'need_swa'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'need_swa'
-							); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'need_xswa'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'need_xswa'
-							); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'need_host'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'need_host'
-							); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'need_qualification'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'need_qualification'
-							); ?></div>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('details'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('details'); ?>
+						</div>
 					</div>
 
 				</fieldset>
