@@ -88,32 +88,30 @@ if ( !empty( $this->extra_sidebar ) ) {
 					</button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
-					<select name="directionTable" id="directionTable" class="input-medium"
-							onchange="Joomla.orderTable()">
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
+					<select name="directionTable" id="directionTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_( 'JFIELD_ORDERING_DESC' ); ?></option>
-						<option value="asc" <?php if ( $listDirn == 'asc' ) {
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_( 'JGLOBAL_ORDER_ASCENDING' ); ?></option>
-						<option value="desc" <?php if ( $listDirn == 'desc' ) {
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_( 'JGLOBAL_ORDER_DESCENDING' ); ?></option>
+						<option value="asc" <?php  echo ($listDirn == 'asc' ? 'selected="selected"': ""); ?>>
+							<?php echo JText::_( 'JGLOBAL_ORDER_ASCENDING' ); ?>
+						</option>
+						<option value="desc" <?php echo ( $listDirn == 'desc' ? 'selected="selected"' : ""); ?>>
+							<?php echo JText::_( 'JGLOBAL_ORDER_DESCENDING' ); ?>
+						</option>
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
-					<select name="sortTable" id="sortTable" class="input-medium"
-							onchange="Joomla.orderTable()">
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
+					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_( 'JGLOBAL_SORT_BY' ); ?></option>
 						<?php echo JHtml::_(
 							'select.options',
@@ -218,22 +216,21 @@ if ( !empty( $this->extra_sidebar ) ) {
 								<?php if ( $canChange ) :
 									$disableClassName = '';
 									$disabledLabel = '';
-									if ( !$saveOrder ) :
+									if ( !$saveOrder ) {
 										$disabledLabel = JText::_( 'JORDERINGDISABLED' );
 										$disableClassName = 'inactive tip-top';
-									endif; ?>
-									<span
-										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
+									} ?>
+									<span class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
 										title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 									<input type="text" style="display:none" name="order[]" size="5"
 										   value="<?php echo $item->ordering; ?>"
 										   class="width-20 text-area-order "/>
 								<?php else : ?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
@@ -242,7 +239,15 @@ if ( !empty( $this->extra_sidebar ) ) {
 							<?php echo JHtml::_( 'grid.id', $i, $item->id ); ?>
 						</td>
 						<td>
-							<?php echo $item->name; ?>
+							<?php
+							$url = JRoute::_('index.php?option=com_swa&task=ticket.edit&id=' . (int)$item->id);
+							if ($canEdit) : ?>
+								<a href="<?php echo $url ?>">
+									<?php echo $item->name; ?>
+								</a>
+							<?php else: ?>
+								<?php echo $item->name; ?>
+							<?php endif; ?>
 						</td>
 						<td>
 							<?php echo $item->event; ?>
