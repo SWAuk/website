@@ -35,6 +35,14 @@
 			label="Event ticket"
 			required="true"
 			filter="safehtml"/>
+			
+		<field name="paid"
+			type="text"
+			label="Paid"
+			description="How much the member has paid for this ticket."
+			default="0.00"
+			filter="float"
+			class="inputbox validate-numeric" />
 
 	</fieldset>
 
