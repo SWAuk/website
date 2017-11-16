@@ -248,25 +248,6 @@ class SwaControllerUniversityMembers extends SwaController {
 				$this->logAuditFrontend(
 					'registered member ' . $memberId . ' for event ' . $data['event_id']
 				);
-
-				// Send a confirmation email!
-				$mailer = JFactory::getMailer();
-				$config = JFactory::getConfig();
-				$sender = array(
-					$config->get('mailfrom'),
-					$config->get('fromname')
-				);
-				$mailer->setSender($sender);
-				$user = SwaFactory::getUserFromMemberId($memberId);
-				$recipient = $user->email;
-				$mailer->addRecipient($recipient);
-				$body = "You have been registered for a new SWA event!\n\nThe Web Team!";
-				$mailer->setSubject('New SWA event registration');
-				$mailer->setBody($body);
-				$send = $mailer->Send();
-				if ($send !== true) {
-					//TODO log this
-				}
 			}
 			$this->setRedirect( JRoute::_( 'index.php?option=com_swa&view=universitymembers', false ) );
 
