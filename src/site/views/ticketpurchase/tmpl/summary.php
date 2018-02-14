@@ -72,18 +72,15 @@ if ($ticket === null) {
                 <div><?php echo $ticket->event_name . ' - ' .  $ticket->ticket_name ?></div>
                 <?php if (!empty($ticket->details->tshirt_included)): ?>
                     <div style="font-size: 10pt; margin-left: 20px;">
-                        T-Shirt Size:
-                        <select id="tshirt_size" name="tshirt_size">
-                            <option value='NULL'>-- SELECT --</option>
-                            <option value='Unisex S (35/37")'>Unisex S (35/37")</option>
-                            <option value='Unisex M (38/40")'>Unisex M (38/40")</option>
-                            <option value='Unisex L (41/43")'>Unisex L (41/43")</option>
-                            <option value='Unisex XL (44/46")'>Unisex XL (44/46")</option>
-                            <option value='Unisex 2XL (47/49")'>Unisex 2XL (47/49")</option>
-                            <option value='Unisex 3XL (50/52")'>Unisex 3XL (50/52")</option>
-                            <option value='Unisex 4XL (53/55")'>Unisex 4XL (53/55")</option>
-                            <option value='Unisex 5XL (56/58")'>Unisex 5XL (56/58")</option>
-                        </select>
+						T-Shirt Size:
+						<select id="tshirt_size" name="tshirt_size">
+							<option value='NULL'>-- SELECT --</option>
+							<option value='Unisex S (38")'>Unisex S (38")</option>
+							<option value='Unisex M (40")'>Unisex M (40")</option>
+							<option value='Unisex L (42")'>Unisex L (42")</option>
+							<option value='Unisex XL (44")'>Unisex XL (44")</option>
+							<option value='Unisex XXL (46")'>Unisex XXL (46")</option>
+						</select>
                     </div>
                 <?php endif ?>
             </td>
