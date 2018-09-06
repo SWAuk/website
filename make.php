@@ -5,8 +5,13 @@ $rootDir = __DIR__ . DIRECTORY_SEPARATOR;
 // Generate the zip
 echo "Ziping all...\n";
 @unlink( $rootDir . 'com_swa.zip' );
-zipRecurive( $rootDir . 'src', $rootDir . 'com_swa.zip' );
-echo "Done " . $rootDir . 'com_swa.zip' . "\n";
+$out=zipRecursive( $rootDir . 'src', $rootDir . 'com_swa.zip' );
+
+if ($out) {
+	echo "Done " . $rootDir . 'com_swa.zip' . "\n";
+} else {
+	echo "Error creating ZIP.";
+}
 
 /**
  * @param string $source
@@ -14,10 +19,16 @@ echo "Done " . $rootDir . 'com_swa.zip' . "\n";
  *
  * @return bool
  */
-function zipRecurive( $source, $destination ) {
+function zipRecursive( $source, $destination ) {
 	$source = realpath( $source );
 
-	if ( !extension_loaded( 'zip' ) || !file_exists( $source ) ) {
+	if ( !extension_loaded( 'zip' ) ) {
+		echo "ERROR - extention 'zip' not loaded.\n";
+		return false;
+	}
+
+	if ( !file_exists( $source ) ) {
+		echo "ERROR - source '" . $source . "' doesn't exist.\n";
 		return false;
 	}
 
