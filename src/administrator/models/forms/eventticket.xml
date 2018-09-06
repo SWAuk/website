@@ -51,37 +51,12 @@
 			   required="false"
 			   filter="safehtml"/>
 
-		<field name="need_level"
-			type="text"
-			size="20"
-			class="inputbox"
-			label="Needs Level"
-			default="">
-		</field>
-
-		<field name="need_swa"
-			type="checkbox"
-			label="Needs SWA"
-			default="0">
-		</field>
-
-		<field name="need_xswa"
-			type="checkbox"
-			label="Needs XSWA"
-			default="0">
-		</field>
-
-		<field name="need_host"
-			type="checkbox"
-			label="Needs Host"
-			default="0">
-		</field>
-
-		<field name="need_qualification"
-			type="checkbox"
-			label="Needs Qualification"
-			default="0">
-		</field>
+		<field name="details"
+			type="textarea"
+			label="Details"
+			rows="20"
+			cols="20"
+			default=""/>
 
 	</fieldset>
 

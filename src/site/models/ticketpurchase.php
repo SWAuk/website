@@ -176,7 +176,7 @@ class SwaModelTicketPurchase extends SwaModelList {
 	/**
 	 * Should the given user be allowed to view and buy the given ticket?
 	 *
-	 * Note: This could easily be tested at come point...
+	 * Note: This could easily be tested at some point...
 	 *
 	 * @param object $member
 	 * @param object $ticket
@@ -184,39 +184,135 @@ class SwaModelTicketPurchase extends SwaModelList {
 	 * @return array(bool, string) array($display, $reason)
 	 */
 	private function memberAllowedToViewBuyTicket( $member, $ticket ) {
+
+		// create an alias for ticket to reduce line length
+		$t = $ticket;
+		
 		$display = true;
-		$reason = '';
+		$reason = array();
 
-		$isRegisteredForEvent = ( in_array( $ticket->event_id, explode( ',', $member->registered_event_ids ) ) );
-		$dateNow = time();
-
-		// check if member has already bought a ticket to that event
-		if ( in_array($ticket->event_id, explode( ',', $member->ticketed_event_ids )) ) {
-			$reason = 'You have already bought a ticket to this event';
-		} elseif ( $dateNow < strtotime($ticket->ticket_open) ) {
-			$reason = 'Tickets sales haven\'t opened yet';
-		} elseif ( $dateNow > strtotime($ticket->ticket_close) + 24*60*60 ) {
-			// ticket sales close at midnight of the chosen day (hence the +24*60*60)
-			$reason = 'SALES CLOSED!';
-		} elseif ( $ticket->ticket_quantity <= $ticket->tickets_sold ) {
-			$reason = 'Ticket currently SOLD OUT!';
-		}
-		elseif( !$ticket->need_xswa && !$ticket->need_swa && !$isRegisteredForEvent ) {
-			// Allow XSWA and SWA to buy tickets when not registered for the event
-			$reason = 'You have not been registered for this event by your club committee!';
-		} elseif( $ticket->need_swa && !$member->swa_committee ) {
+		$isRegisteredForEvent = ( in_array( $t->event_id, explode( ',', $member->registered_event_ids ) ) );
+		
+		// specifiy a timezone in code incase the server time is wrong
+		$timezone = new DateTimeZone('Europe/London');
+		$dateNow = new DateTime('now', $timezone);
+		$ticketOpen = new DateTime($t->ticket_open, $timezone);
+		$ticketClose = new DateTime($t->ticket_close, $timezone);
+		// ticket sales close at midnight of the chosen day (hence the setTime)
+		$ticketClose->setTime(23, 59, 59);
+		
+		// Check if the ticket should be displayed
+		if ( !isset($t->details->visible) ) {
+			$t->details->visible = "All";
+		} elseif ( $t->details->visible == "None" ) {
+			$reason = 'No one can see this ticket';
+			$display = false;
+			return array($display, $reason);
+		} elseif ( $t->details->visible == "Committee" && !$member->swa_committee ) {
+			$reason = 'You have to be SWA committee to see this ticket';
+			$display = false;
+			return array($display, $reason);
+		} elseif ( $t->need_swa && !$member->swa_committee ) {
+			// TODO delete when no longer using these fields
 			$reason = 'You have to be SWA committee to buy this ticket';
 			$display = false;
-		} elseif( $ticket->need_xswa && !$member->graduated ) {
-			$reason = 'You need to be graduated to buy this ticket';
-		} elseif( !empty( $ticket->need_level ) && $member->level != $ticket->need_level ) {
-			$reason = "You need to be level '{$ticket->need_level}' to buy this ticket";
-			$display = in_array( strtolower($ticket->need_level), array('beginner', 'intermediate', 'advanced') );
-		} elseif( $ticket->need_qualification && !$member->qualification ) {
-			$reason = 'You need to have an approved qualification to buy this ticket';
-		} elseif( $ticket->need_host && !in_array( $member->university_id, explode( ',', $ticket->host_university_ids ) ) ) {
-			$reason = 'You need to be at the university hosting the event to buy this ticket';
-			$display = false;
+			return array($display, $reason);
+		} 
+		
+		// Check if any constraints on member whitelist
+		if (!empty($t->details->member->whitelist) &&
+			!in_array($member->id, $t->details->member->whitelist)) {
+			$reason = "This ticket is only available for specific members.";
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		}
+
+		// Check if any constraints on member blacklist
+		if (!empty($t->details->member->blacklist) &&
+			in_array($member->id, $t->details->member->blacklist)) {
+			$reason = "This ticket is only available for specific members.";
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		} 
+		
+		// Check if any constraints on university whitelist
+		if (!empty($t->details->university->whitelist) &&
+			!in_array($member->university_id, $t->details->university->whitelist)) {
+			$reason = "This ticket is only available for specific universities.";
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		}
+
+		// Check if any constraints on university blacklist
+		if (!empty($t->details->university->blacklist) &&
+			in_array($member->university_id, $t->details->university->blacklist)) {
+			$reason = "This ticket is only available for specific universities.";
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		}
+				
+		// Check if any constraints on member's level
+		if (!empty($t->details->level->whitelist) &&
+			!in_array($member->level, $t->details->level->whitelist)) {
+			$reason = 'You need to be one of the following levels ['; 
+			$reason .= implode(', ', $t->details->level->whitelist) . ']';
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		} 
+		
+		if (!empty($t->details->level->blacklist) &&
+			in_array($member->level, $t->details->level->blacklist)) {
+			$reason = "You can't be one of the following levels ["; 
+			$reason .= implode(', ', $t->details->level->blacklist) . ']';
+
+			// don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee) {
+				$display = false;
+				return array($display, $reason);
+			}
+		}
+		
+		// check if member has already bought a ticket to that event
+		if ( in_array($t->event_id, explode( ',', $member->ticketed_event_ids )) ) {
+			$reason = "You have already bought a ticket to this event.";
+		} elseif ( $dateNow < $ticketOpen ) {
+			$reason = "Tickets sales haven't opened yet.";
+		} elseif ( $dateNow > $ticketClose ) {
+			$reason = "SALES CLOSED!";
+		} elseif ( $t->ticket_quantity <= $t->tickets_sold ) {
+			$reason = "Ticket currently SOLD OUT!";
+		} elseif ( $member->graduated && !$t->details->xswa ) {
+			$reason = "This ticket is not available to XSWA members.";
+		} elseif ( !$member->graduated && !$member->swa_committee && !$isRegisteredForEvent ) {
+			// Allow XSWA and SWA to buy tickets when not registered for the event
+			$reason = "You have not been registered for this event by your club committee!";
+		} elseif ( isset($t->details->qualification) && $t->details->qualification && !$member->qualification ) {
+			$reason = "You need to have an approved qualification to buy this ticket.";
+		} elseif ( $t->need_qualification && !$member->qualification ) {
+			// TODO delete when no longer using these fields
+			$reason = "You need to have an approved qualification to buy this ticket.";
+		} elseif ( isset($t->details->committee) && $t->details->committee && !$member->qualification ) {
+			$reason = "You need to be SWA Committee to buy this ticket.";
 		}
 
 		return array($display, $reason);
