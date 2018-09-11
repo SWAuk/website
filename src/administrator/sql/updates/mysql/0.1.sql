@@ -5,7 +5,7 @@
 CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT(11)  NOT NULL ,
-  `paid` TINYINT(1)  NOT NULL DEFAULT 0,
+  `lifetime_member` TINYINT(1)  NOT NULL DEFAULT 0,
   `sex` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
   `dob` DATE NOT NULL DEFAULT '0000-00-00',
   `university_id` INT(11)  NOT NULL ,
@@ -23,6 +23,18 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_member_user_idx` (`user_id` ASC),
   INDEX `fk_member_university_idx` (`university_id` ASC)
+)
+DEFAULT COLLATE=utf8_general_ci;
+
+-- membership
+--
+-- Table holding members that have paid their SWA membership for a season
+CREATE TABLE IF NOT EXISTS `#__swa_membership` (
+  `member_id` INT NOT NULL ,
+  `season_id` INT NOT NULL ,
+  PRIMARY KEY (`member_id`, `season_id`),
+  INDEX `fk_membership_member_idx` (`member_id` ASC),
+  INDEX `fk_membership_season_idx` (`season_id` ASC)
 )
 DEFAULT COLLATE=utf8_general_ci;
 
