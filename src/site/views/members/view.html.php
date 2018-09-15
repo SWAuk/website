@@ -43,6 +43,8 @@ class SwaViewMembers extends JViewLegacy {
 			throw new Exception( 'You must be an SWA committee member to view this page.' );
 		}
 
+		// TODO - should check that the season exists before taking payment
+
 		$this->items = $this->get( 'Items' );
 
 		parent::display( $tpl );
