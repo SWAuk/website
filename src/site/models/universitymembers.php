@@ -6,113 +6,123 @@ jimport( 'joomla.application.component.modeladmin' );
 
 class SwaModelUniversityMembers extends SwaModelList {
 
-	protected $items;
+    protected $items;
 
-	public function getTable( $type = 'Member', $prefix = 'SwaTable', $config = array() ) {
-		return JTable::getInstance( $type, $prefix, $config );
-	}
+    public function getTable( $type = 'Member', $prefix = 'SwaTable', $config = array() ) {
+        return JTable::getInstance( $type, $prefix, $config );
+    }
 
-	public function getListQuery() {
-		$db = $this->getDbo();
-		$query = $db->getQuery( true );
+    public function getListQuery() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
 
-		$query->select( 'member.*' );
-		$query->from( $db->quoteName( '#__swa_member' ) . ' AS member' );
-		$query->where( 'member.university_id = ' . $this->getMember()->university_id );
+        $query->select( 'member.*' );
+        $query->from( $db->qn( '#__swa_member', 'member' ) );
+        $query->where( 'member.university_id = ' . (int)$this->getMember()->university_id );
 
-		// Join onto joomla user table
-		$query->select( 'user.name AS name' );
-		$query->join( 'LEFT', '#__users AS user ON member.user_id = user.id' );
+        // Join onto joomla user table
+        $query->select( 'user.name AS name' );
+        $query->join( 'LEFT', '#__users AS user ON member.user_id = user.id' );
 
-		// Join onto the university_member table
-		$query->leftJoin(
-			$db->quoteName( '#__swa_university_member' ) .
-			' AS university_member ON member.id = university_member.member_id'
-		);
-		$query->select( 'COALESCE( university_member.graduated, 0 ) as graduated' );
-		$query->select( '!ISNULL( university_member.member_id ) as confirmed_university' );
-		$query->select( 'university_member.committee as club_committee' );
+        // Join onto the university_member table
+        $query->leftJoin(
+            $db->qn( '#__swa_university_member', 'uni_member' ) .
+            ' ON member.id = uni_member.member_id'
+        );
+        $query->select( 'COALESCE( uni_member.graduated, 0 ) AS graduated' );
+        $query->select( '!ISNULL( uni_member.member_id ) AS confirmed_university' );
+        $query->select( 'uni_member.committee AS club_committee' );
 
-		return $query;
-	}
 
-	public function getItems() {
-		//NEVER limit this list
-		$this->setState( 'list.limit', '0' );
+        $now = time();
+        $seasonEnd = strtotime( "1st June" );
+        $date = $now < $seasonEnd ? date( "Y", strtotime( '-1 year', $now ) ) : date( "Y", $now );
+        // Join on membership table
+        $query->select( 'membership.season_id' );
+        $query->leftJoin( '#__swa_membership AS membership ON membership.member_id = member.id' );
+        $query->leftJoin( '#__swa_season AS season ON membership.season_id = season.id' );
+        $query->where( '(season.year LIKE "' . (int)$date . '%" OR membership.season_id IS NULL)' );
 
-		if ( !isset( $this->items ) ) {
-			$this->items = parent::getItems();
-		}
+        return $query;
+    }
 
-		return $this->items;
-	}
+    public function getItems() {
+        //NEVER limit this list
+        $this->setState( 'list.limit', '0' );
 
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * Note. Calling getState in this method will result in recursion.
-	 */
-	protected function populateState( $ordering = null, $direction = null ) {
-		// List state information.
-		parent::populateState( 'name', 'desc' );
-	}
+        if ( !isset( $this->items ) ) {
+            $this->items = parent::getItems();
+        }
 
-	/**
-	 * Gets a list of event items that have not yet closed
-	 * @return array
-	 */
-	public function getAvailableEvents() {
-		$db = $this->getDbo();
-		$query = $db->getQuery( true );
+        return $this->items;
+    }
 
-		$query->select( 'event.*' );
-		$query->from( $db->quoteName( '#__swa_event' ) . ' AS event' );
-		$query->where( 'event.date_close >= CURDATE()' );
+    /**
+     * Method to auto-populate the model state.
+     *
+     * Note. Calling getState in this method will result in recursion.
+     */
+    protected function populateState( $ordering = null, $direction = null ) {
+        // List state information.
+        parent::populateState( 'name', 'desc' );
+    }
 
-		$db->setQuery( $query );
-		$result = $db->execute();
+    /**
+     * Gets a list of event items that have not yet closed
+     * @return array
+     */
+    public function getAvailableEvents() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
 
-		if ( !$result ) {
-			JLog::add(
-				'SwaModelUniversityMembers::getAvailableEvents failed to do db query',
-				JLog::ERROR,
-				'com_swa'
-			);
+        $query->select( 'event.*' );
+        $query->from( $db->quoteName( '#__swa_event' ) . ' AS event' );
+        $query->where( 'event.date_close >= CURDATE()' );
 
-			return array();
-		}
+        $db->setQuery( $query );
+        $result = $db->execute();
 
-		return $db->loadObjectList();
-	}
+        if ( !$result ) {
+            JLog::add(
+                'SwaModelUniversityMembers::getAvailableEvents failed to do db query',
+                JLog::ERROR,
+                'com_swa'
+            );
 
-	/**
-	 * Gets a list of event registrations for the members listed
-	 * @return array
-	 */
-	public function getEventRegistrations() {
-		$db = $this->getDbo();
-		$query = $db->getQuery( true );
+            return array();
+        }
 
-		$query->from( $db->quoteName( '#__swa_event_registration' ) . ' AS event_registration' );
-		$query->select( 'event_registration.*' );
-		foreach ( $this->getItems() as $member ) {
-			$query->where( 'event_registration.member_id = ' . $member->id, 'OR' );
-		}
+        return $db->loadObjectList();
+    }
 
-		$db->setQuery( $query );
-		$result = $db->execute();
+    /**
+     * Gets a list of event registrations for the members listed
+     * @return array
+     */
+    public function getEventRegistrations() {
+        $db = $this->getDbo();
+        $query = $db->getQuery( true );
 
-		if ( !$result ) {
-			JLog::add(
-				'SwaModelUniversityMembers::getEventRegistrations failed to do db query',
-				JLog::ERROR,
-				'com_swa'
-			);
+        $query->from( $db->quoteName( '#__swa_event_registration' ) . ' AS event_registration' );
+        $query->select( 'event_registration.*' );
+        foreach ( $this->getItems() as $member ) {
+            $query->where( 'event_registration.member_id = ' . $member->id, 'OR' );
+        }
 
-			return array();
-		}
+        $db->setQuery( $query );
+        $result = $db->execute();
 
-		return $db->loadObjectList( 'id' );
-	}
+        if ( !$result ) {
+            JLog::add(
+                'SwaModelUniversityMembers::getEventRegistrations failed to do db query',
+                JLog::ERROR,
+                'com_swa'
+            );
+
+            return array();
+        }
+
+        return $db->loadObjectList( 'id' );
+    }
 
 }
