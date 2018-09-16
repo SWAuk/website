@@ -10,13 +10,6 @@
                class="readonly"
                description="JGLOBAL_FIELD_ID_DESC"/>
 
-        <field name="paid"
-               type="text"
-               label="Paid"
-               readonly="true"
-               default="0">
-        </field>
-
         <field name="sex"
                type="list"
                label="Sex"
