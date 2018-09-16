@@ -22,9 +22,9 @@
 			required="true"
 			filter="safehtml"/>
 
-		<field name="paid"
+		<field name="lifetime_member"
 			type="checkbox"
-			label="Paid"
+			label="Lifetime Member"
 			default="0">
 		</field>
 
