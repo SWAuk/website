@@ -7,10 +7,10 @@ jimport( 'joomla.application.component.view' );
 class SwaViewMemberDetails extends JViewLegacy {
 
 	protected $state;
-	protected $item;
 	protected $form;
 	protected $params;
 	protected $user;
+    protected $member;
 
 	public function display( $tpl = null ) {
 		$app = JFactory::getApplication();
@@ -32,8 +32,9 @@ class SwaViewMemberDetails extends JViewLegacy {
 			$app->redirect( JRoute::_( $url, false ) );
 		}
 
-		$this->item = $this->get( 'Item' );
-		if ( !$this->item->paid ) {
+		// redirect to memberpayment if not paid
+        $this->member = $this->get('Member');
+		if ( !$this->member->paid ) {
 			$app->redirect( JRoute::_( 'index.php?option=com_swa&view=memberpayment' ) );
 		}
 
