@@ -20,24 +20,22 @@ class SwaModelMemberDetails extends SwaModelForm {
     /**
      * Method to get the record form.
      */
-    public function getForm($data = array(), $loadData = true)
-    {
+    public function getForm( $data = array(), $loadData = true ) {
         $form =
             $this->loadForm(
                 'com_swa.memberdetails',
                 'memberdetails',
-                array('control' => 'jform', 'load_data' => $loadData)
+                array( 'control' => 'jform', 'load_data' => $loadData )
             );
 
-        if (empty($form)) {
+        if ( empty( $form ) ) {
             return false;
         }
 
         return $form;
     }
 
-    protected function loadFormData()
-    {
+    protected function loadFormData() {
         // Check the session for previously entered form data.
         $data =
             JFactory::getApplication()->getUserState(
@@ -45,7 +43,7 @@ class SwaModelMemberDetails extends SwaModelForm {
                 array()
             );
 
-        if (empty($data)) {
+        if ( empty( $data ) ) {
             $data = $this->getItem();
 
         }
