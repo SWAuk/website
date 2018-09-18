@@ -75,11 +75,11 @@ if ($ticket === null) {
 						T-Shirt Size:
 						<select id="tshirt_size" name="tshirt_size">
 							<option value='NULL'>-- SELECT --</option>
-							<option value='Unisex S (38")'>Unisex S (38")</option>
-							<option value='Unisex M (40")'>Unisex M (40")</option>
-							<option value='Unisex L (42")'>Unisex L (42")</option>
-							<option value='Unisex XL (44")'>Unisex XL (44")</option>
-							<option value='Unisex XXL (46")'>Unisex XXL (46")</option>
+							<option value='Unisex S (35/37")'>Unisex S (35/37")</option>
+							<option value='Unisex M (38/40")'>Unisex M (38/40")</option>
+							<option value='Unisex L (41/43")'>Unisex L (41/43")</option>
+							<option value='Unisex XL (44/46")'>Unisex XL (44/46")</option>
+							<option value='Unisex XXL (47/49")'>Unisex XXL (47/49")</option>
 						</select>
                     </div>
                 <?php endif ?>
