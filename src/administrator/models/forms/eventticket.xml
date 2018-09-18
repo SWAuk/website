@@ -54,9 +54,9 @@
 		<field name="details"
 			type="textarea"
 			label="Details"
-			rows="20"
-			cols="20"
-			default=""/>
+			rows="50"
+			cols="10"
+			default='{"tshirt_included": false}'/>
 
 	</fieldset>
 
