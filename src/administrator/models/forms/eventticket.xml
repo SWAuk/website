@@ -1,63 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+    <fieldset>
 
-		<field name="id"
-			type="text"
-			default="0"
-			label="Id"
-			readonly="true"
-			class="readonly"
-			description="JGLOBAL_FIELD_ID_DESC"/>
+        <field name="id"
+               type="text"
+               default="0"
+               label="Id"
+               readonly="true"
+               class="readonly"
+               description="JGLOBAL_FIELD_ID_DESC"/>
 
-		<field name="event_id"
-			type="sql"
-			key_field="id"
-			value_field="name"
-			query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
-			label="Event"
-			required="true"
-			filter="safehtml"/>
+        <field name="event_id"
+               type="sql"
+               key_field="id"
+               value_field="name"
+               query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
+               label="Event"
+               required="true"
+               filter="safehtml"/>
 
-		<field name="name"
-			type="text"
-			size="100"
-			class="inputbox"
-			label="Name"
-			required="true"
-			filter="safehtml"/>
+        <field name="name"
+               type="text"
+               size="100"
+               class="inputbox"
+               label="Name"
+               required="true"
+               filter="safehtml"/>
 
-		<field name="quantity"
-			type="text"
-			size="40"
-			class="inputbox"
-			label="Quantity"
-			required="true"
-			filter="safehtml"/>
+        <field name="quantity"
+               type="text"
+               size="40"
+               class="inputbox"
+               label="Quantity"
+               required="true"
+               filter="safehtml"/>
 
-		<field name="price"
-			type="text"
-			size="40"
-			class="inputbox"
-			label="Price"
-			required="true"
-			filter="safehtml"/>
+        <field name="price"
+               type="text"
+               size="40"
+               class="inputbox"
+               label="Price"
+               required="true"
+               filter="safehtml"/>
 
-		<field name="notes"
-			   type="text"
-			   size="500"
-			   class="inputbox"
-			   label="Notes"
-			   required="false"
-			   filter="safehtml"/>
+        <field name="notes"
+               type="text"
+               size="500"
+               class="inputbox"
+               label="Notes"
+               required="false"
+               filter="safehtml"/>
 
-		<field name="details"
-			type="textarea"
-			label="Details"
-			rows="50"
-			cols="10"
-			default='{"tshirt_included": false}'/>
+        <field name="details"
+               type="textarea"
+               label="Details"
+               rows="50"
+               cols="10"
+               default='{
+               "tshirt_included": true,
+               "visible": "All",
+               "member": {"whitelist": [],"blacklist": []},
+               "university": {"whitelist": [],"blacklist": []},
+               "level": {"whitelist": [],"blacklist": []}
+               }'/>
 
-	</fieldset>
+    </fieldset>
 
 </form>

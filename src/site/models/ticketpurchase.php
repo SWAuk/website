@@ -18,9 +18,9 @@ class SwaModelTicketPurchase extends SwaModelList {
 
             // Select the required fields from the table.
             $query->select( 'a.*' );
-            $query->from( $db->quoteName( '#__swa_member' ) . ' AS a' );
+            $query->from( $db->qn( '#__swa_member', 'a' ) );
             $query->where( 'a.user_id = ' . $user->id );
-            $query->group( 'a.id' );
+            $query->group( $db->qn( 'a.id' ) );
 
             // Join on committee table
             $query->leftJoin( '#__swa_committee as committee on committee.member_id = a.id' );
@@ -227,7 +227,7 @@ class SwaModelTicketPurchase extends SwaModelList {
             $display = false;
             return array( $display, $reason );
         } elseif ( $t->need_swa && !$member->swa_committee ) {
-            // TODO delete when no longer using these fields
+            // TODO delete when no longer using need_swa
             $reason = 'You have to be SWA committee to buy this ticket';
             $display = false;
             return array( $display, $reason );
@@ -281,7 +281,7 @@ class SwaModelTicketPurchase extends SwaModelList {
             }
         }
 
-        // Check if any constraints on member's level
+        // Check if any constraints on member's level whitelist
         if ( !empty( $t->details->level->whitelist ) &&
             !in_array( $member->level, $t->details->level->whitelist ) ) {
             $reason = 'You need to be one of the following levels [';
@@ -294,6 +294,7 @@ class SwaModelTicketPurchase extends SwaModelList {
             }
         }
 
+        // Check if any constraints on member's level blacklist
         if ( !empty( $t->details->level->blacklist ) &&
             in_array( $member->level, $t->details->level->blacklist ) ) {
             $reason = "You can't be one of the following levels [";
