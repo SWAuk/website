@@ -20,10 +20,8 @@ $watcher->track('administrator', __DIR__ . '/src/administrator' );
 $watcher->track('site', __DIR__ . '/src/site' );
 $watcher->track('swa.xml', __DIR__ . '/src/swa.xml' );
 
-$joomlaRoot = trim(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot'));
-if ($joomlaRoot === false) {
-	die('Please create a .joomlaRoot file.');
-}
+$joomlaRoot = __DIR__ . '/.docker/www';
+
 
 $watcher->addListener('administrator', function (FilesystemEvent $event) use ( $joomlaRoot ) {
 	echo "Copying administrator...\n";

@@ -5,29 +5,29 @@ services:
     image: joomla
     restart: always
     volumes:
-      - c:/www/html/swa:/var/www/html
+      - ${JOOMLA_PATH}:/var/www/html
     ports:
-      - 8080:80
+      - ${JOOMLA_PORT}:80
     environment:
-      JOOMLA_DB_HOST: joomladb
+      JOOMLA_DB_HOST: db
       JOOMLA_DB_PASSWORD: example
 
-  joomladb:
+  db:
     image: mysql:5.6
     restart: always
     volumes:
       - db-volume:/var/lib/mysql
     ports:
-      - 3306:3306
+      - ${MYSQL_PORT}:3306
     environment:
       MYSQL_ROOT_PASSWORD: example
 
   adminer:
     image: adminer:4.6
-    build: ./adminer
+    build: ./.docker/adminer
     restart: always
     ports:
-      - 8181:8080
+      - ${ADMINER_PORT}:8080
 
 volumes:
   db-volume:

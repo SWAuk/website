@@ -16,10 +16,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use Lurker\Event\FilesystemEvent;
 use Lurker\ResourceWatcher;
 
-$joomlaRoot = trim(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot'));
-if ($joomlaRoot === false) {
-	die('Please create a .joomlaRoot file.');
-}
+$joomlaRoot = __DIR__ . '/.docker/www';
 
 $watcher = new ResourceWatcher;
 $watcher->track('administrator', $joomlaRoot . '/administrator/components/com_swa' );

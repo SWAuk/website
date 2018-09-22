@@ -50,3 +50,7 @@ local.properties
 # Composer stuff
 vendor
 composer.lock
+
+# Docker stuff
+.env
+.docker
