@@ -1,0 +1,5 @@
+{
+    "require": {
+        "henrikbjorn/lurker": "^1.2"
+    }
+}

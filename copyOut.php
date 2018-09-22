@@ -9,20 +9,40 @@
  * The location of the joomlaRoot to copy from is taken from .joomlaRoot
  *     For example: X:\web\pub\joomla
  */
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+use Lurker\Event\FilesystemEvent;
+use Lurker\ResourceWatcher;
+
+$watcher = new ResourceWatcher;
+$watcher->track('administrator', __DIR__ . '/src/administrator' );
+$watcher->track('site', __DIR__ . '/src/site' );
+$watcher->track('swa.xml', __DIR__ . '/src/swa.xml' );
+
 $joomlaRoot = trim(file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . '.joomlaRoot'));
 if ($joomlaRoot === false) {
 	die('Please create a .joomlaRoot file.');
 }
 
-#Copy all files
-recurse_copy( __DIR__ . '/src/site', $joomlaRoot . '/components/com_swa');
+$watcher->addListener('administrator', function (FilesystemEvent $event) use ( $joomlaRoot ) {
+	echo "Copying administrator...\n";
+	recurse_copy(__DIR__ . '/src/administrator', $joomlaRoot . '/administrator/components/com_swa');
+	echo "Done!\n";
+});
+$watcher->addListener('site', function (FilesystemEvent $event) use ( $joomlaRoot ) {
+	echo "Copying site...\n";
+	recurse_copy( __DIR__ . '/src/site', $joomlaRoot . '/components/com_swa');
+	echo "Done!\n";
+});
+$watcher->addListener('administrator', function (FilesystemEvent $event) use ( $joomlaRoot ) {
+	echo "Copying swa.xml...\n";
+	copy(__DIR__ . '/src/swa.xml', $joomlaRoot . '/administrator/components/com_swa/swa.xml');
+	echo "Done!\n";
+});
 
-recurse_copy(__DIR__ . '/src/administrator', $joomlaRoot . '/administrator/components/com_swa');
-
-#This file needs to go too!
-copy(__DIR__ . '/src/swa.xml', $joomlaRoot . '/administrator/components/com_swa/swa.xml');
-
-echo "Done!";
+echo "Lurking...\n";
+$watcher->start();
 
 /**
  * Taken from the doc page of copy

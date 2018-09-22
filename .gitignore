@@ -46,3 +46,7 @@ local.properties
 # Python-specific
 *.pydevproject
 /nbproject/private/
+
+# Composer stuff
+vendor
+composer.lock
