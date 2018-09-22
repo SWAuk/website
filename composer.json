@@ -1,6 +1,9 @@
 {
+	"name": "swauk/com_swa",
+	"description": "Joomla component holding SWA website functionality",
 	"scripts": {
 		"test": [
+			"composer validate --no-interaction",
 			"phpcs -p -s"
 		],
 		"post-update-cmd": [
