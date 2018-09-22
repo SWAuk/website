@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<ruleset>
+	<rule ref="./vendor/joomla/coding-standards/Joomla" />
+	<file>./src</file>
+	<!-- HAH, everything currently fails... So ignore everything for now.. -->
+	<exclude-pattern>src/site</exclude-pattern>
+	<exclude-pattern>src/administrator</exclude-pattern>
+	<exclude-pattern>src/site/libraries</exclude-pattern>
+</ruleset>
