@@ -53,7 +53,7 @@ require_once( __DIR__ . '/ModelList.php' );
 require_once( __DIR__ . '/ModelForm.php' );
 
 // Setup Stripe
-require_once JPATH_LIBRARIES . '/stripe/init.php';
+require_once __DIR__ . '/libraries/stripe/init.php';
 $jconfig  = JFactory::getConfig();
 \Stripe\Stripe::setApiKey($jconfig->get('stripe_secret_key'));
 \Stripe\Stripe::setApiVersion("2017-05-25");
