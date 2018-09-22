@@ -3,7 +3,6 @@
 defined( '_JEXEC' ) or die;
 
 require_once JPATH_COMPONENT . '/controller.php';
-require_once JPATH_COMPONENT . '/assets/stripe-config.php';
 
 class SwaControllerMemberPayment extends SwaController {
 

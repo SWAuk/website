@@ -3,7 +3,6 @@
 defined( '_JEXEC' ) or die;
 
 require_once JPATH_COMPONENT . '/controller.php';
-require_once JPATH_COMPONENT . '/assets/stripe-config.php';
 
 class SwaControllerTicketPurchase extends SwaController {
 
@@ -33,7 +32,7 @@ class SwaControllerTicketPurchase extends SwaController {
 		$tickets = $model->getItems();
 		$member = $model->getMember();
 		$user = JFactory::getUser();
-		
+
 		// make sure the member was successfully retrieved
 		if ( !$member || !isset($member->id) || !ctype_digit($member->id) ) {
 			$message = "Unable to identify member. " . var_export($member, true);

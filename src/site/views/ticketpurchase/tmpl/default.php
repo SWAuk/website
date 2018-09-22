@@ -7,8 +7,6 @@ JHtml::_( 'behavior.tooltip' );
 JHtml::_( 'behavior.formvalidation' );
 JHtml::_( 'formbehavior.chosen', 'select' );
 
-require_once JPATH_COMPONENT . '/assets/stripe-config.php';
-
 //Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load( 'com_swa', JPATH_ADMINISTRATOR );

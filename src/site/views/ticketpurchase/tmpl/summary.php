@@ -2,8 +2,6 @@
 
 defined( '_JEXEC' ) or die;
 
-require_once JPATH_COMPONENT . '/assets/stripe-config.php';
-
 // load admin language file
 $lang = JFactory::getLanguage();
 $lang->load( 'com_swa', JPATH_ADMINISTRATOR );
