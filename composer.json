@@ -1,5 +1,8 @@
 {
 	"scripts": {
+		"test": [
+			"phpcs -p -s"
+		],
 		"post-update-cmd": [
 			"echo 'Moving stripe into our src directory'",
 			"rm -rf ./src/site/libraries/stripe/*",
@@ -12,6 +15,7 @@
 		"stripe/stripe-php": "4.9.1"
 	},
 	"require-dev": {
-		"henrikbjorn/lurker": "^1.2"
+		"henrikbjorn/lurker": "^1.2",
+		"joomla/coding-standards": "~2.0@alpha"
 	}
 }
