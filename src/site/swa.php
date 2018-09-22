@@ -45,7 +45,7 @@ JLog::addLogger(
 	array( 'com_swa.audit_frontend' )
 );
 
-// Inclue other stuff
+// Include other stuff
 require_once( __DIR__ . '/SwaFactory.php' );
 require_once( __DIR__ . '/ModelItem.php' );
 require_once( __DIR__ . '/ModelList.php' );
