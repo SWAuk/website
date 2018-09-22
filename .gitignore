@@ -53,4 +53,5 @@ composer.lock
 
 # Docker stuff
 .env
-.docker
+.docker/www/*
+.docker/sqldump/*
