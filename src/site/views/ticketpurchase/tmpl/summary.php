@@ -6,6 +6,7 @@ defined('_JEXEC') or die;
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 
+$jconfig   = JFactory::getConfig();
 $app       = JFactory::getApplication();
 $jinput    = $app->input;
 $option    = $jinput->get('option');
@@ -120,7 +121,7 @@ if ($ticket === null)
 
 	<script
 		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		data-key="<?php echo $stripe['publishable_key']; ?>"
+		data-key="<?php echo $jconfig->get('stripe_publishable_key'); ?>"
 		data-amount="<?php echo $ticket->price * 100 ?>"
 		data-currency="GBP"
 		data-label="Pay <?php echo '£' . $ticket->price; ?> now!"
