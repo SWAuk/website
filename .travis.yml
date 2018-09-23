@@ -6,4 +6,4 @@ php:
 
 before_script: composer install
 
-script: composer test
+script: composer run-script test
