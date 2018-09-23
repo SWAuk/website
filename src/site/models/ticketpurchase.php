@@ -373,7 +373,7 @@ class SwaModelTicketPurchase extends SwaModelList
 		{
 			$reason = "Ticket currently SOLD OUT!";
 		}
-		elseif ($member->graduated && !$t->details->xswa)
+		elseif ($member->graduated && (!isset($t->details->xswa) || !$t->details->xswa))
 		{
 			$reason = "This ticket is not available to XSWA members.";
 		}
