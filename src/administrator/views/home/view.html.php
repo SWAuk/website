@@ -1,23 +1,25 @@
 <?php
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.view' );
+jimport('joomla.application.component.view');
 
 /**
  * View to use as default home
  */
-class SwaViewHome extends JViewLegacy {
+class SwaViewHome extends JViewLegacy
+{
 
 	// Overwriting JView display method
-	function display( $tpl = null ) {
+	function display($tpl = null)
+	{
 
-		JToolBarHelper::title( JText::_( 'SWA home' ) );
+		JToolBarHelper::title(JText::_('SWA home'));
 
-		SwaHelper::addSubmenu( 'home' );
+		SwaHelper::addSubmenu('home');
 		$this->sidebar = JHtmlSidebar::render();
 
 		// Display the view
-		parent::display( $tpl );
+		parent::display($tpl);
 	}
 
 }

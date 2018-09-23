@@ -1,47 +1,53 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.view' );
+jimport('joomla.application.component.view');
 
 /**
  * View to edit
  */
-class SwaViewMember extends JViewLegacy {
+class SwaViewMember extends JViewLegacy
+{
 
 	protected $state;
+
 	protected $item;
+
 	protected $form;
 
 	/**
 	 * Display the view
 	 */
-	public function display( $tpl = null ) {
-		$this->state = $this->get( 'State' );
-		$this->item = $this->get( 'Item' );
-		$this->form = $this->get( 'Form' );
+	public function display($tpl = null)
+	{
+		$this->state = $this->get('State');
+		$this->item  = $this->get('Item');
+		$this->form  = $this->get('Form');
 
 		// Check for errors.
-		if ( count( $errors = $this->get( 'Errors' ) ) ) {
-			throw new Exception( implode( "\n", $errors ) );
+		if (count($errors = $this->get('Errors')))
+		{
+			throw new Exception(implode("\n", $errors));
 		}
 
 		$this->addToolbar();
-		parent::display( $tpl );
+		parent::display($tpl);
 	}
 
 	/**
 	 * Add the page title and toolbar.
 	 */
-	protected function addToolbar() {
-		JFactory::getApplication()->input->set( 'hidemainmenu', true );
+	protected function addToolbar()
+	{
+		JFactory::getApplication()->input->set('hidemainmenu', true);
 
-		$isNew = ( $this->item->id == 0 );
+		$isNew = ($this->item->id == 0);
 
-		JToolBarHelper::title( JText::_( 'Member' ), 'member.png' );
+		JToolBarHelper::title(JText::_('Member'), 'member.png');
 
-		JToolBarHelper::apply( 'member.apply', 'JTOOLBAR_APPLY' );
-		JToolBarHelper::save( 'member.save', 'JTOOLBAR_SAVE' );
+		JToolBarHelper::apply('member.apply', 'JTOOLBAR_APPLY');
+		JToolBarHelper::save('member.save', 'JTOOLBAR_SAVE');
 		JToolBarHelper::custom(
 			'member.save2new',
 			'save-new.png',
@@ -51,7 +57,8 @@ class SwaViewMember extends JViewLegacy {
 		);
 
 		// If an existing item, can save to a copy.
-		if ( !$isNew ) {
+		if (!$isNew)
+		{
 			JToolBarHelper::custom(
 				'member.save2copy',
 				'save-copy.png',
@@ -60,10 +67,13 @@ class SwaViewMember extends JViewLegacy {
 				false
 			);
 		}
-		if ( empty( $this->item->id ) ) {
-			JToolBarHelper::cancel( 'member.cancel', 'JTOOLBAR_CANCEL' );
-		} else {
-			JToolBarHelper::cancel( 'member.cancel', 'JTOOLBAR_CLOSE' );
+		if (empty($this->item->id))
+		{
+			JToolBarHelper::cancel('member.cancel', 'JTOOLBAR_CANCEL');
+		}
+		else
+		{
+			JToolBarHelper::cancel('member.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 

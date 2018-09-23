@@ -1,15 +1,17 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.controllerform' );
+jimport('joomla.application.component.controllerform');
 
 /**
  * Competitiontype controller class.
  */
-class SwaControllerCompetitiontype extends SwaControllerForm {
+class SwaControllerCompetitiontype extends SwaControllerForm
+{
 
-	function __construct() {
+	function __construct()
+	{
 		$this->view_list = 'competitiontypes';
 		parent::__construct();
 	}

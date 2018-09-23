@@ -1,12 +1,13 @@
 <?php
-defined( 'JPATH_BASE' ) or die;
+defined('JPATH_BASE') or die;
 
-jimport( 'joomla.form.formfield' );
+jimport('joomla.form.formfield');
 
 /**
  * Supports an HTML select list of categories
  */
-class JFormFieldTimeupdated extends JFormField {
+class JFormFieldTimeupdated extends JFormField
+{
 	/**
 	 * The form field type.
 	 *
@@ -19,25 +20,30 @@ class JFormFieldTimeupdated extends JFormField {
 	 *
 	 * @return    string    The field input markup.
 	 */
-	protected function getInput() {
+	protected function getInput()
+	{
 		// Initialize variables.
 		$html = array();
 
 		$old_time_updated = $this->value;
-		$hidden = (boolean)$this->element['hidden'];
-		if ( $hidden == null || !$hidden ) {
-			if ( !strtotime( $old_time_updated ) ) {
+		$hidden           = (boolean) $this->element['hidden'];
+		if ($hidden == null || !$hidden)
+		{
+			if (!strtotime($old_time_updated))
+			{
 				$html[] = '-';
-			} else {
-				$jdate = new JDate( $old_time_updated );
-				$pretty_date = $jdate->format( JText::_( 'DATE_FORMAT_LC2' ) );
-				$html[] = "<div>" . $pretty_date . "</div>";
+			}
+			else
+			{
+				$jdate       = new JDate($old_time_updated);
+				$pretty_date = $jdate->format(JText::_('DATE_FORMAT_LC2'));
+				$html[]      = "<div>" . $pretty_date . "</div>";
 			}
 		}
-		$time_updated = date( "Y-m-d H:i:s" );
-		$html[] =
+		$time_updated = date("Y-m-d H:i:s");
+		$html[]       =
 			'<input type="hidden" name="' . $this->name . '" value="' . $time_updated . '" />';
 
-		return implode( $html );
+		return implode($html);
 	}
 }

@@ -1,5 +1,6 @@
 <?php
 
-abstract class SwaModelItem extends JModelItem {
+abstract class SwaModelItem extends JModelItem
+{
 	use SwaModelMemberTrait;
 }

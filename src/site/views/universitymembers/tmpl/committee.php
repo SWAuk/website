@@ -1,33 +1,34 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-JHtml::_( 'behavior.keepalive' );
-JHtml::_( 'behavior.tooltip' );
-JHtml::_( 'behavior.formvalidation' );
-JHtml::_( 'formbehavior.chosen', 'select' );
+JHtml::_('behavior.keepalive');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.formvalidation');
+JHtml::_('formbehavior.chosen', 'select');
 
 ?>
 
 <!--</style>-->
 <script type="text/javascript">
-	getScript( '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
-		jQuery( document ).ready( function () {
-			jQuery( '#form-member' ).submit( function ( event ) {
-			} );
-		} );
-	} );
+	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+		jQuery(document).ready(function () {
+			jQuery('#form-member').submit(function (event) {
+			});
+		});
+	});
 </script>
 
 <h1><?php echo $this->member->university_name ?> Members (committee)</h1>
 
 <p><strong>View:
-	<?php
-	foreach( $this->layouts as $layout => $text ) {
-		$href = JRoute::_( 'index.php?option=com_swa&view=universitymembers&layout=' . $layout );
-		echo "<a href='$href' title='$text' style='padding: 5px'>" . ucfirst( $layout ) . "</a>\n";
-	}
-	?>
+		<?php
+		foreach ($this->layouts as $layout => $text)
+		{
+			$href = JRoute::_('index.php?option=com_swa&view=universitymembers&layout=' . $layout);
+			echo "<a href='$href' title='$text' style='padding: 5px'>" . ucfirst($layout) . "</a>\n";
+		}
+		?>
 	</strong></p>
 
 <p>
@@ -36,40 +37,43 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 
 <table class="table table-hover">
 	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Position</th>
-			<th>Demote</th>
-		</tr>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Position</th>
+		<th>Demote</th>
+	</tr>
 	</thead>
 	<tbody>
-		<?php
-		foreach ( $this->items as $item ) {
-			if ( !$item->club_committee ) {
-				continue;
-			}
-			echo "<tr>\n";
-			echo "<td>" . $item->id . "</td>\n";
-			echo "<td>" . $item->name . "</td>\n";
-			echo "<td>" . $item->club_committee . "</td>\n";
-			echo '<td><form id="form-universitymembers-removecommittee-' .
-				$item->id .
-				'" method="POST" action="' .
-				JRoute::_( 'index.php?option=com_swa&task=universitymembers.removecommittee' ) .
-				'">' .
-				'<input type="hidden" name ="member_id" value="' .
-				$item->id .
-				'" />' .
-				'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-removecommittee-' .
-				$item->id .
-				'\').submit(); return false;">(demote)</a>' .
-				JHtml::_( 'form.token' ) .
-				'</form></td>';
-			echo "</tr>\n";
-			echo "</tr>\n";
+	<?php
+	foreach ($this->items as $item)
+	{
+		if (!$item->club_committee)
+		{
+			continue;
 		}
-		?>
+
+		echo "<tr>\n";
+		echo "<td>" . $item->id . "</td>\n";
+		echo "<td>" . $item->name . "</td>\n";
+		echo "<td>" . $item->club_committee . "</td>\n";
+		echo '<td><form id="form-universitymembers-removecommittee-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_('index.php?option=com_swa&task=universitymembers.removecommittee') .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-removecommittee-' .
+			$item->id .
+			'\').submit(); return false;">(demote)</a>' .
+			JHtml::_('form.token') .
+			'</form></td>';
+		echo "</tr>\n";
+		echo "</tr>\n";
+	}
+	?>
 	</tbody>
 </table>
 
@@ -80,36 +84,39 @@ JHtml::_( 'formbehavior.chosen', 'select' );
 
 <table class="table table-hover">
 	<thead>
-		<tr>
-			<th>Id</th>
-			<th>Name</th>
-			<th>Promote</th>
-		</tr>
+	<tr>
+		<th>Id</th>
+		<th>Name</th>
+		<th>Promote</th>
+	</tr>
 	</thead>
 	<tbody>
-		<?php
-		foreach ( $this->items as $item ) {
-			if ( $item->club_committee ) {
-				continue;
-			}
-			echo "<tr>\n";
-			echo "<td>" . $item->id . "</td>\n";
-			echo "<td>" . $item->name . "</td>\n";
-			echo '<td><form id="form-universitymembers-addcommittee-' .
-				$item->id .
-				'" method="POST" action="' .
-				JRoute::_( 'index.php?option=com_swa&task=universitymembers.addcommittee' ) .
-				'">' .
-				'<input type="hidden" name ="member_id" value="' .
-				$item->id .
-				'" />' .
-				'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-addcommittee-' .
-				$item->id .
-				'\').submit(); return false;">(add to committee)</a>' .
-				JHtml::_( 'form.token' ) .
-				'</form></td>';
-			echo "</tr>\n";
+	<?php
+	foreach ($this->items as $item)
+	{
+		if ($item->club_committee)
+		{
+			continue;
 		}
-		?>
+
+		echo "<tr>\n";
+		echo "<td>" . $item->id . "</td>\n";
+		echo "<td>" . $item->name . "</td>\n";
+		echo '<td><form id="form-universitymembers-addcommittee-' .
+			$item->id .
+			'" method="POST" action="' .
+			JRoute::_('index.php?option=com_swa&task=universitymembers.addcommittee') .
+			'">' .
+			'<input type="hidden" name ="member_id" value="' .
+			$item->id .
+			'" />' .
+			'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-addcommittee-' .
+			$item->id .
+			'\').submit(); return false;">(add to committee)</a>' .
+			JHtml::_('form.token') .
+			'</form></td>';
+		echo "</tr>\n";
+	}
+	?>
 	</tbody>
 </table>

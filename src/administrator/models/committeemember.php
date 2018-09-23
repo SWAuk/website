@@ -1,9 +1,10 @@
 <?php
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.modeladmin' );
+jimport('joomla.application.component.modeladmin');
 
-class SwaModelCommitteeMember extends JModelAdmin {
+class SwaModelCommitteeMember extends JModelAdmin
+{
 	/**
 	 * @var        string    The prefix to use with controller messages.
 	 */
@@ -12,26 +13,28 @@ class SwaModelCommitteeMember extends JModelAdmin {
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
-	 * @param string $type The table type to instantiate
-	 * @param string $prefix A prefix for the table class name. Optional.
-	 * @param array $config Configuration array for model. Optional.
+	 * @param   string $type   The table type to instantiate
+	 * @param   string $prefix A prefix for the table class name. Optional.
+	 * @param   array  $config Configuration array for model. Optional.
 	 *
 	 * @return    JTable    A database object
 	 */
-	public function getTable( $type = 'Committee', $prefix = 'SwaTable', $config = array() ) {
-		return JTable::getInstance( $type, $prefix, $config );
+	public function getTable($type = 'Committee', $prefix = 'SwaTable', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
 	}
 
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param    array $data An optional array of data for the form to interogate.
-	 * @param    boolean $loadData True if the form is to load its own data (default case), false
-	 *     if not.
+	 * @param   array   $data     An optional array of data for the form to interogate.
+	 * @param   boolean $loadData True if the form is to load its own data (default case), false
+	 *                            if not.
 	 *
 	 * @return    JForm    A JForm object on success, false on failure
 	 */
-	public function getForm( $data = array(), $loadData = true ) {
+	public function getForm($data = array(), $loadData = true)
+	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
@@ -40,10 +43,11 @@ class SwaModelCommitteeMember extends JModelAdmin {
 			$this->loadForm(
 				'com_swa.committeemember',
 				'committeemember',
-				array( 'control' => 'jform', 'load_data' => $loadData )
+				array('control' => 'jform', 'load_data' => $loadData)
 			);
 
-		if ( empty( $form ) ) {
+		if (empty($form))
+		{
 			return false;
 		}
 
@@ -55,7 +59,8 @@ class SwaModelCommitteeMember extends JModelAdmin {
 	 *
 	 * @return    mixed    The data for the form.
 	 */
-	protected function loadFormData() {
+	protected function loadFormData()
+	{
 		// Check the session for previously entered form data.
 		$data =
 			JFactory::getApplication()->getUserState(
@@ -63,9 +68,9 @@ class SwaModelCommitteeMember extends JModelAdmin {
 				array()
 			);
 
-		if ( empty( $data ) ) {
+		if (empty($data))
+		{
 			$data = $this->getItem();
-
 		}
 
 		return $data;

@@ -2,6 +2,9 @@
 	"name": "swauk/com_swa",
 	"description": "Joomla component holding SWA website functionality",
 	"scripts": {
+		"fix": [
+			"phpcbf"
+		],
 		"test": [
 			"composer validate --no-interaction",
 			"parallel-lint ./src",

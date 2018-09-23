@@ -1,53 +1,53 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-JHtml::addIncludePath( JPATH_COMPONENT . '/helpers/html' );
-JHtml::_( 'behavior.tooltip' );
-JHtml::_( 'behavior.formvalidation' );
-JHtml::_( 'formbehavior.chosen', 'select' );
-JHtml::_( 'behavior.keepalive' );
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.formvalidation');
+JHtml::_('formbehavior.chosen', 'select');
+JHtml::_('behavior.keepalive');
 
 // Import CSS
 $document = JFactory::getDocument();
-$document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
+$document->addStyleSheet('components/com_swa/assets/css/swa.css');
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
-	js( document ).ready( function () {
+	js(document).ready(function () {
 
-	} );
+	});
 
-	Joomla.submitbutton = function ( task ) {
-		if ( task == 'universitymember.cancel' ) {
-			Joomla.submitform( task, document.getElementById( 'universitymember-form' ) );
+	Joomla.submitbutton = function (task) {
+		if (task == 'universitymember.cancel') {
+			Joomla.submitform(task, document.getElementById('universitymember-form'));
 		}
 		else {
 
-			if ( task != 'universitymember.cancel' && document.formvalidator.isValid( document.id( 'universitymember-form' ) ) ) {
+			if (task != 'universitymember.cancel' && document.formvalidator.isValid(document.id('universitymember-form'))) {
 
-				Joomla.submitform( task, document.getElementById( 'universitymember-form' ) );
+				Joomla.submitform(task, document.getElementById('universitymember-form'));
 			}
 			else {
-				alert( '<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>' );
+				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
 			}
 		}
 	}
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
 ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="universitymember-form"
-	  class="form-validate">
+      class="form-validate">
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
 		<?php echo JHtml::_(
 			'bootstrap.addTab',
 			'myTab',
 			'general',
-			JText::_( 'University Member', true )
+			JText::_('University Member', true)
 		); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
@@ -92,14 +92,14 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 				</fieldset>
 			</div>
 		</div>
-		<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 
 
-		<?php echo JHtml::_( 'bootstrap.endTabSet' ); ?>
+		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>
-		<?php echo JHtml::_( 'form.token' ); ?>
+		<?php echo JHtml::_('form.token'); ?>
 
 	</div>
 </form>

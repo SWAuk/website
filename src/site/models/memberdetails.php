@@ -1,53 +1,59 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.modeladmin' );
+jimport('joomla.application.component.modeladmin');
 
-class SwaModelMemberDetails extends SwaModelForm {
+class SwaModelMemberDetails extends SwaModelForm
+{
 
-    public function getTable( $type = 'Member', $prefix = 'SwaTable', $config = array() ) {
-        return JTable::getInstance( $type, $prefix, $config );
-    }
+	public function getTable($type = 'Member', $prefix = 'SwaTable', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
+	}
 
-    /**
-     * @return JTable
-     */
-    public function getItem() {
-        return $this->getMember();
-    }
+	/**
+	 * @return JTable
+	 */
+	public function getItem()
+	{
+		return $this->getMember();
+	}
 
-    /**
-     * Method to get the record form.
-     */
-    public function getForm( $data = array(), $loadData = true ) {
-        $form =
-            $this->loadForm(
-                'com_swa.memberdetails',
-                'memberdetails',
-                array( 'control' => 'jform', 'load_data' => $loadData )
-            );
+	/**
+	 * Method to get the record form.
+	 */
+	public function getForm($data = array(), $loadData = true)
+	{
+		$form =
+			$this->loadForm(
+				'com_swa.memberdetails',
+				'memberdetails',
+				array('control' => 'jform', 'load_data' => $loadData)
+			);
 
-        if ( empty( $form ) ) {
-            return false;
-        }
+		if (empty($form))
+		{
+			return false;
+		}
 
-        return $form;
-    }
+		return $form;
+	}
 
-    protected function loadFormData() {
-        // Check the session for previously entered form data.
-        $data =
-            JFactory::getApplication()->getUserState(
-                'com_swa.edit.memberdetails.data',
-                array()
-            );
+	protected function loadFormData()
+	{
+		// Check the session for previously entered form data.
+		$data =
+			JFactory::getApplication()->getUserState(
+				'com_swa.edit.memberdetails.data',
+				array()
+			);
 
-        if ( empty( $data ) ) {
-            $data = $this->getItem();
+		if (empty($data))
+		{
+			$data = $this->getItem();
+		}
 
-        }
-
-        return $data;
-    }
+		return $data;
+	}
 }
