@@ -36,7 +36,6 @@ $article = $model->getItem($ARTICLE_ID);
 	<div class="checkbox" style="padding: 20px 0 5px">
 		<input id="agree" type="checkbox"/>
 		<label>I have read and agree to the terms and conditions</label>
-		</input>
 	</div>
 	<a href="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase&layout=summary') ?>" id="submit"
 	   class="btn btn-primary disabled">Submit</a>
