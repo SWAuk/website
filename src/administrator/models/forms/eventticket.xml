@@ -58,12 +58,15 @@
                rows="50"
                cols="10"
                default='{
-               "tshirt_included": true,
-               "visible": "All",
-               "member": {"whitelist": [],"blacklist": []},
-               "university": {"whitelist": [],"blacklist": []},
-               "level": {"whitelist": [],"blacklist": []}
-               }'/>
+  "tshirt_included": true,
+  "visible": "All",
+  "xswa": "0",
+  "qualification": "0",
+  "committee": "0",
+  "member": {"whitelist": [],"blacklist": []},
+  "university": {"whitelist": [],"blacklist": []},
+  "level": {"whitelist": [],"blacklist": []}
+}'/>
 
     </fieldset>
 
