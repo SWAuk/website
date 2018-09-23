@@ -27,6 +27,7 @@ class SwaControllerTicketPurchase extends SwaController
 
 		// Create the class that will later be converted to json to be stored in the database
 		$details              = new stdClass;
+		$details->addons      = array();
 		$details->tshirt_size = $tshirt_size;
 
 		// Initialise useful variables
@@ -58,11 +59,11 @@ class SwaControllerTicketPurchase extends SwaController
 		$this->checkUniqueTicket($member->id, $ticket->id);
 
 		function addAddonPrefix($key)
-        {
+		{
 			return "addon_{$key}";
 		}
 
-		$addons = $ticket->details->addons;
+		$addons    = $ticket->details->addons;
 		$addonKeys = array_keys($addons);
 		$addonKeys = array_map("addAddonPrefix", $addonKeys);
 		$addonKeys = array_fill_keys($addonKeys, 'int');
@@ -70,9 +71,12 @@ class SwaControllerTicketPurchase extends SwaController
 
 		$totalCost = $ticket->price;
 		foreach ($addons as $key => $addon)
-{
-			$addonQty = $addonQtys["addon_{$key}"];
+		{
+			$addonQty  = $addonQtys["addon_{$key}"];
 			$totalCost += $addon->price * $addonQty;
+
+			// create addon details which will be converted to json and stored in the database
+			$details->addons[$addon->name] = array("qty" => $addonQty, "price" => $addon->price);
 		}
 
 		// Make sure the we managed to find the ticket
