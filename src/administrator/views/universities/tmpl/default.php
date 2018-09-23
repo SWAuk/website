@@ -44,7 +44,7 @@ $sortFields = $this->getSortFields();
 </script>
 
 <?php
-//code to allow adding non select list filters
+// Code to allow adding non select list filters
 if (!empty($this->extra_sidebar))
 {
 	$this->sidebar .= $this->extra_sidebar;

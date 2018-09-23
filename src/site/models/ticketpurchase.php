@@ -80,7 +80,6 @@ class SwaModelTicketPurchase extends SwaModelList
 			$db->setQuery($query);
 			$this->member = $db->loadObject();
 
-			//
 			if ($this->member !== null)
 			{
 				$this->member->paid = $this->member->season_id != null || $this->member->lifetime_member;

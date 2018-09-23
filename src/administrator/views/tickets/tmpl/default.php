@@ -8,7 +8,7 @@ JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
 $user = JFactory::getUser();
-//$userId = $user->get( 'id' );
+// $userId = $user->get( 'id' );
 $listOrder = $this->state->get('list.ordering');
 $saveOrder = $listOrder == 'ticket.ordering';
 $listDirn  = $this->state->get('list.direction');
@@ -43,7 +43,7 @@ $sortFields = $this->getSortFields();
 </script>
 
 <?php
-//Joomla Component Creator code to allow adding non select list filters
+// Joomla Component Creator code to allow adding non select list filters
 if (!empty($this->extra_sidebar))
 {
 	$this->sidebar .= $this->extra_sidebar;

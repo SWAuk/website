@@ -14,7 +14,6 @@
 		<exclude name="Joomla.Commenting.FunctionComment.MissingReturn"/>
 		<exclude name="Joomla.Commenting.FunctionComment.BeforeParamType"/>
 		<exclude name="Joomla.Commenting.FunctionComment.WrongStyle"/>
-		<exclude name="Joomla.Commenting.SingleComment.NoSpace"/>
 		<exclude name="Joomla.Commenting.SingleComment.SameLine"/>
 		<exclude name="Joomla.Commenting.SingleComment.BlankBefore"/>
 		<!-- Naming -->

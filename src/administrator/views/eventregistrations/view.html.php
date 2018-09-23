@@ -48,7 +48,7 @@ class SwaViewEventregistrations extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('Event Registrations'), 'eventregistrations.png');
 
-		//Check if the form exists before showing the add/edit buttons
+		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/eventregistration';
 		if (file_exists($formPath))
 		{
@@ -70,7 +70,7 @@ class SwaViewEventregistrations extends JViewLegacy
 			JToolBarHelper::preferences('com_swa');
 		}
 
-		//Set sidebar action - New in 3.0
+		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_swa&view=eventregistrations');
 
 		$this->extra_sidebar = '';

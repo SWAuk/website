@@ -28,7 +28,7 @@ $lang->load('com_swa', JPATH_ADMINISTRATOR);
 	<input type="hidden" name="option" value="com_swa"/>
 	<input type="hidden" name="task" value="memberpayment.submit"/>
 	<script
-		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		src="https:// Checkout.stripe.com/checkout.js" class="stripe-button"
 		data-key="<?php echo $stripe['publishable_key']; ?>"
 		data-amount="500"
 		data-currency="GBP"

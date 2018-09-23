@@ -45,7 +45,7 @@ $sortFields = $this->getSortFields();
 </script>
 
 <?php
-//Joomla Component Creator code to allow adding non select list filters
+// Joomla Component Creator code to allow adding non select list filters
 if (!empty($this->extra_sidebar))
 {
 	$this->sidebar .= $this->extra_sidebar;
@@ -308,4 +308,4 @@ if (!empty($this->extra_sidebar))
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			<?php echo JHtml::_('form.token'); ?>
 		</div>
-</form>        
+</form>

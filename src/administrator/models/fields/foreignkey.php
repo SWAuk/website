@@ -32,22 +32,22 @@ class JFormFieldForeignKey extends JFormField
 	protected function getInput()
 	{
 
-		//Assign field properties.
-		//Type of input the field shows
+		// Assign field properties.
+		// Type of input the field shows
 		$this->input_type = $this->getAttribute('input_type');
 
-		//Database Table
+		// Database Table
 		$this->table = $this->getAttribute('table');
 
-		//The field that the field will save on the database
+		// The field that the field will save on the database
 		$this->key_field = $this->getAttribute('key_field');
 
-		//The column that the field shows in the input
+		// The column that the field shows in the input
 		$this->value_field = $this->getAttribute('value_field');
 		// Initialize variables.
 		$html = '';
 
-		//Load all the field options
+		// Load all the field options
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
@@ -65,14 +65,14 @@ class JFormFieldForeignKey extends JFormField
 
 		$input_options = 'class="' . $this->getAttribute('class') . '"';
 
-		//Depends of the type of input, the field will show a type or another
+		// Depends of the type of input, the field will show a type or another
 		switch ($this->input_type)
 		{
 			case 'list':
 			default:
 				$options = array();
 
-				//Iterate through all the results
+				// Iterate through all the results
 				foreach ($results as $result)
 				{
 					$options[] =
@@ -85,7 +85,7 @@ class JFormFieldForeignKey extends JFormField
 
 				$value = $this->value;
 
-				//If the value is a string -> Only one result
+				// If the value is a string -> Only one result
 				if (is_string($value))
 				{
 					$value = array($value);
@@ -94,11 +94,11 @@ class JFormFieldForeignKey extends JFormField
 					$value
 				))
 				{
-					//If the value is an object, let's get its properties.
+					// If the value is an object, let's get its properties.
 					$value = get_object_vars($value);
 				}
 
-				//If the select is multiple
+				// If the select is multiple
 				if ($this->multiple)
 				{
 					$input_options .= 'multiple="multiple"';
