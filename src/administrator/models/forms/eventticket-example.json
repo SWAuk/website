@@ -1,0 +1,7 @@
+{
+  "tshirt_included": true,
+  "visible": "All",
+  "member": {"whitelist": [],"blacklist": []},
+  "university": {"whitelist": [],"blacklist": []},
+  "level": {"whitelist": [],"blacklist": []}
+}
