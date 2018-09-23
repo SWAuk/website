@@ -411,7 +411,8 @@ GROUP BY comp_type.id;"
 				sort($results, SORT_NUMERIC);
 				foreach ($results as $key => $result)
 				{
-					$teamNumber                                  = $key + 1; // 0 index so add 1 so it makes sense
+					// $key is 0 index, so add 1 so it makes sense
+					$teamNumber                                  = $key + 1;
 					$items[$uniName . '-' . $teamNumber]['name'] = $uniName;
 					$items[$uniName . '-' . $teamNumber]['team'] = $teamNumber;
 					// Also count the number of competitions for the team and add up the final result.
