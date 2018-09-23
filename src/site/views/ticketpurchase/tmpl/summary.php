@@ -40,28 +40,30 @@ if ($ticket === null)
 		// If we have a tshirt or addons
 		if ($tshirt_size.length || $addons.length) {
 			// Then disable the stripe button
-			$stripeBtn = jQuery('.stripe-button-el');
+			$stripeBtn = jQuery('#stripe-button');
 			$stripeBtn.prop('disabled', true);
 
 			// Define a check to happen when one of our inputs changes
 			$ticketCheck = function (event) {
 				$addons = jQuery(".swa-addon");
-				$ticketPrice = parseInt(jQuery(".swa-ticket").attr('data-price'));
+				$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
 
 				// Add together the price of addons we have and update total
 				$addonsPrice = 0;
 				$addons.each((function(i, obj){
 					if ( jQuery(obj).val() != "NULL" ) {
 						$addonQuantity = parseInt( jQuery(obj).val() );
-						$addonPrice = parseInt( jQuery(obj).attr('data-price') );
+						$addonPrice = parseFloat( jQuery(obj).attr('data-price') );
 						this.$addonsPrice += ( $addonQuantity * $addonPrice )
 
 					}
 				}).bind(this));
 
 				$total = $ticketPrice + $addonsPrice;
-				$total = Number($total).toFixed(2);
-				jQuery('.stripe-button-el span')[0].innerHTML = "Pay £" + $total + " now!";
+				$total = $total.toFixed(2);
+				//jQuery('.stripe-button').attr('data-label',"Pay £" + $total + " now!");
+				jQuery('#stripe-button').attr('data-amount',$total * 100);
+				jQuery('#stripe-button span')[0].innerHTML = "Pay £" + $total + " now!";
 
 				// Check if the stripe button should be enabled
 				$buttonEnabled = true;
@@ -71,7 +73,7 @@ if ($ticket === null)
 						this.$buttonEnabled = false;
 					}
 				}).bind(this));
-				jQuery('.stripe-button-el').prop('disabled', !$buttonEnabled);
+				jQuery('#stripe-button').prop('disabled', !$buttonEnabled);
 			};
 
 			// Listen to input changes
@@ -85,11 +87,12 @@ if ($ticket === null)
 <h1>Order Summary</h1>
 
 
-<form action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" method="POST">
+<form id="stripe-form" action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" method="POST">
 	<input type="hidden" name="option" value="com_swa"/>
 	<input type="hidden" name="task" value="ticketpurchase.submit"/>
 	<input type="hidden" name="return" value="index.php?option=com_swa&view=membertickets"/>
 	<input type="hidden" name="ticketId" value="<?php echo $ticket->id ?>"/>
+	<input type="hidden" id="stripeToken" name="stripeToken" value="NULL"/>
 
 	<table class="table">
 		<tr>
@@ -142,19 +145,43 @@ if ($ticket === null)
 		}
 		?>
 	</table>
-
-	<script
-		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-		data-key="<?php echo $jconfig->get('stripe_publishable_key'); ?>"
-		data-amount="<?php echo $ticket->price * 100 ?>"
-		data-currency="GBP"
-		data-label="Pay <?php echo '£' . $ticket->price; ?> now!"
-		data-name="SWA"
-		data-description="<?php echo $ticket->event_name . ' - ' . $ticket->ticket_name; ?>"
-		data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-		data-locale="auto"
-		data-zip-code="true"
-		data-email="<?php echo $this->user->email ?>"
-		data-allow-remember-me="false">
-	</script>
 </form>
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<button class="btn btn-primary btn-lg" id="stripe-button">
+	<span class="glyphicon glyphicon-shopping-cart">Pay <?php echo '£' . $ticket->price; ?> now!</span>
+</button>
+
+<script>
+	var handler = StripeCheckout.configure({
+		key: "<?php echo $jconfig->get('stripe_publishable_key'); ?>",
+		image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+		locale: 'auto',
+		email: "<?php echo $this->user->email ?>",
+		token: function(res){
+			jQuery('#stripeToken').val(res.id);
+			jQuery('#stripe-form').submit();
+		}
+	});
+
+	document.getElementById('stripe-button').addEventListener('click', function(e) {
+		// Open Checkout with further options:
+		var amount = parseInt(jQuery("#stripe-button").attr('data-amount'));
+
+		// Open Checkout with further options:
+		handler.open({
+			name: 'SWA',
+			description: "<?php echo $ticket->event_name . ' - ' . $ticket->ticket_name; ?>",
+			currency:    'GBP',
+			zipCode: true,
+			amount: amount
+		});
+		e.preventDefault();
+	});
+
+	// Close Checkout on page navigation:
+	window.addEventListener('popstate', function() {
+		handler.close();
+	});
+</script>
