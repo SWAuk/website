@@ -59,7 +59,15 @@ else
 			echo "<td>" . $item->event_date . "</td>\n";
 			echo "<td>" . $item->ticket_close . "</td>\n";
 			echo "<td>" . $item->ticket_name . "</td>\n";
-			echo "<td>" . $item->price . "</td>\n";
+
+			//
+			if ( isset( $item->details ) && isset( $item->details->addons ) && !empty( $item->details->addons ) ) {
+				echo "<td>From: £" . $item->price . "*</td>\n";
+
+			} else {
+				echo "<td>£" . $item->price . "</td>\n";
+			}
+
 			echo "<td>" . $item->notes . "</td>\n";
 			echo "<td>";
 
@@ -85,5 +93,6 @@ else
 		?>
 		</tbody>
 	</table>
+	<small>* Addons optionally increase price.</small>
 	<?php
 }

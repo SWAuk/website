@@ -6,5 +6,12 @@
   "committee": false,
   "member": {"whitelist": [],"blacklist": []},
   "university": {"whitelist": [],"blacklist": []},
-  "level": {"whitelist": [],"blacklist": []}
+  "level": {"whitelist": [],"blacklist": []},
+  "addons": [
+      {
+          "name": "Dummy Addon",
+          "description": "Dummy Addon that does something",
+          "price": 0
+      }
+  ]
 }
