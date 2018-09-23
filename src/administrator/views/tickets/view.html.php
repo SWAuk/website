@@ -50,7 +50,7 @@ class SwaViewTickets extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('Tickets'), 'tickets.png');
 
-		//Check if the form exists before showing the add/edit buttons
+		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/ticket';
 		if (file_exists($formPath))
 		{
@@ -72,7 +72,7 @@ class SwaViewTickets extends JViewLegacy
 			JToolBarHelper::preferences('com_swa');
 		}
 
-		//Set sidebar action - New in 3.0
+		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_swa&view=tickets');
 
 		$this->extra_sidebar = '';

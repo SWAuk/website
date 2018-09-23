@@ -7,7 +7,7 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 
-//Load admin language file
+// Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 $doc = JFactory::getDocument();

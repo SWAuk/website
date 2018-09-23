@@ -92,7 +92,7 @@ if ($ticket === null)
 	</table>
 
 	<script
-		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		src="https:// Checkout.stripe.com/checkout.js" class="stripe-button"
 		data-key="<?php echo $stripe['publishable_key']; ?>"
 		data-amount="<?php echo $ticket->price * 100 ?>"
 		data-currency="GBP"

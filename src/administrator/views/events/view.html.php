@@ -49,7 +49,7 @@ class SwaViewEvents extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('Events'), 'events.png');
 
-		//Check if the form exists before showing the add/edit buttons
+		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/event';
 		if (file_exists($formPath))
 		{
@@ -71,7 +71,7 @@ class SwaViewEvents extends JViewLegacy
 			JToolBarHelper::preferences('com_swa');
 		}
 
-		//Set sidebar action - New in 3.0
+		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_swa&view=events');
 
 		$this->extra_sidebar = '';

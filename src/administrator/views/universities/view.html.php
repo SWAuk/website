@@ -49,7 +49,7 @@ class SwaViewUniversities extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('Universities'), 'universities.png');
 
-		//Check if the form exists before showing the add/edit buttons
+		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university';
 		if (file_exists($formPath))
 		{
@@ -71,7 +71,7 @@ class SwaViewUniversities extends JViewLegacy
 			JToolBarHelper::preferences('com_swa');
 		}
 
-		//Set sidebar action - New in 3.0
+		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_swa&view=universities');
 
 		$this->extra_sidebar = '';

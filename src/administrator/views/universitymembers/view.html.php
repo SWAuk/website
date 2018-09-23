@@ -50,7 +50,7 @@ class SwaViewUniversityMembers extends JViewLegacy
 
 		JToolBarHelper::title(JText::_('University Members'), 'universitymembers.png');
 
-		//Check if the form exists before showing the add/edit buttons
+		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/universitymember';
 		if (file_exists($formPath))
 		{
@@ -72,7 +72,7 @@ class SwaViewUniversityMembers extends JViewLegacy
 			JToolBarHelper::preferences('com_swa');
 		}
 
-		//Set sidebar action - New in 3.0
+		// Set sidebar action - New in 3.0
 		JHtmlSidebar::setAction('index.php?option=com_swa&view=universitymembers');
 
 		$this->extra_sidebar = '';

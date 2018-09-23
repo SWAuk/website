@@ -23,7 +23,7 @@ class SwaTablemember extends JTable
 	 */
 	public function bind($array, $ignore = '')
 	{
-		//Support for checkbox field: paid
+		// Support for checkbox field: paid
 		if (!isset($array['paid']))
 		{
 			$array['paid'] = 0;

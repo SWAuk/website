@@ -39,7 +39,7 @@ class SwaControllerQualifications extends SwaControllerAdmin
 		}
 		$qualification = $db->loadObject();
 
-		//output the file?
+		// Output the file?
 		header("Content-type: " . $qualification->file_type);
 		print($qualification->file);
 		exit();
