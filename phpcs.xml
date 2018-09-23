@@ -34,9 +34,8 @@
 		<exclude name="Joomla.WhiteSpace.MemberVarSpacing.FirstMember"/>
 		<!-- Lines -->
 		<exclude name="Generic.Files.LineLength.TooLong"/>
-		<!-- Other Formating -->
+		<!-- Other Formatting -->
 		<exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine"/>
-		<exclude name="Zend.Files.ClosingTag.NotAllowed"/>
 		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
 		<exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"/>
 		<!-- Other -->

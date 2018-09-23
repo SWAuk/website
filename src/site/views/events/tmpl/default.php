@@ -56,4 +56,5 @@ foreach ($eventsBySeason as $seasonYear => $events)
 			</div>
 		</div>
 	</div>
-<?php } ?>
+<?php }
+// No closing PHP tag, so we are still in php here! :)
