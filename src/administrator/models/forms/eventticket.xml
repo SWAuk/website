@@ -60,9 +60,9 @@
                default='{
   "tshirt_included": true,
   "visible": "All",
-  "xswa": "0",
-  "qualification": "0",
-  "committee": "0",
+  "xswa": false,
+  "qualification": false,
+  "committee": false,
   "member": {"whitelist": [],"blacklist": []},
   "university": {"whitelist": [],"blacklist": []},
   "level": {"whitelist": [],"blacklist": []}
