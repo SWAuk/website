@@ -57,6 +57,22 @@ class SwaControllerTicketPurchase extends SwaController
 
 		$this->checkUniqueTicket($member->id, $ticket->id);
 
+		function addAddonPrefix ($key) {
+			return "addon_{$key}";
+		}
+
+		$addons = $ticket->details->addons;
+		$addonKeys = array_keys($addons);
+		$addonKeys = array_map("addAddonPrefix", $addonKeys);
+		$addonKeys = array_fill_keys($addonKeys, 'int');
+		$addonQtys = $this->input->getArray($addonKeys);
+
+		$totalCost = $ticket->price;
+		foreach ($addons as $key => $addon){
+			$addonQty = $addonQtys["addon_{$key}"];
+			$totalCost += $addon->price * $addonQty;
+		}
+
 		// Make sure the we managed to find the ticket
 		if ($ticket != null)
 		{
@@ -65,7 +81,8 @@ class SwaControllerTicketPurchase extends SwaController
 				$charge = \Stripe\Charge::create(
 					array(
 						'description'          => $ticket->event_name . ' - ' . $ticket->ticket_name,
-						'amount'               => $ticket->price * 100,
+						// stripe amount is in pence
+						'amount'               => $totalCost * 100,
 						'currency'             => 'GBP',
 						'receipt_email'        => $user->email,
 						'statement_descriptor' => "SWA Ticket {$ticket->id}",
@@ -196,6 +213,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$query->values(
 			"{$db->quote($memberId)}, " .
 			"{$db->quote($eventTicketId)}, " .
+			// stripe amount is in pence
 			"{$db->quote($charge->amount/100.0)}, " .
 			"{$db->quote(json_encode($details))}"
 		);
