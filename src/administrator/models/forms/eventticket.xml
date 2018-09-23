@@ -51,6 +51,7 @@
                required="false"
                filter="safehtml"/>
 
+        <!-- You can find the JSON in eventticket-example.json to copy to here-->
         <field name="details"
                type="textarea"
                label="Details"
