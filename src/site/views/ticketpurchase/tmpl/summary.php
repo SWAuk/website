@@ -44,7 +44,7 @@ if ($ticket === null)
 			$stripeBtn.prop('disabled', true);
 
 			// Define a check to happen when one of our inputs changes
-			$ticketCheck = function(event) {
+			$ticketCheck = function (event) {
 				$addons = jQuery(".swa-addon");
 				$ticketPrice = parseInt(jQuery(".swa-ticket").attr('data-price'));
 
@@ -97,7 +97,7 @@ if ($ticket === null)
 			<th>Product</th>
 			<th>Price</th>
 		</tr>
-		<tr class="swa-ticket" data-price="<?php echo $ticket->price;?>" >
+		<tr class="swa-ticket" data-price="<?php echo $ticket->price; ?>">
 			<td>1</td>
 			<td>
 				<div><?php echo $ticket->event_name . ' - ' . $ticket->ticket_name ?></div>
@@ -120,19 +120,24 @@ if ($ticket === null)
 			<td><?php echo '£' . $ticket->price; ?></td>
 		</tr>
 		<?php
-		if ( isset( $ticket->details ) && isset( $ticket->details->addons ) && !empty( $ticket->details->addons ) ) {
-			foreach ( $ticket->details->addons as $key => $addon ) {
+		if (isset($ticket->details) && isset($ticket->details->addons) && !empty($ticket->details->addons))
+		{
+			foreach ($ticket->details->addons as $key => $addon)
+			{
 				?>
 				<tr>
-					<td><select class="swa-addon" id="<?php echo "addon_" . $key?>" name="<?php echo "addon_" . $key?>" data-price="<?php echo $addon->price?>">
+					<td>
+						<select class="swa-addon" id="<?php echo "addon_{$key}" ?>" name="<?php echo "addon_{$key}" ?>"
+						        data-price="<?php echo $addon->price ?>">
 							<option value="NULL">-- SELECT --</option>
 							<option value="0">0</option>
 							<option value="1">1</option>
-						</select> </td>
+						</select>
+					</td>
 					<td><?php echo $addon->name . '<br/>' . $addon->description ?></td>
-					<td>£<?php echo number_format( $addon->price, 2 ) ?></td>
+					<td>£<?php echo number_format($addon->price, 2) ?></td>
 				</tr>
-		<?php
+				<?php
 			}
 		}
 		?>
