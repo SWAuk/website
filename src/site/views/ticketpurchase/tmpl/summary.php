@@ -89,6 +89,22 @@ if ($ticket === null)
 			</td>
 			<td><?php echo '£' . $ticket->price ?></td>
 		</tr>
+		<?php
+		if ( isset( $ticket->details ) && isset( $ticket->details->addons ) && !empty( $ticket->details->addons ) ) {
+			foreach ( $ticket->details->addons as $key => $addon ) {
+				?>
+				<tr>
+					<td><select id="<?php echo "addon_" . $key?>" name="<?php echo "addon_" . $key?>">
+							<option value="0">0</option>
+							<option value="1">1</option>
+						</select> </td>
+					<td><?php echo $addon->name . '<br/>' . $addon->description ?></td>
+					<td>£<?php echo number_format( $addon->price, 2 ) ?></td>
+				</tr>
+		<?php
+			}
+		}
+		?>
 	</table>
 
 	<script
