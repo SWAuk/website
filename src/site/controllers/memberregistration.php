@@ -32,9 +32,7 @@ class SwaControllerMemberRegistration extends SwaController
 
 		if (!$form)
 		{
-			JError::raiseError(500, $model->getError());
-
-			return false;
+			throw new Exception( 'No form: ' . $model->getError() );
 		}
 
 		// Validate the posted data.
