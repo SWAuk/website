@@ -35,18 +35,28 @@ if ($ticket === null)
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
 	jQuery(document).ready(function () {
 		$tshirt_size = jQuery('#tshirt_size');
-		// only disable the stripe button if the user has to select a t-shirt size
-		if ($tshirt_size.length) {
+		$addons = jQuery(".swa-addon");
+		// If we have a tshirt or addons
+		if ($tshirt_size.length || $addons.length) {
+			// Then disable the stripe button
 			$stripeBtn = jQuery('.stripe-button-el');
 			$stripeBtn.prop('disabled', true);
 
-			// enable/disable button when the t-shirt size is changed
-			$tshirt_size.change(function (event) {
-				if (jQuery(this).val() == "NULL") {
-					$stripeBtn.prop('disabled', true);
-				} else {
-					$stripeBtn.prop('disabled', false);
-				}
+			// Define a check to happen when one of our inputs changes
+			$ticketCheck = function(event) {
+				$buttonEnabled = true;
+				$elementsToCheck = jQuery('#tshirt_size').add(jQuery(".swa-addon"));
+				$elementsToCheck.each((function(i, obj){
+					if ( jQuery(obj).val() == "NULL" ) {
+						this.$buttonEnabled = false;
+					}
+				}).bind(this));
+				jQuery('.stripe-button-el').prop('disabled', !$buttonEnabled);
+			};
+
+			// Listen to input changes
+			jQuery('#tshirt_size').add(jQuery(".swa-addon")).change(function (event) {
+				$ticketCheck(event);
 			});
 		}
 	});
@@ -87,14 +97,15 @@ if ($ticket === null)
 					</div>
 				<?php endif ?>
 			</td>
-			<td><?php echo '£' . $ticket->price ?></td>
+			<td><?php echo '£' . $ticket->price; ?></td>
 		</tr>
 		<?php
 		if ( isset( $ticket->details ) && isset( $ticket->details->addons ) && !empty( $ticket->details->addons ) ) {
 			foreach ( $ticket->details->addons as $key => $addon ) {
 				?>
 				<tr>
-					<td><select id="<?php echo "addon_" . $key?>" name="<?php echo "addon_" . $key?>">
+					<td><select class="swa-addon" id="<?php echo "addon_" . $key?>" name="<?php echo "addon_" . $key?>">
+							<option value="NULL">-- SELECT --</option>
 							<option value="0">0</option>
 							<option value="1">1</option>
 						</select> </td>
@@ -112,7 +123,7 @@ if ($ticket === null)
 		data-key="<?php echo $stripe['publishable_key']; ?>"
 		data-amount="<?php echo $ticket->price * 100 ?>"
 		data-currency="GBP"
-		data-label="Pay now!"
+		data-label="Pay <?php echo '£' . $ticket->price; ?> now!"
 		data-name="SWA"
 		data-description="<?php echo $ticket->event_name . ' - ' . $ticket->ticket_name; ?>"
 		data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
