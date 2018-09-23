@@ -32,8 +32,6 @@
 		<exclude name="Joomla.ControlStructures.WhiteSpaceBefore.SpaceBefore"/>
 		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace"/>
 		<exclude name="Joomla.WhiteSpace.MemberVarSpacing.FirstMember"/>
-		<!-- Lines -->
-		<exclude name="Generic.Files.LineLength.TooLong"/>
 		<!-- Other Formatting -->
 		<exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine"/>
 		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
@@ -42,6 +40,12 @@
 		<exclude name="Joomla.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
 		<exclude name="Joomla.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
 		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/>
+	</rule>
+
+	<rule ref="Generic.Files.LineLength">
+		<properties>
+			<property name="lineLimit" value="198" />
+		</properties>
 	</rule>
 
 	<file>./src</file>
