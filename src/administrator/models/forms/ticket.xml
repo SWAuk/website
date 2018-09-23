@@ -36,6 +36,14 @@
 			required="true"
 			filter="safehtml"/>
 
+        <field name="details"
+               type="textarea"
+               readonly="true"
+               label="Details"
+               rows="10"
+               cols="50"
+        />
+
 	</fieldset>
 
 </form>

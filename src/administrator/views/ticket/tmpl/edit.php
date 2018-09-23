@@ -8,9 +8,6 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.keepalive');
 
-// Import CSS
-$document = JFactory::getDocument();
-$document->addStyleSheet('components/com_swa/assets/css/swa.css');
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
@@ -35,20 +32,12 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 	}
 </script>
 
-<form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
-); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="ticket-form"
-      class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id); ?>"
+      method="post" enctype="multipart/form-data" name="adminForm" id="ticket-form" class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
-
-		<?php echo JHtml::_(
-			'bootstrap.addTab',
-			'myTab',
-			'general',
-			JText::_('Ticket', true)
-		); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('Ticket', true)); ?>
 
 		<p>If a user does not appear here it may be due to them not being part of a university yet.</p>
 
@@ -57,35 +46,40 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'id'
-							); ?></div>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('id'); ?>
+						</div>
 						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'member_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'member_id'
-							); ?></div>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('member_id'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('member_id'); ?>
+						</div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'event_ticket_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'event_ticket_id'
-							); ?></div>
+						<div class="control-label">
+							<?php echo $this->form->getLabel('event_ticket_id'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('event_ticket_id'); ?>
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="control-label">
+							<?php echo $this->form->getLabel('details'); ?>
+						</div>
+						<div class="controls">
+							<?php echo $this->form->getInput('details'); ?>
+						</div>
 					</div>
 
 				</fieldset>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-
-
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>
