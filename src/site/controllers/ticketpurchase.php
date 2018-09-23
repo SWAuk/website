@@ -58,14 +58,12 @@ class SwaControllerTicketPurchase extends SwaController
 
 		$this->checkUniqueTicket($member->id, $ticket->id);
 
-		function addAddonPrefix($key)
-		{
+		$addAddonPrefix = function ($key) {
 			return "addon_{$key}";
-		}
-
+		};
 		$addons    = $ticket->details->addons;
 		$addonKeys = array_keys($addons);
-		$addonKeys = array_map("addAddonPrefix", $addonKeys);
+		$addonKeys = array_map($addAddonPrefix, $addonKeys);
 		$addonKeys = array_fill_keys($addonKeys, 'int');
 		$addonQtys = $this->input->getArray($addonKeys);
 
