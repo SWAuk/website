@@ -60,11 +60,12 @@ else
 			echo "<td>" . $item->ticket_close . "</td>\n";
 			echo "<td>" . $item->ticket_name . "</td>\n";
 
-			//
-			if ( isset( $item->details ) && isset( $item->details->addons ) && !empty( $item->details->addons ) ) {
+			if (isset($item->details) && isset($item->details->addons) && !empty($item->details->addons))
+			{
 				echo "<td>From: £" . $item->price . "*</td>\n";
-
-			} else {
+			}
+			else
+			{
 				echo "<td>£" . $item->price . "</td>\n";
 			}
 
