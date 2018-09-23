@@ -10,7 +10,7 @@ class SwaViewHome extends JViewLegacy
 {
 
 	// Overwriting JView display method
-	function display($tpl = null)
+	public function display($tpl = null)
 	{
 
 		JToolBarHelper::title(JText::_('SWA home'));

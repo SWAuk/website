@@ -10,7 +10,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerSeason extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'seasons';
 		parent::__construct();

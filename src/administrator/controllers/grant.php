@@ -10,7 +10,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerGrant extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'grants';
 		parent::__construct();

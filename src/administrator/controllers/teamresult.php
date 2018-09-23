@@ -10,7 +10,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerTeamresult extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'teamresults';
 		parent::__construct();

@@ -10,7 +10,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerTicket extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'tickets';
 		parent::__construct();

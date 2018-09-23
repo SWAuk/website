@@ -10,7 +10,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerIndividualresult extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'individualresults';
 		parent::__construct();

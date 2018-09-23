@@ -43,7 +43,6 @@
 		<exclude name="Joomla.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
 		<exclude name="Joomla.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
 		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/>
-		<exclude name="Squiz.Scope.MethodScope.Missing"/>
 	</rule>
 
 	<file>./src</file>

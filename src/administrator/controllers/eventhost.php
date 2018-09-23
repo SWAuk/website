@@ -7,7 +7,7 @@ jimport('joomla.application.component.controllerform');
 class SwaControllerEventhost extends SwaControllerForm
 {
 
-	function __construct()
+	public function __construct()
 	{
 		$this->view_list = 'eventhosts';
 		parent::__construct();
