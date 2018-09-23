@@ -1,15 +1,17 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.controllerform' );
+jimport('joomla.application.component.controllerform');
 
 /**
  * Teamresult controller class.
  */
-class SwaControllerTeamresult extends SwaControllerForm {
+class SwaControllerTeamresult extends SwaControllerForm
+{
 
-	function __construct() {
+	function __construct()
+	{
 		$this->view_list = 'teamresults';
 		parent::__construct();
 	}

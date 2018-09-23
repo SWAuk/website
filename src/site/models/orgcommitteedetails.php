@@ -1,22 +1,25 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.modeladmin' );
+jimport('joomla.application.component.modeladmin');
 
-class SwaModelOrgCommitteeDetails extends SwaModelForm {
+class SwaModelOrgCommitteeDetails extends SwaModelForm
+{
 
-	public function getTable( $type = 'Committee', $prefix = 'SwaTable', $config = array() ) {
-		return JTable::getInstance( $type, $prefix, $config );
+	public function getTable($type = 'Committee', $prefix = 'SwaTable', $config = array())
+	{
+		return JTable::getInstance($type, $prefix, $config);
 	}
 
 	/**
 	 * @return JTable
 	 */
-	public function getItem() {
+	public function getItem()
+	{
 		$member = $this->getMember();
-		$table = $this->getTable();
-		$table->load( array( 'member_id' => $member->id ) );
+		$table  = $this->getTable();
+		$table->load(array('member_id' => $member->id));
 
 		return $table;
 	}
@@ -24,22 +27,25 @@ class SwaModelOrgCommitteeDetails extends SwaModelForm {
 	/**
 	 * Method to get the record form.
 	 */
-	public function getForm( $data = array(), $loadData = true ) {
+	public function getForm($data = array(), $loadData = true)
+	{
 		$form =
 			$this->loadForm(
 				'com_swa.orgcommitteedetails',
 				'orgcommitteedetails',
-				array( 'control' => 'jform', 'load_data' => $loadData )
+				array('control' => 'jform', 'load_data' => $loadData)
 			);
 
-		if ( empty( $form ) ) {
+		if (empty($form))
+		{
 			return false;
 		}
 
 		return $form;
 	}
 
-	protected function loadFormData() {
+	protected function loadFormData()
+	{
 		// Check the session for previously entered form data.
 		$data =
 			JFactory::getApplication()->getUserState(
@@ -47,27 +53,30 @@ class SwaModelOrgCommitteeDetails extends SwaModelForm {
 				array()
 			);
 
-		if ( empty( $data ) ) {
+		if (empty($data))
+		{
 			$data = $this->getItem();
-
 		}
 
 		return $data;
 	}
 
-	protected function prepareTable( $table ) {
-		jimport( 'joomla.filter.output' );
+	protected function prepareTable($table)
+	{
+		jimport('joomla.filter.output');
 	}
 
-	public function save( $data ) {
-		$table = $this->getTable();
-		$result = $table->bind( $data );
+	public function save($data)
+	{
+		$table  = $this->getTable();
+		$result = $table->bind($data);
 
-		if ( !$result ) {
+		if (!$result)
+		{
 			return $result;
 		}
 
-		return JFactory::getDbo()->insertObject( '#__swa_committee', $table );
+		return JFactory::getDbo()->insertObject('#__swa_committee', $table);
 	}
 
 }

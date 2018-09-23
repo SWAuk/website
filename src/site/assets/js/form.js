@@ -16,4 +16,3 @@ function getScript(url, success) {
 	};
 	head.appendChild(script);
 }
-

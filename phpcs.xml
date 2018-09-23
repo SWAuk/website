@@ -1,9 +1,52 @@
 <?xml version="1.0"?>
 <ruleset>
-	<rule ref="./vendor/joomla/coding-standards/Joomla" />
+	<rule ref="./vendor/joomla/coding-standards/Joomla">
+		<!-- Commenting -->
+		<exclude name="Joomla.Commenting.FileComment.Missing"/>
+		<exclude name="Joomla.Commenting.FileComment.WrongStyle"/>
+		<exclude name="Joomla.Commenting.ClassComment.Missing"/>
+		<exclude name="Joomla.Commenting.ClassComment.MissingSinceTag"/>
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+		<exclude name="Joomla.Commenting.FunctionComment.Missing"/>
+		<exclude name="Joomla.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Joomla.Commenting.FunctionComment.MissingParamName"/>
+		<exclude name="Joomla.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Joomla.Commenting.FunctionComment.MissingReturn"/>
+		<exclude name="Joomla.Commenting.FunctionComment.BeforeParamType"/>
+		<exclude name="Joomla.Commenting.FunctionComment.WrongStyle"/>
+		<exclude name="Joomla.Commenting.SingleComment.NoSpace"/>
+		<exclude name="Joomla.Commenting.SingleComment.SameLine"/>
+		<exclude name="Joomla.Commenting.SingleComment.BlankBefore"/>
+		<!-- Naming -->
+		<exclude name="Joomla.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+		<exclude name="Joomla.NamingConventions.ValidVariableName.NotCamelCaps"/>
+		<!-- Spacing -->
+		<exclude name="Joomla.ControlStructures.ControlStructuresBrackets.SpaceBeforeBrace"/>
+		<exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+		<exclude name="Squiz.WhiteSpace.ScopeClosingBrace.Indent"/>
+		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.NoLineAfterClose"/>
+		<exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+		<exclude name="Generic.WhiteSpace.ScopeIndent.IncorrectExact"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.Indent"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"/>
+		<exclude name="Joomla.ControlStructures.WhiteSpaceBefore.SpaceBefore"/>
+		<exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+		<exclude name="Joomla.WhiteSpace.MemberVarSpacing.FirstMember"/>
+		<!-- Lines -->
+		<exclude name="Generic.Files.LineLength.TooLong"/>
+		<!-- Other Formating -->
+		<exclude name="PEAR.Formatting.MultiLineAssignment.EqualSignLine"/>
+		<exclude name="Zend.Files.ClosingTag.NotAllowed"/>
+		<exclude name="PEAR.Functions.FunctionCallSignature.CloseBracketLine"/>
+		<exclude name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"/>
+		<!-- Other -->
+		<exclude name="Joomla.NamingConventions.ValidFunctionName.FunctionNameInvalid"/>
+		<exclude name="Joomla.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
+		<exclude name="PEAR.NamingConventions.ValidClassName.Invalid"/>
+		<exclude name="Squiz.Scope.MethodScope.Missing"/>
+	</rule>
+
 	<file>./src</file>
-	<!-- HAH, everything currently fails... So ignore everything for now.. -->
-	<exclude-pattern>src/site</exclude-pattern>
-	<exclude-pattern>src/administrator</exclude-pattern>
 	<exclude-pattern>src/site/libraries</exclude-pattern>
+
 </ruleset>

@@ -1,17 +1,20 @@
 <?php
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.modellist' );
+jimport('joomla.application.component.modellist');
 
-class SwaModelEvents extends SwaModelList {
+class SwaModelEvents extends SwaModelList
+{
 
 	/**
-	 * @param array $config An optional associative array of configuration settings.
+	 * @param   array $config An optional associative array of configuration settings.
 	 *
 	 * @see        JController
 	 */
-	public function __construct( $config = array() ) {
-		if ( empty( $config['filter_fields'] ) ) {
+	public function __construct($config = array())
+	{
+		if (empty($config['filter_fields']))
+		{
 			$config['filter_fields'] = array(
 				'id',
 				'a.id',
@@ -22,7 +25,7 @@ class SwaModelEvents extends SwaModelList {
 			);
 		}
 
-		parent::__construct( $config );
+		parent::__construct($config);
 	}
 
 	/**
@@ -30,21 +33,22 @@ class SwaModelEvents extends SwaModelList {
 	 *
 	 * Note. Calling getState in this method will result in recursion.
 	 */
-	protected function populateState( $ordering = null, $direction = null ) {
+	protected function populateState($ordering = null, $direction = null)
+	{
 		// Initialise variables.
 		$app = JFactory::getApplication();
 
 		// Load the filter state.
 		$search =
-			$app->getUserStateFromRequest( $this->context . '.filter.search', 'filter_search' );
-		$this->setState( 'filter.search', $search );
+			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
 
 		// Load the parameters.
-		$params = JComponentHelper::getParams( 'com_swa' );
-		$this->setState( 'params', $params );
+		$params = JComponentHelper::getParams('com_swa');
+		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState( 'event.id', 'desc' );
+		parent::populateState('event.id', 'desc');
 	}
 
 	/**
@@ -54,15 +58,16 @@ class SwaModelEvents extends SwaModelList {
 	 * different modules that might need different sets of data or different
 	 * ordering requirements.
 	 *
-	 * @param    string $id A prefix for the store id.
+	 * @param   string $id A prefix for the store id.
 	 *
 	 * @return    string        A store id.
 	 */
-	protected function getStoreId( $id = '' ) {
+	protected function getStoreId($id = '')
+	{
 		// Compile the store id.
-		$id .= ':' . $this->getState( 'filter.search' );
+		$id .= ':' . $this->getState('filter.search');
 
-		return parent::getStoreId( $id );
+		return parent::getStoreId($id);
 	}
 
 	/**
@@ -70,27 +75,30 @@ class SwaModelEvents extends SwaModelList {
 	 *
 	 * @return    JDatabaseQuery
 	 */
-	protected function getListQuery() {
+	protected function getListQuery()
+	{
 		// Create a new query object.
-		$db = $this->getDbo();
-		$query = $db->getQuery( true );
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
 
-		$query->select( $db->quoteName(
+		$query->select($db->quoteName(
 			array('event.id', 'event.name', 'event.date', 'season.year', 'event_ticket.id'),
 			array('id', 'name', 'date', 'season_year', 'event_ticket')
-		));
-		$query->from( $db->quoteName('#__swa_event', 'event') );
-		$query->leftJoin( $db->quoteName('#__swa_season', 'season') . ' ON season.id = event.season_id' );
-		$query->leftJoin( $db->quoteName('#__swa_event_ticket', 'event_ticket') . ' ON event_ticket.event_id = event.id' );
-		$query->group( 'event.id' );
-		$query->order( $this->getState( 'list.ordering' ) . ' ' . $this->getState( 'list.direction' ) );
+		)
+		);
+		$query->from($db->quoteName('#__swa_event', 'event'));
+		$query->leftJoin($db->quoteName('#__swa_season', 'season') . ' ON season.id = event.season_id');
+		$query->leftJoin($db->quoteName('#__swa_event_ticket', 'event_ticket') . ' ON event_ticket.event_id = event.id');
+		$query->group('event.id');
+		$query->order($this->getState('list.ordering') . ' ' . $this->getState('list.direction'));
 
 		return $query;
 	}
 
-	public function getItems() {
-		//NEVER limit this list
-		$this->setState( 'list.limit', '0' );
+	public function getItems()
+	{
+		// NEVER limit this list
+		$this->setState('list.limit', '0');
 
 		$items = parent::getItems();
 

@@ -1,13 +1,14 @@
 <?php
-defined( 'JPATH_BASE' ) or die;
+defined('JPATH_BASE') or die;
 
-jimport( 'joomla.html.html' );
-jimport( 'joomla.form.formfield' );
+jimport('joomla.html.html');
+jimport('joomla.form.formfield');
 
 /**
  * Supports an HTML select list of categories
  */
-class JFormFieldCustom_field extends JFormField {
+class JFormFieldCustom_field extends JFormField
+{
 	/**
 	 * The form field type.
 	 *
@@ -20,10 +21,11 @@ class JFormFieldCustom_field extends JFormField {
 	 *
 	 * @return    string    The field input markup.
 	 */
-	protected function getInput() {
+	protected function getInput()
+	{
 		// Initialize variables.
 		$html = array();
 
-		return implode( $html );
+		return implode($html);
 	}
 }

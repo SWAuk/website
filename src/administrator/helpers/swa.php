@@ -1,102 +1,104 @@
 <?php
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
 /**
  * Swa helper.
  */
-class SwaHelper {
+class SwaHelper
+{
 
 	/**
 	 * Configure the Linkbar.
 	 */
-	public static function addSubmenu( $vName = '' ) {
+	public static function addSubmenu($vName = '')
+	{
 		JHtmlSidebar::addEntry(
-			JText::_( 'Members' ),
+			JText::_('Members'),
 			'index.php?option=com_swa&view=members',
 			$vName == 'members'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Committee' ),
+			JText::_('Committee'),
 			'index.php?option=com_swa&view=committeemembers',
 			$vName == 'committeemembers'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'University Members' ),
+			JText::_('University Members'),
 			'index.php?option=com_swa&view=universitymembers',
 			$vName == 'universitymembers'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Qualifications' ),
+			JText::_('Qualifications'),
 			'index.php?option=com_swa&view=qualifications',
 			$vName == 'qualifications'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Events' ),
+			JText::_('Events'),
 			'index.php?option=com_swa&view=events',
 			$vName == 'events'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Event Hosts' ),
+			JText::_('Event Hosts'),
 			'index.php?option=com_swa&view=eventhosts',
 			$vName == 'eventhosts'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Event Registrations' ),
+			JText::_('Event Registrations'),
 			'index.php?option=com_swa&view=eventregistrations',
 			$vName == 'eventregistrations'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Event tickets' ),
+			JText::_('Event tickets'),
 			'index.php?option=com_swa&view=eventtickets',
 			$vName == 'eventtickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Tickets' ),
+			JText::_('Tickets'),
 			'index.php?option=com_swa&view=tickets',
 			$vName == 'tickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Deposits' ),
+			JText::_('Deposits'),
 			'index.php?option=com_swa&view=deposits',
 			$vName == 'deposits'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Damages' ),
+			JText::_('Damages'),
 			'index.php?option=com_swa&view=damages',
 			$vName == 'damages'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Grants' ),
+			JText::_('Grants'),
 			'index.php?option=com_swa&view=grants',
 			$vName == 'grants'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Universities' ),
+			JText::_('Universities'),
 			'index.php?option=com_swa&view=universities',
 			$vName == 'universities'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Seasons' ),
+			JText::_('Seasons'),
 			'index.php?option=com_swa&view=seasons',
 			$vName == 'seasons'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Competitions' ),
+			JText::_('Competitions'),
 			'index.php?option=com_swa&view=competitions',
 			$vName == 'competitions'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Competition types' ),
+			JText::_('Competition types'),
 			'index.php?option=com_swa&view=competitiontypes',
 			$vName == 'competitiontypes'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Team results' ),
+			JText::_('Team results'),
 			'index.php?option=com_swa&view=teamresults',
 			$vName == 'teamresults'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_( 'Individual results' ),
+			JText::_('Individual results'),
 			'index.php?option=com_swa&view=individualresults',
 			$vName == 'individualresults'
 		);
@@ -108,8 +110,9 @@ class SwaHelper {
 	 *
 	 * @return    JObject
 	 */
-	public static function getActions() {
-		$user = JFactory::getUser();
+	public static function getActions()
+	{
+		$user   = JFactory::getUser();
 		$result = new JObject;
 
 		$assetName = 'com_swa';
@@ -124,8 +127,9 @@ class SwaHelper {
 			'core.delete',
 		);
 
-		foreach ( $actions as $action ) {
-			$result->set( $action, $user->authorise( $action, $assetName ) );
+		foreach ($actions as $action)
+		{
+			$result->set($action, $user->authorise($action, $assetName));
 		}
 
 		return $result;

@@ -1,24 +1,28 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-JHtml::_( 'behavior.keepalive' );
-JHtml::_( 'behavior.tooltip' );
-JHtml::_( 'behavior.formvalidation' );
-JHtml::_( 'formbehavior.chosen', 'select' );
+JHtml::_('behavior.keepalive');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.formvalidation');
+JHtml::_('formbehavior.chosen', 'select');
 
 // Pre-process items
-$eventData = array();
+$eventData  = array();
 $ticketData = array();
-foreach ( $this->items as $item ) {
-	if ( !array_key_exists( $item->id, $eventData ) ) {
-		$eventData[$item->id]['name'] = $item->name;
-		$eventData[$item->id]['date_open'] = $item->date_open;
+
+foreach ($this->items as $item)
+{
+	if (!array_key_exists($item->id, $eventData))
+	{
+		$eventData[$item->id]['name']       = $item->name;
+		$eventData[$item->id]['date_open']  = $item->date_open;
 		$eventData[$item->id]['date_close'] = $item->date_close;
-		$eventData[$item->id]['date'] = $item->date;
+		$eventData[$item->id]['date']       = $item->date;
 	}
+
 	$ticketData[$item->id][] = array(
-		'member_id' => $item->member_id,
+		'member_id'   => $item->member_id,
 		'member_name' => $item->member_name,
 		'ticket_name' => $item->ticket_name,
 	);
@@ -27,12 +31,12 @@ foreach ( $this->items as $item ) {
 
 	<!--</style>-->
 	<script type="text/javascript">
-		getScript( '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
-			jQuery( document ).ready( function () {
-				jQuery( '#form-member' ).submit( function ( event ) {
-				} );
-			} );
-		} );
+		getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
+			jQuery(document).ready(function () {
+				jQuery('#form-member').submit(function (event) {
+				});
+			});
+		});
 	</script>
 
 	<h1><?php echo $this->member->university_name ?> Event Attendees</h1>
@@ -43,8 +47,9 @@ foreach ( $this->items as $item ) {
 	</p>
 
 <?php
-foreach ( $eventData as $eventId => $event ) {
-?>
+foreach ($eventData as $eventId => $event)
+{
+	?>
 	<h2><?php echo "{$event['name']}" ?></h2>
 	<p>
 		<label>Date open: </label> <?php echo " {$event['date_open']}" ?>,
@@ -53,21 +58,23 @@ foreach ( $eventData as $eventId => $event ) {
 	</p>
 	<table class="table table-hover">
 		<thead>
-			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Ticket</th>
-			</tr>
+		<tr>
+			<th>Id</th>
+			<th>Name</th>
+			<th>Ticket</th>
+		</tr>
 		</thead>
 		<tbody>
-<?php
-	foreach ( $ticketData[$eventId] as $ticket ) {
+	<?php
+	foreach ($ticketData[$eventId] as $ticket)
+	{
 		echo "<tr>";
 		echo "<td>" . $ticket['member_id'] . "</td>";
 		echo "<td>" . $ticket['member_name'] . "</td>";
 		echo "<td>" . $ticket['ticket_name'] . "</td>";
 		echo "</tr>";
 	}
+
 	echo "</tbody>";
 	echo "</table>";
 }

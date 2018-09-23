@@ -1,15 +1,17 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.controllerform' );
+jimport('joomla.application.component.controllerform');
 
 /**
  * Deposit controller class.
  */
-class SwaControllerDeposit extends SwaControllerForm {
+class SwaControllerDeposit extends SwaControllerForm
+{
 
-	function __construct() {
+	function __construct()
+	{
 		$this->view_list = 'deposits';
 		parent::__construct();
 	}

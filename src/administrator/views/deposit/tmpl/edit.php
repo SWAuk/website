@@ -1,53 +1,53 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-JHtml::addIncludePath( JPATH_COMPONENT . '/helpers/html' );
-JHtml::_( 'behavior.tooltip' );
-JHtml::_( 'behavior.formvalidation' );
-JHtml::_( 'formbehavior.chosen', 'select' );
-JHtml::_( 'behavior.keepalive' );
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.formvalidation');
+JHtml::_('formbehavior.chosen', 'select');
+JHtml::_('behavior.keepalive');
 
 // Import CSS
 $document = JFactory::getDocument();
-$document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
+$document->addStyleSheet('components/com_swa/assets/css/swa.css');
 ?>
 <script type="text/javascript">
 	js = jQuery.noConflict();
-	js( document ).ready( function () {
+	js(document).ready(function () {
 
-	} );
+	});
 
-	Joomla.submitbutton = function ( task ) {
-		if ( task == 'deposit.cancel' ) {
-			Joomla.submitform( task, document.getElementById( 'deposit-form' ) );
+	Joomla.submitbutton = function (task) {
+		if (task == 'deposit.cancel') {
+			Joomla.submitform(task, document.getElementById('deposit-form'));
 		}
 		else {
 
-			if ( task != 'deposit.cancel' && document.formvalidator.isValid( document.id( 'deposit-form' ) ) ) {
+			if (task != 'deposit.cancel' && document.formvalidator.isValid(document.id('deposit-form'))) {
 
-				Joomla.submitform( task, document.getElementById( 'deposit-form' ) );
+				Joomla.submitform(task, document.getElementById('deposit-form'));
 			}
 			else {
-				alert( '<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>' );
+				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');
 			}
 		}
 	}
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int)$this->item->id
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
 ); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="deposit-form"
-	  class="form-validate">
+      class="form-validate">
 
 	<div class="form-horizontal">
-		<?php echo JHtml::_( 'bootstrap.startTabSet', 'myTab', array( 'active' => 'general' ) ); ?>
+		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
 		<?php echo JHtml::_(
 			'bootstrap.addTab',
 			'myTab',
 			'general',
-			JText::_( 'Deposit', true )
+			JText::_('Deposit', true)
 		); ?>
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
@@ -57,7 +57,7 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="control-label"><?php echo $this->form->getLabel(
 								'id'
 							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'id' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel(
@@ -71,26 +71,26 @@ $document->addStyleSheet( 'components/com_swa/assets/css/swa.css' );
 						<div class="control-label"><?php echo $this->form->getLabel(
 								'date'
 							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'date' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('date'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel(
 								'amount'
 							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput( 'amount' ); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('amount'); ?></div>
 					</div>
 
 				</fieldset>
 			</div>
 		</div>
-		<?php echo JHtml::_( 'bootstrap.endTab' ); ?>
+		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 
 
-		<?php echo JHtml::_( 'bootstrap.endTabSet' ); ?>
+		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>
-		<?php echo JHtml::_( 'form.token' ); ?>
+		<?php echo JHtml::_('form.token'); ?>
 
 	</div>
 </form>

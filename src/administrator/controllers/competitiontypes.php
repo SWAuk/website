@@ -1,18 +1,20 @@
 <?php
 
-defined( '_JEXEC' ) or die;
+defined('_JEXEC') or die;
 
-jimport( 'joomla.application.component.controlleradmin' );
+jimport('joomla.application.component.controlleradmin');
 
 /**
  * Competitiontypes list controller class.
  */
-class SwaControllerCompetitiontypes extends SwaControllerAdmin {
+class SwaControllerCompetitiontypes extends SwaControllerAdmin
+{
 	/**
 	 * Proxy for getModel.
 	 */
-	public function getModel( $name = 'competitiontype', $prefix = 'SwaModel' ) {
-		$model = parent::getModel( $name, $prefix, array( 'ignore_request' => true ) );
+	public function getModel($name = 'competitiontype', $prefix = 'SwaModel')
+	{
+		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 
 		return $model;
 	}
