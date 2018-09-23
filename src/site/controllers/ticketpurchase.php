@@ -75,7 +75,7 @@ class SwaControllerTicketPurchase extends SwaController
 			$addonQty  = $addonQtys["addon_{$key}"];
 			$totalCost += $addon->price * $addonQty;
 
-			// create addon details which will be converted to json and stored in the database
+			// Create addon details which will be converted to json and stored in the database
 			$details->addons[$addon->name] = array("qty" => $addonQty, "price" => $addon->price);
 		}
 
