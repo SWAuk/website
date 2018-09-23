@@ -106,7 +106,9 @@ if ($ticket === null)
 				<td>1</td>
 				<td>
 					<div><?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?></div>
-					<?php if (!empty($ticket->details->tshirt_included)): ?>
+					<?php if (!empty($ticket->details->tshirt_included))
+						:
+						?>
 						<div style="font-size: 10pt; margin-left: 20px;">
 							T-Shirt Size:
 							<select id="tshirt_size" name="tshirt_size">
