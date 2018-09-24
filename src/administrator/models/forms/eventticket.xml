@@ -51,7 +51,7 @@
                required="false"
                filter="safehtml"/>
 
-        <!-- You can find the JSON in eventticket-example.json to copy to here-->
+        <!-- You can find an example JSON details in eventticket-example.json-->
         <field name="details"
                type="textarea"
                label="Details"
@@ -66,13 +66,7 @@
   "member": {"whitelist": [],"blacklist": []},
   "university": {"whitelist": [],"blacklist": []},
   "level": {"whitelist": [],"blacklist": []},
-  "addons": [
-      {
-          "name": "Dummy Addon",
-          "description": "Dummy Addon that does something",
-          "price": 0
-      }
-  ]
+  "addons": []
 }
 '/>
 
