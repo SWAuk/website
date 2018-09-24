@@ -391,7 +391,7 @@ class SwaModelTicketPurchase extends SwaModelList
 			// TODO delete when no longer using these fields
 			$reason = "You need to have an approved qualification to buy this ticket.";
 		}
-		elseif (isset($t->details->committee) && $t->details->committee && !$member->qualification)
+		elseif (isset($t->details->committee) && $t->details->committee && !$member->swa_committee)
 		{
 			$reason = "You need to be SWA Committee to buy this ticket.";
 		}
