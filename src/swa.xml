@@ -34,6 +34,7 @@
 		<filename>ModelList.php</filename>
 		<filename>ModelForm.php</filename>
 		<filename>SwaFactory.php</filename>
+		<filename>SwaModelMemberTrait.php</filename>
 		<folder>views</folder>
 		<folder>models</folder>
 		<folder>controllers</folder>
