@@ -7,10 +7,6 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
-// Import CSS
-$document = JFactory::getDocument();
-$document->addStyleSheet('components/com_swa/assets/css/swa.css');
-
 $user      = JFactory::getUser();
 $userId    = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
@@ -67,8 +63,7 @@ if (!empty($this->extra_sidebar))
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description">
-				<p>Here you can see, add and edit tickets for specific events that can be bought by
-					members.</p>
+				<p>Here you can see, add and edit tickets for specific events that can be bought by members.</p>
 				<ul>
 					<li>Quantity: The total number of this ticket available.</li>
 					<li>Details: This is a JSON string representing who can view and buy a ticket.</li>
@@ -76,51 +71,50 @@ if (!empty($this->extra_sidebar))
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
-					<label for="filter_search" class="element-invisible"><?php echo JText::_(
-							'JSEARCH_FILTER'
-						); ?></label>
+					<label for="filter_search" class="element-invisible">
+						<?php echo JText::_('JSEARCH_FILTER'); ?>
+					</label>
 					<input type="text" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
-					       value="<?php echo $this->escape(
-						       $this->state->get('filter.search')
-					       ); ?>" title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
+					       value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
+					       title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
 				</div>
 				<div class="btn-group pull-left">
 					<button class="btn hasTooltip" type="submit"
 					        title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>">
-						<i class="icon-search"></i></button>
+						<i class="icon-search"></i>
+					</button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
 					        onclick="document.id('filter_search').value='';this.form.submit();">
-						<i class="icon-remove"></i></button>
+						<i class="icon-remove"></i>
+					</button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?></option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?></option>
+						<option value="asc" <?php echo($listDirn == 'asc' ? 'selected="selected"' : '') ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
+						</option>
+						<option value="desc" <?php echo($listDirn == 'desc' ? 'selected="selected"' : '') ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
+						</option>
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
@@ -195,15 +189,6 @@ if (!empty($this->extra_sidebar))
 							$listOrder
 						); ?>
 					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Details',
-							'a.details',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
 							'grid.sort',
@@ -216,16 +201,7 @@ if (!empty($this->extra_sidebar))
 				</tr>
 				</thead>
 				<tfoot>
-				<?php
-				if (isset($this->items[0]))
-				{
-					$colspan = count(get_object_vars($this->items[0]));
-				}
-				else
-				{
-					$colspan = 10;
-				}
-				?>
+				<?php $colspan = $this->items[0] ? count(get_object_vars($this->items[0])) : 10 ?>
 				<tr>
 					<td colspan="<?php echo $colspan ?>">
 						<?php echo $this->pagination->getListFooter(); ?>
@@ -268,8 +244,8 @@ if (!empty($this->extra_sidebar))
 									:
 									?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
@@ -299,9 +275,6 @@ if (!empty($this->extra_sidebar))
 						</td>
 						<td>
 							<?php echo $item->price; ?>
-						</td>
-						<td>
-							<?php echo $item->details; ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>
