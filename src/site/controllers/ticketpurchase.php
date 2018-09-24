@@ -23,12 +23,10 @@ class SwaControllerTicketPurchase extends SwaController
 		// Get the POST data
 		$token       = $this->input->getString('stripeToken');
 		$ticketId    = $this->input->getString('ticketId');
-		$tshirt_size = $this->input->getString('tshirt_size');
 
 		// Create the class that will later be converted to json to be stored in the database
 		$details              = new stdClass;
 		$details->addons      = array();
-		$details->tshirt_size = $tshirt_size;
 
 		// Initialise useful variables
 		$model   = $this->getModel('ticketpurchase');
@@ -75,6 +73,13 @@ class SwaControllerTicketPurchase extends SwaController
 
 			// Create addon details which will be converted to json and stored in the database
 			$details->addons[$addon->name] = array("qty" => $addonQty, "price" => $addon->price);
+
+			// if this addon is chosen and the addon has an option add it to the details object
+			if ($addonQty > 0 && isset($addon->options) && !empty($addon->options)) {
+				$option = $this->input->getString("option_{$key}");
+				$details->addons[$addon->name]["option"] = $option;
+			}
+
 		}
 
 		// Make sure the we managed to find the ticket
