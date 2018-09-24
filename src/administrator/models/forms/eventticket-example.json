@@ -1,17 +1,57 @@
 {
-  "tshirt_included": false,
-  "visible": "All",
-  "xswa": false,
-  "qualification": false,
-  "committee": false,
-  "member": {"whitelist": [],"blacklist": []},
-  "university": {"whitelist": [],"blacklist": []},
-  "level": {"whitelist": [],"blacklist": []},
-  "addons": [
-      {
-          "name": "Dummy Addon",
-          "description": "Dummy Addon that does something",
-          "price": 0
-      }
-  ]
+    "tshirt_included": false,
+    "visible": "All",
+    "xswa": false,
+    "qualification": false,
+    "committee": false,
+    "member": {
+        "whitelist": [],
+        "blacklist": []
+    },
+    "university": {
+        "whitelist": [],
+        "blacklist": []
+    },
+    "level": {
+        "whitelist": [],
+        "blacklist": []
+    },
+    "addons": [
+        {
+            "name": "Dummy Addon",
+            "description": "Dummy Addon that does something",
+            "options": null,
+            "price": 0
+        },
+        {
+            "name": "Dummy t-shirt addon",
+            "description": "Dummy addon with options",
+            "options": {
+                "name": "T-Shirt Size",
+                "values": [
+                    {
+                        "label": "XS 32/34\"",
+                        "value": "XS 32/34\""
+                    },
+                    {
+                        "label": "S 34/36\"",
+                        "value": "S 34/36\""
+                    },
+                    {
+                        "label": "M 36/38\"",
+                        "value": "M 36/38\""
+                    },
+                    {
+                        "label": "L 38/40\"",
+                        "value": "L 38/40\""
+                    },
+                    {
+                        "label": "XL 40/42\"",
+                        "value": "XL 40/43\""
+                    }
+                ]
+            },
+            "price": 5
+        }
+    ]
 }

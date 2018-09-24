@@ -35,57 +35,96 @@ if ($ticket === null)
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
 	jQuery(document).ready(function () {
-		$tshirt_size = jQuery('#tshirt_size');
-		$addons = jQuery(".swa-addon");
-		// If we have a tshirt or addons
-		if ($tshirt_size.length || $addons.length) {
-			// Then disable the stripe button
+
+		$addons = jQuery('.swa-addon');
+		if ($addons.length > 0) {
+			$qtySelectors = jQuery('.swa-qty-selector');
+			$optionSelectors = jQuery('.swa-option-selector');
+
+			// disable the stripe button
 			$stripeBtn = jQuery('#stripe-button');
 			$stripeBtn.prop('disabled', true);
 
-			// Define a check to happen when one of our inputs changes
-			$ticketCheck = function (event) {
-				$addons = jQuery(".swa-addon");
+			// disable and hide all option selectors
+			$optionSelectors.prop('disabled', true);
+			$optionSelectors.parent().prop('hidden', true);
+
+			// define function to calculate the total ticket price
+			$totalTicketPrice = function () {
 				$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
 
-				// Add together the price of addons we have and update total
-				$addonsPrice = 0;
-				$addons.each((function (i, obj) {
-					if (jQuery(obj).val() != "NULL") {
-						$addonQuantity = parseInt(jQuery(obj).val());
+				$totalAddonsPrice = 0;
+				$addons.each(function (i, obj) {
+					$addonQty = parseInt(jQuery(obj).val());
+					if ($addonQty > 0) {
 						$addonPrice = parseFloat(jQuery(obj).attr('data-price'));
-						this.$addonsPrice += ($addonQuantity * $addonPrice)
-
+						$totalAddonsPrice += $addonPrice * $addonQty
 					}
-				}).bind(this));
+				});
 
-				$total = $ticketPrice + $addonsPrice;
-				$total = $total.toFixed(2);
-				//jQuery('.stripe-button').attr('data-label',"Pay £" + $total + " now!");
-				jQuery('#stripe-button').attr('data-amount', $total * 100);
-				jQuery('#stripe-button span')[0].innerHTML = "Pay £" + $total + " now!";
+				$totalPrice = $ticketPrice + $totalAddonsPrice;
+				$totalPrice = $totalPrice.toFixed(2);
+				// stripe amount is in pence
+				$stripeBtn.attr('data-amount', $totalPrice * 100);
+				jQuery('#stripe-button span')[0].innerHTML = "Pay £" + $totalPrice + " now!";
 
-				// Check if the stripe button should be enabled
-				$buttonEnabled = true;
-				$elementsToCheck = jQuery('#tshirt_size').add($addons);
-				$elementsToCheck.each((function (i, obj) {
-					if (jQuery(obj).val() == "NULL") {
-						this.$buttonEnabled = false;
-					}
-				}).bind(this));
-				jQuery('#stripe-button').prop('disabled', !$buttonEnabled);
 			};
 
-			// Listen to input changes
-			jQuery('#tshirt_size').add(jQuery(".swa-addon")).change(function (event) {
-				$ticketCheck(event);
+			// define function to enable/disable stripe button
+			$updateStripeButton = function (event) {
+				$stripeBtnEnabled = true;
+
+				$qtySelectors.each(function (i, obj) {
+					$value = jQuery(obj).val();
+					if ($value > 0) {
+						if (jQuery('#option_' + obj.id.split("_").pop()).val() == "NULL") {
+							$stripeBtnEnabled = false;
+							// break out of the .each loop
+							return false;
+						}
+					} else if ($value == "NULL") {
+						$stripeBtnEnabled = false;
+						// break out of the .each loop
+						return false;
+					}
+				});
+
+				$stripeBtn.prop('disabled', !$stripeBtnEnabled)
+			};
+
+			// define function to enable/disable the option
+			$qtyChanged = function (event) {
+				// get the option selector for this addon
+				$option = jQuery('#option_' + event.target.id.split("_").pop());
+
+				// if qty dropdown is greater than zero
+				if (jQuery(event.target).val() > 0) {
+					// show and enable the option selector
+					$option.parent().prop('hidden', false);
+					$option.prop('disabled', false);
+				} else {
+					// hide, reset and disable option selector
+					$option.parent().prop('hidden', true);
+					$option.val('NULL');
+					$option.prop('disabled', true);
+				}
+
+				$totalTicketPrice();
+				$updateStripeButton(event)
+			};
+
+			$qtySelectors.change(function (event) {
+				$qtyChanged(event);
+			});
+
+			$optionSelectors.change(function (event) {
+				$updateStripeButton(event);
 			});
 		}
 	});
 </script>
 
 <h1>Order Summary</h1>
-
 
 <form id="stripe-form" method="POST"
       action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>">
@@ -106,21 +145,6 @@ if ($ticket === null)
 				<td>1</td>
 				<td>
 					<div><?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?></div>
-					<?php if (!empty($ticket->details->tshirt_included))
-						:
-						?>
-						<div style="font-size: 10pt; margin-left: 20px;">
-							T-Shirt Size:
-							<select id="tshirt_size" name="tshirt_size">
-								<option value='NULL'>-- SELECT --</option>
-								<option value='Unisex S (35/37")'>Unisex S (35/37")</option>
-								<option value='Unisex M (38/40")'>Unisex M (38/40")</option>
-								<option value='Unisex L (41/43")'>Unisex L (41/43")</option>
-								<option value='Unisex XL (44/46")'>Unisex XL (44/46")</option>
-								<option value='Unisex XXL (47/49")'>Unisex XXL (47/49")</option>
-							</select>
-						</div>
-					<?php endif ?>
 				</td>
 				<td><?php echo '£' . $ticket->price; ?></td>
 			</tr>
@@ -134,20 +158,51 @@ if ($ticket === null)
 						<td>
 							<select id="<?php echo "addon_{$key}" ?>"
 							        name="<?php echo "addon_{$key}" ?>"
-							        class="swa-addon" style="width: 60px"
+							        class="swa-addon swa-qty-selector"
+							        style="width: 60px"
 							        data-price="<?php echo $addon->price ?>">
 								<option value="NULL">--</option>
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
 						</td>
-						<td><?php echo "{$addon->name}<br/>{$addon->description}" ?></td>
+						<td>
+							<div><?php echo "{$addon->name}<br/>{$addon->description}" ?></div>
+							<?php
+							if (isset($addon->options) && !empty($addon->options))
+							{
+								$option = $addon->options;
+								?>
+								<div style="font-size: 10pt; margin-left: 20px;">
+									<?php echo "{$option->name}:" ?>
+									<select id="<?php echo "option_{$key}" ?>"
+									        name="<?php echo "option_{$key}" ?>"
+									        class="swa-option-selector"
+									        data-price="<?php echo $option->price ?>">
+										<option value='NULL'>-- SELECT --</option>
+										<?php foreach ($option->values as $value) { ?>
+											<option value='<?php echo $value->value ?>'>
+												<?php echo $value->label ?>
+											</option>
+										<?php } ?>
+									</select>
+								</div>
+							<?php } ?>
+						</td>
 						<td>£<?php echo number_format($addon->price, 2) ?></td>
 					</tr>
 					<?php
 				}
 			}
 			?>
+
+			<!--Add line to end of table-->
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+
 		</table>
 	</div>
 </form>
