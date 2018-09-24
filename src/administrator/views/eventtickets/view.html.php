@@ -48,7 +48,7 @@ class SwaViewEventtickets extends JViewLegacy
 	{
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title(JText::_('Event tickets'), 'eventtickets.png');
+		JToolBarHelper::title(JText::_('Event Tickets'), 'eventtickets.png');
 
 		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/eventticket';
