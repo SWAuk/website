@@ -19,6 +19,7 @@ class SwaModelTickets extends JModelList
 			$config['filter_fields'] = array(
 				'id',
 				'name',
+				'uni',
 				'event',
 				'ticket_type',
 				'paid',
@@ -74,8 +75,8 @@ class SwaModelTickets extends JModelList
 			$this->getState(
 				'list.select',
 				$db->quoteName(
-					array('user.name', 'event.name', 'event_ticket.name', 'ticket.paid', 'ticket.id'),
-					array('name', 'event', 'ticket_type', 'paid', 'id')
+					array('user.name', 'event.name', 'uni.name', 'event_ticket.name', 'ticket.paid', 'ticket.id'),
+					array('name', 'event', 'uni', 'ticket_type', 'paid', 'id')
 				)
 			)
 		);
@@ -87,6 +88,12 @@ class SwaModelTickets extends JModelList
 			$db->qn('#__swa_event_ticket', 'event_ticket') . ' ON ticket.event_ticket_id = event_ticket.id'
 		);
 		$query->leftJoin($db->qn('#__swa_event', 'event') . ' ON event_ticket.event_id = event.id');
+		$query->leftJoin(
+			$db->qn('#__swa_university_member', 'uni_member') . ' ON uni_member.member_id = member.id'
+		);
+		$query->leftJoin(
+			$db->qn('#__swa_university', 'uni') . ' ON uni.id = uni_member.university_id'
+		);
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');

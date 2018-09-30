@@ -65,9 +65,7 @@ if (!empty($this->extra_sidebar))
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description">
-				<p>Here you can see and add tickets for members for events. (Basically tickets
-					purchased).</p>
-
+				<p>Here you can see and add tickets for members for events. (Basically tickets purchased).</p>
 				<p>If you need to swap tickets this is the place to do it!</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
@@ -102,16 +100,10 @@ if (!empty($this->extra_sidebar))
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
-							echo 'selected="selected"';
-						} ?>>
+						<option value="asc" <?php echo ($listDirn == 'asc') ? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
 						</option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
-							echo 'selected="selected"';
-						} ?>>
+						<option value="desc" <?php echo ($listDirn == 'desc') ? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
 						</option>
 					</select>
@@ -122,13 +114,7 @@ if (!empty($this->extra_sidebar))
 					</label>
 					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
-						<?php echo JHtml::_(
-							'select.options',
-							$sortFields,
-							'value',
-							'text',
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder); ?>
 					</select>
 				</div>
 			</div>
@@ -159,49 +145,22 @@ if (!empty($this->extra_sidebar))
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Name',
-							'name',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'Name', 'name', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Event',
-							'event',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'University', 'uni', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Ticket Type',
-							'ticket_type',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'Event', 'event', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Ticket Type', 'ticket_type', $listDirn, $listOrder); ?>
 					</th>
 					<th class="left">
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Paid',
-							'paid',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'Paid', 'paid', $listDirn, $listOrder); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
-						<?php echo JHtml::_(
-							'grid.sort',
-							'JGRID_HEADING_ID',
-							'id',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 				</thead>
@@ -263,6 +222,9 @@ if (!empty($this->extra_sidebar))
 								?>
 								<?php echo $item->name; ?>
 							<?php endif; ?>
+						</td>
+						<td>
+							<?php echo $item->uni; ?>
 						</td>
 						<td>
 							<?php echo $item->event; ?>
