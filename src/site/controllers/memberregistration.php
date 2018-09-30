@@ -32,7 +32,7 @@ class SwaControllerMemberRegistration extends SwaController
 
 		if (!$form)
 		{
-			throw new Exception( 'No form: ' . $model->getError() );
+			throw new Exception('No form: ' . $model->getError());
 		}
 
 		// Validate the posted data.

@@ -180,7 +180,9 @@ if ($ticket === null)
 									        class="swa-option-selector"
 									        data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
-										<?php foreach ($option->values as $value) { ?>
+										<?php foreach ($option->values as $value)
+										{
+											?>
 											<option value='<?php echo $value->value ?>'>
 												<?php echo $value->label ?>
 											</option>
