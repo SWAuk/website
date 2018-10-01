@@ -43,11 +43,10 @@
 
 		<field name="image"
 			type="text"
-			size="100"
+			size="500"
 			class="inputbox"
 			label="Image URL"
 			required="true"
-			validate="url"
 			filter="safehtml"/>
 
 	</fieldset>
