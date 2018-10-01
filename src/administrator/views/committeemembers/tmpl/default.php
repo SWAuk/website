@@ -17,6 +17,7 @@ $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 $canOrder  = $user->authorise('core.edit.state', 'com_swa');
 $saveOrder = $listOrder == 'a.ordering';
+
 if ($saveOrder)
 {
 	$saveOrderingUrl =
@@ -82,9 +83,8 @@ if (!empty($this->extra_sidebar))
 						); ?></label>
 					<input type="text" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
-					       value="<?php echo $this->escape(
-						       $this->state->get('filter.search')
-					       ); ?>" title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
+					       value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
+					       title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
 				</div>
 				<div class="btn-group pull-left">
 					<button class="btn hasTooltip" type="submit"
@@ -108,20 +108,18 @@ if (!empty($this->extra_sidebar))
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?></option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?></option>
+						<option value="asc" <?php echo ($listDirn == 'asc') ? 'selected="selected"' : '' ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
+						</option>
+						<option value="desc" <?php echo ($listDirn == 'desc') ? 'selected="selected"' : '' ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
+						</option>
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
@@ -193,16 +191,7 @@ if (!empty($this->extra_sidebar))
 				</tr>
 				</thead>
 				<tfoot>
-				<?php
-				if (isset($this->items[0]))
-				{
-					$colspan = count(get_object_vars($this->items[0]));
-				}
-				else
-				{
-					$colspan = 10;
-				}
-				?>
+				<?php $colspan = isset($this->items[0]) ? count(get_object_vars($this->items[0])) : 10; ?>
 				<tr>
 					<td colspan="<?php echo $colspan ?>">
 						<?php echo $this->pagination->getListFooter(); ?>
@@ -229,15 +218,15 @@ if (!empty($this->extra_sidebar))
 									$disableClassName = '';
 									$disabledLabel = '';
 									if (!$saveOrder)
-										:
+									{
 										$disabledLabel    = JText::_('JORDERINGDISABLED');
 										$disableClassName = 'inactive tip-top';
-									endif; ?>
+									} ?>
 									<span
 										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
 										title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 									<input type="text" style="display:none" name="order[]" size="5"
 									       value="<?php echo $item->ordering; ?>"
 									       class="width-20 text-area-order "/>
@@ -245,8 +234,8 @@ if (!empty($this->extra_sidebar))
 									:
 									?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
@@ -257,7 +246,10 @@ if (!empty($this->extra_sidebar))
 							<?php echo (int) $item->id; ?>
 						</td>
 						<td>
-							<?php echo $item->member; ?>
+							<?php $baseURL = 'index.php?option=com_swa&task=committeemember.edit&id=' ?>
+							<a href="<?php echo JRoute::_($baseURL . (int) $item->id); ?>">
+								<?php echo $item->member; ?>
+							</a>
 						</td>
 						<td>
 							<?php echo $item->position; ?>
