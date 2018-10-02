@@ -32,18 +32,15 @@ $item = $this->item;
 // Only show for the SWA committee or the hosts of the event
 if ($this->member)
 {
-	$isHostCommittee = in_array($this->member->uni_id, explode(',', $item->hosts)) && $this->member->club_committee;
+	$hostUniversities = explode(',', $item->hosts);
+	$isHostCommittee  = in_array($this->member->uni_id, $hostUniversities) && $this->member->club_committee;
 
 	if ($this->member->swa_committee || $isHostCommittee)
 	{
 		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div>
-						Ticket Sales
-					</div>
-				</h3>
+				<h3 class="panel-title">Ticket Sales</h3>
 			</div>
 			<div id="collapseSales" class="panel-collapse collapse in">
 				<div class="panel-body">
@@ -105,6 +102,10 @@ if ($this->member)
 							</tfoot>
 						</table>
 					<?php } ?>
+				<?php $baseURL = 'index.php?option=com_swa&task=event.downloadAttendees&event='; ?>
+					<a href="<?php echo JRoute::_($baseURL . (int) $item->event_id); ?>" target="_blank">
+						<h4>Download Event Attendees</h4>
+					</a>
 				</div>
 			</div>
 		</div>
@@ -113,9 +114,7 @@ if ($this->member)
 
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<div>
-			Event Results
-		</div>
+		<h3>Event Results</h3>
 	</div>
 
 	<div class="panel-body">

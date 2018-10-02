@@ -175,4 +175,32 @@ class SwaModelEvent extends SwaModelItem
 		return $db->loadAssocList();
 	}
 
+	public function getEventAttendees()
+	{
+		$eventId = $this->getEventId();
+
+		$db    = $this->getDbo();
+		$query = $db->getQuery(true);
+
+		$cols = array('Name', 'Uni', 'Ticket', 'Sex', 'Dietary', 'EmergencyContact', 'EmergencyNumber', 'Details');
+
+		$query->select(
+			$query->qn(
+				array('user.name', 'uni.name', 'event_ticket.name', 'member.sex', 'member.dietary',
+					'member.econtact', 'member.enumber', 'ticket.details'),
+				$cols
+			)
+		);
+		$query->from('#__users AS user');
+		$query->leftJoin('#__swa_member AS member ON user.id = member.user_id');
+		$query->leftJoin('#__swa_university AS uni ON member.university_id = uni.id');
+		$query->leftJoin('#__swa_ticket AS ticket ON member.id = ticket.member_id');
+		$query->leftJoin('#__swa_event_ticket AS event_ticket ON ticket.event_ticket_id = event_ticket.id');
+		$query->where('event_ticket.event_id = ' . (int) $eventId);
+		$query->order('uni.name, user.name');
+
+		$db->setQuery($query);
+
+		return $db->loadAssocList();
+	}
 }
