@@ -10,14 +10,12 @@ JHtml::_('formbehavior.chosen', 'select');
 // Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
+$jconfig = JFactory::getConfig();
 ?>
 
-<!--</style>-->
-<script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function () {
-		jQuery(document).ready(function () {
-			jQuery('#form-member').submit(function (event) {
-			});
+<script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+	jQuery(document).ready(function () {
+		jQuery('#form-member').submit(function (event) {
 		});
 	});
 </script>
@@ -28,8 +26,8 @@ $lang->load('com_swa', JPATH_ADMINISTRATOR);
 	<input type="hidden" name="option" value="com_swa"/>
 	<input type="hidden" name="task" value="memberpayment.submit"/>
 	<script
-		src="https:// Checkout.stripe.com/checkout.js" class="stripe-button"
-		data-key="<?php echo $stripe['publishable_key']; ?>"
+		src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+		data-key="<?php echo $jconfig->get('stripe_publishable_key'); ?>"
 		data-amount="500"
 		data-currency="GBP"
 		data-label="Buy Membership"
