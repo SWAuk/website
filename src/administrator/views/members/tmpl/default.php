@@ -152,7 +152,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'User',
-							'a.user',
+							'user',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -161,7 +161,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Email',
-							'a.email',
+							'email',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -170,7 +170,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'University',
-							'a.university',
+							'university',
 							$listDirn,
 							$listOrder
 						); ?>

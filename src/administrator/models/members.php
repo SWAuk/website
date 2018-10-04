@@ -23,6 +23,7 @@ class SwaModelMembers extends JModelList
 				'sex', 'a.sex',
 				'dob', 'a.dob',
 				'university_id', 'a.university_id',
+				'university', 'university_id.name',
 				'lifetime_member', 'a.lifetime_member',
 				'course', 'a.course',
 				'graduation', 'a.graduation',
