@@ -148,12 +148,20 @@ if (!empty($this->extra_sidebar))
 						       title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
 						       onclick="Joomla.checkAll(this)"/>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
 							'User',
 							'a.user',
+							$listDirn,
+							$listOrder
+						); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_(
+							'grid.sort',
+							'Email',
+							'a.email',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -260,6 +268,9 @@ if (!empty($this->extra_sidebar))
 								?>
 								<?php echo $item->user; ?>
 							<?php endif; ?>
+						</td>
+						<td>
+							<?php echo $item->email; ?>
 						</td>
 						<td>
 							<?php echo $item->university; ?>

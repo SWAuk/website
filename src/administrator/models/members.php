@@ -16,34 +16,22 @@ class SwaModelMembers extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
-				'a.id',
-				'user_id',
-				'a.user_id',
-				'sex',
-				'a.sex',
-				'dob',
-				'a.dob',
-				'university_id',
-				'a.university_id',
-				'lifetime_member',
-				'a.lifetime_member',
-				'course',
-				'a.course',
-				'graduation',
-				'a.graduation',
-				'discipline',
-				'a.discipline',
-				'level',
-				'a.level',
-				'shirt',
-				'a.shirt',
-				'econtact',
-				'a.econtact',
-				'enumber',
-				'a.enumber',
-				'swahelp',
-				'a.swahelp',
+				'id', 'a.id',
+				'user_id', 'a.user_id',
+				'user', 'user_id.name',
+				'email', 'user_id.email',
+				'sex', 'a.sex',
+				'dob', 'a.dob',
+				'university_id', 'a.university_id',
+				'lifetime_member', 'a.lifetime_member',
+				'course', 'a.course',
+				'graduation', 'a.graduation',
+				'discipline', 'a.discipline',
+				'level', 'a.level',
+				'shirt', 'a.shirt',
+				'econtact', 'a.econtact',
+				'enumber', 'a.enumber',
+				'swahelp', 'a.swahelp',
 			);
 		}
 
@@ -97,6 +85,7 @@ class SwaModelMembers extends JModelList
 
 		// Join over the user field 'user_id'
 		$query->select('user_id.name AS user');
+		$query->select('user_id.email AS email');
 		$query->leftJoin('#__users AS user_id ON user_id.id = a.user_id');
 		// Join over the user field 'university_id'
 		$query->select('university_id.name AS university');
