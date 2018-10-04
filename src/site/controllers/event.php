@@ -13,7 +13,6 @@ class SwaControllerEvent extends SwaController
 		$member = $model->getMember();
 		$item   = $model->getItem();
 
-
 		$hostUniversities = explode(',', $item->hosts);
 		$isHostCommittee  = in_array($member->uni_id, $hostUniversities) && $member->club_committee;
 
@@ -39,7 +38,9 @@ class SwaControllerEvent extends SwaController
 			fclose($csv);
 
 			jexit();
-		} else {
+		}
+		else
+		{
 			die("Access denied!");
 		}
 	}
