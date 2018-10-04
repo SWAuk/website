@@ -16,12 +16,11 @@ class SwaModelUniversityMembers extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id',
-				'a.id',
-				'committee',
-				'a.committee',
-				'graduated',
-				'a.graduated',
+				'id', 'a.id',
+				'member', 'user.name',
+				'university', 'university.name',
+				'committee', 'a.committee',
+				'graduated', 'a.graduated'
 			);
 		}
 
@@ -72,9 +71,9 @@ class SwaModelUniversityMembers extends JModelList
 		// Select the required fields from the table.
 		$query->select(
 			array(
-				'a.id as id',
-				'a.graduated as graduated',
-				'IF(a.committee="NULL", "None", a.committee) as committee',
+				'a.id AS id',
+				'a.graduated AS graduated',
+				'a.committee AS committee',
 			)
 		);
 		$query->from('`#__swa_university_member` AS a');
@@ -87,7 +86,8 @@ class SwaModelUniversityMembers extends JModelList
 
 		$query->join('LEFT', '`#__swa_member` AS member ON a.member_id=member.id');
 		$query->join('LEFT', '`#__users` AS user ON member.user_id=user.id');
-		$query->select('user.name as member');
+		$query->select('user.name AS member');
+		$query->select('user.email AS email');
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
