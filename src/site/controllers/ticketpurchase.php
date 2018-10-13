@@ -224,8 +224,9 @@ class SwaControllerTicketPurchase extends SwaController
 			"{$db->quote($eventTicketId)}, " .
 			// Stripe amount is in pence
 			"{$db->quote($charge->amount/100.0)}, " .
-			"{$db->quote(json_encode($details))}"
+			"{$db->quote(json_encode($details, JSON_UNESCAPED_SLASHES))}"
 		);
+
 		$db->setQuery($query);
 		$result = $db->execute();
 
