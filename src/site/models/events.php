@@ -90,7 +90,7 @@ class SwaModelEvents extends SwaModelList
 		$query->leftJoin($db->quoteName('#__swa_season', 'season') . ' ON season.id = event.season_id');
 		$query->leftJoin($db->quoteName('#__swa_event_ticket', 'event_ticket') . ' ON event_ticket.event_id = event.id');
 		$query->group('event.id');
-		$query->order($this->getState('list.ordering') . ' ' . $this->getState('list.direction'));
+		$query->order($db->qn('event.date') . ' DESC');
 
 		return $query;
 	}
