@@ -81,12 +81,13 @@ class SwaViewEvents extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'a.id'         => JText::_('JGRID_HEADING_ID'),
-			'a.name'       => JText::_('Name'),
-			'a.capacity'   => JText::_('Capacity'),
-			'a.date_open'  => JText::_('Date open'),
-			'a.date_close' => JText::_('Date close'),
-			'a.date'       => JText::_('Date'),
+			'id'         => JText::_('JGRID_HEADING_ID'),
+			'name'       => JText::_('Name'),
+			'season'     => JText::_('Season'),
+			'capacity'   => JText::_('Capacity'),
+			'date_open'  => JText::_('Registration Open'),
+			'date_close' => JText::_('Registration Close'),
+			'date'       => JText::_('Event Start'),
 		);
 	}
 

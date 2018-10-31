@@ -18,19 +18,12 @@ class SwaModelEvents extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
 				'name',
-				'a.name',
-				'season_id',
-				'a.season_id',
+				'season',
 				'capacity',
-				'a.capacity',
 				'date_open',
-				'a.date_open',
 				'date_close',
-				'a.date_close',
 				'date',
-				'a.date',
 
 			);
 		}
@@ -41,12 +34,12 @@ class SwaModelEvents extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication('administrator');
-		$this->setState(
-			'filter.search',
-			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
-		);
+		
+		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('a.id', 'desc');
+		
+		parent::populateState('date', 'desc');
 	}
 
 	/**
