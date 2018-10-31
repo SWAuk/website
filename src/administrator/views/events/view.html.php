@@ -83,10 +83,11 @@ class SwaViewEvents extends JViewLegacy
 		return array(
 			'a.id'         => JText::_('JGRID_HEADING_ID'),
 			'a.name'       => JText::_('Name'),
+			'season_id'    => JText::_('Season')
 			'a.capacity'   => JText::_('Capacity'),
-			'a.date_open'  => JText::_('Date open'),
-			'a.date_close' => JText::_('Date close'),
-			'a.date'       => JText::_('Date'),
+			'a.date_open'  => JText::_('Registration Open'),
+			'a.date_close' => JText::_('Registration Close'),
+			'a.date'       => JText::_('Event Start'),
 		);
 	}
 
