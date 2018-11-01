@@ -16,23 +16,10 @@ class SwaModelMembers extends JModelList
 		if (empty($config['filter_fields']))
 		{
 			$config['filter_fields'] = array(
-				'id', 'a.id',
-				'user_id', 'a.user_id',
-				'user', 'user_id.name',
-				'email', 'user_id.email',
-				'sex', 'a.sex',
-				'dob', 'a.dob',
-				'university_id', 'a.university_id',
-				'university', 'university_id.name',
-				'lifetime_member', 'a.lifetime_member',
-				'course', 'a.course',
-				'graduation', 'a.graduation',
-				'discipline', 'a.discipline',
-				'level', 'a.level',
-				'shirt', 'a.shirt',
-				'econtact', 'a.econtact',
-				'enumber', 'a.enumber',
-				'swahelp', 'a.swahelp',
+				'id',
+				'user',
+				'university',
+				'lifetime_member'
 			);
 		}
 
