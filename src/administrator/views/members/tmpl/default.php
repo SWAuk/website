@@ -99,16 +99,10 @@ if (!empty($this->extra_sidebar))
 					<select name="directionTable" id="directionTable"
 					        class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
-							echo 'selected="selected"';
-						} ?>>
+						<option value="asc" <?php echo ($listDirn == 'asc') ? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
 						</option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
-							echo 'selected="selected"';
-						} ?>>
+						<option value="desc" <?php echo ($listDirn == 'desc')? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
 						</option>
 					</select>
@@ -123,6 +117,7 @@ if (!empty($this->extra_sidebar))
 					</select>
 				</div>
 			</div>
+			
 			<div class="clearfix"></div>
 			<table class="table table-striped" id="memberList">
 				<thead>
@@ -179,7 +174,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Lifetime Member',
-							'a.lifetime_member',
+							'lifetime_member',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -188,7 +183,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -196,18 +191,8 @@ if (!empty($this->extra_sidebar))
 				</tr>
 				</thead>
 				<tfoot>
-				<?php
-				if (isset($this->items[0]))
-				{
-					$colspan = count(get_object_vars($this->items[0]));
-				}
-				else
-				{
-					$colspan = 10;
-				}
-				?>
 				<tr>
-					<td colspan="<?php echo $colspan ?>">
+					<td colspan="100%">
 						<?php echo $this->pagination->getListFooter(); ?>
 					</td>
 				</tr>
