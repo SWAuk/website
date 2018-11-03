@@ -7,20 +7,14 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
-// Import CSS
-$document = JFactory::getDocument();
-$document->addStyleSheet('components/com_swa/assets/css/swa.css');
-
 $user      = JFactory::getUser();
 $userId    = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
-$canOrder  = $user->authorise('core.edit.state', 'com_swa');
 $saveOrder = $listOrder == 'a.ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl =
-		'index.php?option=com_swa&task=individualresults.saveOrderAjax&tmpl=component';
+	$saveOrderingUrl = 'index.php?option=com_swa&task=individualresults.saveOrderAjax&tmpl=component';
 	JHtml::_(
 		'sortablelist.sortable',
 		'individualresultList',
@@ -53,8 +47,7 @@ if (!empty($this->extra_sidebar))
 }
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_swa&view=individualresults'); ?>"
-      method="post" name="adminForm" id="adminForm">
+<form method="post" name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar))
 	:
 	?>
@@ -72,61 +65,53 @@ if (!empty($this->extra_sidebar))
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
-					<label for="filter_search" class="element-invisible"><?php echo JText::_(
-							'JSEARCH_FILTER'
-						); ?></label>
+					<label for="filter_search" class="element-invisible">
+						<?php echo JText::_('JSEARCH_FILTER'); ?>
+					</label>
 					<input type="text" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
-					       value="<?php echo $this->escape(
-						       $this->state->get('filter.search')
-					       ); ?>" title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
+					       value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
+					       title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
 				</div>
 				<div class="btn-group pull-left">
 					<button class="btn hasTooltip" type="submit"
 					        title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>">
-						<i class="icon-search"></i></button>
+						<i class="icon-search"></i>
+					</button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
 					        onclick="document.id('filter_search').value='';this.form.submit();">
-						<i class="icon-remove"></i></button>
+						<i class="icon-remove"></i>
+					</button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?></option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
-							echo 'selected="selected"';
-						} ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?></option>
+						<option value="asc" <?php echo ($listDirn == 'asc') ? 'selected="selected"' : '' ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
+						</option>
+						<option value="desc" <?php echo ($listDirn == 'desc') ? 'selected="selected"' : '' ?>>
+							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
+						</option>
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
-					<select name="sortTable" id="sortTable" class="input-medium"
-					        onchange="Joomla.orderTable()">
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
+					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
-						<?php echo JHtml::_(
-							'select.options',
-							$sortFields,
-							'value',
-							'text',
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder); ?>
 					</select>
 				</div>
 			</div>
@@ -157,65 +142,31 @@ if (!empty($this->extra_sidebar))
 					</th>
 
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'User',
-							'a.user',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'User', 'user', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Event',
-							'a.event',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'Event', 'event_id.date', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Competition type',
-							'a.competition_type',
+							'competition_type',
 							$listDirn,
 							$listOrder
 						); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Result',
-							'a.result',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'Result', 'result', $listDirn, $listOrder); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
-						<?php echo JHtml::_(
-							'grid.sort',
-							'JGRID_HEADING_ID',
-							'a.id',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 				</thead>
 				<tfoot>
-				<?php
-				if (isset($this->items[0]))
-				{
-					$colspan = count(get_object_vars($this->items[0]));
-				}
-				else
-				{
-					$colspan = 10;
-				}
-				?>
 				<tr>
-					<td colspan="<?php echo $colspan ?>">
+					<td colspan="100%">
 						<?php echo $this->pagination->getListFooter(); ?>
 					</td>
 				</tr>
@@ -223,10 +174,6 @@ if (!empty($this->extra_sidebar))
 				<tbody>
 				<?php foreach ($this->items as $i => $item)
 					:
-					$ordering = ($listOrder == 'a.ordering');
-					$canCreate = $user->authorise('core.create', 'com_swa');
-					$canEdit = $user->authorise('core.edit', 'com_swa');
-					$canCheckin = $user->authorise('core.manage', 'com_swa');
 					$canChange = $user->authorise('core.edit.state', 'com_swa');
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
@@ -247,8 +194,8 @@ if (!empty($this->extra_sidebar))
 									<span
 										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
 										title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 									<input type="text" style="display:none" name="order[]" size="5"
 									       value="<?php echo $item->ordering; ?>"
 									       class="width-20 text-area-order "/>
@@ -256,8 +203,8 @@ if (!empty($this->extra_sidebar))
 									:
 									?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+										<i class="icon-menu"></i>
+									</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
@@ -266,19 +213,15 @@ if (!empty($this->extra_sidebar))
 						</td>
 
 						<td>
-
 							<?php echo $item->user; ?>
 						</td>
 						<td>
-
 							<?php echo $item->event; ?>
 						</td>
 						<td>
-
 							<?php echo $item->competition_type; ?>
 						</td>
 						<td>
-
 							<?php echo $item->result; ?>
 						</td>
 						<td class="center hidden-phone">

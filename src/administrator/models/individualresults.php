@@ -18,14 +18,10 @@ class SwaModelIndividualresults extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'member_id',
-				'a.member_id',
-				'competition_id',
-				'a.competition_id',
+				'user',
+				'event_id.date',
+				'competition_type',
 				'result',
-				'a.result',
-
 			);
 		}
 
@@ -34,13 +30,11 @@ class SwaModelIndividualresults extends JModelList
 
 	protected function populateState($ordering = null, $direction = null)
 	{
-		$app = JFactory::getApplication('administrator');
-		$this->setState(
-			'filter.search',
-			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
-		);
+		$app    = JFactory::getApplication('administrator');
+		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$this->setState('filter.search', $search);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('a.id', 'desc');
+		parent::populateState('event_id.date DESC, competition_type, result', 'asc');
 	}
 
 	/**
@@ -115,15 +109,10 @@ class SwaModelIndividualresults extends JModelList
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
 				$query->where(
-					'( user_id.name LIKE ' .
-					$search .
-					'  OR  user_id.username LIKE ' .
-					$search .
-					' OR  competition_type_id.name LIKE ' .
-					$search .
-					'OR  event_id.name LIKE ' .
-					$search .
-					' )'
+					'( user_id.name LIKE ' . $search .
+					' OR user_id.username LIKE ' . $search .
+					' OR competition_type_id.name LIKE ' . $search .
+					' OR event_id.name LIKE ' . $search . ' )'
 				);
 			}
 		}
