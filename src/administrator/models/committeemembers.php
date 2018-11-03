@@ -17,9 +17,8 @@ class SwaModelCommitteeMembers extends JModelList
 		{
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
+				'member',
 				'position',
-				'a.position',
 			);
 		}
 
@@ -34,7 +33,7 @@ class SwaModelCommitteeMembers extends JModelList
 			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
 		);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('a.id', 'desc');
+		parent::populateState('id', 'desc');
 	}
 
 	/**
@@ -91,13 +90,9 @@ class SwaModelCommitteeMembers extends JModelList
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
 				$query->where(
-					'( a.position LIKE ' .
-					$search .
-					'  OR  user.name LIKE ' .
-					$search .
-					'  OR  user.username LIKE ' .
-					$search .
-					' )'
+					'( a.position LIKE ' . $search .
+					'  OR  user.name LIKE ' . $search .
+					'  OR  user.username LIKE ' . $search . ' )'
 				);
 			}
 		}
