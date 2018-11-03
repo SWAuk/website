@@ -47,6 +47,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_committee` (
   `position` VARCHAR(50)  NOT NULL ,
   `blurb` VARCHAR(2000)  NOT NULL ,
   `image` VARCHAR(100)  NOT NULL ,
+  `ordering` INT(11) NOT NULL DEFAULT 0 ,
   PRIMARY KEY (`id`),
   INDEX `fk_committee_member_idx` (`member_id` ASC)
 )

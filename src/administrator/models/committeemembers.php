@@ -19,6 +19,7 @@ class SwaModelCommitteeMembers extends JModelList
 				'id',
 				'member',
 				'position',
+				'ordering',
 			);
 		}
 
@@ -33,7 +34,7 @@ class SwaModelCommitteeMembers extends JModelList
 			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
 		);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('id', 'desc');
+		parent::populateState('ordering', 'asc');
 	}
 
 	/**
@@ -115,4 +116,23 @@ class SwaModelCommitteeMembers extends JModelList
 		return $items;
 	}
 
+	/**
+	 * Prepare a helloworld record for saving in the database
+	 */
+	protected function prepareTable($table)
+	{
+		// Set ordering to the last item if not set
+		if (empty($table->ordering))
+		{
+			$db = $this->getDbo();
+			$query = $db->getQuery(true)
+				->select('MAX(ordering)')
+				->from('#__helloworld');
+
+			$db->setQuery($query);
+			$max = $db->loadResult();
+
+			$table->ordering = $max + 1;
+		}
+	}
 }

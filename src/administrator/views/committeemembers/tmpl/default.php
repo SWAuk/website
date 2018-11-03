@@ -7,18 +7,21 @@ JHtml::_('bootstrap.tooltip');
 JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
-$user      = JFactory::getUser();
-$userId    = $user->get('id');
+$user   = JFactory::getUser();
+$userId = $user->get('id');
+
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
-$canOrder  = $user->authorise('core.edit.state', 'com_swa');
-$saveOrder = $listOrder == 'a.ordering';
+//$canOrder  = $user->authorise('core.edit.state', 'com_swa');
+$canChange = $user->authorise('core.edit.state', 'com_swa');
 
+$saveOrder = $listOrder == 'ordering';
 if ($saveOrder)
 {
 	$saveOrderingUrl = 'index.php?option=com_swa&task=committeemembers.saveOrderAjax&tmpl=component';
 	JHtml::_('sortablelist.sortable', 'committeememberList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
+
 $sortFields = $this->getSortFields();
 ?>
 
@@ -123,39 +126,30 @@ if (!empty($this->extra_sidebar))
 			<table class="table table-striped" id="committeememberList">
 				<thead>
 				<tr>
-					<?php if (isset($this->items[0]->ordering))
-						:
-						?>
-						<th width="1%" class="nowrap center hidden-phone">
-							<?php echo JHtml::_(
-								'grid.sort',
-								'<i class="icon-menu-2"></i>',
-								'a.ordering',
-								$listDirn,
-								$listOrder,
-								null,
-								'asc',
-								'JGRID_HEADING_ORDERING'
-							); ?>
-						</th>
-					<?php endif; ?>
+					<th width="1%" class="nowrap center hidden-phone">
+						<?php echo JHtml::_(
+							'grid.sort',
+							'<i class="icon-menu-2"></i>',
+							'ordering',
+							$listDirn,
+							$listOrder,
+							null,
+							'asc',
+							'JGRID_HEADING_ORDERING'
+						); ?>
+					</th>
 					<th width="1%" class="hidden-phone">
-						<input type="checkbox" name="checkall-toggle" value=""
-						       title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-						       onclick="Joomla.checkAll(this)"/>
+						<?php echo JHtml::_('grid.checkall') ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder); ?>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_('grid.sort', 'Member', 'member', $listDirn, $listOrder); ?>
 					</th>
-
 					<th class='left'>
 						<?php echo JHtml::_('grid.sort', 'Position', 'position', $listDirn, $listOrder); ?>
 					</th>
-
 				</tr>
 				</thead>
 				<tfoot>
@@ -168,41 +162,34 @@ if (!empty($this->extra_sidebar))
 				<tbody>
 				<?php foreach ($this->items as $i => $item)
 					:
-					$ordering = ($listOrder == 'a.ordering');
-					$canChange = $user->authorise('core.edit.state', 'com_swa');
+
+					$link = 'index.php?option=com_swa&task=committeemember.edit&id=' . (int) $item->id;
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
+						<td class="order nowrap center hidden-phone">
+							<?php
+							$iconClass  = '';
+							$assetName  = 'com_swa.committeemembers.' . (int) $item->id;
+							$canReorder = $user->authorise('core.edit.state', $assetName);
 
-						<?php if (isset($this->items[0]->ordering))
-							:
+							if (!$canReorder)
+							{
+								$iconClass = ' inactive';
+							}
+							elseif (!$saveOrder)
+							{
+								$orderingDisabled = JHtml::_('tooltipText', 'JORDERINGDISABLED');
+								$iconClass        = ' inactive tip-top hasTooltip" title="' . $orderingDisabled;
+							}
 							?>
-							<td class="order nowrap center hidden-phone">
-								<?php if ($canChange)
-									:
-									$disableClassName = '';
-									$disabledLabel = '';
-									if (!$saveOrder)
-									{
-										$disabledLabel    = JText::_('JORDERINGDISABLED');
-										$disableClassName = 'inactive tip-top';
-									} ?>
-									<span
-										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
-										title="<?php echo $disabledLabel ?>">
-										<i class="icon-menu"></i>
-									</span>
-									<input type="text" style="display:none" name="order[]" size="5"
-									       value="<?php echo $item->ordering; ?>"
-									       class="width-20 text-area-order "/>
-								<?php else
-									:
-									?>
-									<span class="sortable-handler inactive">
-										<i class="icon-menu"></i>
-									</span>
-								<?php endif; ?>
-							</td>
-						<?php endif; ?>
+							<span class="sortable-handler<?php echo $iconClass ?>">
+								<span class="icon-menu" aria-hidden="true"></span>
+							</span>
+							<?php if ($canReorder && $saveOrder) : ?>
+								<input name="order[]" class="width-20 text-area-order" type="text"
+								       style="display:none" size="5" value="<?php echo $item->ordering; ?>"/>
+							<?php endif; ?>
+						</td>
 						<td class="center hidden-phone">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
 						</td>
@@ -210,8 +197,7 @@ if (!empty($this->extra_sidebar))
 							<?php echo (int) $item->id; ?>
 						</td>
 						<td>
-							<?php $baseURL = 'index.php?option=com_swa&task=committeemember.edit&id=' ?>
-							<a href="<?php echo JRoute::_($baseURL . (int) $item->id); ?>">
+							<a href="<?php echo $link; ?>">
 								<?php echo $item->member; ?>
 							</a>
 						</td>

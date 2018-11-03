@@ -62,11 +62,7 @@ class SwaModelCommitteeMember extends JModelAdmin
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data =
-			JFactory::getApplication()->getUserState(
-				'com_swa.edit.committeemembers.data',
-				array()
-			);
+		$data = JFactory::getApplication()->getUserState('com_swa.edit.committeemembers.data', array());
 
 		if (empty($data))
 		{
@@ -76,4 +72,28 @@ class SwaModelCommitteeMember extends JModelAdmin
 		return $data;
 	}
 
+	/**
+	 * Prepare and sanitise the table data prior to saving.
+	 *
+	 * @param   \JTable $table A reference to a \JTable object.
+	 *
+	 * @return  void
+	 */
+	protected function prepareTable($table)
+	{
+		// Set ordering to the last item if not set
+		if (empty($table->ordering))
+		{
+			$db    = $this->getDbo();
+			$query = $db->getQuery(true);
+
+			$query->select('MAX(ordering)');
+			$query->from('#__swa_committee');
+
+			$db->setQuery($query);
+			$max = $db->loadResult();
+
+			$table->ordering = $max + 1;
+		}
+	}
 }

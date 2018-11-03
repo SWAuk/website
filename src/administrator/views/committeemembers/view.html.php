@@ -82,10 +82,10 @@ class SwaViewCommitteeMembers extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
+			'ordering' => JText::_('Order'),
 			'id'       => JText::_('JGRID_HEADING_ID'),
 			'member'   => JText::_('Member'),
 			'position' => JText::_('Position'),
-
 		);
 	}
 

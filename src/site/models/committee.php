@@ -17,11 +17,9 @@ class SwaModelCommittee extends SwaModelList
 		{
 			$config['filter_fields'] = array(
 				'id',
-				'a.id',
-				'name',
-				'a.name',
+				'member',
 				'position',
-				'a.position',
+				'ordering',
 			);
 		}
 
@@ -48,7 +46,7 @@ class SwaModelCommittee extends SwaModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.name', 'asc');
+		parent::populateState('ordering', 'asc');
 	}
 
 	/**
@@ -86,6 +84,14 @@ class SwaModelCommittee extends SwaModelList
 		$query->leftJoin('#__swa_member as member on committee.member_id = member.id');
 		$query->leftJoin('#__users as users on member.user_id = users.id');
 		$query->select('users.name as name');
+
+		// Add the list ordering clause.
+		$orderCol  = $this->state->get('list.ordering');
+		$orderDirn = $this->state->get('list.direction');
+		if ($orderCol && $orderDirn)
+		{
+			$query->order($db->escape($orderCol . ' ' . $orderDirn));
+		}
 
 		return $query;
 	}
