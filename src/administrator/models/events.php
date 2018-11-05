@@ -34,11 +34,11 @@ class SwaModelEvents extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication('administrator');
-		
+
 		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		
+
 		parent::populateState('date', 'desc');
 	}
 

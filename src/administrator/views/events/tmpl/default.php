@@ -103,7 +103,7 @@ if (!empty($this->extra_sidebar))
 						<option value="asc" <?php echo ($listDirn == 'asc') ? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?>
 						</option>
-						<option value="desc" <?php echo ($listDirn == 'desc')? 'selected="selected"' : '' ?>>
+						<option value="desc" <?php echo ($listDirn == 'desc') ? 'selected="selected"' : '' ?>>
 							<?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?>
 						</option>
 					</select>

@@ -12,7 +12,6 @@ $userId = $user->get('id');
 
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
-//$canOrder  = $user->authorise('core.edit.state', 'com_swa');
 $canChange = $user->authorise('core.edit.state', 'com_swa');
 
 $saveOrder = $listOrder == 'ordering';
@@ -162,7 +161,6 @@ if (!empty($this->extra_sidebar))
 				<tbody>
 				<?php foreach ($this->items as $i => $item)
 					:
-
 					$link = 'index.php?option=com_swa&task=committeemember.edit&id=' . (int) $item->id;
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
@@ -185,7 +183,9 @@ if (!empty($this->extra_sidebar))
 							<span class="sortable-handler<?php echo $iconClass ?>">
 								<span class="icon-menu" aria-hidden="true"></span>
 							</span>
-							<?php if ($canReorder && $saveOrder) : ?>
+							<?php if ($canReorder && $saveOrder)
+                            :
+							?>
 								<input name="order[]" class="width-20 text-area-order" type="text"
 								       style="display:none" size="5" value="<?php echo $item->ordering; ?>"/>
 							<?php endif; ?>
