@@ -8,18 +8,9 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `lifetime_member` TINYINT(1)  NOT NULL DEFAULT 0,
   `sex` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
   `ethnicity` VARCHAR(255)  NOT NULL ,
-  `dob` DATE NOT NULL DEFAULT '0000-00-00',
-  `university_id` INT(11)  NOT NULL ,
-  `course` VARCHAR(100)  NOT NULL ,
-  `graduation` INT(11)  NOT NULL ,
-  `discipline` VARCHAR(50)  NOT NULL ,
-  `level` VARCHAR(20)  NOT NULL DEFAULT 'Beginner',
-  `shirt` VARCHAR(3)  NOT NULL ,
   `econtact` VARCHAR(255)  NOT NULL ,
   `enumber` VARCHAR(255)  NOT NULL ,
-  `dietary` VARCHAR(10),
   `tel` VARCHAR(15) NOT NULL ,
-  `swahelp` VARCHAR(50)  NOT NULL DEFAULT 'None',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_member_user_idx` (`user_id` ASC),
@@ -84,23 +75,6 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university` (
   `url` VARCHAR(200) NULL ,
   PRIMARY KEY (`id`) ,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC)
-)
-DEFAULT COLLATE=utf8_general_ci;
-
--- university member
---
--- Table holding confirmed univiersity members
--- Note the committee files for makring members are university committee members
-CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `member_id` INT(11)  NOT NULL ,
-  `university_id` INT(11)  NOT NULL ,
-  `committee` VARCHAR(15) DEFAULT NULL,
-  `graduated` TINYINT(1)  NOT NULL DEFAULT 0,
-  PRIMARY KEY (`id`),
-  INDEX `fk_university_member_member_idx` (`member_id` ASC),
-  INDEX `fk_university_member_university_idx` (`member_id` ASC),
-  CONSTRAINT unique_member_id_university_id UNIQUE(member_id, university_id)
 )
 DEFAULT COLLATE=utf8_general_ci;
 

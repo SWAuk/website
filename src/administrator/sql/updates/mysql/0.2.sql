@@ -1,11 +1,14 @@
-ALTER TABLE `swana_swa_membership`
+-- Add the extra columns to the membership table
+ALTER TABLE `#__swa_membership`
   ADD COLUMN `paid` TINYINT(1) NOT NULL DEFAULT 0 AFTER `season_id`,
   ADD COLUMN `level` varchar(20) NOT NULL AFTER `paid`,
   ADD COLUMN `uni_id` int(11) NOT NULL AFTER `level`,
   ADD COLUMN `approved` TINYINT(1) NOT NULL DEFAULT 0 AFTER `uni_id`,
   ADD COLUMN `committee` varchar(20) DEFAULT NULL AFTER `approved`;
 
-UPDATE `swana_swa_membership` AS `membership`
+-- Update the members currently in the membership column
+-- Members in this table already have paid their yearly membership fee
+UPDATE `#__swa_membership` AS `membership`
 LEFT JOIN `swana_swa_member` AS `member` ON `member`.`id` = `membership`.`member_id`
 LEFT JOIN `swana_swa_university_member` AS `uni_member` ON `uni_member`.`member_id` = `membership`.`member_id`
 SET `membership`.`paid`      = 1,
@@ -17,7 +20,9 @@ SET `membership`.`paid`      = 1,
     -- change old committee status of 0 or "" to NULL - otherwise use as is
     `membership`.`committee` = IF(`uni_member`.`committee` IN ("0", ""), NULL, `uni_member`.`committee`);
 
-INSERT INTO `swana_swa_membership` (`member_id`, `season_id`, `paid`, `level`, `uni_id`, `approved`, `committee`)
+-- Insert members from university_member table into the membership table
+-- Members in the university_member table but not in the membership table are lifetime members or haven't bought SWA membership
+INSERT INTO `#__swa_membership` (`member_id`, `season_id`, `paid`, `level`, `uni_id`, `approved`, `committee`)
 SELECT `member`.`id` AS `member_id`,
     -- set the season_id to this season
     18 AS `season_id`,
@@ -31,16 +36,21 @@ SELECT `member`.`id` AS `member_id`,
     IF(`uni_member`.`university_id` IS NULL OR `uni_member`.`graduated` = 1, 0, 1) AS `approved`,
     -- change old committee status of 0 or "" to NULL - otherwise use as is
     IF(`uni_member`.`committee` IN ("0", ""), NULL, `uni_member`.`committee`) AS `committee`
-FROM `swana_swa_university_member` AS `uni_member`
+FROM `#__swa_university_member` AS `uni_member`
 LEFT JOIN `swana_swa_member` AS `member` ON `member`.`id` = `uni_member`.`member_id`
 LEFT JOIN `swana_swa_membership` AS `membership` ON `membership`.`member_id` = `uni_member`.`member_id`
 -- only select the members that aren't already in the membership table
 WHERE `membership`.`member_id` IS NULL;
 
-ALTER TABLE `swana_swa_member`
-  DROP COLUMN `university_id`
+ALTER TABLE `#__swa_member`
+  DROP COLUMN `dob`,
+  DROP COLUMN `university_id`,
   DROP COLUMN `course`,
   DROP COLUMN `graduation`,
   DROP COLUMN `discipline`,
   DROP COLUMN `level`,
-  DROP COLUMN `shirt`;
+  DROP COLUMN `shirt`,
+  DROP COLUMN `dietary`,
+  DROP COLUMN `swahelp`;
+
+DROP TABLE `#__swa_univeristy_member`;
