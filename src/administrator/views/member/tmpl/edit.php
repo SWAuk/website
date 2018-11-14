@@ -40,8 +40,6 @@ JHtml::_('behavior.keepalive');
 
 					<!-- Hidden field hack so that unchecked checkboxes are saved -->
 					<input type="hidden" name="jform[lifetime_member]" value="0">
-					<input type="hidden" name="jform[club_committee]" value="0">
-					<input type="hidden" name="jform[swa_committee]" value="0">
 
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
@@ -64,40 +62,8 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('ethnicity'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('dob'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('dob'); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('tel'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('tel'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('university_id'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('university_id'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('club_committee'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('club_committee'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('course'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('course'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('graduation'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('graduation'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('discipline'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('discipline'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('level'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('level'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('shirt'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('shirt'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('econtact'); ?></div>
@@ -110,14 +76,6 @@ JHtml::_('behavior.keepalive');
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('dietary'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('dietary'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('swahelp'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('swahelp'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('swa_committee'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('swa_committee'); ?></div>
 					</div>
 
 				</fieldset>

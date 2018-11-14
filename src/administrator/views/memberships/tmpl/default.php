@@ -13,7 +13,6 @@ $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 $canEdit   = $user->authorise('core.edit', 'com_swa');
 ?>
-
 <script type="text/javascript">
 	Joomla.orderTable = function () {
 		table = document.getElementById("sortTable");
@@ -39,7 +38,10 @@ if (!empty($this->extra_sidebar))
 	<div id="j-main-container" class="span10">
 		<div id="adminview-description">
 			<p>Here you can see and add Member's yearly membership.</p>
-			<p>New Members must buy a membership each year. Lifetime members don't have to pay.</p>
+			<p>
+				New Members must buy a membership each year. Lifetime members don't have to pay but have to follow the
+				same process of selecting their uni and level to gain a membership each year.
+			</p>
 		</div>
 
 		<div id="filter-bar" class="btn-toolbar">
@@ -101,6 +103,9 @@ if (!empty($this->extra_sidebar))
 			</div>
 		</div>
 
+
+		<?php //echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
+
 		<?php if (empty($this->items)) : ?>
 			<div class="alert alert-no-items">
 				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
@@ -116,7 +121,22 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_('grid.sort', 'Season', 'season', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_('grid.sort', 'Member', 'member_name', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('grid.sort', 'Member', 'member', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Paid', 'paid', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Level', 'level', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'University', 'university', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Approved', 'approved', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Committee', 'committee', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 				</thead>
@@ -138,7 +158,12 @@ if (!empty($this->extra_sidebar))
 							<?php endif; ?>
 						</td>
 						<td><?php echo $item->season ?></td>
-						<td><?php echo $item->member_name ?></td>
+						<td><?php echo $item->member ?></td>
+						<td><?php echo $item->paid ?></td>
+						<td><?php echo $item->level ?></td>
+						<td><?php echo $item->university ?></td>
+						<td><?php echo $item->approved ?></td>
+						<td><?php echo $item->committee ?></td>
 					</tr>
 				<?php endforeach; ?>
 				</tbody>

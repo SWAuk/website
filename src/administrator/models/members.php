@@ -69,15 +69,16 @@ class SwaModelMembers extends JModelList
 
 		// Select the required fields from the table.
 		$query->select($this->getState('list.select', 'DISTINCT a.*'));
-		$query->from('`#__swa_member` AS a');
+		$query->from('#__swa_member AS a');
 
 		// Join over the user field 'user_id'
 		$query->select('user_id.name AS user');
 		$query->select('user_id.email AS email');
 		$query->leftJoin('#__users AS user_id ON user_id.id = a.user_id');
+		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = a.id');
 		// Join over the user field 'university_id'
 		$query->select('university_id.name AS university');
-		$query->leftJoin('#__swa_university AS university_id ON university_id.id = a.university_id');
+		$query->leftJoin('#__swa_university AS university_id ON university_id.id = membership.uni_id');
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
@@ -91,11 +92,8 @@ class SwaModelMembers extends JModelList
 			{
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
 				$query->where(
-					'( user_id.name LIKE ' .
-					$search .
-					'  OR  user_id.username LIKE ' .
-					$search .
-					' )'
+					'( user_id.name LIKE ' . $search .
+					' OR  user_id.username LIKE ' . $search . ' )'
 				);
 			}
 		}

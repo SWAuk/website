@@ -55,20 +55,16 @@
 			<menu link="option=com_swa&amp;view=members" view="members"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Members">
 				COM_SWA_TITLE_MEMBERS
-			</menu>
+            </menu>
             <menu link="option=com_swa&amp;view=memberships" view="memberships"
-                  img="components/com_swa/assets/images/s_default.png" alt="Swa/memberships">
+                  img="components/com_swa/assets/images/s_default.png" alt="Swa/Memberships">
                 COM_SWA_TITLE_MEMBERSHIPS
             </menu>
-			<menu link="option=com_swa&amp;view=committeemembers" view="committeemembers"
+            <menu link="option=com_swa&amp;view=committeemembers" view="committeemembers"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Committee">
-				COM_SWA_TITLE_COMMITTEE
-			</menu>
-			<menu link="option=com_swa&amp;view=membership" view="membership"
-				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Membership">
-				COM_SWA_TITLE_MEMBERSHIP
-			</menu>
-			<menu link="option=com_swa&amp;view=qualifications" view="qualifications"
+                COM_SWA_TITLE_COMMITTEE
+            </menu>
+            <menu link="option=com_swa&amp;view=qualifications" view="qualifications"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Qualifications">
 				COM_SWA_TITLE_QUALIFICATIONS
 			</menu>

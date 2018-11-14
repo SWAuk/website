@@ -11,22 +11,9 @@ $user      = JFactory::getUser();
 $userId    = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
-$canOrder  = $user->authorise('core.edit.state', 'com_swa');
 $canEdit   = $user->authorise('core.edit', 'com_swa');
-$saveOrder = $listOrder == 'a.ordering';
-if ($saveOrder)
-{
-	$saveOrderingUrl = 'index.php?option=com_swa&task=members.saveOrderAjax&tmpl=component';
-	JHtml::_(
-		'sortablelist.sortable',
-		'memberList',
-		'adminForm',
-		strtolower($listDirn),
-		$saveOrderingUrl
-	);
-}
-$sortFields = $this->getSortFields();
 ?>
+
 <script type="text/javascript">
 	Joomla.orderTable = function () {
 		table = document.getElementById("sortTable");
@@ -61,10 +48,12 @@ if (!empty($this->extra_sidebar))
 		?>
 		<div id="j-main-container">
 			<?php endif; ?>
+
 			<div id="adminview-description">
 				<p>Here you can see and add members of the Org. This list is different to the Joomla Users list.</p>
 				<p>People must register on the site (Joomla) before they can become a member of the Org.</p>
 			</div>
+
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
 					<label for="filter_search" class="element-invisible">
@@ -82,7 +71,7 @@ if (!empty($this->extra_sidebar))
 					</button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
-					        onclick="document.id('filter_search').value='';this.form.submit();">
+					        onclick="getElementById('filter_search').value=''; this.form.submit();">
 						<i class="icon-remove"></i>
 					</button>
 				</div>
@@ -117,7 +106,7 @@ if (!empty($this->extra_sidebar))
 					</select>
 				</div>
 			</div>
-			
+
 			<div class="clearfix"></div>
 			<table class="table table-striped" id="memberList">
 				<thead>
@@ -139,54 +128,23 @@ if (!empty($this->extra_sidebar))
 						</th>
 					<?php endif; ?>
 					<th width="1%" class="hidden-phone">
-						<input type="checkbox" name="checkall-toggle" value=""
-						       title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-						       onclick="Joomla.checkAll(this)"/>
+						<?php echo JHtml::_('grid.checkall'); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'User', 'user', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'Email', 'email', $listDirn, $listOrder); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_('grid.sort', 'University', 'university', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_(
-							'grid.sort',
-							'User',
-							'user',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Email',
-							'email',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'University',
-							'university',
-							$listDirn,
-							$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-						<?php echo JHtml::_(
-							'grid.sort',
-							'Lifetime Member',
-							'lifetime_member',
-							$listDirn,
-							$listOrder
-						); ?>
+							'grid.sort', 'Lifetime Member', 'lifetime_member', $listDirn, $listOrder); ?>
 					</th>
 					<th width="1%" class="nowrap center hidden-phone">
-						<?php echo JHtml::_(
-							'grid.sort',
-							'JGRID_HEADING_ID',
-							'id',
-							$listDirn,
-							$listOrder
-						); ?>
+						<?php echo JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder); ?>
 					</th>
 				</tr>
 				</thead>

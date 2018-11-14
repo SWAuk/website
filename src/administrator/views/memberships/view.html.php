@@ -8,9 +8,7 @@ defined('_JEXEC') or die;
 class SwaViewMemberships extends JViewLegacy
 {
 	protected $items;
-
 	protected $pagination;
-
 	protected $state;
 
 	/**
@@ -83,8 +81,13 @@ class SwaViewMemberships extends JViewLegacy
 		return array(
 			'season desc, member.id' => JText::_('Season, Member ID'),
 			'season'                 => JText::_('Season'),
-			'member_name'            => JText::_('Member'),
+			'member'                 => JText::_('Member'),
 			'member.id'              => JText::_('Member ID'),
+			'paid'                   => JText::_('Paid'),
+			'level'                  => JText::_('Level'),
+			'university'             => JText::_('University'),
+			'approved'               => JText::_('Approved'),
+			'committee'              => JText::_('Committee'),
 		);
 	}
 

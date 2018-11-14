@@ -22,7 +22,12 @@ class SwaModelMemberships extends JModelList
 			$config['filter_fields'] = array(
 				'season',
 				'member.id',
-				'member_name',
+				'member',
+				'paid',
+				'level',
+				'university',
+				'approved',
+				'committee',
 			);
 		}
 
@@ -70,13 +75,15 @@ class SwaModelMemberships extends JModelList
 
 		// Select the required fields from the table.
 		$query->select($this->getState('list.select', 'DISTINCT membership.*'));
-		$query->select('user.name AS member_name');
+		$query->select('user.name AS member');
 		$query->select('season.year AS season');
+		$query->select('uni.name AS university');
 
 		$query->from('#__swa_membership AS membership');
 		$query->leftJoin('#__swa_member AS member ON member.id = membership.member_id');
 		$query->leftJoin('#__users AS user ON user.id = member.user_id');
 		$query->leftJoin('#__swa_season AS season ON season.id = membership.season_id');
+		$query->leftJoin('#__swa_university AS uni ON uni.id = membership.uni_id');
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
