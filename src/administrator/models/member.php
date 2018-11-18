@@ -42,17 +42,13 @@ class SwaModelMember extends JModelAdmin
 	/**
 	 * Method to get the record form.
 	 *
-	 * @param   array   $data     An optional array of data for the form to interogate.
-	 * @param   boolean $loadData True if the form is to load its own data (default case), false
-	 *                            if not.
+	 * @param   array   $data       An optional array of data for the form to interrogate.
+	 * @param   boolean $loadData   True if the form is to load its own data (default case), false if not.
 	 *
-	 * @return    JForm    A JForm object on success, false on failure
+	 * @return    JForm | boolean   A JForm object on success, false on failure
 	 */
 	public function getForm($data = array(), $loadData = true)
 	{
-		// Initialise variables.
-		$app = JFactory::getApplication();
-
 		// Get the form.
 		$form =
 			$this->loadForm(

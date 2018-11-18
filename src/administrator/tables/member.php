@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die;
 
-class SwaTablemember extends JTable
+class SwaTableMember extends JTable
 {
 
 	/**

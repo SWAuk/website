@@ -8,6 +8,7 @@ JHtml::_('behavior.formvalidation');
 JHtml::_('formbehavior.chosen', 'select');
 JHtml::_('behavior.keepalive');
 ?>
+
 <script type="text/javascript">
 	js = jQuery.noConflict();
 	js(document).ready(function () {

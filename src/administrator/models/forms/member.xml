@@ -14,7 +14,7 @@
 			type="sql"
 			key_field="id"
 			value_field="value"
-			query="SELECT users.id, CONCAT(users.name, ' ', IF(ISNULL(member.id), '', '(Already Member)')) AS value
+			query="SELECT users.id, CONCAT(users.name, IF(ISNULL(member.id), '', ' (Already Member)')) AS value
 			FROM #__users AS users
 			LEFT JOIN #__swa_member member ON member.user_id = users.id
 			ORDER BY users.id DESC"
