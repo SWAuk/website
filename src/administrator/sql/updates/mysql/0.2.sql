@@ -1,5 +1,8 @@
 -- Add the extra columns to the membership table
 ALTER TABLE `#__swa_membership`
+	ADD CONSTRAINT `unique_member_id_season_id` UNIQUE (`member_id`, `season_id`),
+  DROP PRIMARY KEY,
+	ADD COLUMN `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
   ADD COLUMN `paid` TINYINT(1) NOT NULL DEFAULT 0 AFTER `season_id`,
   ADD COLUMN `level` varchar(20) NOT NULL AFTER `paid`,
   ADD COLUMN `uni_id` int(11) NOT NULL AFTER `level`,

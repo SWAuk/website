@@ -76,13 +76,11 @@ class SwaModelMembership extends JModelAdmin
 	protected function prepareTable($table)
 	{
 		// Define which columns can have NULL values
-
 		$nullableColumns = array('committee');
 		foreach ($nullableColumns as $val) {
 			// Define the rules when the value is set NULL
-
 			if (!strlen($table->$val)) {
-			$table->$val = null;
+				$table->$val = null;
             }
         }
 	}

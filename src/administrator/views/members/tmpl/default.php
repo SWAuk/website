@@ -19,11 +19,7 @@ $canEdit   = $user->authorise('core.edit', 'com_swa');
 		table = document.getElementById("sortTable");
 		direction = document.getElementById("directionTable");
 		order = table.options[table.selectedIndex].value;
-		if (order != '<?php echo $listOrder; ?>') {
-			dirn = 'asc';
-		} else {
-			dirn = direction.options[direction.selectedIndex].value;
-		}
+		dirn = direction.options[direction.selectedIndex].value;
 		Joomla.tableOrdering(order, dirn, '');
 	}
 </script>
@@ -102,7 +98,7 @@ if (!empty($this->extra_sidebar))
 					</label>
 					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
-						<?php echo JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder); ?>
+						<?php echo JHtml::_('select.options', $this->getSortFields(), 'value', 'text', $listOrder); ?>
 					</select>
 				</div>
 			</div>

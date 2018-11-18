@@ -45,7 +45,7 @@ class SwaViewMembers extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		$canDo = SwaHelper::getActions();
+		$actions = SwaHelper::getActions();
 
 		JToolBarHelper::title(JText::_('Members'), 'members.png');
 
@@ -53,20 +53,23 @@ class SwaViewMembers extends JViewLegacy
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/member';
 		if (file_exists($formPath))
 		{
-			if ($canDo->get('core.create'))
+			if ($actions->get('core.create'))
 			{
 				JToolBarHelper::addNew('member.add', 'JTOOLBAR_NEW');
 			}
 
-			if ($canDo->get('core.edit') && isset($this->items[0]))
+			if ($actions->get('core.edit') && isset($this->items[0]))
 			{
 				JToolBarHelper::editList('member.edit', 'JTOOLBAR_EDIT');
 			}
 		}
 
-		JToolBarHelper::deleteList('', 'members.delete', 'JTOOLBAR_DELETE');
+		if ($actions->get('core.delete'))
+		{
+			JToolBarHelper::deleteList('', 'members.delete', 'JTOOLBAR_DELETE');
+		}
 
-		if ($canDo->get('core.admin'))
+		if ($actions->get('core.admin'))
 		{
 			JToolBarHelper::preferences('com_swa');
 		}

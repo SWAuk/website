@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fieldset>
+        <field name="id"
+               type="text"
+               default="0"
+               label="ID"
+               readonly="true"
+               class="readonly"/>
+
         <field name="member_id"
                type="sql"
                header="-- Select Member --"
@@ -23,5 +30,53 @@
                label="Season"
                required="true"
                filter="safehtml"/>
+
+        <field name="paid"
+               description="Has the Member paid for SWA Membership for the Season?"
+               type="checkbox"
+               label="Paid"
+               default="0"/>
+
+        <field name="level"
+               description="What windsurfing level is the Member?"
+               type="list"
+               label="Level"
+               required="true">
+            <option>-- Select Level --</option>
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+        </field>
+
+        <field name="uni_id"
+               description="What University does the Member go to?"
+               type="sql"
+               header="-- Select University --"
+               key_field="id"
+               value_field="name"
+               query="SELECT id, name FROM #__swa_university ORDER BY name ASC"
+               label="University"
+               required="true"
+               filter="safehtml"/>
+
+        <field name="approved"
+               description="Has the Member been accepted into the University club (must be covered by club insurance)?"
+               type="checkbox"
+               label="Approved"
+               default="0"/>
+
+        <field name="committee"
+               description="What, if any, committee position is the Member?"
+               type="list"
+               label="Committee">
+            <option>None</option>
+            <option value="President">President</option>
+            <option value="Vice President">Vice President</option>
+            <option value="Windsurf President">Windsurf President</option>
+            <option value="Event Secretary">Event Secretary</option>
+            <option value="Social Secretary">Social Secretary</option>
+            <option value="Treasurer">Treasurer</option>
+            <option value="Other">Other</option>
+        </field>
     </fieldset>
 </form>

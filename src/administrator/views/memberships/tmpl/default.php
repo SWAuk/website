@@ -13,6 +13,7 @@ $listOrder = $this->state->get('list.ordering');
 $listDirn  = $this->state->get('list.direction');
 $canEdit   = $user->authorise('core.edit', 'com_swa');
 ?>
+
 <script type="text/javascript">
 	Joomla.orderTable = function () {
 		table = document.getElementById("sortTable");
