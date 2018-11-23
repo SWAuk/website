@@ -33,7 +33,7 @@ $item = $this->item;
 if ($this->member)
 {
 	$hostUniversities = explode(',', $item->hosts);
-	$isHostCommittee  = in_array($this->member->uni_id, $hostUniversities) && $this->member->club_committee;
+	$isHostCommittee  = in_array($this->member->university_id, $hostUniversities) && $this->member->club_committee;
 
 	if ($this->member->swa_committee || $isHostCommittee)
 	{
