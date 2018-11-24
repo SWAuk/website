@@ -16,6 +16,8 @@ class SwaViewTicketpurchase extends JViewLegacy
 
 	protected $items;
 
+	protected $ticket_id;
+
 	public function display($tpl = null)
 	{
 		$app = JFactory::getApplication();
@@ -51,6 +53,8 @@ class SwaViewTicketpurchase extends JViewLegacy
 		}
 
 		$this->items = $this->get('Items');
+
+		$this->ticket_id = $app->getUserState('com_swa.ticketpurchase.ticket_id');
 
 		parent::display($tpl);
 	}

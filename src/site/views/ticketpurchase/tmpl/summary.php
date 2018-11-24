@@ -6,31 +6,24 @@ defined('_JEXEC') or die;
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 
-$jconfig   = JFactory::getConfig();
-$app       = JFactory::getApplication();
-$jinput    = $app->input;
-$option    = $jinput->get('option');
-$ticket_id = $app->getUserState("$option.ticket_id");
-$ticket    = null;
+$jConfig = JFactory::getConfig();
+$app     = JFactory::getApplication();
+$ticket  = null;
 
 foreach ($this->items as $item)
 {
-	if ($item->id == $ticket_id)
+	if ($item->id == $this->ticket_id)
 	{
 		$ticket = $item;
 		break;
 	}
 }
 
-if ($ticket === null)
+if ($ticket == null)
 {
-	echo "<p><b>There has been an error retrieving the selected ticket. ";
-	echo "If this problem continues contact us at webmaster@swa.co.uk</b>";
-	echo "<a href='{JRoute::_('index.php?option=com_swa&task=ticketpurchase')}'>";
-	echo "Click here to return to the ticket purchase page.</a></p>";
-	die;
+	$app->enqueueMessage('Purchase failed because the session expired - please try again.', 'Error');
+	$app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
 }
-
 ?>
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
@@ -55,9 +48,9 @@ if ($ticket === null)
 
 				$totalAddonsPrice = 0;
 				$addons.each(function (i, obj) {
-					$addonQty = parseInt(jQuery(obj).val());
+					$addonQty = parseInt(obj.value);
 					if ($addonQty > 0) {
-						$addonPrice = parseFloat(jQuery(obj).attr('data-price'));
+						$addonPrice = parseFloat(obj.getAttribute('data-price'));
 						$totalAddonsPrice += $addonPrice * $addonQty
 					}
 				});
@@ -75,9 +68,9 @@ if ($ticket === null)
 				$stripeBtnEnabled = true;
 
 				$qtySelectors.each(function (i, obj) {
-					$value = jQuery(obj).val();
+					$value = obj.value;
 					if ($value > 0) {
-						if (jQuery('#option_' + obj.id.split("_").pop()).val() == "NULL") {
+						if (jQuery('#select_' + obj.getAttribute('data-id')).val() == "NULL") {
 							$stripeBtnEnabled = false;
 							// break out of the .each loop
 							return false;
@@ -95,10 +88,10 @@ if ($ticket === null)
 			// define function to enable/disable the option
 			$qtyChanged = function (event) {
 				// get the option selector for this addon
-				$option = jQuery('#option_' + event.target.id.split("_").pop());
+				$option = jQuery('#select_' + event.target.getAttribute('data-id'));
 
 				// if qty dropdown is greater than zero
-				if (jQuery(event.target).val() > 0) {
+				if (event.target.value > 0) {
 					// show and enable the option selector
 					$option.parent().prop('hidden', false);
 					$option.prop('disabled', false);
@@ -126,12 +119,11 @@ if ($ticket === null)
 
 <h1>Order Summary</h1>
 
-<form id="stripe-form" method="POST"
+<form id="stripe-form" method="POST" enctype="multipart/form-data"
       action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>">
 	<input type="hidden" name="option" value="com_swa"/>
 	<input type="hidden" name="task" value="ticketpurchase.submit"/>
 	<input type="hidden" name="return" value="index.php?option=com_swa&view=membertickets"/>
-	<input type="hidden" name="ticketId" value="<?php echo $ticket->id ?>"/>
 	<input type="hidden" id="stripeToken" name="stripeToken" value="NULL"/>
 
 	<div class="table-responsive favth-table-responsive">
@@ -157,7 +149,8 @@ if ($ticket === null)
 					<tr>
 						<td>
 							<select id="<?php echo "addon_{$key}" ?>"
-							        name="<?php echo "addon_{$key}" ?>"
+							        name="<?php echo "addons[{$key}][qty]" ?>"
+							        data-id="<?php echo $key ?>"
 							        class="swa-addon swa-qty-selector"
 							        style="width: 60px"
 							        data-price="<?php echo $addon->price ?>">
@@ -175,8 +168,9 @@ if ($ticket === null)
 								?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select id="<?php echo "option_{$key}" ?>"
-									        name="<?php echo "option_{$key}" ?>"
+									<select id="<?php echo "select_{$key}" ?>"
+									        name="<?php echo "addons[{$key}][option]" ?>"
+									        data-id="<?php echo $key ?>"
 									        class="swa-option-selector"
 									        data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
@@ -219,7 +213,7 @@ if ($ticket === null)
 
 <script>
 	var handler = StripeCheckout.configure({
-		key: "<?php echo $jconfig->get('stripe_publishable_key'); ?>",
+		key: "<?php echo $jConfig->get('stripe_publishable_key'); ?>",
 		image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
 		locale: 'auto',
 		email: "<?php echo $this->user->email ?>",
