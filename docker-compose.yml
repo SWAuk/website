@@ -4,6 +4,8 @@ services:
   joomla:
     image: joomla
     restart: always
+    depends_on:
+      - db
     volumes:
       - ./.docker/www:/var/www/html
     ports:
@@ -24,6 +26,8 @@ services:
 
   adminer:
     image: swa-adminer:4.6
+    depends_on:
+      - db
     build: ./.docker/adminer
     restart: always
     ports:
