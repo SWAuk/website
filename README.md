@@ -9,36 +9,33 @@ Student Windsurfing Association website stuff.
 * docker-compose down (--volume to also remove SQL data in docker volume)
 
 
-### First setup
+## First setup
 
-##### Clone this repo
+#### Clone this repo
 ``` git clone https://github.com/SWAuk/com_swa.git```
  * Copy `.env.example` to `.env` (edit the defaults if you want to)
 
-##### Install requirements
+#### Install requirements
  * [Docker](https://docs.docker.com/install/)
  * [docker-compose](https://docs.docker.com/compose/install/)
 
-##### Launch services
+#### Launch services
 ```docker-compose up -d```
 
-##### Download Template Zip
-Download from https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view
+#### Download Template Zip
+Download from \
+https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view \
 and put in this directory (it will be ignored by git)
 
-##### Run firstSetup script
+#### Run firstSetup script
 This copies various files into the right places in the Joomla www.
-```
-$ docker-compose run --entrypoint php util firstSetup.php
-```
+```docker-compose run --entrypoint php util firstSetup.php```
 (You can also run the firstSetup script locally if php installed.)
 
-##### Installing the SWA component in Joomla
+#### Installing the SWA component in Joomla
 
 * Create a zip of the component:
-```
-$ docker-compose run --entrypoint php util make.php
-```
+```docker-compose run --entrypoint php util make.php```
 
 * Go to the Joomla backend, http://localhost:5555/administrator
 * Log in
