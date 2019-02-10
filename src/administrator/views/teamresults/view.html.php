@@ -82,12 +82,13 @@ class SwaViewTeamresults extends JViewLegacy
 	protected function getSortFields()
 	{
 		return array(
-			'a.id'               => JText::_('JGRID_HEADING_ID'),
-			'a.competition_type' => JText::_('Competition type'),
-			'a.event'            => JText::_('Event'),
-			'a.university'       => JText::_('University'),
-			'a.team_number'      => JText::_('Team number'),
-			'a.result'           => JText::_('Result'),
+			'event_date desc, result' => JText::_('Event, Result'),
+			'a.university'            => JText::_('University'),
+			'a.team_number'           => JText::_('Team number'),
+			'event_date'              => JText::_('Event'),
+			'a.competition_type'      => JText::_('Competition type'),
+			'a.result'                => JText::_('Result'),
+			'a.id'                    => JText::_('JGRID_HEADING_ID'),
 		);
 	}
 

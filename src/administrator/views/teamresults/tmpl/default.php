@@ -159,7 +159,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'University',
-							'a.university',
+							'university',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -168,7 +168,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Team number',
-							'a.team_number',
+							'team_number',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -178,7 +178,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Event',
-							'a.event',
+							'event_date',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -188,7 +188,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Competition type',
-							'a.competition_type',
+							'competition_type',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -197,7 +197,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'Result',
-							'a.result',
+							'result',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -206,7 +206,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_(
 							'grid.sort',
 							'JGRID_HEADING_ID',
-							'a.id',
+							'id',
 							$listDirn,
 							$listOrder
 						); ?>
@@ -284,7 +284,7 @@ if (!empty($this->extra_sidebar))
 						</td>
 						<td>
 
-							<?php echo $item->event; ?>
+							<?php echo $item->event_name; ?>
 						</td>
 						<td>
 
