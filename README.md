@@ -45,25 +45,17 @@ Or locally:
 * Select "Upload package from file"
 * Upload the Zip
 
-### Add the template that we use
-
-Add the template to the Joomla install
-
-* Download the zip of the pre installed template from https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view
-* Add the template to .docker/www/templates/favourite
-
-The original template sources is https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template
-A copy of this can be found on the SWA Drive "Tech/Web Dev/Templates/favourite_j!3_UnzipFirst.zip"
-
 ### First setup changes
 
-One liner:
+* Download the zip of the pre installed template from https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view
+* Put the zip in THIS directory (it won't be committed to git)
+
+Run this:
 ```
 $ docker-compose run --entrypoint php util firstSetup.php
 ```
 
-You can also run this not in docker
-
+You can also run this not in docker...
 
 ### Access
 
@@ -72,3 +64,8 @@ The default things will be here (unless you changed them in your .env file)
 * Joomla front: http://localhost:5555
 * Joomla back: http://localhost:5555/administrator
 * Adminer: http://localhost:5556 (user: root, password: example)
+
+### Template notes
+
+The original template sources is https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template
+A copy of this can be found on the SWA Drive "Tech/Web Dev/Templates/favourite_j!3_UnzipFirst.zip"
