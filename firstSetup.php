@@ -19,13 +19,18 @@ file_put_contents($target, fopen($liveLogo, 'r'));
 
 // Copy the background from the list site
 $liveBackground = "https://studentwindsurfing.co.uk/images/FavouriteTemplate/body.jpg";
-mkdir(__DIR__ . '/.docker/www/images/FavouriteTemplate');
+mkdir(__DIR__ . '/.docker/www/images/FavouriteTemplate', 0777, True);
 $target = __DIR__ . '/.docker/www/images/FavouriteTemplate/body.jpg';
 file_put_contents($target, fopen($liveBackground, 'r'));
 
-echo "Adding default Joomla config\n";
 
 // Copy the default config into the Joomla install
+echo "Adding default Joomla config\n";
 copy( __DIR__ . '/.docker/configuration.php', __DIR__ . '/.docker/www/configuration.php' );
+
+
+// Rmove the default /installation folder
+echo "Removing Joomla Installation folder\n";
+system("rm -rf ".escapeshellarg(__DIR__ . '/.docker/www/installation'));
 
 echo "Done!";
