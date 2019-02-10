@@ -19,15 +19,13 @@ class SwaModelTeamresults extends JModelList
 			$config['filter_fields'] = array(
 				'id',
 				'a.id',
-				'competition_id',
-				'a.competition_id',
-				'university_id',
-				'a.university_id',
+				'event_date',
+				'event.event_date',
+				'university',
 				'team_number',
 				'a.team_number',
 				'result',
 				'a.result',
-
 			);
 		}
 
@@ -42,7 +40,7 @@ class SwaModelTeamresults extends JModelList
 			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
 		);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('a.id', 'desc');
+		parent::populateState('event_date desc, result', 'asc');
 	}
 
 	/**
@@ -90,19 +88,20 @@ class SwaModelTeamresults extends JModelList
 			'LEFT',
 			'#__swa_university AS university_id ON university_id.id = a.university_id'
 		);
-		// Join over 'competition_id'
+		// Join over 'competition'
 		$query->join(
 			'LEFT',
-			'#__swa_competition AS competition_id ON competition_id.id = a.competition_id'
+			'#__swa_competition AS competition ON competition.id = a.competition_id'
 		);
-		// Join over 'event_id'
-		$query->select('event_id.name AS event');
-		$query->join('LEFT', '#__swa_event AS event_id ON event_id.id = competition_id.event_id');
+		// Join over 'event'
+		$query->select('event.name AS event_name');
+		$query->select('event.date AS event_date');
+		$query->join('LEFT', '#__swa_event AS event ON event.id = competition.event_id');
 		// Join over 'competition_type_id'
 		$query->select('competition_type_id.name AS competition_type');
 		$query->join(
 			'LEFT',
-			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition_id.competition_type_id'
+			'#__swa_competition_type AS competition_type_id ON competition_type_id.id = competition.competition_type_id'
 		);
 
 		// Filter by search in title
