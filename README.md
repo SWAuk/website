@@ -51,4 +51,4 @@ The default things will be here (unless you changed them in your .env file)
 
 * Joomla front: http://localhost:5555
 * Joomla back: http://localhost:5555/administrator
-* Adminer: http://localhost:5556
+* Adminer: http://localhost:5556 (user: root, password: example)
