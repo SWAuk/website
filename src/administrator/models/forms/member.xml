@@ -120,11 +120,12 @@
 			filter="safehtml"/>
 
 		<field name="enumber"
-			type="text"
+			type="tel"
 			size="40"
 			class="inputbox"
 			label="Emerg number"
 			required="true"
+			validate="tel"
 			filter="safehtml"/>
 
 		<field name="dietary"
