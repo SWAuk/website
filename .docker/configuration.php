@@ -4,13 +4,14 @@ class JConfig {
 	public $offline_message = 'This site is down for maintenance.<br />Please check back again soon.';
 	public $display_offline_message = '1';
 	public $offline_image = '';
-	public $sitename = 'SWA';
+	public $sitename = 'SWA Dev Site';
 	public $editor = 'tinymce';
 	public $captcha = '0';
 	public $list_limit = '20';
 	public $access = '1';
 	public $debug = '0';
 	public $debug_lang = '0';
+	public $debug_lang_const = '1';
 	public $dbtype = 'mysqli';
 	public $host = 'db';
 	public $user = 'root';
@@ -18,7 +19,7 @@ class JConfig {
 	public $db = 'joomla';
 	public $dbprefix = 'swana_';
 	public $live_site = '';
-	public $secret = 'qVXfRO2NNmnQp38A';
+	public $secret = 'OTgoOdaYEbNwWJAK';
 	public $gzip = '0';
 	public $error_reporting = 'default';
 	public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
@@ -31,8 +32,8 @@ class JConfig {
 	public $offset = 'UTC';
 	public $mailonline = '1';
 	public $mailer = 'mail';
-	public $mailfrom = 'dev@swa.co.uk';
-	public $fromname = 'SWA';
+	public $mailfrom = 'info@swa.co.uk';
+	public $fromname = 'SWA Dev Site';
 	public $sendmail = '/usr/sbin/sendmail';
 	public $smtpauth = '0';
 	public $smtpuser = '';
@@ -44,7 +45,7 @@ class JConfig {
 	public $cache_handler = 'file';
 	public $cachetime = '15';
 	public $cache_platformprefix = '0';
-	public $MetaDesc = 'SWA desc';
+	public $MetaDesc = '';
 	public $MetaKeys = '';
 	public $MetaTitle = '1';
 	public $MetaAuthor = '1';
