@@ -54,8 +54,4 @@ defined('_JEXEC') or die('Restricted access');
 
 		<p>TBA</p>
 
-		<h3>Damages, Grants & Deposits</h3>
-
-		<p>TBA</p>
-
 	</div>

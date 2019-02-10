@@ -58,21 +58,6 @@ class SwaHelper
 			$vName == 'tickets'
 		);
 		JHtmlSidebar::addEntry(
-			JText::_('Deposits'),
-			'index.php?option=com_swa&view=deposits',
-			$vName == 'deposits'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('Damages'),
-			'index.php?option=com_swa&view=damages',
-			$vName == 'damages'
-		);
-		JHtmlSidebar::addEntry(
-			JText::_('Grants'),
-			'index.php?option=com_swa&view=grants',
-			$vName == 'grants'
-		);
-		JHtmlSidebar::addEntry(
 			JText::_('Universities'),
 			'index.php?option=com_swa&view=universities',
 			$vName == 'universities'
