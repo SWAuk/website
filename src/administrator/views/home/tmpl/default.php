@@ -19,15 +19,8 @@ defined('_JEXEC') or die('Restricted access');
 
 		<h1>Welcome to the Org backend!</h1>
 
-		<p>Here are some basic but important notes about how this component works...</p>
-
-		<h2>Installation / Composition</h2>
-
 		<p>The component is currently made of com_swa and plg_swa_viewlevels both of which can be
 			found on <a href="https://github.com/SWAuk">github</a>.</p>
-
-		<p>To install the most recent versions clone the repositories, run make.php (which creates a
-			zip) and upload that zip to Joomla (Extensions > Manage).</p>
 
 		<h2>General Logic & Flow</h2>
 
@@ -40,9 +33,6 @@ defined('_JEXEC') or die('Restricted access');
 			<li>They must then pay the membership.</li>
 			<li>They will then be a member!</li>
 		</ol>
-
-		<p>This can be seen as slightly confusing and may be tackeled before the 2016-2017
-			season.</p>
 
 		<p>TODO: Qualifications</p>
 
