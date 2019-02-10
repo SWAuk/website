@@ -9,7 +9,6 @@ Student Windsurfing Association website stuff.
 
  * [Install Docker](https://docs.docker.com/install/)
  * [Install docker-compose](https://docs.docker.com/compose/install/)
- * Copy .env.example to .env (edit the defaults if you want to)
 
 ### Running stuff
 
@@ -59,7 +58,7 @@ You can also run this not in docker...
 
 ### Access
 
-The default things will be here (unless you changed them in your .env file)
+The default things will be here (unless you changed them in the .env file)
 
 * Joomla front: http://localhost:5555
 * Joomla back: http://localhost:5555/administrator
