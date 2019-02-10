@@ -3,7 +3,7 @@
 $rootDir = __DIR__ . DIRECTORY_SEPARATOR;
 
 // Generate the zip
-echo "Ziping all...\n";
+echo "Zipping all...\n";
 @unlink( $rootDir . 'com_swa.zip' );
 $out=zipRecursive( $rootDir . 'src', $rootDir . 'com_swa.zip' );
 
