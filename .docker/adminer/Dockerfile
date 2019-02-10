@@ -1,4 +1,4 @@
-FROM adminer
+FROM adminer:4.6
 
 USER root
 

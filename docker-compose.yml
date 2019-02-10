@@ -23,7 +23,7 @@ services:
       MYSQL_ROOT_PASSWORD: example
 
   adminer:
-    image: adminer:4.6
+    image: swa-adminer:4.6
     build: ./.docker/adminer
     restart: always
     ports:
