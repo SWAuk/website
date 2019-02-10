@@ -4,39 +4,44 @@ SWA
 Student Windsurfing Association website stuff.
 
 ## Use
-
-### Initial Setup
-
- * [Install Docker](https://docs.docker.com/install/)
- * [Install docker-compose](https://docs.docker.com/compose/install/)
-
-### Running stuff
-
 * docker-compose up (-d to do detached)
 * docker-compose ps (to check it is there and running)
+* docker-compose down (--volume to also remove SQL data in docker volume)
 
-### Building a zip of the component
 
-One liner:
+### First setup
+
+##### Clone this repo
+``` git clone https://github.com/SWAuk/com_swa.git```
+
+##### Install requirements
+
+ * [Docker](https://docs.docker.com/install/)
+ * [docker-compose](https://docs.docker.com/compose/install/)
+
+##### Launch services
+```docker-compose up -d```
+
+
+##### Download Template Zip
+Download from https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view
+and put in this directory (it will be ignored by git)
+
+
+##### Run firstSetup script
+This copies various files into the right places in the Joomla www.
+```
+$ docker-compose run --entrypoint php util firstSetup.php
+```
+(You can also run the firstSetup script locally if php installed.)
+
+
+##### Installing the SWA component in Joomla
+
+* Create a zip of the component:
 ```
 $ docker-compose run --entrypoint php util make.php
-Ziping all...
-Done /swa/com_swa.zip
 ```
-
-Or multi liner:
-
-```
-$ docker-compose run util
-root@b32311e59b3f:/swa# php ./make.php
-Ziping all...
-Done /swa/com_swa.zip
-```
-
-Or locally:
-* Figure it out yourself...
-
-### Installing the component in Joomla
 
 * Go to the Joomla backend, http://localhost:5555/administrator
 * Log in
@@ -44,17 +49,7 @@ Or locally:
 * Select "Upload package from file"
 * Upload the Zip
 
-### First setup changes
 
-* Download the zip of the pre installed template from https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view
-* Put the zip in THIS directory (it won't be committed to git)
-
-Run this:
-```
-$ docker-compose run --entrypoint php util firstSetup.php
-```
-
-You can also run this not in docker...
 
 ### Access
 
