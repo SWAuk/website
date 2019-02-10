@@ -1728,6 +1728,8 @@ CREATE TABLE `swana_swa_event` (
   KEY `fk_event_season1_idx` (`season_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `swana_swa_event` (`id`, `name`, `season_id`, `capacity`, `date_open`, `date_close`, `date`) VALUES
+(1,	'The Best Event',	19,	10,	'2019-02-10',	'2019-02-13',	'2019-02-15');
 
 DROP TABLE IF EXISTS `swana_swa_event_host`;
 CREATE TABLE `swana_swa_event_host` (
@@ -1739,6 +1741,8 @@ CREATE TABLE `swana_swa_event_host` (
   KEY `fk_event_host_university1_idx` (`university_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `swana_swa_event_host` (`id`, `event_id`, `university_id`) VALUES
+(1,	1,	1);
 
 DROP TABLE IF EXISTS `swana_swa_event_registration`;
 CREATE TABLE `swana_swa_event_registration` (
@@ -1769,6 +1773,10 @@ CREATE TABLE `swana_swa_event_ticket` (
   KEY `fk_event_ticket_event1_idx` (`event_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `swana_swa_event_ticket` (`id`, `event_id`, `name`, `quantity`, `price`, `notes`, `need_level`, `need_swa`, `need_xswa`, `need_host`, `need_qualification`, `details`) VALUES
+(1,	1,	'Windsurf',	5,	10.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
+(2,	1,	'Host',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
+(3,	1,	'Party',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } ');
 
 DROP TABLE IF EXISTS `swana_swa_grant`;
 CREATE TABLE `swana_swa_grant` (
@@ -1833,7 +1841,7 @@ CREATE TABLE `swana_swa_member` (
 INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`, `university_id`, `course`, `graduation`, `discipline`, `level`, `shirt`, `econtact`, `enumber`, `dietary`, `tel`, `swahelp`) VALUES
 (1,	427,	1,	'Male',	'1989-02-10',	1,	'',	0,	'None',	'Advanced',	'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
 (2,	426,	1,	'Female',	'1994-02-10',	2,	'',	0,	'None',	'Beginner',	'XS',	'-',	'-',	'NULL',	'07805925657',	'None'),
-(3,	425,	1,	'Male',	'1996-01-29',	1,	'',	0,	'None',	'Advanced',	'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
+(3,	425,	1,	'Male',	'1996-01-29',	2,	'',	0,	'None',	'Advanced',	'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
 (4,	424,	0,	'Male',	'1999-02-10',	1,	'',	0,	'None',	'Beginner',	'M',	'-',	'-',	'NULL',	'07805936373',	'None'),
 (5,	422,	0,	'Male',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'123',	'1234',	'NULL',	'078059256893',	'None'),
 (6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	'07805925651',	'None');
@@ -1906,6 +1914,15 @@ CREATE TABLE `swana_swa_ticket` (
   KEY `fk_ticket_member1_idx` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `details`) VALUES
+(1,	6,	2,	0.00,	''),
+(2,	5,	1,	0.00,	''),
+(3,	4,	1,	0.00,	''),
+(4,	2,	1,	0.00,	''),
+(5,	2,	2,	0.00,	''),
+(6,	4,	2,	0.00,	''),
+(7,	3,	2,	0.00,	''),
+(8,	6,	1,	0.00,	'');
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
@@ -1937,7 +1954,7 @@ INSERT INTO `swana_swa_university_member` (`id`, `member_id`, `university_id`, `
 (1,	6,	1,	'0',	0),
 (2,	5,	1,	'0',	0),
 (3,	4,	1,	'0',	1),
-(4,	3,	1,	'0',	0),
+(4,	3,	2,	'0',	0),
 (5,	1,	1,	'President',	0),
 (6,	2,	2,	'0',	0);
 
