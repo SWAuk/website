@@ -19,6 +19,7 @@ file_put_contents($target, fopen($liveLogo, 'r'));
 
 // Copy the background from the list site
 $liveBackground = "https://studentwindsurfing.co.uk/images/FavouriteTemplate/body.jpg";
+mkdir(__DIR__ . '/.docker/www/images/FavouriteTemplate');
 $target = __DIR__ . '/.docker/www/images/FavouriteTemplate/body.jpg';
 file_put_contents($target, fopen($liveBackground, 'r'));
 
