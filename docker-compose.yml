@@ -5,7 +5,7 @@ services:
     image: joomla
     restart: always
     volumes:
-      - ${JOOMLA_PATH}:/var/www/html
+      - ./.docker/www:/var/www/html
     ports:
       - ${JOOMLA_PORT}:80
     environment:
@@ -35,7 +35,7 @@ services:
       context: ./.docker/util
       dockerfile: Dockerfile
     volumes:
-      - ${JOOMLA_PATH}:/var/www/html
+      - ./.docker/www:/var/www/html
       - ./:/swa
 
 volumes:
