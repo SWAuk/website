@@ -55,6 +55,16 @@ Add the template to the Joomla install
 The original template sources is https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template
 A copy of this can be found on the SWA Drive "Tech/Web Dev/Templates/favourite_j!3_UnzipFirst.zip"
 
+### Add Images that we use
+
+One liner:
+```
+$ docker-compose run --entrypoint php util downloadLogo.php
+```
+
+You can also run this not in docker
+
+
 ### Access
 
 The default things will be here (unless you changed them in your .env file)
