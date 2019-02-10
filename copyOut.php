@@ -5,9 +5,6 @@
  *
  * This file allows you to copy changes from this git repo to a deployed version of the component!
  * This means that you can develop here and easily push to a live joomla install!
- *
- * The location of the joomlaRoot to copy from is taken from .joomlaRoot
- *     For example: X:\web\pub\joomla
  */
 
 require_once __DIR__ . '/vendor/autoload.php';
