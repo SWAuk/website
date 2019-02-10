@@ -14,6 +14,9 @@ Student Windsurfing Association website stuff.
 #### Clone this repo
 ``` git clone https://github.com/SWAuk/com_swa.git```
  * Copy `.env.example` to `.env` (edit the defaults if you want to)
+ ``` cp .env.example .env ```
+
+
 
 #### Install requirements
  * [Docker](https://docs.docker.com/install/)
@@ -25,24 +28,32 @@ Student Windsurfing Association website stuff.
 #### Download Template Zip
 Download from \
 https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view \
-and put in this directory (it will be ignored by git)
+and put in the root directory of this repo (it will be ignored by git)
 
 #### Run firstSetup script
-This copies various files into the right places in the Joomla www.
-```docker-compose run --entrypoint php util firstSetup.php```
+This copies various files into the right places in the Joomla `/www`.\
+``` docker-compose run --rm --entrypoint php util firstSetup.php ```\
 (You can also run the firstSetup script locally if php installed.)
 
 #### Installing the SWA component in Joomla
 
-* Create a zip of the component:
-```docker-compose run --entrypoint php util make.php```
+* Create a zip of the component:\
+``` docker-compose run --rm --entrypoint php util make.php ```
 
 * Go to the Joomla backend, http://localhost:5555/administrator
-* Log in
-* Top menu, Extension >> Manage >> Install
+* Log in (admin:password)
+* Top menu, Extensions >> Manage >> Install
 * Select "Upload package from file"
-* Upload the Zip
+* Upload the com_swa.zip file that was created in the root repo folder
 
+
+#### Installing the SWA AccessList plugin in joomla
+* Download the latest Zip:\
+https://github.com/SWAuk/plg_swa_viewlevels/releases
+* Drag and drop it into the "Upload Package from file" as above.
+* Enable the plugin in the Extensions >> Plugins
+* In the `/.docker/www/libraries/src/Access/Access.php` file, \
+add the code snippet from https://github.com/SWAuk/plg_swa_viewlevels
 
 ### Access
 The default things will be here (unless you changed them in your .env file)
