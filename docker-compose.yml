@@ -29,5 +29,14 @@ services:
     ports:
       - ${ADMINER_PORT}:8080
 
+  util:
+    image: swa-util:0001
+    build:
+      context: ./.docker/util
+      dockerfile: Dockerfile
+    volumes:
+      - ${JOOMLA_PATH}:/var/www/html
+      - ./:/swa
+
 volumes:
   db-volume:
