@@ -128,6 +128,45 @@ if ($this->member)
 							?>
 							</tbody>
 						</table>
+
+						<?php
+						  // Only want to show the full attendees table when the club committees actually need it
+						  $registrationClosed = time() > (24 * 60 * 60 + strtotime($item->event_date_close));
+							$eventFinished = time() > (72 * 60 * 60 + strtotime($item->event_date));
+							if ($registrationClosed && !$eventFinished)
+							{
+								?>
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Name</th>
+									<th>University</th>
+									<th>Ticket</th>
+									<th>Food</th>
+									<th>Details</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php
+									foreach ($eventAttendees as $person)
+									{
+										if ($person['Dietary'] == "NULL")
+										{
+											$person['Dietary'] = "";
+										}
+
+										echo "<tr>\n";
+										echo "<td>{$person['Name']}</td>";
+										echo "<td>{$person['Uni']}</td>";
+										echo "<td>{$person['Ticket']}</td>";
+										echo "<td>{$person['Dietary']}</td>";
+										echo "<td>{$person['Details']}</td>";
+										echo "</tr>\n";
+									}
+								}
+							?>
+							</tbody>
+						</table>
 					<?php } ?>
 
 				<?php $baseURL = 'index.php?option=com_swa&task=event.downloadAttendees&event='; ?>
