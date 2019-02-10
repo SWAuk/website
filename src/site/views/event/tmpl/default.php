@@ -46,6 +46,7 @@ if ($this->member)
 				<div class="panel-body">
 					<?php
 					$ticketSales = $this->get('TicketSales');
+					$eventAttendees = $this->get('EventAttendees');
 
 					if (empty($ticketSales))
 					{
@@ -101,7 +102,34 @@ if ($this->member)
 							</tr>
 							</tfoot>
 						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>University</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$universityCounts = array();
+
+							foreach ($eventAttendees as $person)
+							{
+								$universityCounts[$person['Uni']] += 1;
+							}
+							arsort($universityCounts);
+							foreach ($universityCounts as $uni => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$uni}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
 					<?php } ?>
+
 				<?php $baseURL = 'index.php?option=com_swa&task=event.downloadAttendees&event='; ?>
 					<a href="<?php echo JRoute::_($baseURL . (int) $item->event_id); ?>" target="_blank">
 						<h4>Download Event Attendees</h4>
