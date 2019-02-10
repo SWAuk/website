@@ -19,10 +19,12 @@ services:
     restart: always
     volumes:
       - db-volume:/var/lib/mysql
+      - ./.docker/db/initdb:/docker-entrypoint-initdb.d
     ports:
       - ${MYSQL_PORT}:3306
     environment:
       MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: defaultdb
 
   adminer:
     image: swa-adminer:4.6
