@@ -7,9 +7,9 @@ Student Windsurfing Association website stuff.
 
 ### Initial Setup
 
- * Install Docker
- * Install docker-compose
- * Copy .env.example to .env (edit it if you want to)
+ * [Install Docker](https://docs.docker.com/install/)
+ * [Install docker-compose](https://docs.docker.com/compose/install/)
+ * Copy .env.example to .env (edit the defaults if you want to)
 
 ### Running stuff
 
@@ -18,9 +18,32 @@ Student Windsurfing Association website stuff.
 
 ### Building a zip of the component
 
-* docker-compose run util (to get a bash shell with php installed)
-* php make.php (in the util container, to make a zip of code to load into Joomla )
-* This zip can then be loaded into Joomla using the backend.
+One liner:
+```
+$ docker-compose run --entrypoint php util make.php
+Ziping all...
+Done /swa/com_swa.zip
+```
+
+Or multi liner:
+
+```
+$ docker-compose run util
+root@b32311e59b3f:/swa# php ./make.php
+Ziping all...
+Done /swa/com_swa.zip
+```
+
+Or locally:
+* Figure it out yourself...
+
+### Installing the component in Joomla
+
+* Go to the Joomla backend, http://localhost:5555/administrator
+* Log in
+* Top menu, Extension >> Manage >> Install
+* Select "Upload package from file"
+* Upload the Zip
 
 ### Access
 
