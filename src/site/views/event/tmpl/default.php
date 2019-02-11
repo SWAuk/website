@@ -130,10 +130,8 @@ if ($this->member)
 						</table>
 
 						<?php
-						  // Only want to show the full attendees table when the club committees actually need it
-						  $registrationClosed = time() > (24 * 60 * 60 + strtotime($item->event_date_close));
-							$eventFinished = time() > (72 * 60 * 60 + strtotime($item->event_date));
-							if ($registrationClosed && !$eventFinished)
+							// Only show the full attendees table until the end of the event
+							if (time() > (72 * 60 * 60 + strtotime($item->event_date)))
 							{
 								?>
 							<table class="table table-hover">
