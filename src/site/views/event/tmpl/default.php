@@ -46,6 +46,7 @@ if ($this->member)
 				<div class="panel-body">
 					<?php
 					$ticketSales = $this->get('TicketSales');
+					$eventAttendees = $this->get('EventAttendees');
 
 					if (empty($ticketSales))
 					{
@@ -101,7 +102,95 @@ if ($this->member)
 							</tr>
 							</tfoot>
 						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>University</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$universityCounts = array();
+							$levelCounts = array();
+
+							foreach ($eventAttendees as $person)
+							{
+								$universityCounts[$person['Uni']] += 1;
+								$levelCounts[$person['Level']] += 1;
+							}
+							arsort($universityCounts);
+							arsort($levelCounts);
+							foreach ($universityCounts as $uni => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$uni}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Level</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							foreach ($levelCounts as $level => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$level}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
+
+						<?php
+							// Only show the full attendees table until the end of the event
+							if (time() > (72 * 60 * 60 + strtotime($item->event_date)))
+							{
+								?>
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Name</th>
+									<th>University</th>
+									<th>Ticket</th>
+									<th>Level</th>
+									<th>Food</th>
+									<th>Details</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php
+									foreach ($eventAttendees as $person)
+									{
+										if ($person['Dietary'] == "NULL")
+										{
+											$person['Dietary'] = "";
+										}
+
+										echo "<tr>\n";
+										echo "<td>{$person['Name']}</td>";
+										echo "<td>{$person['Uni']}</td>";
+										echo "<td>{$person['Ticket']}</td>";
+										echo "<td>{$person['Level']}</td>";
+										echo "<td>{$person['Dietary']}</td>";
+										echo "<td>{$person['Details']}</td>";
+										echo "</tr>\n";
+									}
+								}
+							?>
+							</tbody>
+						</table>
 					<?php } ?>
+
 				<?php $baseURL = 'index.php?option=com_swa&task=event.downloadAttendees&event='; ?>
 					<a href="<?php echo JRoute::_($baseURL . (int) $item->event_id); ?>" target="_blank">
 						<h4>Download Event Attendees</h4>
