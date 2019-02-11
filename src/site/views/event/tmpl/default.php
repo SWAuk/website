@@ -140,6 +140,7 @@ if ($this->member)
 									<th>Name</th>
 									<th>University</th>
 									<th>Ticket</th>
+									<th>Level</th>
 									<th>Food</th>
 									<th>Details</th>
 								</tr>
@@ -157,6 +158,7 @@ if ($this->member)
 										echo "<td>{$person['Name']}</td>";
 										echo "<td>{$person['Uni']}</td>";
 										echo "<td>{$person['Ticket']}</td>";
+										echo "<td>{$person['Level']}</td>";
 										echo "<td>{$person['Dietary']}</td>";
 										echo "<td>{$person['Details']}</td>";
 										echo "</tr>\n";
