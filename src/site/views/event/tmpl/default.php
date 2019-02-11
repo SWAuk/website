@@ -112,16 +112,38 @@ if ($this->member)
 							<tbody>
 							<?php
 							$universityCounts = array();
+							$levelCounts = array();
 
 							foreach ($eventAttendees as $person)
 							{
 								$universityCounts[$person['Uni']] += 1;
+								$levelCounts[$person['Level']] += 1;
 							}
 							arsort($universityCounts);
+							arsort($levelCounts);
 							foreach ($universityCounts as $uni => $count)
 							{
 								echo "<tr>\n";
 								echo "<td>{$uni}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Level</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							foreach ($levelCounts as $level => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$level}</td>";
 								echo "<td>{$count}</td>";
 								echo "</tr>\n";
 							}
