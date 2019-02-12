@@ -178,7 +178,10 @@ if ($this->member)
 										{
 											$person['Dietary'] = "";
 										}
-
+										if ($person['Details'] == "{"addons":[]}")
+										{
+											$person['Details'] = "";
+										}
 										echo "<tr>\n";
 										echo "<td>{$person['Name']}</td>";
 										echo "<td>{$person['Uni']}</td>";
