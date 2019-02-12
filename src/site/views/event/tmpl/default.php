@@ -156,7 +156,7 @@ if ($this->member)
 
 						<?php
 							// Only show the full attendees table until the end of the event
-							if (time() > (72 * 60 * 60 + strtotime($item->event_date)))
+							if (time() < (72 * 60 * 60 + strtotime($item->event_date)))
 							{
 								?>
 							<table class="table table-hover">
