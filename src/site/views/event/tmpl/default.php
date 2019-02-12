@@ -117,7 +117,10 @@ if ($this->member)
 							foreach ($eventAttendees as $person)
 							{
 								$universityCounts[$person['Uni']] += 1;
-								$levelCounts[$person['Level']] += 1;
+								if (strpos($person['Ticket'], 'Party') === false && strpos($person['Ticket'], 'party') === false)
+								{
+									$levelCounts[$person['Level']] += 1;
+								}
 							}
 							arsort($universityCounts);
 							arsort($levelCounts);
