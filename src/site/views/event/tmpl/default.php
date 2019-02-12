@@ -138,7 +138,7 @@ if ($this->member)
 							<thead>
 							<tr>
 								<th>Level</th>
-								<th>Tickets Sold</th>
+								<th>Non-Party Tickets Sold</th>
 							</tr>
 							</thead>
 							<tbody>
