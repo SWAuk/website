@@ -178,7 +178,7 @@ if ($this->member)
 										{
 											$person['Dietary'] = "";
 										}
-										if ($person['Details'] == "{"addons":[]}")
+										if ($person['Details'] == "{\"addons\":[]}")
 										{
 											$person['Details'] = "";
 										}
