@@ -55,163 +55,141 @@ if ($this->member)
 					else
 					{
 						?>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Ticket Type</th>
+								<th>Price</th>
+								<th>% Sold</th>
+								<th>Sold</th>
+								<th>Quantity</th>
+								<th>Remaining</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$totalSold      = 0;
+							$totalQuantity  = 0;
 							$totalRemaining = 0;
-						<div class="tabbable">
-							<ul class="nav nav-tabs">
-							<li class="active"><a href="#types" data-toggle="tab">Types</a></li>
-							<li><a href="#unis" data-toggle="tab">Universities</a></li>
-							<li><a href="#levels" data-toggle="tab">Levels</a></li>
-							<li><a href="#all" data-toggle="tab">All Tickets</a></li>
-							</ul>
 
-							<div class="tab-content">
-							  <div class="tab-pane active" id="types">
-									<table class="table table-hover">
-										<thead>
-										<tr>
-											<th>Ticket Type</th>
-											<th>Price</th>
-											<th>% Sold</th>
-											<th>Sold</th>
-											<th>Quantity</th>
-											<th>Remaining</th>
-										</tr>
-										</thead>
-										<tbody>
-										<?php
-										$totalSold      = 0;
-										$totalQuantity  = 0;
-										$totalRemaining = 0;
+							foreach ($ticketSales as $ticket)
+							{
+								$totalSold      += $ticket['sold'];
+								$totalQuantity  += $ticket['quantity'];
+								$totalRemaining += $ticket['remaining'];
 
-										foreach ($ticketSales as $ticket)
+								echo "<tr>\n";
+								echo "<td>{$ticket['name']}</td>";
+								echo "<td>£{$ticket['price']}</td>";
+								echo "<td>{$ticket['percentage_sold']}</td>";
+								echo "<td>{$ticket['sold']}</td>";
+								echo "<td>{$ticket['quantity']}</td>";
+								echo "<td>{$ticket['remaining']}</td>";
+								echo "</tr>\n";
+							}
+
+							$totalPercentSold = round($totalSold / $totalQuantity * 100);
+							?>
+							</tbody>
+							<tfoot>
+							<tr>
+								<td><label>Totals</label></td>
+								<td><label>-</label></td>
+								<td><label><?php echo $totalPercentSold ?>%</label></td>
+								<td><label><?php echo $totalSold ?></label></td>
+								<td><label><?php echo $totalQuantity ?></label></td>
+								<td><label><?php echo $totalRemaining ?></label></td>
+							</tr>
+							</tfoot>
+						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>University</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$universityCounts = array();
+							$levelCounts = array();
+
+							foreach ($eventAttendees as $person)
+							{
+								$universityCounts[$person['Uni']] += 1;
+								$levelCounts[$person['Level']] += 1;
+							}
+							arsort($universityCounts);
+							arsort($levelCounts);
+							foreach ($universityCounts as $uni => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$uni}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
+						<table class="table table-hover">
+							<thead>
+							<tr>
+								<th>Level</th>
+								<th>Tickets Sold</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							foreach ($levelCounts as $level => $count)
+							{
+								echo "<tr>\n";
+								echo "<td>{$level}</td>";
+								echo "<td>{$count}</td>";
+								echo "</tr>\n";
+							}
+							?>
+							</tbody>
+						</table>
+
+						<?php
+							// Only show the full attendees table until the end of the event
+							if (time() > (72 * 60 * 60 + strtotime($item->event_date)))
+							{
+								?>
+							<table class="table table-hover">
+								<thead>
+								<tr>
+									<th>Name</th>
+									<th>University</th>
+									<th>Ticket</th>
+									<th>Level</th>
+									<th>Food</th>
+									<th>Details</th>
+								</tr>
+								</thead>
+								<tbody>
+								<?php
+									foreach ($eventAttendees as $person)
+									{
+										if ($person['Dietary'] == "NULL")
 										{
-											$totalSold      += $ticket['sold'];
-											$totalQuantity  += $ticket['quantity'];
-											$totalRemaining += $ticket['remaining'];
-
-											echo "<tr>\n";
-											echo "<td>{$ticket['name']}</td>";
-											echo "<td>£{$ticket['price']}</td>";
-											echo "<td>{$ticket['percentage_sold']}</td>";
-											echo "<td>{$ticket['sold']}</td>";
-											echo "<td>{$ticket['quantity']}</td>";
-											echo "<td>{$ticket['remaining']}</td>";
-											echo "</tr>\n";
+											$person['Dietary'] = "";
 										}
 
-										$totalPercentSold = round($totalSold / $totalQuantity * 100);
-										?>
-										</tbody>
-										<tfoot>
-										<tr>
-											<td><label>Totals</label></td>
-											<td><label>-</label></td>
-											<td><label><?php echo $totalPercentSold ?>%</label></td>
-											<td><label><?php echo $totalSold ?></label></td>
-											<td><label><?php echo $totalQuantity ?></label></td>
-											<td><label><?php echo $totalRemaining ?></label></td>
-										</tr>
-										</tfoot>
-									</table>
-								</div>
-						    <div class="tab-pane" id="unis">
-									<table class="table table-hover">
-										<thead>
-										<tr>
-											<th>University</th>
-											<th>Tickets Sold</th>
-										</tr>
-										</thead>
-										<tbody>
-										<?php
-										$universityCounts = array();
-										$levelCounts = array();
-
-										foreach ($eventAttendees as $person)
-										{
-											$universityCounts[$person['Uni']] += 1;
-											$levelCounts[$person['Level']] += 1;
-										}
-										arsort($universityCounts);
-										arsort($levelCounts);
-										foreach ($universityCounts as $uni => $count)
-										{
-											echo "<tr>\n";
-											echo "<td>{$uni}</td>";
-											echo "<td>{$count}</td>";
-											echo "</tr>\n";
-										}
-										?>
-										</tbody>
-									</table>
-								</div>
-								<div class="tab-pane" id="levels">
-									<table class="table table-hover">
-										<thead>
-										<tr>
-											<th>Level</th>
-											<th>Tickets Sold</th>
-										</tr>
-										</thead>
-										<tbody>
-										<?php
-										foreach ($levelCounts as $level => $count)
-										{
-											echo "<tr>\n";
-											echo "<td>{$level}</td>";
-											echo "<td>{$count}</td>";
-											echo "</tr>\n";
-										}
-										?>
-										</tbody>
-									</table>
-								</div>
-								<div class="tab-pane" id="all">
-									<?php
-										// Only show the full attendees table until the end of the event
-										if (time() > (72 * 60 * 60 + strtotime($item->event_date)))
-										{
-											?>
-											<table class="table table-hover">
-											<thead>
-											<tr>
-												<th>Name</th>
-												<th>University</th>
-												<th>Ticket</th>
-												<th>Level</th>
-												<th>Food</th>
-												<th>Details</th>
-											</tr>
-											</thead>
-											<tbody>
-											<?php
-												foreach ($eventAttendees as $person)
-												{
-													if ($person['Dietary'] == "NULL")
-													{
-														$person['Dietary'] = "";
-													}
-													echo "<tr>\n";
-													echo "<td>{$person['Name']}</td>";
-													echo "<td>{$person['Uni']}</td>";
-													echo "<td>{$person['Ticket']}</td>";
-													echo "<td>{$person['Level']}</td>";
-													echo "<td>{$person['Dietary']}</td>";
-													echo "<td>{$person['Details']}</td>";
-													echo "</tr>\n";
-												}
-												echo "</tbody>\n";
-												echo "</table>\n";
-										}
-										else
-										{
-											echo "Event over, so personal details removed.";
-										}
-										?>
-								</div>
-							</div>
-					</div>
-
+										echo "<tr>\n";
+										echo "<td>{$person['Name']}</td>";
+										echo "<td>{$person['Uni']}</td>";
+										echo "<td>{$person['Ticket']}</td>";
+										echo "<td>{$person['Level']}</td>";
+										echo "<td>{$person['Dietary']}</td>";
+										echo "<td>{$person['Details']}</td>";
+										echo "</tr>\n";
+									}
+								}
+							?>
+							</tbody>
+						</table>
+					<?php } ?>
 
 				<?php $baseURL = 'index.php?option=com_swa&task=event.downloadAttendees&event='; ?>
 					<a href="<?php echo JRoute::_($baseURL . (int) $item->event_id); ?>" target="_blank">
@@ -220,9 +198,7 @@ if ($this->member)
 				</div>
 			</div>
 		</div>
-	<?php
-		}
-	}
+	<?php }
 } ?>
 
 <div class="panel panel-default">
