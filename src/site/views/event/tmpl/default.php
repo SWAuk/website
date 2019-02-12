@@ -138,7 +138,7 @@ if ($this->member)
 							<thead>
 							<tr>
 								<th>Level</th>
-								<th>Tickets Sold</th>
+								<th>Non-Party Tickets Sold</th>
 							</tr>
 							</thead>
 							<tbody>
@@ -178,7 +178,10 @@ if ($this->member)
 										{
 											$person['Dietary'] = "";
 										}
-
+										if ($person['Details'] == "{\"addons\":[]}")
+										{
+											$person['Details'] = "";
+										}
 										echo "<tr>\n";
 										echo "<td>{$person['Name']}</td>";
 										echo "<td>{$person['Uni']}</td>";

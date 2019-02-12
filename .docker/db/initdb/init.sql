@@ -1915,14 +1915,14 @@ CREATE TABLE `swana_swa_ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `details`) VALUES
-(1,	6,	2,	0.00,	''),
-(2,	5,	1,	0.00,	''),
-(3,	4,	3,	0.00,	''),
-(4,	2,	1,	0.00,	''),
-(5,	2,	2,	0.00,	''),
-(6,	4,	3,	0.00,	''),
-(7,	3,	2,	0.00,	''),
-(8,	6,	1,	0.00,	'');
+(1,	6,	2,	0.00,	'{"addons":[]}'),
+(2,	5,	1,	0.00,	'{"addons":[]}'),
+(3,	4,	3,	0.00,	'"addons":{"T-Shirt":{"qty":1,"price":5,"option":"S"}}}'),
+(4,	2,	1,	0.00,	'{"addons":[]}'),
+(5,	2,	2,	0.00,	'{"addons":[]}'),
+(6,	4,	3,	0.00,	'{"addons":[]}'),
+(7,	3,	2,	0.00,	'"addons":{"T-Shirt":{"qty":1,"price":5,"option":"L"}}}'),
+(8,	6,	1,	0.00,	'{"addons":[]}');
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
