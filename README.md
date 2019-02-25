@@ -26,9 +26,9 @@ Student Windsurfing Association website stuff.
 ```docker-compose up -d```
 
 #### Download Template Zip
-Download from \
-https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view \
-and put in the root directory of this repo (it will be ignored by git)
+We use the free [FavThemes Favourite](https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template) template. \
+(SWA Committee can [download a cached version](https://drive.google.com/file/d/1IoYZcvmlIyUrFKyh96wWWJgff5qbhdjK/view) from our shared drive.) \
+Put the zip in the root directory of this repo (it will be ignored by git)
 
 #### Run firstSetup script
 This copies various files into the right places in the Joomla `/www`.\
