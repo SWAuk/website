@@ -66,3 +66,8 @@ The default things will be here (unless you changed them in your .env file)
 ### Template notes
 The original template sources is https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template
 A copy of this can be found on the SWA Drive "Tech/Web Dev/Templates/favourite_j!3_UnzipFirst.zip"
+
+### Plugins
+You will need to install these plugins to reach parity with the live site
+
+* Folcomedia - Cookies Alert
