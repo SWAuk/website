@@ -81,7 +81,7 @@ class SwaViewMemberships extends JViewLegacy
 		return array(
 			'season desc, member.id' => JText::_('Season, Member ID'),
 			'season'                 => JText::_('Season'),
-			'member'                 => JText::_('Member'),
+			'member_name'            => JText::_('Member'),
 			'member.id'              => JText::_('Member ID'),
 			'paid'                   => JText::_('Paid'),
 			'level'                  => JText::_('Level'),

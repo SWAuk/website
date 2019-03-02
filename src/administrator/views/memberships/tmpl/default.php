@@ -122,7 +122,7 @@ if (!empty($this->extra_sidebar))
 						<?php echo JHtml::_('grid.sort', 'Season', 'season', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
-						<?php echo JHtml::_('grid.sort', 'Member', 'member', $listDirn, $listOrder); ?>
+						<?php echo JHtml::_('grid.sort', 'Member', 'member_name', $listDirn, $listOrder); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_('grid.sort', 'Paid', 'paid', $listDirn, $listOrder); ?>
@@ -159,7 +159,7 @@ if (!empty($this->extra_sidebar))
 							<?php endif; ?>
 						</td>
 						<td><?php echo $item->season ?></td>
-						<td><?php echo $item->member ?></td>
+						<td><?php echo $item->member_name ?></td>
 						<td><?php echo $item->paid ?></td>
 						<td><?php echo $item->level ?></td>
 						<td><?php echo $item->university ?></td>

@@ -22,7 +22,7 @@ class SwaModelMemberships extends JModelList
 			$config['filter_fields'] = array(
 				'season',
 				'member.id',
-				'member',
+				'member_name',
 				'paid',
 				'level',
 				'university',
@@ -75,7 +75,7 @@ class SwaModelMemberships extends JModelList
 
 		// Select the required fields from the table.
 		$query->select($this->getState('list.select', 'DISTINCT membership.*'));
-		$query->select('user.name AS member');
+		$query->select('user.name AS member_name');
 		$query->select('season.year AS season');
 		$query->select('uni.name AS university');
 
