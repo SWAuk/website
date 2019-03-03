@@ -18,32 +18,29 @@ class SwaModelUniversityMembers extends SwaModelList
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		$query->select('member.*');
-		$query->from($db->qn('#__swa_member', 'member'));
-		$query->where('member.university_id = ' . (int) $this->getMember()->university_id);
+		$query->select('member.id');
+		$query->select('user.name');
+		$query->select('membership.approved');
+		$query->select('membership.level');
+		$query->select('membership.committee AS club_committee');
+		$query->select('membership.season_id');
+		$query->select('uni.name AS university');
 
-		// Join onto joomla user table
-		$query->select('user.name AS name');
-		$query->join('LEFT', '#__users AS user ON member.user_id = user.id');
+		$query->from('#__swa_member AS member');
+		$query->leftJoin( '#__users AS user ON user.id = member.user_id');
+		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
+		$query->leftJoin('#__swa_season AS season ON season.id = membership.season_id');
+		$query->leftJoin('#__swa_university AS uni ON uni.id = membership.uni_id');
 
-		// Join onto the university_member table
-		$query->leftJoin(
-			$db->qn('#__swa_university_member', 'uni_member') .
-			' ON member.id = uni_member.member_id'
-		);
-		$query->select('COALESCE( uni_member.graduated, 0 ) AS graduated');
-		$query->select('!ISNULL( uni_member.member_id ) AS confirmed_university');
-		$query->select('uni_member.committee AS club_committee');
+		$query->where('membership.uni_id = ' . (int) $this->getMember()->uni_id);
 
 		$now       = time();
 		$seasonEnd = strtotime("1st June");
 		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
 
-		// Join on membership table
-		$query->select('membership.season_id');
-		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
-		$query->leftJoin('#__swa_season AS season ON membership.season_id = season.id');
 		$query->where('(season.year LIKE "' . (int) $date . '%" OR membership.season_id IS NULL)');
+
+		$query->order('user.name');
 
 		return $query;
 	}
@@ -82,7 +79,7 @@ class SwaModelUniversityMembers extends SwaModelList
 		$query = $db->getQuery(true);
 
 		$query->select('event.*');
-		$query->from($db->quoteName('#__swa_event') . ' AS event');
+		$query->from($db->quoteName('#__swa_event', 'event'));
 		$query->where('event.date_close >= CURDATE()');
 
 		$db->setQuery($query);
@@ -111,8 +108,8 @@ class SwaModelUniversityMembers extends SwaModelList
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		$query->from($db->quoteName('#__swa_event_registration') . ' AS event_registration');
 		$query->select('event_registration.*');
+		$query->from($db->quoteName('#__swa_event_registration', 'event_registration'));
 
 		foreach ($this->getItems() as $member)
 		{
