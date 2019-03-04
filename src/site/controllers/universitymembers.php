@@ -83,20 +83,20 @@ class SwaControllerUniversityMembers extends SwaController
 			die('Current member is not club committee');
 		}
 
-		$targetMember = $this->getMember($data['member_id']);
-
-		if ($currentMember->university_id != $targetMember->university_id)
-		{
-			die('Current and target member are from different universities');
-		}
-
 		// Unapprove the member for the university
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
+		$now       = time();
+		$seasonEnd = strtotime("1st June");
+		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
+
 		$query
-			->delete($db->quoteName('#__swa_university_member'))
-			->where('member_id = ' . $db->quote($data['member_id']));
+			->update('#__swa_membership AS membership')
+			->innerJoin('#__swa_season AS season ON season.id = membership.season_id')
+			->set('approved = 0')
+			->where('member_id = ' . $db->quote($data['member_id']))
+			->where('season.year LIKE "' . (int) $date . '%"');
 
 		$db->setQuery($query);
 
@@ -114,7 +114,7 @@ class SwaControllerUniversityMembers extends SwaController
 		}
 
 		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=default', false)
+			JRoute::_('index.php?option=com_swa&view=universitymembers', false)
 		);
 	}
 
@@ -535,18 +535,14 @@ class SwaControllerUniversityMembers extends SwaController
 		$user  = JFactory::getUser();
 
 		// Select the required fields from the table.
-		$query->select('a.*');
-		$query->from($db->quoteName('#__swa_member') . ' AS a');
-		$query->where('a.user_id = ' . $db->quote($user->id));
+		$query->select('member.*');
+		$query->select('membership.committee AS club_committee');
+		$query->from('#__swa_member AS member');
+		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
+		$query->where('member.user_id = ' . $db->quote($user->id));
+		$query->order('season_id desc');
 
 		// Join on university_member
-		$query->leftJoin(
-			$db->quoteName('#__swa_university_member') .
-			' AS university_member ON a.id = university_member.member_id'
-		);
-		$query->select('COALESCE( university_member.graduated, 0 ) as graduated');
-		$query->select('!ISNULL( university_member.member_id ) as confirmed_university');
-		$query->select('university_member.committee as club_committee');
 
 		// Load the result
 		$db->setQuery($query);
