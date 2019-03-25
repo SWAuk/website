@@ -65,6 +65,7 @@ class SwaModelTicketPurchase extends SwaModelList
 			$query->select(
 				'GROUP_CONCAT( CASE WHEN event.date > NOW() THEN event_ticket.event_id END ) as ticketed_event_ids'
 			);
+			$query->select('COUNT( ticket.id ) AS num_tickets');
 
 			$now       = time();
 			$seasonEnd = strtotime("1st June");
@@ -394,6 +395,9 @@ class SwaModelTicketPurchase extends SwaModelList
 		elseif (isset($t->details->committee) && $t->details->committee && !$member->swa_committee)
 		{
 			$reason = "You need to be SWA Committee to buy this ticket.";
+		}
+		elseif (isset($t->details->first_event) && $member->num_tickets > 0) {
+			$reason = "You may only buy this ticket if it is your first event.";
 		}
 
 		return array($display, $reason);
