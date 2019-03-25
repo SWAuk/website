@@ -16,11 +16,22 @@ Student Windsurfing Association website stuff.
  * Copy `.env.example` to `.env` (edit the defaults if you want to)
  ``` cp .env.example .env ```
 
-
-
-#### Install requirements
+#### Install required programs
  * [Docker](https://docs.docker.com/install/)
  * [docker-compose](https://docs.docker.com/compose/install/)
+
+#### Install required libraries
+[`composer`](https://getcomposer.org/) is a dependency manager for PHP. Use it to install the PHP libraries needed for test, development and production.
+As docker is already required, the easiest way to use `composer` to install the requrired libs is via the official [docker image](https://hub.docker.com/_/composer).
+##### On Linux run:
+```
+docker run --rm -it -v $PWD:/app composer install
+```
+
+##### On Windows run: 
+```
+docker run --rm -it -v %CD%:/app composer install
+```
 
 #### Launch services
 ```docker-compose up -d```
