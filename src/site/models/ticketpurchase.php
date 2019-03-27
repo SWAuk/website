@@ -357,6 +357,19 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
+		if (isset($t->details->first_event) && $t->details->first_event && $member->num_tickets > 0)
+		{
+			$reason = "You may only buy this ticket if it is your first event.";
+
+			// Don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee)
+			{
+				$display = false;
+
+				return array($display, $reason);
+			}
+		}
+
 		// Check if member has already bought a ticket to that event
 		if (in_array($t->event_id, explode(',', $member->ticketed_event_ids)))
 		{
@@ -396,9 +409,7 @@ class SwaModelTicketPurchase extends SwaModelList
 		{
 			$reason = "You need to be SWA Committee to buy this ticket.";
 		}
-		elseif (isset($t->details->first_event) && $member->num_tickets > 0) {
-			$reason = "You may only buy this ticket if it is your first event.";
-		}
+
 
 		return array($display, $reason);
 	}
