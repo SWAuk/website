@@ -410,7 +410,6 @@ class SwaModelTicketPurchase extends SwaModelList
 			$reason = "You need to be SWA Committee to buy this ticket.";
 		}
 
-
 		return array($display, $reason);
 	}
 
