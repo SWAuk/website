@@ -62,6 +62,7 @@
   "xswa": false,
   "qualification": false,
   "committee": false,
+  "first_event": false,
   "member": {"whitelist": [],"blacklist": []},
   "university": {"whitelist": [],"blacklist": []},
   "level": {"whitelist": [],"blacklist": []},

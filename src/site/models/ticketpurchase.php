@@ -65,6 +65,7 @@ class SwaModelTicketPurchase extends SwaModelList
 			$query->select(
 				'GROUP_CONCAT( CASE WHEN event.date > NOW() THEN event_ticket.event_id END ) as ticketed_event_ids'
 			);
+			$query->select('COUNT( ticket.id ) AS num_tickets');
 
 			$now       = time();
 			$seasonEnd = strtotime("1st June");
@@ -346,6 +347,19 @@ class SwaModelTicketPurchase extends SwaModelList
 		{
 			$reason = "You can't be one of the following levels [";
 			$reason .= implode(', ', $t->details->level->blacklist) . ']';
+
+			// Don't display if visible is set to "Match" and member is not committee
+			if ($t->details->visible == "Match" && !$member->swa_committee)
+			{
+				$display = false;
+
+				return array($display, $reason);
+			}
+		}
+
+		if (isset($t->details->first_event) && $t->details->first_event && $member->num_tickets > 0)
+		{
+			$reason = "You may only buy this ticket if it is your first event.";
 
 			// Don't display if visible is set to "Match" and member is not committee
 			if ($t->details->visible == "Match" && !$member->swa_committee)

@@ -52,6 +52,13 @@ committee       | Sets whether or not you need to be SWA committee to buy this t
 
                 | Default value: `false`
 --------------  -------------------------------
+first_event     | Sets whether or not the ticket is restricted to members who haven't
+                  been to any events before.
+
+                | Possible values: `true`, `false`
+
+                | Default value: `false`
+--------------  -------------------------------
 member          | Member is an object containing two lists of member ids, a whitelist and a blacklist.
 
                 | The whitelist lists the member ids that are allowed to buy this ticket,
@@ -71,6 +78,16 @@ university      University is an object containing two lists of university ids,
 
                 | Default value: `{"whitelist": [], "blacklist": []}`
 --------------  -------------------------------
+level           Level is an object containing two lists of ability levels,
+                a whitelist and a blacklist.
+
+                | Ability levels: "Beginner", "Intermediate", "Advanced"
+
+                | The whitelist lists the ability levels that are allowed to buy this ticket.
+                | The blacklist lists the ability levels that aren't allowed to buy this ticket.
+
+                | Default value: `{"whitelist": [], "blacklist": []}`
+--------------  -------------------------------
 addons          | Addons is a lists of objects describing the available addon(s) available for this ticket.
 
                 Each addon object must be in the following format::
@@ -87,15 +104,15 @@ addons          | Addons is a lists of objects describing the available addon(s)
 
                 | Default value: `[]`
 
-                | **Option Object** 
+                | **Option Object**
 
                 An Option Object is used to populate an `html select tag`_ to create a dropdown list. It takes the following form::
 
                   {
                     "name": "<name of option>",
-                    "values": 
+                    "values":
                       {
-                        "label": "<label to show>", 
+                        "label": "<label to show>",
                         "value": "<value stored in database>"
                       },
                       ...
