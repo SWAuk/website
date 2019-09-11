@@ -18,6 +18,11 @@ class SwaHelper
 			$vName == 'members'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('Memberships'),
+			'index.php?option=com_swa&view=memberships',
+			$vName == 'memberships'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('Committee'),
 			'index.php?option=com_swa&view=committeemembers',
 			$vName == 'committeemembers'

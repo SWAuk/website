@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="member_id"
+               type="sql"
+               header="-- Select Member --"
+               key_field="id"
+               value_field="value"
+               query="SELECT member.id, CONCAT(member.id, ' - ', user.name) AS value
+                      FROM #__swa_member AS member
+                      LEFT JOIN #__users AS user ON user.id = member.user_id
+                      ORDER BY member.id DESC"
+               label="Member"
+               required="true"
+               filter="safehtml"/>
+
+        <field name="season_id"
+               type="sql"
+               header="-- Select Season --"
+               key_field="id"
+               value_field="year"
+               query="SELECT id, year FROM #__swa_season ORDER BY id DESC"
+               label="Season"
+               required="true"
+               filter="safehtml"/>
+    </fieldset>
+</form>
