@@ -32,23 +32,25 @@ trait SwaModelMemberTrait
 			$query->leftJoin('#__swa_university_member AS uni_member ON uni_member.member_id = a.id');
 			$query->select('uni_member.committee AS club_committee');
 
-			$now       = time();
-			$seasonEnd = strtotime("1st June");
-			$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
-
 			// Join on membership table
 			$query->leftJoin('#__swa_membership AS membership ON membership.member_id = a.id');
 			$query->select('membership.season_id');
 			$query->leftJoin('#__swa_season AS season ON membership.season_id = season.id');
-			$query->where('(season.year LIKE "' . (int) $date . '%" OR membership.season_id IS NULL)');
+			$query->select('season.year AS season_year');
+			$query->order('season.year DESC');
 
 			// Load the result
 			$db->setQuery($query);
 			$this->member = $db->loadObject();
 
+			$now       = time();
+			$seasonEnd = strtotime("1st June");
+			$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
+
 			if ($this->member !== null)
 			{
-				$this->member->paid = $this->member->season_id != null || $this->member->lifetime_member;
+				$season_member = substr($this->member->season_year, 0, 4) === $date;
+				$this->member->paid = $season_member || $this->member->lifetime_member;
 			}
 		}
 
