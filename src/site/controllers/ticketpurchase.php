@@ -21,9 +21,6 @@ class SwaControllerTicketPurchase extends SwaController
 		$app      = JFactory::getApplication();
 		$ticketId = $app->getUserState("com_swa.ticketpurchase.ticket_id");
 
-		// Get the POST data
-		$token = $this->input->getString('stripeToken');
-
 		// Create the class that will later be converted to json to be stored in the database
 		$details         = new stdClass;
 		$details->addons = array();
@@ -91,6 +88,24 @@ class SwaControllerTicketPurchase extends SwaController
 				$details->addons[$ticketAddon->name]["option"] = $selectedAddon->getString('option');
 			}
 		}
+
+		if ($totalCost > 0) {
+			$this->payWithStripe($user, $member, $ticket, $totalCost);
+		}
+
+		// Assign ticket to member
+		$this->addTicketToDb($member->id, $ticket->id, $charge, $details);
+
+		// Clear the ticket_id from the session
+		$app->setUserState("com_swa.ticketpurchase.ticket_id", null);
+
+		$this->setMessage('Ticket purchased!', 'success');
+		$this->setRedirect('account/my-tickets');
+	}
+
+	private function payWithStripe($user, $member, $ticket, $totalCost) {
+		// Get the token from POST data
+		$token = $this->input->getString('stripeToken');
 
 		try
 		{
@@ -175,15 +190,6 @@ class SwaControllerTicketPurchase extends SwaController
 			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
 			die($error_msg);
 		}
-
-		// Assign ticket to member
-		$this->addTicketToDb($member->id, $ticket->id, $charge, $details);
-
-		// Clear the ticket_id from the session
-		$app->setUserState("com_swa.ticketpurchase.ticket_id", null);
-
-		$this->setMessage('Ticket purchased!', 'success');
-		$this->setRedirect('account/my-tickets');
 	}
 
 	// TODO: Do we need this?
@@ -215,8 +221,10 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 	}
 
-	private function addTicketToDb($memberId, $eventTicketId, $charge, $details)
+	private function addTicketToDb($memberId, $eventTicketId, $totalCost, $details)
 	{
+		$details = json_encode($details, JSON_UNESCAPED_SLASHES);
+
 		// Add the ticket to the db
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -226,8 +234,8 @@ class SwaControllerTicketPurchase extends SwaController
 			"{$db->quote($memberId)}, " .
 			"{$db->quote($eventTicketId)}, " .
 			// Stripe amount is in pence
-			"{$db->quote($charge->amount/100.0)}, " .
-			"{$db->quote(json_encode($details, JSON_UNESCAPED_SLASHES))}"
+			"{$db->quote($totalCost)}, " .
+			"{$db->quote($details)}"
 		);
 
 		$db->setQuery($query);
@@ -236,7 +244,8 @@ class SwaControllerTicketPurchase extends SwaController
 		if ($result === false)
 		{
 			JLog::add(
-				"Ticket paid for but failed to add ticket db. Charge ID: {$charge->id}",
+				"Ticket paid for but failed to add ticket db. Member ID: {$memberId}. 
+				Event Ticket ID: {$eventTicketId}. Details: {$details}",
 				JLog::ERROR,
 				'com_swa.payment_process'
 			);

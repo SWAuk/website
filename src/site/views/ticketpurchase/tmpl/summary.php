@@ -212,34 +212,41 @@ if ($ticket == null)
 </button>
 
 <script>
-	var handler = StripeCheckout.configure({
-		key: "<?php echo $jConfig->get('stripe_publishable_key'); ?>",
-		image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-		locale: 'auto',
-		email: "<?php echo $this->user->email ?>",
-		token: function (res) {
-			jQuery('#stripeToken').val(res.id);
-			jQuery('#stripe-form').submit();
-		}
-	});
-
-	document.getElementById('stripe-button').addEventListener('click', function (e) {
-		// Open Checkout with further options:
-		var amount = parseInt(jQuery("#stripe-button").attr('data-amount'));
-
-		// Open Checkout with further options:
-		handler.open({
-			name: 'SWA',
-			description: "<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>",
-			currency: 'GBP',
-			zipCode: true,
-			amount: amount
+		var handler = StripeCheckout.configure({
+			key: "<?php echo $jConfig->get('stripe_publishable_key'); ?>",
+			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+			locale: 'auto',
+			email: "<?php echo $this->user->email ?>",
+			token: function (res) {
+				jQuery('#stripeToken').val(res.id);
+				jQuery('#stripe-form').submit();
+			}
 		});
-		e.preventDefault();
-	});
 
-	// Close Checkout on page navigation:
-	window.addEventListener('popstate', function () {
-		handler.close();
-	});
+        document.getElementById('stripe-button').addEventListener('click', function (e) {
+            // Get ticket amount
+            var amount = parseInt(jQuery("#stripe-button").attr('data-amount'));
+
+            if ( amount > 0 ) {
+	            // Open Checkout with further options:
+	            handler.open({
+	                name: 'SWA',
+	                description: "<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>",
+	                currency: 'GBP',
+	                zipCode: true,
+	                amount: amount
+	            });
+	            e.preventDefault();
+
+                // Close Checkout on page navigation:
+                window.addEventListener('popstate', function () {
+                    handler.close();
+                });
+            } else {
+                document.getElementById('stripe-button').addEventListener('click', function (e) {
+                    jQuery('#stripe-form').submit();
+                })
+            }
+        });
+
 </script>
