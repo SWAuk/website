@@ -94,7 +94,7 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 
 		// Assign ticket to member
-		$this->addTicketToDb($member->id, $ticket->id, $charge, $details);
+		$this->addTicketToDb($member->id, $ticket->id, $totalCost, $details);
 
 		// Clear the ticket_id from the session
 		$app->setUserState("com_swa.ticketpurchase.ticket_id", null);
