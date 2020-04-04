@@ -11,6 +11,8 @@ The event must be added to the **JAccess::getAuthorisedViewLevels**.
 
 The JAccess class can be found in libraries\src\Access\Access.php
 
+You can find the method in the file by searching for "getAuthorisedViewLevels"
+
 To avoid recursion we must only load the 'swa' plugins Once here.
 
 Add the following code just before the final return of the method:
