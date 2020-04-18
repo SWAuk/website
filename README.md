@@ -8,6 +8,37 @@ Student Windsurfing Association website stuff.
 * docker-compose ps (to check it is there and running)
 * docker-compose down (--volume to also remove SQL data in docker volume)
 
+### Keeping the git repo and Joomla install synchronized
+The Joomla install from the joomla docker container is mounted to `.docker/www/`. This directory is (rightly) ignored by git. Any changes done in `.docker/www/` are not reflected in the `src/` folder (which is tracked by git) and vice versa.
+
+To help with this problem there are the `copyIn.php` and `copyOut.php` scripts. As the name suggest, `copyIn.php` copies changes from the Joomla install (`.docker/www/`) to the `src/` folder **IN** the git repo. While `copyOut.php` copies changes from the `src/` folder in the git repo **OUT** to the Joomla install (`.docker/www/`). It does this by watching for file changes.
+
+**DO NOT TRY AND USE BOTH SCRIPTS AT THE SAME TIME OR YOU WILL GET INTO AN INFINATE LOOP!**
+
+#### Example
+I prefer to work in the `src/` folder in the git repo as there are less files and folders to navigate around. I'll therefore use `copyOut.php` in this example. 
+
+You could run these php scripts using a php interpreter installed on your machine but given that we have php with the `util` container I'm going to use that. NOTE: I run two commands in the example below. `docker-compose run --rm util` to get a shell inside the `util` container and `php copyOut.php` inside the `util` container.
+
+```
+$ docker-compose run --rm util
+root@93cbded36147:/swa# php copyOut.php
+Lurking...
+```
+
+If I make a change in `src/site/views/events/tmpl/default.php` and save it you will see that the change has been picked up and the contents of `src/site` is copied to the Joomla install (`.docker/www`):
+
+```
+$ docker-compose run --rm util
+root@93cbded36147:/swa# php copyOut.php
+Lurking...
+Copying site...
+Done!
+```
+
+The same will happen if you make a change in `src/administrator`. 
+
+It is advised to start the `copyOut.php` (or `copyIn.php`) script *before* making any changes. If you forget then you will need to run the script and make a trivial change to any file in the directory you've been working in (i.e. `src/site/` or `src/administrator/`) for the script to register a change and do the copy.
 
 ## First setup
 
@@ -23,12 +54,12 @@ Student Windsurfing Association website stuff.
 #### Install required libraries
 [`composer`](https://getcomposer.org/) is a dependency manager for PHP. Use it to install the PHP libraries needed for test, development and production.
 As docker is already required, the easiest way to use `composer` to install the requrired libs is via the official [docker image](https://hub.docker.com/_/composer).
-##### On Linux run:
+##### On Linux (or Git Bash for Windows) run:
 ```
 docker run --rm -it -v $PWD:/app composer install
 ```
 
-##### On Windows run: 
+##### On Windows (i.e. CMD) run: 
 ```
 docker run --rm -it -v %CD%:/app composer install
 ```
