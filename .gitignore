@@ -1,6 +1,11 @@
-#Composer stuff
+# Composer stuff
 vendor
 composer.lock
+
+# Docker stuff
+.env
+.docker/www/*
+.docker/sqldump/*
 
 # SWA stuff
 favourite.zip
@@ -13,12 +18,12 @@ src/site/libraries/stripe/
 *.zip
 
 #################
-## PhpStorm
+## IntelliJ IDEs
 #################
 .idea/
 
 #################
-## Eclipse
+## Eclipse IDE
 #################
 
 .project
@@ -50,12 +55,3 @@ local.properties
 # Python-specific
 *.pydevproject
 /nbproject/private/
-
-# Composer stuff
-vendor
-composer.lock
-
-# Docker stuff
-.env
-.docker/www/*
-.docker/sqldump/*
