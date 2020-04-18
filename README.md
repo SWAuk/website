@@ -16,7 +16,7 @@ To help with this problem there are the `copyIn.php` and `copyOut.php` scripts. 
 **DO NOT TRY AND USE BOTH SCRIPTS AT THE SAME TIME OR YOU WILL GET INTO AN INFINATE LOOP!**
 
 #### Example
-I prefer to work in the `src/` folder in the git repo as there are less files and folders to navigate around. I'll therefore use `copyOut.php` in this example. 
+I prefer to work in the `src/` folder in the git repo as it is allows you to checkout different git branches (e.g. to review a pull request) and have the changes synced to the Joomla install (`.docker/www/`). There are also less files and folders to navigate around. I'll therefore use `copyOut.php` in this example.
 
 You could run these php scripts using a php interpreter installed on your machine but given that we have php with the `util` container I'm going to use that. NOTE: I run two commands in the example below. `docker-compose run --rm util` to get a shell inside the `util` container and `php copyOut.php` inside the `util` container.
 
