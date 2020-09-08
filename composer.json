@@ -12,6 +12,7 @@
 		],
 		"post-update-cmd": [
 			"echo 'Moving stripe into our src directory'",
+			"rm -rf ./src/site/libraries/stripe/*",
 			"mkdir -p ./src/site/libraries/stripe",
 			"cp ./vendor/stripe/stripe-php/init.php ./src/site/libraries/stripe/init.php",
 			"cp -r ./vendor/stripe/stripe-php/lib ./src/site/libraries/stripe/lib",
