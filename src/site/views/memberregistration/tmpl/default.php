@@ -44,6 +44,13 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 			<tr>
 				<div class="control-group">
+					<td><?php echo $this->form->getLabel('ethnicity'); ?></td>
+					<td><?php echo $this->form->getInput('ethnicity'); ?></td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="control-group">
 					<td><?php echo $this->form->getLabel('dob'); ?></td>
 					<td><?php echo $this->form->getInput('dob'); ?></td>
 				</div>

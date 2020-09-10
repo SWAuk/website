@@ -17,6 +17,31 @@
 			<option value="Female">Female</option>
 		</field>
 
+		<field name="ethnicity"
+			type="list"
+			label="Ethnicity"
+			default="none"
+			required="false">
+				<option value="White">English / Welsh / Scottish / Northern Irish / British</option>
+				<option value="Irish">Irish</option>
+				<option value="Gypsy or Irish Traveller">Gypsy or Irish Traveller</option>
+				<option value="Any other White background">Any other White background</option>
+				<option value="White and Black Caribbean">White and Black Caribbean</option>
+				<option value="White and Black African">White and Black African</option>
+				<option value="White and Asian">White and Asian</option>
+				<option value="Any other Mixed / Multiple ethnic background">Any other Mixed / Multiple ethnic background</option>
+				<option value="Indian">Indian</option>
+				<option value="Pakistani">Pakistani</option>
+				<option value="Bangladeshi">Bangladeshi</option>
+				<option value="Chinese">Chinese</option>
+				<option value="Any other Asian background">Any other Asian background</option>
+				<option value="African">African</option>
+				<option value="Caribbean">Caribbean</option>
+				<option value="Any other Black / African / Caribbean background">Any other Black / African / Caribbean background</option>
+				<option value="Arab">Arab</option>
+				<option value="Any other ethnic group">Any other ethnic group</option>
+		</field>
+
 		<field name="dob"
 			type="calendar"
 			class="inputbox"
@@ -32,8 +57,7 @@
 			required="true"
 			label="Phone Number"
 			filter="safehtml"
-			validate="tel"
-			/>
+			validate="tel"/>
 
 		<field name="university_id"
 			type="sql"
@@ -61,8 +85,7 @@
 
 		<field name="discipline"
 			type="list"
-			label="Discipline"
-			>
+			label="Discipline">
 			<option value="None">None</option>
 			<option value="Race">Race</option>
 			<option value="Wave">Wave</option>

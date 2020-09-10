@@ -26,7 +26,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 <h1>Membership Details</h1>
 
-<p>If you need to make any changes on fields that are disable please email webmaster@swa.co.uk!</p>
+<p>If you need to make any changes on fields that are disabled please email webmaster@swa.co.uk!</p>
 
 <form id="form-member-details" method="post"
       action="<?php echo JRoute::_('index.php?option=com_swa&task=memberdetails'); ?>"
@@ -45,6 +45,10 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		<tr>
 			<td><?php echo $this->form->getLabel('sex'); ?></td>
 			<td><?php echo $this->form->getInput('sex'); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo $this->form->getLabel('ethnicity'); ?></td>
+			<td><?php echo $this->form->getInput('ethnicity'); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo $this->form->getLabel('dob'); ?></td>

@@ -33,6 +33,7 @@ class SwaControllerMemberDetails extends SwaController
 		}
 
 		$newSex        = $data['jform']['sex'];
+		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
 		$newGraduation = $data['jform']['graduation'];
 		$newDiscipline = $data['jform']['discipline'];
@@ -49,6 +50,7 @@ class SwaControllerMemberDetails extends SwaController
 		$query
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
+			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
 			->set('graduation = ' . $db->quote($newGraduation))
 			->set('discipline = ' . $db->quote($newDiscipline))

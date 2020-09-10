@@ -131,7 +131,7 @@ class SwaControllerTicketPurchase extends SwaController
 		{
 			// Card declined
 			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			die("You're card was declined. Please contact webmaster@swa.co.uk if this continues to happen.");
+			die("Your card was declined. Please contact webmaster@swa.co.uk if this continues to happen.");
 		}
 		catch (\Stripe\Error\RateLimit $e)
 		{

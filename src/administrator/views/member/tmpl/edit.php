@@ -60,6 +60,10 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('sex'); ?></div>
 					</div>
 					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('ethnicity'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('ethnicity'); ?></div>
+					</div>
+					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('dob'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('dob'); ?></div>
 					</div>
