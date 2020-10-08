@@ -55,3 +55,6 @@ local.properties
 # Python-specific
 *.pydevproject
 /nbproject/private/
+
+#Ignore Mac
+.DS_Store
