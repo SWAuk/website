@@ -36,7 +36,7 @@ class SwaControllerOrgcommitteedetails extends SwaController
 
 		if ($submittedMemberId != $member->id)
 		{
-			throw new Exception('Your trying to submit data for someone else?');
+			throw new Exception('You\'re trying to submit data for someone else?');
 		}
 
 		$db    = JFactory::getDbo();
