@@ -14,7 +14,14 @@ JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_content/models', 'Con
 $model = JModelItem::getInstance('Article', 'ContentModel');
 
 // Get everything from the database
-$article = $model->getItem($ARTICLE_ID);
+
+$article = JTable::getInstance('content');
+$article->load($ARTICLE_ID);
+// var_dump($article);
+
+if (!$article->title) {
+	$article = (object)["title"=>"Article does not exist", "introtext"=>"There are no terms in the current database", "fulltext"=>""];
+}
 
 ?>
 
