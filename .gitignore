@@ -15,6 +15,7 @@ src/site/libraries/stripe/
 .joomlaRoot
 
 #Build stuff
+.joomgot
 .build/tmp-build
 *.zip
 
