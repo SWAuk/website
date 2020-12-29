@@ -7,23 +7,25 @@
 		"fix":  "phpcbf",
 		"test": [
 			"composer validate --no-interaction",
+			"minus-x check .",
 			"composer lint",
 			"composer phpcs"
 		],
 		"post-update-cmd": [
-			"echo 'Moving stripe into our src directory'",
-			"rm -rf ./src/site/libraries/stripe/*",
-			"mkdir -p ./src/site/libraries/stripe",
-			"cp ./vendor/stripe/stripe-php/init.php ./src/site/libraries/stripe/init.php",
-			"cp -r ./vendor/stripe/stripe-php/lib ./src/site/libraries/stripe/lib",
-			"cp ./vendor/stripe/stripe-php/VERSION ./src/site/libraries/stripe/VERSION"
-		]
+			"composer post-update-cmd:stripe",
+			"composer post-update-cmd:joomla",
+			"composer post-update-cmd:template",
+			"composer post-update-cmd:images"
+		],
+		"post-update-cmd:stripe": ".build/stripe.sh",
+		"post-update-cmd:joomla": ".build/joomla.sh",
+		"post-update-cmd:template": ".build/template.sh",
+		"post-update-cmd:images": ".build/images.sh"
 	},
 	"require": {
 		"stripe/stripe-php": "4.9.1"
 	},
 	"require-dev": {
-		"henrikbjorn/lurker": "^1.2",
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"joomla/coding-standards": "~3.0@alpha"
 	}
