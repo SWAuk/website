@@ -63,18 +63,6 @@ If you are on windows using CMD that would be:
 docker run --rm -it -v %CD%:/app composer <command here>
 ```
 
-### Clone this repo
-
-```sh
-git clone https://github.com/SWAuk/com_swa.git
-```
-
-Copy the `.env.example` to `.env` and edit the defaults if you want to.
-
-```sh
-cp .env.example .env
-```
-
 ### Install required libraries and things
 
 [`composer`](https://getcomposer.org/) is a dependency manager for PHP.
