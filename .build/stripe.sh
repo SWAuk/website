@@ -1,3 +1,7 @@
+#!/bin/bash
+# We need to move the files that we use from the stripe library in vendor into our actual application.
+# This is because the vendor directory of com_swa is not actually loaded into the package for Joomla.
+
 echo 'Moving stripe into our src directory'
 
 # Remove anything that already exists

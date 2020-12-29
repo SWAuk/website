@@ -1,3 +1,6 @@
+#!/bin/bash
+# Fetch the template that we use in production for them development environment to use.
+
 echo 'Fetching latest template'
 
 # We use the free [FavThemes Favourite](https://www.favthemes.com/joomla-templates/product/favourite-free-responsive-joomla-3-template) template.

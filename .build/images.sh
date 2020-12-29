@@ -1,3 +1,6 @@
+#!/bin/bash
+# In order to make the dev site look even better we need to grab a few files from production :)
+
 echo 'Fetching images'
 
 rm -rf ./.docker/www/images
