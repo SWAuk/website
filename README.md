@@ -43,14 +43,27 @@ The default things will be here (unless you changed them in your .env file)
 * Joomla back: http://localhost:5555/administrator (user: admin, password: password)
 * Adminer: http://localhost:5556 (user: root, password: example)
 
-### First setup
-
-#### Install required programs
+### Install required programs
 
 * [Docker](https://docs.docker.com/install/)
 * [docker-compose](https://docs.docker.com/compose/install/)
+* [composer](https://getcomposer.org/download/) - A PHP package manager
 
-#### Clone this repo
+You can also run **composer in docker**...
+
+For linux and bashy systems that would be:
+
+```sh
+docker run --rm -it -v $PWD:/app composer <command here>
+```
+
+If you are on windows using CMD that would be:
+
+```sh
+docker run --rm -it -v %CD%:/app composer <command here>
+```
+
+### Clone this repo
 
 ```sh
 git clone https://github.com/SWAuk/com_swa.git
@@ -62,7 +75,7 @@ Copy the `.env.example` to `.env` and edit the defaults if you want to.
 cp .env.example .env
 ```
 
-#### Install required libraries and things
+### Install required libraries and things
 
 [`composer`](https://getcomposer.org/) is a dependency manager for PHP.
 Use it to install the PHP libraries needed for test, development and production.
@@ -74,31 +87,19 @@ This step:
 * Downloads the Template that the SWA site uses.
 * Downloads various images and logos.
 
-**If you have composer installed locally:**
+To run the step:
 
 ```sh
 composer install
 ```
 
-**In Docker on Linux, WSL or Git Bash for Windows run:**
-
-```sh
-docker run --rm -it -v $PWD:/app composer install
-```
-
-**In Docker on Windows in CMD run:**
-
-```sh
-docker run --rm -it -v %CD%:/app composer install
-```
-
-#### Launch services
+### Launch services
 
 ```sh
 docker-compose up -d
 ```
 
-#### Other Plugins
+### Other Plugins
 
 You will need to install these plugins to reach parity with the live site
 
