@@ -51,7 +51,9 @@
 		</properties>
 	</rule>
 
-	<file>./src</file>
+	<file>.</file>
+	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>.docker</exclude-pattern>
 	<exclude-pattern>src/site/libraries</exclude-pattern>
 
 </ruleset>

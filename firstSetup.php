@@ -1,34 +1,38 @@
 <?php
 
 
-function rrmdir($dir) {
+function rrmdir($dir)
+{
    if (is_dir($dir)) {
-     $objects = scandir($dir);
-     foreach ($objects as $object) {
-       if ($object != "." && $object != "..") {
-         if (is_dir($dir."/".$object))
-           rrmdir($dir."/".$object);
-         else
-           unlink($dir."/".$object);
-       }
-     }
-     rmdir($dir);
+		$objects = scandir($dir);
+		foreach ($objects as $object) {
+		   if ($object != "." && $object != "..") {
+				if (is_dir($dir . "/" . $object)) {
+				  rrmdir($dir . "/" . $object);
+					}
+else {
+							 unlink($dir . "/" . $object);
+					}
+		  }
+			}
+		rmdir($dir);
    }
  }
 
 
 $zip = new ZipArchive;
 $res = $zip->open(__DIR__ . '/favourite.zip');
-if ($res === TRUE) {
+if ($res === true) {
 	$zip->extractTo(__DIR__ . '/.docker/www/templates/');
 	$zip->close();
 	echo 'Template extracted' . "\n";
-} else {
-	die( 'Template extraction failed...' );
+}
+else {
+	die('Template extraction failed...');
 }
 
 echo "Fetching Logo and background image\n";
-mkdir(__DIR__ . '/.docker/www/images/FavouriteTemplate', 0777, True);
+mkdir(__DIR__ . '/.docker/www/images/FavouriteTemplate', 0777, true);
 
 // Copy the logo from the live site
 $liveLogo = "https://studentwindsurfing.co.uk/images/SWA_Vector.png";
@@ -43,7 +47,7 @@ file_put_contents($target, fopen($liveBackground, 'r'));
 
 // Copy the default config into the Joomla install
 echo "Adding default Joomla config\n";
-copy( __DIR__ . '/.docker/configuration.php', __DIR__ . '/.docker/www/configuration.php' );
+copy(__DIR__ . '/.docker/configuration.php', __DIR__ . '/.docker/www/configuration.php');
 
 
 // Rmove the default /installation folder
