@@ -15,6 +15,11 @@
 			"composer lint",
 			"composer phpcs"
 		],
+		"ci": [
+			"composer validate --no-interaction",
+			"minus-x check .",
+			"composer lint"
+		],
 		"post-update-cmd": [
 			"composer post-update-cmd:stripe",
 			"composer post-update-cmd:joomla",
