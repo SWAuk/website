@@ -75,8 +75,6 @@ This step:
 * Downloads the Template that the SWA site uses.
 * Downloads various images and logos.
 
-To run the step:
-
 ```sh
 composer install
 ```
