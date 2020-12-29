@@ -64,10 +64,18 @@ Copy the `.env.example` to `.env` and edit the defaults if you want to.
 cp .env.example .env
 ```
 
-#### Install required libraries
+#### Install required libraries and things
 
-[`composer`](https://getcomposer.org/) is a dependency manager for PHP. Use it to install the PHP libraries needed for test, development and production.
+[`composer`](https://getcomposer.org/) is a dependency manager for PHP.
+Use it to install the PHP libraries needed for test, development and production.
 As docker is already required, the easiest way to use `composer` to install the required libs is via the official [docker image](https://hub.docker.com/_/composer).
+
+This step:
+
+* Downloads various PHP packages for our component.
+* Downloads the Template that the SWA site uses.
+* Downloads various images and logos.
+
 **On Linux (or Git Bash for Windows) run:**
 
 ```sh
