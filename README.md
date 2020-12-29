@@ -6,9 +6,7 @@ This repository contains a [Joomla component](https://docs.joomla.org/Component)
 
 ### Installing the SWA component in Joomla
 
-* Create a zip of the component:\
-``` docker-compose run --rm --entrypoint php util make.php ```
-
+* Create a zip of the component using the `composer run build` command.
 * Go to the Joomla backend, http://localhost:5555/administrator
 * Log in (admin:password)
 * Top menu, Extensions >> Manage >> Install

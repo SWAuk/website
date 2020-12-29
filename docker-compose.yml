@@ -9,7 +9,6 @@ services:
     volumes:
       - ./.docker/www:/var/www/html
       - ./.docker/configuration.php:/var/www/html/configuration.php
-      - ./src/swa.xml:/var/www/html/administrator/components/com_swa/swa.xml
       - ./src/administrator:/var/www/html/administrator/components/com_swa
       - ./src/site:/var/www/html/components/com_swa
       - joomla-logs:/var/www/html/administrator/logs

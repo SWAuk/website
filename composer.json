@@ -2,9 +2,13 @@
 	"name": "swauk/com_swa",
 	"description": "Joomla component holding SWA website functionality",
 	"scripts": {
+		"build": ".build/build.sh",
 		"lint": "parallel-lint ./src",
 		"phpcs": "phpcs -p -s",
-		"fix":  "phpcbf",
+		"fix":  [
+			"minus-x fix .",
+			"phpcbf"
+		],
 		"test": [
 			"composer validate --no-interaction",
 			"minus-x check .",
@@ -27,6 +31,7 @@
 	},
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "^1.2",
-		"joomla/coding-standards": "~3.0@alpha"
+		"joomla/coding-standards": "~3.0@alpha",
+		"mediawiki/minus-x": "^1.1"
 	}
 }

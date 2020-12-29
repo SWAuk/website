@@ -14,7 +14,8 @@ src/site/libraries/stripe/
 #Our Old Stuff
 .joomlaRoot
 
-#Ignore the zip files..
+#Build stuff
+.build/tmp-build
 *.zip
 
 #################
