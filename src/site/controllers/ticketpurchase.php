@@ -103,7 +103,8 @@ class SwaControllerTicketPurchase extends SwaController
 		$this->setRedirect('account/my-tickets');
 	}
 
-	private function payWithStripe($user, $member, $ticket, $totalCost) {
+	private function payWithStripe($user, $member, $ticket, $totalCost)
+    {
 		// Get the token from POST data
 		$token = $this->input->getString('stripeToken');
 

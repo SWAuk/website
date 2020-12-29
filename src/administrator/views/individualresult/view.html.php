@@ -9,7 +9,6 @@ jimport('joomla.application.component.view');
  */
 class SwaViewIndividualresult extends JViewLegacy
 {
-
 	protected $state;
 
 	protected $item;

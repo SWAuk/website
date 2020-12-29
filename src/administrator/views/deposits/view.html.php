@@ -9,7 +9,6 @@ jimport('joomla.application.component.view');
  */
 class SwaViewDeposits extends JViewLegacy
 {
-
 	protected $items;
 
 	protected $pagination;

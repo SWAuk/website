@@ -8,7 +8,6 @@ jimport('joomla.application.component.view');
  */
 class SwaViewUniversity extends JViewLegacy
 {
-
 	protected $state;
 
 	protected $item;

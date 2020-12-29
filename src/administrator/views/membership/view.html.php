@@ -8,7 +8,9 @@ defined('_JEXEC') or die;
 class SwaViewMembership extends JViewLegacy
 {
 	protected $state;
+
 	protected $item;
+
 	protected $form;
 
 	/**

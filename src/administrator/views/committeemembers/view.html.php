@@ -9,7 +9,6 @@ jimport('joomla.application.component.view');
  */
 class SwaViewCommitteeMembers extends JViewLegacy
 {
-
 	protected $items;
 
 	protected $pagination;

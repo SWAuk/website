@@ -8,7 +8,6 @@ jimport('joomla.form.formfield');
  */
 class JFormFieldForeignKey extends JFormField
 {
-
 	/**
 	 * The form field type.
 	 *

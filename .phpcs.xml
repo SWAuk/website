@@ -2,7 +2,11 @@
 <ruleset>
 	<rule ref="./vendor/joomla/coding-standards/Joomla">
 		<!-- Commenting -->
+		<exclude name="Joomla.Commenting.FileComment.EmptyCopyrightTag"/>
+		<exclude name="Joomla.Commenting.FileComment.EmptyLicenseTag"/>
 		<exclude name="Joomla.Commenting.FileComment.Missing"/>
+		<exclude name="Joomla.Commenting.FileComment.MissingCopyrightTag"/>
+		<exclude name="Joomla.Commenting.FileComment.MissingLicenseTag"/>
 		<exclude name="Joomla.Commenting.FileComment.WrongStyle"/>
 		<exclude name="Joomla.Commenting.ClassComment.Missing"/>
 		<exclude name="Joomla.Commenting.ClassComment.MissingSinceTag"/>

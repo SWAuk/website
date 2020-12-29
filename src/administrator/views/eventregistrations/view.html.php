@@ -8,7 +8,6 @@ jimport('joomla.application.component.view');
  */
 class SwaViewEventregistrations extends JViewLegacy
 {
-
 	protected $items;
 
 	protected $pagination;

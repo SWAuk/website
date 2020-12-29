@@ -1,4 +1,5 @@
-function getScript(url, success) {
+function getScript(url, success)
+{
 	var script = document.createElement('script');
 	script.src = url;
 	var head = document.getElementsByTagName('head')[0],

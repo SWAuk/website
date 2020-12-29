@@ -7,7 +7,6 @@ defined('_JEXEC') or die;
  */
 class SwaViewMemberships extends JViewLegacy
 {
-
 	protected $items;
 
 	protected $pagination;

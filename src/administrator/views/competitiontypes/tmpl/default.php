@@ -78,9 +78,8 @@ if (!empty($this->extra_sidebar))
 						); ?></label>
 					<input type="text" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
-					       value="<?php echo $this->escape(
-						       $this->state->get('filter.search')
-					       ); ?>" title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
+						   value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
+						   title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
 				</div>
 				<div class="btn-group pull-left">
 					<button class="btn hasTooltip" type="submit"
@@ -274,4 +273,4 @@ if (!empty($this->extra_sidebar))
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			<?php echo JHtml::_('form.token'); ?>
 		</div>
-</form>        
+</form>
