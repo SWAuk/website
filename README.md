@@ -74,13 +74,19 @@ This step:
 * Downloads the Template that the SWA site uses.
 * Downloads various images and logos.
 
-**On Linux (or Git Bash for Windows) run:**
+**If you have composer installed locally:**
+
+```sh
+composer install
+```
+
+**In Docker on Linux, WSL or Git Bash for Windows run:**
 
 ```sh
 docker run --rm -it -v $PWD:/app composer install
 ```
 
-**On Windows (i.e. CMD) run:**
+**In Docker on Windows in CMD run:**
 
 ```sh
 docker run --rm -it -v %CD%:/app composer install

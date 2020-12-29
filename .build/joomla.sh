@@ -12,7 +12,9 @@ curl --progress-bar -L -o joomla.zip 'https://github.com/joomla/joomla-cms/archi
 rm -rf ./.docker/www
 mkdir -p ./.docker/www
 
-unzip -q joomla.zip -d ./.docker/www
+echo "Unzipping:"
+unzip joomla.zip -d ./.docker/www | awk 'BEGIN {ORS=" "} {if(NR%10==0)print "."}'
+echo ""
 mv ./.docker/www/*/* ./.docker/www/
 
 rm -rf ./.docker/www/installation

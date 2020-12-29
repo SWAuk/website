@@ -13,5 +13,7 @@ curl --progress-bar -L -o favourite.zip 'https://docs.google.com/uc?export=downl
 
 rm -rf ./.docker/www/templates/favourite
 mkdir -p ./.docker/www/templates/favourite
-unzip -q favourite.zip -d ./.docker/www/templates
+echo "Unzipping:"
+unzip favourite.zip -d ./.docker/www/templates | awk 'BEGIN {ORS=" "} {if(NR%1==0)print "."}'
+echo ""
 rm favourite.zip
