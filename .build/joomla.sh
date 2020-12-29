@@ -15,8 +15,6 @@ if grep -q $joomtoget .joomgot; then
   fi
 fi
 
-echo $joomtoget > .joomgot
-
 echo 'Fetching Joomla'
 
 curl --progress-bar -L -o joomla.zip $joomtoget
@@ -32,3 +30,5 @@ mv ./.docker/www/*/* ./.docker/www/
 rm -rf ./.docker/www/installation
 rm -rf ./.docker/www/joomla-cms-*
 rm joomla.zip
+
+echo $joomtoget > .joomgot
