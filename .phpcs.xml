@@ -53,6 +53,7 @@
 
 	<file>.</file>
 	<exclude-pattern>vendor</exclude-pattern>
+	<exclude-pattern>.build</exclude-pattern>
 	<exclude-pattern>.docker</exclude-pattern>
 	<exclude-pattern>src/site/libraries</exclude-pattern>
 
