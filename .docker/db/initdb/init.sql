@@ -1889,7 +1889,7 @@ INSERT INTO `swana_swa_season` (`id`, `year`) VALUES
 (17,	'2017/18'),
 (18,	'2018/19'),
 (19,	'2019/20'),
-(20,    '2020/21';
+(20,    '2020/21');
 
 DROP TABLE IF EXISTS `swana_swa_team_result`;
 CREATE TABLE `swana_swa_team_result` (
