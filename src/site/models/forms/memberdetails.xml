@@ -49,7 +49,6 @@
                class="inputbox"
                required="true"
                label="Dob"
-               readonly="true"
                filter="safehtml"/>
 
         <field name="tel"
