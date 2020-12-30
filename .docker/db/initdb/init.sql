@@ -1844,7 +1844,7 @@ INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`
 (3,	425,	1,	'Male',	    '1996-01-29',	2,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
 (4,	424,	0,	'Male',	    '1999-02-10',	1,	'',	0,	'None',	'Beginner',	    'M',	'-',	'-',	'NULL',	    '07805936373',	'None'),
 (5,	422,	0,	'Male',	    '1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'123',	'1234',	'NULL',	    '078059256893',	'None'),
-(6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	    '07805925651',	'None')
+(6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	    '07805925651',	'None'),
 (7, 421,    1,  'Male',     '1992-01-01',   1,  '', 0, 'None', 'Intermediate',	'M',	'-',	'-',	'NULL',	    '07123456789',	'Website');
 
 DROP TABLE IF EXISTS `swana_swa_membership`;
