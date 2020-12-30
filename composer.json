@@ -26,9 +26,6 @@
 		"post-update-cmd:template": ".build/template.sh",
 		"post-update-cmd:images": ".build/images.sh"
 	},
-	"require": {
-		"stripe/stripe-php": "4.9.1"
-	},
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"joomla/coding-standards": "~3.0@alpha",
