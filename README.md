@@ -43,6 +43,17 @@ The default things will be here (unless you changed them in your .env file)
 * Joomla back: http://localhost:5555/administrator (user: admin, password: password)
 * Adminer: http://localhost:5556 (user: root, password: example)
 
+Joomla is populated with a sample SWA data set, this is done in `./.docker/db/initdb/init.sql`.
+This data set includes some example users, all of their passwords are `password`
+
+* admin - Super User
+* johnsmith
+* janesmith
+* mthomp
+* bendover
+* swacom
+* unicom
+
 ### Install required programs
 
 * [Docker](https://docs.docker.com/install/)
