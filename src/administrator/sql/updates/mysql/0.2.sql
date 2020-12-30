@@ -1,13 +1,13 @@
 -- Add the extra columns to the membership table
 ALTER TABLE `#__swa_membership`
-	ADD CONSTRAINT `unique_member_id_season_id` UNIQUE (`member_id`, `season_id`),
-  DROP PRIMARY KEY,
-	ADD COLUMN `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
-  ADD COLUMN `paid` TINYINT(1) NOT NULL DEFAULT 0 AFTER `season_id`,
-  ADD COLUMN `level` varchar(20) NOT NULL AFTER `paid`,
-  ADD COLUMN `uni_id` int(11) NOT NULL AFTER `level`,
-  ADD COLUMN `approved` TINYINT(1) NOT NULL DEFAULT 0 AFTER `uni_id`,
-  ADD COLUMN `committee` varchar(20) DEFAULT NULL AFTER `approved`;
+    ADD CONSTRAINT `unique_member_id_season_id` UNIQUE (`member_id`, `season_id`),
+    DROP PRIMARY KEY,
+    ADD COLUMN `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST,
+    ADD COLUMN `paid` TINYINT(1) NOT NULL DEFAULT 0 AFTER `season_id`,
+    ADD COLUMN `level` varchar(20) NOT NULL AFTER `paid`,
+    ADD COLUMN `uni_id` int(11) NOT NULL AFTER `level`,
+    ADD COLUMN `approved` TINYINT(1) NOT NULL DEFAULT 0 AFTER `uni_id`,
+    ADD COLUMN `committee` varchar(20) DEFAULT NULL AFTER `approved`;
 
 -- Update the members currently in the membership table
 -- Members in this table have already paid their yearly membership fee
@@ -28,7 +28,7 @@ SET `membership`.`paid`      = 1,
 INSERT INTO `#__swa_membership` (`member_id`, `season_id`, `paid`, `level`, `uni_id`, `approved`, `committee`)
 SELECT `member`.`id` AS `member_id`,
     -- set the season_id to this season
-    18 AS `season_id`,
+    20 AS `season_id`,
     -- paid their SWA Membership - all 0 as they will already be in the membership table with 1 or got lifetime membership
     0 AS `paid`,
     -- get member's level
@@ -50,15 +50,15 @@ AND `uni_member`.`graduated` != 1;
 
 
 ALTER TABLE `#__swa_member`
-  DROP COLUMN `dob`,
-  DROP COLUMN `university_id`,
-  DROP COLUMN `course`,
-  DROP COLUMN `graduation`,
-  DROP COLUMN `discipline`,
-  DROP COLUMN `level`,
-  DROP COLUMN `shirt`,
+    DROP COLUMN `dob`,
+    DROP COLUMN `university_id`,
+    DROP COLUMN `course`,
+    DROP COLUMN `graduation`,
+    DROP COLUMN `discipline`,
+    DROP COLUMN `level`,
+    DROP COLUMN `shirt`,
 -- TODO: Drop dietary? Can add it as a ticket addon?
---	DROP COLUMN `dietary`,
-  DROP COLUMN `swahelp`;
+--    DROP COLUMN `dietary`,
+    DROP COLUMN `swahelp`;
 
 DROP TABLE `#__swa_university_member`;
