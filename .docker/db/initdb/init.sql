@@ -264,7 +264,7 @@ CREATE TABLE `swana_categories` (
   KEY `idx_left_right` (`lft`,`rgt`),
   KEY `idx_alias` (`alias`(100)),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_categories` (`id`, `asset_id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `extension`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `modified_user_id`, `modified_time`, `hits`, `language`, `version`) VALUES
 (1,	0,	0,	0,	11,	0,	'',	'system',	'ROOT',	'root',	'',	'',	1,	0,	'0000-00-00 00:00:00',	1,	'{}',	'',	'',	'{}',	421,	'2019-02-10 14:19:01',	0,	'0000-00-00 00:00:00',	0,	'*',	1),
@@ -374,7 +374,7 @@ CREATE TABLE `swana_content` (
   KEY `idx_language` (`language`),
   KEY `idx_xreference` (`xreference`),
   KEY `idx_alias` (`alias`(191))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_content` (`id`, `asset_id`, `title`, `alias`, `introtext`, `fulltext`, `state`, `catid`, `created`, `created_by`, `created_by_alias`, `modified`, `modified_by`, `checked_out`, `checked_out_time`, `publish_up`, `publish_down`, `images`, `urls`, `attribs`, `version`, `ordering`, `metakey`, `metadesc`, `access`, `hits`, `metadata`, `featured`, `language`, `xreference`, `note`) VALUES
 (1,	63,	'Lorem Ipsum',	'lorem-ipsum',	'<div id=\"lipsum\">\r\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget egestas velit, sed placerat odio. Suspendisse at leo nec magna scelerisque sodales et vestibulum ligula. Donec eget velit laoreet, dictum quam vel, sagittis felis. Sed ornare ipsum quis dolor tempus, nec egestas ex molestie. Suspendisse enim odio, posuere quis volutpat sit amet, cursus sed nunc. Quisque feugiat turpis nunc, at mattis odio tincidunt sed. In hac habitasse platea dictumst. Sed luctus lobortis tortor et semper.</p>\r\n<p>Mauris vitae hendrerit nisl, ut semper orci. Nullam hendrerit congue consectetur. Donec pharetra ultrices sapien et varius. Nulla id orci finibus, aliquet mauris sed, dignissim nisl. Sed congue eu mi quis venenatis. Curabitur in pulvinar dolor. Sed varius aliquam erat non rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras fringilla viverra dictum.</p>\r\n<p>Morbi pulvinar massa id lacus bibendum blandit. Nam eget massa tempus, sollicitudin diam quis, interdum magna. Suspendisse pretium orci lacinia tortor tincidunt sodales. Aliquam a eros mollis, eleifend libero ut, porttitor erat. Donec quis velit nec justo interdum efficitur. Nulla tristique venenatis magna nec lacinia. Duis ultrices, mi eget aliquam commodo, purus diam sodales libero, a euismod nisl tortor et neque. Nulla nisi lacus, volutpat sit amet diam nec, fringilla malesuada nibh. Donec vehicula pulvinar lacus ut rhoncus. Morbi eget velit semper lacus convallis sollicitudin sit amet ut velit. Duis luctus augue ac est maximus faucibus. Aenean vel pharetra enim.</p>\r\n<p>Nunc vel pellentesque ante, ut sagittis lectus. Aenean et vehicula nisi. In hac habitasse platea dictumst. Quisque a aliquet quam, a vulputate nisl. Aenean non tincidunt ipsum. Nulla arcu turpis, consectetur a cursus sed, scelerisque ut quam. Ut id ipsum vel nisi tincidunt commodo ac eget nisl. Aenean leo neque, suscipit vel sem sit amet, molestie pharetra tellus. Nunc dictum turpis sed risus cursus, mollis dignissim diam vulputate. Aenean tristique nunc nunc, eu consectetur nunc rutrum ut. Phasellus lacinia libero dui, a dignissim nisi dapibus at.</p>\r\n<p>Aliquam hendrerit rutrum massa et aliquet. Phasellus elementum pellentesque est, ut congue erat porttitor quis. Phasellus ante risus, tincidunt congue maximus non, efficitur nec eros. Sed nec viverra ligula, at interdum massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse non sagittis massa. Vivamus sed eros efficitur, pulvinar lectus vitae, ultricies lorem. Phasellus vel arcu luctus, vehicula nunc eget, rutrum tortor. Cras id orci urna. Nam sit amet felis quis lacus pulvinar pharetra sed quis tortor. Aliquam eget mollis erat. Cras dignissim gravida varius. Cras malesuada tincidunt fermentum. Quisque vel massa blandit odio vehicula mattis vitae id elit.</p>\r\n</div>',	'',	1,	2,	'2019-02-10 17:01:25',	421,	'',	'2019-02-10 17:01:25',	0,	0,	'0000-00-00 00:00:00',	'2019-02-10 17:01:25',	'0000-00-00 00:00:00',	'{\"image_intro\":\"\",\"float_intro\":\"\",\"image_intro_alt\":\"\",\"image_intro_caption\":\"\",\"image_fulltext\":\"\",\"float_fulltext\":\"\",\"image_fulltext_alt\":\"\",\"image_fulltext_caption\":\"\"}',	'{\"urla\":false,\"urlatext\":\"\",\"targeta\":\"\",\"urlb\":false,\"urlbtext\":\"\",\"targetb\":\"\",\"urlc\":false,\"urlctext\":\"\",\"targetc\":\"\"}',	'{\"article_layout\":\"\",\"show_title\":\"\",\"link_titles\":\"\",\"show_tags\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_vote\":\"\",\"show_hits\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"alternative_readmore\":\"\",\"article_page_title\":\"\",\"show_publishing_options\":\"\",\"show_article_options\":\"\",\"show_urls_images_backend\":\"\",\"show_urls_images_frontend\":\"\"}',	1,	1,	'',	'',	1,	0,	'{\"robots\":\"\",\"author\":\"\",\"rights\":\"\",\"xreference\":\"\"}',	1,	'*',	'',	''),
@@ -988,7 +988,7 @@ CREATE TABLE `swana_finder_taxonomy` (
   KEY `ordering` (`ordering`),
   KEY `access` (`access`),
   KEY `idx_parent_published` (`parent_id`,`state`,`access`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO `swana_finder_taxonomy` (`id`, `parent_id`, `title`, `state`, `access`, `ordering`) VALUES
 (1,	0,	'ROOT',	0,	0,	0);
@@ -1205,7 +1205,7 @@ CREATE TABLE `swana_languages` (
   UNIQUE KEY `idx_langcode` (`lang_code`),
   KEY `idx_access` (`access`),
   KEY `idx_ordering` (`ordering`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_languages` (`lang_id`, `asset_id`, `lang_code`, `title`, `title_native`, `sef`, `image`, `description`, `metakey`, `metadesc`, `sitename`, `published`, `access`, `ordering`) VALUES
 (1,	0,	'en-GB',	'English (en-GB)',	'English (United Kingdom)',	'en',	'en_gb',	'',	'',	'',	'',	1,	1,	1);
@@ -1658,7 +1658,7 @@ CREATE TABLE `swana_swa_committee` (
   `ordering` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `fk_committee_member_idx` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_committee` (`id`, `member_id`, `position`, `blurb`, `image`, `ordering`) VALUES
 (1,	2,	'Under',	'<p>blah blah blah</p>',	'https://openclipart.org/download/242499/1456705995.svg',	1);
@@ -1680,7 +1680,7 @@ CREATE TABLE `swana_swa_competition_type` (
   `name` varchar(45) NOT NULL,
   `series` varchar(10) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_competition_type` (`id`, `name`, `series`) VALUES
 (1,	'Team',	'Team'),
@@ -1836,7 +1836,7 @@ CREATE TABLE `swana_swa_member` (
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   KEY `fk_member_user_idx` (`user_id`),
   KEY `fk_member_university_idx` (`university_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`, `university_id`, `course`, `graduation`, `discipline`, `level`, `shirt`, `econtact`, `enumber`, `dietary`, `tel`, `swahelp`) VALUES
 (1,	427,	1,	'Male',	    '1989-02-10',	1,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
@@ -1877,7 +1877,7 @@ CREATE TABLE `swana_swa_season` (
   `year` varchar(7) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `year_UNIQUE` (`year`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_season` (`id`, `year`) VALUES
 (11,	'2011/12'),
@@ -1889,7 +1889,7 @@ INSERT INTO `swana_swa_season` (`id`, `year`) VALUES
 (17,	'2017/18'),
 (18,	'2018/19'),
 (19,	'2019/20'),
-(20,    '2020/21');
+(20,	'2020/21');
 
 DROP TABLE IF EXISTS `swana_swa_team_result`;
 CREATE TABLE `swana_swa_team_result` (
@@ -1933,7 +1933,7 @@ CREATE TABLE `swana_swa_university` (
   `url` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_university` (`id`, `name`, `url`) VALUES
 (1,	'University1',	''),
@@ -1950,7 +1950,7 @@ CREATE TABLE `swana_swa_university_member` (
   UNIQUE KEY `unique_member_id_university_id` (`member_id`,`university_id`),
   KEY `fk_university_member_member_idx` (`member_id`),
   KEY `fk_university_member_university_idx` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_university_member` (`id`, `member_id`, `university_id`, `committee`, `graduated`) VALUES
 (1,	6,	1,	'0',	0),
@@ -2000,7 +2000,7 @@ CREATE TABLE `swana_tags` (
   KEY `idx_left_right` (`lft`,`rgt`),
   KEY `idx_alias` (`alias`(100)),
   KEY `idx_language` (`language`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_tags` (`id`, `parent_id`, `lft`, `rgt`, `level`, `path`, `title`, `alias`, `note`, `description`, `published`, `checked_out`, `checked_out_time`, `access`, `params`, `metadesc`, `metakey`, `metadata`, `created_user_id`, `created_time`, `created_by_alias`, `modified_user_id`, `modified_time`, `images`, `urls`, `hits`, `language`, `version`, `publish_up`, `publish_down`) VALUES
 (1,	0,	0,	1,	0,	'',	'ROOT',	'root',	'',	'',	1,	0,	'0000-00-00 00:00:00',	1,	'',	'',	'',	'',	421,	'2019-02-10 14:19:01',	'',	0,	'0000-00-00 00:00:00',	'',	'',	0,	'*',	1,	'0000-00-00 00:00:00',	'0000-00-00 00:00:00');
@@ -2016,7 +2016,7 @@ CREATE TABLE `swana_template_styles` (
   PRIMARY KEY (`id`),
   KEY `idx_template` (`template`),
   KEY `idx_home` (`home`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_template_styles` (`id`, `template`, `client_id`, `home`, `title`, `params`) VALUES
 (4,	'beez3',	0,	'0',	'Beez3 - Default',	'{\"wrapperSmall\":\"53\",\"wrapperLarge\":\"72\",\"logo\":\"images\\/joomla_black.gif\",\"sitetitle\":\"Joomla!\",\"sitedescription\":\"Open Source Content Management\",\"navposition\":\"left\",\"templatecolor\":\"personal\",\"html5\":\"0\"}'),
@@ -2108,7 +2108,7 @@ CREATE TABLE `swana_ucm_history` (
   PRIMARY KEY (`version_id`),
   KEY `idx_ucm_item_id` (`ucm_type_id`,`ucm_item_id`),
   KEY `idx_save_date` (`save_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_ucm_history` (`version_id`, `ucm_item_id`, `ucm_type_id`, `version_note`, `save_date`, `editor_user_id`, `character_count`, `sha1_hash`, `version_data`, `keep_forever`) VALUES
 (1,	1,	1,	'',	'2019-02-10 17:01:25',	421,	4759,	'6295c1ad15299a043b345e204d730a3550afa281',	'{\"id\":1,\"asset_id\":63,\"title\":\"Lorem Ipsum\",\"alias\":\"lorem-ipsum\",\"introtext\":\"<div id=\\\"lipsum\\\">\\r\\n<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque eget egestas velit, sed placerat odio. Suspendisse at leo nec magna scelerisque sodales et vestibulum ligula. Donec eget velit laoreet, dictum quam vel, sagittis felis. Sed ornare ipsum quis dolor tempus, nec egestas ex molestie. Suspendisse enim odio, posuere quis volutpat sit amet, cursus sed nunc. Quisque feugiat turpis nunc, at mattis odio tincidunt sed. In hac habitasse platea dictumst. Sed luctus lobortis tortor et semper.<\\/p>\\r\\n<p>Mauris vitae hendrerit nisl, ut semper orci. Nullam hendrerit congue consectetur. Donec pharetra ultrices sapien et varius. Nulla id orci finibus, aliquet mauris sed, dignissim nisl. Sed congue eu mi quis venenatis. Curabitur in pulvinar dolor. Sed varius aliquam erat non rutrum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras fringilla viverra dictum.<\\/p>\\r\\n<p>Morbi pulvinar massa id lacus bibendum blandit. Nam eget massa tempus, sollicitudin diam quis, interdum magna. Suspendisse pretium orci lacinia tortor tincidunt sodales. Aliquam a eros mollis, eleifend libero ut, porttitor erat. Donec quis velit nec justo interdum efficitur. Nulla tristique venenatis magna nec lacinia. Duis ultrices, mi eget aliquam commodo, purus diam sodales libero, a euismod nisl tortor et neque. Nulla nisi lacus, volutpat sit amet diam nec, fringilla malesuada nibh. Donec vehicula pulvinar lacus ut rhoncus. Morbi eget velit semper lacus convallis sollicitudin sit amet ut velit. Duis luctus augue ac est maximus faucibus. Aenean vel pharetra enim.<\\/p>\\r\\n<p>Nunc vel pellentesque ante, ut sagittis lectus. Aenean et vehicula nisi. In hac habitasse platea dictumst. Quisque a aliquet quam, a vulputate nisl. Aenean non tincidunt ipsum. Nulla arcu turpis, consectetur a cursus sed, scelerisque ut quam. Ut id ipsum vel nisi tincidunt commodo ac eget nisl. Aenean leo neque, suscipit vel sem sit amet, molestie pharetra tellus. Nunc dictum turpis sed risus cursus, mollis dignissim diam vulputate. Aenean tristique nunc nunc, eu consectetur nunc rutrum ut. Phasellus lacinia libero dui, a dignissim nisi dapibus at.<\\/p>\\r\\n<p>Aliquam hendrerit rutrum massa et aliquet. Phasellus elementum pellentesque est, ut congue erat porttitor quis. Phasellus ante risus, tincidunt congue maximus non, efficitur nec eros. Sed nec viverra ligula, at interdum massa. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse non sagittis massa. Vivamus sed eros efficitur, pulvinar lectus vitae, ultricies lorem. Phasellus vel arcu luctus, vehicula nunc eget, rutrum tortor. Cras id orci urna. Nam sit amet felis quis lacus pulvinar pharetra sed quis tortor. Aliquam eget mollis erat. Cras dignissim gravida varius. Cras malesuada tincidunt fermentum. Quisque vel massa blandit odio vehicula mattis vitae id elit.<\\/p>\\r\\n<\\/div>\",\"fulltext\":\"\",\"state\":1,\"catid\":\"2\",\"created\":\"2019-02-10 17:01:25\",\"created_by\":\"421\",\"created_by_alias\":\"\",\"modified\":\"2019-02-10 17:01:25\",\"modified_by\":null,\"checked_out\":null,\"checked_out_time\":null,\"publish_up\":\"2019-02-10 17:01:25\",\"publish_down\":\"0000-00-00 00:00:00\",\"images\":\"{\\\"image_intro\\\":\\\"\\\",\\\"float_intro\\\":\\\"\\\",\\\"image_intro_alt\\\":\\\"\\\",\\\"image_intro_caption\\\":\\\"\\\",\\\"image_fulltext\\\":\\\"\\\",\\\"float_fulltext\\\":\\\"\\\",\\\"image_fulltext_alt\\\":\\\"\\\",\\\"image_fulltext_caption\\\":\\\"\\\"}\",\"urls\":\"{\\\"urla\\\":false,\\\"urlatext\\\":\\\"\\\",\\\"targeta\\\":\\\"\\\",\\\"urlb\\\":false,\\\"urlbtext\\\":\\\"\\\",\\\"targetb\\\":\\\"\\\",\\\"urlc\\\":false,\\\"urlctext\\\":\\\"\\\",\\\"targetc\\\":\\\"\\\"}\",\"attribs\":\"{\\\"article_layout\\\":\\\"\\\",\\\"show_title\\\":\\\"\\\",\\\"link_titles\\\":\\\"\\\",\\\"show_tags\\\":\\\"\\\",\\\"show_intro\\\":\\\"\\\",\\\"info_block_position\\\":\\\"\\\",\\\"info_block_show_title\\\":\\\"\\\",\\\"show_category\\\":\\\"\\\",\\\"link_category\\\":\\\"\\\",\\\"show_parent_category\\\":\\\"\\\",\\\"link_parent_category\\\":\\\"\\\",\\\"show_associations\\\":\\\"\\\",\\\"show_author\\\":\\\"\\\",\\\"link_author\\\":\\\"\\\",\\\"show_create_date\\\":\\\"\\\",\\\"show_modify_date\\\":\\\"\\\",\\\"show_publish_date\\\":\\\"\\\",\\\"show_item_navigation\\\":\\\"\\\",\\\"show_icons\\\":\\\"\\\",\\\"show_print_icon\\\":\\\"\\\",\\\"show_email_icon\\\":\\\"\\\",\\\"show_vote\\\":\\\"\\\",\\\"show_hits\\\":\\\"\\\",\\\"show_noauth\\\":\\\"\\\",\\\"urls_position\\\":\\\"\\\",\\\"alternative_readmore\\\":\\\"\\\",\\\"article_page_title\\\":\\\"\\\",\\\"show_publishing_options\\\":\\\"\\\",\\\"show_article_options\\\":\\\"\\\",\\\"show_urls_images_backend\\\":\\\"\\\",\\\"show_urls_images_frontend\\\":\\\"\\\"}\",\"version\":1,\"ordering\":null,\"metakey\":\"\",\"metadesc\":\"\",\"access\":\"1\",\"hits\":null,\"metadata\":\"{\\\"robots\\\":\\\"\\\",\\\"author\\\":\\\"\\\",\\\"rights\\\":\\\"\\\",\\\"xreference\\\":\\\"\\\"}\",\"featured\":\"0\",\"language\":\"*\",\"xreference\":\"\",\"note\":\"\"}',	0),
@@ -2144,7 +2144,7 @@ CREATE TABLE `swana_update_sites` (
   `last_check_timestamp` bigint(20) DEFAULT '0',
   `extra_query` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT '',
   PRIMARY KEY (`update_site_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Update Sites';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='Update Sites';
 
 INSERT INTO `swana_update_sites` (`update_site_id`, `name`, `type`, `location`, `enabled`, `last_check_timestamp`, `extra_query`) VALUES
 (1,	'Joomla! Core',	'collection',	'https://update.joomla.org/core/list.xml',	1,	1549808424,	''),
@@ -2175,7 +2175,7 @@ CREATE TABLE `swana_usergroups` (
   KEY `idx_usergroup_title_lookup` (`title`),
   KEY `idx_usergroup_adjacency_lookup` (`parent_id`),
   KEY `idx_usergroup_nested_set_lookup` (`lft`,`rgt`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_usergroups` (`id`, `parent_id`, `lft`, `rgt`, `title`) VALUES
 (1,	0,	1,	18,	'Public'),
@@ -2211,7 +2211,7 @@ CREATE TABLE `swana_users` (
   KEY `idx_block` (`block`),
   KEY `username` (`username`),
   KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=428 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_users` (`id`, `name`, `username`, `email`, `password`, `block`, `sendEmail`, `registerDate`, `lastvisitDate`, `activation`, `params`, `lastResetTime`, `resetCount`, `otpKey`, `otep`, `requireReset`) VALUES
 (421,	'Super User',	'admin',	'info@swa.co.uk',	'$2y$10$ZcjQVdxj30o8EVYCoEd0Zu4xL2do7p7MOHLRTYAUgejQidlLEnR9u',	0,	1,	'2019-02-10 14:19:02',	'2019-02-10 15:15:36',	'0',	'',	'0000-00-00 00:00:00',	0,	'',	'',	0),
@@ -2302,7 +2302,7 @@ CREATE TABLE `swana_viewlevels` (
   `rules` varchar(5120) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'JSON encoded access control.',
   PRIMARY KEY (`id`),
   UNIQUE KEY `idx_assetgroup_title_lookup` (`title`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `swana_viewlevels` (`id`, `title`, `ordering`, `rules`) VALUES
 (1,	'Public',	0,	'[1]'),
