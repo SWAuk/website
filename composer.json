@@ -5,7 +5,8 @@
 		"build": ".build/build.sh",
 		"lint": "parallel-lint ./src",
 		"phpcs": "phpcs -p -s",
-		"fix":  [
+		"phpunit": "phpunit tests",
+		"fix": [
 			"minus-x fix .",
 			"phpcbf"
 		],
@@ -13,7 +14,8 @@
 			"composer validate --no-interaction",
 			"minus-x check .",
 			"composer lint",
-			"composer phpcs"
+			"composer phpcs",
+			"composer phpunit"
 		],
 		"post-update-cmd": [
 			"composer post-update-cmd:stripe",
@@ -28,6 +30,7 @@
 	},
 	"autoload": {
 		"classmap": [
+			"src/",
 			"vendor/joomla/coding-standards/"
 		]
 	},
@@ -37,6 +40,7 @@
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"joomla/coding-standards": "~3.0@alpha",
-		"mediawiki/minus-x": "^1.1"
+		"mediawiki/minus-x": "^1.1",
+		"phpunit/phpunit": "^9.0"
 	}
 }
