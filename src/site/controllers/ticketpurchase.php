@@ -104,6 +104,9 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 
 		$this->checkUniqueTicket($member->id, $ticket->id);
+		
+		$jinput = $this->input->json;
+		$addons = $jinput->get('addons', array(), 'array'); // will return your array with keys
 
 		$totalCost = $this->calculateOrderAmount($ticket, $addons);
 
