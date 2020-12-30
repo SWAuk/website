@@ -71,55 +71,6 @@
                required="true"
                filter="safehtml"/>
 
-        <field name="course"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Course"
-               readonly="true"
-               filter="safehtml"/>
-
-        <field name="graduation"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Graduation Year"
-               filter="safehtml"/>
-
-        <field name="discipline"
-               type="list"
-               label="Discipline">
-            <option value="None">None</option>
-            <option value="Race">Race</option>
-            <option value="Wave">Wave</option>
-            <option value="Freestyle">Freestyle</option>
-        </field>
-
-        <field name="level"
-               type="list"
-               label="Level"
-               required="true">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-        </field>
-
-        <field name="shirt"
-               type="list"
-               label="Shirt"
-               required="true">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="12">12</option>
-            <option value="14">14</option>
-            <option value="16">16</option>
-        </field>
-
         <field name="econtact"
                type="text"
                size="40"
@@ -144,17 +95,6 @@
             <option value="NULL">None</option>
             <option value="Vegetarian">Vegetarian</option>
             <option value="Vegan">Vegan</option>
-        </field>
-
-        <field name="swahelp"
-               type="list"
-               label="SWA help?"
-               default="None"
-               required="true">
-            <option value="None">No thanks</option>
-            <option value="Website">Website</option>
-            <option value="Events">Events</option>
-            <option value="Media">Media / Marketing</option>
         </field>
 
     </fieldset>

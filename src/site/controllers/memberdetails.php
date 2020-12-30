@@ -35,14 +35,9 @@ class SwaControllerMemberDetails extends SwaController
 		$newSex        = $data['jform']['sex'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
-		$newGraduation = $data['jform']['graduation'];
-		$newDiscipline = $data['jform']['discipline'];
-		$newLevel      = $data['jform']['level'];
-		$newShirt      = $data['jform']['shirt'];
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
 		$newDietary    = $data['jform']['dietary'];
-		$newSwaHelp    = $data['jform']['swahelp'];
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -52,14 +47,9 @@ class SwaControllerMemberDetails extends SwaController
 			->where('id = ' . $db->quote($member->id))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
-			->set('graduation = ' . $db->quote($newGraduation))
-			->set('discipline = ' . $db->quote($newDiscipline))
-			->set('level = ' . $db->quote($newLevel))
-			->set('shirt = ' . $db->quote($newShirt))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
-			->set('dietary = ' . $db->quote($newDietary))
-			->set('swahelp = ' . $db->quote($newSwaHelp));
+			->set('dietary = ' . $db->quote($newDietary));
 
 		$db->setQuery($query);
 
@@ -80,6 +70,5 @@ class SwaControllerMemberDetails extends SwaController
 			JRoute::_('index.php?option=com_swa&view=memberdetails&layout=default', false)
 		);
 	}
-
 
 }

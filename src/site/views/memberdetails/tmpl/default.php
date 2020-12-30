@@ -59,30 +59,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<td><?php echo $this->form->getInput('tel'); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->form->getLabel('university_id'); ?></td>
-			<td><?php echo $this->form->getInput('university_id'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('course'); ?></td>
-			<td><?php echo $this->form->getInput('course'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('graduation'); ?></td>
-			<td><?php echo $this->form->getInput('graduation'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('discipline'); ?></td>
-			<td><?php echo $this->form->getInput('discipline'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('level'); ?></td>
-			<td><?php echo $this->form->getInput('level'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('shirt'); ?></td>
-			<td><?php echo $this->form->getInput('shirt'); ?></td>
-		</tr>
-		<tr>
 			<td><?php echo $this->form->getLabel('econtact'); ?></td>
 			<td><?php echo $this->form->getInput('econtact'); ?></td>
 		</tr>
@@ -93,10 +69,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		<tr>
 			<td><?php echo $this->form->getLabel('dietary'); ?></td>
 			<td><?php echo $this->form->getInput('dietary'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('swahelp'); ?></td>
-			<td><?php echo $this->form->getInput('swahelp'); ?></td>
 		</tr>
 
 		<tr>
