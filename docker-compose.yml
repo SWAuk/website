@@ -2,14 +2,18 @@ version: '3.7'
 
 services:
   joomla:
-    image: joomla
+    image: joomla:3
     restart: always
     depends_on:
       - db
     volumes:
       - ./.docker/www:/var/www/html
+      - ./.docker/configuration.php:/var/www/html/configuration.php
+      - ./src/administrator:/var/www/html/administrator/components/com_swa
+      - ./src/site:/var/www/html/components/com_swa
+      - joomla-logs:/var/www/html/administrator/logs
     ports:
-      - ${JOOMLA_PORT}:80
+      - ${JOOMLA_PORT:-5555}:80
     environment:
       JOOMLA_DB_HOST: db
       JOOMLA_DB_PASSWORD: example
@@ -21,7 +25,7 @@ services:
       - db-volume:/var/lib/mysql
       - ./.docker/db/initdb:/docker-entrypoint-initdb.d
     ports:
-      - ${MYSQL_PORT}:3306
+      - ${MYSQL_PORT:-5557}:3306
     environment:
       MYSQL_ROOT_PASSWORD: example
       MYSQL_DATABASE: joomla
@@ -33,16 +37,8 @@ services:
     build: ./.docker/adminer
     restart: always
     ports:
-      - ${ADMINER_PORT}:8080
-
-  util:
-    image: swa-util:0001
-    build:
-      context: ./.docker/util
-      dockerfile: Dockerfile
-    volumes:
-      - ./.docker/www:/var/www/html
-      - ./:/swa
+      - ${ADMINER_PORT:-5556}:8080
 
 volumes:
   db-volume:
+  joomla-logs:
