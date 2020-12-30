@@ -1836,7 +1836,7 @@ CREATE TABLE `swana_swa_member` (
   UNIQUE KEY `user_id_UNIQUE` (`user_id`),
   KEY `fk_member_user_idx` (`user_id`),
   KEY `fk_member_university_idx` (`university_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`, `university_id`, `course`, `graduation`, `discipline`, `level`, `shirt`, `econtact`, `enumber`, `dietary`, `tel`, `swahelp`) VALUES
 (1,	427,	1,	'Male',	    '1989-02-10',	1,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
@@ -1877,7 +1877,7 @@ CREATE TABLE `swana_swa_season` (
   `year` varchar(7) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `year_UNIQUE` (`year`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_season` (`id`, `year`) VALUES
 (11,	'2011/12'),
