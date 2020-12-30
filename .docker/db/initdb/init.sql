@@ -1839,12 +1839,13 @@ CREATE TABLE `swana_swa_member` (
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`, `university_id`, `course`, `graduation`, `discipline`, `level`, `shirt`, `econtact`, `enumber`, `dietary`, `tel`, `swahelp`) VALUES
-(1,	427,	1,	'Male',	'1989-02-10',	1,	'',	0,	'None',	'Advanced',	'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
-(2,	426,	1,	'Female',	'1994-02-10',	2,	'',	0,	'None',	'Beginner',	'XS',	'-',	'-',	'NULL',	'07805925657',	'None'),
-(3,	425,	1,	'Male',	'1996-01-29',	2,	'',	0,	'None',	'Advanced',	'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
-(4,	424,	0,	'Male',	'1999-02-10',	1,	'',	0,	'None',	'Beginner',	'M',	'-',	'-',	'NULL',	'07805936373',	'None'),
-(5,	422,	0,	'Male',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'123',	'1234',	'NULL',	'078059256893',	'None'),
-(6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	'07805925651',	'None');
+(1,	427,	1,	'Male',	    '1989-02-10',	1,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
+(2,	426,	1,	'Female',	'1994-02-10',	2,	'',	0,	'None',	'Beginner',	    'XS',	'-',	'-',	'NULL',	    '07805925657',	'None'),
+(3,	425,	1,	'Male',	    '1996-01-29',	2,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
+(4,	424,	0,	'Male',	    '1999-02-10',	1,	'',	0,	'None',	'Beginner',	    'M',	'-',	'-',	'NULL',	    '07805936373',	'None'),
+(5,	422,	0,	'Male',	    '1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'123',	'1234',	'NULL',	    '078059256893',	'None'),
+(6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	    '07805925651',	'None')
+(7, 421,    1,  'Male',     '1992-01-01',   1,  '', 0, 'None', 'Intermediate',	'M',	'-',	'-',	'NULL',	    '07123456789',	'Website');
 
 DROP TABLE IF EXISTS `swana_swa_membership`;
 CREATE TABLE `swana_swa_membership` (
@@ -1887,7 +1888,8 @@ INSERT INTO `swana_swa_season` (`id`, `year`) VALUES
 (16,	'2016/17'),
 (17,	'2017/18'),
 (18,	'2018/19'),
-(19,	'2019/20');
+(19,	'2019/20'),
+(20,    '2020/21';
 
 DROP TABLE IF EXISTS `swana_swa_team_result`;
 CREATE TABLE `swana_swa_team_result` (
