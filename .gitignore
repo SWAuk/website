@@ -5,16 +5,17 @@ composer.lock
 # Docker stuff
 .env
 .docker/www/*
+.docker/www-logs/*
 .docker/sqldump/*
 
 # SWA stuff
 favourite.zip
 src/site/libraries/stripe/
 
-#Our Old Stuff
+# Our old stuff
 .joomlaRoot
 
-#Build stuff
+# Build stuff
 .joomgot
 .build/tmp-build
 *.zip
@@ -27,7 +28,6 @@ src/site/libraries/stripe/
 #################
 ## Eclipse IDE
 #################
-
 .project
 .metadata
 bin/
@@ -58,5 +58,5 @@ local.properties
 *.pydevproject
 /nbproject/private/
 
-#Ignore Mac
+# Mac stuff
 .DS_Store
