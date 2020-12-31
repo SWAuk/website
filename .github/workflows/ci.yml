@@ -7,8 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
-
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,8 +18,55 @@ jobs:
       with:
         php-version: '7.4'
 
+    - name: Composer validate
+      run: composer validate --no-interaction
+
     - name: Install dependencies
       run: composer install --no-progress --no-suggest
 
-    - name: Run composer test
-      run: composer test
+    - run: composer minus-x:check
+    - run: composer lint
+    - run: composer phpcs
+    - run: composer phpunit:unit
+
+    - name: Run docker-compose
+      run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml up -d
+
+    - name: Wait for db
+      uses: nick-invision/retry@v2
+      with:
+        timeout_seconds: 5
+        max_attempts: 30
+        retry_wait_seconds: 1
+        warning_on_retry: false
+        command: docker-compose logs db | grep "ready for connections" | wc -l | grep 2
+    - name: Wait for Joomla
+      uses: nick-invision/retry@v2
+      with:
+        timeout_seconds: 5
+        max_attempts: 30
+        retry_wait_seconds: 1
+        warning_on_retry: false
+        command: docker-compose logs joomla | grep "This server is now configured to run Joomla!" | wc -l | grep 1
+    - name: Wait for Selenium
+      uses: nick-invision/retry@v2
+      with:
+        timeout_seconds: 5
+        max_attempts: 30
+        retry_wait_seconds: 1
+        warning_on_retry: false
+        command: docker-compose -f docker-compose-selenium.yml logs selenium-hub | grep "from DOWN to UP" | wc -l | grep 1
+
+    - run: composer phpunit:browser
+
+    - name: Stop docker containers
+      if: ${{ always() }}
+      run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml down
+
+    - uses: actions/upload-artifact@v2
+      if: ${{ always() }}
+      with:
+        name: browser-output
+        path: |
+          .docker/www-logs
+          .docker/selenium/videos
