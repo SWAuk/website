@@ -15,11 +15,6 @@
 			"composer lint",
 			"composer phpcs"
 		],
-		"ci": [
-			"composer validate --no-interaction",
-			"minus-x check .",
-			"composer lint"
-		],
 		"post-update-cmd": [
 			"composer post-update-cmd:stripe",
 			"composer post-update-cmd:joomla",
@@ -30,6 +25,11 @@
 		"post-update-cmd:joomla": ".build/joomla.sh",
 		"post-update-cmd:template": ".build/template.sh",
 		"post-update-cmd:images": ".build/images.sh"
+	},
+	"autoload": {
+		"classmap": [
+			"vendor/joomla/coding-standards/"
+		]
 	},
 	"require": {
 		"stripe/stripe-php": "4.9.1"
