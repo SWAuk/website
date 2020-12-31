@@ -5,7 +5,8 @@
 		"build": ".build/build.sh",
 		"lint": "parallel-lint ./src",
 		"phpcs": "phpcs -p -s",
-		"phpunit": "phpunit tests",
+		"phpunit:unit": "phpunit tests/unit",
+		"phpunit:browser": "phpunit tests/browser",
 		"fix": [
 			"minus-x fix .",
 			"phpcbf"
@@ -15,7 +16,7 @@
 			"minus-x check .",
 			"composer lint",
 			"composer phpcs",
-			"composer phpunit"
+			"composer phpunit:unit"
 		],
 		"post-update-cmd": [
 			"composer post-update-cmd:stripe",
@@ -30,7 +31,8 @@
 	},
 	"autoload": {
 		"classmap": [
-			"src/",
+			"src/site/",
+			"tests/",
 			"vendor/joomla/coding-standards/"
 		]
 	},
@@ -41,6 +43,8 @@
 		"php-parallel-lint/php-parallel-lint": "^1.2",
 		"joomla/coding-standards": "~3.0@alpha",
 		"mediawiki/minus-x": "^1.1",
-		"phpunit/phpunit": "^9.0"
+		"phpunit/phpunit": "^9.0",
+		"phpunit/phpunit-selenium": "^9.0",
+		"facebook/webdriver": "^1.7"
 	}
 }
