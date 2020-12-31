@@ -7,6 +7,7 @@ composer.lock
 .docker/www/*
 .docker/www-logs/*
 .docker/sqldump/*
+.docker/selenium/*
 
 # SWA stuff
 favourite.zip
@@ -19,6 +20,9 @@ src/site/libraries/stripe/
 .joomgot
 .build/tmp-build
 *.zip
+
+# PHPUnit
+.phpunit.result.cache
 
 # VSCode
 .vscode/
