@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  ci:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -22,5 +22,5 @@ jobs:
     - name: Install dependencies
       run: composer install --no-progress --no-suggest
 
-    - name: Run composer ci
-      run: composer run-script ci
+    - name: Run composer test
+      run: composer test

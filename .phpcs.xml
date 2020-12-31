@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<ruleset>
+<ruleset name="SWA">
 	<rule ref="./vendor/joomla/coding-standards/Joomla">
 		<!-- Commenting -->
 		<exclude name="Joomla.Commenting.FileComment.EmptyCopyrightTag"/>
