@@ -3,17 +3,19 @@
 	"description": "Joomla component holding SWA website functionality",
 	"scripts": {
 		"build": ".build/build.sh",
+		"minus-x:check": "minus-x check .",
+		"minus-x:fix": "minus-x fix .",
 		"lint": "parallel-lint ./src",
 		"phpcs": "phpcs -p -s",
 		"phpunit:unit": "phpunit tests/unit",
 		"phpunit:browser": "phpunit tests/browser",
 		"fix": [
-			"minus-x fix .",
+			"composer minus-x:fix",
 			"phpcbf"
 		],
-		"test": [
+		"ci": [
 			"composer validate --no-interaction",
-			"minus-x check .",
+			"composer minus-x:check",
 			"composer lint",
 			"composer phpcs",
 			"composer phpunit:unit"
