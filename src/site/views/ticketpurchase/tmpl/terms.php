@@ -21,6 +21,8 @@ if (!$article->title) {
 	$article = (object) ["title" => "Article does not exist", "introtext" => "There are no terms in the current database", "fulltext" => ""];
 }
 
+$app      = JFactory::getApplication();
+$ticketId = $app->input->getString('ticketId');
 ?>
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
@@ -42,7 +44,7 @@ if (!$article->title) {
 		<input id="agree" type="checkbox"/>
 		<label>I have read and agree to the terms and conditions</label>
 	</div>
-	<a href="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase&layout=summary') ?>" id="submit"
+	<a href="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase&layout=summary&ticketId='. $ticketId, false) ?>" id="submit"
 	   class="btn btn-primary disabled">Submit</a>
 	<a href="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase') ?>" class="btn">Cancel</a>
 </div>

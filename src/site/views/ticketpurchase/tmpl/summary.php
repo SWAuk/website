@@ -8,10 +8,15 @@ $lang->load('com_swa', JPATH_ADMINISTRATOR);
 
 $jConfig = JFactory::getConfig();
 $app     = JFactory::getApplication();
+$document = JFactory::getDocument();
 $ticket  = null;
 
+$ticketId = $app->input->getString('ticketId');
+
+$document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
+
 foreach ($this->items as $item) {
-	if ($item->id == $this->ticket_id) {
+	if ($item->id == $ticketId) {
 		$ticket = $item;
 		break;
 	}
@@ -114,13 +119,14 @@ if ($ticket == null) {
 	});
 </script>
 
-<!-- <link rel="stylesheet" href="global.css" /> -->
+<!-- <link rel="stylesheet" href="stripe_style.css" /> -->
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 
 <h1>Order Summary</h1>
 
-<form id="payment-form" method="POST" enctype="multipart/form-data"> <!-- action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" -->
+<form id="payment-form" method="POST" enctype="multipart/form-data">
+	<!-- action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" -->
 	<!-- <input type="hidden" name="option" value="com_swa" />
 	<input type="hidden" name="task" value="ticketpurchase.submit" />
 	<input type="hidden" name="return" value="index.php?option=com_swa&view=membertickets" /> -->
@@ -199,8 +205,7 @@ if ($ticket == null) {
 	</button>
 	<p id="card-error" role="alert"></p>
 	<p class="result-message hidden">
-		Payment succeeded, see the result in your
-		<a href="" target="_blank">Stripe dashboard.</a> Refresh the page to pay again.
+		Processing order, please do not navigate away from this page...
 	</p>
 </form>
 
@@ -213,7 +218,10 @@ if ($ticket == null) {
 			$addonQty = parseInt(obj.value);
 			$addonName = obj.getAttribute('name');
 			if ($addonQty > 0) {
-				$selectedAddons.push({name: $addonName, qty: $addonQty});
+				$selectedAddons.push({
+					name: $addonName,
+					qty: $addonQty
+				});
 			}
 		});
 		return $selectedAddons;
@@ -272,22 +280,35 @@ if ($ticket == null) {
 						showError(result.error.message);
 					} else {
 						// The payment succeeded!
-						orderComplete(result.paymentIntent.id);
+						processOrder(result.paymentIntent.id);
 					}
 				});
 		};
 		/* ------- UI helpers ------- */
 		// Shows a success message when the payment is complete
-		var orderComplete = function(paymentIntentId) {
-			loading(false);
-			document
-				.querySelector(".result-message a")
-				.setAttribute(
-					"href",
-					"https://dashboard.stripe.com/test/payments/" + paymentIntentId
-				);
+		var processOrder = function(paymentIntentId) {
+			// loading(false);
 			document.querySelector(".result-message").classList.remove("hidden");
 			document.querySelector("button").disabled = true;
+			fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					paymentIntentId: paymentIntentId,
+				})
+			})
+			.then(function(result) {
+				if (result.ok) {
+					window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
+				} else {
+					return result.text().then(text => {
+						throw new Error(text)
+					})
+				}
+			})
+
 		};
 		// Show the customer the error from Stripe if their card fails to charge
 		var showError = function(errorMsgText) {
@@ -313,20 +334,35 @@ if ($ticket == null) {
 		};
 		var addons = generateAddonList();
 
-		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.submit') ?>", {
+		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.createPaymentIntent') ?>", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
 				},
-				body: JSON.stringify({addons: addons})
+				body: JSON.stringify({
+					ticketId: "<?php echo $ticketId ?>",
+					addons: addons
+				})
 			})
 			.then(function(result) {
-				console.log(result.text());
-				return result.json();
+				if (result.ok) {
+					return result.json();
+				} else {
+					return result.text().then(text => {
+						throw new Error(text)
+					})
+				}
 			})
-			.then(function(data) {
+			.then(function(response) {
 				// Complete payment when the submit button is clicked
-				payWithCard(stripe, card, data.clientSecret);
+				payWithCard(stripe, card, response.data.clientSecret);
+			})
+			.catch(function(error) {
+				// Handle the error
+				error_text = error.message
+				error_json = JSON.parse(error_text)
+				showError(error_json.error);
+				console.error(error_json.error);
 			});
 	});
 </script>
