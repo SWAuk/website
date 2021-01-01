@@ -48,7 +48,7 @@ class SwaViewUniversityEventAttendees extends JViewLegacy
 
 		if (!$this->member->club_committee)
 		{
-			throw new Exception('You must be a committee member to view this page.');
+			throw new Exception('You must be a club committee member to view this page.');
 		}
 
 		$this->items = $this->get('Items');
