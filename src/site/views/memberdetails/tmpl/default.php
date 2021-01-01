@@ -86,6 +86,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 					</div>
 				</div>
 			</td>
+			<td></td>
 		</tr>
 		</tbody>
 	</table>
