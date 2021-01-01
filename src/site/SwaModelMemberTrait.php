@@ -35,6 +35,7 @@ trait SwaModelMemberTrait
 			$query->leftJoin( '#__swa_university AS uni ON uni.id = membership.uni_id' );
 			$query->leftJoin( '#__swa_season AS season ON season.id = membership.season_id' );
 
+			$query->where('member.user_id = ' . (int) $user->id);
 			$query->order('season.year DESC');
 
 			// Load the result
