@@ -50,15 +50,16 @@ AND `uni_member`.`graduated` != 1;
 
 
 ALTER TABLE `#__swa_member`
-    DROP COLUMN `dob`,
     DROP COLUMN `university_id`,
     DROP COLUMN `course`,
     DROP COLUMN `graduation`,
     DROP COLUMN `discipline`,
     DROP COLUMN `level`,
     DROP COLUMN `shirt`,
+-- TODO: Drop dob? Not needed to run our events?
+--     DROP COLUMN `dob`,
 -- TODO: Drop dietary? Can add it as a ticket addon?
---    DROP COLUMN `dietary`,
+--     DROP COLUMN `dietary`,
     DROP COLUMN `swahelp`;
 
 DROP TABLE `#__swa_university_member`;

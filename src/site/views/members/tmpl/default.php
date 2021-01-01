@@ -44,25 +44,25 @@ $sortFields = $this->getSortFields();
 				<?php echo JHtml::_(
 					'grid.sort',
 					'JGRID_HEADING_ID',
-					'a.id',
+					'id',
 					$listDirn,
 					$listOrder
 				); ?>
 			</th>
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'User', 'a.user', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'Name', 'name', $listDirn, $listOrder); ?>
 			</th>
 			<th class='left'>
 				<?php echo JHtml::_(
 					'grid.sort',
 					'University',
-					'a.university',
+					'university',
 					$listDirn,
 					$listOrder
 				); ?>
 			</th>
 			<th class='left'>
-				<?php echo JHtml::_('grid.sort', 'Paid', 'a.paid', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'Paid', 'paid', $listDirn, $listOrder); ?>
 			</th>
 		</tr>
 		</thead>
@@ -84,9 +84,9 @@ $sortFields = $this->getSortFields();
 		</tr>
 		</tfoot>
 		<tbody>
-		<?php foreach ($this->items as $i => $item)
-			:
-			$ordering = ($listOrder == 'a.ordering');
+		<?php
+		foreach ($this->items as $i => $item):
+			$ordering = ($listOrder == 'ordering');
 			$canCreate = $user->authorise('core.create', 'com_swa');
 			$canEdit = $user->authorise('core.edit', 'com_swa');
 			$canCheckin = $user->authorise('core.manage', 'com_swa');
@@ -101,7 +101,7 @@ $sortFields = $this->getSortFields();
 					<?php echo (int) $item->id; ?>
 				</td>
 				<td>
-					<?php echo $item->user; ?>
+					<?php echo $item->name; ?>
 				</td>
 				<td>
 					<?php echo $item->university; ?>

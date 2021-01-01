@@ -2,8 +2,6 @@
 
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.modellist');
-
 class SwaModelMembers extends SwaModelList
 {
 
@@ -18,8 +16,7 @@ class SwaModelMembers extends SwaModelList
 		$app = JFactory::getApplication();
 
 		// Load the filter state.
-		$search =
-			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
+		$search = $app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
 		$this->setState('filter.search', $search);
 
 		// Load the parameters.
@@ -27,7 +24,7 @@ class SwaModelMembers extends SwaModelList
 		$this->setState('params', $params);
 
 		// List state information.
-		parent::populateState('a.id', 'asc');
+		parent::populateState('member.id', 'asc');
 	}
 
 	/**
@@ -64,27 +61,23 @@ class SwaModelMembers extends SwaModelList
 		$query->select(
 			$this->getState(
 				'list.select',
-				'DISTINCT a.*'
+				'DISTINCT member.*'
 			)
 		);
-		$query->from($db->qn('#__swa_member', 'a'));
+		$query->select($db->qn('user.name', 'name'));
+		$query->select('uni.name AS university');
+		$query->select('membership.season_id AS season_id');
 
-		// Join over the user field 'user_id'
-		$query->select($db->qn('user_id.name', 'user'));
-		$query->leftJoin('#__users AS user_id ON user_id.id = a.user_id');
-
-		// Join over the user field 'university_id'
-		$query->select('university_id.name AS university');
-		$query->leftJoin('#__swa_university AS university_id ON university_id.id = a.university_id');
+		$query->from($db->qn('#__swa_member', 'member'));
+		$query->leftJoin('#__users AS user ON user.id = member.user_id');
+		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
+		$query->leftJoin('#__swa_university AS uni ON uni.id = membership.uni_id');
+		$query->leftJoin('#__swa_season AS season ON season.id = membership.season_id');
 
 		$now       = time();
 		$seasonEnd = strtotime("1st June");
 		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
 
-		// Join on membership table
-		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = a.id');
-		$query->select('membership.season_id');
-		$query->leftJoin('#__swa_season AS season ON membership.season_id = season.id');
 		$query->where('(season.year LIKE "' . (int) $date . '%" OR membership.season_id IS NULL)');
 
 		// Add the list ordering clause.
