@@ -20,14 +20,13 @@ src/site/libraries/stripe/
 .build/tmp-build
 *.zip
 
-#################
-## IntelliJ IDEs
-#################
+# VSCode
+.vscode/
+
+# IntelliJ IDEs
 .idea/
 
-#################
-## Eclipse IDE
-#################
+# Eclipse IDE
 .project
 .metadata
 bin/
