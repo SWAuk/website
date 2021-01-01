@@ -13,4 +13,5 @@ mkdir -p ./src/site/libraries/stripe
 # Copy the bits we want
 cp ./vendor/stripe/stripe-php/init.php ./src/site/libraries/stripe/init.php
 cp -r ./vendor/stripe/stripe-php/lib ./src/site/libraries/stripe/lib
+cp -r ./vendor/stripe/stripe-php/data ./src/site/libraries/stripe/data
 cp ./vendor/stripe/stripe-php/VERSION ./src/site/libraries/stripe/VERSION

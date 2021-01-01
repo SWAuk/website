@@ -1730,7 +1730,7 @@ CREATE TABLE `swana_swa_event` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_event` (`id`, `name`, `season_id`, `capacity`, `date_open`, `date_close`, `date`) VALUES
-(1,	'The Best Event',	19,	10,	'2019-02-10',	'2019-02-13',	'2019-02-15');
+(1,	'The Best Event',	19,	10,	'2019-02-10',	'2999-02-13',	'2999-02-15');
 
 DROP TABLE IF EXISTS `swana_swa_event_host`;
 CREATE TABLE `swana_swa_event_host` (
@@ -1754,6 +1754,9 @@ CREATE TABLE `swana_swa_event_registration` (
   KEY `fk_event_registration_event1_idx` (`event_id`),
   KEY `fk_event_registration_member1_idx` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `swana_swa_event_registration` (`id`, `event_id`, `member_id`) VALUES
+(1,	1, 7);
 
 
 DROP TABLE IF EXISTS `swana_swa_event_ticket`;
@@ -1962,7 +1965,8 @@ INSERT INTO `swana_swa_university_member` (`id`, `member_id`, `university_id`, `
 (3,	4,	1,	'0',	1),
 (4,	3,	2,	'0',	0),
 (5,	1,	1,	'President',	0),
-(6,	2,	2,	'0',	0);
+(6,	2,	2,	'0',	0),
+(7, 7,  1,  '0',  0);
 
 DROP TABLE IF EXISTS `swana_tags`;
 CREATE TABLE `swana_tags` (
