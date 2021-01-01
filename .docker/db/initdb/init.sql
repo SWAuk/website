@@ -1821,6 +1821,7 @@ CREATE TABLE `swana_swa_member` (
   `user_id` int(11) NOT NULL,
   `lifetime_member` tinyint(1) NOT NULL DEFAULT '0',
   `sex` varchar(255) NOT NULL DEFAULT 'None',
+  `ethnicity` varchar(70) NOT NULL,
   `dob` date NOT NULL DEFAULT '0000-00-00',
   `university_id` int(11) NOT NULL,
   `course` varchar(100) NOT NULL,
@@ -1839,14 +1840,16 @@ CREATE TABLE `swana_swa_member` (
   KEY `fk_member_university_idx` (`university_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `swana_swa_member` (`id`, `user_id`, `lifetime_member`, `sex`, `dob`, `university_id`, `course`, `graduation`, `discipline`, `level`, `shirt`, `econtact`, `enumber`, `dietary`, `tel`, `swahelp`) VALUES
-(1,	427,	1,	'Male',	    '1989-02-10',	1,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925656',	'None'),
-(2,	426,	1,	'Female',	'1994-02-10',	2,	'',	0,	'None',	'Beginner',	    'XS',	'-',	'-',	'NULL',	    '07805925657',	'None'),
-(3,	425,	1,	'Male',	    '1996-01-29',	2,	'',	0,	'None',	'Advanced',	    'L',	'-',	'-',	'Vegan',	'07805925659',	'Website'),
-(4,	424,	0,	'Male',	    '1999-02-10',	1,	'',	0,	'None',	'Beginner',	    'M',	'-',	'-',	'NULL',	    '07805936373',	'None'),
-(5,	422,	0,	'Male',	    '1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'123',	'1234',	'NULL',	    '078059256893',	'None'),
-(6,	423,	0,	'Female',	'1998-02-10',	1,	'',	0,	'None',	'Intermediate',	'M',	'876',	'97',	'NULL',	    '07805925651',	'None'),
-(7, 421,    1,  'Male',     '1992-01-01',   1,  '', 0, 'None', 'Intermediate',	'M',	'-',	'-',	'NULL',	    '07123456789',	'Website');
+INSERT INTO `swana_swa_member`
+  (`id`, `user_id`, `lifetime_member`, `sex`,    `dob`,        `university_id`, `course`, `graduation`, `discipline`, `level`,        `shirt`, `econtact`, `enumber`, `dietary`, `tel`,         `swahelp`, `ethnicity`) VALUES
+  (1,    427,       1,                 'Male',   '1989-02-10', 1,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925656', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (2,    426,       1,                 'Female', '1994-02-10', 2,               '',       0,            'None',       'Beginner',     'XS',    '-',        '-',       'NULL',    '07805925657', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (3,    425,       1,                 'Male',   '1996-01-29', 2,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925659', 'Website', 'English / Welsh / Scottish / Northern Irish / British'),
+  (4,    424,       0,                 'Male',   '1999-02-10', 1,               '',       0,            'None',       'Beginner',     'M',     '-',        '-',       'NULL',    '07805936373', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (5,    422,       0,                 'Male',   '1998-02-10', 1,               '',       0,            'None',       'Intermediate', 'M',     '123',      '1234',    'NULL',    '07805925689', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (6,    423,       0,                 'Female', '1998-02-10', 1,               '',       0,            'None',       'Intermediate', 'M',     '876',      '97',      'NULL',    '07805925651', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (7,    421,       1,                 'Male',   '1992-01-01', 1,               '',       0,            'None',       'Intermediate', 'M',     '-',        '-',       'NULL',    '07123456789', 'Website', 'Irish');
+
 
 DROP TABLE IF EXISTS `swana_swa_membership`;
 CREATE TABLE `swana_swa_membership` (
@@ -1918,14 +1921,14 @@ CREATE TABLE `swana_swa_ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `details`) VALUES
-(1,	6,	2,	0.00,	'{"addons":[]}'),
-(2,	5,	1,	0.00,	'{"addons":[]}'),
-(3,	4,	3,	0.00,	'"addons":{"T-Shirt":{"qty":1,"price":5,"option":"S"}}}'),
-(4,	2,	1,	0.00,	'{"addons":[]}'),
-(5,	2,	2,	0.00,	'{"addons":[]}'),
-(6,	4,	3,	0.00,	'{"addons":[]}'),
-(7,	3,	2,	0.00,	'"addons":{"T-Shirt":{"qty":1,"price":5,"option":"L"}}}'),
-(8,	6,	1,	0.00,	'{"addons":[]}');
+(1,	6,	2,	0.00,	'{\"addons\":[]}'),
+(2,	5,	1,	0.00,	'{\"addons\":[]}'),
+(3,	4,	3,	0.00,	'\"addons\":{\"T-Shirt\":{\"qty\":1,\"price\":5,\"option\":\"S\"}}}'),
+(4,	2,	1,	0.00,	'{\"addons\":[]}'),
+(5,	2,	2,	0.00,	'{\"addons\":[]}'),
+(6,	4,	3,	0.00,	'{\"addons\":[]}'),
+(7,	3,	2,	0.00,	'\"addons\":{\"T-Shirt\":{\"qty\":1,\"price\":5,\"option\":\"L\"}}}'),
+(8,	6,	1,	0.00,	'{\"addons\":[]}');
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
