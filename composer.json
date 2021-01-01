@@ -7,11 +7,12 @@
 		"minus-x:fix": "minus-x fix .",
 		"lint": "parallel-lint ./src",
 		"phpcs": "phpcs -p -s",
+		"phpcbf": "phpcbf",
 		"phpunit:unit": "phpunit tests/unit",
 		"phpunit:browser": "phpunit tests/browser",
 		"fix": [
 			"composer minus-x:fix",
-			"phpcbf"
+			"composer phpcbf"
 		],
 		"ci": [
 			"composer validate --no-interaction",

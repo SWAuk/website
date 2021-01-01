@@ -1,5 +1,6 @@
 name: PHP Composer
 
+# Run on pushes to and pull requests for the main branch
 on:
   push:
     branches: [ master ]
@@ -10,28 +11,34 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
+# Checkout the code
     steps:
     - uses: actions/checkout@v2
 
+# Set PHP to be something similar to production
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
 
+# Validate the composer files
     - name: Composer validate
       run: composer validate --no-interaction
 
     - name: Install dependencies
       run: composer install --no-progress --no-suggest
 
+# Run all of the tests and checks (excluding browser)
     - run: composer minus-x:check
     - run: composer lint
     - run: composer phpcs
     - run: composer phpunit:unit
 
+# Start up the dev env and browser test env
     - name: Run docker-compose
       run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml up -d
 
+# These steps look at the docker-compose logs waiting for various events to occur (waiting for our services to be ready)
     - name: Wait for db
       uses: nick-invision/retry@v2
       with:
@@ -57,12 +64,15 @@ jobs:
         warning_on_retry: false
         command: docker-compose -f docker-compose-selenium.yml logs selenium-hub | grep "from DOWN to UP" | wc -l | grep 1
 
+# Run the browser tests
     - run: composer phpunit:browser
 
+# Stop the containers (so the video files are finished)
     - name: Stop docker containers
       if: ${{ always() }}
       run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml down
 
+# Publish artifacts for the jobs
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:

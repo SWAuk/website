@@ -6,6 +6,9 @@ use PHPUnit\Framework\TestCase;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
 
+/**
+ * This abstract test case should be used by all browser tests.
+ */
 abstract class SWABrowserTestCase extends TestCase
 {
 	private const HOST_DOCKER_INTERNAL = 'host.docker.internal';
@@ -50,6 +53,11 @@ abstract class SWABrowserTestCase extends TestCase
 		$this->webDriver = RemoteWebDriver::create($seleniumUrl, $capabilities);
 	}
 
+	/**
+	 * Set a WebDriver instance with a bunch of retries.
+	 * The retries are here just incase selenium or the browser are not actually ready yet.
+	 * By default wait at most 15*2=30 seconds.
+	 */
 	private function setWebDriverWithRetries( $attempts = 15 )
 	{
 		try{
@@ -57,6 +65,7 @@ abstract class SWABrowserTestCase extends TestCase
 			$this->setWebDriver();
 		}
 		catch (\TypeError $e){
+			// If selenium doesn't return a proper response, this is the error state we end up in, as argument 1 would have come from the response.
 			$failMsg = 'Argument 1 passed to Facebook\WebDriver\Remote\DesiredCapabilities::__construct() must be of the type array, null given';
 			if (strstr($e->getMessage(), $failMsg)) {
 				if ($attempts <= 0) {
@@ -71,7 +80,7 @@ abstract class SWABrowserTestCase extends TestCase
 	public function setUp() : void
 	{
 		$this->setWebDriverWithRetries();
-		 $this->setBaseUrl();
+		$this->setBaseUrl();
 	}
 
 	public function tearDown(): void
