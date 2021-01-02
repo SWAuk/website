@@ -34,9 +34,9 @@ jobs:
     - run: composer phpcs
     - run: composer phpunit:unit
 
-# Start up the dev env and browser test env
+# Start up the dev env and browser test env (without additional services like adminer)
     - name: Run docker-compose
-      run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml up -d
+      run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml up -d joomla db selenium-hub chrome chrome_video
 
 # These steps look at the docker-compose logs waiting for various events to occur (waiting for our services to be ready)
     - name: Wait for db
