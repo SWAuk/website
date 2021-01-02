@@ -45,6 +45,15 @@ foreach ($this->event_registrations as $reg)
 				TODO: Add description here. See other tabs for examples.
 			</div>
 
+			<div id="register-all">
+			<?php foreach( $this->events as $event ): ?>
+				<?php $registerAllUrl = JRoute::_("index.php?option=com_swa&task=universitymembers.register&event={$event->id}"); ?>
+				<a href="<?php echo $registerAllUrl; ?>">
+					Register all for <?php echo $event->name ?>
+				</a>
+			<?php endforeach; ?>
+			</div>
+
 			<table class="table table-hover">
 				<thead>
 				<tr>
@@ -63,15 +72,14 @@ foreach ($this->event_registrations as $reg)
 					{
 						continue;
 					}
+				?>
+					<tr>
+					<td><?php echo $member->id; ?></td>
+					<td><?php echo $member->name; ?></td>
+					<td><?php echo $member->level; ?></td>
 
-					echo "<tr>\n";
-					echo "<td>{$member->id}</td>\n";
-					echo "<td>{$member->name}</td>\n";
-					echo "<td>{$member->level}</td>\n";
-
-					$formId = "form-unapprove-{$member->id}";
-					$url = JRoute::_('index.php?option=com_swa&task=universitymembers.unapprove');
-					?>
+					<?php $formId = "form-unapprove-{$member->id}"; ?>
+					<?php $url = JRoute::_('index.php?option=com_swa&task=universitymembers.unapprove'); ?>
 					<td>
 						<form id="<?php echo $formId ?>" method="POST" action="<?php echo $url ?>">
 							<input type="hidden" name="member_id" value="<?php echo $member->id ?>">
@@ -341,12 +349,13 @@ foreach ($this->events as $event)
 		}
 	}
 
-	// TODO it is stupid to send the member ids like this... We shouldnt do this...
+	// TODO it is stupid to send the member ids like this... We shouldn't do this...
 	echo '<form id="form-universitymembers-register-all-' . $event->id . '" method="POST" action="' .
 		JRoute::_('index.php?option=com_swa&task=universitymembers.register') . '">' .
 		'<input type="hidden" name ="member_ids" value="' . implode('|', $toRegisterForThisEvent) . '" />' .
 		'<input type="hidden" name ="event_id" value="' . $event->id . '" />' .
-		'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-all-' . $event->id . '\').submit(); return false;">Register all for ' . $event->name . '</a>' .
+		'<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-register-all-' . $event->id
+		. '\').submit(); return false;">Register all for ' . $event->name . '</a>' .
 		JHtml::_('form.token') .
 		'</form></br>';
 }

@@ -269,9 +269,7 @@ class SwaControllerUniversityMembers extends SwaController
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers', false));
 	}
 
-
-
-	public function register()
+	public function registerAll()
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -280,6 +278,8 @@ class SwaControllerUniversityMembers extends SwaController
 		/** @var JInput $input */
 		$input = $props['input'];
 		$data  = $input->getArray();
+		$model = $this->getModel();
+		$items = $model->getItems();
 
 		$currentMember = $this->getCurrentMember();
 
@@ -288,20 +288,14 @@ class SwaControllerUniversityMembers extends SwaController
 			die('Current member is not club committee');
 		}
 
-		if (array_key_exists('member_id', $data))
-		{
-			$memberIds = array($data['member_id']);
-		}
-		elseif (array_key_exists('member_ids', $data))
-		{
-			$memberIds = explode('|', $data['member_ids']);
-		}
-		else
-		{
-			die('`member_id(s)` was not provided');
-		}
+		var_dump($items);
+		echo "\r\n";
+		var_dump($items->getInt(event));
+		echo "\r\n";
+		var_dump($input);
+		die;
 
-		foreach ($memberIds as $memberId)
+		foreach ($items as $member)
 		{
 			$data['member_id'] = $memberId;
 			$targetMember      = $this->getMember($memberId);
