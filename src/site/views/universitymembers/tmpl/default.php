@@ -16,7 +16,6 @@ foreach ($this->event_registrations as $reg)
 ?>
 
 <h1> <?php echo $this->items[0]->university ?>  Members</h1>
-<?php //var_dump($this->items); die; ?>
 <div  class="well well-small">
 	View all current, pending and committee members of your club.
 </div>
@@ -46,7 +45,7 @@ foreach ($this->event_registrations as $reg)
 			</div>
 
 			<div id="register-all">
-			<?php foreach( $this->events as $event ): ?>
+			<?php foreach ($this->events as $event): ?>
 				<?php $registerAllUrl = JRoute::_("index.php?option=com_swa&task=universitymembers.register&event={$event->id}"); ?>
 				<a href="<?php echo $registerAllUrl; ?>">
 					Register all for <?php echo $event->name ?>
@@ -116,7 +115,9 @@ foreach ($this->event_registrations as $reg)
 										<?php echo JHtml::_('form.token') ?>
 									</form>
 									<?php
-								} else {
+								}
+								else
+								{
 									$formId = "form-register-{$member->id}-{$event->id}";
 									$url = JRoute::_('index.php?option=com_swa&task=universitymembers.register');
 									?>

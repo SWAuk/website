@@ -105,7 +105,7 @@ if (!empty($this->extra_sidebar))
 		</div>
 
 
-		<?php //echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
+		<?php // TODO: echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this)); ?>
 
 		<?php if (empty($this->items)) : ?>
 			<div class="alert alert-no-items">

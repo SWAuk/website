@@ -27,7 +27,7 @@ class SwaModelUniversityMembers extends SwaModelList
 		$query->select('uni.name AS university');
 
 		$query->from('#__swa_member AS member');
-		$query->leftJoin( '#__users AS user ON user.id = member.user_id');
+		$query->leftJoin('#__users AS user ON user.id = member.user_id');
 		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
 		$query->leftJoin('#__swa_season AS season ON season.id = membership.season_id');
 		$query->leftJoin('#__swa_university AS uni ON uni.id = membership.uni_id');

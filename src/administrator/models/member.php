@@ -11,19 +11,22 @@ class SwaModelMember extends JModelAdmin
 	 */
 	protected $text_prefix = 'COM_SWA';
 
-//	protected function populateState()
-//	{
-//		$app = JFactory::getApplication();
-//
-//		// Get member id
-//		$id = $app->input->get('id', 1, 'INT');
-//		$this->setState('member.id', $id);
-//
-//		// Load the parameters.
-//		$this->setState('params', $app->getParams());
-//
-//		parent::populateState();
-//	}
+	/*
+	Block comments must start ona new line with a capital letter -.-
+	protected function populateState()
+	{
+		$app = JFactory::getApplication();
+
+		// Get member id
+		$id = $app->input->get('id', 1, 'INT');
+		$this->setState('member.id', $id);
+
+		// Load the parameters.
+		$this->setState('params', $app->getParams());
+
+		parent::populateState();
+	}
+	*/
 
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -83,22 +86,25 @@ class SwaModelMember extends JModelAdmin
 		return $data;
 	}
 
-//	public function getItem($pk = null)
-//	{
-//		if (!isset($this->item))
-//		{
-//			$id    = $this->getState('member.id');
-//
-//			$db    = JFactory::getDbo();
-//			$query = $db->getQuery(true);
-//
-//			$query->select('member.*');
-//			$query->from('#__swa_mamber AS member');
-//			$query->where('member.id = ' . (int) $id);
-//
-//			$db->setQuery((string)$query);
-//
-//		}
-//	}
+	/*
+	Block comments must start on a new line with a capital letter -.-
+	public function getItem($pk = null)
+	{
+		if (!isset($this->item))
+		{
+			$id    = $this->getState('member.id');
+
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true);
+
+			$query->select('member.*');
+			$query->from('#__swa_mamber AS member');
+			$query->where('member.id = ' . (int) $id);
+
+			$db->setQuery((string)$query);
+
+		}
+	}
+	*/
 
 }
