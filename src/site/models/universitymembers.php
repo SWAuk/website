@@ -18,13 +18,18 @@ class SwaModelUniversityMembers extends SwaModelList
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		$query->select('member.id');
-		$query->select('user.name');
-		$query->select('membership.approved');
-		$query->select('membership.level');
-		$query->select('membership.committee AS club_committee');
-		$query->select('membership.season_id');
-		$query->select('uni.name AS university');
+		$query->select(
+			array(
+				'member.id',
+		        'user.name',
+		        'membership.approved',
+		        'membership.level',
+		        'membership.committee AS club_committee',
+		        'membership.season_id',
+		        'uni.id AS uni_id',
+		        'uni.name AS university',
+			)
+		);
 
 		$query->from('#__swa_member AS member');
 		$query->leftJoin('#__users AS user ON user.id = member.user_id');
