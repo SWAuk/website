@@ -1,0 +1,5 @@
+# Temporary directories used for building artifacts
+./output-*/
+
+# Artifacts that are built
+*.zip

@@ -2,7 +2,12 @@
 	"name": "swauk/com_swa",
 	"description": "Joomla component holding SWA website functionality",
 	"scripts": {
-		"build": ".build/build.sh",
+		"build": [
+			"composer build:component",
+			"composer build:plugin"
+		],
+		"build:component": ".build/build-component.sh",
+		"build:plugin": ".build/build-plugin.sh",
 		"minus-x:check": "minus-x check .",
 		"minus-x:fix": "minus-x fix .",
 		"lint": "parallel-lint ./src",
@@ -24,11 +29,13 @@
 		"post-update-cmd": [
 			"composer post-update-cmd:stripe",
 			"composer post-update-cmd:joomla",
+			"composer post-update-cmd:joomlaPluginHack",
 			"composer post-update-cmd:template",
 			"composer post-update-cmd:images"
 		],
 		"post-update-cmd:stripe": ".build/stripe.sh",
 		"post-update-cmd:joomla": ".build/joomla.sh",
+		"post-update-cmd:joomlaPluginHack": ".build/onJAccessGetAuthorisedViewLevels.sh",
 		"post-update-cmd:template": ".build/template.sh",
 		"post-update-cmd:images": ".build/images.sh"
 	},
