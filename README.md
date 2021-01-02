@@ -29,6 +29,17 @@ A copy of this can be found on the SWA Drive "Tech/Web Dev/Templates/favourite_j
 
 ## Development - Dependencies
 
+### docker & docker-compose
+
+To make your life easy you can run many things related to development in docker.
+
+To do so you would need to install the following:
+
+* [Docker](https://docs.docker.com/install/)
+* [docker-compose](https://docs.docker.com/compose/install/)
+
+**Note:** It is possible to develop without docker.
+
 ### composer
 
 In order to install the needed packages for development you'll need [composer](https://getcomposer.org/download/).
@@ -36,9 +47,7 @@ Composer is a dependency manager and command runner for PHP.
 
 Use it to install the PHP libraries needed for testing, development and production.
 
-As docker is already required, the easiest way to use `composer` to install the required libs is via the official [docker image](https://hub.docker.com/_/composer).
-
-You can also run **composer in docker**...
+The easiest way to use `composer` to install the required libs is via the official [docker image](https://hub.docker.com/_/composer).
 
 For linux and bashy systems that would be:
 
@@ -51,13 +60,6 @@ If you are on windows using CMD that would be:
 ```sh
 docker run --rm -it -v %CD%:/app composer <command here>
 ```
-
-### docker & docker-compose
-
-If you want to run composer in docker, or use the recommended development environment then you need these installed.
-
-* [Docker](https://docs.docker.com/install/)
-* [docker-compose](https://docs.docker.com/compose/install/)
 
 ### Install composer dependencies
 
