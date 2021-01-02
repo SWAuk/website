@@ -2,9 +2,6 @@
 
 namespace SWA\Test\Browser;
 
-use Facebook\WebDriver\WebDriverBy;
-use Facebook\WebDriver\Exception\NoSuchElementException;
-
 /**
  * Test for login with the provided test users.
  * Ensures that:
@@ -14,37 +11,15 @@ use Facebook\WebDriver\Exception\NoSuchElementException;
 final class LoginAndMenuTest extends SWABrowserTestCase
 {
 
-	private function elementExists( string $cssSelector ) : bool
-	{
-		try{
-			$this->webDriver->findElement(WebDriverBy::cssSelector($cssSelector));
-			return true;
-		}
-		catch ( NoSuchElementException $e)
-		{
-			return false;
-		}
-	}
-
-	private function assertLoggedIn()
-	{
-		$this->assertTrue($this->elementExists('a[href="/index.php/logout"]'));
-	}
-
-	private function assertLoggedOut()
-	{
-		$this->assertTrue($this->elementExists('a[href="/index.php/login"]'));
-	}
-
 	public function provideTestUserDetails()
 	{
-		yield [ 'admin', 'password', [] ];
-		yield [ 'johnsmith', 'password', [] ];
-		yield [ 'janesmith', 'password', [] ];
-		yield [ 'mthomp', 'password', [] ];
-		yield [ 'bendover', 'password', [] ];
-		yield [ 'swacom', 'password', [ 'org' ] ];
-		yield [ 'unicom', 'password', [ 'club' ] ];
+		yield [ self::$USER_ADMIN, self::$PASSWORD, [] ];
+		yield [ self::$USER_JOHNSMITH, self::$PASSWORD, [] ];
+		yield [ self::$USER_JANESMITH, self::$PASSWORD, [] ];
+		yield [ self::$USER_MTHOMP, self::$PASSWORD, [] ];
+		yield [ self::$USER_BENDOVER, self::$PASSWORD, [] ];
+		yield [ self::$USER_COMMITTIE_SWA, self::$PASSWORD, [ 'org' ] ];
+		yield [ self::$USER_UNIVERSITY_SWA, self::$PASSWORD, [ 'club' ] ];
 	}
 
 	/**
@@ -52,21 +27,7 @@ final class LoginAndMenuTest extends SWABrowserTestCase
 	 */
 	public function testUserLoginAndExpectedMenus( string $username, string $password, array $expectedMenus = [] )
 	{
-		$this->webDriver->get($this->baseUrl . '/index.php/login');
-
-		// Make sure we start logged out
-		$this->assertLoggedOut();
-
-		$loginButton = $this->webDriver->findElement(WebDriverBy::cssSelector('div.login > form button'));
-		$usernameField = $this->webDriver->findElement(WebDriverBy::cssSelector('#username'));
-		$passwordField = $this->webDriver->findElement(WebDriverBy::cssSelector('#password'));
-
-		$usernameField->sendKeys($username);
-		$passwordField->sendKeys($password);
-		$loginButton->click();
-
-		// We should no be logged in
-		$this->assertLoggedIn();
+		$this->login($username, $password);
 
 		// Check that the plugin shows us the correct menu items
 		$this->assertEquals(

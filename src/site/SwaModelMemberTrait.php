@@ -32,6 +32,10 @@ trait SwaModelMemberTrait
 			$query->leftJoin('#__swa_university_member AS uni_member ON uni_member.member_id = a.id');
 			$query->select('uni_member.committee AS club_committee');
 
+			// Join on university table
+			$query->leftJoin('#__swa_university AS uni ON uni_member.university_id = uni.id');
+			$query->select('uni.name AS university_name');
+
 			// Join on membership table
 			$query->leftJoin('#__swa_membership AS membership ON membership.member_id = a.id');
 			$query->select('membership.season_id');

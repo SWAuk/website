@@ -5,12 +5,16 @@ namespace SWA\Test\Browser;
 use PHPUnit\Framework\TestCase;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Exception\NoSuchElementException;
 
 /**
  * This abstract test case should be used by all browser tests.
  */
 abstract class SWABrowserTestCase extends TestCase
 {
+	use LoginTrait;
+
 	private const HOST_DOCKER_INTERNAL = 'host.docker.internal';
 
 	/**
@@ -87,4 +91,17 @@ abstract class SWABrowserTestCase extends TestCase
 	{
 		$this->webDriver->quit();
 	}
+
+	protected function elementExists( string $cssSelector ) : bool
+	{
+		try{
+			$this->webDriver->findElement(WebDriverBy::cssSelector($cssSelector));
+			return true;
+		}
+		catch ( NoSuchElementException $e)
+		{
+			return false;
+		}
+	}
+
 }
