@@ -11,6 +11,7 @@ services:
       - ./.docker/configuration.php:/var/www/html/configuration.php
       - ./src/administrator:/var/www/html/administrator/components/com_swa
       - ./src/site:/var/www/html/components/com_swa
+      - ./src/plugin:/var/www/html/plugins/swa/viewlevels
       - ./.docker/www-logs:/var/logs/joomla
     ports:
       - ${JOOMLA_PORT:-5555}:80

@@ -88,3 +88,4 @@ jobs:
         name: build-output
         path: |
           com_swa.zip
+          plg_swa_viewlevels.zip

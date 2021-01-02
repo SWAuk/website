@@ -2,25 +2,31 @@
 
 This repository contains a [Joomla component](https://docs.joomla.org/Component) that contains most of the logic for the [Student Windsurfing Association website](https://www.studentwindsurfing.co.uk/).
 
+And a [Joomla Plugin](https://docs.joomla.org/Plugin) adding some custom behavior for [view levels](https://docs.joomla.org/J3.x:Access_Control_List_Tutorial) based on data provided by the SWA component. The plugin uses `onJAccessGetAuthorisedViewLevels`, a custom event that needs to be added to Joomla code.
+
 ## Production (live site)
 
-### Installing the SWA component in Joomla
-
-* Create a zip of the component using the `composer run build` command.
+* Create zip files for the component and plugin using `composer build`.
 * Go to the Joomla backend, http://localhost:5555/administrator
 * Log in (admin:password)
 * Top menu, Extensions >> Manage >> Install
 * Select "Upload package from file"
 * Upload the com_swa.zip file that was created in the root repo folder
+* Upload the plg_swa_viewlevels.zip file that was created in the root repo folder
+* Enable the plugin in the Extensions >> Plugins page
+* Add the custom event to Joomla code (see below)
 
-### Installing the SWA AccessList plugin in joomla
+### Adding onJAccessGetAuthorisedViewLevels custom event
 
-* Download the latest Zip:\
-https://github.com/SWAuk/plg_swa_viewlevels/releases
-* Drag and drop it into the "Upload Package from file" as above.
-* Enable the plugin in the Extensions >> Plugins
-* In the `/.docker/www/libraries/src/Access/Access.php` file, \
-add the code snippet from https://github.com/SWAuk/plg_swa_viewlevels
+For the plugin to work a custom event must be added to the **JAccess::getAuthorisedViewLevels** method which can be found in `libraries\src\Access\Access.php`.
+
+Add the following code just before the final return of the method:
+
+```php
+// START HACK for plg_swa_viewlevels
+require __DIR__ . '/../../../plugins/swa/viewlevels/eventsnippet.php';
+// END HACK for plg_swa_viewlevels
+```
 
 ### Template notes
 
