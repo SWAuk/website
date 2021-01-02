@@ -120,6 +120,7 @@ All of these tests are also run in [Github Actions](https://github.com/features/
 * **[phpunit](https://phpunit.de/)** - A testing framework for PHP.
   * **phpunit:unit** - Runs "unit" tests only, as defined in the `tests/unit` directory.
   * **phpunit:browser** - Runs "unit" tests only, as defined in the `tests/browser` directory. (requires additional setup, see below)
+    * You can run individual tests using commands like `composer phpunit:browser -- --filter HomeTest`
 
 These individual commands are combined in a few usefull meta commands.
 
