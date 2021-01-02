@@ -18,6 +18,8 @@ services:
     environment:
       JOOMLA_DB_HOST: db
       JOOMLA_DB_PASSWORD: example
+      JCONFIG_STRIPE_PUBLISHABLE_KEY: ${JCONFIG_STRIPE_PUBLISHABLE_KEY}
+      JCONFIG_STRIPE_SECRET_KEY: ${JCONFIG_STRIPE_SECRET_KEY}
 
   db:
     image: mysql:5.6
