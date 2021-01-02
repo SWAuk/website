@@ -42,7 +42,7 @@ foreach ($this->event_registrations as $reg)
 		<div role="tabpanel" class="tab-pane active" id="current">
 
 			<div class="well well-small">
-
+				TODO: Add description here. See other tabs for examples.
 			</div>
 
 			<table class="table table-hover">
@@ -197,7 +197,7 @@ foreach ($this->event_registrations as $reg)
 		<!-- Committee Tab Pane -->
 		<div role="tabpanel" class="tab-pane" id="committee">
 
-			<h3>Committee Members</h3>
+			<h3 style="text-transform: none;">Committee Members</h3>
 			<div class="well well-small">
 
 			</div>

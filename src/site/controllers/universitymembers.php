@@ -18,13 +18,12 @@ class SwaControllerUniversityMembers extends SwaController
 		$data  = $input->getArray();
 
 		$currentMember = $this->getCurrentMember();
+		$targetMember = $this->getMember($data['member_id']);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
 		}
-
-		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
@@ -35,16 +34,16 @@ class SwaControllerUniversityMembers extends SwaController
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
-		$columns = array('member_id', 'university_id');
-		$values  = array(
-			$db->quote($data['member_id']),
-			$db->quote($targetMember->university_id)
-		);
+		$now       = time();
+		$seasonEnd = strtotime("1st June");
+		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
 
 		$query
-			->insert($db->quoteName('#__swa_university_member'))
-			->columns($db->quoteName($columns))
-			->values(implode(',', $values));
+			->update('#__swa_membership AS membership')
+			->innerJoin('#__swa_season AS season ON season.id = membership.season_id')
+			->set('approved = 1')
+			->where('member_id = ' . $db->quote($data['member_id']))
+			->where('season.year LIKE "' . (int) $date . '%"');
 
 		$db->setQuery($query);
 
@@ -62,7 +61,7 @@ class SwaControllerUniversityMembers extends SwaController
 		}
 
 		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=pending', false)
+			JRoute::_('index.php?option=com_swa&view=universitymembers', false)
 		);
 	}
 
@@ -115,112 +114,6 @@ class SwaControllerUniversityMembers extends SwaController
 
 		$this->setRedirect(
 			JRoute::_('index.php?option=com_swa&view=universitymembers', false)
-		);
-	}
-
-	public function graduate()
-	{
-		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$data  = $input->getArray();
-
-		$currentMember = $this->getCurrentMember();
-
-		if (!$currentMember->club_committee)
-		{
-			die('Current member is not club committee');
-		}
-
-		$targetMember = $this->getMember($data['member_id']);
-
-		if ($currentMember->university_id != $targetMember->university_id)
-		{
-			die('Current and target member are from different universities');
-		}
-
-		// Graduate the member for the university
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
-
-		$query
-			->update($db->quoteName('#__swa_university_member'))
-			->where('member_id = ' . $db->quote($data['member_id']))
-			->set('graduated=1');
-
-		$db->setQuery($query);
-
-		if (!$db->execute())
-		{
-			JLog::add(
-				'SwaControllerUniversityMembers failed to graduate: Member:' . $data['member_id'],
-				JLog::INFO,
-				'com_swa'
-			);
-		}
-		else
-		{
-			$this->logAuditFrontend('graduated member ' . $data['member_id']);
-		}
-
-		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=default', false)
-		);
-	}
-
-	public function ungraduate()
-	{
-		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$data  = $input->getArray();
-
-		$currentMember = $this->getCurrentMember();
-
-		if (!$currentMember->club_committee)
-		{
-			die('Current member is not club committee');
-		}
-
-		$targetMember = $this->getMember($data['member_id']);
-
-		if ($currentMember->university_id != $targetMember->university_id)
-		{
-			die('Current and target member are from different universities');
-		}
-
-		// Graduate the member for the university
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
-
-		$query
-			->update($db->quoteName('#__swa_university_member'))
-			->where('member_id = ' . $db->quote($data['member_id']))
-			->set('graduated=0');
-
-		$db->setQuery($query);
-
-		if (!$db->execute())
-		{
-			JLog::add(
-				'SwaControllerUniversityMembers failed to ungraduate: Member:' . $data['member_id'],
-				JLog::INFO,
-				'com_swa'
-			);
-		}
-		else
-		{
-			$this->logAuditFrontend('ungraduated member ' . $data['member_id']);
-		}
-
-		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=graduated', false)
 		);
 	}
 
@@ -376,6 +269,94 @@ class SwaControllerUniversityMembers extends SwaController
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers', false));
 	}
 
+
+
+	public function register()
+	{
+		// Check for request forgeries.
+		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+		$props = $this->getProperties();
+		/** @var JInput $input */
+		$input = $props['input'];
+		$data  = $input->getArray();
+
+		$currentMember = $this->getCurrentMember();
+
+		if (!$currentMember->club_committee)
+		{
+			die('Current member is not club committee');
+		}
+
+		if (array_key_exists('member_id', $data))
+		{
+			$memberIds = array($data['member_id']);
+		}
+		elseif (array_key_exists('member_ids', $data))
+		{
+			$memberIds = explode('|', $data['member_ids']);
+		}
+		else
+		{
+			die('`member_id(s)` was not provided');
+		}
+
+		foreach ($memberIds as $memberId)
+		{
+			$data['member_id'] = $memberId;
+			$targetMember      = $this->getMember($memberId);
+
+			if ($currentMember->university_id != $targetMember->university_id)
+			{
+				die('Current and target member are from different universities');
+			}
+
+			$targetEvents = $this->getEvents($data['event_id']);
+
+			if (empty($targetEvents))
+			{
+				die('Event does not exist with given id');
+			}
+
+			// Add a new registration row
+			$db    = JFactory::getDbo();
+			$query = $db->getQuery(true);
+
+			$columns = array('event_id', 'member_id');
+			$values  = array(
+				$db->quote($data['event_id']),
+				$db->quote($memberId)
+			);
+
+			$query
+				->insert($db->quoteName('#__swa_event_registration'))
+				->columns($db->quoteName($columns))
+				->values(implode(',', $values));
+
+			$db->setQuery($query);
+
+			if (!$db->execute())
+			{
+				JLog::add(
+					'SwaControllerUniversityMembers failed to register: Event:' .
+					$data['event_id'] .
+					' Member:' .
+					$memberId,
+					JLog::INFO,
+					'com_swa'
+				);
+			}
+			else
+			{
+				$this->logAuditFrontend(
+					'registered member ' . $memberId . ' for event ' . $data['event_id']
+				);
+			}
+
+			$this->setRedirect(JRoute::_('index.php?option=com_swa&view=universitymembers', false));
+		}
+	}
+
 	public function addcommittee()
 	{
 		// Check for request forgeries.
@@ -404,10 +385,16 @@ class SwaControllerUniversityMembers extends SwaController
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
+		$now       = time();
+		$seasonEnd = strtotime("1st June");
+		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
+
 		$query
-			->update($db->quoteName('#__swa_university_member'))
+			->update('#__swa_membership AS membership')
+			->innerJoin('#__swa_season AS season ON season.id = membership.season_id')
+			->set('committee = 1')
 			->where('member_id = ' . $db->quote($data['member_id']))
-			->set('committee=' . $db->quote('Committee'));
+			->where('season.year LIKE "' . (int) $date . '%"');
 
 		$db->setQuery($query);
 
@@ -425,7 +412,7 @@ class SwaControllerUniversityMembers extends SwaController
 		}
 
 		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=committee', false)
+			JRoute::_('index.php?option=com_swa&view=universitymembers', false)
 		);
 	}
 
@@ -457,10 +444,16 @@ class SwaControllerUniversityMembers extends SwaController
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
+		$now       = time();
+		$seasonEnd = strtotime("1st June");
+		$date      = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
+
 		$query
-			->update($db->quoteName('#__swa_university_member'))
+			->update('#__swa_membership AS membership')
+			->innerJoin('#__swa_season AS season ON season.id = membership.season_id')
+			->set('committee = 0')
 			->where('member_id = ' . $db->quote($data['member_id']))
-			->set('committee=' . $db->quote(''));
+			->where('season.year LIKE "' . (int) $date . '%"');
 
 		$db->setQuery($query);
 
@@ -478,7 +471,7 @@ class SwaControllerUniversityMembers extends SwaController
 		}
 
 		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=universitymembers&layout=committee', false)
+			JRoute::_('index.php?option=com_swa&view=universitymembers', false)
 		);
 	}
 
@@ -549,5 +542,111 @@ class SwaControllerUniversityMembers extends SwaController
 
 		return $db->loadObject();
 	}
+
+	//public function graduate()
+	//{
+	//	// Check for request forgeries.
+	//	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+	//	$props = $this->getProperties();
+	//	/** @var JInput $input */
+	//	$input = $props['input'];
+	//	$data  = $input->getArray();
+
+	//	$currentMember = $this->getCurrentMember();
+
+	//	if (!$currentMember->club_committee)
+	//	{
+	//		die('Current member is not club committee');
+	//	}
+
+	//	$targetMember = $this->getMember($data['member_id']);
+
+	//	if ($currentMember->university_id != $targetMember->university_id)
+	//	{
+	//		die('Current and target member are from different universities');
+	//	}
+
+	//	// Graduate the member for the university
+	//	$db    = JFactory::getDbo();
+	//	$query = $db->getQuery(true);
+
+	//	$query
+	//		->update($db->quoteName('#__swa_university_member'))
+	//		->where('member_id = ' . $db->quote($data['member_id']))
+	//		->set('graduated=1');
+
+	//	$db->setQuery($query);
+
+	//	if (!$db->execute())
+	//	{
+	//		JLog::add(
+	//			'SwaControllerUniversityMembers failed to graduate: Member:' . $data['member_id'],
+	//			JLog::INFO,
+	//			'com_swa'
+	//		);
+	//	}
+	//	else
+	//	{
+	//		$this->logAuditFrontend('graduated member ' . $data['member_id']);
+	//	}
+
+	//	$this->setRedirect(
+	//		JRoute::_('index.php?option=com_swa&view=universitymembers&layout=default', false)
+	//	);
+	//}
+
+	//public function ungraduate()
+	//{
+	//	// Check for request forgeries.
+	//	JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+
+	//	$props = $this->getProperties();
+	//	/** @var JInput $input */
+	//	$input = $props['input'];
+	//	$data  = $input->getArray();
+
+	//	$currentMember = $this->getCurrentMember();
+
+	//	if (!$currentMember->club_committee)
+	//	{
+	//		die('Current member is not club committee');
+	//	}
+
+	//	$targetMember = $this->getMember($data['member_id']);
+
+	//	if ($currentMember->university_id != $targetMember->university_id)
+	//	{
+	//		die('Current and target member are from different universities');
+	//	}
+
+	//	// Graduate the member for the university
+	//	$db    = JFactory::getDbo();
+	//	$query = $db->getQuery(true);
+
+	//	$query
+	//		->update($db->quoteName('#__swa_university_member'))
+	//		->where('member_id = ' . $db->quote($data['member_id']))
+	//		->set('graduated=0');
+
+	//	$db->setQuery($query);
+
+	//	if (!$db->execute())
+	//	{
+	//		JLog::add(
+	//			'SwaControllerUniversityMembers failed to ungraduate: Member:' . $data['member_id'],
+	//			JLog::INFO,
+	//			'com_swa'
+	//		);
+	//	}
+	//	else
+	//	{
+	//		$this->logAuditFrontend('ungraduated member ' . $data['member_id']);
+	//	}
+
+	//	$this->setRedirect(
+	//		JRoute::_('index.php?option=com_swa&view=universitymembers&layout=graduated', false)
+	//	);
+	//}
 
 }
