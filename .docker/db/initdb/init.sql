@@ -1727,8 +1727,9 @@ CREATE TABLE `swana_swa_event` (
   KEY `fk_event_season1_idx` (`season_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `swana_swa_event` (`id`, `name`, `season_id`, `capacity`, `date_open`, `date_close`, `date`) VALUES
-(1, 'The Best Event', 19, 10, '2019-02-10', '2019-02-13', '2019-02-15');
+INSERT INTO `swana_swa_event`
+  (`id`, `name`,           `season_id`, `capacity`, `date_open`,  `date_close`, `date`) VALUES
+  (1,    'The Best Event', 19,          10,         '2019-02-10', '2099-02-13', '2099-02-15');
 
 DROP TABLE IF EXISTS `swana_swa_event_host`;
 CREATE TABLE `swana_swa_event_host` (
