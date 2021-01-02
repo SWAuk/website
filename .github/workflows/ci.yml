@@ -11,9 +11,9 @@ jobs:
   ci:
     runs-on: ubuntu-latest
 
-# Checkout the code
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout the code
+      uses: actions/checkout@v2
 
 # Set PHP to be something similar to production
     - name: Setup PHP
@@ -73,7 +73,8 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose-selenium.yml down
 
 # Publish artifacts for the jobs
-    - uses: actions/upload-artifact@v2
+    - name: Upload test-output artifact
+      uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
         name: test-output
@@ -83,7 +84,8 @@ jobs:
 
 # Build zip archives and publish them
     - run: composer build
-    - uses: actions/upload-artifact@v2
+    - name: Upload build-output artifact
+      uses: actions/upload-artifact@v2
       with:
         name: build-output
         path: |
