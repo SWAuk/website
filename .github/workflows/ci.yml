@@ -76,7 +76,15 @@ jobs:
     - uses: actions/upload-artifact@v2
       if: ${{ always() }}
       with:
-        name: browser-output
+        name: test-output
         path: |
           .docker/www-logs
           .docker/selenium/videos
+
+# Build zip archives and publish them
+    - run: composer build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: build-output
+        path: |
+          com_swa.zip
