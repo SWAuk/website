@@ -12,23 +12,18 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$memberId = $input->getInt('member_id');
-		$eventId = $input->getInt('event');
-
-		$targetMember = $this->getMember($memberId);
+		$memberId	   = $app->input->getInt('member_id');
+		$targetMember  = $this->getMember($memberId);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
 		}
 
-		if ($currentMember->university_id != $targetMember->university_id)
+		if ($currentMember->uni_id !== $targetMember->uni_id)
 		{
 			die('Current and target member are from different universities');
 		}
@@ -73,17 +68,20 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$memberId = $input->getInt('member_id');
+		$memberId	   = $app->input->getInt('member_id');
+		$targetMember  = $this->getMember($memberId);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
+		}
+
+		if ($currentMember->uni_id !== $targetMember->uni_id)
+		{
+			die('Current and target member are from different universities');
 		}
 
 		// Unapprove the member for the university
@@ -126,14 +124,12 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-
-		$props    = $this->getProperties();
-		/** @var JInput $input */
-		$input    = $props['input'];
-		$memberId = $input->getInt('member_id');
-		$eventId  = $input->getInt('event_id');
+		$memberId	   = $app->input->getInt('member_id');
+		$eventId	   = $app->input->getInt('event_id');
+		$targetMember  = $this->getMember($memberId);
 
 		if (!$currentMember->club_committee)
 		{
@@ -145,11 +141,9 @@ class SwaControllerUniversityMembers extends SwaController
 			die('You need to specify a member');
 		}
 
-		$targetMember = $this->getMember($memberId);
-
 		if ($currentMember->uni_id !== $targetMember->uni_id)
 		{
-			die("Current and target member are from different universities. {$currentMember->uni_id} != {$targetMember->uni_id}");
+			die("Current and target member are from different universities. {$currentMember->uni_id} !== {$targetMember->uni_id}");
 		}
 
 		$db    = JFactory::getDbo();
@@ -188,28 +182,23 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-
-		$props   = $this->getProperties();
-		/** @var JInput $input */
-		$input   = $props['input'];
-		$memberId = $input->getInt('member_id');
-		$eventId = $input->getInt('event_id');
+		$memberId	   = $app->input->getInt('member_id');
+		$eventId	   = $app->input->getInt('event_id');
+		$targetMember  = $this->getMember($memberId);
+		$targetEvent   = $this->getEvent($eventId);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
 		}
 
-		$targetMember = $this->getMember($memberId);
-
-		if ($currentMember->university_id != $targetMember->university_id)
+		if ($currentMember->uni_id !== $targetMember->uni_id)
 		{
 			die('Current and target member are from different universities');
 		}
-
-		$targetEvent = $this->getEvent($eventId);
 
 		if (empty($targetEvent))
 		{
@@ -253,15 +242,12 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		// JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-		$items		   = $model->getItems();
+		$uniMembers	   = $model->getItems();
 		$events		   = $model->getAvailableEvents();
-
-		$props	= $this->getProperties();
-		/** @var JInput $input */
-		$input	 = $props['input'];
-		$eventId = $input->getInt('event');
+		$eventId	   = $app->input->getInt('event');
 
 		if (!$currentMember->club_committee)
 		{
@@ -278,9 +264,9 @@ class SwaControllerUniversityMembers extends SwaController
 		$columns = array('event_id', 'member_id');
 		$values	 = array();
 
-		foreach ($items as $uniMember)
+		foreach ($uniMembers as $uniMember)
 		{
-			if ($currentMember->uni_id != $uniMember->uni_id)
+			if ($currentMember->uni_id !== $uniMember->uni_id)
 			{
 				die('Current and target member are from different universities');
 			}
@@ -324,23 +310,18 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
-		$items		   = $model->getItems();
 		$currentMember = $model->getMember();
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$memberId = $input->getInt('member_id');
+		$memberId	   = $app->input->getInt('member_id');
+		$targetMember  = $this->getMember($memberId);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
 		}
 
-		$targetMember = $this->getMember(memberId);
-
-		if ($currentMember->university_id != $targetMember->university_id)
+		if ($currentMember->uni_id !== $targetMember->uni_id)
 		{
 			die('Current and target member are from different universities');
 		}
@@ -385,22 +366,18 @@ class SwaControllerUniversityMembers extends SwaController
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
+		$app		   = JFactory::getApplication();
 		$model		   = $this->getModel('UniversityMembers');
 		$currentMember = $model->getMember();
-
-		$props = $this->getProperties();
-		/** @var JInput $input */
-		$input = $props['input'];
-		$memberId = $input->getInt('member_id');
+		$memberId	   = $app->input->getInt('member_id');
+		$targetMember  = $this->getMember($memberId);
 
 		if (!$currentMember->club_committee)
 		{
 			die('Current member is not club committee');
 		}
 
-		$targetMember = $this->getMember($memberId);
-
-		if ($currentMember->uni_id != $targetMember->uni_id)
+		if ($currentMember->uni_id !== $targetMember->uni_id)
 		{
 			die('Current and target member are from different universities');
 		}
@@ -467,20 +444,16 @@ class SwaControllerUniversityMembers extends SwaController
 	 */
 	public function getMember($memberId)
 	{
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
+		$model = $this->getModel('UniversityMembers');
+		$members = $model->getItems();
 
-		// Select the required fields from the table.
-		$query->select('member.*');
-		$query->select('membership.uni_id AS uni_id');
-		$query->from('#__swa_member AS member');
- 		$query->leftJoin('#__swa_membership AS membership ON membership.member_id = member.id');
-		$query->where('member.id = ' . $db->quote($memberId));
-
-		// Load the result
-		$db->setQuery($query);
-
-		return $db->loadObject();
+		foreach ($members as $member)
+		{
+			if ($member->id == $memberId)
+			{
+				return $member;
+			}
+		}
 	}
 
 }
