@@ -127,6 +127,7 @@ foreach ($this->event_registrations as $reg)
 									<form id="<?php echo $formId ?>" method="POST" action="<?php echo $url ?>">
 										<input type="hidden" name="member_id" value="<?php echo $member->id ?>">
 										<input type="hidden" name="event_id" value="<?php echo $event->id ?>">
+										<?php echo $event->name; ?>
 										<a href="javascript:{}" onclick="document.getElementById('<?php echo $formId ?>').submit(); return false;">
 											(register)
 										</a>
