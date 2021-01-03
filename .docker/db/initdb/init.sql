@@ -1778,9 +1778,105 @@ CREATE TABLE `swana_swa_event_ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_event_ticket` (`id`, `event_id`, `name`, `quantity`, `price`, `notes`, `need_level`, `need_swa`, `need_xswa`, `need_host`, `need_qualification`, `details`) VALUES
-(1,	1,	'Windsurf',	5,	10.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
+(1,	1,	'Windsurf (normal)',	5,	10.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
 (2,	1,	'Host',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
-(3,	1,	'Party',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } ');
+(3,	1,	'Party (has-addons)',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\":  [{
+		"name": "T-Shirt",
+		"description": "Limited Edition AK19 T-Shirt",
+		"options": {
+			"name": "Size",
+			"values": [{
+					"label": "XS",
+					"value": "XS"
+				},
+				{
+					"label": "S",
+					"value": "S"
+				},
+				{
+					"label": "M",
+					"value": "M"
+				},
+				{
+					"label": "L",
+					"value": "L"
+				},
+				{
+					"label": "XL",
+					"value": "XL:"
+				},
+				{
+					"label": "XXL",
+					"value": "XXL"
+				}
+			]
+		},
+		"price": 6.99
+	}, {
+		"name": "Hoodie",
+		"description": "Limited Edition AK19 Hoodie",
+		"options": {
+			"name": "Size",
+			"values": [{
+					"label": "XS",
+					"value": "XS"
+				},
+				{
+					"label": "S",
+					"value": "S"
+				},
+				{
+					"label": "M",
+					"value": "M"
+				},
+				{
+					"label": "L",
+					"value": "L"
+				},
+				{
+					"label": "XL",
+					"value": "XL:"
+				},
+				{
+					"label": "XXL",
+					"value": "XXL"
+				}
+			]
+		},
+		"price": 15.5
+	}, {
+		"name": "Crew Neck Jumper",
+		"description": "Limited Edition AK19 Jumper",
+		"options": {
+			"name": "Option",
+			"values": [{
+					"label": "XS",
+					"value": "XS"
+				},
+				{
+					"label": "S",
+					"value": "S"
+				},
+				{
+					"label": "M",
+					"value": "M"
+				},
+				{
+					"label": "L",
+					"value": "L"
+				},
+				{
+					"label": "XL",
+					"value": "XL:"
+				},
+				{
+					"label": "XXL",
+					"value": "XXL"
+				}
+			]
+		},
+		"price": 15
+	}] } ');
 
 DROP TABLE IF EXISTS `swana_swa_grant`;
 CREATE TABLE `swana_swa_grant` (

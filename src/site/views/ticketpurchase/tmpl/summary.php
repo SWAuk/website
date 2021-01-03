@@ -30,62 +30,97 @@ if ($ticket == null) {
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
 	jQuery(document).ready(function() {
-
+		$validAddon = true;
+		$cardDetailsComplete = false;
+		$stripeCardErrorMsg = ""
+		$totalDiv = document.getElementById("payment-total");
 		$addons = jQuery('.swa-addon');
+		
+		// define function to enable/disable stripe button
+		setStripeButtonStatus = function() {
+			if (!$validAddon) {
+				document.querySelector("#stripe-button").disabled = true;
+				$ErrorMsg = "Invalid addon selection";
+			} else if (!$cardDetailsComplete) {
+				document.querySelector("#stripe-button").disabled = true;
+				// document.querySelector("#stripe-button").disabled = event.empty;
+				$ErrorMsg = $stripeCardErrorMsg;
+			} else {
+				document.querySelector("#stripe-button").disabled = false;
+				$ErrorMsg = ""
+			}
+			document.querySelector("#card-error").textContent = $ErrorMsg;
+			document.querySelector("#card-error").color = '#fa755a';
+		}
+		
+		// define function to calculate the total ticket price
+		$updateTicketPrice = function() {
+			$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
+			$addonsArray = $generateAddonsArray()
+
+			$totalAddonsPrice = 0;
+			$addonsArray.forEach(function(addon) {
+			$addonQty = addon.qty;
+			if ($addonQty > 0) {
+				$addonPrice = addon.price;
+				$totalAddonsPrice += $addonPrice * $addonQty
+			}
+			});
+
+			$totalPrice = $ticketPrice + $totalAddonsPrice;
+			$totalPrice = $totalPrice.toFixed(2);
+			// stripe amount is in pence
+			$totalDiv.innerHTML = "Total: " + $totalPrice + " GBP";
+		};
+
+		// define function to determine if addon seletion is valid
+		$determineValidAddon = function() {
+			$validAddon = true;
+			if ($addons.length < 1) {
+				return
+			} 
+
+			$qtySelectors.each(function(i, obj) {
+				$value = obj.value;
+				if ($value > 0) {
+					if (jQuery('#select_' + obj.getAttribute('data-id')).val() == "NULL") {
+						$validAddon = false;
+						// break out of the .each loop
+						return;
+					}
+				} else if ($value == "NULL") {
+					$validAddon = false;
+					// break out of the .each loop
+					return;
+				}
+			});
+		};
+
+		$generateAddonsArray = function() {
+			$selectedAddons = [];
+			$addons = jQuery('.swa-addon');
+			$addons.each(function(i, obj) {
+				$addonQty = parseInt(obj.value);
+				if ($addonQty > 0) {
+					$selectedAddons.push({
+						id: obj.getAttribute('data-id'),
+						name: obj.getAttribute('data-name'),
+						qty: $addonQty,
+						option: jQuery('#select_' + obj.getAttribute('data-id')).val(),
+						price: parseFloat(obj.getAttribute('data-price')) // not used as final amount to charge customer as could be tampered with malicipoiusly
+					});
+				}
+			});
+			return $selectedAddons;
+		}
+
 		if ($addons.length > 0) {
 			$qtySelectors = jQuery('.swa-qty-selector');
 			$optionSelectors = jQuery('.swa-option-selector');
 
-			// disable the stripe button
-			$stripeBtn = jQuery('#button');
-			$stripeBtn.prop('disabled', true);
-
 			// disable and hide all option selectors
 			$optionSelectors.prop('disabled', true);
 			$optionSelectors.parent().prop('hidden', true);
-
-			// define function to calculate the total ticket price
-			$totalTicketPrice = function() {
-				$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
-
-				$totalAddonsPrice = 0;
-				$addons.each(function(i, obj) {
-					$addonQty = parseInt(obj.value);
-					if ($addonQty > 0) {
-						$addonPrice = parseFloat(obj.getAttribute('data-price'));
-						$totalAddonsPrice += $addonPrice * $addonQty
-					}
-				});
-
-				$totalPrice = $ticketPrice + $totalAddonsPrice;
-				$totalPrice = $totalPrice.toFixed(2);
-				// stripe amount is in pence
-				$stripeBtn.attr('data-amount', $totalPrice * 100);
-				jQuery('#stripe-button span')[0].innerHTML = "Pay £" + $totalPrice + " now!";
-
-			};
-
-			// define function to enable/disable stripe button
-			$updateDisplayedTotal = function(event) {
-				$stripeBtnEnabled = true;
-
-				$qtySelectors.each(function(i, obj) {
-					$value = obj.value;
-					if ($value > 0) {
-						if (jQuery('#select_' + obj.getAttribute('data-id')).val() == "NULL") {
-							$stripeBtnEnabled = false;
-							// break out of the .each loop
-							return false;
-						}
-					} else if ($value == "NULL") {
-						$stripeBtnEnabled = false;
-						// break out of the .each loop
-						return false;
-					}
-				});
-
-				$stripeBtn.prop('disabled', !$stripeBtnEnabled)
-			};
 
 			// define function to enable/disable the option
 			$qtyChanged = function(event) {
@@ -103,23 +138,28 @@ if ($ticket == null) {
 					$option.val('NULL');
 					$option.prop('disabled', true);
 				}
-
-				$totalTicketPrice();
-				$updateDisplayedTotal(event)
 			};
 
 			$qtySelectors.change(function(event) {
 				$qtyChanged(event);
+				$updateTicketPrice();
+				$determineValidAddon(event)
+				setStripeButtonStatus();
 			});
 
 			$optionSelectors.change(function(event) {
-				$updateDisplayedTotal(event);
+				$determineValidAddon(event);
+				setStripeButtonStatus();
+				console.log($generateAddonsArray());
 			});
 		}
+
+		$updateTicketPrice();
 	});
 </script>
 
-<!-- <link rel="stylesheet" href="stripe_style.css" /> -->
+
+<!-- create form -->
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
 
@@ -152,8 +192,7 @@ if ($ticket == null) {
 			?>
 					<tr>
 						<td>
-							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>">
-								<option value="NULL">--</option>
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -194,7 +233,7 @@ if ($ticket == null) {
 
 		</table>
 	</div>
-	<h2 id="payment-total">Total: <?php echo $ticket->price ?> GBP</h2>
+	<h2 id="payment-total">Total: GBP</h2>
 	<div id="card-element">
 		<!--Stripe.js injects the Card Element-->
 	</div>
@@ -210,27 +249,13 @@ if ($ticket == null) {
 </form>
 
 
+<!-- handle payment -->
 <script type="text/javascript">
-	var generateAddonList = function() {
-		$selectedAddons = [];
-		$addons = jQuery('.swa-addon');
-		$addons.each(function(i, obj) {
-			$addonQty = parseInt(obj.value);
-			$addonName = obj.getAttribute('name');
-			if ($addonQty > 0) {
-				$selectedAddons.push({
-					name: $addonName,
-					qty: $addonQty
-				});
-			}
-		});
-		return $selectedAddons;
-	};
 	// A reference to Stripe.js initialized with your real test publishable API key.
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
 
 	// Disable the button until we have Stripe set up on the page
-	document.querySelector("button").disabled = true;
+	document.querySelector("#stripe-button").disabled = true;
 
 	var elements = stripe.elements();
 	var style = {
@@ -255,42 +280,45 @@ if ($ticket == null) {
 	// Stripe injects an iframe into the DOM
 	card.mount("#card-element");
 	card.on("change", function(event) {
-		// Disable the Pay button if there are no card details in the Element
-		document.querySelector("button").disabled = event.empty;
-		document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+		// Disable the Pay button if there are no card details in the Element or add on not valid
+		$stripeCardErrorMsg = event.error ? event.error.message : "";
+		$cardDetailsComplete = event.complete;
+		setStripeButtonStatus();
 	});
 	var form = document.getElementById("payment-form");
-	form.addEventListener("submit", function(event) {
-		event.preventDefault();
 
-		// Calls stripe.confirmCardPayment
-		// If the card requires authentication Stripe shows a pop-up modal to
-		// prompt the user to enter authentication details without leaving your page.
-		var payWithCard = function(stripe, card, clientSecret) {
-			loading(true);
-			stripe
-				.confirmCardPayment(clientSecret, {
-					payment_method: {
-						card: card
-					}
-				})
-				.then(function(result) {
-					if (result.error) {
-						// Show error to your customer
-						showError(result.error.message);
-					} else {
-						// The payment succeeded!
-						processOrder(result.paymentIntent.id);
-					}
-				});
-		};
-		/* ------- UI helpers ------- */
-		// Shows a success message when the payment is complete
-		var processOrder = function(paymentIntentId) {
-			// loading(false);
-			document.querySelector(".result-message").classList.remove("hidden");
-			document.querySelector("button").disabled = true;
-			fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
+	var payWithCard = function(stripe, card, clientSecret) {
+		// console.log(stripe, card, clientSecret)
+		loading(true);
+		var p1 = stripe
+			.confirmCardPayment(clientSecret, {
+				payment_method: {
+					card: card
+				}
+			})
+
+			p1.then(function(result) {
+				console.log(result)
+				if (result.error) {
+					// Show error to your customer
+					showError(result.error.message);
+				} else {
+					// The payment succeeded!
+					processOrder(result.paymentIntent.id);
+				}
+			})
+			.catch(function(error) {
+				// Handle the error
+				console.error("Error here");
+			});
+	};
+	/* ------- UI helpers ------- */
+	// Shows a success message when the payment is complete
+	var processOrder = function(paymentIntentId) {
+		loading(true);
+		document.querySelector(".result-message").classList.remove("hidden");
+		document.querySelector("#stripe-button").disabled = true;
+		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -309,30 +337,38 @@ if ($ticket == null) {
 				}
 			})
 
-		};
-		// Show the customer the error from Stripe if their card fails to charge
-		var showError = function(errorMsgText) {
-			loading(false);
-			var errorMsg = document.querySelector("#card-error");
-			errorMsg.textContent = errorMsgText;
-			setTimeout(function() {
-				errorMsg.textContent = "";
-			}, 4000);
-		};
-		// Show a spinner on payment submission
-		var loading = function(isLoading) {
-			if (isLoading) {
-				// Disable the button and show a spinner
-				document.querySelector("button").disabled = true;
-				document.querySelector("#spinner").classList.remove("hidden");
-				document.querySelector("#button-text").classList.add("hidden");
-			} else {
-				document.querySelector("button").disabled = false;
-				document.querySelector("#spinner").classList.add("hidden");
-				document.querySelector("#button-text").classList.remove("hidden");
-			}
-		};
-		var addons = generateAddonList();
+	};
+	// Show the customer the error from Stripe if their card fails to charge
+	var showError = function(errorMsgText) {
+		loading(false);
+		var errorMsg = document.querySelector("#card-error");
+		errorMsg.textContent = errorMsgText;
+		setTimeout(function() {
+			errorMsg.textContent = "";
+		}, 4000);
+	};
+	// Show a spinner on payment submission
+	var loading = function(isLoading) {
+		if (isLoading) {
+			// Disable the button and show a spinner
+			document.querySelector("#stripe-button").disabled = true;
+			document.querySelector("#spinner").classList.remove("hidden");
+			document.querySelector("#button-text").classList.add("hidden");
+		} else {
+			document.querySelector("#stripe-button").disabled = false;
+			document.querySelector("#spinner").classList.add("hidden");
+			document.querySelector("#button-text").classList.remove("hidden");
+		}
+	};
+
+	form.addEventListener("submit", function(event) {
+		event.preventDefault();
+
+		// Calls stripe.confirmCardPayment
+		// If the card requires authentication Stripe shows a pop-up modal to
+		// prompt the user to enter authentication details without leaving your page.
+
+		var addons = $generateAddonsArray();
 
 		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.createPaymentIntent') ?>", {
 				method: "POST",
@@ -341,7 +377,8 @@ if ($ticket == null) {
 				},
 				body: JSON.stringify({
 					ticketId: "<?php echo $ticketId ?>",
-					addons: addons
+					addons: addons,
+					estimatedPrice: $totalPrice
 				})
 			})
 			.then(function(result) {
@@ -366,50 +403,3 @@ if ($ticket == null) {
 			});
 	});
 </script>
-
-
-<!-- <button class="btn btn-primary btn-lg" id="stripe-button">
-	<span class="glyphicon glyphicon-shopping-cart">
-		<?php echo "Pay £{$ticket->price} now!" ?>
-	</span>
-</button> -->
-
-<!-- <script>
-		var handler = StripeCheckout.configure({
-			key: "<?php echo $jConfig->get('stripe_publishable_key'); ?>",
-			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-			locale: 'auto',
-			email: "<?php echo $this->user->email ?>",
-			token: function (res) {
-				jQuery('#stripeToken').val(res.id);
-				jQuery('#stripe-form').submit();
-			}
-		});
-
-        document.getElementById('stripe-button').addEventListener('click', function (e) {
-            // Get ticket amount
-            var amount = parseInt(jQuery("#stripe-button").attr('data-amount'));
-
-            if ( amount > 0 ) {
-	            // Open Checkout with further options:
-	            handler.open({
-	                name: 'SWA',
-	                description: "<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>",
-	                currency: 'GBP',
-	                zipCode: true,
-	                amount: amount
-	            });
-	            e.preventDefault();
-
-                // Close Checkout on page navigation:
-                window.addEventListener('popstate', function () {
-                    handler.close();
-                });
-            } else {
-                document.getElementById('stripe-button').addEventListener('click', function (e) {
-                    jQuery('#stripe-form').submit();
-                })
-            }
-        });
-
-</script> -->

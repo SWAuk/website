@@ -16,49 +16,13 @@ class SwaControllerTicketPurchase extends SwaController
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&layout=terms&ticketId='. $ticketId, false));
 	}
 
-	public function calculateOrderAmount($ticket, $selectedAddons)
-	{
-		$selectedAddonNames = [];
-		foreach ($selectedAddons as $sAddon) {
-			$selectedAddonNames[$sAddon->name] = $sAddon->qty;
-		}
-
-		$ticketAddons = $ticket->details->addons;
-
-		$totalCost = $ticket->price;
-		foreach ($ticketAddons as $key => $ticketAddon)
-		{
-			if (array_key_exists($ticketAddon->name, $selectedAddonNames))
-			{
-				$addonQty = $selectedAddonNames[$ticketAddon->name];
-				$totalCost += $ticketAddon->price * $addonQty;
-			}
-			// !!!!!!
-			// TODO ADD BACK IN ADDING ADDONS TO DB
-
-			// // Create addon details which will be converted to json and stored in the database
-			// $details->addons[$ticketAddon->name] = array("qty" => $addonQty, "price" => $ticketAddon->price);
-
-			// // If this addon is chosen and the addon has an option add it to the details object
-			// if ($addonQty > 0 && isset($ticketAddon->options) && !empty($ticketAddon->options))
-			// {
-			// 	$details->addons[$ticketAddon->name]["option"] = $selectedAddon->getString('option');
-			// }
-		}
-		return $totalCost;
-	}
-
 	public function createPaymentIntent()
 	{
 		$app = JFactory::getApplication();
 		$jinput = $this->input->json;
-		$addons = $jinput->get('addons', array(), 'array'); // will return your array with keys
+		$selectedAddons = $jinput->get('addons', array(), 'array'); // will return your array with keys
 		$ticketId = $jinput->get('ticketId', "", 'string'); // will return your array with keys
-		// $ticketId = $app->getUserState("com_swa.ticketpurchase.ticket_id");
-
-		// Create the class that will later be converted to json to be stored in the database
-		$details         = new stdClass;
-		$details->addons = array();
+		$estimatedPrice = $jinput->get('estimatedPrice', 0, 'float'); // will return your array with keys
 
 		// Initialise useful variables
 		$model   = $this->getModel('ticketpurchase');
@@ -105,20 +69,50 @@ class SwaControllerTicketPurchase extends SwaController
 
 		$this->checkUniqueTicket($member->id, $ticket->id);
 		
-		$jinput = $this->input->json;
-		$addons = $jinput->get('addons', array(), 'array'); // will return your array with keys
+		// Create the class that will later be converted to json to be stored in the database
+		$details         = new stdClass;
+		$details->addons = array();
 
-		$totalCost = $this->calculateOrderAmount($ticket, $addons);
+		// Calculate price and add addons to ticket details
+		$ticketAddons   = $ticket->details->addons;
+		$totalCost = $ticket->price;
+		
+		foreach ($ticketAddons as $key => $ticketAddon)
+		{
+			if (array_key_exists($key, $selectedAddons)) // key is the id
+			{
+				$addon = $selectedAddons[$key];
+				$addonId = $addon["id"];
+				$addonQty = $addon["qty"];
+				$addonOption = $addon["option"];
+				// $addonPrice = $addon->qty; don't use value from client side as could be altered
+				$addonPrice = $ticketAddon->price;
+				$addonName = $ticketAddon->name;
+
+				//check for errors in addon details
+				if (!($addon["name"] == $ticketAddon->name) || !($addon["price"] == $ticketAddon->price)) {
+					http_response_code(500);
+					echo json_encode(['error' => "There was a problem matching the selected addons to ticket addons. Please contact webmaster@swa.co.uk if this continues to happen."]);
+					die();
+				}
+				$totalCost += $addonPrice * $addonQty;
+				// Create addon details which will be converted to json and stored in the database
+				$details->addons[$addon['name']] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);				
+			}
+
+		}
 
 		if ($totalCost > 0) {
 			$this->payWithStripe($user, $member, $ticket, $totalCost, $details);
 		}
+		else {
+			//in future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe. 
+			//would then need to send a different http code so this could be handled on the front end as well
+			http_response_code(500);
+			echo json_encode(['error' => "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message."]);
+			die();
+		}
 
-		// Assign ticket to member
-		// $this->addTicketToDb($member->id, $ticket->id, $totalCost, $details);
-
-		// Clear the ticket_id from the session
-		// $app->setUserState("com_swa.ticketpurchase.ticket_id", null);
 		$app->close();
 
 		// $this->setMessage('Ticket purchased!', 'success');
@@ -147,6 +141,7 @@ class SwaControllerTicketPurchase extends SwaController
 			$output = [
 			  'clientSecret' => $paymentIntent->client_secret,
 			];
+
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 		} catch (Error $e) {
 			http_response_code(500);
@@ -205,10 +200,6 @@ class SwaControllerTicketPurchase extends SwaController
 		$totalCost = $paymentIntent->amount;
 		$details = $paymentIntent->metadata->details;
 
-		// http_response_code(500);
-		// echo json_encode(['error' => "$memberId, $eventTicketId, $totalCost, $details"]);
-		// die();
-
 		// Add the ticket to the db
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -239,7 +230,6 @@ class SwaControllerTicketPurchase extends SwaController
 			echo json_encode(['error' => "$error_msg"]);
 			die();
 		}
-
 		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
 	}
 
