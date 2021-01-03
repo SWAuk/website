@@ -141,7 +141,6 @@ class SwaControllerTicketPurchase extends SwaController
 			$output = [
 			  'clientSecret' => $paymentIntent->client_secret,
 			];
-
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 		} catch (Error $e) {
 			http_response_code(500);
