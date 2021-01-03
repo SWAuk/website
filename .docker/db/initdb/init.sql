@@ -1352,6 +1352,7 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2195, 'main', 'COM_SWA', 'com-swa', '', 'com-swa', 'index.php?option=com_swa', 'component', 1, 1, 1, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_com_swa.png', 0, '{}', 203, 240, 0, '', 1),
 (2196, 'main', 'COM_SWA_TITLE_MEMBERS', 'com-swa-title-members', '', 'com-swa/com-swa-title-members', 'index.php?option=com_swa&view=members', 'component', 1, 2195, 2, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_default.png', 0, '{}', 204, 205, 0, '', 1),
 (2197, 'main', 'COM_SWA_TITLE_COMMITTEE', 'com-swa-title-committee', '', 'com-swa/com-swa-title-committee', 'index.php?option=com_swa&view=committeemembers', 'component', 1, 2195, 2, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_default.png', 0, '{}', 206, 207, 0, '', 1),
+-- TODO: Remove COM_SWA_TITLE_UNIVERSITYMEMBERS before merge
 (2198, 'main', 'COM_SWA_TITLE_UNIVERSITYMEMBERS', 'com-swa-title-universitymembers', '', 'com-swa/com-swa-title-universitymembers', 'index.php?option=com_swa&view=universitymembers', 'component', 1, 2195, 2, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_default.png', 0, '{}', 208, 209, 0, '', 1),
 (2199, 'main', 'COM_SWA_TITLE_QUALIFICATIONS', 'com-swa-title-qualifications', '', 'com-swa/com-swa-title-qualifications', 'index.php?option=com_swa&view=qualifications', 'component', 1, 2195, 2, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_default.png', 0, '{}', 210, 211, 0, '', 1),
 (2200, 'main', 'COM_SWA_TITLE_EVENTS', 'com-swa-title-events', '', 'com-swa/com-swa-title-events', 'index.php?option=com_swa&view=events', 'component', 1, 2195, 2, 803, 0, '0000-00-00 00:00:00', 0, 1, 'components/com_swa/assets/images/s_default.png', 0, '{}', 212, 213, 0, '', 1),
@@ -1729,7 +1730,8 @@ CREATE TABLE `swana_swa_event` (
 
 INSERT INTO `swana_swa_event`
   (`id`, `name`,           `season_id`, `capacity`, `date_open`,  `date_close`, `date`) VALUES
-  (1,    'The Best Event', 19,          10,         '2019-02-10', '2099-02-13', '2099-02-15');
+  (1,    'The Best Event', 20,          10,         '2020-01-01', '2099-01-01', '2099-01-10'),
+  (2,    'Another Event',  20,          20,         '2020-02-02', '2099-02-02', '2099-02-10');
 
 DROP TABLE IF EXISTS `swana_swa_event_host`;
 CREATE TABLE `swana_swa_event_host` (
@@ -1742,7 +1744,8 @@ CREATE TABLE `swana_swa_event_host` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_event_host` (`id`, `event_id`, `university_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(2, 2, 2);
 
 DROP TABLE IF EXISTS `swana_swa_event_registration`;
 CREATE TABLE `swana_swa_event_registration` (
@@ -1776,7 +1779,10 @@ CREATE TABLE `swana_swa_event_ticket` (
 INSERT INTO `swana_swa_event_ticket` (`id`, `event_id`, `name`, `quantity`, `price`, `notes`, `need_level`, `need_swa`, `need_xswa`, `need_host`, `need_qualification`, `details`) VALUES
 (1, 1, 'Windsurf', 5, 10.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } '),
 (2, 1, 'Host', 5, 5.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } '),
-(3, 1, 'Party', 5, 5.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } ');
+(3, 1, 'Party', 5, 5.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } '),
+(4, 2, 'Windsurf', 5, 10.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } '),
+(5, 2, 'Host', 5, 5.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } '),
+(6, 2, 'Party', 5, 5.00, '', NULL, 0, 0, 0, 0, '{ \"visible\": \"All\", \"xswa\": false, \"qualification\": false, \"committee\": false, \"member\": {\"whitelist\": [],\"blacklist\": []}, \"university\": {\"whitelist\": [],\"blacklist\": []}, \"level\": {\"whitelist\": [],\"blacklist\": []}, \"addons\": [] } ');
 
 DROP TABLE IF EXISTS `swana_swa_grant`;
 CREATE TABLE `swana_swa_grant` (
@@ -1933,9 +1939,10 @@ INSERT INTO `swana_swa_ticket`
   (3,    4,           3,                 0.00,   '\"addons\":{\"T-Shirt\":{\"qty\":1,\"price\":5,\"option\":\"S\"}}}'),
   (4,    2,           1,                 0.00,   '{\"addons\":[]}'),
   (5,    2,           2,                 0.00,   '{\"addons\":[]}'),
-  (6,    4,           3,                 0.00,   '{\"addons\":[]}'),
   (7,    3,           2,                 0.00,   '\"addons\":{\"T-Shirt\":{\"qty\":1,\"price\":5,\"option\":\"L\"}}}'),
-  (8,    6,           1,                 0.00,   '{\"addons\":[]}');
+  (8,    6,           4,                 0.00,   '{\"addons\":[]}'),
+  (9,    5,           4,                 0.00,   '{\"addons\":[]}'),
+  (10,   4,           6,                 0.00,   '\"addons\":{\"T-Shirt\":{\"qty\":1,\"price\":5,\"option\":\"S\"}}}');
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
