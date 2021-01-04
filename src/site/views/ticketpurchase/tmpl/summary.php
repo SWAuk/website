@@ -101,14 +101,16 @@ if ($ticket == null) {
 			$addons = jQuery('.swa-addon');
 			$addons.each(function(i, obj) {
 				$addonQty = parseInt(obj.value);
+				$addonId = obj.getAttribute('data-id');
 				if ($addonQty > 0) {
-					$selectedAddons.push({
+					$selectedAddons[$addonId] = [];
+					$selectedAddons[$addonId] = {
 						id: obj.getAttribute('data-id'),
 						name: obj.getAttribute('data-name'),
 						qty: $addonQty,
 						option: jQuery('#select_' + obj.getAttribute('data-id')).val(),
 						price: parseFloat(obj.getAttribute('data-price')) // not used as final amount to charge customer as could be tampered with malicipoiusly
-					});
+					};
 				}
 			});
 			return $selectedAddons;
@@ -292,14 +294,13 @@ if ($ticket == null) {
 	var payWithCard = function(stripe, card, clientSecret) {
 		// console.log(stripe, card, clientSecret)
 		loading(true);
-		var p1 = stripe
+		stripe
 			.confirmCardPayment(clientSecret, {
 				payment_method: {
 					card: card
 				}
 			})
-
-		p1.then(function(result) {
+			.then(function(result) {
 				console.log(result)
 				if (result.error) {
 					// Show error to your customer
@@ -347,7 +348,7 @@ if ($ticket == null) {
 		errorMsg.textContent = errorMsgText;
 		setTimeout(function() {
 			errorMsg.textContent = "";
-		}, 4000);
+		}, 7000);
 	};
 	// Show a spinner on payment submission
 	var loading = function(isLoading) {

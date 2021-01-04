@@ -77,6 +77,10 @@ class SwaControllerTicketPurchase extends SwaController
 		foreach ($ticketAddons as $key => $ticketAddon) {
 			if (array_key_exists($key, $selectedAddons)) // Key is the id
 			{
+				if (empty($selectedAddons[$key])) {
+					// array empty or does not exist
+					continue;
+				}
 				$addon = $selectedAddons[$key];
 				$addonId = $addon["id"];
 				$addonQty = $addon["qty"];
@@ -86,7 +90,7 @@ class SwaControllerTicketPurchase extends SwaController
 				$addonName = $ticketAddon->name;
 
 				// Check for errors in addon details
-				if (!($addon["name"] == $ticketAddon->name) || !($addon["price"] == $ticketAddon->price)) {
+				if (!($addon["name"] == $ticketAddon->name) || !($addon["price"] == $ticketAddon->price) || !($key == $addonId)) {
 					http_response_code(500);
 					echo json_encode(['error' => "There was a problem matching the selected addons to ticket addons. Please contact webmaster@swa.co.uk if this continues to happen."]);
 					die();
@@ -95,6 +99,13 @@ class SwaControllerTicketPurchase extends SwaController
 				// Create addon details which will be converted to json and stored in the database
 				$details->addons[$addon['name']] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);
 			}
+		}
+
+		// Check the calculated price on the front end matches that on the backend, so customers don't pay an unexpected amount
+		if (!(abs($totalCost - $estimatedPrice) < 0.000001)) {
+			http_response_code(500);
+			echo json_encode(['error' => "Cost displayed did not match cost calculated from raw ticket. Please contact webmaster@swa.co.uk if this continues to happen"]);
+			die();
 		}
 
 		if ($totalCost > 0) {
