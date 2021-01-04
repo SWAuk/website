@@ -35,7 +35,7 @@ if ($ticket == null) {
 		$stripeCardErrorMsg = ""
 		$totalDiv = document.getElementById("payment-total");
 		$addons = jQuery('.swa-addon');
-		
+
 		// define function to enable/disable stripe button
 		setStripeButtonStatus = function() {
 			if (!$validAddon) {
@@ -52,7 +52,7 @@ if ($ticket == null) {
 			document.querySelector("#card-error").textContent = $ErrorMsg;
 			document.querySelector("#card-error").color = '#fa755a';
 		}
-		
+
 		// define function to calculate the total ticket price
 		$updateTicketPrice = function() {
 			$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
@@ -60,11 +60,11 @@ if ($ticket == null) {
 
 			$totalAddonsPrice = 0;
 			$addonsArray.forEach(function(addon) {
-			$addonQty = addon.qty;
-			if ($addonQty > 0) {
-				$addonPrice = addon.price;
-				$totalAddonsPrice += $addonPrice * $addonQty
-			}
+				$addonQty = addon.qty;
+				if ($addonQty > 0) {
+					$addonPrice = addon.price;
+					$totalAddonsPrice += $addonPrice * $addonQty
+				}
 			});
 
 			$totalPrice = $ticketPrice + $totalAddonsPrice;
@@ -78,7 +78,7 @@ if ($ticket == null) {
 			$validAddon = true;
 			if ($addons.length < 1) {
 				return
-			} 
+			}
 
 			$qtySelectors.each(function(i, obj) {
 				$value = obj.value;
@@ -297,7 +297,7 @@ if ($ticket == null) {
 				}
 			})
 
-			p1.then(function(result) {
+		p1.then(function(result) {
 				console.log(result)
 				if (result.error) {
 					// Show error to your customer

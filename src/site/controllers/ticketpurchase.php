@@ -13,7 +13,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$ticketId = $this->input->getString('ticketId');
 		// $app->setUserState("com_swa.ticketpurchase.ticket_id", $ticketId);
 
-		$this->setRedirect(JRoute::_('index.php?option=com_swa&layout=terms&ticketId='. $ticketId, false));
+		$this->setRedirect(JRoute::_('index.php?option=com_swa&layout=terms&ticketId=' . $ticketId, false));
 	}
 
 	public function createPaymentIntent()
@@ -31,8 +31,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$user    = JFactory::getUser();
 
 		// Make sure the member was successfully retrieved
-		if (!$member || !isset($member->id) || !ctype_digit($member->id))
-		{
+		if (!$member || !isset($member->id) || !ctype_digit($member->id)) {
 			$message = "Unable to identify member. " . var_export($member, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
 			http_response_code(500);
@@ -43,18 +42,15 @@ class SwaControllerTicketPurchase extends SwaController
 		// Get the ticket the user wants to buy by matching the form data with the tickets available
 		$ticket = null;
 
-		foreach ($tickets as $t)
-		{
-			if ($t->id == $ticketId)
-			{
+		foreach ($tickets as $t) {
+			if ($t->id == $ticketId) {
 				$ticket = $t;
 				break;
 			}
 		}
 
 		// Make sure the we managed to find the ticket
-		if ($ticket == null)
-		{
+		if ($ticket == null) {
 			JLog::add(
 				"Unable to find ticket with id \"{$ticketId}\" - redirecting to ticketpurchase page",
 				JLog::INFO,
@@ -68,7 +64,7 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 
 		$this->checkUniqueTicket($member->id, $ticket->id);
-		
+
 		// Create the class that will later be converted to json to be stored in the database
 		$details         = new stdClass;
 		$details->addons = array();
@@ -76,9 +72,8 @@ class SwaControllerTicketPurchase extends SwaController
 		// Calculate price and add addons to ticket details
 		$ticketAddons   = $ticket->details->addons;
 		$totalCost = $ticket->price;
-		
-		foreach ($ticketAddons as $key => $ticketAddon)
-		{
+
+		foreach ($ticketAddons as $key => $ticketAddon) {
 			if (array_key_exists($key, $selectedAddons)) // key is the id
 			{
 				$addon = $selectedAddons[$key];
@@ -97,15 +92,13 @@ class SwaControllerTicketPurchase extends SwaController
 				}
 				$totalCost += $addonPrice * $addonQty;
 				// Create addon details which will be converted to json and stored in the database
-				$details->addons[$addon['name']] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);				
+				$details->addons[$addon['name']] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);
 			}
-
 		}
 
 		if ($totalCost > 0) {
 			$this->payWithStripe($user, $member, $ticket, $totalCost, $details);
-		}
-		else {
+		} else {
 			//in future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe. 
 			//would then need to send a different http code so this could be handled on the front end as well
 			http_response_code(500);
@@ -119,9 +112,10 @@ class SwaControllerTicketPurchase extends SwaController
 		// $this->setRedirect(JRoute::_('index.php?option=com_swa&view=membertickets')); 
 	}
 
-	private function payWithStripe($user, $member, $ticket, $totalCost, $details) {
+	private function payWithStripe($user, $member, $ticket, $totalCost, $details)
+	{
 		$details = json_encode($details, JSON_UNESCAPED_SLASHES);
-		
+
 		try {
 			$paymentIntent = \Stripe\PaymentIntent::create([
 				'description'          => $ticket->event_name . ' - ' . $ticket->ticket_name,
@@ -139,7 +133,7 @@ class SwaControllerTicketPurchase extends SwaController
 				)
 			]);
 			$output = [
-			  'clientSecret' => $paymentIntent->client_secret,
+				'clientSecret' => $paymentIntent->client_secret,
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 		} catch (Error $e) {
@@ -163,8 +157,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$db->setQuery($query);
 		$count = $db->loadResult();
 
-		if ($count === null)
-		{
+		if ($count === null) {
 			JLog::add("Unable to check if member already has ticket.", JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
 			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
@@ -173,8 +166,7 @@ class SwaControllerTicketPurchase extends SwaController
 			die();
 		}
 
-		if ($count >= 1)
-		{
+		if ($count >= 1) {
 			JLog::add("Member {$memberId} already has a ticket to this event.", JLog::ERROR, 'com_swa.payment_process');
 			echo json_encode(['error' => "You have already bought a ticket to this event."]);
 			http_response_code(500);
@@ -206,17 +198,16 @@ class SwaControllerTicketPurchase extends SwaController
 		$query->columns($db->quoteName(array('member_id', 'event_ticket_id', 'paid', 'details')));
 		$query->values(
 			"{$db->quote($memberId)}, " .
-			"{$db->quote($eventTicketId)}, " .
-			// Stripe amount is in pence
-			"{$db->quote($totalCost/100)}, " .
-			"{$db->quote($details)}"
+				"{$db->quote($eventTicketId)}, " .
+				// Stripe amount is in pence
+				"{$db->quote($totalCost / 100)}, " .
+				"{$db->quote($details)}"
 		);
 
 		$db->setQuery($query);
 		$result = $db->execute();
 
-		if ($result === false)
-		{
+		if ($result === false) {
 			JLog::add(
 				"Ticket paid for but failed to add ticket db. Member ID: {$memberId}. 
 				Event Ticket ID: {$eventTicketId}. Details: {$details}",
@@ -231,5 +222,4 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
 	}
-
 }
