@@ -20,9 +20,10 @@ class SwaControllerTicketPurchase extends SwaController
 	{
 		$app = JFactory::getApplication();
 		$jinput = $this->input->json;
-		$selectedAddons = $jinput->get('addons', array(), 'array'); // will return your array with keys
-		$ticketId = $jinput->get('ticketId', "", 'string'); // will return your array with keys
-		$estimatedPrice = $jinput->get('estimatedPrice', 0, 'float'); // will return your array with keys
+		// Get values from fetch body
+		$selectedAddons = $jinput->get('addons', array(), 'array');
+		$ticketId = $jinput->get('ticketId', "", 'string');
+		$estimatedPrice = $jinput->get('estimatedPrice', 0, 'float');
 
 		// Initialise useful variables
 		$model   = $this->getModel('ticketpurchase');
@@ -74,7 +75,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$totalCost = $ticket->price;
 
 		foreach ($ticketAddons as $key => $ticketAddon) {
-			if (array_key_exists($key, $selectedAddons)) // key is the id
+			if (array_key_exists($key, $selectedAddons)) // Key is the id
 			{
 				$addon = $selectedAddons[$key];
 				$addonId = $addon["id"];
@@ -84,7 +85,7 @@ class SwaControllerTicketPurchase extends SwaController
 				$addonPrice = $ticketAddon->price;
 				$addonName = $ticketAddon->name;
 
-				//check for errors in addon details
+				// Check for errors in addon details
 				if (!($addon["name"] == $ticketAddon->name) || !($addon["price"] == $ticketAddon->price)) {
 					http_response_code(500);
 					echo json_encode(['error' => "There was a problem matching the selected addons to ticket addons. Please contact webmaster@swa.co.uk if this continues to happen."]);
@@ -98,9 +99,9 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if ($totalCost > 0) {
 			$this->payWithStripe($user, $member, $ticket, $totalCost, $details);
-		} else {
-			//in future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe. 
-			//would then need to send a different http code so this could be handled on the front end as well
+		}else {
+			// In future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe.
+			// Would then need to send a different http code so this could be handled on the front end as well
 			http_response_code(500);
 			echo json_encode(['error' => "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message."]);
 			die();
@@ -182,7 +183,8 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if (!($paymentIntent->status == 'succeeded')) {
 			http_response_code(500);
-			echo json_encode(['error' => "Payment failed. You should not have been charged. Please contact webmaster@swa.co.uk for assistance and to confirm no payment has been taken. Do not try again."]);
+			echo json_encode(['error' => "Payment failed. You should not have been charged. Please contact webmaster@swa.co.uk
+			 for assistance and to confirm no payment has been taken. Do not try again."]);
 			die();
 		};
 
