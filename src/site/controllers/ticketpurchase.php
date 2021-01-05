@@ -74,35 +74,35 @@ class SwaControllerTicketPurchase extends SwaController
 		$ticketAddons   = $ticket->details->addons;
 		$totalCost = $ticket->price;
 
-		foreach ($ticketAddons as $key => $ticketAddon) {
-			if (array_key_exists($key, $selectedAddons)) // Key is the id
+		foreach ($ticketAddons as $addonId => $ticketAddon) {
+			if (array_key_exists($addonId, $selectedAddons))
 			{
-				if (empty($selectedAddons[$key])) {
+				if (empty($selectedAddons[$addonId])) {
 					// array empty or does not exist
 					continue;
 				}
-				$addon = $selectedAddons[$key];
-				$addonId = $addon["id"];
+				$addon = $selectedAddons[$addonId];
 				$addonQty = $addon["qty"];
 				$addonOption = $addon["option"];
-				// $addonPrice = $addon->qty; don't use value from client side as could be altered
+				// Make sure to use the price from the server side as the client side could be altered
 				$addonPrice = $ticketAddon->price;
 				$addonName = $ticketAddon->name;
 
 				// Check for errors in addon details
-				if (!($addon["name"] == $ticketAddon->name) || !($addon["price"] == $ticketAddon->price) || !($key == $addonId)) {
+				if ($addon["id"] != $addonId || $addon["name"] != $ticketAddon->name || $addon["price"] != $ticketAddon->price) {
 					http_response_code(500);
 					echo json_encode(['error' => "There was a problem matching the selected addons to ticket addons. Please contact webmaster@swa.co.uk if this continues to happen."]);
 					die();
 				}
 				$totalCost += $addonPrice * $addonQty;
 				// Create addon details which will be converted to json and stored in the database
-				$details->addons[$addon['name']] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);
+				$details->addons[$addonName] = array("id" => $addonId, "name" => $addonName, "qty" => $addonQty, "option" => $addonOption, "price" => $addonPrice);
 			}
 		}
 
+		$totalCost = round($totalCost, 2);
 		// Check the calculated price on the front end matches that on the backend, so customers don't pay an unexpected amount
-		if (!(abs($totalCost - $estimatedPrice) < 0.000001)) {
+		if ($totalCost != round($estimatedPrice, 2)) {
 			http_response_code(500);
 			echo json_encode(['error' => "Cost displayed did not match cost calculated from raw ticket. Please contact webmaster@swa.co.uk if this continues to happen"]);
 			die();
@@ -127,7 +127,6 @@ class SwaControllerTicketPurchase extends SwaController
 	private function payWithStripe($user, $member, $ticket, $totalCost, $details)
 	{
 		$details = json_encode($details, JSON_UNESCAPED_SLASHES);
-
 		try {
 			$paymentIntent = \Stripe\PaymentIntent::create([
 				'description'          => $ticket->event_name . ' - ' . $ticket->ticket_name,
@@ -140,7 +139,8 @@ class SwaControllerTicketPurchase extends SwaController
 					'event_ticket_id' => $ticket->id,
 					'member_id'       => $member->id,
 					'user_id'         => $member->user_id,
-					'user_name'       => $user->name,
+					'name'            => $user->name,
+					'username'        => $user->username,
 					'details'         => $details
 				)
 			]);
@@ -189,7 +189,7 @@ class SwaControllerTicketPurchase extends SwaController
 	public function addTicketToDb()
 	{
 		$jinput = $this->input->json;
-		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string'); // will return the paymentIntentId
+		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
 		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
 
 		if (!($paymentIntent->status == 'succeeded')) {

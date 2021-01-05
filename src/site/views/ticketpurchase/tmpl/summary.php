@@ -50,10 +50,9 @@ if ($ticket == null) {
 				$ErrorMsg = ""
 			}
 			document.querySelector("#card-error").textContent = $ErrorMsg;
-			document.querySelector("#card-error").color = '#fa755a';
 		}
 
-		// define function to calculate the total ticket price
+		// define function to calculate the total ticket price and display it
 		$updateTicketPrice = function() {
 			$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
 			$addonsArray = $generateAddonsArray()
@@ -68,9 +67,8 @@ if ($ticket == null) {
 			});
 
 			$totalPrice = $ticketPrice + $totalAddonsPrice;
-			$totalPrice = $totalPrice.toFixed(2);
 			// stripe amount is in pence
-			$totalDiv.innerHTML = "Total: " + $totalPrice + " GBP";
+			$totalDiv.innerHTML = "Total: " + $totalPrice.toFixed(2) + " GBP";
 		};
 
 		// define function to determine if addon seletion is valid
@@ -152,7 +150,6 @@ if ($ticket == null) {
 			$optionSelectors.change(function(event) {
 				$determineValidAddon(event);
 				setStripeButtonStatus();
-				console.log($generateAddonsArray());
 			});
 		}
 
@@ -309,10 +306,6 @@ if ($ticket == null) {
 					// The payment succeeded!
 					processOrder(result.paymentIntent.id);
 				}
-			})
-			.catch(function(error) {
-				// Handle the error
-				console.error("Error here");
 			});
 	};
 	/* ------- UI helpers ------- */
