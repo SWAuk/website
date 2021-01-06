@@ -7,112 +7,72 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerMemberPayment extends SwaController
 {
 
-	public function submit()
+	public function createPaymentIntent()
 	{
-		// Get the POST data
-		$token = $this->input->getString('stripeToken');
-
 		$user = JFactory::getUser();
 		/** @var SwaModelMemberPayment $model */
 		$model  = $this->getModel('MemberPayment');
 		$member = $model->getMember();
 
 		// Check successfully got the user and all the info we need to process the transaction
-		if (!$user || !isset($user->id) || !isset($user->name) || !isset($user->email))
-		{
+		if (!$user || !isset($user->id) || !isset($user->name) || !isset($user->email)) {
 			$message = "Unable to retrieve user. " . var_export($user, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			die("Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.");
+			http_response_code(500);
+			echo json_encode(['error' => "Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues."]);
+			die();
 		}
 
-		try
-		{
-			$charge = \Stripe\Charge::create(
+		// Check successfully got the user and all the info we need to process the transaction
+		if ($member->paid) {
+			http_response_code(500);
+			echo json_encode(['error' => "You have alreaedy paid for membership. You have not been charged again. Please contact webmaster@swa.co.uk if there is a problem"]);
+			die();
+		}
+
+		try {
+			$paymentIntent = \Stripe\PaymentIntent::create(
 				array(
 					'description'          => "SWA Membership for {$user->name}",
 					'amount'               => 500,
 					'currency'             => 'GBP',
 					'receipt_email'        => $user->email,
 					'statement_descriptor' => "SWA Membership",
-					'source'               => $token,
 					'metadata'             => array(
 						'user_id'   => $user->id,
 						'user_name' => $user->name
 					)
 				)
 			);
-		}
-		catch (\Stripe\Error\Card $e)
-		{
-			// Card declined
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			die("Your card was declined. Please contact webmaster@swa.co.uk if this continues to happen.");
-		}
-		catch (\Stripe\Error\RateLimit $e)
-		{
-			// Too many requests made to the API too quickly
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "The website is in high demand and we were unable to process your payment at this time";
-			$error_msg .= " - try again later. \r\nPlease contact webmaster@swa.co.uk if this continues to happen.";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\InvalidRequest $e)
-		{
-			// Invalid parameters were supplied to Stripe's API
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! We sent the wrong data to our payment provider.\r\n";
-			$error_msg .= "Please contact webmaster@swa.co.uk to tell them they screwed up.";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\Authentication $e)
-		{
-			// Authentication with Stripe's API failed (maybe you changed API keys recently)
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! We were unable to authenticate with our payment provider. ";
-			$error_msg .= "Please contact webmaster@swa.co.uk and tell them they screwed up.\r\n";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\ApiConnection $e)
-		{
-			// Network communication with Stripe failed
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was a network communication error - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\Base $e)
-		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-		catch (Exception $e)
-		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
+			$output = [
+				'clientSecret' => $paymentIntent->client_secret,
+			];
+			echo json_encode($output);
+		} catch (Error $e) {
+			http_response_code(500);
+			echo json_encode(['error' => $e->getMessage()]);
+			die();
 		}
 
-		// Do some sense checking to make sure the payment didn't fail - probably not needed
-		if ($charge->failure_code != null && $charge->failure_message != null
-			&& $charge->paid != true && $charge->captured != true)
-		{
-			JLog::add("Stripe charge didn't return successful.", JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-
-		// Set member paid
-		$this->setMemberPaid($member->id);
-
-		$this->setRedirect(JRoute::_('index.php'));
+		jexit();
 	}
 
-	private function setMemberPaid($member_id)
+	public function setMemberPaid()
 	{
+		$jinput = $this->input->json;
+		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
+		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+		$model  = $this->getModel('MemberPayment');
+		$member = $model->getMember();
+		$member_id = $member->id;
+
+		if (!($paymentIntent->status == 'succeeded')) {
+			http_response_code(500);
+			echo json_encode(['error' => "Payment failed. You should not have been charged. Please contact webmaster@swa.co.uk
+			 for assistance and to confirm no payment has been taken. Do not try again."]);
+			die();
+		};
+
 		// Update the membership status for the member!
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -137,16 +97,18 @@ class SwaControllerMemberPayment extends SwaController
 		$db->setQuery($query);
 		$result = $db->execute();
 
-		if ($result === false)
-		{
+		if ($result === false) {
 			JLog::add(
 				"MemberPayment authorized but failed to update db. member_id: {$member_id}",
-				JLog::ERROR, 'com_swa.payment_process'
+				JLog::ERROR,
+				'com_swa.payment_process'
 			);
-			die('Failed to record payment. Please contact webmaster@swa.co.uk ASAP to resolve this.');
+			http_response_code(500);
+			echo json_encode(['error' => 'Failed to record payment. Please contact webmaster@swa.co.uk ASAP to resolve this.']);
+			die();
 		}
 
+		echo json_encode(['message' => 'Success!']);
 		$this->logAuditFrontend("Member({$member_id}) bought their membership for Season({$seasonName})");
 	}
-
 }
