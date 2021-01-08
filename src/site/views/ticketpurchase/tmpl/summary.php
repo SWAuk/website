@@ -325,14 +325,26 @@ if ($ticket == null) {
 			})
 			.then(function(result) {
 				if (result.ok) {
-					window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
+					return result.json().then(function(response) {
+						console.log(response)
+						if (response.messages) {
+							Joomla.renderMessages(response.messages);
+						}
+						if (response.success) {
+							window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
+						} else {
+							showError(response.message);
+							console.error(response.message);
+							document.querySelector(".result-message").classList.add("hidden");
+							document.querySelector("#stripe-button").disabled = true;
+						}
+					})
 				} else {
 					return result.text().then(text => {
-						throw new Error(text)
+						Joomla.renderMessages({"error": [text]});
 					})
 				}
-			})
-
+			});
 	};
 	// Show the customer the error from Stripe if their card fails to charge
 	var showError = function(errorMsgText) {
