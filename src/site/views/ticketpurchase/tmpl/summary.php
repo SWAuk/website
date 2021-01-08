@@ -1,5 +1,6 @@
 <?php
-
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+\JHtml::_('behavior.framework', true);
 defined('_JEXEC') or die;
 
 // Load admin language file
@@ -172,6 +173,7 @@ if ($ticket == null) {
 
 
 	<div class="table-responsive favth-table-responsive">
+		<jdoc:include type="message" />
 		<table class="table favth-table">
 			<tr>
 				<th class="col-sm-2 favth-col-sm-2">Qty</th>
@@ -191,8 +193,7 @@ if ($ticket == null) {
 			?>
 					<tr>
 						<td>
-							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>"
-							class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -205,8 +206,7 @@ if ($ticket == null) {
 							?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>"
-									class="swa-option-selector" data-price="<?php echo $option->price ?>">
+									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>" class="swa-option-selector" data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
 										<?php foreach ($option->values as $value) {
 										?>
@@ -357,12 +357,9 @@ if ($ticket == null) {
 		}
 	};
 
+	// Complete payment when the submit button is clicked
 	form.addEventListener("submit", function(event) {
 		event.preventDefault();
-
-		// Calls stripe.confirmCardPayment
-		// If the card requires authentication Stripe shows a pop-up modal to
-		// prompt the user to enter authentication details without leaving your page.
 
 		var addons = $generateAddonsArray();
 
@@ -379,23 +376,37 @@ if ($ticket == null) {
 			})
 			.then(function(result) {
 				if (result.ok) {
-					return result.json();
+					return result.json().then(function(response) {
+						console.log(response)
+						if (response.messages) {
+							Joomla.renderMessages(response.messages);
+						}
+						if (response.success) {
+							payWithCard(stripe, card, response.data.clientSecret);
+						} else {
+							showError(response.message);
+							console.error(response.message);
+						}
+					})
 				} else {
 					return result.text().then(text => {
-						throw new Error(text)
+						Joomla.renderMessages({"error": [text]});
 					})
 				}
-			})
-			.then(function(response) {
-				// Complete payment when the submit button is clicked
-				payWithCard(stripe, card, response.data.clientSecret);
-			})
-			.catch(function(error) {
-				// Handle the error
-				error_text = error.message
-				error_json = JSON.parse(error_text)
-				showError(error_json.error);
-				console.error(error_json.error);
 			});
+		// .then(function(result) {
+		// 	if (result.success) {
+		// 		payWithCard(stripe, card, result.data.clientSecret);
+		// 	} else {
+
+		// 	}
+		// });
+		// .catch(function(error) {
+		// 	// Handle the error
+		// 	error_text = error.message
+		// 	error_json = JSON.parse(error_text)
+		// 	showError(error_json.error);
+		// 	console.error(error_json.error);
+		// });
 	});
 </script>

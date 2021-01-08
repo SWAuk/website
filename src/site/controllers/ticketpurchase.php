@@ -35,9 +35,9 @@ class SwaControllerTicketPurchase extends SwaController
 		if (!$member || !isset($member->id) || !ctype_digit($member->id)) {
 			$message = "Unable to identify member. " . var_export($member, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			http_response_code(500);
-			echo json_encode(['error' => "Unable to identify member. Please contact webmaster@swa.co.uk if this problem continues."]);
-			die();
+			$error_msg = "Unable to identify member. Please contact webmaster@swa.co.uk if this problem continues.";
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 
 		// Get the ticket the user wants to buy by matching the form data with the tickets available
@@ -57,10 +57,8 @@ class SwaControllerTicketPurchase extends SwaController
 				JLog::INFO,
 				'com_swa.payment_process'
 			);
-
 			$this->setMessage('Payment failed because the session expired - please try again.', 'error');
 			$this->setRedirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
-
 			return;
 		}
 
@@ -90,9 +88,11 @@ class SwaControllerTicketPurchase extends SwaController
 
 				// Check for errors in addon details
 				if ($addon["id"] != $addonId || $addon["name"] != $ticketAddon->name || $addon["price"] != $ticketAddon->price) {
-					http_response_code(500);
-					echo json_encode(['error' => "There was a problem matching the selected addons to ticket addons. Please contact webmaster@swa.co.uk if this continues to happen."]);
-					die();
+					$message = "Unable to match the selected addons to ticket addons " . var_export($addon) . var_export($ticketAddon);
+					JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+					$error_msg = "There was a problem matching the selected addons to ticket addons. \nPlease contact webmaster@swa.co.uk if this continues to happen.";
+					echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+					jexit();
 				}
 				$totalCost += $addonPrice * $addonQty;
 				// Create addon details which will be converted to json and stored in the database
@@ -103,9 +103,11 @@ class SwaControllerTicketPurchase extends SwaController
 		$totalCost = round($totalCost, 2);
 		// Check the calculated price on the front end matches that on the backend, so customers don't pay an unexpected amount
 		if ($totalCost != round($estimatedPrice, 2)) {
-			http_response_code(500);
-			echo json_encode(['error' => "Cost displayed did not match cost calculated from raw ticket. Please contact webmaster@swa.co.uk if this continues to happen"]);
-			die();
+			$message = "Cost displayed did not match cost calculated from raw ticket " . var_export($totalCost) . var_export($estimatedPrice);
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Cost displayed did not match cost calculated from raw ticket. \nPlease contact webmaster@swa.co.uk if this continues to happen";
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 
 		if ($totalCost > 0) {
@@ -113,9 +115,11 @@ class SwaControllerTicketPurchase extends SwaController
 		}else {
 			// In future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe.
 			// Would then need to send a different http code so this could be handled on the front end as well
-			http_response_code(500);
-			echo json_encode(['error' => "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message."]);
-			die();
+			$message = "Attempted to buy 0 GBP ticket" . var_export($ticket);
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message.";
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 
 		$app->close();
@@ -149,15 +153,18 @@ class SwaControllerTicketPurchase extends SwaController
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 		} catch (Error $e) {
-			http_response_code(500);
-			echo json_encode(['error' => $e->getMessage()]);
-			die();
+			$message = "Member {$memberId} tried to buy a ticket but the paymentIntent was not created successfully: {$e->getMessage()}";
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
+			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 	}
 
-	// TODO: Do we need this? Yes
 	private function checkUniqueTicket($memberId, $eventTicketId)
 	{
+		$app = JFactory::getApplication();
 		// Make sure the member does not have this event ticket already
 		// This is a dumb check and can be removed once we actually store transaction IDS and things
 		$db    = JFactory::getDbo();
@@ -173,30 +180,35 @@ class SwaControllerTicketPurchase extends SwaController
 			JLog::add("Unable to check if member already has ticket.", JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
 			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
-			http_response_code(500);
-			echo json_encode(['error' => "$error_msg"]);
-			die();
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 
 		if ($count >= 1) {
 			JLog::add("Member {$memberId} already has a ticket to this event.", JLog::ERROR, 'com_swa.payment_process');
-			echo json_encode(['error' => "You have already bought a ticket to this event."]);
-			http_response_code(500);
-			die();
+			$error_msg = "You have already bought a ticket to this event! View it in Account>My Tickets";
+			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			jexit();
 		}
 	}
 
 	public function addTicketToDb()
 	{
+		$app = JFactory::getApplication();
 		$jinput = $this->input->json;
 		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
 		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
 
-		if (!($paymentIntent->status == 'succeeded')) {
-			http_response_code(500);
-			echo json_encode(['error' => "Payment failed. You should not have been charged. Please contact webmaster@swa.co.uk
-			 for assistance and to confirm no payment has been taken. Do not try again."]);
-			die();
+		if ($paymentIntent->status != 'succeeded') {
+			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from 
+			completing payment. You should check this payment and the database to make sure the user was not charged
+			 and a ticket was not bought: " . var_export($paymentIntent);
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Payment failed. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
+			for assistance and to confirm no payment has been taken. Do not try again.";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
 		};
 
 		$memberId = $paymentIntent->metadata->member_id;
@@ -229,9 +241,9 @@ class SwaControllerTicketPurchase extends SwaController
 			);
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
-			http_response_code(500);
-			echo json_encode(['error' => "$error_msg"]);
-			die();
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
 		}
 		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
 	}
