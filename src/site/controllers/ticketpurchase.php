@@ -166,6 +166,7 @@ class SwaControllerTicketPurchase extends SwaController
 	{
 		// Make sure the member does not have this event ticket already
 		// This is a dumb check and can be removed once we actually store transaction IDS and things
+		$app = JFactory::getApplication();
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
 		$query->select('COUNT(*)');
@@ -185,8 +186,10 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if ($count >= 1) {
 			JLog::add("Member {$memberId} already has a ticket to this event.", JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "You have already bought a ticket to this event! View it in Account>My Tickets";
-			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
+			$error_msg = "You have already bought a ticket to this event! View it in Account>My Tickets. \r\n
+			Contact webmaster@swa.co.uk if there is a problem.";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
 		}
 	}
@@ -203,7 +206,7 @@ class SwaControllerTicketPurchase extends SwaController
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			 and a ticket was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Payment failed. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
+			$error_msg = "Unknown error. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
 			for assistance and to confirm no payment has been taken. Do not try again.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
@@ -246,5 +249,7 @@ class SwaControllerTicketPurchase extends SwaController
 			jexit();
 		}
 		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
+		echo new \Joomla\CMS\Response\JsonResponse(null);
+		jexit();
 	}
 }

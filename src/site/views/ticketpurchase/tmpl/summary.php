@@ -1,7 +1,9 @@
 <?php
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-\JHtml::_('behavior.framework', true);
+
 defined('_JEXEC') or die;
+
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.framework', true);
 
 // Load admin language file
 $lang = JFactory::getLanguage();
@@ -30,6 +32,8 @@ if ($ticket == null) {
 ?>
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
+	var stripButtonPermanentDisable = false;
+
 	jQuery(document).ready(function() {
 		$validAddon = true;
 		$cardDetailsComplete = false;
@@ -39,12 +43,13 @@ if ($ticket == null) {
 
 		// define function to enable/disable stripe button
 		setStripeButtonStatus = function() {
-			if (!$validAddon) {
+			if (stripButtonPermanentDisable) {
+				document.querySelector("#stripe-button").disabled = true;
+			} else if (!$validAddon) {
 				document.querySelector("#stripe-button").disabled = true;
 				$ErrorMsg = "Invalid addon selection";
 			} else if (!$cardDetailsComplete) {
 				document.querySelector("#stripe-button").disabled = true;
-				// document.querySelector("#stripe-button").disabled = event.empty;
 				$ErrorMsg = $stripeCardErrorMsg;
 			} else {
 				document.querySelector("#stripe-button").disabled = false;
@@ -336,12 +341,18 @@ if ($ticket == null) {
 							showError(response.message);
 							console.error(response.message);
 							document.querySelector(".result-message").classList.add("hidden");
+							stripButtonPermanentDisable = true;
 							document.querySelector("#stripe-button").disabled = true;
 						}
 					})
 				} else {
 					return result.text().then(text => {
+						stripButtonPermanentDisable = true;
+						document.querySelector("#stripe-button").disabled = true;
 						Joomla.renderMessages({"error": [text]});
+						msg = "Oops! You may have lost connection. \n\r Please check Account>My Tickets to see if the order went through. \r\n"
+						msg += "If it did not go through and you have still been charged, please contact webmaster@swa.co.uk to resolve this"
+						Joomla.renderMessages({"error": [msg]});
 					})
 				}
 			});
@@ -406,19 +417,6 @@ if ($ticket == null) {
 					})
 				}
 			});
-		// .then(function(result) {
-		// 	if (result.success) {
-		// 		payWithCard(stripe, card, result.data.clientSecret);
-		// 	} else {
 
-		// 	}
-		// });
-		// .catch(function(error) {
-		// 	// Handle the error
-		// 	error_text = error.message
-		// 	error_json = JSON.parse(error_text)
-		// 	showError(error_json.error);
-		// 	console.error(error_json.error);
-		// });
 	});
 </script>

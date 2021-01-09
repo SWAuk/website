@@ -2,6 +2,8 @@
 
 defined('_JEXEC') or die;
 
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.framework', true);
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.tooltip');
 JHtml::_('behavior.formvalidation');
@@ -40,56 +42,71 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 <script type="text/javascript">
 	// A reference to Stripe.js initialized with your real test publishable API key.
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
+	var stripButtonPermanentDisable = false;
 
 	// Disable the button until we have Stripe set up on the page
 	document.querySelector("#stripe-button").disabled = true;
 
+	var elements = stripe.elements();
+	var style = {
+		base: {
+			color: "#32325d",
+			fontFamily: 'Arial, sans-serif',
+			fontSmoothing: "antialiased",
+			fontSize: "16px",
+			"::placeholder": {
+				color: "#32325d"
+			}
+		},
+		invalid: {
+			fontFamily: 'Arial, sans-serif',
+			color: "#fa755a",
+			iconColor: "#fa755a"
+		}
+	};
+	var card = elements.create("card", {
+		style: style
+	});
+	// Stripe injects an iframe into the DOM
+	card.mount("#card-element");
+	card.on("change", function(event) {
+		// Disable the Pay button if there are no card details in the Element
+		document.querySelector("#stripe-button").disabled = event.empty || stripButtonPermanentDisable;
+		document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+	});
+
 	fetch("<?php echo JRoute::_('index.php??option=com_swa&task=memberpayment.createPaymentIntent') ?>")
 		.then(function(result) {
-			return result.json();
-		})
-		.then(function(data) {
-			var elements = stripe.elements();
-			var style = {
-				base: {
-					color: "#32325d",
-					fontFamily: 'Arial, sans-serif',
-					fontSmoothing: "antialiased",
-					fontSize: "16px",
-					"::placeholder": {
-						color: "#32325d"
+			if (result.ok) {
+				return result.json().then(function(response) {
+					console.log(response)
+					if (response.messages) {
+						Joomla.renderMessages(response.messages);
 					}
-				},
-				invalid: {
-					fontFamily: 'Arial, sans-serif',
-					color: "#fa755a",
-					iconColor: "#fa755a"
-				}
-			};
-			var card = elements.create("card", {
-				style: style
-			});
-			// Stripe injects an iframe into the DOM
-			card.mount("#card-element");
-			card.on("change", function(event) {
-				// Disable the Pay button if there are no card details in the Element
-				document.querySelector("#stripe-button").disabled = event.empty;
-				document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
-			});
-			var form = document.getElementById("payment-form");
-			form.addEventListener("submit", function(event) {
-				event.preventDefault();
-				// Complete payment when the submit button is clicked
-				payWithCard(stripe, card, data.clientSecret);
-			});
-		})
-		.catch(function(error) {
-			// Handle the error
-			error_text = error.message
-			error_json = JSON.parse(error_text)
-			showError(error_json.error);
-			console.error(error_json.error);
+					if (response.success) {
+						var form = document.getElementById("payment-form");
+						form.addEventListener("submit", function(event) {
+							event.preventDefault();
+							// Complete payment when the submit button is clicked
+							payWithCard(stripe, card, response.data.clientSecret);
+						});
+					} else {
+						showError(response.message);
+						console.error(response.message);
+						stripButtonPermanentDisable = true;
+						document.querySelector("#stripe-button").disabled = true;
+					}
+				})
+			} else {
+				stripButtonPermanentDisable = true
+				document.querySelector("#stripe-button").disabled = true;
+				return result.text().then(text => {
+					Joomla.renderMessages({"error": [text]
+					});
+				})
+			}
 		});
+
 	// Calls stripe.confirmCardPayment
 	// If the card requires authentication Stripe shows a pop-up modal to
 	// prompt the user to enter authentication details without leaving your page.
@@ -128,13 +145,32 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 			})
 			.then(function(result) {
 				if (result.ok) {
-					window.location.href = "<?php echo JRoute::_('index.php?option=com_swa') ?>";
+					return result.json().then(function(response) {
+						console.log(response)
+						if (response.messages) {
+							Joomla.renderMessages(response.messages);
+						}
+						if (response.success) {
+							window.location.href = "<?php echo JRoute::_('index.php?option=com_swa') ?>";
+						} else {
+							showError(response.message);
+							console.error(response.message);
+							document.querySelector(".result-message").classList.add("hidden");
+							stripButtonPermanentDisable = true;
+							document.querySelector("#stripe-button").disabled = true;
+						}
+					})
 				} else {
 					return result.text().then(text => {
-						throw new Error(text)
+						stripButtonPermanentDisable = false;
+						document.querySelector("#stripe-button").disabled = true;
+						Joomla.renderMessages({"error": [text]});
+						msg = "Order Failed. You may have lost connection. \n\r Please contact webmaster@swa.co.uk "
+						msg += "if your bank shows you have been charged for this transaction. Otherwise, please try again."
+						Joomla.renderMessages({"error": [msg]});
 					})
 				}
-			})
+			});
 	};
 	// Show the customer the error from Stripe if their card fails to charge
 	var showError = function(errorMsgText) {
