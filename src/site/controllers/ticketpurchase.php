@@ -76,7 +76,7 @@ class SwaControllerTicketPurchase extends SwaController
 			if (array_key_exists($addonId, $selectedAddons))
 			{
 				if (empty($selectedAddons[$addonId])) {
-					// array empty or does not exist
+					// Array empty or does not exist
 					continue;
 				}
 				$addon = $selectedAddons[$addonId];
@@ -112,7 +112,8 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if ($totalCost > 0) {
 			$this->payWithStripe($user, $member, $ticket, $totalCost, $details);
-		}else {
+		}
+		else {
 			// In future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe.
 			// Would then need to send a different http code so this could be handled on the front end as well
 			$message = "Attempted to buy 0 GBP ticket";
@@ -125,7 +126,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$app->close();
 
 		// $this->setMessage('Ticket purchased!', 'success');
-		// $this->setRedirect(JRoute::_('index.php?option=com_swa&view=membertickets')); 
+		// $this->setRedirect(JRoute::_('index.php?option=com_swa&view=membertickets'));
 	}
 
 	private function payWithStripe($user, $member, $ticket, $totalCost, $details)
@@ -152,7 +153,8 @@ class SwaControllerTicketPurchase extends SwaController
 				'clientSecret' => $paymentIntent->client_secret,
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
-		} catch (Error $e) {
+		}
+		catch (Error $e) {
 			$message = "Member tried to buy a ticket but the paymentIntent was not created successfully: {$e->getMessage()}";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";

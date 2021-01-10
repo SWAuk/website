@@ -53,7 +53,8 @@ class SwaControllerMemberPayment extends SwaController
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 			jexit();
-		} catch (Error $e) {
+		}
+		catch (Error $e) {
 			$message = "User tried to buy membership but the paymentIntent was not created successfully: {$e->getMessage()}";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error setting up the payment - please refresh the page to try again.\r\n";

@@ -28,7 +28,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 <?php
 if (empty($this->items)) {
 	echo "<p><b>There are currently no tickets that you can buy!</b></p>";
-}else {
+}
+else {
 ?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>
 	<p>If you can not see any tickets here then maybe there are no events? Make sure you president has registered you
@@ -57,7 +58,8 @@ if (empty($this->items)) {
 
 				if (isset($item->details) && isset($item->details->addons) && !empty($item->details->addons)) {
 					echo "<td>From: £" . $item->price . "*</td>\n";
-				}else {
+				}
+				else {
 					echo "<td>£" . $item->price . "</td>\n";
 				}
 
@@ -66,7 +68,8 @@ if (empty($this->items)) {
 
 				if ($item->reason) {
 					echo $item->reason;
-				}else {
+				}
+				else {
 			?>
 					<form action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase') ?>" method="POST">
 						<input type="hidden" name="option" value="com_swa" />
