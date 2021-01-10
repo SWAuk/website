@@ -13,7 +13,7 @@ use Facebook\WebDriver\Exception\NoSuchElementException;
  */
 abstract class SWABrowserTestCase extends TestCase
 {
-	use LoginTrait;
+	use UserTrait;
 
 	private const HOST_DOCKER_INTERNAL = 'host.docker.internal';
 

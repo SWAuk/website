@@ -30,11 +30,11 @@ class JConfig {
 	public $ftp_root = '';
 	public $ftp_enable = '0';
 	public $offset = 'UTC';
-	public $mailonline = '1';
+	public $mailonline = '0';
 	public $mailer = 'mail';
 	public $mailfrom = 'info@swa.co.uk';
 	public $fromname = 'SWA Dev Site';
-	public $sendmail = '/usr/sbin/sendmail';
+	public $sendmail = '0';
 	public $smtpauth = '0';
 	public $smtpuser = '';
 	public $smtppass = '';
