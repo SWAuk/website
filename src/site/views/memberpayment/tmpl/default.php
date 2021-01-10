@@ -1,3 +1,10 @@
+<!-- 
+This payment process is based off the 'Custom Payment Flow' at the following stipe site. 
+https://stripe.com/docs/payments/accept-a-payment?integration=elements
+
+A tutorial is available here (at the time of writing):
+https://stripe.com/docs/payments/integration-builder
+-->
 <?php
 
 defined('_JEXEC') or die;
