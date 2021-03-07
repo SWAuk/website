@@ -51,6 +51,7 @@ class SwaControllerMemberDetails extends SwaController
 		$query
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
+			->set('sex = ' . $db->quote($newSex))
 			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
