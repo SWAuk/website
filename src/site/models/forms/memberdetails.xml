@@ -31,7 +31,7 @@
 
         <field name="ethnicity"
                type="list"
-               label="ethnicity"
+               label="Ethnicity"
                default="none"
                required="false"
                description="Select from the list the ethnicity that best describes your own, please note this is optional!">
