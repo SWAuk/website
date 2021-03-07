@@ -1821,6 +1821,7 @@ CREATE TABLE `swana_swa_member` (
   `user_id` int(11) NOT NULL,
   `lifetime_member` tinyint(1) NOT NULL DEFAULT '0',
   `sex` varchar(255) NOT NULL DEFAULT 'None',
+  `pronouns` varchar(15) NOT NULL,
   `ethnicity` varchar(70) NOT NULL,
   `dob` date NOT NULL DEFAULT '0000-00-00',
   `university_id` int(11) NOT NULL,
@@ -1841,14 +1842,14 @@ CREATE TABLE `swana_swa_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member`
-  (`id`, `user_id`, `lifetime_member`, `sex`,    `dob`,        `university_id`, `course`, `graduation`, `discipline`, `level`,        `shirt`, `econtact`, `enumber`, `dietary`, `tel`,         `swahelp`, `ethnicity`) VALUES
-  (1,    427,       1,                 'Male',   '1989-02-10', 1,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925656', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
-  (2,    426,       1,                 'Female', '1994-02-10', 2,               '',       0,            'None',       'Beginner',     'XS',    '-',        '-',       'NULL',    '07805925657', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
-  (3,    425,       1,                 'Male',   '1996-01-29', 2,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925659', 'Website', 'English / Welsh / Scottish / Northern Irish / British'),
-  (4,    424,       0,                 'Male',   '1999-02-10', 1,               '',       0,            'None',       'Beginner',     'M',     '-',        '-',       'NULL',    '07805936373', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
-  (5,    422,       0,                 'Male',   '1998-02-10', 1,               '',       0,            'None',       'Intermediate', 'M',     '123',      '1234',    'NULL',    '07805925689', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
-  (6,    423,       0,                 'Female', '1998-02-10', 1,               '',       0,            'None',       'Intermediate', 'M',     '876',      '97',      'NULL',    '07805925651', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
-  (7,    421,       1,                 'Male',   '1992-01-01', 1,               '',       0,            'None',       'Intermediate', 'M',     '-',        '-',       'NULL',    '07123456789', 'Website', 'Irish');
+  (`id`, `user_id`, `lifetime_member`, `sex`,    `pronouns`, `dob`,        `university_id`, `course`, `graduation`, `discipline`, `level`,        `shirt`, `econtact`, `enumber`, `dietary`, `tel`,         `swahelp`, `ethnicity`) VALUES
+  (1,    427,       1,                 'Male',   'he/him',   '1989-02-10',  1,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925656', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (2,    426,       1,                 'Female', 'she/they', '1994-02-10',  2,               '',       0,            'None',       'Beginner',     'XS',    '-',        '-',       'NULL',    '07805925657', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (3,    425,       1,                 'Male',   'he/her',   '1996-01-29',  2,               '',       0,            'None',       'Advanced',     'L',     '-',        '-',       'Vegan',   '07805925659', 'Website', 'English / Welsh / Scottish / Northern Irish / British'),
+  (4,    424,       0,                 'Male',   'he/them',  '1999-02-10',  1,               '',       0,            'None',       'Beginner',     'M',     '-',        '-',       'NULL',    '07805936373', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (5,    422,       0,                 'Male',   'she/her',  '1998-02-10',  1,               '',       0,            'None',       'Intermediate', 'M',     '123',      '1234',    'NULL',    '07805925689', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (6,    423,       0,                 'Female', 'she/he',   '1998-02-10',  1,               '',       0,            'None',       'Intermediate', 'M',     '876',      '97',      'NULL',    '07805925651', 'None',    'English / Welsh / Scottish / Northern Irish / British'),
+  (7,    421,       1,                 'Male',   'he/him',   '1992-01-01',  1,               '',       0,            'None',       'Intermediate', 'M',     '-',        '-',       'NULL',    '07123456789', 'Website', 'Irish');
 
 
 DROP TABLE IF EXISTS `swana_swa_membership`;
