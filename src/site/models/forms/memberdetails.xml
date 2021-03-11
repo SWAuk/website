@@ -25,7 +25,7 @@
               class="inputbox"
               label="Pronouns"
               filter="safehtml"
-              hint="she/her"
+              hint="e.g. she/her"
               description="Enter the pronouns which you would like to be refered as, please note this is optional!"/>
       
       <field name="ethnicity"
@@ -34,24 +34,24 @@
               default="none"
               description="Select from the list the ethnicity that best describes your own, please note this is optional!">
          <option value="">Please Select</option>
-         <option value="White">English / Welsh / Scottish / Northern Irish / British</option>
-         <option value="Irish">Irish</option>
-         <option value="Gypsy or Irish Traveller">Gypsy or Irish Traveller</option>
-         <option value="Any other White background">Any other White background</option>
-         <option value="White and Black Caribbean">White and Black Caribbean</option>
-         <option value="White and Black African">White and Black African</option>
-         <option value="White and Asian">White and Asian</option>
-         <option value="Any other Mixed / Multiple ethnic background">Any other Mixed / Multiple ethnic background</option>
-         <option value="Indian">Indian</option>
-         <option value="Pakistani">Pakistani</option>
-         <option value="Bangladeshi">Bangladeshi</option>
-         <option value="Chinese">Chinese</option>
-         <option value="Any other Asian background">Any other Asian background</option>
-         <option value="African">African</option>
-         <option value="Caribbean">Caribbean</option>
-         <option value="Any other Black / African / Caribbean background">Any other Black / African / Caribbean background</option>
-         <option value="Arab">Arab</option>
-         <option value="Any other ethnic group">Any other ethnic group</option>
+         <option value="White">White - English / Welsh / Scottish / Northern Irish / British</option>
+         <option value="Irish">White - Irish</option>
+         <option value="Gypsy or Irish Traveller">White - Gypsy or Irish Traveller</option>
+         <option value="Any other White background">White - Any other White background</option>
+         <option value="White and Black Caribbean">Mixed or Multiple ethnic groups - White and Black Caribbean</option>
+         <option value="White and Black African">Mixed or Multiple ethnic groups - White and Black African</option>
+         <option value="White and Asian">Mixed or Multiple ethnic groups - White and Asian</option>
+         <option value="Any other Mixed / Multiple ethnic background">Mixed or Multiple ethnic groups - Any other Mixed / Multiple ethnic background</option>
+         <option value="Indian">Asian or Asian British - Indian</option>
+         <option value="Pakistani">Asian or Asian British - Pakistani</option>
+         <option value="Bangladeshi">Asian or Asian British - Bangladeshi</option>
+         <option value="Chinese">Asian or Asian British - Chinese</option>
+         <option value="Any other Asian background">Asian or Asian British - Any other Asian background</option>
+         <option value="African">Black, African, Caribbean or Black British - African</option>
+         <option value="Caribbean">Black, African, Caribbean or Black British - Caribbean</option>
+         <option value="Any other Black / African / Caribbean background">Black, African, Caribbean or Black British - Any other Black / African / Caribbean background</option>
+         <option value="Arab">Other ethnic group - Arab</option>
+         <option value="Any other ethnic group">Other ethnic group - Any other ethnic group</option>
       </field>
       
       <field name="dob"
@@ -114,22 +114,6 @@
          <option value="Advanced">Advanced</option>
       </field>
       
-      <field name="shirt"
-              type="list"
-              label="Shirt size"
-              required="true">
-         <option value="XS">XS</option>
-         <option value="S">S</option>
-         <option value="M">M</option>
-         <option value="L">L</option>
-         <option value="XL">XL</option>
-         <option value="8">8</option>
-         <option value="10">10</option>
-         <option value="12">12</option>
-         <option value="14">14</option>
-         <option value="16">16</option>
-      </field>
-      
       <field name="econtact"
               type="text"
               size="40"
@@ -154,11 +138,14 @@
          <option value="None">None</option>
          <option value="Vegetarian">Vegetarian</option>
          <option value="Vegan">Vegan</option>
+         <option value="Gluten Free">Gluten Free</option>
+	 <option value="Halal">Halal</option>
+	 <option value="Kosher">Kosher</option>
       </field>
      
       <field name="swahelp"
               type="list"
-              label="SWA help?"
+              label="SWA Help?"
               default="None"
               required="true">
          <option value="None">No thanks</option>
