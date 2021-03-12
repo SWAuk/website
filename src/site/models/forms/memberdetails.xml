@@ -31,9 +31,9 @@
       <field name="ethnicity"
               type="list"
               label="Ethnicity"
-              default="none"
+              default="Default"
               description="Select from the list the ethnicity that best describes your own, please note this is optional!">
-         <option value="">Please Select</option>
+         <option value="Default">Please Select</option>
          <option value="White">White - English / Welsh / Scottish / Northern Irish / British</option>
          <option value="Irish">White - Irish</option>
          <option value="Gypsy or Irish Traveller">White - Gypsy or Irish Traveller</option>
