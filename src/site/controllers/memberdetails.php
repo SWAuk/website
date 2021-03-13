@@ -76,5 +76,5 @@ class SwaControllerMemberDetails extends SwaController
 		);
 
 	}
-  
+ 
 }
