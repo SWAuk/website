@@ -1826,6 +1826,7 @@ CREATE TABLE `swana_swa_member` (
   `user_id` int(11) NOT NULL,
   `lifetime_member` tinyint(1) NOT NULL DEFAULT 0,
   `sex` varchar(255) NOT NULL DEFAULT 'None',
+  `pronouns` varchar(15) NOT NULL,
   `ethnicity` varchar(70) NOT NULL,
   `dob` DATE NOT NULL DEFAULT '0000-00-00',
   `econtact` varchar(255) NOT NULL,
@@ -1838,14 +1839,14 @@ CREATE TABLE `swana_swa_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member`
-  (`id`, `user_id`, `lifetime_member`, `sex`,    `ethnicity`,                                             `econtact`, `enumber`, `dietary`, `tel`) VALUES
-  (1,    427,       1,                 'Male',   'Irish',                                                 '-',        '-',       'Vegan',   '07805925656'),
-  (2,    426,       1,                 'Female', 'English / Welsh / Scottish / Northern Irish / British', '-',        '-',       'NULL',    '07805925657'),
-  (3,    425,       1,                 'Male',   'English / Welsh / Scottish / Northern Irish / British', '-',        '-',       'Vegan',   '07805925659'),
-  (4,    424,       0,                 'Male',   'English / Welsh / Scottish / Northern Irish / British', '-',        '-',       'NULL',    '07805936373'),
-  (5,    422,       0,                 'Male',   'English / Welsh / Scottish / Northern Irish / British', '123',      '1234',    'NULL',    '07805925612'),
-  (6,    423,       0,                 'Female', 'English / Welsh / Scottish / Northern Irish / British', '876',      '97',      'NULL',    '07805925651'),
-  (7,    421,       1,                 'Male',   'Irish',                                                 '-',        '-',       'NULL',    '07123456789');
+  (`id`, `user_id`, `lifetime_member`, `sex`,    `pronouns`, `ethnicity`,                                              `econtact`, `enumber`, `dietary`, `tel`) VALUES
+  (1,    427,       1,                 'Male',   'he/him',    'Irish',                                                  '-',        '-',       'Vegan',   '07805925656'),
+  (2,    426,       1,                 'Female', 'she/they',  'English / Welsh / Scottish / Northern Irish / British',  '-',        '-',       'NULL',    '07805925657'),
+  (3,    425,       1,                 'Male',   'he/her',    'English / Welsh / Scottish / Northern Irish / British',  '-',        '-',       'Vegan',   '07805925659'),
+  (4,    424,       0,                 'Male',   'he/them',   'English / Welsh / Scottish / Northern Irish / British',  '-',        '-',       'NULL',    '07805936373'),
+  (5,    422,       0,                 'Male',   'she/her',   'English / Welsh / Scottish / Northern Irish / British',  '123',      '1234',    'NULL',    '07805925612'),
+  (6,    423,       0,                 'Female', 'he/she',    'English / Welsh / Scottish / Northern Irish / British',  '876',      '97',      'NULL',    '07805925651'),
+  (7,    421,       1,                 'Male',   'he/him',    'Irish',                                                  '-',        '-',       'NULL',    '07123456789');
 
 
 DROP TABLE IF EXISTS `swana_swa_membership`;

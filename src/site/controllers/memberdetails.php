@@ -33,6 +33,7 @@ class SwaControllerMemberDetails extends SwaController
 		}
 
 		$newSex        = $data['jform']['sex'];
+		$newPronouns   = $data['jform']['pronouns'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newDob  	   = $data['jform']['dob'];
 		$newTel        = $data['jform']['tel'];
@@ -47,6 +48,7 @@ class SwaControllerMemberDetails extends SwaController
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
 			->set('sex = ' . $db->quote($newSex))
+			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('dob = ' . $db->quote($newDob))
 			->set('tel = ' . $db->quote($newTel))
@@ -72,6 +74,7 @@ class SwaControllerMemberDetails extends SwaController
 		$this->setRedirect(
 			JRoute::_('index.php?option=com_swa&view=memberdetails&layout=default', false)
 		);
-	}
 
+	}
+  
 }
