@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `graduation` INT(11)  NOT NULL ,
   `discipline` VARCHAR(50)  NOT NULL ,
   `level` VARCHAR(20)  NOT NULL DEFAULT 'Beginner',
+  `shirt` VARCHAR(3)  NOT NULL ,
   `econtact` VARCHAR(255)  NOT NULL ,
   `enumber` VARCHAR(255)  NOT NULL ,
   `dietary` VARCHAR(10),

@@ -39,6 +39,7 @@ class SwaControllerMemberDetails extends SwaController
 		$newGraduation = $data['jform']['graduation'];
 		$newDiscipline = $data['jform']['discipline'];
 		$newLevel      = $data['jform']['level'];
+		$newShirt      = $data['jform']['shirt'];
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
 		$newDietary    = $data['jform']['dietary'];
@@ -57,6 +58,7 @@ class SwaControllerMemberDetails extends SwaController
 			->set('graduation = ' . $db->quote($newGraduation))
 			->set('discipline = ' . $db->quote($newDiscipline))
 			->set('level = ' . $db->quote($newLevel))
+			->set('shirt = ' . $db->quote($newShirt))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
 			->set('dietary = ' . $db->quote($newDietary))

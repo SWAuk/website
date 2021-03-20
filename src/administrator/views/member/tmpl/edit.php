@@ -100,6 +100,10 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('level'); ?></div>
 					</div>
 					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('shirt'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('shirt'); ?></div>
+					</div>
+					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('econtact'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('econtact'); ?></div>
 					</div>

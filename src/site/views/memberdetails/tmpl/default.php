@@ -83,6 +83,10 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<td><?php echo $this->form->getInput('level'); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo $this->form->getLabel('shirt'); ?></td>
+			<td><?php echo $this->form->getInput('shirt'); ?></td>
+		</tr>
+		<tr>
 			<td><?php echo $this->form->getLabel('econtact'); ?></td>
 			<td><?php echo $this->form->getInput('econtact'); ?></td>
 		</tr>
