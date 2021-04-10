@@ -16,10 +16,7 @@ class SwaControllerTicketPurchase extends SwaController
 
 	public function select()
 	{
-		// $app      = JFactory::getApplication();
 		$ticketId = $this->input->getString('ticketId');
-		// $app->setUserState("com_swa.ticketpurchase.ticket_id", $ticketId);
-
 		$this->setRedirect(JRoute::_('index.php?option=com_swa&layout=terms&ticketId=' . $ticketId, false));
 	}
 
@@ -131,9 +128,6 @@ class SwaControllerTicketPurchase extends SwaController
 		}
 
 		$app->close();
-
-		// $this->setMessage('Ticket purchased!', 'success');
-		// $this->setRedirect(JRoute::_('index.php?option=com_swa&view=membertickets'));
 	}
 
 	private function payWithStripe($user, $member, $ticket, $totalCost, $details)
@@ -227,6 +221,8 @@ class SwaControllerTicketPurchase extends SwaController
 		$totalCost = $paymentIntent->amount;
 		$details = $paymentIntent->metadata->details;
 
+		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
+
 		// Add the ticket to the db
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -257,7 +253,6 @@ class SwaControllerTicketPurchase extends SwaController
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
 		}
-		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
 		echo new \Joomla\CMS\Response\JsonResponse(null);
 		jexit();
 	}

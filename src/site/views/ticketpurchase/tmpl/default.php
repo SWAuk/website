@@ -14,15 +14,6 @@ $doc = JFactory::getDocument();
 $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 ?>
 
-<!--</style>-->
-<script type="text/javascript">
-	getScript('//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
-		jQuery(document).ready(function() {
-			jQuery('#form-member').submit(function(event) {});
-		});
-	});
-</script>
-
 <h1>Ticket Purchasing</h1>
 
 <?php
