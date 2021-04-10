@@ -33,12 +33,12 @@ class SwaControllerMemberDetails extends SwaController
 		}
 
 		$newSex        = $data['jform']['sex'];
+		$newPronouns   = $data['jform']['pronouns'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
 		$newGraduation = $data['jform']['graduation'];
 		$newDiscipline = $data['jform']['discipline'];
 		$newLevel      = $data['jform']['level'];
-		$newShirt      = $data['jform']['shirt'];
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
 		$newDietary    = $data['jform']['dietary'];
@@ -50,12 +50,13 @@ class SwaControllerMemberDetails extends SwaController
 		$query
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
+			->set('sex = ' . $db->quote($newSex))
+			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
 			->set('graduation = ' . $db->quote($newGraduation))
 			->set('discipline = ' . $db->quote($newDiscipline))
 			->set('level = ' . $db->quote($newLevel))
-			->set('shirt = ' . $db->quote($newShirt))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
 			->set('dietary = ' . $db->quote($newDietary))
@@ -79,7 +80,7 @@ class SwaControllerMemberDetails extends SwaController
 		$this->setRedirect(
 			JRoute::_('index.php?option=com_swa&view=memberdetails&layout=default', false)
 		);
-	}
 
+	}
 
 }

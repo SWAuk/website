@@ -60,6 +60,10 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('sex'); ?></div>
 					</div>
 					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('pronouns'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('pronouns'); ?></div>
+					</div>
+					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('ethnicity'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('ethnicity'); ?></div>
 					</div>
@@ -94,10 +98,6 @@ JHtml::_('behavior.keepalive');
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('level'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('level'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('shirt'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('shirt'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('econtact'); ?></div>

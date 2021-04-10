@@ -62,6 +62,13 @@ class JConfig {
 	public $lifetime = '15';
 	public $session_handler = 'database';
 	public $shared_session = '0';
-	public $stripe_publishable_key = 'CHANGE ME IF TESTING STRIPE';
-	public $stripe_secret_key = 'CHANGE ME IF TESTING STRIPE';
+
+	public $stripe_publishable_key = null;
+	public $stripe_secret_key = null;
+
+	public function __construct()
+	{
+		$this->stripe_publishable_key = getenv('JCONFIG_STRIPE_PUBLISHABLE_KEY');
+		$this->stripe_secret_key = getenv('JCONFIG_STRIPE_SECRET_KEY');
+	}
 }

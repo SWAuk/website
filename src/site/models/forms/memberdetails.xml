@@ -1,162 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-    <fieldset>
+   <fieldset>
 
-        <field name="id"
-               type="text"
-               default="0"
-               label="Id"
-               readonly="true"
-               class="readonly"
-               description="JGLOBAL_FIELD_ID_DESC"/>
-
-        <field name="sex"
-               type="list"
-               label="Sex"
-               default="none"
-               required="true">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </field>
-
-       <field name="ethnicity"
+      <field name="id"
+              type="text"
+              default="0"
+              label="ID"
+              readonly="true"
+              class="readonly"
+              description="JGLOBAL_FIELD_ID_DESC"/>
+      
+      <field name="sex"
+              type="list"
+              label="Sex"
+              default="none"
+              required="true">
+         <option value="Male">Male</option>
+         <option value="Female">Female</option>
+      </field>
+      
+      <field name="pronouns"
+              type="text"
+              size="23"
+              class="inputbox"
+              label="Pronouns"
+              filter="safehtml"
+              hint="e.g. she/her"
+              description="Enter the pronouns which you would like to be refered as, please note this is optional!"/>
+      
+      <field name="ethnicity"
               type="list"
               label="Ethnicity"
-              default="none"
-              required="false">
-                     <option value="White">English / Welsh / Scottish / Northern Irish / British</option>
-                     <option value="Irish">Irish</option>
-                     <option value="Gypsy or Irish Traveller">Gypsy or Irish Traveller</option>
-                     <option value="Any other White background">Any other White background</option>
-                     <option value="White and Black Caribbean">White and Black Caribbean</option>
-                     <option value="White and Black African">White and Black African</option>
-                     <option value="White and Asian">White and Asian</option>
-                     <option value="Any other Mixed / Multiple ethnic background">Any other Mixed / Multiple ethnic background</option>
-                     <option value="Indian">Indian</option>
-                     <option value="Pakistani">Pakistani</option>
-                     <option value="Bangladeshi">Bangladeshi</option>
-                     <option value="Chinese">Chinese</option>
-                     <option value="Any other Asian background">Any other Asian background</option>
-                     <option value="African">African</option>
-                     <option value="Caribbean">Caribbean</option>
-                     <option value="Any other Black / African / Caribbean background">Any other Black / African / Caribbean background</option>
-                     <option value="Arab">Arab</option>
-                     <option value="Any other ethnic group">Any other ethnic group</option>
-       </field>
+              default="Default"
+              description="Select from the list the ethnicity that best describes your own, please note this is optional!">
+         <option value="Default">Please Select</option>
+         <option value="White">White - English / Welsh / Scottish / Northern Irish / British</option>
+         <option value="Irish">White - Irish</option>
+         <option value="Gypsy or Irish Traveller">White - Gypsy or Irish Traveller</option>
+         <option value="Any other White background">White - Any other White background</option>
+         <option value="White and Black Caribbean">Mixed or Multiple ethnic groups - White and Black Caribbean</option>
+         <option value="White and Black African">Mixed or Multiple ethnic groups - White and Black African</option>
+         <option value="White and Asian">Mixed or Multiple ethnic groups - White and Asian</option>
+         <option value="Any other Mixed / Multiple ethnic background">Mixed or Multiple ethnic groups - Any other Mixed / Multiple ethnic background</option>
+         <option value="Indian">Asian or Asian British - Indian</option>
+         <option value="Pakistani">Asian or Asian British - Pakistani</option>
+         <option value="Bangladeshi">Asian or Asian British - Bangladeshi</option>
+         <option value="Chinese">Asian or Asian British - Chinese</option>
+         <option value="Any other Asian background">Asian or Asian British - Any other Asian background</option>
+         <option value="African">Black, African, Caribbean or Black British - African</option>
+         <option value="Caribbean">Black, African, Caribbean or Black British - Caribbean</option>
+         <option value="Any other Black / African / Caribbean background">Black, African, Caribbean or Black British - Any other Black / African / Caribbean background</option>
+         <option value="Arab">Other ethnic group - Arab</option>
+         <option value="Any other ethnic group">Other ethnic group - Any other ethnic group</option>
+      </field>
+      
+      <field name="dob"
+              type="calendar"
+              class="inputbox"
+              required="true"
+              label="Date of Birth"
+              readonly="true"
+              filter="safehtml"/>
+      
+      <field name="tel"
+              type="tel"
+              class="inputbox"
+              required="true"
+              label="Mobile Number"
+              filter="safehtml"
+              validate="tel"/>
+      
+      <field name="university_id"
+              type="sql"
+              default="1"
+              key_field="id"
+              value_field="name"
+              query="SELECT id, name FROM #__swa_university"
+              label="University"
+              readonly="true"
+              required="true"
+              filter="safehtml"/>
+      
+      <field name="course"
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Course"
+              readonly="true"
+              filter="safehtml"/>
+      
+      <field name="graduation"
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Graduation Year"
+              filter="safehtml"/>
+      
+      <field name="discipline"
+              type="list"
+              label="Discipline">
+         <option value="None">None</option>
+         <option value="Race">Race</option>
+         <option value="Wave">Wave</option>
+         <option value="Freestyle">Freestyle</option>
+      </field>
+      
+      <field name="level"
+              type="list"
+              label="Level"
+              required="true">
+         <option value="Beginner">Beginner</option>
+         <option value="Intermediate">Intermediate</option>
+         <option value="Advanced">Advanced</option>
+      </field>
+      
+      <field name="econtact"
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Emergency contact"
+              required="true"
+              filter="safehtml"/>
+      
+      <field name="enumber"
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Emergency number"
+              required="true"
+              filter="safehtml"/>
+      
+      <field name="dietary"
+              type="list"
+              label="Dietary Requirements?"
+              default="None"
+              required="true">
+         <option value="None">None</option>
+         <option value="Vegetarian">Vegetarian</option>
+         <option value="Vegan">Vegan</option>
+         <option value="Gluten Free">Gluten Free</option>
+	 <option value="Halal">Halal</option>
+	 <option value="Kosher">Kosher</option>
+      </field>
+     
+      <field name="swahelp"
+              type="list"
+              label="SWA Help?"
+              default="None"
+              required="true">
+         <option value="None">No thanks</option>
+         <option value="Website">Website</option>
+         <option value="Events">Events</option>
+         <option value="Media">Media / Marketing</option>
+      </field>
 
-        <field name="dob"
-               type="calendar"
-               class="inputbox"
-               required="true"
-               label="Dob"
-               readonly="true"
-               filter="safehtml"/>
-
-        <field name="tel"
-               type="tel"
-               class="inputbox"
-               required="true"
-               label="Phone Number"
-               filter="safehtml"
-               validate="tel"/>
-
-        <field name="university_id"
-               type="sql"
-               default="1"
-               key_field="id"
-               value_field="name"
-               query="SELECT id, name FROM #__swa_university"
-               label="University"
-               readonly="true"
-               required="true"
-               filter="safehtml"/>
-
-        <field name="course"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Course"
-               readonly="true"
-               filter="safehtml"/>
-
-        <field name="graduation"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Graduation Year"
-               filter="safehtml"/>
-
-        <field name="discipline"
-               type="list"
-               label="Discipline">
-            <option value="None">None</option>
-            <option value="Race">Race</option>
-            <option value="Wave">Wave</option>
-            <option value="Freestyle">Freestyle</option>
-        </field>
-
-        <field name="level"
-               type="list"
-               label="Level"
-               required="true">
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-        </field>
-
-        <field name="shirt"
-               type="list"
-               label="Shirt"
-               required="true">
-            <option value="XS">XS</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-            <option value="8">8</option>
-            <option value="10">10</option>
-            <option value="12">12</option>
-            <option value="14">14</option>
-            <option value="16">16</option>
-        </field>
-
-        <field name="econtact"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Emerg contact"
-               required="true"
-               filter="safehtml"/>
-
-        <field name="enumber"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Emerg number"
-               required="true"
-               filter="safehtml"/>
-
-        <field name="dietary"
-               type="list"
-               label="Dietary Requirements?"
-               default="None"
-               required="true">
-            <option value="NULL">None</option>
-            <option value="Vegetarian">Vegetarian</option>
-            <option value="Vegan">Vegan</option>
-        </field>
-
-        <field name="swahelp"
-               type="list"
-               label="SWA help?"
-               default="None"
-               required="true">
-            <option value="None">No thanks</option>
-            <option value="Website">Website</option>
-            <option value="Events">Events</option>
-            <option value="Media">Media / Marketing</option>
-        </field>
-
-    </fieldset>
+   </fieldset>
 
 </form>
