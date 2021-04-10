@@ -92,11 +92,11 @@ The default things will be here (unless you changed them in your .env file)
 Joomla is populated with a sample SWA data set, this is done in `./.docker/db/initdb/init.sql`.
 This data set includes some example users, all of their passwords are `password`
 
-* admin - Super User
-* johnsmith
+* admin - Super User - membership but no tickket
+* johnsmith - membership not paid, has ticket
 * janesmith
 * mthomp
-* bendover
+* bendover - already has mebership and ticket to Best Event
 * swacom
 * unicom
 
