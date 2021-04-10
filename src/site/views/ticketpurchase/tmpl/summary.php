@@ -178,11 +178,6 @@ if ($ticket == null) {
 <h1>Order Summary</h1>
 
 <form id="payment-form" method="POST" enctype="multipart/form-data">
-	<!-- action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>" -->
-	<!-- <input type="hidden" name="option" value="com_swa" />
-	<input type="hidden" name="task" value="ticketpurchase.submit" />
-	<input type="hidden" name="return" value="index.php?option=com_swa&view=membertickets" /> -->
-
 
 	<div class="table-responsive favth-table-responsive">
 		<jdoc:include type="message" />
@@ -266,7 +261,7 @@ if ($ticket == null) {
 
 <!-- handle payment -->
 <script type="text/javascript">
-	// A reference to Stripe.js initialized with your real test publishable API key.
+	// A reference to Stripe.js initialized with the publishable API key loaded from the Joomla configuration.php file.
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
 
 	// Disable the button until we have Stripe set up on the page
@@ -391,6 +386,7 @@ if ($ticket == null) {
 
 	// Complete payment when the submit button is clicked
 	form.addEventListener("submit", function(event) {
+		loading(true)
 		event.preventDefault();
 
 		var addons = $generateAddonsArray();
