@@ -38,7 +38,8 @@ final class TicketPurchaseFlowTest extends SWABrowserTestCase
 		*/
 	}
 
-	private function registerMembership() {
+	private function registerMembership() 
+	{
 		$this->webDriver->get($this->baseUrl . '/index.php/account/my-membership/memberregistration');
 
 		/*
