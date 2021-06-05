@@ -2,7 +2,7 @@
 
 namespace SWA\Test\Browser;
 
-use PHP\WebDriver\WebDriverBy;
+use Facebook\WebDriver\WebDriverBy;
 
 /**
  * Trait for Joomla login functionality
