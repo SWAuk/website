@@ -2,7 +2,7 @@
 
 namespace SWA\Test\Browser;
 
-use Facebook\WebDriver\WebDriverBy;
+use PHP\WebDriver\WebDriverBy;
 
 final class ClubEventAttendeesTest extends SWABrowserTestCase
 {
