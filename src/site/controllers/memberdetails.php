@@ -60,7 +60,7 @@ class SwaControllerMemberDetails extends SwaController
 			->set('enumber = ' . $db->quote($newENumber))
 			->set('dietary = ' . $db->quote($newDietary))
 
-		$db->setQuery($query);
+			$db->setQuery($query);
 
 		if (!$db->execute())
 		{
