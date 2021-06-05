@@ -10,9 +10,9 @@
               class="readonly"
               description="JGLOBAL_FIELD_ID_DESC"/>
       
-      <field name="sex"
+      <field name="gender"
               type="list"
-              label="Sex"
+              label="Gender"
               default="none"
               required="true">
          <option value="Male">Male</option>
@@ -118,7 +118,7 @@
               type="text"
               size="40"
               class="inputbox"
-              label="Emergency contact"
+              label="Emergency Contact Name"
               required="true"
               filter="safehtml"/>
       
@@ -126,7 +126,7 @@
               type="text"
               size="40"
               class="inputbox"
-              label="Emergency number"
+              label="Emergency Contact Number"
               required="true"
               filter="safehtml"/>
       
@@ -141,17 +141,6 @@
          <option value="Gluten Free">Gluten Free</option>
 	 <option value="Halal">Halal</option>
 	 <option value="Kosher">Kosher</option>
-      </field>
-     
-      <field name="swahelp"
-              type="list"
-              label="SWA Help?"
-              default="None"
-              required="true">
-         <option value="None">No thanks</option>
-         <option value="Website">Website</option>
-         <option value="Events">Events</option>
-         <option value="Media">Media / Marketing</option>
       </field>
 
    </fieldset>

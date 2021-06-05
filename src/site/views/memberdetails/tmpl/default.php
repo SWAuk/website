@@ -43,8 +43,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<td><?php echo $this->form->getInput('id'); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->form->getLabel('sex'); ?></td>
-			<td><?php echo $this->form->getInput('sex'); ?></td>
+			<td><?php echo $this->form->getLabel('gender'); ?></td>
+			<td><?php echo $this->form->getInput('gender'); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo $this->form->getLabel('pronouns'); ?></td>
@@ -93,10 +93,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		<tr>
 			<td><?php echo $this->form->getLabel('dietary'); ?></td>
 			<td><?php echo $this->form->getInput('dietary'); ?></td>
-		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('swahelp'); ?></td>
-			<td><?php echo $this->form->getInput('swahelp'); ?></td>
 		</tr>
 
 		<tr>

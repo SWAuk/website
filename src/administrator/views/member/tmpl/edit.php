@@ -56,8 +56,8 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('lifetime_member'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('sex'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('sex'); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('gender'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('gender'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('pronouns'); ?></div>
@@ -110,10 +110,6 @@ JHtml::_('behavior.keepalive');
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('dietary'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('dietary'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('swahelp'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('swahelp'); ?></div>
 					</div>
 					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('swa_committee'); ?></div>
