@@ -3,10 +3,10 @@
 namespace SWA\Test\Browser;
 
 use PHPUnit\Framework\TestCase;
-use PHP\WebDriver\Remote\DesiredCapabilities;
-use PHP\WebDriver\Remote\RemoteWebDriver;
-use PHP\WebDriver\WebDriverBy;
-use PHP\WebDriver\Exception\NoSuchElementException;
+use Facebook\WebDriver\Remote\DesiredCapabilities;
+use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
+use Facebook\WebDriver\Exception\NoSuchElementException;
 
 /**
  * This abstract test case should be used by all browser tests.
@@ -70,7 +70,7 @@ abstract class SWABrowserTestCase extends TestCase
 		}
 		catch (\TypeError $e){
 			// If selenium doesn't return a proper response, this is the error state we end up in, as argument 1 would have come from the response.
-			$failMsg = 'Argument 1 passed to PHP\WebDriver\Remote\DesiredCapabilities::__construct() must be of the type array, null given';
+			$failMsg = 'Argument 1 passed to Facebook\WebDriver\Remote\DesiredCapabilities::__construct() must be of the type array, null given';
 			if (strstr($e->getMessage(), $failMsg)) {
 				if ($attempts <= 0) {
 					throw new \RuntimeException("Seemingly couldn't connect to selenium.");
