@@ -58,9 +58,9 @@ class SwaControllerMemberDetails extends SwaController
 			->set('level = ' . $db->quote($newLevel))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
-			->set('dietary = ' . $db->quote($newDietary))
+			->set('dietary = ' . $db->quote($newDietary));
 
-			$db->setQuery($query);
+		$db->setQuery($query);
 
 		if (!$db->execute())
 		{
