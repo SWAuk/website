@@ -32,7 +32,7 @@ class SwaControllerMemberDetails extends SwaController
 			throw new Exception('You\'re trying to submit data for someone else?');
 		}
 
-		$newGender        = $data['jform']['gender'];
+		$newSex        = $data['jform']['sex'];
 		$newPronouns   = $data['jform']['pronouns'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
@@ -42,6 +42,7 @@ class SwaControllerMemberDetails extends SwaController
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
 		$newDietary    = $data['jform']['dietary'];
+		$newSwaHelp    = $data['jform']['swahelp'];
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -49,7 +50,7 @@ class SwaControllerMemberDetails extends SwaController
 		$query
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
-			->set('gender = ' . $db->quote($newGender))
+			->set('sex = ' . $db->quote($newSex))
 			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
@@ -58,7 +59,8 @@ class SwaControllerMemberDetails extends SwaController
 			->set('level = ' . $db->quote($newLevel))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
-			->set('dietary = ' . $db->quote($newDietary));
+			->set('dietary = ' . $db->quote($newDietary))
+			->set('swahelp = ' . $db->quote($newSwaHelp));
 
 		$db->setQuery($query);
 

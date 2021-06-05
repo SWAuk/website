@@ -37,8 +37,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<tbody>
 			<tr>
 				<div class="control-group">
-					<td><?php echo $this->form->getLabel('gender'); ?></td>
-					<td><?php echo $this->form->getInput('gender'); ?></td>
+					<td><?php echo $this->form->getLabel('sex'); ?></td>
+					<td><?php echo $this->form->getInput('sex'); ?></td>
 				</div>
 			</tr>
 
@@ -123,6 +123,13 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 				<div class="control-group">
 					<td><?php echo $this->form->getLabel('dietary'); ?></td>
 					<td><?php echo $this->form->getInput('dietary'); ?></td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="control-group">
+					<td><?php echo $this->form->getLabel('swahelp'); ?></td>
+					<td><?php echo $this->form->getInput('swahelp'); ?></td>
 				</div>
 			</tr>
 

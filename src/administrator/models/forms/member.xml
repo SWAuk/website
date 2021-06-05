@@ -27,9 +27,9 @@
               label="Lifetime Member"
               default="0"/>
 
-      <field name="gender" 
+      <field name="sex" 
               type="list"
-              label="Gender"
+              label="Sex"
               default="none"
               required="true">
          <option value="Male">Male</option>
@@ -131,7 +131,7 @@
               type="text"
               size="40"
               class="inputbox"
-              label="Emergency Contact Name"
+              label="Emergency contact"
               required="true"
               filter="safehtml"/>
       
@@ -139,7 +139,7 @@
               type="tel"
               size="40"
               class="inputbox"
-              label="Emergency Contact Number"
+              label="Emergency number"
               required="true"
               validate="tel"
               filter="safehtml"/>
@@ -155,6 +155,17 @@
          <option value="Gluten Free">Gluten Free</option>
 	 <option value="Halal">Halal</option>
 	 <option value="Kosher">Kosher</option>
+      </field>
+
+      <field name="swahelp"
+              type="list"
+              label="SWA Help?"
+              default="None"
+              required="true">
+         <option value="None">No thanks</option>
+         <option value="Website">Website</option>
+         <option value="Events">Events</option>
+         <option value="Media">Media / Marketing</option>
       </field>
 
    </fieldset>

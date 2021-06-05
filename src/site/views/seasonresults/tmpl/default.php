@@ -62,7 +62,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		echo "</tbody>\n";
 		echo "</table>\n";
 
-		foreach (array($this->individualItems, $this->genderItems) as $items)
+		foreach (array($this->individualItems, $this->sexItems) as $items)
 		{
 		foreach ($items
 
