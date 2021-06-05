@@ -42,7 +42,6 @@ class SwaControllerMemberDetails extends SwaController
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
 		$newDietary    = $data['jform']['dietary'];
-		$newSwaHelp    = $data['jform']['swahelp'];
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -59,8 +58,7 @@ class SwaControllerMemberDetails extends SwaController
 			->set('level = ' . $db->quote($newLevel))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
-			->set('dietary = ' . $db->quote($newDietary))
-			->set('swahelp = ' . $db->quote($newSwaHelp));
+			->set('dietary = ' . $db->quote($newDietary));
 
 		$db->setQuery($query);
 
