@@ -59,34 +59,34 @@ first_event     | Sets whether or not the ticket is restricted to members who ha
 
                 | Default value: `false`
 --------------  -------------------------------
-member          | Member is an object containing two lists of member ids, a whitelist and a blacklist.
+member          | Member is an object containing two lists of member ids, allowed and a denied.
 
-                | The whitelist lists the member ids that are allowed to buy this ticket,
+                | The allowed list shows the member ids that are allowed to buy this ticket,
                   all other members aren't.
-                | The blacklist lists the member ids that aren't allowed to buy this ticket,
+                | The denied list shows the member ids that aren't allowed to buy this ticket,
                   all other members can.
 
-                | Default value: `{"whitelist": [], "blacklist": []}`
+                | Default value: `{"allowed": [], "denied": []}`
 --------------  -------------------------------
 university      University is an object containing two lists of university ids,
-                a whitelist and a blacklist.
+                allowed and a denied.
 
-                | The whitelist lists the university ids that are allowed to buy this ticket,
+                | The allowed list shows the university ids that are allowed to buy this ticket,
                   all other universities aren't.
-                | The blacklist lists the university ids that aren't allowed to buy this ticket,
+                | The denied list shows the university ids that aren't allowed to buy this ticket,
                   all other universities can.
 
-                | Default value: `{"whitelist": [], "blacklist": []}`
+                | Default value: `{"allowed": [], "denied": []}`
 --------------  -------------------------------
 level           Level is an object containing two lists of ability levels,
-                a whitelist and a blacklist.
+                allowed and a denied.
 
                 | Ability levels: "Beginner", "Intermediate", "Advanced"
 
-                | The whitelist lists the ability levels that are allowed to buy this ticket.
-                | The blacklist lists the ability levels that aren't allowed to buy this ticket.
+                | The allowed lists the ability levels that are allowed to buy this ticket.
+                | The denied lists the ability levels that aren't allowed to buy this ticket.
 
-                | Default value: `{"whitelist": [], "blacklist": []}`
+                | Default value: `{"allowed": [], "denied": []}`
 --------------  -------------------------------
 addons          | Addons is a lists of objects describing the available addon(s) available for this ticket.
 

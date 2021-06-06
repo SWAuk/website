@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` INT(11)  NOT NULL ,
   `lifetime_member` TINYINT(1)  NOT NULL DEFAULT 0,
-  `sex` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
+  `gender` VARCHAR(255)  NOT NULL DEFAULT 'None' ,
   `pronouns` VARCHAR(15)  NOT NULL ,
   `ethnicity` VARCHAR(255)  NOT NULL ,
   `dob` DATE NOT NULL DEFAULT '0000-00-00',

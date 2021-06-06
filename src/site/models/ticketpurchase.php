@@ -265,9 +265,9 @@ class SwaModelTicketPurchase extends SwaModelList
 			return array($display, $reason);
 		}
 
-		// Check if any constraints on member whitelist
-		if (!empty($t->details->member->whitelist)
-			&& !in_array($member->id, $t->details->member->whitelist))
+		// Check if any constraints on member allowed
+		if (!empty($t->details->member->allowed)
+			&& !in_array($member->id, $t->details->member->allowed))
 		{
 			$reason = "This ticket is only available for specific members.";
 
@@ -280,9 +280,9 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
-		// Check if any constraints on member blacklist
-		if (!empty($t->details->member->blacklist)
-			&& in_array($member->id, $t->details->member->blacklist))
+		// Check if any constraints on member denied
+		if (!empty($t->details->member->denied)
+			&& in_array($member->id, $t->details->member->denied))
 		{
 			$reason = "This ticket is only available for specific members.";
 
@@ -295,9 +295,9 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
-		// Check if any constraints on university whitelist
-		if (!empty($t->details->university->whitelist)
-			&& !in_array($member->university_id, $t->details->university->whitelist))
+		// Check if any constraints on university allowed
+		if (!empty($t->details->university->allowed)
+			&& !in_array($member->university_id, $t->details->university->allowed))
 		{
 			$reason = "This ticket is only available for specific universities.";
 
@@ -310,9 +310,9 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
-		// Check if any constraints on university blacklist
-		if (!empty($t->details->university->blacklist)
-			&& in_array($member->university_id, $t->details->university->blacklist))
+		// Check if any constraints on university denied
+		if (!empty($t->details->university->denied)
+			&& in_array($member->university_id, $t->details->university->denied))
 		{
 			$reason = "This ticket is only available for specific universities.";
 
@@ -325,12 +325,12 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
-		// Check if any constraints on member's level whitelist
-		if (!empty($t->details->level->whitelist)
-			&& !in_array($member->level, $t->details->level->whitelist))
+		// Check if any constraints on member's level allowed
+		if (!empty($t->details->level->allowed)
+			&& !in_array($member->level, $t->details->level->allowed))
 		{
 			$reason = 'You need to be one of the following levels [';
-			$reason .= implode(', ', $t->details->level->whitelist) . ']';
+			$reason .= implode(', ', $t->details->level->allowed) . ']';
 
 			// Don't display if visible is set to "Match" and member is not committee
 			if ($t->details->visible == "Match" && !$member->swa_committee)
@@ -341,12 +341,12 @@ class SwaModelTicketPurchase extends SwaModelList
 			}
 		}
 
-		// Check if any constraints on member's level blacklist
-		if (!empty($t->details->level->blacklist)
-			&& in_array($member->level, $t->details->level->blacklist))
+		// Check if any constraints on member's level denied
+		if (!empty($t->details->level->denied)
+			&& in_array($member->level, $t->details->level->denied))
 		{
 			$reason = "You can't be one of the following levels [";
-			$reason .= implode(', ', $t->details->level->blacklist) . ']';
+			$reason .= implode(', ', $t->details->level->denied) . ']';
 
 			// Don't display if visible is set to "Match" and member is not committee
 			if ($t->details->visible == "Match" && !$member->swa_committee)

@@ -109,39 +109,39 @@ class SwaModelSeasonResults extends SwaModelList
 
 	}
 
-	public function getSexItems()
+	public function getGenderItems()
 	{
-		$sexSeriesDetails = $this->getSexSeriesDetails();
+		$genderSeriesDetails = $this->getGenderSeriesDetails();
 
 		// Split the individual results up into maps of (series => name => result details)
 		foreach ($this->getIndividualItems() as $seriesName => $seriesDetails)
 		{
 			foreach ($seriesDetails['results'] as $result)
 			{
-				$sex  = $result['sex'];
+				$gender  = $result['gender'];
 				$name = $result['name'];
-				@$sexSeriesDetails[$sex]['results'][$name]['name'] = $name;
-				@$sexSeriesDetails[$sex]['results'][$name]['university'] = $result['university'];
-				@$sexSeriesDetails[$sex]['results'][$name]['series'] = $sex;
-				@$sexSeriesDetails[$sex]['results'][$name]['sex'] = $sex;
-				@$sexSeriesDetails[$sex]['results'][$name]['member_id'] = $result['member_id'];
-				@$sexSeriesDetails[$sex]['results'][$name]['result'] += $result['result'];
-				@$sexSeriesDetails[$sex]['results'][$name]['events'] += $result['events'];
-				@$sexSeriesDetails[$sex]['results'][$name]['competitions'] += $result['competitions'];
-				@$sexSeriesDetails[$sex]['results'][$name]['discards'] += $result['discards'];
-				@$sexSeriesDetails[$sex]['results'][$name]['discard_points'] += $result['discard_points'];
-				@$sexSeriesDetails[$sex]['results'][$name]['dnc_count'] += $result['dnc_count'];
-				@$sexSeriesDetails[$sex]['results'][$name]['dnc_points'] += $result['dnc_points'];
+				@$genderSeriesDetails[$gender]['results'][$name]['name'] = $name;
+				@$genderSeriesDetails[$gender]['results'][$name]['university'] = $result['university'];
+				@$genderSeriesDetails[$gender]['results'][$name]['series'] = $gender;
+				@$genderSeriesDetails[$gender]['results'][$name]['gender'] = $gender;
+				@$genderSeriesDetails[$gender]['results'][$name]['member_id'] = $result['member_id'];
+				@$genderSeriesDetails[$gender]['results'][$name]['result'] += $result['result'];
+				@$genderSeriesDetails[$gender]['results'][$name]['events'] += $result['events'];
+				@$genderSeriesDetails[$gender]['results'][$name]['competitions'] += $result['competitions'];
+				@$genderSeriesDetails[$gender]['results'][$name]['discards'] += $result['discards'];
+				@$genderSeriesDetails[$gender]['results'][$name]['discard_points'] += $result['discard_points'];
+				@$genderSeriesDetails[$gender]['results'][$name]['dnc_count'] += $result['dnc_count'];
+				@$genderSeriesDetails[$gender]['results'][$name]['dnc_points'] += $result['dnc_points'];
 			}
 		}
 
 		$indiSeriesDetails = $this->getIndividualItems();
 
-		// Add extra DNC numbers for the sex series where people didn't enter any discipline in a series..
+		// Add extra DNC numbers for the gender series where people didn't enter any discipline in a series..
 		// Also account for the freestyle discard
-		foreach ($sexSeriesDetails as &$sexDetails)
+		foreach ($genderSeriesDetails as &$genderDetails)
 		{
-			foreach ($sexDetails['results'] as &$result)
+			foreach ($genderDetails['results'] as &$result)
 			{
 				foreach (array_keys($indiSeriesDetails) as $seriesName)
 				{
@@ -163,7 +163,7 @@ class SwaModelSeasonResults extends SwaModelList
 		}
 
 		// Sort the results of each series (lowest score first)
-		foreach ($sexSeriesDetails as $seriesName => &$seriesDetails)
+		foreach ($genderSeriesDetails as $seriesName => &$seriesDetails)
 		{
 			uasort($seriesDetails['results'], function ($a, $b) {
 				// A smaller result score is better
@@ -182,7 +182,7 @@ class SwaModelSeasonResults extends SwaModelList
 			});
 		}
 
-		return $sexSeriesDetails;
+		return $genderSeriesDetails;
 	}
 
 	/**
@@ -249,7 +249,7 @@ GROUP BY comp_type.series;"
 	 *     ),
 	 * )
 	 */
-	private function getSexSeriesDetails()
+	private function getGenderSeriesDetails()
 	{
 		if (isset($this->cachedMethodDbMap[__METHOD__]))
 		{
@@ -262,7 +262,7 @@ GROUP BY comp_type.series;"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	LCASE( member.sex ) as series,
+	LCASE( member.gender ) as series,
 	COUNT( DISTINCT event.id ) as events,
 	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
 	COUNT( DISTINCT indi_result.member_id ) as entrants,
@@ -280,7 +280,7 @@ JOIN {$prefix}swa_member as member
 ON indi_result.member_id = member.id
 WHERE season.id = {$this->seasonId}
 AND comp_type.name != 'Team'
-GROUP BY LCASE( member.sex );"
+GROUP BY LCASE( member.gender );"
 		);
 
 		$db->setQuery($query);
@@ -298,7 +298,7 @@ GROUP BY LCASE( member.sex );"
 	 *         'series' => 'intermediate race',
 	 *         'member_id' => 4,
 	 *         'name' => 'Mark Smith',
-	 *         'sex' => 'male',
+	 *         'gender' => 'male',
 	 *         'result' => 20,
 	 *         'max_result' => 143,
 	 *         'events' => 3,
@@ -324,7 +324,7 @@ GROUP BY LCASE( member.sex );"
 	indi_result.member_id,
 	user.name,
 	university.name as university,
-	LCASE( member.sex ) as sex,
+	LCASE( member.gender ) as gender,
 	SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
 	MAX( indi_result.result ) as max_result,
 	COUNT( indi_result.result ) as events,

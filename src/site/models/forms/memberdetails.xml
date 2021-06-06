@@ -10,7 +10,7 @@
               class="readonly"
               description="JGLOBAL_FIELD_ID_DESC"/>
       
-      <field name="sex"
+      <field name="gender"
               type="list"
               label="Gender"
               default="none"
