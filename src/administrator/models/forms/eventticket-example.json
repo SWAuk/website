@@ -4,16 +4,16 @@
     "qualification": false,
     "committee": false,
     "member": {
-        "whitelist": [],
-        "blacklist": []
+        "allowed": [],
+        "denied": []
     },
     "university": {
-        "whitelist": [],
-        "blacklist": []
+        "allowed": [],
+        "denied": []
     },
     "level": {
-        "whitelist": [],
-        "blacklist": []
+        "allowed": [],
+        "denied": []
     },
     "addons": [
         {

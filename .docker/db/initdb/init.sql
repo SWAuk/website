@@ -1778,9 +1778,9 @@ CREATE TABLE `swana_swa_event_ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_event_ticket` (`id`, `event_id`, `name`, `quantity`, `price`, `notes`, `need_level`, `need_swa`, `need_xswa`, `need_host`, `need_qualification`, `details`) VALUES
-(1,	1,	'Windsurf (normal)',	5,	10.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
-(2,	1,	'Host',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\": [] } '),
-(3,	1,	'Party (has-addons)',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"whitelist\": [],\"blacklist\": []},   \"university\": {\"whitelist\": [],\"blacklist\": []},   \"level\": {\"whitelist\": [],\"blacklist\": []},   \"addons\":  [{
+(1,	1,	'Windsurf (normal)',	5,	10.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"allowed\": [],\"denied\": []},   \"university\": {\"allowed\": [],\"denied\": []},   \"level\": {\"allowed\": [],\"denied\": []},   \"addons\": [] } '),
+(2,	1,	'Host',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"allowed\": [],\"denied\": []},   \"university\": {\"allowed\": [],\"denied\": []},   \"level\": {\"allowed\": [],\"denied\": []},   \"addons\": [] } '),
+(3,	1,	'Party (has-addons)',	5,	5.00,	'',	NULL,	0,	0,	0,	0,	'{   \"visible\": \"All\",   \"xswa\": false,   \"qualification\": false,   \"committee\": false,   \"member\": {\"allowed\": [],\"denied\": []},   \"university\": {\"allowed\": [],\"denied\": []},   \"level\": {\"allowed\": [],\"denied\": []},   \"addons\":  [{
 		"name": "T-Shirt",
 		"description": "Limited Edition AK19 T-Shirt",
 		"options": {
@@ -1919,7 +1919,7 @@ CREATE TABLE `swana_swa_member` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `lifetime_member` tinyint(1) NOT NULL DEFAULT '0',
-  `sex` varchar(255) NOT NULL DEFAULT 'None',
+  `gender` varchar(255) NOT NULL DEFAULT 'None',
   `pronouns` varchar(15) NOT NULL,
   `ethnicity` varchar(70) NOT NULL,
   `dob` date NOT NULL DEFAULT '0000-00-00',
@@ -1939,7 +1939,7 @@ CREATE TABLE `swana_swa_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member`
-  (`id`, `user_id`, `lifetime_member`, `sex`,    `pronouns`, `dob`,        `university_id`, `course`, `graduation`, `discipline`, `level`,        `econtact`, `enumber`, `dietary`, `tel`,      `ethnicity`) VALUES
+  (`id`, `user_id`, `lifetime_member`, `gender`,    `pronouns`, `dob`,        `university_id`, `course`, `graduation`, `discipline`, `level`,        `econtact`, `enumber`, `dietary`, `tel`,      `ethnicity`) VALUES
   (1,    427,       1,                 'Male',   'he/him',   '1989-02-10',  1,               '',       0,            'None',       'Advanced',     '-',        '-',       'Vegan',   '07805925656', 'English / Welsh / Scottish / Northern Irish / British'),
   (2,    426,       1,                 'Female', 'she/they', '1994-02-10',  2,               '',       0,            'None',       'Beginner',     '-',        '-',       'NULL',    '07805925657', 'English / Welsh / Scottish / Northern Irish / British'),
   (3,    425,       1,                 'Male',   'he/her',   '1996-01-29',  2,               '',       0,            'None',       'Advanced',     '-',        '-',       'Vegan',   '07805925659', 'English / Welsh / Scottish / Northern Irish / British'),
