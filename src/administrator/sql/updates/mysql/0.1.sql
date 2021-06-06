@@ -19,7 +19,6 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `enumber` VARCHAR(255)  NOT NULL ,
   `dietary` VARCHAR(10),
   `tel` VARCHAR(15) NOT NULL ,
-  `swahelp` VARCHAR(50)  NOT NULL DEFAULT 'None',
   PRIMARY KEY (`id`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC),
   INDEX `fk_member_user_idx` (`user_id` ASC),

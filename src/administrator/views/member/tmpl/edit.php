@@ -112,10 +112,6 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('dietary'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('swahelp'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('swahelp'); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('swa_committee'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('swa_committee'); ?></div>
 					</div>
