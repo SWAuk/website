@@ -5,9 +5,9 @@ namespace SWA\Test\Browser;
 use Facebook\WebDriver\WebDriverBy;
 
 /**
- * Trait for Joomla login functionality
+ * Trait for Joomla User interactions
  */
-trait LoginTrait
+trait UserTrait
 {
 	protected static $PASSWORD = 'password';
 
@@ -65,6 +65,40 @@ trait LoginTrait
 		$loginButton->click();
 
 		$this->assertLoggedIn();
+	}
+
+	/**
+	 * Login to the user with assertions
+	 */
+	protected function userRegister(
+		string $name,
+		string $username,
+		string $password,
+		string $email
+	) : void
+	{
+		$this->webDriver->get($this->baseUrl . '/index.php/login?view=registration');
+
+		$this->assertLoggedOut();
+
+		$button = $this->webDriver->findElement(WebDriverBy::cssSelector('#member-registration button'));
+		$nameField = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_name'));
+		$usernameField = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_username'));
+		$password1Field = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_password1'));
+		$password2Field = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_password2'));
+		$email1Field = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_email1'));
+		$email2Field = $this->webDriver->findElement(WebDriverBy::cssSelector('#jform_email2'));
+
+		$nameField->sendKeys($name);
+		$usernameField->sendKeys($username);
+		$password1Field->sendKeys($password);
+		$password2Field->sendKeys($password);
+		$email1Field->sendKeys($email);
+		$email2Field->sendKeys($email);
+
+		$button->click();
+
+		// TODO assert page redirect maybe?
 	}
 
 }

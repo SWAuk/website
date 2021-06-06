@@ -9,7 +9,7 @@ class JConfig {
 	public $captcha = '0';
 	public $list_limit = '20';
 	public $access = '1';
-	public $debug = '1';
+	public $debug = '0';
 	public $debug_lang = '0';
 	public $debug_lang_const = '1';
 	public $dbtype = 'mysqli';
@@ -30,11 +30,11 @@ class JConfig {
 	public $ftp_root = '';
 	public $ftp_enable = '0';
 	public $offset = 'UTC';
-	public $mailonline = '1';
+	public $mailonline = '0';
 	public $mailer = 'mail';
 	public $mailfrom = 'info@swa.co.uk';
 	public $fromname = 'SWA Dev Site';
-	public $sendmail = '/usr/sbin/sendmail';
+	public $sendmail = '0';
 	public $smtpauth = '0';
 	public $smtpuser = '';
 	public $smtppass = '';
