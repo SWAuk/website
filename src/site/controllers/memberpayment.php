@@ -1,4 +1,11 @@
 <?php
+/*
+This payment process is based off the 'Custom Payment Flow' at the following stipe site.
+https://stripe.com/docs/payments/accept-a-payment?integration=elements
+
+A tutorial is available here (at the time of writing):
+https://stripe.com/docs/payments/integration-builder
+*/
 
 defined('_JEXEC') or die;
 
@@ -7,112 +14,88 @@ require_once JPATH_COMPONENT . '/controller.php';
 class SwaControllerMemberPayment extends SwaController
 {
 
-	public function submit()
+	public function createPaymentIntent()
 	{
-		// Get the POST data
-		$token = $this->input->getString('stripeToken');
-
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		/** @var SwaModelMemberPayment $model */
 		$model  = $this->getModel('MemberPayment');
 		$member = $model->getMember();
 
 		// Check successfully got the user and all the info we need to process the transaction
-		if (!$user || !isset($user->id) || !isset($user->name) || !isset($user->email))
-		{
+		if (!$user || !isset($user->id) || !isset($user->name) || !isset($user->email)) {
 			$message = "Unable to retrieve user. " . var_export($user, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			die("Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.");
+			$error_msg = "Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
 		}
 
-		try
-		{
-			$charge = \Stripe\Charge::create(
+		// Check successfully got the user and all the info we need to process the transaction
+		if ($member->paid) {
+			$error_msg = "You have already paid for membership. You have not been charged again. \n\r
+			Please contact webmaster@swa.co.uk if there is a problem";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
+		}
+
+		try {
+			$paymentIntent = \Stripe\PaymentIntent::create(
 				array(
 					'description'          => "SWA Membership for {$user->name}",
 					'amount'               => 500,
 					'currency'             => 'GBP',
 					'receipt_email'        => $user->email,
 					'statement_descriptor' => "SWA Membership",
-					'source'               => $token,
 					'metadata'             => array(
 						'user_id'   => $user->id,
 						'user_name' => $user->name
 					)
 				)
 			);
+			$output = [
+				'clientSecret' => $paymentIntent->client_secret,
+			];
+			echo new \Joomla\CMS\Response\JsonResponse($output);
+			jexit();
 		}
-		catch (\Stripe\Error\Card $e)
-		{
-			// Card declined
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			die("Your card was declined. Please contact webmaster@swa.co.uk if this continues to happen.");
-		}
-		catch (\Stripe\Error\RateLimit $e)
-		{
-			// Too many requests made to the API too quickly
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "The website is in high demand and we were unable to process your payment at this time";
-			$error_msg .= " - try again later. \r\nPlease contact webmaster@swa.co.uk if this continues to happen.";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\InvalidRequest $e)
-		{
-			// Invalid parameters were supplied to Stripe's API
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! We sent the wrong data to our payment provider.\r\n";
-			$error_msg .= "Please contact webmaster@swa.co.uk to tell them they screwed up.";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\Authentication $e)
-		{
-			// Authentication with Stripe's API failed (maybe you changed API keys recently)
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! We were unable to authenticate with our payment provider. ";
-			$error_msg .= "Please contact webmaster@swa.co.uk and tell them they screwed up.\r\n";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\ApiConnection $e)
-		{
-			// Network communication with Stripe failed
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was a network communication error - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-		catch (\Stripe\Error\Base $e)
-		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-		catch (Exception $e)
-		{
-			JLog::add($e->getMessage(), JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
+		catch (Error $e) {
+			$message = "User tried to buy membership but the paymentIntent was not created successfully: {$e->getMessage()}";
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Oops! There was an unknown error setting up the payment - please refresh the page to try again.\r\n";
+			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
 		}
 
-		// Do some sense checking to make sure the payment didn't fail - probably not needed
-		if ($charge->failure_code != null && $charge->failure_message != null
-			&& $charge->paid != true && $charge->captured != true)
-		{
-			JLog::add("Stripe charge didn't return successful.", JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.\r\n";
-			die($error_msg);
-		}
-
-		// Set member paid
-		$this->setMemberPaid($member->id);
-
-		$this->setRedirect(JRoute::_('index.php'));
+		jexit();
 	}
 
-	private function setMemberPaid($member_id)
+	public function setMemberPaid()
 	{
+		$app = JFactory::getApplication();
+		$jinput = $this->input->json;
+		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
+		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+		$model  = $this->getModel('MemberPayment');
+		$member = $model->getMember();
+		$member_id = $member->id;
+
+		if ($paymentIntent->status != 'succeeded') {
+			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from 
+			completing payment. You should check this payment and the database to make sure the user was not charged
+			and membership was not bought";
+			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
+			$error_msg = "Payment failed. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
+			for assistance and to confirm no payment has been taken. Do not try again.";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
+		};
+
 		// Update the membership status for the member!
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -137,16 +120,24 @@ class SwaControllerMemberPayment extends SwaController
 		$db->setQuery($query);
 		$result = $db->execute();
 
-		if ($result === false)
-		{
+		if ($result === false) {
 			JLog::add(
 				"MemberPayment authorized but failed to update db. member_id: {$member_id}",
-				JLog::ERROR, 'com_swa.payment_process'
+				JLog::ERROR,
+				'com_swa.payment_process'
 			);
-			die('Failed to record payment. Please contact webmaster@swa.co.uk ASAP to resolve this.');
+			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
+			$error_msg .= "Membership purchase FAILED but a payment MAY have been taken.\r\n";
+			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
 		}
 
 		$this->logAuditFrontend("Member({$member_id}) bought their membership for Season({$seasonName})");
+		echo new \Joomla\CMS\Response\JsonResponse(null);
+		// $app->enqueueMessage('Membership paymernt successful!', 'success');
+		// $app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
+		jexit();
 	}
-
 }

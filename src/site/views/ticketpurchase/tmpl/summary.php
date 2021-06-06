@@ -1,6 +1,16 @@
 <?php
+/*
+This payment process is based off the 'Custom Payment Flow' at the following stipe site.
+https://stripe.com/docs/payments/accept-a-payment?integration=elements
+
+A tutorial is available here (at the time of writing):
+https://stripe.com/docs/payments/integration-builder
+*/
 
 defined('_JEXEC') or die;
+
+JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+JHtml::_('behavior.framework', true);
 
 // Load admin language file
 $lang = JFactory::getLanguage();
@@ -8,85 +18,125 @@ $lang->load('com_swa', JPATH_ADMINISTRATOR);
 
 $jConfig = JFactory::getConfig();
 $app     = JFactory::getApplication();
+$document = JFactory::getDocument();
 $ticket  = null;
 
-foreach ($this->items as $item)
-{
-	if ($item->id == $this->ticket_id)
-	{
+$ticketId = $app->input->getString('ticketId');
+
+$document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
+
+foreach ($this->items as $item) {
+	if ($item->id == $ticketId) {
 		$ticket = $item;
 		break;
 	}
 }
 
-if ($ticket == null)
-{
+if ($ticket == null) {
 	$app->enqueueMessage('Purchase failed because the session expired - please try again.', 'Error');
 	$app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
 }
 ?>
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
-	jQuery(document).ready(function () {
+	var stripButtonPermanentDisable = false;
 
+	jQuery(document).ready(function() {
+		$validAddon = true;
+		$cardDetailsComplete = false;
+		$stripeCardErrorMsg = ""
+		$totalDiv = document.getElementById("payment-total");
 		$addons = jQuery('.swa-addon');
+
+		// define function to enable/disable stripe button
+		setStripeButtonStatus = function() {
+			if (stripButtonPermanentDisable) {
+				document.querySelector("#stripe-button").disabled = true;
+			} else if (!$validAddon) {
+				document.querySelector("#stripe-button").disabled = true;
+				$ErrorMsg = "Invalid addon selection";
+			} else if (!$cardDetailsComplete) {
+				document.querySelector("#stripe-button").disabled = true;
+				$ErrorMsg = $stripeCardErrorMsg;
+			} else {
+				document.querySelector("#stripe-button").disabled = false;
+				$ErrorMsg = ""
+			}
+			document.querySelector("#card-error").textContent = $ErrorMsg;
+		}
+
+		// define function to calculate the total ticket price and display it
+		$updateTicketPrice = function() {
+			$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
+			$addonsArray = $generateAddonsArray()
+
+			$totalAddonsPrice = 0;
+			$addonsArray.forEach(function(addon) {
+				$addonQty = addon.qty;
+				if ($addonQty > 0) {
+					$addonPrice = addon.price;
+					$totalAddonsPrice += $addonPrice * $addonQty
+				}
+			});
+
+			$totalPrice = $ticketPrice + $totalAddonsPrice;
+			// stripe amount is in pence
+			$totalDiv.innerHTML = "Total: " + $totalPrice.toFixed(2) + " GBP";
+		};
+
+		// define function to determine if addon seletion is valid
+		$determineValidAddon = function() {
+			$validAddon = true;
+			if ($addons.length < 1) {
+				return
+			}
+
+			$qtySelectors.each(function(i, obj) {
+				$value = obj.value;
+				if ($value > 0) {
+					if (jQuery('#select_' + obj.getAttribute('data-id')).val() == "NULL") {
+						$validAddon = false;
+						// break out of the .each loop
+						return;
+					}
+				} else if ($value == "NULL") {
+					$validAddon = false;
+					// break out of the .each loop
+					return;
+				}
+			});
+		};
+
+		$generateAddonsArray = function() {
+			$selectedAddons = [];
+			$addons = jQuery('.swa-addon');
+			$addons.each(function(i, obj) {
+				$addonQty = parseInt(obj.value);
+				$addonId = obj.getAttribute('data-id');
+				if ($addonQty > 0) {
+					$selectedAddons[$addonId] = [];
+					$selectedAddons[$addonId] = {
+						id: obj.getAttribute('data-id'),
+						name: obj.getAttribute('data-name'),
+						qty: $addonQty,
+						option: jQuery('#select_' + obj.getAttribute('data-id')).val(),
+						price: parseFloat(obj.getAttribute('data-price')) // not used as final amount to charge customer as could be tampered with malicipoiusly
+					};
+				}
+			});
+			return $selectedAddons;
+		}
+
 		if ($addons.length > 0) {
 			$qtySelectors = jQuery('.swa-qty-selector');
 			$optionSelectors = jQuery('.swa-option-selector');
-
-			// disable the stripe button
-			$stripeBtn = jQuery('#stripe-button');
-			$stripeBtn.prop('disabled', true);
 
 			// disable and hide all option selectors
 			$optionSelectors.prop('disabled', true);
 			$optionSelectors.parent().prop('hidden', true);
 
-			// define function to calculate the total ticket price
-			$totalTicketPrice = function () {
-				$ticketPrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
-
-				$totalAddonsPrice = 0;
-				$addons.each(function (i, obj) {
-					$addonQty = parseInt(obj.value);
-					if ($addonQty > 0) {
-						$addonPrice = parseFloat(obj.getAttribute('data-price'));
-						$totalAddonsPrice += $addonPrice * $addonQty
-					}
-				});
-
-				$totalPrice = $ticketPrice + $totalAddonsPrice;
-				$totalPrice = $totalPrice.toFixed(2);
-				// stripe amount is in pence
-				$stripeBtn.attr('data-amount', $totalPrice * 100);
-				jQuery('#stripe-button span')[0].innerHTML = "Pay £" + $totalPrice + " now!";
-
-			};
-
-			// define function to enable/disable stripe button
-			$updateStripeButton = function (event) {
-				$stripeBtnEnabled = true;
-
-				$qtySelectors.each(function (i, obj) {
-					$value = obj.value;
-					if ($value > 0) {
-						if (jQuery('#select_' + obj.getAttribute('data-id')).val() == "NULL") {
-							$stripeBtnEnabled = false;
-							// break out of the .each loop
-							return false;
-						}
-					} else if ($value == "NULL") {
-						$stripeBtnEnabled = false;
-						// break out of the .each loop
-						return false;
-					}
-				});
-
-				$stripeBtn.prop('disabled', !$stripeBtnEnabled)
-			};
-
 			// define function to enable/disable the option
-			$qtyChanged = function (event) {
+			$qtyChanged = function(event) {
 				// get the option selector for this addon
 				$option = jQuery('#select_' + event.target.getAttribute('data-id'));
 
@@ -101,32 +151,36 @@ if ($ticket == null)
 					$option.val('NULL');
 					$option.prop('disabled', true);
 				}
-
-				$totalTicketPrice();
-				$updateStripeButton(event)
 			};
 
-			$qtySelectors.change(function (event) {
+			$qtySelectors.change(function(event) {
 				$qtyChanged(event);
+				$updateTicketPrice();
+				$determineValidAddon(event)
+				setStripeButtonStatus();
 			});
 
-			$optionSelectors.change(function (event) {
-				$updateStripeButton(event);
+			$optionSelectors.change(function(event) {
+				$determineValidAddon(event);
+				setStripeButtonStatus();
 			});
 		}
+
+		$updateTicketPrice();
 	});
 </script>
 
+
+<!-- create form -->
+<script src="https://js.stripe.com/v3/"></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+
 <h1>Order Summary</h1>
 
-<form id="stripe-form" method="POST" enctype="multipart/form-data"
-      action="<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase'); ?>">
-	<input type="hidden" name="option" value="com_swa"/>
-	<input type="hidden" name="task" value="ticketpurchase.submit"/>
-	<input type="hidden" name="return" value="index.php?option=com_swa&view=membertickets"/>
-	<input type="hidden" id="stripeToken" name="stripeToken" value="NULL"/>
+<form id="payment-form" method="POST" enctype="multipart/form-data">
 
 	<div class="table-responsive favth-table-responsive">
+		<jdoc:include type="message" />
 		<table class="table favth-table">
 			<tr>
 				<th class="col-sm-2 favth-col-sm-2">Qty</th>
@@ -141,20 +195,13 @@ if ($ticket == null)
 				<td><?php echo '£' . $ticket->price; ?></td>
 			</tr>
 			<?php
-			if (isset($ticket->details) && isset($ticket->details->addons) && !empty($ticket->details->addons))
-			{
-				foreach ($ticket->details->addons as $key => $addon)
-				{
-					?>
+			if (isset($ticket->details) && isset($ticket->details->addons) && !empty($ticket->details->addons)) {
+				foreach ($ticket->details->addons as $key => $addon) {
+			?>
 					<tr>
 						<td>
-							<select id="<?php echo "addon_{$key}" ?>"
-							        name="<?php echo "addons[{$key}][qty]" ?>"
-							        data-id="<?php echo $key ?>"
-							        class="swa-addon swa-qty-selector"
-							        style="width: 60px"
-							        data-price="<?php echo $addon->price ?>">
-								<option value="NULL">--</option>
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector"
+							style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -162,21 +209,16 @@ if ($ticket == null)
 						<td>
 							<div><?php echo "{$addon->name}<br/>{$addon->description}" ?></div>
 							<?php
-							if (isset($addon->options) && !empty($addon->options))
-							{
+							if (isset($addon->options) && !empty($addon->options)) {
 								$option = $addon->options;
-								?>
+							?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select id="<?php echo "select_{$key}" ?>"
-									        name="<?php echo "addons[{$key}][option]" ?>"
-									        data-id="<?php echo $key ?>"
-									        class="swa-option-selector"
-									        data-price="<?php echo $option->price ?>">
+									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>"
+									class="swa-option-selector" data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
-										<?php foreach ($option->values as $value)
-										{
-											?>
+										<?php foreach ($option->values as $value) {
+										?>
 											<option value='<?php echo $value->value ?>'>
 												<?php echo $value->label ?>
 											</option>
@@ -187,7 +229,7 @@ if ($ticket == null)
 						</td>
 						<td>£<?php echo number_format($addon->price, 2) ?></td>
 					</tr>
-					<?php
+			<?php
 				}
 			}
 			?>
@@ -201,52 +243,185 @@ if ($ticket == null)
 
 		</table>
 	</div>
+	<h2 id="payment-total">Total: GBP</h2>
+	<div id="card-element">
+		<!--Stripe.js injects the Card Element-->
+	</div>
+	<!-- <button class="btn btn-primary btn-lg" id="stripe-button">Pay Now</button> -->
+	<button id="stripe-button">
+		<div class="spinner hidden" id="spinner"></div>
+		<span id="button-text">Pay</span>
+	</button>
+	<p id="card-error" role="alert"></p>
+	<p class="result-message hidden">
+		Processing order, please do not navigate away from this page...
+	</p>
 </form>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
 
-<button class="btn btn-primary btn-lg" id="stripe-button">
-	<span class="glyphicon glyphicon-shopping-cart">
-		<?php echo "Pay £{$ticket->price} now!" ?>
-	</span>
-</button>
+<!-- handle payment -->
+<script type="text/javascript">
+	// A reference to Stripe.js initialized with the publishable API key loaded from the Joomla configuration.php file.
+	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
 
-<script>
-		var handler = StripeCheckout.configure({
-			key: "<?php echo $jConfig->get('stripe_publishable_key'); ?>",
-			image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-			locale: 'auto',
-			email: "<?php echo $this->user->email ?>",
-			token: function (res) {
-				jQuery('#stripeToken').val(res.id);
-				jQuery('#stripe-form').submit();
+	// Disable the button until we have Stripe set up on the page
+	document.querySelector("#stripe-button").disabled = true;
+
+	var elements = stripe.elements();
+	var style = {
+		base: {
+			color: "#32325d",
+			fontFamily: 'Arial, sans-serif',
+			fontSmoothing: "antialiased",
+			fontSize: "16px",
+			"::placeholder": {
+				color: "#32325d"
 			}
-		});
+		},
+		invalid: {
+			fontFamily: 'Arial, sans-serif',
+			color: "#fa755a",
+			iconColor: "#fa755a"
+		}
+	};
+	var card = elements.create("card", {
+		style: style
+	});
+	// Stripe injects an iframe into the DOM
+	card.mount("#card-element");
+	card.on("change", function(event) {
+		// Disable the Pay button if there are no card details in the Element or add on not valid
+		$stripeCardErrorMsg = event.error ? event.error.message : "";
+		$cardDetailsComplete = event.complete;
+		setStripeButtonStatus();
+	});
+	var form = document.getElementById("payment-form");
 
-        document.getElementById('stripe-button').addEventListener('click', function (e) {
-            // Get ticket amount
-            var amount = parseInt(jQuery("#stripe-button").attr('data-amount'));
+	var payWithCard = function(stripe, card, clientSecret) {
+		// console.log(stripe, card, clientSecret)
+		loading(true);
+		stripe
+			.confirmCardPayment(clientSecret, {
+				payment_method: {
+					card: card
+				}
+			})
+			.then(function(result) {
+				console.log(result)
+				if (result.error) {
+					// Show error to your customer
+					showError(result.error.message);
+				} else {
+					// The payment succeeded!
+					processOrder(result.paymentIntent.id);
+				}
+			});
+	};
+	/* ------- UI helpers ------- */
+	// Shows a success message when the payment is complete
+	var processOrder = function(paymentIntentId) {
+		loading(true);
+		document.querySelector(".result-message").classList.remove("hidden");
+		document.querySelector("#stripe-button").disabled = true;
+		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					paymentIntentId: paymentIntentId,
+				})
+			})
+			.then(function(result) {
+				if (result.ok) {
+					return result.json().then(function(response) {
+						console.log(response)
+						if (response.messages) {
+							Joomla.renderMessages(response.messages);
+						}
+						if (response.success) {
+							window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
+						} else {
+							showError(response.message);
+							console.error(response.message);
+							document.querySelector(".result-message").classList.add("hidden");
+							stripButtonPermanentDisable = true;
+							document.querySelector("#stripe-button").disabled = true;
+						}
+					})
+				} else {
+					return result.text().then(text => {
+						stripButtonPermanentDisable = true;
+						document.querySelector("#stripe-button").disabled = true;
+						Joomla.renderMessages({"error": [text]});
+						msg = "Oops! You may have lost connection. \n\r Please check Account>My Tickets to see if the order went through. \r\n"
+						msg += "If it did not go through and you have still been charged, please contact webmaster@swa.co.uk to resolve this"
+						Joomla.renderMessages({"error": [msg]});
+					})
+				}
+			});
+	};
+	// Show the customer the error from Stripe if their card fails to charge
+	var showError = function(errorMsgText) {
+		loading(false);
+		var errorMsg = document.querySelector("#card-error");
+		errorMsg.textContent = errorMsgText;
+		setTimeout(function() {
+			errorMsg.textContent = "";
+		}, 7000);
+	};
+	// Show a spinner on payment submission
+	var loading = function(isLoading) {
+		if (isLoading) {
+			// Disable the button and show a spinner
+			document.querySelector("#stripe-button").disabled = true;
+			document.querySelector("#spinner").classList.remove("hidden");
+			document.querySelector("#button-text").classList.add("hidden");
+		} else {
+			document.querySelector("#stripe-button").disabled = false;
+			document.querySelector("#spinner").classList.add("hidden");
+			document.querySelector("#button-text").classList.remove("hidden");
+		}
+	};
 
-            if ( amount > 0 ) {
-	            // Open Checkout with further options:
-	            handler.open({
-	                name: 'SWA',
-	                description: "<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>",
-	                currency: 'GBP',
-	                zipCode: true,
-	                amount: amount
-	            });
-	            e.preventDefault();
+	// Complete payment when the submit button is clicked
+	form.addEventListener("submit", function(event) {
+		loading(true)
+		event.preventDefault();
 
-                // Close Checkout on page navigation:
-                window.addEventListener('popstate', function () {
-                    handler.close();
-                });
-            } else {
-                document.getElementById('stripe-button').addEventListener('click', function (e) {
-                    jQuery('#stripe-form').submit();
-                })
-            }
-        });
+		var addons = $generateAddonsArray();
 
+		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.createPaymentIntent') ?>", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					ticketId: "<?php echo $ticketId ?>",
+					addons: addons,
+					estimatedPrice: $totalPrice
+				})
+			})
+			.then(function(result) {
+				if (result.ok) {
+					return result.json().then(function(response) {
+						console.log(response)
+						if (response.messages) {
+							Joomla.renderMessages(response.messages);
+						}
+						if (response.success) {
+							payWithCard(stripe, card, response.data.clientSecret);
+						} else {
+							showError(response.message);
+							console.error(response.message);
+						}
+					})
+				} else {
+					return result.text().then(text => {
+						Joomla.renderMessages({"error": [text]});
+					})
+				}
+			});
+
+	});
 </script>
