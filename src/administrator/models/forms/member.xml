@@ -27,7 +27,7 @@
               label="Lifetime Member"
               default="0"/>
 
-      <field name="sex" 
+      <field name="gender" 
               type="list"
               label="Gender"
               default="none"

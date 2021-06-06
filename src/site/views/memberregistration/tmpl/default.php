@@ -37,8 +37,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<tbody>
 			<tr>
 				<div class="control-group">
-					<td><?php echo $this->form->getLabel('sex'); ?></td>
-					<td><?php echo $this->form->getInput('sex'); ?></td>
+					<td><?php echo $this->form->getLabel('gender'); ?></td>
+					<td><?php echo $this->form->getInput('gender'); ?></td>
 				</div>
 			</tr>
 

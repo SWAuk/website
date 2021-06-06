@@ -32,7 +32,7 @@ class SwaControllerMemberDetails extends SwaController
 			throw new Exception('You\'re trying to submit data for someone else?');
 		}
 
-		$newSex        = $data['jform']['sex'];
+		$newGender        = $data['jform']['gender'];
 		$newPronouns   = $data['jform']['pronouns'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
@@ -49,7 +49,7 @@ class SwaControllerMemberDetails extends SwaController
 		$query
 			->update($db->quoteName('#__swa_member'))
 			->where('id = ' . $db->quote($member->id))
-			->set('sex = ' . $db->quote($newSex))
+			->set('gender = ' . $db->quote($newGender))
 			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
