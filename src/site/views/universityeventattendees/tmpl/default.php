@@ -59,7 +59,7 @@ foreach ($eventData as $eventId => $event)
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>Name</th>
 			<th>Ticket</th>
 		</tr>

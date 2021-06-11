@@ -84,18 +84,6 @@ JHtml::_('behavior.keepalive');
 						<div class="controls"><?php echo $this->form->getInput('club_committee'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('course'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('course'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('graduation'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('graduation'); ?></div>
-					</div>
-					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel('discipline'); ?></div>
-						<div class="controls"><?php echo $this->form->getInput('discipline'); ?></div>
-					</div>
-					<div class="control-group">
 						<div class="control-label"><?php echo $this->form->getLabel('level'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('level'); ?></div>
 					</div>

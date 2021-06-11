@@ -38,7 +38,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>Id</th>
+		<th>ID</th>
 		<th>Name</th>
 		<th>Position</th>
 		<th>Demote</th>
@@ -85,7 +85,7 @@ JHtml::_('formbehavior.chosen', 'select');
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>Id</th>
+		<th>ID</th>
 		<th>Name</th>
 		<th>Promote</th>
 	</tr>

@@ -13,7 +13,6 @@
       <field name="gender"
               type="list"
               label="Gender"
-              default="none"
               required="true">
          <option value="Male">Male</option>
          <option value="Female">Female</option>
@@ -25,14 +24,12 @@
               class="inputbox"
               label="Pronouns"
               filter="safehtml"
-              hint="e.g. she/her"
-              description="Enter the pronouns which you would like to be refered as, please note this is optional!"/>
+              hint="e.g. she/her"/>
       
       <field name="ethnicity"
               type="list"
               label="Ethnicity"
-              default="Default"
-              description="Select from the list the ethnicity that best describes your own, please note this is optional!">
+              default="Default">
          <option value="Default">Please Select</option>
          <option value="White">White - English / Welsh / Scottish / Northern Irish / British</option>
          <option value="Irish">White - Irish</option>
@@ -80,30 +77,6 @@
               readonly="true"
               required="true"
               filter="safehtml"/>
-      
-      <field name="course"
-              type="text"
-              size="40"
-              class="inputbox"
-              label="Course"
-              readonly="true"
-              filter="safehtml"/>
-      
-      <field name="graduation"
-              type="text"
-              size="40"
-              class="inputbox"
-              label="Graduation Year"
-              filter="safehtml"/>
-      
-      <field name="discipline"
-              type="list"
-              label="Discipline">
-         <option value="None">None</option>
-         <option value="Race">Race</option>
-         <option value="Wave">Wave</option>
-         <option value="Freestyle">Freestyle</option>
-      </field>
       
       <field name="level"
               type="list"

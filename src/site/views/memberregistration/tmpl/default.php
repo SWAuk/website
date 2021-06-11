@@ -79,27 +79,6 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 			<tr>
 				<div class="control-group">
-					<td><?php echo $this->form->getLabel('course'); ?></td>
-					<td><?php echo $this->form->getInput('course'); ?></td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('graduation'); ?></td>
-					<td><?php echo $this->form->getInput('graduation'); ?></td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('discipline'); ?></td>
-					<td><?php echo $this->form->getInput('discipline'); ?></td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="control-group">
 					<td><?php echo $this->form->getLabel('level'); ?></td>
 					<td><?php echo $this->form->getInput('level'); ?></td>
 				</div>

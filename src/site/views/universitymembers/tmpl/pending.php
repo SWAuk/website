@@ -39,10 +39,9 @@ JHtml::_('formbehavior.chosen', 'select');
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>Id</th>
+		<th>ID</th>
 		<th>Name</th>
 		<th>Paid</th>
-		<th>Discipline</th>
 		<th>Level</th>
 		<th>Course</th>
 		<th>Approve</th>
@@ -70,7 +69,6 @@ JHtml::_('formbehavior.chosen', 'select');
 			echo "<td bgcolor='#FF6666'>No</td>\n";
 		}
 
-		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 		echo "<td>" . $item->course . "</td>\n";
 		echo '<td><form id="form-universitymembers-approve-' .

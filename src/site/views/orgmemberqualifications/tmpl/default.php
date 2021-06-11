@@ -31,7 +31,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 <table class="table table-hover" id="qualificationsList">
 	<thead>
 	<tr>
-		<th class='left'>Id</th>
+		<th class='left'>ID</th>
 		<th class='left'>Member</th>
 		<th class='left'>Type</th>
 		<th class='left'>Expiry</th>

@@ -14,7 +14,7 @@
 			type="text"
 			class='readonly'
 			readonly='true'
-			label="User id"
+			label="User ID"
 			required="true"
 			filter="safehtml"/>
 
@@ -31,7 +31,7 @@
 			size="1000"
 			width="300"
 			class="inputbox"
-			label="blurb"
+			label="Blurb"
 			required="true"
 			filter="safehtml"/>
 

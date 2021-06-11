@@ -38,12 +38,10 @@ JHtml::_('formbehavior.chosen', 'select');
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>Id</th>
+		<th>ID</th>
 		<th>Name</th>
 		<th>Committee</th>
-		<th>Discipline</th>
 		<th>Level</th>
-		<th>Graduation</th>
 		<th>Ungraduate</th>
 	</tr>
 	</thead>
@@ -60,9 +58,7 @@ JHtml::_('formbehavior.chosen', 'select');
 		echo "<td>" . $item->id . "</td>\n";
 		echo "<td>" . $item->name . "</td>\n";
 		echo "<td>" . ($item->club_committee ? 'Yes' : 'No') . "</td>\n";
-		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
-		echo "<td>" . $item->graduation . "</td>\n";
 		echo '<td><form id="form-universitymembers-ungraduate-' .
 			$item->id .
 			'" method="POST" action="' .
