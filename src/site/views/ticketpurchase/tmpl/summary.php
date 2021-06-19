@@ -247,7 +247,6 @@ if ($ticket == null) {
 	<div id="card-element">
 		<!--Stripe.js injects the Card Element-->
 	</div>
-	<!-- <button class="btn btn-primary btn-lg" id="stripe-button">Pay Now</button> -->
 	<button id="stripe-button">
 		<div class="spinner hidden" id="spinner"></div>
 		<span id="button-text">Pay</span>
@@ -422,6 +421,5 @@ if ($ticket == null) {
 					})
 				}
 			});
-
 	});
 </script>

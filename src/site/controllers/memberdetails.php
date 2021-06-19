@@ -36,8 +36,6 @@ class SwaControllerMemberDetails extends SwaController
 		$newPronouns   = $data['jform']['pronouns'];
 		$newEthnicity  = $data['jform']['ethnicity'];
 		$newTel        = $data['jform']['tel'];
-		$newGraduation = $data['jform']['graduation'];
-		$newDiscipline = $data['jform']['discipline'];
 		$newLevel      = $data['jform']['level'];
 		$newEContact   = $data['jform']['econtact'];
 		$newENumber    = $data['jform']['enumber'];
@@ -53,8 +51,6 @@ class SwaControllerMemberDetails extends SwaController
 			->set('pronouns = ' . $db->quote($newPronouns))
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
-			->set('graduation = ' . $db->quote($newGraduation))
-			->set('discipline = ' . $db->quote($newDiscipline))
 			->set('level = ' . $db->quote($newLevel))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))

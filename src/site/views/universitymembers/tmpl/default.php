@@ -86,11 +86,10 @@ foreach ($this->events as $event)
 <table class="table table-hover">
 	<thead>
 	<tr>
-		<th>Id</th>
+		<th>ID</th>
 		<th>Name</th>
 		<th>SWA Member</th>
 		<th>Committee</th>
-		<th>Discipline</th>
 		<th>Level</th>
 		<th>Action</th>
 		<th>Event Registration</th>
@@ -120,7 +119,6 @@ foreach ($this->events as $event)
 		}
 
 		echo "<td>" . ($item->club_committee ? 'Yes' : 'No') . "</td>\n";
-		echo "<td>" . $item->discipline . "</td>\n";
 		echo "<td>" . $item->level . "</td>\n";
 
 		echo '<td>';

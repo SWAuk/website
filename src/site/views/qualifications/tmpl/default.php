@@ -40,7 +40,7 @@ else
 	<table class="table table-hover">
 		<thead>
 		<tr>
-			<th>Id</th>
+			<th>ID</th>
 			<th>Type</th>
 			<th>Expiry</th>
 			<th>Approved</th>

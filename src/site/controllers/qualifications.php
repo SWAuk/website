@@ -16,19 +16,17 @@ class SwaControllerQualifications extends SwaController
 		$data            = $input->getArray();
 		$qualificationId = $data['qualification'];
 
-		// TODO get qualification
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-
 		$query->select('a.*');
 		$query->from('#__swa_qualification as a');
 		$query->where('id=' . $db->quote($qualificationId));
-
 		$db->setQuery($query);
 
 		if (!$db->execute())
 		{
-			die('something went wrong selecting the image');
+			$input->enqueueMessage('Something went wrong selecting the image', 'error');
+			$input->redirect(JRoute::_('index.php'));
 		}
 
 		$qualification = $db->loadObject();
@@ -37,24 +35,48 @@ class SwaControllerQualifications extends SwaController
 
 		if (!$currentMember->id)
 		{
-			die('Coudnln\'t get member id to view qualification image');
+			$input->enqueueMessage('Couldn\'t get member id to view qualification image', 'error');
+			$input->redirect(JRoute::_('index.php'));
 		}
 
 		if ($qualification->member_id != $currentMember->id)
 		{
-			die('Trying to get qualfiication image for other member..');
+			$input->enqueueMessage('Tried to get qualification image for another member...', 'error');
+			$input->redirect(JRoute::_('index.php'));
 		}
 
-		// Output the file?
+		// Output the file
 		header("Content-type: " . $qualification->file_type);
 		print($qualification->file);
 		exit();
+	}
+
+	public function checkUniqueQualification($data)
+	{
+		// Make sure the member does not have this qualification in the DB already
+		$app = JFactory::getApplication();
+		$currentMember = $this->getCurrentMember();
+
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->select('COUNT(*)');
+		$query->from($db->quoteName('#__swa_qualification') . ' as qual');
+		$query->where('qual.member_id = ' . $db->quote($currentMember->id));
+		$query->where('qual.type = ' . $db->quote($data['type']));
+		$db->setQuery($query);
+		$count = $db->loadResult();
+
+		if ($count >= 1) {
+			$app->enqueueMessage('Qualification already in database, contact <a href="mailto:webmaster@swa.co.uk">webmaster@swa.co.uk</a> if you think there is an error', 'error');
+			$app->redirect(JRoute::_('index.php'));
+		}
 	}
 
 	public function add()
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app = JFactory::getApplication();
 
 		// Get the file uploaded
 		$file = JFactory::getApplication()->input->files->get('jform');
@@ -62,14 +84,16 @@ class SwaControllerQualifications extends SwaController
 
 		if ($file['error'] !== 0)
 		{
-			die('Got an error while uploading file');
+			$app->enqueueMessage('An error occurred uploading the file, contact <a href="mailto:webmaster@swa.co.uk">webmaster@swa.co.uk</a> if the problem persists', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$filePath = $file['tmp_name'];
 
 		if (!file_exists($filePath))
 		{
-			die('Couldn\'t find uploaded file!');
+			$app->enqueueMessage('Couldn\'t find uploaded file, contact <a href="mailto:webmaster@swa.co.uk">webmaster@swa.co.uk</a> if the problem persists', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$fileType = $file['type'];
@@ -84,15 +108,19 @@ class SwaControllerQualifications extends SwaController
 
 		if (!$currentMember->id)
 		{
-			die('Coudnln\'t get member id to add qualification');
+			$app->enqueueMessage('Couldn\'t retrieve member id to add qualification, contact <a href="mailto:webmaster@swa.co.uk">webmaster@swa.co.uk</a> if the problem persists', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$expiryDate = date('Y-m-d', strtotime($data['expiry_date']));
 
 		if (new DateTime($expiryDate) < new DateTime)
 		{
-			die('Expiry date can not be in the past!');
+			$app->enqueueMessage('Expiry Date can not be in the past!', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
+
+		$this->checkUniqueQualification($data);
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);

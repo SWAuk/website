@@ -39,7 +39,8 @@ class SwaControllerOrgMemberQualifications extends SwaController
 
 		if (!$db->execute())
 		{
-			die('something went wrong selecting the image');
+			$input->enqueueMessage('Something went wrong selecting the image', 'error');
+			$input->redirect(JRoute::_('index.php'));
 		}
 
 		$qualification = $db->loadObject();
