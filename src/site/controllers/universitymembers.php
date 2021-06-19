@@ -141,7 +141,6 @@ class SwaControllerUniversityMembers extends SwaController
 		{
 			$app->enqueueMessage('Current member is not club committee', 'error');
 			$app->redirect(JRoute::_('index.php'));
-			
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
