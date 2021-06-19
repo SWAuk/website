@@ -57,7 +57,7 @@ class SwaControllerTicketPurchase extends SwaController
 		// Make sure the we managed to find the ticket
 		if ($ticket == null) {
 			JLog::add(
-				"Unable to find ticket with id \"{$ticketId}\" - redirecting to ticketpurchase page",
+				"Unable to find ticket with id \"{$ticketId}\" - redirecting to ticket purchase page",
 				JLog::INFO,
 				'com_swa.payment_process'
 			);
@@ -125,6 +125,7 @@ class SwaControllerTicketPurchase extends SwaController
 			$error_msg = "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message.";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
+			// $this->addFreeTicketToDb($member, $ticket, $details);
 		}
 
 		$app->close();
@@ -248,6 +249,49 @@ class SwaControllerTicketPurchase extends SwaController
 			);
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Ticket was not purchased but a payment MAY have been taken.\r\n";
+			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			$app->enqueueMessage($error_msg, 'error');
+			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
+			jexit();
+		}
+		echo new \Joomla\CMS\Response\JsonResponse(null);
+		jexit();
+	}
+
+	public function addFreeTicketToDb($member, $ticket, $details)
+	{
+		$app = JFactory::getApplication();
+
+		$memberId = $member->id;
+		$eventTicketId = $ticket->id;
+		$totalCost = 0;
+		$tixDetails = $details;
+
+		$this->logAuditFrontend('Member ' . $memberId . ' bought event ticket ' . $eventTicketId);
+
+		// Add the ticket to the db
+		$db    = JFactory::getDbo();
+		$query = $db->getQuery(true);
+		$query->insert($db->quoteName('#__swa_ticket'));
+		$query->columns($db->quoteName(array('member_id', 'event_ticket_id', 'paid', 'details')));
+		$query->values(
+			"{$db->quote($memberId)}, " .
+			"{$db->quote($eventTicketId)}, " .
+			"{$db->quote($totalCost)}, " .
+			"{$db->quote($tixDetails)}"
+		);
+
+		$db->setQuery($query);
+		$result = $db->execute();
+
+		if ($result === false) {
+			JLog::add(
+				"Ticket processed but failed to add ticket to the db. Member ID: {$memberId}. 
+				Event Ticket ID: {$eventTicketId}. Details: {$tixDetails}",
+				JLog::ERROR,
+				'com_swa.payment_process'
+			);
+			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
