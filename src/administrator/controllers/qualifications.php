@@ -35,11 +35,12 @@ class SwaControllerQualifications extends SwaControllerAdmin
 		$db->setQuery($query);
 		if (!$db->execute())
 		{
-			die('something went wrong selecting the image');
+			$input->enqueueMessage('Something went wrong selecting the image', 'error');
+			$input->redirect(JRoute::_('index.php'));
 		}
 		$qualification = $db->loadObject();
 
-		// Output the file?
+		// Output the file
 		header("Content-type: " . $qualification->file_type);
 		print($qualification->file);
 		exit();

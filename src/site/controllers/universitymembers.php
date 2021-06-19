@@ -11,6 +11,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -21,14 +22,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Approve the member for the university
@@ -70,6 +73,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -80,14 +84,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Unapprove the member for the university
@@ -122,6 +128,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -132,14 +139,17 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
+			
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Graduate the member for the university
@@ -175,6 +185,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -185,14 +196,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Graduate the member for the university
@@ -228,6 +241,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -238,7 +252,8 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		if (array_key_exists('member_id', $data))
@@ -261,14 +276,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 			if ($currentMember->university_id != $targetMember->university_id)
 			{
-				die('Current and target member are from different universities');
+				$app->enqueueMessage('Current and target member are from different universities', 'error');
+				$app->redirect(JRoute::_('index.php'));
 			}
 
 			$targetEvents = $this->getEvents($data['event_id']);
 
 			if (empty($targetEvents))
 			{
-				die('Event does not exist with given id');
+				$app->enqueueMessage('Event does not exist with given id', 'error');
+				$app->redirect(JRoute::_('index.php'));
 			}
 
 			// Add a new registration row
@@ -314,6 +331,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -324,21 +342,24 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetEvents = $this->getEvents($data['event_id']);
 
 		if (empty($targetEvents))
 		{
-			die('Event does not exist with given id');
+			$app->enqueueMessage('Event does not exist with given id', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Delete all matching registration rows
@@ -380,6 +401,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -390,14 +412,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Graduate the member for the university
@@ -433,6 +457,7 @@ class SwaControllerUniversityMembers extends SwaController
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		$app   = JFactory::getApplication();
 
 		$props = $this->getProperties();
 		/** @var JInput $input */
@@ -443,14 +468,16 @@ class SwaControllerUniversityMembers extends SwaController
 
 		if (!$currentMember->club_committee)
 		{
-			die('Current member is not club committee');
+			$app->enqueueMessage('Current member is not club committee', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		$targetMember = $this->getMember($data['member_id']);
 
 		if ($currentMember->university_id != $targetMember->university_id)
 		{
-			die('Current and target member are from different universities');
+			$app->enqueueMessage('Current and target member are from different universities', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Graduate the member for the university

@@ -12,6 +12,7 @@ class SwaControllerEvent extends SwaController
 		$model  = $this->getModel('Event');
 		$member = $model->getMember();
 		$item   = $model->getItem();
+		$app    = JFactory::getApplication();
 
 		$hostUniversities = explode(',', $item->hosts);
 		$isHostCommittee  = in_array($member->uni_id, $hostUniversities) && $member->club_committee;
@@ -41,7 +42,8 @@ class SwaControllerEvent extends SwaController
 		}
 		else
 		{
-			die("Access denied!");
+			$app->enqueueMessage('Access Denied!', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 	}
 }

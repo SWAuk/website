@@ -24,7 +24,7 @@ class SwaControllerMemberRegistration extends SwaController
 
 		if ($data['user_id'] == 0)
 		{
-			throw new Exception('Cant register user with id of 0');
+			throw new Exception('Can\'t register user with id of 0');
 		}
 
 		// Validate the posted data.
@@ -76,7 +76,8 @@ class SwaControllerMemberRegistration extends SwaController
 
 		if (new DateTime($dobDate) > new DateTime)
 		{
-			die('DOB can not be in the future!');
+			$app->enqueueMessage('DOB can not be in the future!', 'error');
+			$app->redirect(JRoute::_('index.php'));
 		}
 
 		// Set dob to be db format....
