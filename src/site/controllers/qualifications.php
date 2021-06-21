@@ -159,9 +159,8 @@ class SwaControllerQualifications extends SwaController
 			$this->logAuditFrontend('added qualification: ' . $data['type']);
 		}
 
-		$this->setRedirect(
-			JRoute::_('index.php?option=com_swa&view=qualifications', false)
-		);
+		$app->enqueueMessage('Qualification successfully uploaded!', 'message');
+		$app->redirect(JRoute::_('index.php'));
 	}
 
 	/**

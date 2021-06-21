@@ -27,12 +27,11 @@ class SwaControllerQualifications extends SwaControllerAdmin
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
-
 		$query->select('a.*');
 		$query->from('#__swa_qualification as a');
 		$query->where('id=' . $db->quote($qualificationId));
-
 		$db->setQuery($query);
+
 		if (!$db->execute())
 		{
 			$input->enqueueMessage('Something went wrong selecting the image', 'error');
