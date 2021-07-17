@@ -37,10 +37,7 @@
 			default="0"
 			required="false">
 			<option value="0">None</option>
-			<option value="President">President</option>
-			<option value="Vice President">Vice President</option>
-			<option value="Treasurer">Treasurer</option>
-			<option value="Other">Other</option>
+			<option value="Committee">Committee</option>
 		</field>
 
 		<field name="graduated"
