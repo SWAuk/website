@@ -2056,7 +2056,7 @@ INSERT INTO `swana_swa_university_member` (`id`, `member_id`, `university_id`, `
 (2,	5,	1,	'0',	0),
 (3,	4,	1,	'0',	1),
 (4,	3,	2,	'0',	0),
-(5,	1,	1,	'President',	0),
+(5,	1,	1,	'Committee',	0),
 (6,	2,	2,	'0',	0),
 (7, 7,  1,  '0',  0);
 

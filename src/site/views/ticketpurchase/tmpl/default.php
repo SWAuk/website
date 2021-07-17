@@ -23,7 +23,7 @@ if (empty($this->items)) {
 else {
 ?>
 	<p>Tickets are sometimes released in batches, if one is marked as 'SOLD OUT' check back soon!</p>
-	<p>If you can not see any tickets here then maybe there are no events? Make sure you president has registered you
+	<p>If you can not see any tickets here then maybe there are no events? Make sure your committee has registered you
 		for the event! If you want an instructor ticket make sure you have submitted your qualifications.</p>
 	<p>Keep an eye on social media as we will post about all ticket releases there!</p>
 	<table class="table table-hover">
