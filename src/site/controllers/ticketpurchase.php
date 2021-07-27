@@ -94,7 +94,8 @@ class SwaControllerTicketPurchase extends SwaController
 				if ($addon["id"] != $addonId || $addon["name"] != $ticketAddon->name || $addon["price"] != $ticketAddon->price) {
 					$message = "Unable to match the selected addons to ticket addons";
 					JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-					$error_msg = "There was a problem matching the selected addons to ticket addons. \nPlease contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
+					$error_msg = "There was a problem matching the selected addons to ticket addons.\r\n";
+					$error_msg .= "Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
 					echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 					jexit();
 				}
