@@ -4,6 +4,7 @@
       
 	  <field name="user_id"
 	  		type="text"
+			size="23"
 			label="User ID"
 			required="true"
 			filter="safehtml"/>
@@ -51,6 +52,7 @@
       
 	  <field name="dob"
 	  		type="calendar"
+			size="23"
 			class="inputbox"
 			required="true"
 			format="%d-%m-%Y"
@@ -60,6 +62,7 @@
       
 	  <field name="tel"
 	  		type="tel"
+			size="23"
 			class="inputbox"
 			required="true" 
 			label="Mobile Number"
@@ -87,7 +90,7 @@
       
 	  <field name="econtact"
 	  		type="text"
-			size="40"
+			size="23"
 			class="inputbox"
 			label="Emergency Contact Name"
 			required="true"
@@ -95,7 +98,7 @@
       
 	  <field name="enumber"
 	  		type="text"
-			size="40"
+			size="23"
 			class="inputbox"
 			label="Emergency Contact Number"
 			required="true"

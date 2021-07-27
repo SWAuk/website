@@ -39,7 +39,7 @@ class SwaControllerTicketPurchase extends SwaController
 		if (!$member || !isset($member->id) || !ctype_digit($member->id)) {
 			$message = "Unable to identify member. " . var_export($member, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Unable to identify member. Please contact webmaster@swa.co.uk if this problem continues.";
+			$error_msg = "Unable to identify member. Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this problem continues.";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
 		}
@@ -94,7 +94,7 @@ class SwaControllerTicketPurchase extends SwaController
 				if ($addon["id"] != $addonId || $addon["name"] != $ticketAddon->name || $addon["price"] != $ticketAddon->price) {
 					$message = "Unable to match the selected addons to ticket addons";
 					JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-					$error_msg = "There was a problem matching the selected addons to ticket addons. \nPlease contact webmaster@swa.co.uk if this continues to happen.";
+					$error_msg = "There was a problem matching the selected addons to ticket addons. \nPlease contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
 					echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 					jexit();
 				}
@@ -109,7 +109,7 @@ class SwaControllerTicketPurchase extends SwaController
 		if ($totalCost != round($estimatedPrice, 2)) {
 			$message = "Cost displayed did not match cost calculated from raw ticket";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Cost displayed did not match cost calculated from raw ticket. \nPlease contact webmaster@swa.co.uk if this continues to happen";
+			$error_msg = "Cost displayed did not match cost calculated from raw ticket. \nPlease contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
 		}
@@ -122,7 +122,7 @@ class SwaControllerTicketPurchase extends SwaController
 			// Would then need to send a different http code so this could be handled on the front end as well
 			$message = "Attempted to buy 0 GBP ticket";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Ticket price is zero. This is not currently supported. Please contact webmaster@swa.co.uk if you are receiving this message.";
+			$error_msg = "Ticket price is zero. This is not currently supported. Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if you are receiving this message.";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
 			// $this->addFreeTicketToDb($member, $ticket, $details);
@@ -160,7 +160,7 @@ class SwaControllerTicketPurchase extends SwaController
 			$message = "Member tried to buy a ticket but the paymentIntent was not created successfully: {$e->getMessage()}";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
+			$error_msg .= "Contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
 		}
@@ -183,7 +183,7 @@ class SwaControllerTicketPurchase extends SwaController
 		if ($count === null) {
 			JLog::add("Unable to check if member already has ticket.", JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error processing your transaction - please try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
+			$error_msg .= "Contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
 			echo new \Joomla\CMS\Response\JsonResponse(null, $error_msg, true);
 			jexit();
 		}
@@ -191,7 +191,7 @@ class SwaControllerTicketPurchase extends SwaController
 		if ($count >= 1) {
 			JLog::add("Member {$memberId} already has a ticket to this event.", JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "You have already bought a ticket to this event! View it in Account>My Tickets. \r\n
-			Contact webmaster@swa.co.uk if there is a problem.";
+			Contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if there is a problem.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -210,7 +210,7 @@ class SwaControllerTicketPurchase extends SwaController
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			 and a ticket was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Unknown error. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
+			$error_msg = "Unknown error. You should not have been charged. \r\nPlease contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a>
 			for assistance and to confirm no payment has been taken. Do not try again.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
@@ -249,7 +249,7 @@ class SwaControllerTicketPurchase extends SwaController
 			);
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Ticket was not purchased but a payment MAY have been taken.\r\n";
-			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			$error_msg .= "Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> ASAP to resolve this.\r\n";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -292,7 +292,7 @@ class SwaControllerTicketPurchase extends SwaController
 				'com_swa.payment_process'
 			);
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
-			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			$error_msg .= "Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> ASAP to resolve this.\r\n";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();

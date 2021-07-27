@@ -354,7 +354,7 @@ if ($ticket == null) {
 						document.querySelector("#stripe-button").disabled = true;
 						Joomla.renderMessages({"error": [text]});
 						msg = "Oops! You may have lost connection. \n\r Please check Account>My Tickets to see if the order went through. \r\n"
-						msg += "If it did not go through and you have still been charged, please contact webmaster@swa.co.uk to resolve this"
+						msg += "If it did not go through and you have still been charged, please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> to resolve this"
 						Joomla.renderMessages({"error": [msg]});
 					})
 				}

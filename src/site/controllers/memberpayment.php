@@ -26,7 +26,7 @@ class SwaControllerMemberPayment extends SwaController
 		if (!$user || !isset($user->id) || !isset($user->name) || !isset($user->email)) {
 			$message = "Unable to retrieve user. " . var_export($user, true);
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Unable to identify user. Please contact webmaster@swa.co.uk if this problem continues.";
+			$error_msg = "Unable to identify user. Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this problem continues.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -35,7 +35,7 @@ class SwaControllerMemberPayment extends SwaController
 		// Check successfully got the user and all the info we need to process the transaction
 		if ($member->paid) {
 			$error_msg = "You have already paid for membership. You have not been charged again. \n\r
-			Please contact webmaster@swa.co.uk if there is a problem";
+			Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if there is a problem";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -65,7 +65,7 @@ class SwaControllerMemberPayment extends SwaController
 			$message = "User tried to buy membership but the paymentIntent was not created successfully: {$e->getMessage()}";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
 			$error_msg = "Oops! There was an unknown error setting up the payment - please refresh the page to try again.\r\n";
-			$error_msg .= "Contact webmaster@swa.co.uk if this continues to happen.";
+			$error_msg .= "Contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> if this continues to happen.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -89,7 +89,7 @@ class SwaControllerMemberPayment extends SwaController
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			and membership was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
-			$error_msg = "Payment failed. You should not have been charged. \r\nPlease contact webmaster@swa.co.uk
+			$error_msg = "Payment failed. You should not have been charged. \r\nPlease contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a>
 			for assistance and to confirm no payment has been taken. Do not try again.";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
@@ -128,7 +128,7 @@ class SwaControllerMemberPayment extends SwaController
 			);
 			$error_msg = "Oops! There was an error  - DO NOT try again!\r\n";
 			$error_msg .= "Membership purchase FAILED but a payment MAY have been taken.\r\n";
-			$error_msg .= "Please contact webmaster@swa.co.uk ASAP to resolve this.\r\n";
+			$error_msg .= "Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> ASAP to resolve this.\r\n";
 			$app->enqueueMessage($error_msg, 'error');
 			echo new \Joomla\CMS\Response\JsonResponse(null, "", true);
 			jexit();
@@ -136,7 +136,7 @@ class SwaControllerMemberPayment extends SwaController
 
 		$this->logAuditFrontend("Member({$member_id}) bought their membership for Season({$seasonName})");
 		echo new \Joomla\CMS\Response\JsonResponse(null);
-		// $app->enqueueMessage('Membership paymernt successful!', 'success');
+		// $app->enqueueMessage('Membership payment successful!', 'success');
 		// $app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
 		jexit();
 	}
