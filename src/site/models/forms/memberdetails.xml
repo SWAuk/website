@@ -4,6 +4,7 @@
 
       <field name="id"
               type="text"
+              size="23"
               default="0"
               label="ID"
               readonly="true"
@@ -53,6 +54,7 @@
       
       <field name="dob"
               type="calendar"
+              size="23"
               class="inputbox"
               required="true"
               label="Date of Birth"
@@ -61,6 +63,7 @@
       
       <field name="tel"
               type="tel"
+              size="23"
               class="inputbox"
               required="true"
               label="Mobile Number"
@@ -89,7 +92,7 @@
       
       <field name="econtact"
               type="text"
-              size="40"
+              size="23"
               class="inputbox"
               label="Emergency Contact Name"
               required="true"
@@ -97,7 +100,7 @@
       
       <field name="enumber"
               type="text"
-              size="40"
+              size="23"
               class="inputbox"
               label="Emergency Contact Number"
               required="true"

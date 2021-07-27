@@ -27,7 +27,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 <h1>Member Tickets</h1>
 
 <p>Note: There may be a delay of up to 30 mins before a ticket appears here!</p>
-<p>If your ticket doesn't appear after that time please email webmaster@swa.co.uk</p>
+<p>If your ticket doesn't appear after that time please email <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a></p>
 
 <table class="table table-hover">
 	<thead>

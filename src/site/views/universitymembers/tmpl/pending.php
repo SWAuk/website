@@ -43,7 +43,6 @@ JHtml::_('formbehavior.chosen', 'select');
 		<th>Name</th>
 		<th>Paid</th>
 		<th>Level</th>
-		<th>Course</th>
 		<th>Approve</th>
 	</tr>
 	</thead>
@@ -70,7 +69,6 @@ JHtml::_('formbehavior.chosen', 'select');
 		}
 
 		echo "<td>" . $item->level . "</td>\n";
-		echo "<td>" . $item->course . "</td>\n";
 		echo '<td><form id="form-universitymembers-approve-' .
 			$item->id .
 			'" method="POST" action="' .

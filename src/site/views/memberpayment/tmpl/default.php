@@ -172,7 +172,7 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 						stripButtonPermanentDisable = false;
 						document.querySelector("#stripe-button").disabled = true;
 						Joomla.renderMessages({"error": [text]});
-						msg = "Order Failed. You may have lost connection. \n\r Please contact webmaster@swa.co.uk "
+						msg = "Order Failed. You may have lost connection. \n\r Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> "
 						msg += "if your bank shows you have been charged for this transaction. Otherwise, please try again."
 						Joomla.renderMessages({"error": [msg]});
 					})
@@ -204,4 +204,4 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 </script>
 
 <p>Note: If you have been redirected here after already paying try refreshing.</p>
-<p>If the problem continues please email webmaster@swa.co.uk.</p>
+<p>If the problem continues please email <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a>.</p>
