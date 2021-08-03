@@ -12,7 +12,7 @@
               description="JGLOBAL_FIELD_ID_DESC"/>
       
       <field name="gender"
-              type="list"
+              type="combo"
               label="Gender"
               required="true">
          <option value="Male">Male</option>
@@ -88,6 +88,16 @@
          <option value="Beginner">Beginner</option>
          <option value="Intermediate">Intermediate</option>
          <option value="Advanced">Advanced</option>
+      </field>
+
+      <field name="race"
+	      type="list"
+	      label="Race"
+	      required="true"
+              readonly="true">
+         <option value="Male">Male</option>
+         <option value="Female">Female</option>
+	 <option value="Mixed">Mixed</option>
       </field>
       
       <field name="econtact"

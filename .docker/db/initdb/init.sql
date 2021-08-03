@@ -1925,6 +1925,7 @@ CREATE TABLE `swana_swa_member` (
   `dob` date NOT NULL DEFAULT '0000-00-00',
   `university_id` int(11) NOT NULL,
   `level` varchar(20) NOT NULL DEFAULT 'Beginner',
+  `race` varchar(255) NOT NULL DEFAULT 'None',
   `econtact` varchar(255) NOT NULL,
   `enumber` varchar(255) NOT NULL,
   `dietary` varchar(10) DEFAULT NULL,
@@ -1936,14 +1937,14 @@ CREATE TABLE `swana_swa_member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `swana_swa_member`
-  (`id`, `user_id`, `lifetime_member`, `gender`,   `pronouns`,   `dob`,          `university_id`,   `level`,          `econtact`,   `enumber`,        `dietary`,  `tel`,           `ethnicity`) VALUES
-  (1,     427,       1,                 'Male',     'he/him',     '1989-02-10',   1,                 'Advanced',       'Rachel',     '07656765455',    'Vegan',    '07805925656',   'English / Welsh / Scottish / Northern Irish / British'),
-  (2,     426,       1,                 'Female',   'she/they',   '1994-02-10',   2,                 'Beginner',       'Ross',       '07656765455',    'None',     '07805925657',   'English / Welsh / Scottish / Northern Irish / British'),
-  (3,     425,       1,                 'Male',     'he/her',     '1996-01-29',   2,                 'Advanced',       'Chandler',   '07656765455',    'Vegan',    '07805925659',   'English / Welsh / Scottish / Northern Irish / British'),
-  (4,     424,       0,                 'Male',     'he/them',    '1999-02-10',   1,                 'Beginner',       'Monica',     '07656765455',    'Halal',    '07805936373',   'English / Welsh / Scottish / Northern Irish / British'),
-  (5,     422,       0,                 'Male',     'she/her',    '1998-02-10',   1,                 'Intermediate',   'Joey',       '07656765455',    'Kosher',   '07805925689',   'English / Welsh / Scottish / Northern Irish / British'),
-  (6,     423,       0,                 'Female',   'she/he',     '1998-02-10',   1,                 'Intermediate',   'Phoebe',     '07656765455',    'Vegan',    '07805925651',   'English / Welsh / Scottish / Northern Irish / British'),
-  (7,     421,       1,                 'Male',     'he/him',     '1992-01-01',   1,                 'Intermediate',   'Janice',     '07656765455',    'None',     '07123456789',   'Irish');
+  (`id`, `user_id`, `lifetime_member`, `gender`,   `pronouns`,   `dob`,          `university_id`,   `level`,          `race`,    `econtact`,   `enumber`,        `dietary`,  `tel`,           `ethnicity`) VALUES
+  (1,     427,       1,                 'Male',     'he/him',     '1989-02-10',   1,                 'Advanced',       'Male',    'Rachel',     '07656765455',    'Vegan',    '07805925656',   'English / Welsh / Scottish / Northern Irish / British'),
+  (2,     426,       1,                 'Female',   'she/they',   '1994-02-10',   2,                 'Beginner',       'Female',  'Ross',       '07656765455',    'None',     '07805925657',   'English / Welsh / Scottish / Northern Irish / British'),
+  (3,     425,       1,                 'Male',     'he/her',     '1996-01-29',   2,                 'Advanced',       'Mixed',   'Chandler',   '07656765455',    'Vegan',    '07805925659',   'English / Welsh / Scottish / Northern Irish / British'),
+  (4,     424,       0,                 'Male',     'he/them',    '1999-02-10',   1,                 'Beginner',       'Mixed',   'Monica',     '07656765455',    'Halal',    '07805936373',   'English / Welsh / Scottish / Northern Irish / British'),
+  (5,     422,       0,                 'Male',     'she/her',    '1998-02-10',   1,                 'Intermediate',   'Male',    'Joey',       '07656765455',    'Kosher',   '07805925689',   'English / Welsh / Scottish / Northern Irish / British'),
+  (6,     423,       0,                 'Female',   'she/he',     '1998-02-10',   1,                 'Intermediate',   'Female',  'Phoebe',     '07656765455',    'Vegan',    '07805925651',   'English / Welsh / Scottish / Northern Irish / British'),
+  (7,     421,       1,                 'Male',     'he/him',     '1992-01-01',   1,                 'Intermediate',   'Mixed',   'Janice',     '07656765455',    'None',     '07123456789',   'Irish');
 
 
 DROP TABLE IF EXISTS `swana_swa_membership`;

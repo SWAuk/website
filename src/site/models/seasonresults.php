@@ -211,23 +211,23 @@ class SwaModelSeasonResults extends SwaModelList
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	LCASE( comp_type.series ) as series,
-	COUNT( DISTINCT event.id ) as events,
-	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
-	COUNT( DISTINCT indi_result.member_id ) as entrants,
-	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
-FROM {$dbname}.{$prefix}swa_season as season
-JOIN {$prefix}swa_event as event
-ON season.id = event.season_id
-JOIN {$prefix}swa_competition as comp
-ON event.id = comp.event_id
-JOIN {$prefix}swa_competition_type as comp_type
-ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_indi_result as indi_result
-ON indi_result.competition_id = comp.id
-WHERE season.id = {$this->seasonId}
-AND comp_type.name != 'Team'
-GROUP BY comp_type.series;"
+			LCASE( comp_type.series ) as series,
+			COUNT( DISTINCT event.id ) as events,
+			COUNT( DISTINCT event.id, comp_type.series ) as competitions,
+			COUNT( DISTINCT indi_result.member_id ) as entrants,
+			COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
+			FROM {$dbname}.{$prefix}swa_season as season
+			JOIN {$prefix}swa_event as event
+			ON season.id = event.season_id
+			JOIN {$prefix}swa_competition as comp
+			ON event.id = comp.event_id
+			JOIN {$prefix}swa_competition_type as comp_type
+			ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_indi_result as indi_result
+			ON indi_result.competition_id = comp.id
+			WHERE season.id = {$this->seasonId}
+			AND comp_type.name != 'Team'
+			GROUP BY comp_type.series;"
 		);
 
 		$db->setQuery($query);
@@ -262,25 +262,25 @@ GROUP BY comp_type.series;"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	LCASE( member.gender ) as series,
-	COUNT( DISTINCT event.id ) as events,
-	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
-	COUNT( DISTINCT indi_result.member_id ) as entrants,
-	COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
-FROM {$dbname}.{$prefix}swa_season as season
-JOIN {$prefix}swa_event as event
-ON season.id = event.season_id
-JOIN {$prefix}swa_competition as comp
-ON event.id = comp.event_id
-JOIN {$prefix}swa_competition_type as comp_type
-ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_indi_result as indi_result
-ON indi_result.competition_id = comp.id
-JOIN {$prefix}swa_member as member
-ON indi_result.member_id = member.id
-WHERE season.id = {$this->seasonId}
-AND comp_type.name != 'Team'
-GROUP BY LCASE( member.gender );"
+			LCASE( member.race ) as series,
+			COUNT( DISTINCT event.id ) as events,
+			COUNT( DISTINCT event.id, comp_type.series ) as competitions,
+			COUNT( DISTINCT indi_result.member_id ) as entrants,
+			COUNT( DISTINCT indi_result.member_id ) + 2 as dnc_score
+			FROM {$dbname}.{$prefix}swa_season as season
+			JOIN {$prefix}swa_event as event
+			ON season.id = event.season_id
+			JOIN {$prefix}swa_competition as comp
+			ON event.id = comp.event_id
+			JOIN {$prefix}swa_competition_type as comp_type
+			ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_indi_result as indi_result
+			ON indi_result.competition_id = comp.id
+			JOIN {$prefix}swa_member as member
+			ON indi_result.member_id = member.id
+			WHERE season.id = {$this->seasonId}
+			AND comp_type.name != 'Team'
+			GROUP BY LCASE( member.race );"
 		);
 
 		$db->setQuery($query);
@@ -298,7 +298,7 @@ GROUP BY LCASE( member.gender );"
 	 *         'series' => 'intermediate race',
 	 *         'member_id' => 4,
 	 *         'name' => 'Mark Smith',
-	 *         'gender' => 'male',
+	 *         'race' => 'male',
 	 *         'result' => 20,
 	 *         'max_result' => 143,
 	 *         'events' => 3,
@@ -319,34 +319,34 @@ GROUP BY LCASE( member.gender );"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	LCASE( comp_type.series ) as series,
-	LCASE( comp_type.name ) as comp_type,
-	indi_result.member_id,
-	user.name,
-	university.name as university,
-	LCASE( member.gender ) as gender,
-	SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
-	MAX( indi_result.result ) as max_result,
-	COUNT( indi_result.result ) as events,
-	COUNT( DISTINCT event.id, comp_type.series ) as competitions
-FROM {$dbname}.{$prefix}swa_season as season
-JOIN {$prefix}swa_event as event
-ON season.id = event.season_id
-JOIN {$prefix}swa_competition as comp
-ON event.id = comp.event_id
-JOIN {$prefix}swa_competition_type as comp_type
-ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_indi_result as indi_result
-ON indi_result.competition_id = comp.id
-JOIN {$prefix}swa_member as member
-ON indi_result.member_id = member.id
-JOIN {$prefix}swa_university as university
-ON member.university_id = university.id
-JOIN {$prefix}users as user
-ON member.user_id = user.id
-WHERE season.id = {$this->seasonId}
-AND comp_type.name != 'Team'
-GROUP BY comp_type.name, member.id;"
+			LCASE( comp_type.series ) as series,
+			LCASE( comp_type.name ) as comp_type,
+			indi_result.member_id,
+			user.name,
+			university.name as university,
+			LCASE( member.race ) as gender,
+			SUM( indi_result.result ) - SUM( IF(indi_result.result = 1, 1, 0) ) * 0.5 as result,
+			MAX( indi_result.result ) as max_result,
+			COUNT( indi_result.result ) as events,
+			COUNT( DISTINCT event.id, comp_type.series ) as competitions
+			FROM {$dbname}.{$prefix}swa_season as season
+			JOIN {$prefix}swa_event as event
+			ON season.id = event.season_id
+			JOIN {$prefix}swa_competition as comp
+			ON event.id = comp.event_id
+			JOIN {$prefix}swa_competition_type as comp_type
+			ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_indi_result as indi_result
+			ON indi_result.competition_id = comp.id
+			JOIN {$prefix}swa_member as member
+			ON indi_result.member_id = member.id
+			JOIN {$prefix}swa_university as university
+			ON member.university_id = university.id
+			JOIN {$prefix}users as user
+			ON member.user_id = user.id
+			WHERE season.id = {$this->seasonId}
+			AND comp_type.name != 'Team'
+			GROUP BY comp_type.name, member.id;"
 		);
 
 		$db->setQuery($query);
@@ -368,16 +368,16 @@ GROUP BY comp_type.name, member.id;"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	comp_type.id as comp_type_id,
-	LCASE( comp_type.name ) as comp_type,
-	COUNT(*) as entrants
-FROM {$prefix}swa_indi_result as result
-JOIN {$prefix}swa_competition as comp ON result.competition_id = comp.id
-JOIN {$prefix}swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_event as event ON comp.event_id = event.id
-WHERE event.season_id = {$this->seasonId}
-AND LCASE( comp_type.series ) = 'race'
-GROUP BY comp_type.id;"
+			comp_type.id as comp_type_id,
+			LCASE( comp_type.name ) as comp_type,
+			COUNT(*) as entrants
+			FROM {$prefix}swa_indi_result as result
+			JOIN {$prefix}swa_competition as comp ON result.competition_id = comp.id
+			JOIN {$prefix}swa_competition_type as comp_type ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_event as event ON comp.event_id = event.id
+			WHERE event.season_id = {$this->seasonId}
+			AND LCASE( comp_type.series ) = 'race'
+			GROUP BY comp_type.id;"
 		);
 
 		$db->setQuery($query);
@@ -497,21 +497,21 @@ GROUP BY comp_type.id;"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	COUNT( DISTINCT event.id, comp_type.series ) as competitions,
-	COUNT( DISTINCT team_result.university_id ) as universities,
-	COUNT( DISTINCT team_result.university_id, team_result.team_number ) as teams,
-	COUNT( DISTINCT team_result.university_id, team_result.team_number ) + 2 as dnc_score
-FROM {$dbname}.{$prefix}swa_season as season
-JOIN {$prefix}swa_event as event
-ON season.id = event.season_id
-JOIN {$prefix}swa_competition as comp
-ON event.id = comp.event_id
-JOIN {$prefix}swa_competition_type as comp_type
-ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_team_result as team_result
-ON team_result.competition_id = comp.id
-WHERE season.id = {$this->seasonId}
-AND comp_type.name = 'Team';"
+			COUNT( DISTINCT event.id, comp_type.series ) as competitions,
+			COUNT( DISTINCT team_result.university_id ) as universities,
+			COUNT( DISTINCT team_result.university_id, team_result.team_number ) as teams,
+			COUNT( DISTINCT team_result.university_id, team_result.team_number ) + 2 as dnc_score
+			FROM {$dbname}.{$prefix}swa_season as season
+			JOIN {$prefix}swa_event as event
+			ON season.id = event.season_id
+			JOIN {$prefix}swa_competition as comp
+			ON event.id = comp.event_id
+			JOIN {$prefix}swa_competition_type as comp_type
+			ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_team_result as team_result
+			ON team_result.competition_id = comp.id
+			WHERE season.id = {$this->seasonId}
+			AND comp_type.name = 'Team';"
 		);
 
 		$db->setQuery($query);
@@ -548,24 +548,24 @@ AND comp_type.name = 'Team';"
 		$query  = $db->getQuery(true);
 		$query->setQuery(
 			"SELECT
-	team_result.university_id,
-	university.name,
-	team_result.team_number,
-	event.id as event_id,
-	IF( team_result.result = 1, 0.5, team_result.result ) as result
-FROM {$dbname}.{$prefix}swa_season as season
-JOIN {$prefix}swa_event as event
-ON season.id = event.season_id
-JOIN {$prefix}swa_competition as comp
-ON event.id = comp.event_id
-JOIN {$prefix}swa_competition_type as comp_type
-ON comp.competition_type_id = comp_type.id
-JOIN {$prefix}swa_team_result as team_result
-ON team_result.competition_id = comp.id
-JOIN {$prefix}swa_university as university
-ON team_result.university_id = university.id
-WHERE season.id = {$this->seasonId}
-AND comp_type.name = 'Team';"
+			team_result.university_id,
+			university.name,
+			team_result.team_number,
+			event.id as event_id,
+			IF( team_result.result = 1, 0.5, team_result.result ) as result
+			FROM {$dbname}.{$prefix}swa_season as season
+			JOIN {$prefix}swa_event as event
+			ON season.id = event.season_id
+			JOIN {$prefix}swa_competition as comp
+			ON event.id = comp.event_id
+			JOIN {$prefix}swa_competition_type as comp_type
+			ON comp.competition_type_id = comp_type.id
+			JOIN {$prefix}swa_team_result as team_result
+			ON team_result.competition_id = comp.id
+			JOIN {$prefix}swa_university as university
+			ON team_result.university_id = university.id
+			WHERE season.id = {$this->seasonId}
+			AND comp_type.name = 'Team';"
 		);
 
 		$db->setQuery($query);

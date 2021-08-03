@@ -33,13 +33,14 @@ class SwaControllerMemberDetails extends SwaController
 		}
 
 		$newGender        = $data['jform']['gender'];
-		$newPronouns   = $data['jform']['pronouns'];
-		$newEthnicity  = $data['jform']['ethnicity'];
-		$newTel        = $data['jform']['tel'];
-		$newLevel      = $data['jform']['level'];
-		$newEContact   = $data['jform']['econtact'];
-		$newENumber    = $data['jform']['enumber'];
-		$newDietary    = $data['jform']['dietary'];
+		$newPronouns      = $data['jform']['pronouns'];
+		$newEthnicity     = $data['jform']['ethnicity'];
+		$newTel           = $data['jform']['tel'];
+		$newLevel         = $data['jform']['level'];
+		$newRace          = $data['jform']['race'];
+		$newEContact      = $data['jform']['econtact'];
+		$newENumber       = $data['jform']['enumber'];
+		$newDietary       = $data['jform']['dietary'];
 
 		$db    = JFactory::getDbo();
 		$query = $db->getQuery(true);
@@ -52,6 +53,7 @@ class SwaControllerMemberDetails extends SwaController
 			->set('ethnicity = ' . $db->quote($newEthnicity))
 			->set('tel = ' . $db->quote($newTel))
 			->set('level = ' . $db->quote($newLevel))
+			->set('race = ' . $db->quote($newRace))
 			->set('econtact = ' . $db->quote($newEContact))
 			->set('enumber = ' . $db->quote($newENumber))
 			->set('dietary = ' . $db->quote($newDietary));
