@@ -119,7 +119,7 @@ class SwaControllerTicketPurchase extends SwaController
 			$this->payWithStripe($user, $member, $ticket, $totalCost, $details);
 		}
 		else {
-			// In future, could call addTicketToDb() direcrtly at this point to prevent having to send detais to stripe.
+			// In future, could call addTicketToDb() directly at this point to prevent having to send detais to stripe.
 			// Would then need to send a different http code so this could be handled on the front end as well
 			$message = "Attempted to buy 0 GBP ticket";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');

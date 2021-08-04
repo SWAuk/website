@@ -92,7 +92,7 @@
 
       <field name="race"
 	      type="list"
-	      label="Race"
+	      label="Racing Category"
 	      required="true"
               readonly="false">
          <option value="Male">Male</option>

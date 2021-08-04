@@ -1,6 +1,6 @@
 <?php
 /*
-This payment process is based off the 'Custom Payment Flow' at the following stipe site.
+This payment process is based off the 'Custom Payment Flow' at the following stripe site.
 https://stripe.com/docs/payments/accept-a-payment?integration=elements
 
 A tutorial is available here (at the time of writing):
