@@ -28,88 +28,59 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 	<h1>Member Registration</h1>
 
+	<p>Fill in the form as necessary and on submit, you will be redirected to purchase your annual SWA membership</p>
+	<p>Any issues please email <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a>!</p>
+
 	<form id="form-member" action="<?php echo JRoute::_(
 		'index.php?option=com_swa&task=memberregistration.submit'
 	); ?>" method="post" class="form-validate form-horizontal" enctype="multipart/form-data">
-
 		<table class="table">
 			<thead></thead>
 			<tbody>
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('gender'); ?></td>
-					<td><?php echo $this->form->getInput('gender'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('gender'); ?></td>
+				<td><?php echo $this->form->getInput('gender'); ?></td>
+			</tr>
+			<tr>
+				<td><?php echo $this->form->getLabel('pronouns'); ?></td>
+				<td><?php echo $this->form->getInput('pronouns'); ?></td>
+			</tr>
+			<tr>
+				<td><?php echo $this->form->getLabel('ethnicity'); ?></td>
+				<td><?php echo $this->form->getInput('ethnicity'); ?></td>
 			</tr>
 
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('pronouns'); ?></td>
-					<td><?php echo $this->form->getInput('pronouns'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('dob'); ?></td>
+				<td><?php echo $this->form->getInput('dob'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('ethnicity'); ?></td>
-					<td><?php echo $this->form->getInput('ethnicity'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('tel'); ?></td>
+				<td><?php echo $this->form->getInput('tel'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('dob'); ?></td>
-					<td><?php echo $this->form->getInput('dob'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('university_id'); ?></td>
+				<td><?php echo $this->form->getInput('university_id'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('tel'); ?></td>
-					<td><?php echo $this->form->getInput('tel'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('level'); ?></td>
+				<td><?php echo $this->form->getInput('level'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('university_id'); ?></td>
-					<td><?php echo $this->form->getInput('university_id'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('race'); ?></td>
+				<td><?php echo $this->form->getInput('race'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('level'); ?></td>
-					<td><?php echo $this->form->getInput('level'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('econtact'); ?></td>
+				<td><?php echo $this->form->getInput('econtact'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('race'); ?></td>
-					<td><?php echo $this->form->getInput('race'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('enumber'); ?></td>
+				<td><?php echo $this->form->getInput('enumber'); ?></td>
 			</tr>
-
 			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('econtact'); ?></td>
-					<td><?php echo $this->form->getInput('econtact'); ?></td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('enumber'); ?></td>
-					<td><?php echo $this->form->getInput('enumber'); ?></td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="control-group">
-					<td><?php echo $this->form->getLabel('dietary'); ?></td>
-					<td><?php echo $this->form->getInput('dietary'); ?></td>
-				</div>
+				<td><?php echo $this->form->getLabel('dietary'); ?></td>
+				<td><?php echo $this->form->getInput('dietary'); ?></td>
 			</tr>
 
 			<tr>
