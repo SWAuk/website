@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `#__swa_member` (
   `lifetime_member` TINYINT(1)  NOT NULL DEFAULT 0,
   `gender` VARCHAR(255)  NOT NULL DEFAULT 'None',
   `pronouns` VARCHAR(15)  NOT NULL ,
-  `ethnicity` VARCHAR(255)  NOT NULL ,
+  `ethnicity` VARCHAR(70) NOT NULL DEFAULT 'Default',
   `dob` DATE NOT NULL DEFAULT '0000-00-00',
   `university_id` INT(11)  NOT NULL ,
   `level` VARCHAR(20)  NOT NULL DEFAULT 'Beginner',

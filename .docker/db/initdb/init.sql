@@ -1921,7 +1921,7 @@ CREATE TABLE `swana_swa_member` (
   `lifetime_member` tinyint(1) NOT NULL DEFAULT '0',
   `gender` varchar(255) NOT NULL DEFAULT 'None',
   `pronouns` varchar(15) NOT NULL,
-  `ethnicity` varchar(70) NOT NULL,
+  `ethnicity` varchar(70) NOT NULL DEFAULT 'Default',
   `dob` date NOT NULL DEFAULT '0000-00-00',
   `university_id` int(11) NOT NULL,
   `level` varchar(20) NOT NULL DEFAULT 'Beginner',
