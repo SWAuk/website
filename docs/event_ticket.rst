@@ -19,76 +19,76 @@ Event Ticket Details JSON
 ==============  ===============================
   Key              Value
 ==============  ===============================
-visible         | Sets who can see the ticket - this is not the same as who can buy a ticket.
-                  You might be able to see a ticket that you can't buy.
+visible         Sets who can see the ticket - this is not the same as who can buy a ticket.
+                You might be able to see a ticket that you can't buy.
 
-                | Possible values: `"All"`, `"Match"`, `"Committee"`, `"None"`
+                Possible values: ``"All"``, ``"Match"``, ``"Committee"``, ``"None"``
 
-                | `"All"` - Visible to everyone regardless of whether or not they can buy the ticket.
-                | `"Match"` - You can only see this ticket if you can buy the ticket OR you are SWA committee.
-                | `"Committee"` - You can only see this ticket if you are SWA committee.
-                | `"None"` - No one can see this ticket - useful if that ticket type is no longer available
-                  to (i.e. earlybird) but you don't want delete otherwise people will lose the ticket type
-                  they have bought.
+                | ``"All"`` - Visible to everyone regardless of whether or not they can buy the ticket.
+                | ``"Match"`` - You can only see this ticket if you can buy the ticket OR you are SWA committee.
+                | ``"Committee"`` - You can only see this ticket if you are SWA committee.
+                ``"None"`` - No one can see this ticket - useful if that ticket type is no longer available
+                to (i.e. earlybird) but you don't want delete otherwise people will lose the ticket type
+                they have bought.
 
-                | Defaults value: `"All"`
+                Default value: ``"All"``
 --------------  -------------------------------
-xswa            | Sets whether or not XSWA members can buy this ticket.
-                  Does not prevent SWA members from buying the ticket though.
+xswa            Sets whether or not XSWA members can buy this ticket.
+                Does not prevent SWA members from buying the ticket though.
 
-                | Possible values: `true`, `false`
+                Possible values: ``true``, ``false``
 
-                | Default value: `false`
+                Default value: ``false``
 --------------  -------------------------------
-qualification   | Sets whether or not a qualification is needed to buy this ticket.
+qualification   Sets whether or not a qualification is needed to buy this ticket.
 
-                | Possible values: `true`, `false`
+                Possible values: ``true``, ``false``
 
-                | Default value: `false`
+                Default value: ``false``
 --------------  -------------------------------
-committee       | Sets whether or not you need to be SWA committee to buy this ticket.
+committee       Sets whether or not you need to be SWA committee to buy this ticket.
 
-                | Possible values: `true`, `false`
+                Possible values: ``true``, ``false``
 
-                | Default value: `false`
+                Default value: ``false``
 --------------  -------------------------------
-first_event     | Sets whether or not the ticket is restricted to members who haven't
-                  been to any events before.
+first_event     Sets whether or not the ticket is restricted to members who haven't
+                been to any events before.
 
-                | Possible values: `true`, `false`
+                Possible values: ``true``, ``false``
 
-                | Default value: `false`
+                Default value: ``false``
 --------------  -------------------------------
-member          | Member is an object containing two lists of member ids, allowed and a denied.
+member          Member is an object containing two lists of member ids, allowed and a denied.
 
                 | The allowed list shows the member ids that are allowed to buy this ticket,
                   all other members aren't.
-                | The denied list shows the member ids that aren't allowed to buy this ticket,
-                  all other members can.
+                The denied list shows the member ids that aren't allowed to buy this ticket,
+                all other members can.
 
-                | Default value: `{"allowed": [], "denied": []}`
+                Default value: ``{"allowed": [], "denied": []}``
 --------------  -------------------------------
 university      University is an object containing two lists of university ids,
                 allowed and a denied.
 
                 | The allowed list shows the university ids that are allowed to buy this ticket,
                   all other universities aren't.
-                | The denied list shows the university ids that aren't allowed to buy this ticket,
-                  all other universities can.
+                The denied list shows the university ids that aren't allowed to buy this ticket,
+                all other universities can.
 
-                | Default value: `{"allowed": [], "denied": []}`
+                Default value: ``{"allowed": [], "denied": []}``
 --------------  -------------------------------
 level           Level is an object containing two lists of ability levels,
                 allowed and a denied.
 
-                | Ability levels: "Beginner", "Intermediate", "Advanced"
+                Ability levels: ``"Beginner"``, ``"Intermediate"``, ``"Advanced"``
 
                 | The allowed lists the ability levels that are allowed to buy this ticket.
-                | The denied lists the ability levels that aren't allowed to buy this ticket.
+                The denied lists the ability levels that aren't allowed to buy this ticket.
 
-                | Default value: `{"allowed": [], "denied": []}`
+                Default value: ``{"allowed": [], "denied": []}``
 --------------  -------------------------------
-addons          | Addons is a lists of objects describing the available addon(s) available for this ticket.
+addons          Addons is a lists of objects describing the available addon(s) available for this ticket.
 
                 Each addon object must be in the following format::
 
@@ -99,12 +99,12 @@ addons          | Addons is a lists of objects describing the available addon(s)
                     "price": <addon price>
                   }
 
-                | Currently members can only buy 0 or 1 addon.
-                  We will look to improve this by adding a `qty` key to the addon object.
+                Currently members can only buy 0 or 1 addon.
+                We will look to improve this by adding a ``"qty"`` key to the addon object.
 
-                | Default value: `[]`
+                Default value: ``[]``
 
-                | **Option Object**
+                **Option Object**
 
                 An Option Object is used to populate an `html select tag`_ to create a dropdown list. It takes the following form::
 
