@@ -82,6 +82,9 @@ if ($ticket == null) {
 			$totalPrice = $ticketPrice + $totalAddonsPrice;
 			// stripe amount is in pence
 			$totalDiv.innerHTML = "Total: " + $totalPrice.toFixed(2) + " GBP";
+			console.log("updating ticket price");
+			setupApplePay($totalPrice);
+
 		};
 
 		// define function to determine if addon seletion is valid
@@ -174,6 +177,7 @@ if ($ticket == null) {
 <!-- create form -->
 <script src="https://js.stripe.com/v3/"></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+<!-- handle payment -->
 
 <h1>Order Summary</h1>
 
@@ -200,8 +204,7 @@ if ($ticket == null) {
 			?>
 					<tr>
 						<td>
-							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector"
-							style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -214,8 +217,7 @@ if ($ticket == null) {
 							?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>"
-									class="swa-option-selector" data-price="<?php echo $option->price ?>">
+									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>" class="swa-option-selector" data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
 										<?php foreach ($option->values as $value) {
 										?>
@@ -247,10 +249,16 @@ if ($ticket == null) {
 	<div id="card-element">
 		<!--Stripe.js injects the Card Element-->
 	</div>
+
 	<button id="stripe-button">
 		<div class="spinner hidden" id="spinner"></div>
 		<span id="button-text">Pay</span>
 	</button>
+	<hr>
+	<div id="payment-request-button">
+		<!-- A Stripe Element will be inserted here. -->
+	</div>
+
 	<p id="card-error" role="alert"></p>
 	<p class="result-message hidden">
 		Processing order, please do not navigate away from this page...
@@ -258,9 +266,9 @@ if ($ticket == null) {
 </form>
 
 
-<!-- handle payment -->
 <script type="text/javascript">
 	// A reference to Stripe.js initialized with the publishable API key loaded from the Joomla configuration.php file.
+
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
 
 	// Disable the button until we have Stripe set up on the page
@@ -286,6 +294,7 @@ if ($ticket == null) {
 	var card = elements.create("card", {
 		style: style
 	});
+
 	// Stripe injects an iframe into the DOM
 	card.mount("#card-element");
 	card.on("change", function(event) {
@@ -295,6 +304,100 @@ if ($ticket == null) {
 		setStripeButtonStatus();
 	});
 	var form = document.getElementById("payment-form");
+
+
+	var setupApplePay = function(paymentPrice) {
+		var paymentRequest = stripe.paymentRequest({
+			country: 'GB',
+			currency: 'gbp',
+			total: {
+				label: 'Demo total',
+				amount: paymentPrice * 100
+			},
+		});
+
+		var prButton = elements.create('paymentRequestButton', {
+			paymentRequest: paymentRequest,
+		});
+
+		paymentRequest.canMakePayment().then(function(result) {
+			if (result) {
+				console.log("payment request success");
+				prButton.mount('#payment-request-button');
+			} else {
+				document.getElementById('payment-request-button').style.display = 'none';
+			}
+		});
+
+		//on apple/google pay complete
+		paymentRequest.on('paymentmethod', function(ev) {
+			loading(true)
+			event.preventDefault();
+
+			var addons = $generateAddonsArray();
+			fetch("<?php echo JRoute::_('index.php??option=com_swa&task=ticketpurchase.createPaymentIntent') ?>", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						ticketId: "<?php echo $ticketId ?>",
+						addons: addons,
+						estimatedPrice: $totalPrice,
+						paymentMethod: "card",
+						currency: "gbp"
+					})
+				})
+				.then(function(result) {
+					if (result.ok) {
+						return result.json().then(function(response) {
+							console.log(response)
+							if (response.messages) {
+								Joomla.renderMessages(response.messages);
+							}
+							if (response.success) {
+								stripe.confirmCardPayment(response.data.clientSecret, {
+									payment_method: ev.paymentMethod.id
+								}, {
+									handleActions: false
+								}).then(function(
+									error,
+									paymentIntent
+								) {
+									if (error) {
+										console.error("Payment Failed:" + JSON.stringify(error));
+										ev.complete("fail");
+										showError(error);
+										return;
+									}
+
+									console.log("payment Succeeded");
+									ev.complete('success');
+									if (paymentIntent.status == "requires_action") {
+										//recomplete with actions after closing payment modal (ev - apple pay sheet)
+										stripe.confirmCardPayment(response.data.clientSecret);
+									}
+									processOrder(paymentIntent.id);
+
+								});
+
+							} else {
+								ev.complete("fail");
+								showError(response.message);
+								console.error(response.message);
+							}
+						})
+					} else {
+						ev.complete("fail");
+						return result.text().then(text => {
+							Joomla.renderMessages({
+								"error": [text]
+							});
+						})
+					}
+				});
+		});
+	}
 
 	var payWithCard = function(stripe, card, clientSecret) {
 		// console.log(stripe, card, clientSecret)
@@ -316,6 +419,12 @@ if ($ticket == null) {
 				}
 			});
 	};
+
+
+
+
+
+
 	/* ------- UI helpers ------- */
 	// Shows a success message when the payment is complete
 	var processOrder = function(paymentIntentId) {
@@ -352,14 +461,20 @@ if ($ticket == null) {
 					return result.text().then(text => {
 						stripButtonPermanentDisable = true;
 						document.querySelector("#stripe-button").disabled = true;
-						Joomla.renderMessages({"error": [text]});
+						Joomla.renderMessages({
+							"error": [text]
+						});
 						msg = "Oops! You may have lost connection. \n\r Please check Account>My Tickets to see if the order went through. \r\n"
 						msg += "If it did not go through and you have still been charged, please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> to resolve this"
-						Joomla.renderMessages({"error": [msg]});
+						Joomla.renderMessages({
+							"error": [msg]
+						});
 					})
 				}
 			});
 	};
+
+
 	// Show the customer the error from Stripe if their card fails to charge
 	var showError = function(errorMsgText) {
 		loading(false);
@@ -369,6 +484,8 @@ if ($ticket == null) {
 			errorMsg.textContent = "";
 		}, 7000);
 	};
+
+
 	// Show a spinner on payment submission
 	var loading = function(isLoading) {
 		if (isLoading) {
@@ -417,7 +534,9 @@ if ($ticket == null) {
 					})
 				} else {
 					return result.text().then(text => {
-						Joomla.renderMessages({"error": [text]});
+						Joomla.renderMessages({
+							"error": [text]
+						});
 					})
 				}
 			});
