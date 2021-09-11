@@ -92,18 +92,6 @@
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Tickets">
 				COM_SWA_TITLE_TICKETS
 			</menu>
-			<menu link="option=com_swa&amp;view=deposits" view="deposits"
-				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Deposits">
-				COM_SWA_TITLE_DEPOSITS
-			</menu>
-			<menu link="option=com_swa&amp;view=damages" view="damages"
-				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Damages">
-				COM_SWA_TITLE_DAMAGES
-			</menu>
-			<menu link="option=com_swa&amp;view=grants" view="grants"
-				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Grants">
-				COM_SWA_TITLE_GRANTS
-			</menu>
 			<menu link="option=com_swa&amp;view=universities" view="universities"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Universities">
 				COM_SWA_TITLE_UNIVERSITIES

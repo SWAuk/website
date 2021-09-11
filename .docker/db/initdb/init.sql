@@ -1302,7 +1302,6 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (1167,	'main-nav-bar',	'Universities',	'universities',	'',	'organisation/universities',	'index.php?option=com_swa&view=universities',	'component',	1,	635,	2,	803,	4255,	'2019-02-10 15:59:00',	0,	8,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	78,	79,	0,	'*',	0),
 (1374,	'main-nav-bar',	'Contact Us',	'contact-us',	'',	'the-swa/contact-us',	'index.php?option=com_contact&view=contact&id=1',	'component',	1,	660,	2,	8,	0,	'0000-00-00 00:00:00',	0,	1,	' ',	0,	'{\"presentation_style\":\"\",\"show_contact_category\":\"\",\"show_contact_list\":\"\",\"show_tags\":\"\",\"show_info\":\"\",\"show_name\":\"\",\"show_position\":\"\",\"show_email\":\"\",\"add_mailto_link\":\"\",\"show_street_address\":\"\",\"show_suburb\":\"\",\"show_state\":\"\",\"show_postcode\":\"\",\"show_country\":\"\",\"show_telephone\":\"\",\"show_mobile\":\"\",\"show_fax\":\"\",\"show_webpage\":\"\",\"show_image\":\"\",\"allow_vcard\":\"\",\"show_misc\":\"\",\"show_articles\":\"\",\"articles_display_num\":\"\",\"show_links\":\"\",\"linka_name\":\"\",\"linkb_name\":\"\",\"linkc_name\":\"\",\"linkd_name\":\"\",\"linke_name\":\"\",\"show_email_form\":\"\",\"show_email_copy\":\"\",\"banned_email\":\"\",\"banned_subject\":\"\",\"banned_text\":\"\",\"validate_session\":\"\",\"custom_reply\":\"\",\"redirect\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	12,	13,	0,	'*',	0),
 (1451,	'main-nav-bar',	'Login',	'login',	'',	'login',	'index.php?option=com_users&view=login',	'component',	1,	1,	1,	25,	4255,	'2019-02-10 16:00:40',	0,	5,	' ',	0,	'{\"loginredirectchoice\":\"1\",\"login_redirect_url\":\"\",\"login_redirect_menuitem\":\"1706\",\"logindescription_show\":\"1\",\"login_description\":\"\",\"login_image\":\"\",\"logoutredirectchoice\":\"1\",\"logout_redirect_url\":\"\",\"logout_redirect_menuitem\":\"\",\"logoutdescription_show\":\"1\",\"logout_description\":\"\",\"logout_image\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	115,	116,	0,	'*',	0),
-(1636,	'main',	'COM_JAEXTMANAGER',	'com-jaextmanager',	'',	'com-jaextmanager',	'index.php?option=com_jaextmanager',	'component',	1,	1,	1,	10179,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_jaextmanager/assets/images/jauc.png',	0,	'{}',	159,	160,	0,	'',	1),
 (1657,	'main-nav-bar',	'Logout',	'logout',	'',	'logout',	'index.php?option=com_users&view=login&layout=logout&task=user.menulogout',	'component',	1,	1,	1,	25,	4255,	'2019-02-10 16:00:39',	0,	2,	' ',	0,	'{\"logout\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	113,	114,	0,	'*',	0),
 (1663,	'main-nav-bar',	'About',	'about',	'',	'about',	'',	'heading',	-2,	1,	1,	0,	0,	'0000-00-00 00:00:00',	0,	1,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1}',	117,	118,	0,	'*',	0),
 (1679,	'main',	'COM_SMARTCOUNTDOWN3',	'com-smartcountdown3',	'',	'com-smartcountdown3',	'index.php?option=com_smartcountdown3',	'component',	1,	1,	1,	10020,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	161,	162,	0,	'',	1),
@@ -1360,9 +1359,6 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2202,	'main',	'COM_SWA_TITLE_EVENTREGISTRATIONS',	'com-swa-title-eventregistrations',	'',	'com-swa/com-swa-title-eventregistrations',	'index.php?option=com_swa&view=eventregistrations',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	216,	217,	0,	'',	1),
 (2203,	'main',	'COM_SWA_TITLE_EVENTTICKETS',	'com-swa-title-eventtickets',	'',	'com-swa/com-swa-title-eventtickets',	'index.php?option=com_swa&view=eventtickets',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	218,	219,	0,	'',	1),
 (2204,	'main',	'COM_SWA_TITLE_TICKETS',	'com-swa-title-tickets',	'',	'com-swa/com-swa-title-tickets',	'index.php?option=com_swa&view=tickets',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	220,	221,	0,	'',	1),
-(2205,	'main',	'COM_SWA_TITLE_DEPOSITS',	'com-swa-title-deposits',	'',	'com-swa/com-swa-title-deposits',	'index.php?option=com_swa&view=deposits',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	222,	223,	0,	'',	1),
-(2206,	'main',	'COM_SWA_TITLE_DAMAGES',	'com-swa-title-damages',	'',	'com-swa/com-swa-title-damages',	'index.php?option=com_swa&view=damages',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	224,	225,	0,	'',	1),
-(2207,	'main',	'COM_SWA_TITLE_GRANTS',	'com-swa-title-grants',	'',	'com-swa/com-swa-title-grants',	'index.php?option=com_swa&view=grants',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	226,	227,	0,	'',	1),
 (2208,	'main',	'COM_SWA_TITLE_UNIVERSITIES',	'com-swa-title-universities',	'',	'com-swa/com-swa-title-universities',	'index.php?option=com_swa&view=universities',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	228,	229,	0,	'',	1),
 (2209,	'main',	'COM_SWA_TITLE_SEASONS',	'com-swa-title-seasons',	'',	'com-swa/com-swa-title-seasons',	'index.php?option=com_swa&view=seasons',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	230,	231,	0,	'',	1),
 (2210,	'main',	'COM_SWA_TITLE_COMPETITIONS',	'com-swa-title-competitions',	'',	'com-swa/com-swa-title-competitions',	'index.php?option=com_swa&view=competitions',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	232,	233,	0,	'',	1),
@@ -1691,30 +1687,6 @@ INSERT INTO `swana_swa_competition_type` (`id`, `name`, `series`) VALUES
 (5,	'Intermediate Race',	'Race'),
 (6,	'Beginner Race',	'Race');
 
-DROP TABLE IF EXISTS `swana_swa_damages`;
-CREATE TABLE `swana_swa_damages` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
-  `university_id` int(11) DEFAULT NULL,
-  `date` date NOT NULL,
-  `cost` decimal(6,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_damages_event1_idx` (`event_id`),
-  KEY `fk_damages_university1_idx` (`university_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-DROP TABLE IF EXISTS `swana_swa_deposit`;
-CREATE TABLE `swana_swa_deposit` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
-  `university_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `amount` decimal(6,2) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_deposit_university_idx` (`university_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 
 DROP TABLE IF EXISTS `swana_swa_event`;
 CREATE TABLE `swana_swa_event` (
@@ -1877,29 +1849,6 @@ INSERT INTO `swana_swa_event_ticket` (`id`, `event_id`, `name`, `quantity`, `pri
 		},
 		"price": 15
 	}] } ');
-
-DROP TABLE IF EXISTS `swana_swa_grant`;
-CREATE TABLE `swana_swa_grant` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` varchar(45) NOT NULL,
-  `application_date` date NOT NULL,
-  `amount` decimal(6,2) NOT NULL,
-  `fund_use` varchar(255) NOT NULL,
-  `instructions` varchar(255) NOT NULL,
-  `ac_sortcode` varchar(8) DEFAULT NULL,
-  `ac_number` varchar(8) DEFAULT NULL,
-  `ac_name` varchar(200) DEFAULT NULL,
-  `finances_date` date DEFAULT NULL,
-  `finances_id` int(11) DEFAULT NULL,
-  `auth_date` date DEFAULT NULL,
-  `auth_id` int(11) DEFAULT NULL,
-  `payment_date` date DEFAULT NULL,
-  `payment_id` int(11) DEFAULT NULL,
-  `created_by` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_grants_createdby1_idx` (`created_by`),
-  KEY `fk_grants_event1_idx` (`event_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 DROP TABLE IF EXISTS `swana_swa_indi_result`;

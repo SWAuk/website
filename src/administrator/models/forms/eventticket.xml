@@ -58,16 +58,16 @@
                rows="50"
                cols="10"
                default='{
-              "visible": "All",
-              "xswa": false,
-              "qualification": false,
-              "committee": false,
-              "first_event": false,
-              "member": {"allowed": [],"denied": []},
-              "university": {"allowed": [],"denied": []},
-              "level": {"allowed": [],"denied": []},
-              "addons": []
-              }
+                     "visible": "All",
+                     "xswa": false,
+                     "qualification": false,
+                     "committee": false,
+                     "first_event": false,
+                     "member": {"allowed": [],"denied": []},
+                     "university": {"allowed": [],"denied": []},
+                     "level": {"allowed": [],"denied": []},
+                     "addons": []
+                     }
               '/>
 
     </fieldset>
