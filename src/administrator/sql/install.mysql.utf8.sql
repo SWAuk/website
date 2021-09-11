@@ -107,20 +107,6 @@ CREATE  TABLE IF NOT EXISTS `#__swa_season` (
 )
 DEFAULT COLLATE=utf8_general_ci;
 
--- deposit
---
--- Table holding deposits info
--- This is basically a copy from the old site
-CREATE  TABLE IF NOT EXISTS `#__swa_deposit` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `event_id` INT NOT NULL ,
-  `university_id` INT NOT NULL ,
-  `date` DATE NOT NULL ,
-  `amount` DECIMAL(6,2) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_deposit_university_idx` (`university_id` ASC) )
-DEFAULT COLLATE=utf8_general_ci;
-
 -- event
 --
 -- Table holding event information
@@ -169,32 +155,6 @@ CREATE  TABLE IF NOT EXISTS `#__swa_event_ticket` (
   `details` TEXT,
   PRIMARY KEY (`id`) ,
   INDEX `fk_event_ticket_event1_idx` (`event_id` ASC) )
-DEFAULT COLLATE=utf8_general_ci;
-
--- grant
---
--- Table holding grant info
--- This is basically a copy from the old site
-CREATE  TABLE IF NOT EXISTS `#__swa_grant` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `event_id` VARCHAR(45) NOT NULL ,
-  `application_date` DATE NOT NULL ,
-  `amount` DECIMAL(6,2) NOT NULL ,
-  `fund_use` VARCHAR(255) NOT NULL ,
-  `instructions` VARCHAR(255) NOT NULL ,
-  `ac_sortcode` VARCHAR(8) NULL ,
-  `ac_number` VARCHAR(8) NULL ,
-  `ac_name` VARCHAR(200) NULL ,
-  `finances_date` DATE NULL ,
-  `finances_id` INT NULL ,
-  `auth_date` DATE NULL ,
-  `auth_id` INT NULL ,
-  `payment_date` DATE NULL ,
-  `payment_id` INT NULL ,
-  `created_by` INT(11)  NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_grants_createdby1_idx` (`created_by` ASC) ,
-  INDEX `fk_grants_event1_idx` (`event_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 -- ticket
@@ -273,21 +233,6 @@ CREATE  TABLE IF NOT EXISTS `#__swa_team_result` (
   PRIMARY KEY (`id`) ,
   INDEX `fk_team_result_competition1_idx` (`competition_id` ASC) ,
   INDEX `fk_team_result_university1_idx` (`university_id` ASC) )
-DEFAULT COLLATE=utf8_general_ci;
-
--- damages
---
--- Table holding damages info
--- This is basically a copy from the old site
-CREATE  TABLE IF NOT EXISTS `#__swa_damages` (
-  `id` INT NOT NULL AUTO_INCREMENT ,
-  `event_id` INT NOT NULL ,
-  `university_id` INT ,
-  `date` DATE NOT NULL ,
-  `cost` DECIMAL(6,2) NOT NULL ,
-  PRIMARY KEY (`id`) ,
-  INDEX `fk_damages_event1_idx` (`event_id` ASC) ,
-  INDEX `fk_damages_university1_idx` (`university_id` ASC) )
 DEFAULT COLLATE=utf8_general_ci;
 
 -- viewlevels
