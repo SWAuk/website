@@ -82,7 +82,6 @@ if ($ticket == null) {
 			$totalPrice = $ticketPrice + $totalAddonsPrice;
 			// stripe amount is in pence
 			$totalDiv.innerHTML = "Total: " + $totalPrice.toFixed(2) + " GBP";
-			console.log("updating ticket price");
 			updateMobilePaymentButtonCost($totalPrice);
 
 		};
@@ -307,7 +306,7 @@ if ($ticket == null) {
 
 
 
-
+	//start mobile payment
 	var updateMobilePaymentButtonCost = function(paymentPrice) {
 		paymentRequest.update({
 			total: {
@@ -414,6 +413,7 @@ if ($ticket == null) {
 				});
 		});
 	}
+	//end mobile payment
 
 	var payWithCard = function(stripe, card, clientSecret) {
 		// console.log(stripe, card, clientSecret)
