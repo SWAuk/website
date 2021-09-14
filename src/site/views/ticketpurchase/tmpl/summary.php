@@ -53,16 +53,27 @@ if ($ticket == null) {
 			if (stripButtonPermanentDisable) {
 				document.querySelector("#stripe-button").disabled = true;
 			} else if (!$validAddon) {
+				console.log("hiding");
 				document.querySelector("#stripe-button").disabled = true;
+				document.querySelector("#payment-request-button").hide();
 				$ErrorMsg = "Invalid addon selection";
 			} else if (!$cardDetailsComplete) {
 				document.querySelector("#stripe-button").disabled = true;
 				$ErrorMsg = $stripeCardErrorMsg;
 			} else {
+				console.log("showing");
 				document.querySelector("#stripe-button").disabled = false;
+				document.querySelector("#payment-request-button").show();
 				$ErrorMsg = ""
 			}
-			document.querySelector("#card-error").textContent = $ErrorMsg;
+		}
+
+		setMobileButtonStatus = function() {
+			if (!$validAddon) {
+				document.querySelector("#payment-request-button").hide();
+			} else {
+				document.querySelector("#payment-request-button").show();
+			}
 		}
 
 		// define function to calculate the total ticket price and display it
@@ -160,11 +171,13 @@ if ($ticket == null) {
 				$updateTicketPrice();
 				$determineValidAddon(event)
 				setStripeButtonStatus();
+				setMobileButtonStatus();
 			});
 
 			$optionSelectors.change(function(event) {
 				$determineValidAddon(event);
 				setStripeButtonStatus();
+				setMobileButtonStatus();
 			});
 		}
 
@@ -203,14 +216,8 @@ if ($ticket == null) {
 			?>
 					<tr>
 						<td>
-							<select 
-							id="<?php echo "addon_{$key}" ?>" 
-							name="<?php echo "addons[{$key}][qty]" ?>" 
-							data-id="<?php echo $key ?>" 
-							class="swa-addon swa-qty-selector" 
-							style="width: 60px" 
-							data-price="<?php echo $addon->price ?>" 
-							data-name="<?php echo $addon->name ?>">
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>"
+							class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -223,10 +230,7 @@ if ($ticket == null) {
 							?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select 
-									id="<?php echo "select_{$key}" ?>" 
-									name="<?php echo "addons[{$key}][option]" ?>" 
-									data-id="<?php echo $key ?>" 
+									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>"
 									class="swa-option-selector" data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
 										<?php foreach ($option->values as $value) {
@@ -312,6 +316,8 @@ if ($ticket == null) {
 		$stripeCardErrorMsg = event.error ? event.error.message : "";
 		$cardDetailsComplete = event.complete;
 		setStripeButtonStatus();
+		setMobileButtonStatus();
+
 	});
 	var form = document.getElementById("payment-form");
 
@@ -389,7 +395,7 @@ if ($ticket == null) {
 								) {
 									if (result.error) {
 										ev.complete("fail");
-										showError(result.error);
+										document.querySelector("#card-error").textContent = result.error;
 										return;
 									}
 									let paymentIntent = result.paymentIntent;
@@ -399,7 +405,7 @@ if ($ticket == null) {
 										stripe.confirmCardPayment(response.data.clientSecret).then(function(result) {
 											if (result.error) {
 												ev.complete("fail");
-												showError(result.error);
+												document.querySelector("#card-error").textContent = result.error;
 												return;
 											}
 										});
@@ -409,7 +415,7 @@ if ($ticket == null) {
 
 							} else {
 								ev.complete("fail");
-								showError(response.message);
+								document.querySelector("#card-error").textContent = response.message;
 								// console.error(response.message);
 							}
 						})
