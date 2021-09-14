@@ -40,14 +40,14 @@ if ($ticket == null) {
 
 <script type="text/javascript" xmlns="http://www.w3.org/1999/html">
 	var stripButtonPermanentDisable = false;
-
+	var paymentRequest;
 	jQuery(document).ready(function() {
 		$validAddon = true;
 		$cardDetailsComplete = false;
 		$stripeCardErrorMsg = ""
 		$totalDiv = document.getElementById("payment-total");
 		$addons = jQuery('.swa-addon');
-
+		initialiseMobilePayment();
 		// define function to enable/disable stripe button
 		setStripeButtonStatus = function() {
 			if (stripButtonPermanentDisable) {
@@ -83,7 +83,7 @@ if ($ticket == null) {
 			// stripe amount is in pence
 			$totalDiv.innerHTML = "Total: " + $totalPrice.toFixed(2) + " GBP";
 			console.log("updating ticket price");
-			setupApplePay($totalPrice);
+			updateMobilePaymentButtonCost($totalPrice);
 
 		};
 
@@ -306,15 +306,30 @@ if ($ticket == null) {
 	var form = document.getElementById("payment-form");
 
 
-	var setupApplePay = function(paymentPrice) {
-		var paymentRequest = stripe.paymentRequest({
-			country: 'GB',
-			currency: 'gbp',
+
+
+	var updateMobilePaymentButtonCost = function(paymentPrice) {
+		paymentRequest.update({
 			total: {
-				label: 'Demo total',
+				label: '<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>',
 				amount: paymentPrice * 100
 			},
 		});
+	}
+
+	var initialiseMobilePayment = function() {
+
+		var basePrice = parseFloat(jQuery(".swa-ticket").attr('data-price'));
+
+		paymentRequest = stripe.paymentRequest({
+			country: 'GB',
+			currency: 'gbp',
+			total: {
+				label: '<?php echo "{$ticket->event_name} - {$ticket->ticket_name}" ?>',
+				amount: basePrice * 100
+			},
+		});
+
 
 		var prButton = elements.create('paymentRequestButton', {
 			paymentRequest: paymentRequest,
@@ -322,7 +337,6 @@ if ($ticket == null) {
 
 		paymentRequest.canMakePayment().then(function(result) {
 			if (result) {
-				console.log("payment request success");
 				prButton.mount('#payment-request-button');
 			} else {
 				document.getElementById('payment-request-button').style.display = 'none';
@@ -351,7 +365,7 @@ if ($ticket == null) {
 				.then(function(result) {
 					if (result.ok) {
 						return result.json().then(function(response) {
-							console.log(response)
+							// console.log(response)
 							if (response.messages) {
 								Joomla.renderMessages(response.messages);
 							}
@@ -361,30 +375,32 @@ if ($ticket == null) {
 								}, {
 									handleActions: false
 								}).then(function(
-									error,
-									paymentIntent
+									result //https://stripe.com/docs/js/payment_intents/confirm_card_payment
 								) {
-									if (error) {
-										console.error("Payment Failed:" + JSON.stringify(error));
+									if (result.error) {
 										ev.complete("fail");
-										showError(error);
+										showError(result.error);
 										return;
 									}
-
-									console.log("payment Succeeded");
+									let paymentIntent = result.paymentIntent;
 									ev.complete('success');
 									if (paymentIntent.status == "requires_action") {
 										//recomplete with actions after closing payment modal (ev - apple pay sheet)
-										stripe.confirmCardPayment(response.data.clientSecret);
+										stripe.confirmCardPayment(response.data.clientSecret).then(function(result) {
+											if (result.error) {
+												ev.complete("fail");
+												showError(result.error);
+												return;
+											}
+										});
 									}
 									processOrder(paymentIntent.id);
-
 								});
 
 							} else {
 								ev.complete("fail");
 								showError(response.message);
-								console.error(response.message);
+								// console.error(response.message);
 							}
 						})
 					} else {
@@ -409,7 +425,7 @@ if ($ticket == null) {
 				}
 			})
 			.then(function(result) {
-				console.log(result)
+				// console.log(result)
 				if (result.error) {
 					// Show error to your customer
 					showError(result.error.message);
