@@ -216,7 +216,8 @@ if ($ticket == null) {
 			?>
 					<tr>
 						<td>
-							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>" class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
+							<select id="<?php echo "addon_{$key}" ?>" name="<?php echo "addons[{$key}][qty]" ?>" data-id="<?php echo $key ?>"
+							class="swa-addon swa-qty-selector" style="width: 60px" data-price="<?php echo $addon->price ?>" data-name="<?php echo $addon->name ?>">
 								<option value="0">0</option>
 								<option value="1">1</option>
 							</select>
@@ -229,7 +230,8 @@ if ($ticket == null) {
 							?>
 								<div style="font-size: 10pt; margin-left: 20px;">
 									<?php echo "{$option->name}:" ?>
-									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>" class="swa-option-selector" data-price="<?php echo $option->price ?>">
+									<select id="<?php echo "select_{$key}" ?>" name="<?php echo "addons[{$key}][option]" ?>" data-id="<?php echo $key ?>"
+									class="swa-option-selector" data-price="<?php echo $option->price ?>">
 										<option value='NULL'>-- SELECT --</option>
 										<?php foreach ($option->values as $value) {
 										?>
