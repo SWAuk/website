@@ -274,8 +274,8 @@ if (!empty($this->extra_sidebar))
 						</td>
 						<td>
 							<?php
-							$imgSrc = "http://localhost/j/administrator/index.php?option=com_swa&task=qualifications.viewimage&id=" . $item->id;
-							echo "<a href='$imgSrc'><img src='$imgSrc' width='50' height='50'/></a>";
+							$imgSrc = "index.php?option=com_swa&task=qualifications.viewimage&id=" . $item->id;
+							echo "<a href='$imgSrc' target='_blank'><img src='$imgSrc' width='50' height='50'/></a>";
 							?>
 						</td>
 						<td class="center hidden-phone">
