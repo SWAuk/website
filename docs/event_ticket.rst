@@ -52,13 +52,6 @@ committee       Sets whether or not you need to be SWA committee to buy this tic
 
                 Default value: ``false``
 --------------  -------------------------------
-first_event     Sets whether or not the ticket is restricted to members who haven't
-                been to any events before.
-
-                Possible values: ``true``, ``false``
-
-                Default value: ``false``
---------------  -------------------------------
 member          Member is an object containing two lists of member ids, allowed and a denied.
 
                 | The allowed list shows the member ids that are allowed to buy this ticket,
