@@ -62,7 +62,6 @@
                      "xswa": false,
                      "qualification": false,
                      "committee": false,
-                     "first_event": false,
                      "member": {"allowed": [],"denied": []},
                      "university": {"allowed": [],"denied": []},
                      "level": {"allowed": [],"denied": []},
