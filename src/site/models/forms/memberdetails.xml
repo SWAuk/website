@@ -127,6 +127,7 @@
          <option value="Gluten Free">Gluten Free</option>
 	 <option value="Halal">Halal</option>
 	 <option value="Kosher">Kosher</option>
+         <option value="Lactose Intolerant">Lactose Intolerant</option>
       </field>
 
    </fieldset>
