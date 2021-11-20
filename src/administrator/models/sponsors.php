@@ -76,7 +76,7 @@ class SwaModelSponsors extends JModelList
 			)
 		);
 		$query->from($db->quoteName('#__swa_sponsors', 'sponsor'));
-		
+
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 		if (!empty($search))
