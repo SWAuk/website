@@ -25,7 +25,6 @@ CREATE TABLE `swana_action_logs` (
   KEY `idx_extension_item_id` (`extension`,`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
 DROP TABLE IF EXISTS `swana_action_logs_extensions`;
 CREATE TABLE `swana_action_logs_extensions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1656,6 +1655,18 @@ CREATE TABLE `swana_swa_committee` (
   PRIMARY KEY (`id`),
   KEY `fk_committee_member_idx` (`member_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS `swana_swa_sponsors`;
+CREATE TABLE `swana_swa_sponsors` (
+  `name` varchar(32) NOT NULL,
+  `logo_url` varchar(512) NOT NULL,
+  `blurb` text NOT NULL,
+  `sponsor_level` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 INSERT INTO `swana_swa_committee` (`id`, `member_id`, `position`, `blurb`, `image`, `ordering`) VALUES
 (1,	2,	'Under',	'<p>blah blah blah</p>',	'https://openclipart.org/download/242499/1456705995.svg',	1);

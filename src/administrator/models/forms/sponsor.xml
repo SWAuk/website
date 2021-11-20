@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id"
+			type="text"
+			default="0"
+			label="ID"
+			class="readonly"
+            readonly="true"
+			description="JGLOBAL_FIELD_ID_DESC"/>
+
+	<field name="name"
+			type="text"
+			size="52"
+			label="Name"
+			description="JGLOBAL_FIELD_ID_DESC"/>
+			<field name="logo_url"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Logo Url"
+			validate="url"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="sponsor_level"
+			type="text"
+			size="40"
+			class="inputbox"
+			label="Sponsor Level"
+			required="true"
+			filter="safehtml"/>
+
+        <field name="blurb"
+            type="textarea"
+            label="Blurb"
+            rows="10"
+			required="true"
+            cols="50"/>
+
+	</fieldset>
+
+</form>

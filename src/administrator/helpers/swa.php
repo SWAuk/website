@@ -73,6 +73,11 @@ class SwaHelper
 			$vName == 'seasons'
 		);
 		JHtmlSidebar::addEntry(
+			JText::_('Sponsors'),
+			'index.php?option=com_swa&view=sponsors',
+			$vName == 'sponsors'
+		);
+		JHtmlSidebar::addEntry(
 			JText::_('Competitions'),
 			'index.php?option=com_swa&view=competitions',
 			$vName == 'competitions'
