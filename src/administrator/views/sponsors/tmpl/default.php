@@ -65,7 +65,7 @@ if (!empty($this->extra_sidebar))
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description">
-				<p>ooo now we have dynamic sponsors </p>
+				<p>Update the sponsors here, they will be reflected on the main page</p>
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
