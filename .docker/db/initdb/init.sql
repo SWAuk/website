@@ -1349,7 +1349,7 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2135,	'main',	'COM_FAQBOOKPRO_SUBMENU_TOPICS',	'com-faqbookpro-submenu-topics',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-topics',	'index.php?option=com_faqbookpro&view=topics',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:topics',	0,	'{}',	196,	197,	0,	'',	1),
 (2136,	'main',	'COM_FAQBOOKPRO_SUBMENU_QUESTIONS',	'com-faqbookpro-submenu-questions',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-questions',	'index.php?option=com_faqbookpro&view=questions',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:questions',	0,	'{}',	198,	199,	0,	'',	1),
 (2137,	'main',	'COM_FAQBOOKPRO_SUBMENU_ABOUT',	'com-faqbookpro-submenu-about',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-about',	'index.php?option=com_faqbookpro&view=about',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:about',	0,	'{}',	200,	201,	0,	'',	1),
-(2195,	'main',	'COM_SWA',	'com-swa',	'',	'com-swa',	'index.php?option=com_swa',	'component',	1,	1,	1,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_com_swa.png',	0,	'{}',	203,	240,	0,	'',	1),
+(2195,	'main',	'COM_SWA',	'com-swa',	'',	'com-swa',	'index.php?option=com_swa',	'component',	1,	1,	1,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_com_swa.png',	0,	'{}',	203,	242,	0,	'',	1),
 (2196,	'main',	'COM_SWA_TITLE_MEMBERS',	'com-swa-title-members',	'',	'com-swa/com-swa-title-members',	'index.php?option=com_swa&view=members',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	204,	205,	0,	'',	1),
 (2197,	'main',	'COM_SWA_TITLE_COMMITTEE',	'com-swa-title-committee',	'',	'com-swa/com-swa-title-committee',	'index.php?option=com_swa&view=committeemembers',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	206,	207,	0,	'',	1),
 (2198,	'main',	'COM_SWA_TITLE_UNIVERSITYMEMBERS',	'com-swa-title-universitymembers',	'',	'com-swa/com-swa-title-universitymembers',	'index.php?option=com_swa&view=universitymembers',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	208,	209,	0,	'',	1),
@@ -1365,6 +1365,7 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2211,	'main',	'COM_SWA_TITLE_COMPETITIONTYPES',	'com-swa-title-competitiontypes',	'',	'com-swa/com-swa-title-competitiontypes',	'index.php?option=com_swa&view=competitiontypes',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	234,	235,	0,	'',	1),
 (2212,	'main',	'COM_SWA_TITLE_TEAMRESULTS',	'com-swa-title-teamresults',	'',	'com-swa/com-swa-title-teamresults',	'index.php?option=com_swa&view=teamresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	236,	237,	0,	'',	1),
 (2213,	'main',	'COM_SWA_TITLE_INDIVIDUALRESULTS',	'com-swa-title-individualresults',	'',	'com-swa/com-swa-title-individualresults',	'index.php?option=com_swa&view=individualresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	238,	239,	0,	'',	1),
+(2215,	'main',	'COM_SWA_TITLE_SPONSORS',	'com-swa-title-sponsors',	'',	'com-swa/com-swa-title-sponsors',	'index.php?option=com_swa&view=sponsors',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	240,	241,	0,	'',	1),
 (2214,	'main',	'COM_AKEEBA',	'com-akeeba',	'',	'com-akeeba',	'index.php?option=com_akeeba',	'component',	1,	1,	1,	10015,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	241,	242,	0,	'',	1);
 
 DROP TABLE IF EXISTS `swana_menu_types`;
@@ -1668,6 +1669,8 @@ CREATE TABLE `swana_swa_sponsors` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `swana_swa_sponsors` (`name`, `logo_url`, `blurb`, `sponsor_level`, `id`) VALUES
+('Sample Sponsor',	'https://cdn.vox-cdn.com/thumbor/Uk16ijHSOhgjs0byA-rA4p2icMY=/1400x1050/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/10666689/hypnotoad.jpg',	'All hail the hypnotoad',	1,	1);
 
 INSERT INTO `swana_swa_committee` (`id`, `member_id`, `position`, `blurb`, `image`, `ordering`) VALUES
 (1,	2,	'Under',	'<p>blah blah blah</p>',	'https://openclipart.org/download/242499/1456705995.svg',	1);
