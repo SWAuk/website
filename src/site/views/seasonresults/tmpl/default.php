@@ -68,17 +68,17 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 
 		as $seriesName => $seriesDetails)
 		{
-		echo "<h2>" . ucfirst($seriesName) . " Series</h2>\n";
-		echo "<p>";
-		echo "Competitions: {$seriesDetails['competitions']}";
+				echo "<h2>" . ucfirst($seriesName) . " Series</h2>\n";
+				echo "<p>";
+				echo "Competitions: {$seriesDetails['competitions']}";
 
-		if ($seriesName != 'male' && $seriesName != 'female' && $seriesName != 'mixed')
-		{
-			echo ", DNC score: {$seriesDetails['dnc_score']}";
-		}
+				if ($seriesName != 'male' && $seriesName != 'female' && $seriesName != 'mixed')
+				{
+					echo ", DNC score: {$seriesDetails['dnc_score']}";
+					}
 
-		echo "</p>";
-		?>
+				echo "</p>";
+				?>
 		<table class="table table-hover">
 			<thead>
 			<tr>
@@ -90,7 +90,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 				{
 					echo "<th>Level</th>\n";
 					echo "<th>Offset</th>\n";
-				} ?>
+					} ?>
 				<th>Competitions</th>
 				<th>DNCs</th>
 				<th>DNC points</th>
@@ -98,37 +98,37 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			</tr>
 			</thead>
 			<tbody>
-	<?php
-	$positionCounter = 0;
+						<?php
+						$positionCounter = 0;
 
-	foreach ($seriesDetails['results'] as $resultDetails)
-	{
-		$positionCounter++;
+						foreach ($seriesDetails['results'] as $resultDetails)
+						{
+							$positionCounter++;
 
-		// Name is technically use input so strip it just in case..
-		$name = strip_tags($resultDetails['name']);
-		$uni  = strip_tags($resultDetails['university']);
-		echo "<tr>\n";
-		echo "<td>{$positionCounter}</td>\n";
-		echo "<td>{$name}</td>\n";
-		echo "<td>{$uni}</td>\n";
-		echo "<td>{$resultDetails['result']}</td>\n";
+							// Name is technically use input so strip it just in case..
+							$name = strip_tags($resultDetails['name']);
+							$uni  = strip_tags($resultDetails['university']);
+							echo "<tr>\n";
+							echo "<td>{$positionCounter}</td>\n";
+							echo "<td>{$name}</td>\n";
+							echo "<td>{$uni}</td>\n";
+							echo "<td>{$resultDetails['result']}</td>\n";
 
-		if ($seriesName == 'race')
-		{
-			$resultDetails['comp_type'] = str_replace(' race', '', $resultDetails['comp_type']);
-			echo "<td>{$resultDetails['comp_type']}</td>\n";
-			echo "<td>{$resultDetails['offset']}</td>\n";
-		}
+							if ($seriesName == 'race')
+							{
+								$resultDetails['comp_type'] = str_replace(' race', '', $resultDetails['comp_type']);
+								echo "<td>{$resultDetails['comp_type']}</td>\n";
+								echo "<td>{$resultDetails['offset']}</td>\n";
+							}
 
-		echo "<td>{$resultDetails['competitions']}</td>\n";
-		echo "<td>{$resultDetails['dnc_count']}</td>\n";
-		echo "<td>{$resultDetails['dnc_points']}</td>\n";
-		echo "<td>{$resultDetails['discard_points']}</td>\n";
-		echo "</tr>\n";
-	}
+							echo "<td>{$resultDetails['competitions']}</td>\n";
+							echo "<td>{$resultDetails['dnc_count']}</td>\n";
+							echo "<td>{$resultDetails['dnc_points']}</td>\n";
+							echo "<td>{$resultDetails['discard_points']}</td>\n";
+							echo "</tr>\n";
+							}
 
-	echo "</tbody>\n";
-	echo "</table>\n";
+						echo "</tbody>\n";
+						echo "</table>\n";
 }
 }

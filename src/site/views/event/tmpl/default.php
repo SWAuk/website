@@ -158,7 +158,7 @@ if ($this->member)
 							// Only show the full attendees table until the end of the event
 							if (time() < (72 * 60 * 60 + strtotime($item->event_date)))
 							{
-								?>
+							?>
 							<table class="table table-hover">
 								<thead>
 								<tr>
@@ -171,26 +171,26 @@ if ($this->member)
 								</tr>
 								</thead>
 								<tbody>
-								<?php
-									foreach ($eventAttendees as $person)
-									{
-										if ($person['Dietary'] == "NULL")
-										{
-											$person['Dietary'] = "";
-										}
-										if ($person['Details'] == "{\"addons\":[]}")
-										{
-											$person['Details'] = "";
-										}
-										echo "<tr>\n";
-										echo "<td>{$person['Name']}</td>";
-										echo "<td>{$person['Uni']}</td>";
-										echo "<td>{$person['Ticket']}</td>";
-										echo "<td>{$person['Level']}</td>";
-										echo "<td>{$person['Dietary']}</td>";
-										echo "<td>{$person['Details']}</td>";
-										echo "</tr>\n";
+							<?php
+							foreach ($eventAttendees as $person)
+							{
+								if ($person['Dietary'] == "NULL")
+								{
+									$person['Dietary'] = "";
 									}
+								if ($person['Details'] == "{\"addons\":[]}")
+								{
+									$person['Details'] = "";
+									}
+								echo "<tr>\n";
+								echo "<td>{$person['Name']}</td>";
+								echo "<td>{$person['Uni']}</td>";
+								echo "<td>{$person['Ticket']}</td>";
+								echo "<td>{$person['Level']}</td>";
+								echo "<td>{$person['Dietary']}</td>";
+								echo "<td>{$person['Details']}</td>";
+								echo "</tr>\n";
+								}
 								}
 							?>
 							</tbody>
