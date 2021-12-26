@@ -73,6 +73,11 @@ docker run --rm -it -v %CD%:/app composer <command here>
 composer install
 ```
 
+If you are having issues with installing dependency versions, use the following command:
+```sh
+docker run --rm -it -v %CD%:/app composer install --ignore-platform-reqs
+```
+
 ## Development - Environment
 
 The recommended dev environment uses docker-compose.
