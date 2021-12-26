@@ -12,6 +12,7 @@ services:
       - ./src/administrator:/var/www/html/administrator/components/com_swa
       - ./src/site:/var/www/html/components/com_swa
       - ./src/plugin:/var/www/html/plugins/swa/viewlevels
+      - ./src/templates:/var/www/html/templates
       - ./.docker/www-logs:/var/logs/joomla
     ports:
       - ${JOOMLA_PORT:-5555}:80

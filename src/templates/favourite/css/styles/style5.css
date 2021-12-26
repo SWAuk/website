@@ -1,0 +1,832 @@
+/*/
+////////////////////////////////////////////////////////////////////////////////
+///
+///  style 5
+///
+////////////////////////////////////////////////////////////////////////////////
+/*/
+
+/*
+////////////////////////////////////////////////////////////////////////////////
+
+1. reset
+2. header
+3. logo
+4. navigation
+5. module positions
+6. titles
+7. buttons
+8. variations
+9. custom pages
+10. typography
+11. cms
+12. extensions
+
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+/*
+////////////////////////////////////////////////////////////////////////////////
+
+#86B827 - main color
+
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  1. reset
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+a { color: #86B827; }
+a:hover, a:focus { color: #111; outline: none; }
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  2. header
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  default
+///
+/*/
+
+/* links */
+#fav-headerwrap .favnav li.active a,
+#fav-headerwrap .favnav li a:hover,
+#fav-headerwrap .favnav li a:focus,
+#fav-headerwrap .favnav li.active .nav-header,
+#fav-headerwrap .favnav li .nav-header:hover,
+#fav-headerwrap .favnav li .nav-header:focus {
+  color: #86B827;
+  background-color: transparent;
+}
+
+/* icons */
+#fav-headerwrap .favnav li a[class^="fa-"]:before,
+#fav-headerwrap .favnav li a[class*=" fa-"]:before,
+#fav-headerwrap .favnav li .nav-header[class^="fa-"]:before,
+#fav-headerwrap .favnav li .nav-header[class*=" fa-"]:before {
+  color: #86B827;
+}
+
+/* navigation arrows */
+#fav-headerwrap .favnav .nav-child:before {
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #86B827;
+  border-left: 7px solid transparent;
+  border-bottom-color: #86B827;
+  content: '';
+}
+#fav-headerwrap .favnav .nav-child:after {
+  border-right: 6px solid transparent;
+  border-bottom: 6px solid #86B827;
+  border-left: 6px solid transparent;
+  content: '';
+}
+#fav-headerwrap .favnav .nav-child li > ul:before {
+  border-bottom: 7px solid transparent;
+  border-right: 7px solid #86B827;
+  border-top: 7px solid transparent;
+}
+#fav-headerwrap .favnav .nav-child li > ul:after {
+  border-top: 6px solid transparent;
+  border-right: 6px solid #86B827;
+  border-bottom: 6px solid transparent;
+}
+
+/* submenu */
+#fav-headerwrap .favnav .nav-child li a,
+#fav-headerwrap .favnav .nav-child li.active a,
+#fav-headerwrap .favnav .nav-child li a:hover,
+#fav-headerwrap .favnav .nav-child li a:focus,
+#fav-headerwrap .favnav .nav-child li .nav-header,
+#fav-headerwrap .favnav .nav-child li.active .nav-header,
+#fav-headerwrap .favnav .nav-child li .nav-header:hover,
+#fav-headerwrap .favnav .nav-child li .nav-header:focus {
+  color: #111;
+}
+#fav-headerwrap .favnav .nav-child li.active > a,
+#fav-headerwrap .favnav .nav-child li a:hover,
+#fav-headerwrap .favnav .nav-child li a:focus,
+#fav-headerwrap .favnav .nav-child li.active .nav-header,
+#fav-headerwrap .favnav .nav-child li .nav-header:hover,
+#fav-headerwrap .favnav .nav-child li .nav-header:focus {
+  color: #86B827;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  3. logo
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  4. navigation
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  main navigation
+///
+/*/
+
+.favnav ul.nav > li.active > a,
+.favnav ul.nav > li > a:hover,
+.favnav ul.nav > li > a:focus,
+.favnav ul.nav > li.active > .nav-header,
+.favnav ul.nav > li > .nav-header:hover,
+.favnav ul.nav > li > .nav-header:focus {
+  color: #86B827;
+}
+
+/*/
+///
+///  vertical menus
+///
+/*/
+
+/* basic */
+ul.menufavth-basic li a:hover,
+ul.menufavth-basic li a:focus,
+ul.menufavth-basic li.current a,
+ul.menufavth-basic li.current ul a:hover,
+ul.menufavth-basic li.current ul a:focus,
+ul.menufavth-basic li .nav-header:hover,
+ul.menufavth-basic li .nav-header:focus,
+ul.menufavth-basic li.current .nav-header,
+ul.menufavth-basic li.current ul .nav-header:hover,
+ul.menufavth-basic li.current ul .nav-header:focus {
+  color: #fff;
+  background-color: #86B827;
+}
+
+/* arrow */
+ul.menufavth-arrow li a:hover,
+ul.menufavth-arrow li a:focus,
+ul.menufavth-arrow li.current a,
+ul.menufavth-arrow li.current ul a:hover,
+ul.menufavth-arrow li.current ul a:focus,
+ul.menufavth-arrow li .nav-header:hover,
+ul.menufavth-arrow li .nav-header:focus,
+ul.menufavth-arrow li.current .nav-header,
+ul.menufavth-arrow li.current ul .nav-header:hover,
+ul.menufavth-arrow li.current ul .nav-header:focus {
+  color: #86B827;
+  background-color: transparent;
+}
+ul.menufavth-arrow li a:hover:before,
+ul.menufavth-arrow li a:focus:before,
+ul.menufavth-arrow li.current a:before,
+ul.menufavth-arrow li.current ul a:hover:before,
+ul.menufavth-arrow li.current ul a:focus:before,
+ul.menufavth-arrow li .nav-header:hover:before,
+ul.menufavth-arrow li .nav-header:focus:before,
+ul.menufavth-arrow li.current .nav-header:before,
+ul.menufavth-arrow li.current ul .nav-header:hover:before,
+ul.menufavth-arrow li.current ul .nav-header:focus:before {
+  color: #86B827;
+}
+
+/* side */
+ul.menufavth-side li a:hover,
+ul.menufavth-side li a:focus,
+ul.menufavth-side li.current a,
+ul.menufavth-side li.current ul a:hover,
+ul.menufavth-side li.current ul a:focus,
+ul.menufavth-side li .nav-header:hover,
+ul.menufavth-side li .nav-header:focus,
+ul.menufavth-side li.current .nav-header,
+ul.menufavth-side li.current ul .nav-header:hover,
+ul.menufavth-side li.current ul .nav-header:focus {
+  color: #86B827;
+  border-left: 5px solid #86B827;
+  background-color: transparent;
+}
+
+/* line */
+ul.menufavth-line li a:hover,
+ul.menufavth-line li a:focus,
+ul.menufavth-line li.current a,
+ul.menufavth-line li.current ul a:hover,
+ul.menufavth-line li.current ul a:focus,
+ul.menufavth-line li .nav-header:hover,
+ul.menufavth-line li .nav-header:focus,
+ul.menufavth-line li.current .nav-header,
+ul.menufavth-line li.current ul .nav-header:hover,
+ul.menufavth-line li.current ul .nav-header:focus {
+  color: #111;
+  border-bottom: 1px solid #86B827;
+  background-color: transparent;
+}
+ul.menufavth-line li a:hover:before,
+ul.menufavth-line li a:focus:before,
+ul.menufavth-line li.current a:before,
+ul.menufavth-line li.current ul a:hover:before,
+ul.menufavth-line li.current ul a:focus:before,
+ul.menufavth-line li .nav-header:hover:before,
+ul.menufavth-line li .nav-header:focus:before,
+ul.menufavth-line li.current .nav-header:before,
+ul.menufavth-line li.current ul .nav-header:hover:before,
+ul.menufavth-line li.current ul .nav-header:focus:before {
+  color: #86B827;
+}
+
+/*/
+///
+///  horizontal menus
+///
+/*/
+
+ul.menufavth-horizontal li.active a,
+ul.menufavth-horizontal li a:hover,
+ul.menufavth-horizontal li a:focus,
+ul.menufavth-horizontal li:hover a,
+ul.menufavth-horizontal li:focus a,
+ul.menufavth-horizontal li.active .nav-header,
+ul.menufavth-horizontal li .nav-header:hover,
+ul.menufavth-horizontal li .nav-header:focus,
+ul.menufavth-horizontal li:hover .nav-header,
+ul.menufavth-horizontal li:focus .nav-header,
+ul.menufavth-horizontal li .nav-header:hover,
+ul.menufavth-horizontal li .nav-header:focus {
+  color: #86B827;
+}
+
+/* clear */
+.fav-module-block-clear ul.menufavth-horizontal li.active a,
+.fav-module-block-clear ul.menufavth-horizontal li a:hover,
+.fav-module-block-clear ul.menufavth-horizontal li a:focus,
+.fav-module-block-clear ul.menufavth-horizontal li:hover a,
+.fav-module-block-clear ul.menufavth-horizontal li:focus a,
+.fav-module-block-clear ul.menufavth-horizontal li.active .nav-header,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:hover,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:focus,
+.fav-module-block-clear ul.menufavth-horizontal li:hover .nav-header,
+.fav-module-block-clear ul.menufavth-horizontal li:focus .nav-header,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:hover,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:focus {
+  color: #86B827;
+}
+.moduletable.favth-clear ul.menufavth-horizontal li.active a,
+.moduletable.favth-clear ul.menufavth-horizontal li a:hover,
+.moduletable.favth-clear ul.menufavth-horizontal li a:focus,
+.moduletable.favth-clear ul.menufavth-horizontal li:hover a,
+.moduletable.favth-clear ul.menufavth-horizontal li:focus a,
+.moduletable.favth-clear ul.menufavth-horizontal li.active .nav-header,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:hover,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:focus,
+.moduletable.favth-clear ul.menufavth-horizontal li:hover .nav-header,
+.moduletable.favth-clear ul.menufavth-horizontal li:focus .nav-header,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:hover,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:focus {
+  color: #86B827;
+}
+.fav-module-block-clear ul.menufavth-horizontal li.active a:before,
+.fav-module-block-clear ul.menufavth-horizontal li a:hover:before,
+.fav-module-block-clear ul.menufavth-horizontal li a:focus:before,
+.fav-module-block-clear ul.menufavth-horizontal li:hover a:before,
+.fav-module-block-clear ul.menufavth-horizontal li:focus a:before,
+.fav-module-block-clear ul.menufavth-horizontal li.active .nav-header:before,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:hover:before,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:focus:before,
+.fav-module-block-clear ul.menufavth-horizontal li:hover .nav-header:before,
+.fav-module-block-clear ul.menufavth-horizontal li:focus .nav-header:before,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:hover:before,
+.fav-module-block-clear ul.menufavth-horizontal li .nav-header:focus:before {
+  color: #86B827;
+}
+.moduletable.favth-clear ul.menufavth-horizontal li.active a:before,
+.moduletable.favth-clear ul.menufavth-horizontal li a:hover:before,
+.moduletable.favth-clear ul.menufavth-horizontal li a:focus:before,
+.moduletable.favth-clear ul.menufavth-horizontal li:hover a:before,
+.moduletable.favth-clear ul.menufavth-horizontal li:focus a:before,
+.moduletable.favth-clear ul.menufavth-horizontal li.active .nav-header:before,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:hover:before,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:focus:before,
+.moduletable.favth-clear ul.menufavth-horizontal li:hover .nav-header:before,
+.moduletable.favth-clear ul.menufavth-horizontal li:focus .nav-header:before,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:hover:before,
+.moduletable.favth-clear ul.menufavth-horizontal li .nav-header:focus:before {
+  color: #86B827;
+}
+
+/* dark */
+.fav-module-block-dark ul.menufavth-horizontal li.active a,
+.fav-module-block-dark ul.menufavth-horizontal li a:hover,
+.fav-module-block-dark ul.menufavth-horizontal li a:focus,
+.fav-module-block-dark ul.menufavth-horizontal li:hover a,
+.fav-module-block-dark ul.menufavth-horizontal li:focus a,
+.fav-module-block-dark ul.menufavth-horizontal li.active .nav-header,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:hover,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:focus,
+.fav-module-block-dark ul.menufavth-horizontal li:hover .nav-header,
+.fav-module-block-dark ul.menufavth-horizontal li:focus .nav-header,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:hover,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:focus {
+  color: #86B827;
+}
+.moduletable.favth-dark ul.menufavth-horizontal li.active a,
+.moduletable.favth-dark ul.menufavth-horizontal li a:hover,
+.moduletable.favth-dark ul.menufavth-horizontal li a:focus,
+.moduletable.favth-dark ul.menufavth-horizontal li:hover a,
+.moduletable.favth-dark ul.menufavth-horizontal li:focus a,
+.moduletable.favth-dark ul.menufavth-horizontal li.active .nav-header,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:hover,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:focus,
+.moduletable.favth-dark ul.menufavth-horizontal li:hover .nav-header,
+.moduletable.favth-dark ul.menufavth-horizontal li:focus .nav-header,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:hover,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:focus {
+  color: #86B827;
+}
+.fav-module-block-dark ul.menufavth-horizontal li.active a:before,
+.fav-module-block-dark ul.menufavth-horizontal li a:hover:before,
+.fav-module-block-dark ul.menufavth-horizontal li a:focus:before,
+.fav-module-block-dark ul.menufavth-horizontal li:hover a:before,
+.fav-module-block-dark ul.menufavth-horizontal li:focus a:before,
+.fav-module-block-dark ul.menufavth-horizontal li.active .nav-header:before,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:hover:before,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:focus:before,
+.fav-module-block-dark ul.menufavth-horizontal li:hover .nav-header:before,
+.fav-module-block-dark ul.menufavth-horizontal li:focus .nav-header:before,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:hover:before,
+.fav-module-block-dark ul.menufavth-horizontal li .nav-header:focus:before {
+  color: #86B827;
+}
+.moduletable.favth-dark ul.menufavth-horizontal li.active a:before,
+.moduletable.favth-dark ul.menufavth-horizontal li a:hover:before,
+.moduletable.favth-dark ul.menufavth-horizontal li a:focus:before,
+.moduletable.favth-dark ul.menufavth-horizontal li:hover a:before,
+.moduletable.favth-dark ul.menufavth-horizontal li:focus a:before,
+.moduletable.favth-dark ul.menufavth-horizontal li.active .nav-header:before,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:hover:before,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:focus:before,
+.moduletable.favth-dark ul.menufavth-horizontal li:hover .nav-header:before,
+.moduletable.favth-dark ul.menufavth-horizontal li:focus .nav-header:before,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:hover:before,
+.moduletable.favth-dark ul.menufavth-horizontal li .nav-header:focus:before {
+  color: #86B827;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  5. module positions
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  module positions blocks
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  clear/image module positions
+///
+/*/
+
+/* links */
+.fav-module-block-clear a {
+  color: #86B827;
+}
+.fav-module-block-clear a:hover,
+.fav-module-block-clear a:focus {
+  color: #fff;
+}
+
+/*/
+///
+///  dark module positions
+///
+/*/
+
+/* links */
+.fav-module-block-dark a {
+  color: #86B827;
+}
+.fav-module-block-dark a:hover,
+.fav-module-block-dark a:focus {
+  color: #fff;
+}
+
+/*/
+///
+///  color module positions
+///
+/*/
+
+/* background */
+.fav-module-block-color {
+  background-color: #86B827;
+}
+
+/*/
+///
+///  backtop
+///
+/*/
+
+#fav-backtop .btn:hover,
+#fav-backtop .btn:focus {
+  background-color: #86B827;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  6. titles
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+.fav-container h1 a:hover,
+.fav-container h2 a:hover,
+.fav-container h3 a:hover,
+.fav-container h4 a:hover,
+.fav-container h5 a:hover,
+.fav-container h6 a:hover {
+  color: #86B827;
+  text-decoration: none;
+}
+
+/* title icons */
+.fav-container h3:first-of-type [class^="fa fa-"],
+.fav-container h3:first-of-type [class*=" fa fa-"] {
+  background-color: #86B827;
+  color: #fff;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  7. buttons
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+.fav-container .favth-btn,
+.fav-container .btn,
+.fav-container .btn-primary,
+.fav-container .pager .next a,
+.fav-container .pager .previous a,
+.fav-container .hikabtn {
+  color: #fff;
+  background-color: #86B827;
+}
+.fav-container .favth-btn:hover,
+.fav-container .favth-btn:focus,
+.favth-btn:active,
+.favth-btn.favth-active,
+.fav-container .btn:hover,
+.fav-container .btn:focus,
+.fav-container .btn:active,
+.fav-container .btn.active,
+.fav-container .btn-primary:hover,
+.fav-container .btn-primary:focus,
+.fav-container .btn-primary:active,
+.fav-container .btn-primary.active,
+.fav-container .pager .next a:hover,
+.fav-container .pager .previous a:hover,
+.fav-container .pager .next a:focus,
+.fav-container .pager .previous a:focus,
+.fav-container .hikabtn:hover,
+.fav-container .hikabtn:focus {
+  color: #fff;
+  background-color: #111;
+}
+
+/* pagination */
+.fav-container .pagination ul li span {/* active navigation item */
+  cursor: default;
+  background-color: #86B827;
+  color: #fff;
+  border: 1px solid #86B827;
+}
+.fav-container .pagination ul li a:hover,
+.fav-container .pagination ul li a:focus,
+.fav-container .pagination ul li.pagination-start a:hover,
+.fav-container .pagination ul li.pagination-prev a:hover,
+.fav-container .pagination ul li.pagination-next a:hover,
+.fav-container .pagination ul li.pagination-end a:hover,
+.fav-container .pagination ul li.pagination-start a:focus,
+.fav-container .pagination ul li.pagination-prev a:focus,
+.fav-container .pagination ul li.pagination-next a:focus,
+.fav-container .pagination ul li.pagination-end a:focus {
+  background-color: #86B827;
+  color: #fff;
+  border: 1px solid #86B827;
+}
+.fav-container .hikashop_products_pagination .list-footer span.pagenav,
+.fav-container .hikashop_subcategories_pagination .list-footer span.pagenav {/* active navigation item */
+  cursor: default;
+  background-color: #86B827;
+  color: #fff;
+  border: 1px solid #86B827;
+}
+.fav-container .hikashop_products_pagination .list-footer a.pagenav:hover,
+.fav-container .hikashop_products_pagination .list-footer a.pagenav:focus {
+  background-color: #86B827;
+  color: #fff;
+  border: 1px solid #86B827;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  8. variations
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  background
+///
+/*/
+
+/* light */
+.moduletable.favth-light a {
+  color: #86B827;
+}
+
+/* dark */
+.moduletable.favth-dark a {
+  color: #86B827;
+}
+
+/* clear */
+.moduletable.favth-clear a {
+  color: #86B827;
+}
+
+/* color */
+.moduletable.favth-color {
+  background-color: #86B827;
+  color: #fff;
+}
+.moduletable.favth-color > h3:first-of-type [class^="fa-"],
+.moduletable.favth-color > h3:first-of-type [class*=" fa-"] {
+  background-color: #fff;
+  color: #86B827;
+}
+
+/*/
+///
+///  title
+///
+/*/
+
+/* title line */
+.moduletable.favth-title-line > h3:first-of-type:after {
+  border-bottom: 3px solid #86B827;
+}
+
+/* title border */
+.moduletable.favth-title-border > h3:first-of-type {
+  border-bottom: 1px solid #86B827;
+}
+
+/* title symbol */
+.moduletable.favth-title-symbol > h3:first-of-type:after {
+  color: #86B827;
+}
+
+/* title plus */
+.moduletable.favth-title-plus > h3:first-of-type:after {
+  color: #86B827;
+}
+
+/*/
+///
+///  icons
+///
+/*/
+
+/* light */
+.moduletable.favth-icon-light > h3:first-of-type [class^="fa fa-"],
+.moduletable.favth-icon-light > h3:first-of-type [class*=" fa fa-"] {
+  background-color: #fff;
+  color: #86B827;
+  padding: 9px;
+  border: 1px solid #e7e7e7;
+}
+
+/* color */
+.moduletable.favth-icon-color > h3:first-of-type [class^="fa fa-"],
+.moduletable.favth-icon-color > h3:first-of-type [class*=" fa fa-"] {
+  background-color: #86B827;
+  color: #fff;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  9. custom pages
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/* main navigation styles */
+.favnav-styles-demo {
+  border: 7px solid #e7e7e7;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 24px;
+}
+.favnav-styles-demo .favnav {
+  float: left;
+}
+.favnav-styles-demo .favnav li a,
+.favnav-styles-demo .favnav li .nav-header {
+  color: #111 !important;
+}
+.favnav-styles-demo .favnav li.active a,
+.favnav-styles-demo .favnav li.active .nav-header,
+.favnav-styles-demo .favnav li a:hover,
+.favnav-styles-demo .favnav li a:focus,
+.favnav-styles-demo .favnav li .nav-header:hover,
+.favnav-styles-demo .favnav li .nav-header:focus {
+  color: #86B827 !important;
+  background-color: transparent;
+}
+.favnav-styles-demo .favnav li a[class^="fa-"]:before,
+.favnav-styles-demo .favnav li a[class*=" fa-"]:before {
+  color: #86B827;
+}
+
+/*/
+///
+///  error page
+///
+/*/
+
+/* default view */
+#fav-errorpage .btn {
+  color: #fff;
+  background-color: #86B827;
+}
+#fav-errorpage .btn:hover,
+#fav-errorpage .btn:focus,
+#fav-errorpage .btn:active {
+  color: #fff;
+  background-color: #333;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  10. typography
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  bootstrap elements
+///
+/*/
+
+/* blockquote */
+blockquote {
+  border-color: #86B827;
+}
+
+/*/
+///
+///  lists
+///
+/*/
+
+/* square unordered */
+ul.favth-list-square li:before {
+  background-color: #86B827;
+  color: #fff;
+}
+
+/* square ordered */
+ol.favth-list-square li:before {
+  color: #fff;
+  background: none repeat scroll 0% 0% #86B827;
+}
+
+/* circle unordered */
+ul.favth-list-circle li:before {
+  background-color: #86B827;
+  color: #fff;
+}
+
+/* circle ordered */
+ol.favth-list-circle li:before {
+  color: #fff;
+  background: none repeat scroll 0% 0% #86B827;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  11. cms
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/* search */
+div.finder h4.result-title a {
+  color: #86B827;
+}
+div.finder h4.result-title a:hover,
+div.finder h4.result-title a:focus {
+  color: #333;
+}
+
+/* profile edit */
+div.profile-edit #member-profile a.btn,
+div.profile-edit #member-profile button.btn.validate {
+  background-color: #86B827;
+  color: #fff;
+}
+
+/* edit button */
+a.btn.jmodedit {
+  color: #fff;
+  background-color: #86B827;
+}
+
+/* badge */
+.badge-info {
+  background-color: #86B827;
+}
+
+/* label */
+.label-primary {
+  background-color: #86B827;
+}
+.label-primary[href]:hover,
+.label-primary[href]:focus {
+  background-color: #86B827;
+  opacity: 0.8;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  12. extensions
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  favglyph
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  favstyle
+///
+/*/
+
+.favstyle div[id^="favglyph-box"] i,
+.favstyle div[id*=" favglyph-box"] i {
+  color: #86B827 !important;
+}
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  favpromote
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  favstyle
+///
+/*/
+
+.favstyle div[id^="favpromote-box"]:hover,
+.favstyle div[id^="favpromote-box"]:hover,
+.favstyle div[id^="favpromote-box"] h4[id^="favpromote-title"],
+.favstyle div[id^="favpromote-box"] h4[id*=" favpromote-title"] {
+  background-color: #86B827 !important;
+}
+.favstyle div[id^="favpromote-box"]:hover h4[id^="favpromote-title"],
+.favstyle div[id^="favpromote-box"]:hover h4[id*=" favpromote-title"],
+.favstyle div[id^="favpromote-box"] h4[id^="favpromote-title"]:hover,
+.favstyle div[id^="favpromote-box"] h4[id*=" favpromote-title"]:hover {
+  background-color: #111 !important;
+}
+.favstyle div[id^="favpromote-box"]:hover,
+.favstyle div[id*=" favpromote-box"]:hover {
+  background-color: #86B827 !important;
+}
+
+
+/*//////////////////////////////////////////////////////////////////////////////
+///
+///  favsocial
+///
+//////////////////////////////////////////////////////////////////////////////*/
+
+/*/
+///
+///  favstyle
+///
+/*/
+
+.favstyle div[id^="favsocial"] a,
+.favstyle div[id*=" favsocial"] a {
+  background-color: #86B827 !important;
+}
