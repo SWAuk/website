@@ -40,14 +40,12 @@
 			label="Blurb"
 			required="true"
 			filter="safehtml"/>
-
-		<field name="image"
-			type="text"
-			size="500"
-			class="inputbox"
+			
+		<field name="image" 
+			type="media"
 			label="Image URL"
-			required="true"
-			filter="safehtml"/>
+			directory="committee"
+			preview="tooltip"/>
 
 	</fieldset>
 
