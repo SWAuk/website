@@ -28,8 +28,6 @@
 
 		<field name="blurb"
 			type="editor"
-			size="1000"
-			width="300"
 			class="inputbox"
 			label="Blurb"
 			required="true"

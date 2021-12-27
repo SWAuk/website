@@ -43,11 +43,9 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
 		<?php echo JHtml::_(
-			'bootstrap.addTab',
-			'myTab',
-			'general',
-			JText::_('Competition type', true)
-		); ?>
+			'bootstrap.addTab',	'myTab', 'general',
+			JText::_('Competition type', true)); ?>
+
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">

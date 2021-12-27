@@ -22,7 +22,10 @@ JFactory::getDocument()->addScriptDeclaration("
 
 <form method="post" name="adminForm" id="membership-form" class="form-validate form-horizontal">
 	<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'membership')); ?>
-	<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'membership', JText::_('Membership', true)); ?>
+
+	<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'membership',
+		JText::_('Membership', true)); ?>
+
 	<div class="row-fluid">
 		<fieldset class="adminform">
 			<?php foreach ($this->form->getFieldset() as $field): ?>
@@ -36,7 +39,6 @@ JFactory::getDocument()->addScriptDeclaration("
 
 	<input type="hidden" name="task" value="membership.edit" />
 	<?php echo JHtml::_('form.token'); ?>
-
 	<?php echo JHtml::_('bootstrap.endTab'); ?>
 	<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 </form>

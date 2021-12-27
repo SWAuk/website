@@ -45,12 +45,9 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
-		<?php echo JHtml::_(
-			'bootstrap.addTab',
-			'myTab',
-			'general',
-			JText::_('Qualification', true)
-		); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general',
+			JText::_('Qualification', true)); ?>
+
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
@@ -91,7 +88,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 				</fieldset>
 			</div>
 		</div>
-
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
