@@ -35,7 +35,8 @@
 			description="Choose an image from your computer"
 			size="10"
 			required="true"
-			accept="image/*"/>
+			accept=".png, .jpg, .jpeg, .pdf"
+			/>
 
 	</fieldset>
 
