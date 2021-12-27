@@ -2,7 +2,7 @@
 <extension type="component" version="3.0" method="upgrade">
 	<name>com_swa</name>
 	<creationDate>July 2014</creationDate>
-	<copyright>Copyright (C) 2014. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2022. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<author>SWA Tech Team</author>
 	<authorUrl>http://studentwindsurfing.co.uk</authorUrl>

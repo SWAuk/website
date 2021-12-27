@@ -7,7 +7,7 @@ defined('_JEXEC') or die;
  */
 
 // To avoid recursion we must only load the 'swa' plugin once here.
-// This is needed as this code can be run multiple times in a request, but we only want to lod the plugin the first time.
+// This is needed as this code can be run multiple times in a request, but we only want to load the plugin the first time.
 if (!array_key_exists('SWA_PLUGIN_IS_IMPORTED', $GLOBALS)) {
 	$GLOBALS['SWA_PLUGIN_IS_IMPORTED'] = true;
 	\Joomla\CMS\Plugin\PluginHelper::importPlugin('swa');

@@ -3,71 +3,74 @@
     <fieldset>
 
         <field name="id"
-               type="text"
-               default="0"
-               label="ID"
-               readonly="true"
-               class="readonly"
-               description="JGLOBAL_FIELD_ID_DESC"/>
+              type="text"
+              default="0"
+              label="ID"
+              readonly="true"
+              class="readonly"
+              description="JGLOBAL_FIELD_ID_DESC"/>
 
         <field name="event_id"
-               type="sql"
-               key_field="id"
-               value_field="name"
-               query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
-               label="Event"
-               required="true"
-               filter="safehtml"/>
+              type="sql"
+              key_field="id"
+              value_field="name"
+              query="SELECT id, name FROM #__swa_event ORDER BY id DESC"
+              label="Event"
+              required="true"
+              filter="safehtml"/>
 
         <field name="name"
-               type="text"
-               size="100"
-               class="inputbox"
-               label="Name"
-               required="true"
-               filter="safehtml"/>
+              type="text"
+              size="100"
+              class="inputbox"
+              label="Name"
+              required="true"
+              filter="safehtml"/>
 
         <field name="quantity"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Quantity"
-               required="true"
-               filter="safehtml"/>
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Quantity"
+              required="true"
+              filter="safehtml"/>
 
         <field name="price"
-               type="text"
-               size="40"
-               class="inputbox"
-               label="Price"
-               required="true"
-               filter="safehtml"/>
+              type="text"
+              size="40"
+              class="inputbox"
+              label="Price"
+              required="true"
+              filter="safehtml"/>
 
         <field name="notes"
-               type="text"
-               size="500"
-               class="inputbox"
-               label="Notes"
-               required="false"
-               filter="safehtml"/>
+              type="text"
+              size="500"
+              class="inputbox"
+              label="Notes"
+              required="false"
+              filter="safehtml"/>
 
         <!-- You can find an example JSON details in eventticket-example.json-->
         <field name="details"
-               type="textarea"
-               label="Details"
-               rows="50"
-               cols="10"
-               default='{
-                     "visible": "All",
+              type="textarea"
+              label="Details"
+              rows="50"
+              cols="10"
+              default='{
+                     "visible": "Match",
                      "xswa": false,
                      "qualification": false,
                      "committee": false,
-                     "member": {"allowed": [],"denied": []},
-                     "university": {"allowed": [],"denied": []},
-                     "level": {"allowed": [],"denied": []},
+                     "member": {
+                            "allowed": [],"denied": []},
+                     "university": {
+                            "allowed": [],"denied": []},
+                     "level": {
+                            "allowed": [],"denied": []},
                      "addons": []
-                     }
-              '/>
+                     }'
+              />
 
     </fieldset>
 

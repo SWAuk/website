@@ -29,24 +29,24 @@
                 "name": "T-Shirt Size",
                 "values": [
                     {
-                        "label": "XS 32/34\"",
-                        "value": "XS 32/34\""
+                        "label": "Small\"",
+                        "value": "Small\""
                     },
                     {
-                        "label": "S 34/36\"",
-                        "value": "S 34/36\""
+                        "label": "Medium\"",
+                        "value": "Medium\""
                     },
                     {
-                        "label": "M 36/38\"",
-                        "value": "M 36/38\""
+                        "label": "Large\"",
+                        "value": "Large\""
                     },
                     {
-                        "label": "L 38/40\"",
-                        "value": "L 38/40\""
+                        "label": "X-Large\"",
+                        "value": "X-Large\""
                     },
                     {
-                        "label": "XL 40/42\"",
-                        "value": "XL 40/43\""
+                        "label": "XX-Large\"",
+                        "value": "XX-Large\""
                     }
                 ]
             },

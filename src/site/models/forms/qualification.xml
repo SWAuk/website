@@ -25,6 +25,8 @@
 			format="%d-%m-%Y"
 			default="NOW"
 			label="Expiry date"
+			weeknumbers="false"
+			filltable="false"
 			filter="safehtml"/>
 
 		<field name="file_upload"

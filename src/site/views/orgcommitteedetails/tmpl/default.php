@@ -64,8 +64,9 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 							<a class="btn" href="<?php echo JRoute::_(
 								'index.php?option=com_swa&task=orgcommitteedetails.cancel'); ?>" 
 							   title="<?php echo JText::_('JCANCEL'); ?>">
-							<?php echo JText::_('JCANCEL'); ?></a>
-							</div>
+							<?php echo JText::_('JCANCEL'); ?>
+							</a>
+						</div>
 					</div>
 				</td>
 				<!--Empty td tags to ensure row divider line continues across whole width of table-->

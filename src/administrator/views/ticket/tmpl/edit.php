@@ -36,7 +36,9 @@ JHtml::_('behavior.keepalive');
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('Ticket', true)); ?>
+
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general',
+			JText::_('Ticket', true)); ?>
 
 		<p>If a user does not appear here it may be due to them not being part of a university yet.</p>
 
@@ -64,7 +66,6 @@ JHtml::_('behavior.keepalive');
 				</fieldset>
 			</div>
 		</div>
-		
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
