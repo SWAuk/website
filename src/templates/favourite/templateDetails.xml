@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.0" type="template" client="site" method="upgrade">
+
+<name>Favourite</name>
+<version>4.1</version>
+<creationDate>2012</creationDate>
+<author>FavThemes</author>
+<authorEmail>hello@favthemes.com</authorEmail>
+<authorUrl>https://www.favthemes.com</authorUrl>
+<copyright>Copyright (C) 2012-2017 FavThemes. All rights reserved.</copyright>
+<license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
+<description><![CDATA[
+
+<p style="max-width: 900px; margin-bottom: 21px; text-align: justify;"><strong>Favourite</strong> is a free responsive Joomla! template with 200+ settings for an easy and fast customization, using Bootstrap 3, HTML5, CSS3, Google Fonts and Font Awesome. Design amazing responsive websites with this smart template that adapts and resizes itself to desktop and mobile devices, making your website looking great for everyone!
+
+</br></br>
+
+This free template can be used on unlimited personal or commercial websites, just don't resell it! Once you ordered and downloaded the template from our store, you have free and unlimited access to all future Joomla! versions of the product.</p>
+
+<a href="http://demo.favthemes.com/favourite/" class="btn btn-success" target="_blank">Demo</a>
+
+<a href="http://www.favthemes.com/docs" class="btn btn-info" target="_blank">Documentation</a>
+
+</br></br>
+
+<a href="http://demo.favthemes.com/favourite/" target="_blank">
+  <img class="fav-admin-img" style="padding: 4px; border: 1px solid #DDD; border-radius: 4px;" src="../templates/favourite/template_preview.png" alt="Favourite Responsive Template">
+</a>
+
+</br></br>
+Copyright &#169; 2012-2017 <a href="https://www.favthemes.com" target="_blank" style="font-weight: bold;">FavThemes</a>.
+</br></br>
+
+<link rel="stylesheet" href="../templates/favourite/admin/admin.css" type="text/css" />
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" />
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans" type="text/css" />
+<script src="../templates/favourite/admin/jscolor/jscolor.js" type="text/javascript"></script>
+
+]]></description>
+
+<files>
+	<filename>index.php</filename>
+	<filename>component.php</filename>
+	<filename>offline.php</filename>
+	<filename>error.php</filename>
+	<filename>templateDetails.xml</filename>
+	<filename>template_preview.png</filename>
+	<filename>template_thumbnail.png</filename>
+	<filename>apple-touch-icon.png</filename>
+	<filename>favicon.ico</filename>
+	<folder>bootstrap</folder>
+	<folder>css</folder>
+	<folder>html</folder>
+	<folder>images</folder>
+	<folder>js</folder>
+	<folder>admin</folder>
+	<folder>language</folder>
+</files>
+
+<positions>
+	<position>notice</position>
+	<position>topbar1</position>
+	<position>topbar2</position>
+	<position>topbar3</position>
+	<position>topbar4</position>
+	<position>topbar5</position>
+	<position>topbar6</position>
+	<position>logo</position>
+	<position>nav</position>
+	<position>navmobile</position>
+	<position>slide</position>
+	<position>intro1</position>
+	<position>intro2</position>
+	<position>intro3</position>
+	<position>intro4</position>
+	<position>intro5</position>
+	<position>intro6</position>
+	<position>lead1</position>
+	<position>lead2</position>
+	<position>lead3</position>
+	<position>lead4</position>
+	<position>lead5</position>
+	<position>lead6</position>
+	<position>promo1</position>
+	<position>promo2</position>
+	<position>promo3</position>
+	<position>promo4</position>
+	<position>promo5</position>
+	<position>promo6</position>
+	<position>prime1</position>
+	<position>prime2</position>
+	<position>prime3</position>
+	<position>prime4</position>
+	<position>prime5</position>
+	<position>prime6</position>
+	<position>showcase1</position>
+	<position>showcase2</position>
+	<position>showcase3</position>
+	<position>showcase4</position>
+	<position>showcase5</position>
+	<position>showcase6</position>
+	<position>feature1</position>
+	<position>feature2</position>
+	<position>feature3</position>
+	<position>feature4</position>
+	<position>feature5</position>
+	<position>feature6</position>
+	<position>focus1</position>
+	<position>focus2</position>
+	<position>focus3</position>
+	<position>focus4</position>
+	<position>focus5</position>
+	<position>focus6</position>
+	<position>portfolio1</position>
+	<position>portfolio2</position>
+	<position>portfolio3</position>
+	<position>portfolio4</position>
+	<position>portfolio5</position>
+	<position>portfolio6</position>
+	<position>screen1</position>
+	<position>screen2</position>
+	<position>screen3</position>
+	<position>screen4</position>
+	<position>screen5</position>
+	<position>screen6</position>
+	<position>top1</position>
+	<position>top2</position>
+	<position>top3</position>
+	<position>top4</position>
+	<position>top5</position>
+	<position>top6</position>
+	<position>maintop1</position>
+	<position>maintop2</position>
+	<position>maintop3</position>
+	<position>breadcrumbs</position>
+	<position>sidebar1</position>
+	<position>sidebar2</position>
+	<position>mainbottom1</position>
+	<position>mainbottom2</position>
+	<position>mainbottom3</position>
+	<position>bottom1</position>
+	<position>bottom2</position>
+	<position>bottom3</position>
+	<position>bottom4</position>
+	<position>bottom5</position>
+	<position>bottom6</position>
+	<position>note1</position>
+	<position>note2</position>
+	<position>note3</position>
+	<position>note4</position>
+	<position>note5</position>
+	<position>note6</position>
+	<position>base1</position>
+	<position>base2</position>
+	<position>base3</position>
+	<position>base4</position>
+	<position>base5</position>
+	<position>base6</position>
+	<position>block1</position>
+	<position>block2</position>
+	<position>block3</position>
+	<position>block4</position>
+	<position>block5</position>
+	<position>block6</position>
+	<position>user1</position>
+	<position>user2</position>
+	<position>user3</position>
+	<position>user4</position>
+	<position>user5</position>
+	<position>user6</position>
+	<position>map</position>
+	<position>footer1</position>
+	<position>footer2</position>
+	<position>footer3</position>
+	<position>footer4</position>
+	<position>footer5</position>
+	<position>footer6</position>
+	<position>copyright1</position>
+	<position>copyright2</position>
+	<position>debug</position>
+</positions>
+
+<languages folder="language">
+		<language tag="en-GB">en-GB/en-GB.tpl_favourite.ini</language>
+</languages>
+
+<config>
+	<fields name="params">
+
+		<fieldset name="settings" description="" label="TPL_FAV_PARAMS_SETTINGS">
+
+	    <field type="note" label="TPL_FAV_PARAMS_COLOR_STYLES" class="favtitle first" />
+
+				<field name="template_styles" type="list" default="style1"
+					label="TPL_FAV_PARAMS_STYLES_LABEL"
+					description="TPL_FAV_PARAMS_STYLES_DESC"
+					>
+					<option value="style1">TPL_FAV_PARAMS_STYLES_STYLE1</option>
+					<option value="style2">TPL_FAV_PARAMS_STYLES_STYLE2</option>
+					<option value="style3">TPL_FAV_PARAMS_STYLES_STYLE3</option>
+					<option value="style4">TPL_FAV_PARAMS_STYLES_STYLE4</option>
+					<option value="style5">TPL_FAV_PARAMS_STYLES_STYLE5</option>
+					<option value="style6">TPL_FAV_PARAMS_STYLES_STYLE6</option>
+					<option value="style7">TPL_FAV_PARAMS_STYLES_STYLE7</option>
+					<option value="style8">TPL_FAV_PARAMS_STYLES_STYLE8</option>
+					<option value="style9">TPL_FAV_PARAMS_STYLES_STYLE9</option>
+					<option value="style10">TPL_FAV_PARAMS_STYLES_STYLE10</option>
+				</field>
+
+				<field name="custom_style" class="color {required:false}" type="text" default="" label="TPL_FAV_CUSTOM_STYLE_LABEL" description="TPL_FAV_CUSTOM_STYLE_DESC"></field>
+
+	    <field type="note" label="TPL_FAV_PARAMS_WIDTH" class="favtitle" />
+
+				<field name="max_width" type="text" default="" label="TPL_FAV_MAX_WIDTH_LABEL" description="TPL_FAV_MAX_WIDTH_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_COPYRIGHT_INFO" class="favtitle" />
+
+				<field name="show_copyright" type="radio" default="1" class="btn-group" label="TPL_FAV_SHOW_COPYRIGHT_LABEL" description="TPL_FAV_SHOW_COPYRIGHT_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="copyright_text" type="text" default="FavThemes" rows="1" cols="40"
+					label="TPL_FAV_COPYRIGHT_TEXT_LABEL"
+					description="TPL_FAV_COPYRIGHT_TEXT_DESC">
+				</field>
+
+				<field name="copyright_text_link" type="text" default="www.favthemes.com" rows="1" cols="40"
+					label="TPL_FAV_COPYRIGHT_TEXT_LINK_LABEL"
+					description="TPL_FAV_COPYRIGHT_TEXT_LINK_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_MAIN_NAV" class="favtitle" />
+
+				<field name="nav_link_padding" class="" type="text" default="" label="TPL_FAV_NAV_LINK_PADDING_FONT_LABEL" description="TPL_FAV_NAV_LINK_PADDING_FONT_DESC" />
+
+				<field name="nav_font_size" class="" type="text" default="" label="TPL_FAV_NAV_FONT_SIZE_FONT_LABEL" description="TPL_FAV_NAV_FONT_SIZE_FONT_DESC" />
+
+				<field name="nav_text_transform" type="list" default="uppercase" label="TPL_FAV_NAV_TEXT_TRANSFORM_LABEL" description="TPL_FAV_NAV_TEXT_TRANSFORM_DESC">
+					<option value="uppercase">UPPERCASE</option>
+					<option value="none">Normal</option>
+					<option value="lowercase">lowercase</option>
+				</field>
+
+				<field type="note" label="TPL_FAV_PARAMS_NAV_ICON" class="favsubtitle" />
+
+				<field name="nav_icons_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NAV_ICONS_COLOR_LABEL" description="TPL_FAV_NAV_ICONS_COLOR_DESC"></field>
+
+				<field name="nav_icons_font_size" class="" type="text" default="" label="TPL_FAV_NAV_ICONS_FONT_SIZE_FONT_LABEL" description="TPL_FAV_NAV_ICONS_FONT_SIZE_FONT_DESC" />
+
+				<field type="note" label="TPL_FAV_PARAMS_NAV_GOOGLE_FONT" class="favsubtitle" />
+
+				<field name="nav_google_font" class="" type="text" default="Lato" label="TPL_FAV_NAV_GOOGLE_FONT_LABEL" description="TPL_FAV_NAV_GOOGLE_FONT_DESC" />
+
+				<field name="nav_google_font_weight" type="list" default="700" class="btn-group" label="TPL_FAV_NAV_GOOGLE_FONT_WEIGTH_LABEL" description="TPL_FAV_NAV_GOOGLE_FONT_WEIGTH_DESC">
+						<option value="300">Light</option>
+						<option value="400">Regular</option>
+						<option value="500">Medium</option>
+						<option value="600">Semibold</option>
+						<option value="700">Bold</option>
+				</field>
+
+				<field name="nav_google_font_style" type="radio" default="normal" class="btn-group" label="TPL_FAV_NAV_GOOGLE_FONT_STYLE_LABEL" description="TPL_FAV_NAV_GOOGLE_FONT_STYLE_DESC">
+					<option value="normal">normal</option>
+					<option value="italic">italic</option>
+				</field>
+
+      <field type="note" label="TPL_FAV_PARAMS_TITLES" class="favtitle" />
+
+				<field name="titles_font_size" type="text" size="10" default="" label="TPL_FAV_TITLES_FONT_SIZE_LABEL" description="TPL_FAV_TITLES_FONT_SIZE_DESC"></field>
+
+				<field name="titles_line_height" type="text" size="10" default="" label="TPL_FAV_TITLES_LINE_HEIGHT_LABEL" description="TPL_FAV_TITLES_LINE_HEIGHT_DESC"></field>
+
+				<field name="titles_text_align" type="radio" default="left" class="btn-group" label="TPL_FAV_TITLES_TEXT_ALIGN_LABEL" description="TPL_FAV_TITLES_TEXT_ALIGN_DESC">
+					<option value="left">left</option>
+					<option value="center">center</option>
+					<option value="right">right</option>
+				</field>
+
+				<field name="titles_text_transform" type="list" default="uppercase" label="TPL_FAV_TITLES_TEXT_TRANSFORM_LABEL" description="TPL_FAV_TITLES_TEXT_TRANSFORM_DESC">
+					<option value="none">Normal</option>
+					<option value="uppercase">UPPERCASE</option>
+					<option value="lowercase">lowercase</option>
+				</field>
+
+				<field type="note" label="TPL_FAV_PARAMS_MODULE_TITLE_ICON" class="favsubtitle" />
+
+	      <field name="module_title_icon_font_size" type="text" size="10" default="" label="TPL_FAV_MODULE_TITLE_ICON_FONT_SIZE_LABEL" description="TPL_FAV_MODULE_TITLE_ICON_FONT_SIZE_DESC"></field>
+
+	      <field name="module_title_icon_padding" type="text" size="10" default="" label="TPL_FAV_MODULE_TITLE_ICON_PADDING_LABEL" description="TPL_FAV_MODULE_TITLE_ICON_PADDING_DESC"></field>
+
+	      <field name="module_title_icon_border_radius" type="text" size="10" default="" label="TPL_FAV_MODULE_TITLE_ICON_BORDER_RADIUS_LABEL" description="TPL_FAV_MODULE_TITLE_ICON_BORDER_RADIUS_DESC"></field>
+
+	      <field type="note" label="TPL_FAV_PARAMS_TITLES_GOOGLE_FONT" class="favsubtitle" />
+
+	    	<field name="titles_google_font" class="" type="text" default="Lato" label="TPL_FAV_TITLES_GOOGLE_FONT_LABEL" description="TPL_FAV_TITLES_GOOGLE_FONT_DESC" />
+
+				<field name="titles_google_font_weight" type="list" default="700" label="TPL_FAV_TITLES_GOOGLE_FONT_WEIGTH_LABEL" description="TPL_FAV_TITLES_GOOGLE_FONT_WEIGTH_DESC">
+						<option value="300">Light</option>
+						<option value="400">Regular</option>
+						<option value="500">Medium</option>
+						<option value="600">Semibold</option>
+						<option value="700">Bold</option>
+				</field>
+
+				<field name="titles_google_font_style" type="radio" default="normal" class="btn-group" label="TPL_FAV_TITLES_GOOGLE_FONT_STYLE_LABEL" description="TPL_FAV_TITLES_GOOGLE_FONT_STYLE_DESC">
+					<option value="normal">normal</option>
+					<option value="italic">italic</option>
+				</field>
+
+			<field type="note" label="TPL_FAV_PARAMS_ERROR_PAGE" class="favtitle" />
+
+				<field name="error_page_article_id" class="" type="text" default="3" label="TPL_FAV_ERROR_PAGE_ARTICLE_DESC_ID_LABEL" description="TPL_FAV_ERROR_PAGE_ARTICLE_DESC_ID_DESC" />
+
+	    <field type="note" label="TPL_FAV_PARAMS_OFFLINE_PAGE" class="favtitle" />
+
+	    	<field name="offline_page_style" type="radio" default="offline-light" class="btn-group" label="TPL_FAV_OFFLINE_PAGE_STYLE_LABEL" description="TPL_FAV_OFFLINE_PAGE_STYLE_DESC">
+					<option value="offline-light">light</option>
+					<option value="offline-dark">dark</option>
+				</field>
+
+				<field name="offline_page_bg_image" type="media" label="TPL_FAV_OFFLINE_PAGE_BG_IMAGE_LABEL" description="TPL_FAV_OFFLINE_PAGE_BG_IMAGE_DESC" />
+
+				<field name="offline_page_bg_image_style" type="radio" default="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;" class="btn-group" label="TPL_FAV_OFFLINE_PAGE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_OFFLINE_PAGE_BG_IMAGE_STYLE_DESC">
+
+					<option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+
+				</field>
+
+			<field type="note" label="TPL_FAV_PARAMS_BACKTOP" class="favtitle" />
+
+				<field name="show_back_to_top" type="radio" default="1" class="btn-group" label="TPL_FAV_BACKTOTOP_LABEL" description="TPL_FAV_BACKTOTOP_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+        <field name="back_to_top_style_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BACKTOTOP_STYLE_COLOR_LABEL" description="TPL_FAV_BACKTOTOP_STYLE_COLOR_DESC"></field>
+
+        <field name="back_to_top_text" type="text" default="Back to Top" rows="1" cols="40"
+					label="TPL_FAV_BACKTOTOP_TEXT_LABEL"
+					description="TPL_FAV_BACKTOTOP_TEXT_DESC">
+				</field>
+
+		</fieldset>
+
+		<fieldset name="layout" description="" label="TPL_FAV_PARAMS_LAYOUT">
+
+			<field type="note" label="TPL_FAV_PARAMS_BODY" class="favtitle first" />
+
+				<field name="body_bg_image" type="media" label="TPL_FAV_BODY_BG_IMAGE_LABEL" description="TPL_FAV_BODY_BG_IMAGE_DESC" />
+
+				<field name="body_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_BODY_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_BODY_BG_IMAGE_STYLE_DESC">
+					<option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+				</field>
+
+				<field name="body_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_BODY_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_BODY_BG_IMAGE_OVERLAY_DESC">
+					<option value="fav-overlay">Yes</option>
+					<option value="fav-transparent">No</option>
+				</field>
+
+				<field name="body_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BODY_BG_COLOR_LABEL" description="TPL_FAV_BODY_BG_COLOR_DESC"></field>
+
+				<field name="body_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BODY_COLOR_LABEL" description="TPL_FAV_BODY_COLOR_DESC"></field>
+
+				<field name="body_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BODY_TITLE_COLOR_LABEL" description="TPL_FAV_BODY_TITLE_COLOR_DESC"></field>
+
+				<field name="body_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BODY_LINK_COLOR_LABEL" description="TPL_FAV_BODY_LINK_COLOR_DESC"></field>
+
+				<field name="body_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BODY_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_BODY_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_NOTICE" class="favtitle" />
+
+				<field name="notice_bg_style" type="list" default="fav-module-block-color" class="btn-group" label="TPL_FAV_NOTICE_BG_STYLE_LABEL" description="TPL_FAV_NOTICE_BG_STYLE_DESC">
+					<option value="fav-module-block-color">Color</option>
+					<option value="fav-module-block-dark">Dark</option>
+	    		<option value="fav-module-block-light">Light</option>
+	      </field>
+
+	      <field name="notice_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTICE_BG_COLOR_LABEL" description="TPL_FAV_NOTICE_BG_COLOR_DESC"></field>
+
+	      <field name="notice_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTICE_COLOR_LABEL" description="TPL_FAV_NOTICE_COLOR_DESC"></field>
+
+	      <field name="notice_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTICE_TITLE_COLOR_LABEL" description="TPL_FAV_NOTICE_TITLE_COLOR_DESC"></field>
+
+	      <field name="notice_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTICE_LINK_COLOR_LABEL" description="TPL_FAV_NOTICE_LINK_COLOR_DESC"></field>
+
+	      <field name="notice_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTICE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_NOTICE_LINK_HOVER_COLOR_DESC"></field>
+
+	    <field type="note" label="TPL_FAV_PARAMS_TOPBAR" class="favtitle" />
+
+	    	<field name="topbar_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_TOPBAR_BG_STYLE_LABEL" description="TPL_FAV_TOPBAR_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="topbar_bg_image" type="media" label="TPL_FAV_TOPBAR_BG_IMAGE_LABEL" description="TPL_FAV_TOPBAR_BG_IMAGE_DESC" />
+
+	      <field name="topbar_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_TOPBAR_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_TOPBAR_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="topbar_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_TOPBAR_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_TOPBAR_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="topbar_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOPBAR_BG_COLOR_LABEL" description="TPL_FAV_TOPBAR_BG_COLOR_DESC"></field>
+
+	      <field name="topbar_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOPBAR_COLOR_LABEL" description="TPL_FAV_TOPBAR_COLOR_DESC"></field>
+
+	      <field name="topbar_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOPBAR_TITLE_COLOR_LABEL" description="TPL_FAV_TOPBAR_TITLE_COLOR_DESC"></field>
+
+	      <field name="topbar_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOPBAR_LINK_COLOR_LABEL" description="TPL_FAV_TOPBAR_LINK_COLOR_DESC"></field>
+
+	      <field name="topbar_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOPBAR_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_TOPBAR_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_SLIDE" class="favtitle" />
+
+				<field name="slide_width" type="text" default="" label="TPL_FAV_SLIDE_WIDTH_LABEL" description="TPL_FAV_SLIDE_WIDTH_DESC"></field>
+
+				<field name="slide_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_SLIDE_BG_STYLE_LABEL" description="TPL_FAV_SLIDE_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="slide_bg_image" type="media" label="TPL_FAV_SLIDE_BG_IMAGE_LABEL" description="TPL_FAV_SLIDE_BG_IMAGE_DESC" />
+
+	      <field name="slide_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_SLIDE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_SLIDE_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="slide_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_SLIDE_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_SLIDE_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="slide_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SLIDE_BG_COLOR_LABEL" description="TPL_FAV_SLIDE_BG_COLOR_DESC"></field>
+
+	      <field name="slide_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SLIDE_COLOR_LABEL" description="TPL_FAV_SLIDE_COLOR_DESC"></field>
+
+	      <field name="slide_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SLIDE_TITLE_COLOR_LABEL" description="TPL_FAV_SLIDE_TITLE_COLOR_DESC"></field>
+
+	      <field name="slide_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SLIDE_LINK_COLOR_LABEL" description="TPL_FAV_SLIDE_LINK_COLOR_DESC"></field>
+
+	      <field name="slide_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SLIDE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_SLIDE_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_INTRO" class="favtitle" />
+
+				<field name="intro_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_INTRO_BG_STYLE_LABEL" description="TPL_FAV_INTRO_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="intro_bg_image" type="media" label="TPL_FAV_INTRO_BG_IMAGE_LABEL" description="TPL_FAV_INTRO_BG_IMAGE_DESC" />
+
+	      <field name="intro_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_INTRO_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_INTRO_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="intro_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_INTRO_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_INTRO_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="intro_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_INTRO_BG_COLOR_LABEL" description="TPL_FAV_INTRO_BG_COLOR_DESC"></field>
+
+	      <field name="intro_color" class="color {required:false}" type="text" default="" label="TPL_FAV_INTRO_COLOR_LABEL" description="TPL_FAV_INTRO_COLOR_DESC"></field>
+
+	      <field name="intro_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_INTRO_TITLE_COLOR_LABEL" description="TPL_FAV_INTRO_TITLE_COLOR_DESC"></field>
+
+	      <field name="intro_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_INTRO_LINK_COLOR_LABEL" description="TPL_FAV_INTRO_LINK_COLOR_DESC"></field>
+
+	      <field name="intro_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_INTRO_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_INTRO_LINK_HOVER_COLOR_DESC"></field>
+
+	    <field type="note" label="TPL_FAV_PARAMS_BREADCRUMBS" class="favtitle" />
+
+        <field name="breadcrumbs_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_BREADCRUMBS_BG_STYLE_LABEL" description="TPL_FAV_BREADCRUMBS_BG_STYLE_DESC">
+          <option value="fav-module-block-light">Light</option>
+          <option value="fav-module-block-clear">Image</option>
+          <option value="fav-module-block-dark">Dark</option>
+          <option value="fav-module-block-color">Color</option>
+        </field>
+
+        <field name="breadcrumbs_bg_image" type="media" label="TPL_FAV_BREADCRUMBS_BG_IMAGE_LABEL" description="TPL_FAV_BREADCRUMBS_BG_IMAGE_DESC" />
+
+        <field name="breadcrumbs_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_BREADCRUMBS_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_BREADCRUMBS_BG_IMAGE_STYLE_DESC">
+          <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+          <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+          <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+        </field>
+
+        <field name="breadcrumbs_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_BREADCRUMBS_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_BREADCRUMBS_BG_IMAGE_OVERLAY_DESC">
+          <option value="fav-overlay">Yes</option>
+          <option value="fav-transparent">No</option>
+        </field>
+
+        <field name="breadcrumbs_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BREADCRUMBS_BG_COLOR_LABEL" description="TPL_FAV_BREADCRUMBS_BG_COLOR_DESC"></field>
+
+        <field name="breadcrumbs_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BREADCRUMBS_COLOR_LABEL" description="TPL_FAV_BREADCRUMBS_COLOR_DESC"></field>
+
+        <field name="breadcrumbs_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BREADCRUMBS_TITLE_COLOR_LABEL" description="TPL_FAV_BREADCRUMBS_TITLE_COLOR_DESC"></field>
+
+        <field name="breadcrumbs_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BREADCRUMBS_LINK_COLOR_LABEL" description="TPL_FAV_BREADCRUMBS_LINK_COLOR_DESC"></field>
+
+        <field name="breadcrumbs_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BREADCRUMBS_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_BREADCRUMBS_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_LEAD" class="favtitle" />
+
+				<field name="lead_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_LEAD_BG_STYLE_LABEL" description="TPL_FAV_LEAD_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="lead_bg_image" type="media" label="TPL_FAV_LEAD_BG_IMAGE_LABEL" description="TPL_FAV_LEAD_BG_IMAGE_DESC" />
+
+	      <field name="lead_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_LEAD_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_LEAD_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="lead_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_LEAD_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_LEAD_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="lead_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LEAD_BG_COLOR_LABEL" description="TPL_FAV_LEAD_BG_COLOR_DESC"></field>
+
+	      <field name="lead_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LEAD_COLOR_LABEL" description="TPL_FAV_LEAD_COLOR_DESC"></field>
+
+	      <field name="lead_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LEAD_TITLE_COLOR_LABEL" description="TPL_FAV_LEAD_TITLE_COLOR_DESC"></field>
+
+	      <field name="lead_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LEAD_LINK_COLOR_LABEL" description="TPL_FAV_LEAD_LINK_COLOR_DESC"></field>
+
+	      <field name="lead_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LEAD_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_LEAD_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_PROMO" class="favtitle" />
+
+				<field name="promo_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_PROMO_BG_STYLE_LABEL" description="TPL_FAV_PROMO_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="promo_bg_image" type="media" label="TPL_FAV_PROMO_BG_IMAGE_LABEL" description="TPL_FAV_PROMO_BG_IMAGE_DESC" />
+
+	      <field name="promo_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_PROMO_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_PROMO_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="promo_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_PROMO_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_PROMO_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="promo_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PROMO_BG_COLOR_LABEL" description="TPL_FAV_PROMO_BG_COLOR_DESC"></field>
+
+	      <field name="promo_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PROMO_COLOR_LABEL" description="TPL_FAV_PROMO_COLOR_DESC"></field>
+
+	      <field name="promo_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PROMO_TITLE_COLOR_LABEL" description="TPL_FAV_PROMO_TITLE_COLOR_DESC"></field>
+
+	      <field name="promo_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PROMO_LINK_COLOR_LABEL" description="TPL_FAV_PROMO_LINK_COLOR_DESC"></field>
+
+	      <field name="promo_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PROMO_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_PROMO_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_PRIME" class="favtitle" />
+
+				<field name="prime_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_PRIME_BG_STYLE_LABEL" description="TPL_FAV_PRIME_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="prime_bg_image" type="media" label="TPL_FAV_PRIME_BG_IMAGE_LABEL" description="TPL_FAV_PRIME_BG_IMAGE_DESC" />
+
+	      <field name="prime_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_PRIME_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_PRIME_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="prime_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_PRIME_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_PRIME_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="prime_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PRIME_BG_COLOR_LABEL" description="TPL_FAV_PRIME_BG_COLOR_DESC"></field>
+
+	      <field name="prime_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PRIME_COLOR_LABEL" description="TPL_FAV_PRIME_COLOR_DESC"></field>
+
+	      <field name="prime_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PRIME_TITLE_COLOR_LABEL" description="TPL_FAV_PRIME_TITLE_COLOR_DESC"></field>
+
+	      <field name="prime_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PRIME_LINK_COLOR_LABEL" description="TPL_FAV_PRIME_LINK_COLOR_DESC"></field>
+
+	      <field name="prime_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PRIME_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_PRIME_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_SHOWCASE" class="favtitle" />
+
+				<field name="showcase_bg_style" type="list" default="fav-module-block-dark" class="btn-group" label="TPL_FAV_SHOWCASE_BG_STYLE_LABEL" description="TPL_FAV_SHOWCASE_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="showcase_bg_image" type="media" label="TPL_FAV_SHOWCASE_BG_IMAGE_LABEL" description="TPL_FAV_SHOWCASE_BG_IMAGE_DESC" />
+
+	      <field name="showcase_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_SHOWCASE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_SHOWCASE_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="showcase_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_SHOWCASE_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_SHOWCASE_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="showcase_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SHOWCASE_BG_COLOR_LABEL" description="TPL_FAV_SHOWCASE_BG_COLOR_DESC"></field>
+
+	      <field name="showcase_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SHOWCASE_COLOR_LABEL" description="TPL_FAV_SHOWCASE_COLOR_DESC"></field>
+
+	      <field name="showcase_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SHOWCASE_TITLE_COLOR_LABEL" description="TPL_FAV_SHOWCASE_TITLE_COLOR_DESC"></field>
+
+	      <field name="showcase_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SHOWCASE_LINK_COLOR_LABEL" description="TPL_FAV_SHOWCASE_LINK_COLOR_DESC"></field>
+
+	      <field name="showcase_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SHOWCASE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_SHOWCASE_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_FEATURE" class="favtitle" />
+
+				<field name="feature_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_FEATURE_BG_STYLE_LABEL" description="TPL_FAV_FEATURE_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="feature_bg_image" type="media" label="TPL_FAV_FEATURE_BG_IMAGE_LABEL" description="TPL_FAV_FEATURE_BG_IMAGE_DESC" />
+
+	      <field name="feature_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_FEATURE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_FEATURE_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="feature_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_FEATURE_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_FEATURE_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="feature_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FEATURE_BG_COLOR_LABEL" description="TPL_FAV_FEATURE_BG_COLOR_DESC"></field>
+
+	      <field name="feature_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FEATURE_COLOR_LABEL" description="TPL_FAV_FEATURE_COLOR_DESC"></field>
+
+	      <field name="feature_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FEATURE_TITLE_COLOR_LABEL" description="TPL_FAV_FEATURE_TITLE_COLOR_DESC"></field>
+
+	      <field name="feature_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FEATURE_LINK_COLOR_LABEL" description="TPL_FAV_FEATURE_LINK_COLOR_DESC"></field>
+
+	      <field name="feature_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FEATURE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_FEATURE_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_FOCUS" class="favtitle" />
+
+				<field name="focus_bg_style" type="list" default="fav-module-block-color" class="btn-group" label="TPL_FAV_FOCUS_BG_STYLE_LABEL" description="TPL_FAV_FOCUS_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="focus_bg_image" type="media" label="TPL_FAV_FOCUS_BG_IMAGE_LABEL" description="TPL_FAV_FOCUS_BG_IMAGE_DESC" />
+
+	      <field name="focus_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_FOCUS_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_FOCUS_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="focus_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_FOCUS_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_FOCUS_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="focus_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOCUS_BG_COLOR_LABEL" description="TPL_FAV_FOCUS_BG_COLOR_DESC"></field>
+
+	      <field name="focus_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOCUS_COLOR_LABEL" description="TPL_FAV_FOCUS_COLOR_DESC"></field>
+
+	      <field name="focus_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOCUS_TITLE_COLOR_LABEL" description="TPL_FAV_FOCUS_TITLE_COLOR_DESC"></field>
+
+	      <field name="focus_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOCUS_LINK_COLOR_LABEL" description="TPL_FAV_FOCUS_LINK_COLOR_DESC"></field>
+
+	      <field name="focus_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOCUS_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_FOCUS_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_PORTFOLIO" class="favtitle" />
+
+				<field name="portfolio_bg_style" type="list" default="fav-module-block-dark" class="btn-group" label="TPL_FAV_PORTFOLIO_BG_STYLE_LABEL" description="TPL_FAV_PORTFOLIO_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="portfolio_bg_image" type="media" label="TPL_FAV_PORTFOLIO_BG_IMAGE_LABEL" description="TPL_FAV_PORTFOLIO_BG_IMAGE_DESC" />
+
+	      <field name="portfolio_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_PORTFOLIO_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_PORTFOLIO_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="portfolio_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_PORTFOLIO_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_PORTFOLIO_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="portfolio_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PORTFOLIO_BG_COLOR_LABEL" description="TPL_FAV_PORTFOLIO_BG_COLOR_DESC"></field>
+
+	      <field name="portfolio_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PORTFOLIO_COLOR_LABEL" description="TPL_FAV_PORTFOLIO_COLOR_DESC"></field>
+
+	      <field name="portfolio_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PORTFOLIO_TITLE_COLOR_LABEL" description="TPL_FAV_PORTFOLIO_TITLE_COLOR_DESC"></field>
+
+	      <field name="portfolio_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PORTFOLIO_LINK_COLOR_LABEL" description="TPL_FAV_PORTFOLIO_LINK_COLOR_DESC"></field>
+
+	      <field name="portfolio_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_PORTFOLIO_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_PORTFOLIO_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_SCREEN" class="favtitle" />
+
+				<field name="screen_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_SCREEN_BG_STYLE_LABEL" description="TPL_FAV_SCREEN_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="screen_bg_image" type="media" label="TPL_FAV_SCREEN_BG_IMAGE_LABEL" description="TPL_FAV_SCREEN_BG_IMAGE_DESC" />
+
+	      <field name="screen_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_SCREEN_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_SCREEN_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="screen_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_SCREEN_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_SCREEN_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="screen_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SCREEN_BG_COLOR_LABEL" description="TPL_FAV_SCREEN_BG_COLOR_DESC"></field>
+
+	      <field name="screen_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SCREEN_COLOR_LABEL" description="TPL_FAV_SCREEN_COLOR_DESC"></field>
+
+	      <field name="screen_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SCREEN_TITLE_COLOR_LABEL" description="TPL_FAV_SCREEN_TITLE_COLOR_DESC"></field>
+
+	      <field name="screen_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SCREEN_LINK_COLOR_LABEL" description="TPL_FAV_SCREEN_LINK_COLOR_DESC"></field>
+
+	      <field name="screen_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_SCREEN_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_SCREEN_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_TOP" class="favtitle" />
+
+				<field name="top_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_TOP_BG_STYLE_LABEL" description="TPL_FAV_TOP_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="top_bg_image" type="media" label="TPL_FAV_TOP_BG_IMAGE_LABEL" description="TPL_FAV_TOP_BG_IMAGE_DESC" />
+
+	      <field name="top_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_TOP_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_TOP_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="top_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_TOP_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_TOP_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="top_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOP_BG_COLOR_LABEL" description="TPL_FAV_TOP_BG_COLOR_DESC"></field>
+
+	      <field name="top_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOP_COLOR_LABEL" description="TPL_FAV_TOP_COLOR_DESC"></field>
+
+	      <field name="top_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOP_TITLE_COLOR_LABEL" description="TPL_FAV_TOP_TITLE_COLOR_DESC"></field>
+
+	      <field name="top_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOP_LINK_COLOR_LABEL" description="TPL_FAV_TOP_LINK_COLOR_DESC"></field>
+
+	      <field name="top_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TOP_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_TOP_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_MAINTOP" class="favtitle" />
+
+				<field name="maintop_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_MAINTOP_BG_STYLE_LABEL" description="TPL_FAV_MAINTOP_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="maintop_bg_image" type="media" label="TPL_FAV_MAINTOP_BG_IMAGE_LABEL" description="TPL_FAV_MAINTOP_BG_IMAGE_DESC" />
+
+	      <field name="maintop_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_MAINTOP_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_MAINTOP_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="maintop_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_MAINTOP_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_MAINTOP_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="maintop_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINTOP_BG_COLOR_LABEL" description="TPL_FAV_MAINTOP_BG_COLOR_DESC"></field>
+
+	      <field name="maintop_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINTOP_COLOR_LABEL" description="TPL_FAV_MAINTOP_COLOR_DESC"></field>
+
+	      <field name="maintop_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINTOP_TITLE_COLOR_LABEL" description="TPL_FAV_MAINTOP_TITLE_COLOR_DESC"></field>
+
+	      <field name="maintop_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINTOP_LINK_COLOR_LABEL" description="TPL_FAV_MAINTOP_LINK_COLOR_DESC"></field>
+
+	      <field name="maintop_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINTOP_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_MAINTOP_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_MAINBOTTOM" class="favtitle" />
+
+				<field name="mainbottom_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_MAINBOTTOM_BG_STYLE_LABEL" description="TPL_FAV_MAINBOTTOM_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="mainbottom_bg_image" type="media" label="TPL_FAV_MAINBOTTOM_BG_IMAGE_LABEL" description="TPL_FAV_MAINBOTTOM_BG_IMAGE_DESC" />
+
+	      <field name="mainbottom_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_MAINBOTTOM_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_MAINBOTTOM_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="mainbottom_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_MAINBOTTOM_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_MAINBOTTOM_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="mainbottom_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINBOTTOM_BG_COLOR_LABEL" description="TPL_FAV_MAINBOTTOM_BG_COLOR_DESC"></field>
+
+	      <field name="mainbottom_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINBOTTOM_COLOR_LABEL" description="TPL_FAV_MAINBOTTOM_COLOR_DESC"></field>
+
+	      <field name="mainbottom_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINBOTTOM_TITLE_COLOR_LABEL" description="TPL_FAV_MAINBOTTOM_TITLE_COLOR_DESC"></field>
+
+	      <field name="mainbottom_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINBOTTOM_LINK_COLOR_LABEL" description="TPL_FAV_MAINBOTTOM_LINK_COLOR_DESC"></field>
+
+	      <field name="mainbottom_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_MAINBOTTOM_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_MAINBOTTOM_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_BOTTOM" class="favtitle" />
+
+				<field name="bottom_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_BOTTOM_BG_STYLE_LABEL" description="TPL_FAV_BOTTOM_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="bottom_bg_image" type="media" label="TPL_FAV_BOTTOM_BG_IMAGE_LABEL" description="TPL_FAV_BOTTOM_BG_IMAGE_DESC" />
+
+	      <field name="bottom_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_BOTTOM_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_BOTTOM_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="bottom_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_BOTTOM_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_BOTTOM_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="bottom_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BOTTOM_BG_COLOR_LABEL" description="TPL_FAV_BOTTOM_BG_COLOR_DESC"></field>
+
+	      <field name="bottom_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BOTTOM_COLOR_LABEL" description="TPL_FAV_BOTTOM_COLOR_DESC"></field>
+
+	      <field name="bottom_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BOTTOM_TITLE_COLOR_LABEL" description="TPL_FAV_BOTTOM_TITLE_COLOR_DESC"></field>
+
+	      <field name="bottom_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BOTTOM_LINK_COLOR_LABEL" description="TPL_FAV_BOTTOM_LINK_COLOR_DESC"></field>
+
+	      <field name="bottom_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BOTTOM_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_BOTTOM_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_NOTE" class="favtitle" />
+
+				<field name="note_bg_style" type="list" default="fav-module-block-dark" class="btn-group" label="TPL_FAV_NOTE_BG_STYLE_LABEL" description="TPL_FAV_NOTE_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="note_bg_image" type="media" label="TPL_FAV_NOTE_BG_IMAGE_LABEL" description="TPL_FAV_NOTE_BG_IMAGE_DESC" />
+
+	      <field name="note_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_NOTE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_NOTE_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="note_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_NOTE_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_NOTE_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="note_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTE_BG_COLOR_LABEL" description="TPL_FAV_NOTE_BG_COLOR_DESC"></field>
+
+	      <field name="note_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTE_COLOR_LABEL" description="TPL_FAV_NOTE_COLOR_DESC"></field>
+
+	      <field name="note_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTE_TITLE_COLOR_LABEL" description="TPL_FAV_NOTE_TITLE_COLOR_DESC"></field>
+
+	      <field name="note_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTE_LINK_COLOR_LABEL" description="TPL_FAV_NOTE_LINK_COLOR_DESC"></field>
+
+	      <field name="note_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_NOTE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_NOTE_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_BASE" class="favtitle" />
+
+				<field name="base_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_BASE_BG_STYLE_LABEL" description="TPL_FAV_BASE_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="base_bg_image" type="media" label="TPL_FAV_BASE_BG_IMAGE_LABEL" description="TPL_FAV_BASE_BG_IMAGE_DESC" />
+
+	      <field name="base_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_BASE_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_BASE_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="base_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_BASE_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_BASE_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="base_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BASE_BG_COLOR_LABEL" description="TPL_FAV_BASE_BG_COLOR_DESC"></field>
+
+	      <field name="base_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BASE_COLOR_LABEL" description="TPL_FAV_BASE_COLOR_DESC"></field>
+
+	      <field name="base_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BASE_TITLE_COLOR_LABEL" description="TPL_FAV_BASE_TITLE_COLOR_DESC"></field>
+
+	      <field name="base_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BASE_LINK_COLOR_LABEL" description="TPL_FAV_BASE_LINK_COLOR_DESC"></field>
+
+	      <field name="base_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BASE_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_BASE_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_BLOCK" class="favtitle" />
+
+				<field name="block_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_BLOCK_BG_STYLE_LABEL" description="TPL_FAV_BLOCK_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	      <field name="block_bg_image" type="media" label="TPL_FAV_BLOCK_BG_IMAGE_LABEL" description="TPL_FAV_BLOCK_BG_IMAGE_DESC" />
+
+	      <field name="block_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_BLOCK_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_BLOCK_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="block_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_BLOCK_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_BLOCK_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="block_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BLOCK_BG_COLOR_LABEL" description="TPL_FAV_BLOCK_BG_COLOR_DESC"></field>
+
+	      <field name="block_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BLOCK_COLOR_LABEL" description="TPL_FAV_BLOCK_COLOR_DESC"></field>
+
+	      <field name="block_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BLOCK_TITLE_COLOR_LABEL" description="TPL_FAV_BLOCK_TITLE_COLOR_DESC"></field>
+
+	      <field name="block_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BLOCK_LINK_COLOR_LABEL" description="TPL_FAV_BLOCK_LINK_COLOR_DESC"></field>
+
+	      <field name="block_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_BLOCK_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_BLOCK_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_USER" class="favtitle" />
+
+				<field name="user_bg_style" type="list" default="fav-module-block-light" class="btn-group" label="TPL_FAV_USER_BG_STYLE_LABEL" description="TPL_FAV_USER_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	      <field name="user_bg_image" type="media" label="TPL_FAV_USER_BG_IMAGE_LABEL" description="TPL_FAV_USER_BG_IMAGE_DESC" />
+
+	      <field name="user_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_USER_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_USER_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="user_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_USER_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_USER_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="user_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_USER_BG_COLOR_LABEL" description="TPL_FAV_USER_BG_COLOR_DESC"></field>
+
+	      <field name="user_color" class="color {required:false}" type="text" default="" label="TPL_FAV_USER_COLOR_LABEL" description="TPL_FAV_USER_COLOR_DESC"></field>
+
+	      <field name="user_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_USER_TITLE_COLOR_LABEL" description="TPL_FAV_USER_TITLE_COLOR_DESC"></field>
+
+	      <field name="user_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_USER_LINK_COLOR_LABEL" description="TPL_FAV_USER_LINK_COLOR_DESC"></field>
+
+	      <field name="user_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_USER_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_USER_LINK_HOVER_COLOR_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_FOOTER" class="favtitle" />
+
+				<field name="footer_bg_style" type="list" default="fav-module-block-dark" class="btn-group" label="TPL_FAV_FOOTER_BG_STYLE_LABEL" description="TPL_FAV_FOOTER_BG_STYLE_DESC">
+	    		<option value="fav-module-block-light">Light</option>
+	        <option value="fav-module-block-clear">Image</option>
+	        <option value="fav-module-block-dark">Dark</option>
+	        <option value="fav-module-block-color">Color</option>
+	      </field>
+
+	    	<field name="footer_bg_image" type="media" label="TPL_FAV_FOOTER_BG_IMAGE_LABEL" description="TPL_FAV_FOOTER_BG_IMAGE_DESC" />
+
+	      <field name="footer_bg_image_style" type="radio" default="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;" class="btn-group" label="TPL_FAV_FOOTER_BG_IMAGE_STYLE_LABEL" description="TPL_FAV_FOOTER_BG_IMAGE_STYLE_DESC">
+	        <option value="repeat; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat</option>
+	        <option value="repeat-x; background-attachment: initial; -webkit-background-size: auto; -moz-background-size: auto; -o-background-size: auto; background-size: auto;">repeat-x</option>
+	        <option value="no-repeat; background-attachment: fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;">full width</option>
+	      </field>
+
+	      <field name="footer_bg_image_overlay" type="radio" default="fav-transparent" class="btn-group" label="TPL_FAV_FOOTER_BG_IMAGE_OVERLAY_LABEL" description="TPL_FAV_FOOTER_BG_IMAGE_OVERLAY_DESC">
+	        <option value="fav-overlay">Yes</option>
+	        <option value="fav-transparent">No</option>
+	      </field>
+
+	      <field name="footer_bg_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOOTER_BG_COLOR_LABEL" description="TPL_FAV_FOOTER_BG_COLOR_DESC"></field>
+
+	      <field name="footer_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOOTER_COLOR_LABEL" description="TPL_FAV_FOOTER_COLOR_DESC"></field>
+
+	      <field name="footer_title_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOOTER_TITLE_COLOR_LABEL" description="TPL_FAV_FOOTER_TITLE_COLOR_DESC"></field>
+
+	      <field name="footer_link_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOOTER_LINK_COLOR_LABEL" description="TPL_FAV_FOOTER_LINK_COLOR_DESC"></field>
+
+	      <field name="footer_link_hover_color" class="color {required:false}" type="text" default="" label="TPL_FAV_FOOTER_LINK_HOVER_COLOR_LABEL" description="TPL_FAV_FOOTER_LINK_HOVER_COLOR_DESC"></field>
+
+		</fieldset>
+
+		<fieldset name="logo" description="" label="TPL_FAV_PARAMS_LOGO">
+
+			<field type="note" label="TPL_FAV_PARAMS_DEFAULT_LOGO" class="favtitle first" />
+
+				<field name="show_default_logo" type="radio" default="1" class="btn-group" label="TPL_FAV_SHOW_DEFAULT_LOGO_LABEL" description="TPL_FAV_SHOW_DEFAULT_LOGO_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="default_logo" type="imagelist" default="logo.png" label="TPL_FAV_DEFAULT_LOGO_LABEL" description="TPL_FAV_DEFAULT_LOGO_DESC" directory="/templates/favourite/images/logo" hide_default="no" exclude="" stripext="" />
+
+				<field name="default_logo_img_alt" type="text" size="10" default="Favourite template" label="TPL_FAV_DEFAULT_LOGO_IMG_ALT_LABEL" description="TPL_FAV_DEFAULT_LOGO_IMG_ALT_DESC"></field>
+
+				<field name="default_logo_padding" type="text" size="10" default="" label="TPL_FAV_DEFAULT_LOGO_PADDING_LABEL" description="TPL_FAV_DEFAULT_LOGO_PADDING_DESC"></field>
+
+				<field name="default_logo_margin" type="text" size="10" default="" label="TPL_FAV_DEFAULT_LOGO_MARGIN_LABEL" description="TPL_FAV_DEFAULT_LOGO_MARGIN_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_UPLOADED_LOGO" class="favtitle" />
+
+				<field name="show_media_logo" type="radio" default="0" class="btn-group" label="TPL_FAV_SHOW_MEDIA_LOGO_LABEL" description="TPL_FAV_SHOW_MEDIA_LOGO_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="media_logo" type="media" label="TPL_FAV_MEDIA_LOGO_LABEL" description="TPL_FAV_MEDIA_LOGO_DESC" />
+
+				<field name="media_logo_img_alt" type="text" size="10" default="Favourite template" label="TPL_FAV_MEDIA_LOGO_IMG_ALT_LABEL" description="TPL_FAV_MEDIA_LOGO_IMG_ALT_DESC"></field>
+
+				<field name="media_logo_padding" type="text" size="10" default="" label="TPL_FAV_MEDIA_LOGO_PADDING_LABEL" description="TPL_FAV_MEDIA_LOGO_PADDING_DESC"></field>
+
+				<field name="media_logo_margin" type="text" size="10" default="" label="TPL_FAV_MEDIA_LOGO_MARGIN_LABEL" description="TPL_FAV_MEDIA_LOGO_MARGIN_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_TEXT_LOGO" class="favtitle" />
+
+				<field name="show_text_logo" type="radio" default="0" class="btn-group" label="TPL_FAV_SHOW_TEXT_LOGO_LABEL" description="TPL_FAV_SHOW_TEXT_LOGO_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="text_logo"  type="textarea" default="Favourite" rows="1" cols="40"
+					label="TPL_FAV_TEXT_LOGO_LABEL"
+					description="TPL_FAV_TEXT_LOGO_DESC" />
+
+				<field name="text_logo_color" class="color {required:false}" type="text" default="" label="TPL_FAV_TEXT_LOGO_COLOR_LABEL" description="TPL_FAV_TEXT_LOGO_COLOR_DESC"></field>
+
+				<field name="text_logo_font_size" type="text" size="10" default="" label="TPL_FAV_TEXT_LOGO_FONT_SIZE_LABEL" description="TPL_FAV_TEXT_LOGO_FONT_SIZE_DESC"></field>
+
+				<field name="text_logo_google_font" class="" type="text" default="Open Sans" label="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_LABEL" description="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_DESC" />
+
+				<field name="text_logo_google_font_weight" type="list" default="400" class="btn-group" label="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_WEIGTH_LABEL" description="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_WEIGTH_DESC">
+						<option value="300">Light</option>
+						<option value="400">Regular</option>
+						<option value="500">Medium</option>
+						<option value="600">Semibold</option>
+						<option value="700">Bold</option>
+				</field>
+
+				<field name="text_logo_google_font_style" type="radio" default="normal" class="btn-group" label="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_STYLE_LABEL" description="TPL_FAV_TEXT_LOGO_GOOGLE_FONT_STYLE_DESC">
+					<option value="normal">normal</option>
+					<option value="italic">italic</option>
+				</field>
+
+				<field name="text_logo_line_height" type="text" size="10" default="" label="TPL_FAV_TEXT_LOGO_LINE_HEIGHT_LABEL" description="TPL_FAV_TEXT_LOGO_LINE_HEIGHT_DESC"></field>
+
+				<field name="text_logo_padding" type="text" size="10" default="" label="TPL_FAV_TEXT_LOGO_PADDING_LABEL" description="TPL_FAV_TEXT_LOGO_PADDING_DESC"></field>
+
+				<field name="text_logo_margin" type="text" size="10" default="" label="TPL_FAV_TEXT_LOGO_MARGIN_LABEL" description="TPL_FAV_TEXT_LOGO_MARGIN_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_SLOGAN" class="favtitle" />
+
+				<field name="show_slogan" type="radio" default="0" class="btn-group" label="TPL_FAV_SHOW_LOGO_SLOGAN_LABEL" description="TPL_FAV_SHOW_LOGO_SLOGAN_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="slogan" type="textarea" default="slogan text here" label="TPL_FAV_LOGO_SLOGAN_LABEL" description="TPL_FAV_LOGO_SLOGAN_DESC" rows="1" cols="40"></field>
+
+				<field name="slogan_color" class="color {required:false}" type="text" default="" label="TPL_FAV_LOGO_SLOGAN_COLOR_LABEL" description="TPL_FAV_LOGO_SLOGAN_COLOR_DESC"></field>
+
+				<field name="slogan_font_size" type="text" size="10" default="" label="TPL_FAV_LOGO_SLOGAN_FONT_SIZE_LABEL" description="TPL_FAV_LOGO_SLOGAN_FONT_SIZE_DESC"></field>
+
+				<field name="slogan_line_height" type="text" size="10" default="" label="TPL_FAV_LOGO_SLOGAN_LINE_HEIGHT_LABEL" description="TPL_FAV_LOGO_SLOGAN_LINE_HEIGHT_DESC"></field>
+
+				<field name="slogan_padding" type="text" size="10" default="" label="TPL_FAV_LOGO_SLOGAN_PADDING_LABEL" description="TPL_FAV_LOGO_SLOGAN_PADDING_DESC"></field>
+
+				<field name="slogan_margin" type="text" size="10" default="" label="TPL_FAV_LOGO_SLOGAN_MARGIN_LABEL" description="TPL_FAV_LOGO_SLOGAN_MARGIN_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_RETINA_LOGO" class="favtitle" />
+
+				<field name="show_retina_logo" type="radio" default="0" class="btn-group" label="TPL_FAV_SHOW_RETINA_LOGO_LABEL" description="TPL_FAV_SHOW_RETINA_LOGO_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="retina_logo" type="media" label="TPL_FAV_RETINA_LOGO_LABEL" description="TPL_FAV_RETINA_LOGO_DESC" />
+
+				<field name="retina_logo_height" type="text" size="10" default="52px" label="TPL_FAV_RETINA_LOGO_HEIGHT_LABEL" description="TPL_FAV_RETINA_LOGO_HEIGHT_DESC"></field>
+
+				<field name="retina_logo_width" type="text" size="10" default="188px" label="TPL_FAV_RETINA_LOGO_WIDTH_LABEL" description="TPL_FAV_RETINA_LOGO_WIDTH_DESC"></field>
+
+				<field name="retina_logo_img_alt" type="text" size="10" default="Favourite template" label="TPL_FAV_RETINA_LOGO_IMG_ALT_LABEL" description="TPL_FAV_RETINA_LOGO_IMG_ALT_DESC"></field>
+
+				<field name="retina_logo_padding" type="text" size="10" default="0px" label="TPL_FAV_RETINA_LOGO_PADDING_LABEL" description="TPL_FAV_RETINA_LOGO_PADDING_DESC"></field>
+
+				<field name="retina_logo_margin" type="text" size="10" default="0px" label="TPL_FAV_RETINA_LOGO_MARGIN_LABEL" description="TPL_FAV_RETINA_LOGO_MARGIN_DESC"></field>
+
+		</fieldset>
+
+		<fieldset name="mobile" description="" label="TPL_FAV_PARAMS_MOBILE">
+
+			<field type="note" label="TPL_FAV_PARAMS_MOBILE_NAV" class="favtitle first" />
+
+				<field name="mobile_nav_color" type="radio" class="btn-group" default="favth-navbar-default" label="TPL_FAV_MOBILE_NAV_COLOR_LABEL" description="TPL_FAV_MOBILE_NAV_COLOR_DESC">
+					<option value="favth-navbar-default">Light</option>
+					<option value="favth-navbar-inverse">Dark</option>
+				</field>
+
+				<field name="show_mobile_menu_text" type="radio" default="1" class="btn-group" label="TPL_FAV_SHOW_MOBILE_MENU_TEXT_LABEL" description="TPL_FAV_SHOW_MOBILE_MENU_TEXT_DESC">
+					<option value="1">Yes</option>
+					<option value="0">No</option>
+				</field>
+
+				<field name="mobile_menu_text" type="text" size="10" default="Menu" label="TPL_FAV_MOBILE_MENU_TEXT_LABEL" description="TPL_FAV_MOBILE_MENU_TEXT_DESC"></field>
+
+			<field type="note" label="TPL_FAV_PARAMS_MOBILE_FONT_SIZE" class="favtitle" />
+
+				<field name="mobile_paragraph_font_size" type="text" size="10" default="" label="TPL_FAV_MOBILE_PARAGRAPH_FONT_SIZE_LABEL" description="TPL_FAV_MOBILE_PARAGRAPH_FONT_SIZE_DESC"></field>
+
+				<field name="mobile_paragraph_line_height" type="text" size="10" default="" label="TPL_FAV_MOBILE_PARAGRAPH_LINE_HEIGHT_LABEL" description="TPL_FAV_MOBILE_PARAGRAPH_LINE_HEIGHT_DESC"></field>
+
+				<field name="mobile_title_font_size" type="text" size="10" default="" label="TPL_FAV_MOBILE_TITLE_FONT_SIZE_LABEL" description="TPL_FAV_MOBILE_TITLE_FONT_SIZE_DESC"></field>
+
+		</fieldset>
+
+		<fieldset name="analytics" description="" label="TPL_FAV_PARAMS_ANALYTICS">
+
+			<field type="note" label="TPL_FAV_PARAMS_GOOGLE_ANALYTICS" class="favtitle first" />
+
+				<field name="analytics_code" type="textarea" rows="6" cols="40" label="TPL_FAV_ANALYTICS_LABEL" description="TPL_FAV_ANALYTICS_DESC" />
+
+		</fieldset>
+
+	</fields>
+</config>
+
+</extension>

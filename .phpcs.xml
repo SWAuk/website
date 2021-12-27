@@ -56,5 +56,6 @@
 	<exclude-pattern>.build</exclude-pattern>
 	<exclude-pattern>.docker</exclude-pattern>
 	<exclude-pattern>src/site/libraries</exclude-pattern>
+	<exclude-pattern>src/templates</exclude-pattern>
 
 </ruleset>
