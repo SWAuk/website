@@ -97,7 +97,6 @@
               readonly="false">
          <option value="Male">Male</option>
          <option value="Female">Female</option>
-	 <option value="Mixed">Mixed</option>
       </field>
       
       <field name="econtact"

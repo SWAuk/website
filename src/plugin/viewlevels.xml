@@ -3,7 +3,7 @@
 	<name>plg_swa_viewlevels</name>
 	<author>Adam Shorland</author>
 	<creationDate>June 2015</creationDate>
-	<copyright>Copyright (C) 2015 Open Source Matters. All rights reserved.</copyright>
+	<copyright>Copyright (C) 2022 Open Source Matters. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later</license>
 	<version>0.0.2</version>
 	<description>Plugin to give inject extra view levels for SWA members.</description>

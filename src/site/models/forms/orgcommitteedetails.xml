@@ -35,13 +35,5 @@
 			required="true"
 			filter="safehtml"/>
 
-		<field name="image"
-			type="text"
-			class='readonly'
-			readonly='true'
-			label="Image"
-			required="true"
-			filter="safehtml"/>
-
 	</fieldset>
 </form>

@@ -54,28 +54,22 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<tr>
 				<td><?php echo $this->form->getLabel('blurb'); ?></td>
 				<td><?php echo $this->form->getInput('blurb'); ?></td>
-			</tr>
-			<tr>
-				<td><?php echo $this->form->getLabel('image'); ?></td>
-				<td><?php echo $this->form->getInput('image'); ?></td>
-			</tr>
-
 			<tr>
 				<td>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit"
-							        class="validate btn btn-primary"><?php echo JText::_(
-									'JSUBMIT'
-								); ?></button>
+							<button type="submit" class="validate btn btn-primary">
+								<?php echo JText::_('JSUBMIT'); ?>
+							</button>
 							<a class="btn" href="<?php echo JRoute::_(
-								'index.php?option=com_swa&task=orgcommitteedetails.cancel'
-							); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_(
-									'JCANCEL'
-								); ?></a>
-						</div>
+								'index.php?option=com_swa&task=orgcommitteedetails.cancel'); ?>" 
+							   title="<?php echo JText::_('JCANCEL'); ?>">
+							<?php echo JText::_('JCANCEL'); ?></a>
+							</div>
 					</div>
 				</td>
+				<!--Empty td tags to ensure row divider line continues across whole width of table-->
+				<td></td>
 			</tr>
 			</tbody>
 		</table>

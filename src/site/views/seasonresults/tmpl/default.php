@@ -72,7 +72,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 				echo "<p>";
 				echo "Competitions: {$seriesDetails['competitions']}";
 
-				if ($seriesName != 'male' && $seriesName != 'female' && $seriesName != 'mixed')
+				if ($seriesName != 'male' && $seriesName != 'female')
 				{
 					echo ", DNC score: {$seriesDetails['dnc_score']}";
 					}
