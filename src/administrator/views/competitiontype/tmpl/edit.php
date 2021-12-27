@@ -25,7 +25,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 		else {
 
 			if (task != 'competitiontype.cancel' && document.formvalidator.isValid(document.id('competitiontype-form'))) {
-
 				Joomla.submitform(task, document.getElementById('competitiontype-form'));
 			}
 			else {
@@ -36,8 +35,8 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
-); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="competitiontype-form"
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id); ?>" 
+	  method="post" enctype="multipart/form-data" name="adminForm" id="competitiontype-form"
       class="form-validate">
 
 	<div class="form-horizontal">
@@ -54,21 +53,15 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'name'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('name'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('name'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'series'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('series'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('series'); ?></div>
 					</div>
 
@@ -76,9 +69,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-
-
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>
