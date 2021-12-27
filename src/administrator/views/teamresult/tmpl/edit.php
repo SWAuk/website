@@ -25,7 +25,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 		else {
 
 			if (task != 'teamresult.cancel' && document.formvalidator.isValid(document.id('teamresult-form'))) {
-
 				Joomla.submitform(task, document.getElementById('teamresult-form'));
 			}
 			else {
@@ -36,8 +35,8 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
-); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="teamresult-form"
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id); ?>"
+	  method="post" enctype="multipart/form-data" name="adminForm" id="teamresult-form"
       class="form-validate">
 
 	<div class="form-horizontal">
@@ -54,49 +53,31 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'competition_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'competition_id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('competition_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('competition_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'university_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'university_id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('university_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('university_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'team_number'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'team_number'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('team_number'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('team_number'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'result'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('result'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('result'); ?></div>
 					</div>
 
 				</fieldset>
 			</div>
 		</div>
+		
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-
-
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>

@@ -22,7 +22,6 @@ JHtml::_('behavior.keepalive');
 		else {
 
 			if (task != 'ticket.cancel' && document.formvalidator.isValid(document.id('ticket-form'))) {
-
 				Joomla.submitform(task, document.getElementById('ticket-form'));
 			}
 			else {
@@ -46,39 +45,26 @@ JHtml::_('behavior.keepalive');
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('id'); ?>
-						</div>
+						<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('member_id'); ?>
-						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('member_id'); ?>
-						</div>
+						<div class="control-label"><?php echo $this->form->getLabel('member_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('member_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('event_ticket_id'); ?>
-						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('event_ticket_id'); ?>
-						</div>
+						<div class="control-label"><?php echo $this->form->getLabel('event_ticket_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('event_ticket_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label">
-							<?php echo $this->form->getLabel('details'); ?>
-						</div>
-						<div class="controls">
-							<?php echo $this->form->getInput('details'); ?>
-						</div>
+						<div class="control-label"><?php echo $this->form->getLabel('details'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('details'); ?></div>
 					</div>
 
 				</fieldset>
 			</div>
 		</div>
+		
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
