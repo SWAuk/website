@@ -56,7 +56,7 @@ class SwaHelper
 
 		JHtmlSidebar::addEntry(	JText::_('Team results'),
 			'index.php?option=com_swa&view=teamresults', $vName == 'teamresults');
-	
+
 		JHtmlSidebar::addEntry(	JText::_('Individual results'),
 			'index.php?option=com_swa&view=individualresults', $vName == 'individualresults');
 
