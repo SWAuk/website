@@ -126,7 +126,7 @@ else
 							<a class="btn" href="<?php echo JRoute::_(
 								'index.php?option=com_swa&task=qualifications.cancel'); ?>" 
 								title="<?php echo JText::_('JCANCEL'); ?>">
-								<?php echo JText::_('JCANCEL'); ?></a>
+							<?php echo JText::_('JCANCEL'); ?></a>
 						</div>
 					</div>
 				</td>

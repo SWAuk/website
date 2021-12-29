@@ -87,15 +87,13 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 				<td>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit"
-							        class="validate btn btn-primary"><?php echo JText::_(
-									'JSUBMIT'
-								); ?></button>
+							<button type="submit" class="validate btn btn-primary">
+								<?php echo JText::_('JSUBMIT'); ?>
+							</button>
 							<a class="btn" href="<?php echo JRoute::_(
-								'index.php?option=com_swa&task=memberregistration.cancel'
-							); ?>" title="<?php echo JText::_('JCANCEL'); ?>"><?php echo JText::_(
-									'JCANCEL'
-								); ?></a>
+								'index.php?option=com_swa&task=memberregistration.cancel'); ?>"
+								title="<?php echo JText::_('JCANCEL'); ?>">
+							<?php echo JText::_('JCANCEL'); ?></a>
 						</div>
 					</div>
 				</td>
