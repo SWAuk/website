@@ -87,7 +87,7 @@ CREATE  TABLE IF NOT EXISTS `#__swa_university_member` (
   `id` INT NOT NULL AUTO_INCREMENT ,
   `member_id` INT(11)  NOT NULL ,
   `university_id` INT(11)  NOT NULL ,
-  `committee` VARCHAR(15) DEFAULT NULL,
+  `committee` VARCHAR(15) NOT NULL DEFAULT 0,
   `graduated` TINYINT(1)  NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   INDEX `fk_university_member_member_idx` (`member_id` ASC),

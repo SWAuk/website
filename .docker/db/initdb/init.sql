@@ -1993,7 +1993,7 @@ CREATE TABLE `swana_swa_university_member` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `member_id` int(11) NOT NULL,
   `university_id` int(11) NOT NULL,
-  `committee` varchar(15) DEFAULT NULL,
+  `committee` varchar(15) NOT NULL DEFAULT '0',
   `graduated` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `unique_member_id_university_id` (`member_id`,`university_id`),
