@@ -82,7 +82,7 @@ if (!empty($this->extra_sidebar))
 					</button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
-					        onclick="document.id('filter_search').value='';this.form.submit();">
+					        onclick="getElementById('filter_search').value='';this.form.submit();">
 						<i class="icon-remove"></i>
 					</button>
 				</div>

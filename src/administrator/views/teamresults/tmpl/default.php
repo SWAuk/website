@@ -85,7 +85,7 @@ if (!empty($this->extra_sidebar))
 						<i class="icon-search"></i></button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
-					        onclick="document.id('filter_search').value='';this.form.submit();">
+					        onclick="getElementById('filter_search').value='';this.form.submit();">
 						<i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
