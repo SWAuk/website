@@ -75,15 +75,15 @@ if (!empty($this->extra_sidebar))
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
@@ -98,9 +98,9 @@ if (!empty($this->extra_sidebar))
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>

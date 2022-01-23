@@ -64,10 +64,10 @@ if (!empty($this->extra_sidebar))
 			</div>
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
-					<label for="filter_search" class="element-invisible"><?php echo JText::_(
-							'JSEARCH_FILTER'
-						); ?></label>
-					<input type="text" name="filter_search" id="filter_search"
+					<label for="filter_search" class="element-invisible">
+						<?php echo JText::_('JSEARCH_FILTER'); ?>
+					</label>
+					<input type="search" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
 						   value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
 						   title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
@@ -82,15 +82,15 @@ if (!empty($this->extra_sidebar))
 						<i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="limit" class="element-invisible"><?php echo JText::_(
-							'JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'
-						); ?></label>
+					<label for="limit" class="element-invisible">
+						<?php echo JText::_('JFIELD_PLG_SEARCH_SEARCHLIMIT_DESC'); ?>
+					</label>
 					<?php echo $this->pagination->getLimitBox(); ?>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
-					<label for="directionTable" class="element-invisible"><?php echo JText::_(
-							'JFIELD_ORDERING_DESC'
-						); ?></label>
+					<label for="directionTable" class="element-invisible">
+						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
+					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
@@ -105,9 +105,9 @@ if (!empty($this->extra_sidebar))
 					</select>
 				</div>
 				<div class="btn-group pull-right">
-					<label for="sortTable" class="element-invisible"><?php echo JText::_(
-							'JGLOBAL_SORT_BY'
-						); ?></label>
+					<label for="sortTable" class="element-invisible">
+						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
+					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
