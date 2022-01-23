@@ -77,6 +77,7 @@
       
       <field name="tel"
               type="tel"
+              inputmode="numeric"
               class="inputbox"
               required="true"
               label="Mobile Number"
@@ -120,6 +121,7 @@
       <field name="enumber"
               type="tel"
               size="40"
+              inputmode="numeric"
               class="inputbox"
               label="Emergency Contact Number"
               required="true"
