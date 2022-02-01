@@ -25,7 +25,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 		else {
 
 			if (task != 'qualification.cancel' && document.formvalidator.isValid(document.id('qualification-form'))) {
-
 				Joomla.submitform(task, document.getElementById('qualification-form'));
 			}
 			else {
@@ -36,8 +35,8 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
-); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="qualification-form"
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id); ?>"
+	  method="post" enctype="multipart/form-data" name="adminForm" id="qualification-form"
       class="form-validate">
 
 	<!-- Hidden field hack so that unchecked checkboxes are saved -->
@@ -46,49 +45,32 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
-		<?php echo JHtml::_(
-			'bootstrap.addTab',
-			'myTab',
-			'general',
-			JText::_('Qualification', true)
-		); ?>
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general',
+			JText::_('Qualification', true)); ?>
+
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('id'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'member_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'member_id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('member_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('member_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'type'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('type'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('type'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'expiry_date'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'expiry_date'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('expiry_date'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('expiry_date'); ?></div>
 					</div>
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'approved'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('approved'); ?></div>
 						<div class="controls"><?php echo $this->form->getInput('approved'); ?></div>
 					</div>
 
@@ -107,9 +89,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-
-
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>

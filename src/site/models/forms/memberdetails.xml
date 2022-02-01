@@ -64,6 +64,7 @@
       <field name="tel"
               type="tel"
               size="23"
+              inputmode="numeric"
               class="inputbox"
               required="true"
               label="Mobile Number"
@@ -97,7 +98,6 @@
               readonly="false">
          <option value="Male">Male</option>
          <option value="Female">Female</option>
-	 <option value="Mixed">Mixed</option>
       </field>
       
       <field name="econtact"
@@ -111,6 +111,7 @@
       <field name="enumber"
               type="text"
               size="23"
+              inputmode="numeric"
               class="inputbox"
               label="Emergency Contact Number"
               required="true"

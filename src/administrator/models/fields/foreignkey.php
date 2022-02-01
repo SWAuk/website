@@ -89,9 +89,7 @@ class JFormFieldForeignKey extends JFormField
 				{
 					$value = array($value);
 				}
-				elseif (is_object(
-					$value
-				))
+				elseif (is_object($value))
 				{
 					// If the value is an object, let's get its properties.
 					$value = get_object_vars($value);

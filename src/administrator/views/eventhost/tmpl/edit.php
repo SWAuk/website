@@ -25,7 +25,6 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 		else {
 
 			if (task != 'eventhost.cancel' && document.formvalidator.isValid(document.id('eventhost-form'))) {
-
 				Joomla.submitform(task, document.getElementById('eventhost-form'));
 			}
 			else {
@@ -36,47 +35,33 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 </script>
 
 <form action="<?php echo JRoute::_(
-	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id
-); ?>" method="post" enctype="multipart/form-data" name="adminForm" id="eventhost-form"
+	'index.php?option=com_swa&layout=edit&id=' . (int) $this->item->id); ?>"
+	  method="post" enctype="multipart/form-data" name="adminForm" id="eventhost-form"
       class="form-validate">
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
 
-		<?php echo JHtml::_(
-			'bootstrap.addTab',
-			'myTab',
-			'general',
-			JText::_('Event Host', true)
-		); ?>
+		<?php echo JHtml::_('bootstrap.addTab',	'myTab', 'general',
+			JText::_('Event Host', true)); ?>
+
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
 
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'event_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'event_id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('event_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('event_id'); ?></div>
 					</div>
 					<div class="control-group">
-						<div class="control-label"><?php echo $this->form->getLabel(
-								'university_id'
-							); ?></div>
-						<div class="controls"><?php echo $this->form->getInput(
-								'university_id'
-							); ?></div>
+						<div class="control-label"><?php echo $this->form->getLabel('university_id'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('university_id'); ?></div>
 					</div>
 
 				</fieldset>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
-
-
-
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 
 		<input type="hidden" name="task" value=""/>

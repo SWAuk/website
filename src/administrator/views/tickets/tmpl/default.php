@@ -73,7 +73,7 @@ if (!empty($this->extra_sidebar))
 					<label for="filter_search" class="element-invisible">
 						<?php echo JText::_('JSEARCH_FILTER'); ?>
 					</label>
-					<input type="text" name="filter_search" id="filter_search"
+					<input type="search" name="filter_search" id="filter_search"
 					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
 					       value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
 					       title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
@@ -84,7 +84,7 @@ if (!empty($this->extra_sidebar))
 						<i class="icon-search"></i></button>
 					<button class="btn hasTooltip" type="button"
 					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
-					        onclick="document.id('filter_search').value='';this.form.submit();">
+					        onclick="getElementById('filter_search').value='';this.form.submit();">
 						<i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">

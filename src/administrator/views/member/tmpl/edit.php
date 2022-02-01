@@ -33,7 +33,10 @@ JHtml::_('behavior.keepalive');
 
 	<div class="form-horizontal">
 		<?php echo JHtml::_('bootstrap.startTabSet', 'myTab', array('active' => 'general')); ?>
-		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general', JText::_('Member', true)); ?>
+
+		<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'general',
+			JText::_('Member', true)); ?>
+
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">
 				<fieldset class="adminform">
@@ -111,9 +114,9 @@ JHtml::_('behavior.keepalive');
 				</fieldset>
 			</div>
 		</div>
-
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
+		
 		<input type="hidden" name="task" value=""/>
 		<?php echo JHtml::_('form.token'); ?>
 
