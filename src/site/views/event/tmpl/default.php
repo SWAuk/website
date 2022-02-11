@@ -18,7 +18,6 @@ function addonTable($addonString)
         return "<td>" . $key . "</td>";
     }, array_keys($obj["addons"]));
 
-
     $quantities = [];
     $options = [];
 
@@ -27,9 +26,12 @@ function addonTable($addonString)
         array_push($options, array_key_exists("option", $addon) ? $addon["option"] : "");
     }
 
-//    array_unshift($headers, "<td>&nbsp;</td>");
-//    array_unshift($quantities, "Quantity");
-//    array_unshift($options, "Options");
+/*
+Uncomment to include headers
+array_unshift($headers, "<td>&nbsp;</td>");
+array_unshift($quantities, "Quantity");
+array_unshift($options, "Options");
+*/
 
     $html = "<table class='remove_first_row_line'><tbody>";
     for ($i = 0; $i < count($headers); $i++) {
@@ -41,7 +43,7 @@ function addonTable($addonString)
 ?>
 <style>
     .remove_first_row_line tr:first-child td{
-        border-top: none; !important;
+        border-top: none !important;
     }
 </style>
 <div class="lead"><h1><?php echo $item->event_name ?></h1></div>
@@ -221,10 +223,11 @@ if ($this->member)
 								echo "<td>{$person['Ticket']}</td>";
 								echo "<td>{$person['Level']}</td>";
 								echo "<td>{$person['Dietary']}</td>";
-								if( $person['Details'] == ""){
+								if ($person['Details'] == ""){
                                     echo "<td>No Details</td>";
-                                }else {
-                                    echo "<td>".addonTable($person['Details'])."</td>";
+                                }
+								else {
+                                    echo "<td>" . addonTable($person['Details']) . "</td>";
                                 }
 								echo "</tr>\n";
 								}
