@@ -9,8 +9,43 @@ JHtml::_('behavior.tooltip');
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 $item = $this->item;
-?>
 
+
+function addonTable($addonString)
+{
+    $obj = json_decode($addonString, true);
+    $headers = array_map(function ($key): string {
+        return "<td>" . $key . "</td>";
+    }, array_keys($obj["addons"]));
+
+    $quantities = [];
+    $options = [];
+
+    foreach ($obj["addons"] as $addon) {
+        array_push($quantities, array_key_exists("qty", $addon) ? $addon["qty"] : 0);
+        array_push($options, array_key_exists("option", $addon) ? $addon["option"] : "");
+    }
+
+/*
+Uncomment to include headers
+array_unshift($headers, "<td>&nbsp;</td>");
+array_unshift($quantities, "Quantity");
+array_unshift($options, "Options");
+*/
+
+    $html = "<table class='remove_first_row_line'><tbody>";
+    for ($i = 0; $i < count($headers); $i++) {
+        $html = $html . "<tr>" . $headers[$i] . "<td>" . $quantities[$i] . "</td><td>" . $options[$i] . "</td></tr>";
+    }
+    $html = $html . "</tbody></table>";
+    return $html;
+}
+?>
+<style>
+    .remove_first_row_line tr:first-child td{
+        border-top: none !important;
+    }
+</style>
 <div class="lead"><h1><?php echo $item->event_name ?></h1></div>
 
 <div class="panel panel-default">
@@ -188,7 +223,12 @@ if ($this->member)
 								echo "<td>{$person['Ticket']}</td>";
 								echo "<td>{$person['Level']}</td>";
 								echo "<td>{$person['Dietary']}</td>";
-								echo "<td>{$person['Details']}</td>";
+								if ($person['Details'] == ""){
+                                    echo "<td>No Details</td>";
+                                }
+								else {
+                                    echo "<td>" . addonTable($person['Details']) . "</td>";
+                                }
 								echo "</tr>\n";
 								}
 								}
