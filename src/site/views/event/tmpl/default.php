@@ -223,12 +223,7 @@ if ($this->member)
 								echo "<td>{$person['Ticket']}</td>";
 								echo "<td>{$person['Level']}</td>";
 								echo "<td>{$person['Dietary']}</td>";
-								if ($person['Details'] == ""){
-                                    echo "<td>No Details</td>";
-                                }
-								else {
-                                    echo "<td>" . addonTable($person['Details']) . "</td>";
-                                }
+                            	echo "<td>" . addonTable($person['Details']) . "</td>";
 								echo "</tr>\n";
 								}
 								}
