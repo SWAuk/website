@@ -61,16 +61,27 @@ foreach ($this->events as $event)
 	}
 
 	$toRegisterForThisEvent = array();
+    $toUnRegisterForThisEvent = array();
 
 	foreach ($memberIds as $memberId)
 	{
 		if (!array_key_exists($memberId, $eventRegistrations)
-			|| !array_key_exists($event->id, $eventRegistrations[$memberId])
-		)
-		{
-			$toRegisterForThisEvent[] = $memberId;
-		}
+            || !array_key_exists($event->id, $eventRegistrations[$memberId])
+        ) {
+            $toRegisterForThisEvent[] = $memberId;
+        } else {
+            $toUnRegisterForThisEvent[] = $memberId;
+        }
 	}
+
+    echo '<form id="form-universitymembers-unregister-all-' . $event->id . '" method="POST" onsubmit="return confirm(\'Are you sure you want to unregister everyone ' . $event->name . '?\');" action="' .
+        JRoute::_('index.php?option=com_swa&task=universitymembers.unregister') .
+        '">' .
+        '<input type="hidden" name ="member_ids" value="' . implode('|', $toUnRegisterForThisEvent) . '" />' .
+        '<input type="hidden" name ="event_id" value="' . $event->id . '" />' .
+        '<a href="javascript:{}" onclick="document.getElementById(\'form-universitymembers-unregister-all-' . $event->id . '\').requestSubmit(); return false;">Unregister all for ' . $event->name . '</a>' .
+        JHtml::_('form.token') .
+        '</form>';
 
 	// TODO it is stupid to send the member ids like this... We shouldnt do this...
 	echo '<form id="form-universitymembers-register-all-' . $event->id . '" method="POST" action="' .
