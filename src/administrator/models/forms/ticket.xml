@@ -36,12 +36,16 @@
 			required="true"
 			filter="safehtml"/>
 
+        <field name="paid"
+        	type="textarea"
+        	label="Paid"
+        	cols="50"/>
+
         <field name="details"
-            type="textarea"
-            readonly="true"
-            label="Details"
-            rows="10"
-            cols="50"/>
+        	type="textarea"
+        	label="Details"
+        	rows="10"
+        	cols="50"/>
 
 	</fieldset>
 

@@ -133,7 +133,7 @@ if ($ticket == null) {
 						name: obj.getAttribute('data-name'),
 						qty: $addonQty,
 						option: jQuery('#select_' + obj.getAttribute('data-id')).val(),
-						price: parseFloat(obj.getAttribute('data-price')) // not used as final amount to charge customer as could be tampered with malicipoiusly
+						price: parseFloat(obj.getAttribute('data-price')) // not used as final amount to charge customer as could be tampered with maliciously
 					};
 				}
 			});
