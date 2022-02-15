@@ -109,13 +109,14 @@
               filter="safehtml"/>
       
       <field name="enumber"
-              type="text"
-              size="23"
-              inputmode="numeric"
-              class="inputbox"
-              label="Emergency Contact Number"
-              required="true"
-              filter="safehtml"/>
+	          type="tel"
+	          size="23"
+	          inputmode="numeric"
+	          class="inputbox"
+	          label="Emergency Contact Number"
+	          required="true"
+	          filter="safehtml"
+	          validate="tel"/>
       
       <field name="dietary"
               type="list"
