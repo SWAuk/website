@@ -120,7 +120,7 @@
       
       <field name="enumber"
               type="tel"
-              size="40"
+              size="23"
               inputmode="numeric"
               class="inputbox"
               label="Emergency Contact Number"
