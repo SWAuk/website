@@ -60,6 +60,9 @@ class SwaHelper
 		JHtmlSidebar::addEntry(	JText::_('Individual results'),
 			'index.php?option=com_swa&view=individualresults', $vName == 'individualresults');
 
+		JHtmlSidebar::addEntry(	JText::_('University Agreements'),
+			'index.php?option=com_swa&view=university_agreements', $vName == 'university_agreements');
+
 	}
 
 	/**
