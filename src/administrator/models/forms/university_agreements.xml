@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id"
+			type="text"
+			default="0"
+			label="ID"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
+			
+		<field name="university_id" 
+			type="sql"
+			key_field="id"
+			value_field="name"
+			query="SELECT name FROM #__swa_university"
+			label="User"
+			required="true"
+			filter="safehtml"
+			/>
+
+		<field name="member_id"
+			type="sql"
+			key_field="id"
+			value_field="member_uni"
+			query="SELECT member.id AS id, user.name AS member_name
+			FROM #__swa_member AS member
+			INNER JOIN #__users AS user ON member.user_id = user.id
+			ORDER BY member.id DESC"
+			label="User"
+			required="true"
+			filter="safehtml"
+		/>
+
+		<field name="university_id" 
+			type="text"
+			label="Override"
+			readonly="true"
+			class="readonly"
+		/>
+
+		<field name="date" 
+			type="date"
+			label="Date Signed"
+			readonly="true"
+			class="readonly" />>
+
+		<field name="signed" 
+			type="text"
+			label="Signed"
+			readonly="true"
+			class="readonly"
+		/>
+			
+		<field name="override" 
+			type="text"
+			label="Override"
+			readonly="true"
+			class="readonly"
+		/>
+
+	</fieldset>
+
+</form>

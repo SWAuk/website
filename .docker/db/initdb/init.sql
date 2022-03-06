@@ -2364,3 +2364,27 @@ INSERT INTO `swana_viewlevels` (`id`, `title`, `ordering`, `rules`) VALUES
 (8,	'Org Committee',	0,	'[]');
 
 -- 2019-02-10 17:17:48
+
+
+DROP TABLE IF EXISTS `swana_university_agreements`;
+CREATE TABLE `swana_university_agreements` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `signed` BIT NOT NULL DEFAULT 0,
+  `date` DATE,
+  `university_id` int(11),
+  `member_id` int(11) COLLATE utf8mb4_unicode_ci,
+  `override` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `swana_university_agreements` (`id`,`signed`,`date`,`university_id`, `member_id`, `override`) VALUES
+(1 ,0 ,NULL,NULL,NULL, 0),
+(2 ,1 ,'2019-02-10',9 ,1,0);
+-- `signed`
+-- --'Whether the agreement has been signed'
+-- `date`
+-- -- 'The date the agreement was last signed'
+-- `member_id`
+-- -- 'The member that signed the agreement',
+-- override, the values this takes mean; 0=nothing, 1=give access, 2=remove access

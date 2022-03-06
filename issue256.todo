@@ -1,0 +1,7 @@
+✔ Create Table @started(22-03-06 13:37) @done(22-03-06 14:00) @lasted(23m21s)
+✔ Add mock results in table @done(22-03-06 14:00)
+✔ Add Page in admin @done(22-03-06 18:19)
+☐ Block club page and members page conditionally
+☐ Add form for members to update their club
+☐ Add agreement page for club members
+☐ Allow editing the form from admin page
