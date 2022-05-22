@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-	<layout title="Committee">
+	<layout title="Clubagreement">
 		<message>
-			Show a list of all Org committee members.
-			Accessible to everyone.
+			Update Club Details here.
 		</message>
 	</layout>
 </metadata>

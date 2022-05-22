@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
-class SwaViewCommittee extends JViewLegacy
+class SwaViewClubagreement extends JViewLegacy
 {
 	protected $state;
 

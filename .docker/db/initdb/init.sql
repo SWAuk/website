@@ -1362,10 +1362,11 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2208,	'main',	'COM_SWA_TITLE_UNIVERSITIES',	'com-swa-title-universities',	'',	'com-swa/com-swa-title-universities',	'index.php?option=com_swa&view=universities',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	228,	229,	0,	'',	1),
 (2209,	'main',	'COM_SWA_TITLE_SEASONS',	'com-swa-title-seasons',	'',	'com-swa/com-swa-title-seasons',	'index.php?option=com_swa&view=seasons',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	230,	231,	0,	'',	1),
 (2210,	'main',	'COM_SWA_TITLE_COMPETITIONS',	'com-swa-title-competitions',	'',	'com-swa/com-swa-title-competitions',	'index.php?option=com_swa&view=competitions',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	232,	233,	0,	'',	1),
-(2211,	'main',	'COM_SWA_TITLE_COMPETITIONTYPES',	'com-swa-title-competitiontypes',	'',	'com-swa/com-swa-title-competitiontypes',	'index.php?option=com_swa&view=competitiontypes',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	234,	235,	0,	'',	1),
+(2211,	'main',	'COM_SWA_TITLE_COMPETITIOTYPES',	'com-swa-title-competitiontypes',	'',	'com-swa/com-swa-title-competitiontypes',	'index.php?option=com_swa&view=competitiontypes',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	234,	235,	0,	'',	1),
 (2212,	'main',	'COM_SWA_TITLE_TEAMRESULTS',	'com-swa-title-teamresults',	'',	'com-swa/com-swa-title-teamresults',	'index.php?option=com_swa&view=teamresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	236,	237,	0,	'',	1),
 (2213,	'main',	'COM_SWA_TITLE_INDIVIDUALRESULTS',	'com-swa-title-individualresults',	'',	'com-swa/com-swa-title-individualresults',	'index.php?option=com_swa&view=individualresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	238,	239,	0,	'',	1),
 (2214,	'main',	'COM_AKEEBA',	'com-akeeba',	'',	'com-akeeba',	'index.php?option=com_akeeba',	'component',	1,	1,	1,	10015,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	241,	242,	0,	'',	1);
+(4785,	'main-nav-bar',	'Update Club Agreement',	'club-agreement',	'',	'club/agreement',	'index.php?option=com_swa&view=clubagreement',	'component',	1,	2458,	3,	10052,	14657,	'2022-05-21 13:35:23',	0,	1,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_image_css\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	151,	152,	0,	'*',	0);
 
 DROP TABLE IF EXISTS `swana_menu_types`;
 CREATE TABLE `swana_menu_types` (
@@ -2381,6 +2382,8 @@ CREATE TABLE `swana_university_agreements` (
 INSERT INTO `swana_university_agreements` (`id`,`signed`,`date`,`university_id`, `member_id`, `override`) VALUES
 (1 ,0 ,NULL,NULL,NULL, 0),
 (2 ,1 ,'2019-02-10',9 ,1,0);
+
+
 -- `signed`
 -- --'Whether the agreement has been signed'
 -- `date`
@@ -2388,3 +2391,15 @@ INSERT INTO `swana_university_agreements` (`id`,`signed`,`date`,`university_id`,
 -- `member_id`
 -- -- 'The member that signed the agreement',
 -- override, the values this takes mean; 0=nothing, 1=give access, 2=remove access
+
+
+DROP TABLE IF EXISTS `swana_swa_club_update_form`;
+CREATE TABLE `swana_swa_club_update_form` (
+                                              `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+                                              `php_form` longtext NOT NULL,
+                                              `use_form` tinyint(4) NOT NULL DEFAULT '0',
+                                              PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `swana_swa_club_update_form` (`id`, `php_form`, `use_form`) VALUES
+(1,	'<iframe src=\"https://giphy.com/embed/l41YnNM4fAbBu3tHW\" width=\"480\" height=\"480\" frameBorder=\"0\" class=\"giphy-embed\" allowFullScreen></iframe><p><a href=\"https://giphy.com/gifs/angrybirds-action-angry-birds-l41YnNM4fAbBu3tHW\">via GIPHY</a></p>',	1);

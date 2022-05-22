@@ -2,6 +2,10 @@
 ✔ Add mock results in table @done(22-03-06 14:00)
 ✔ Add Page in admin @done(22-03-06 18:19)
 ☐ Block club page and members page conditionally
+    - Do this by making a plugin that checks the onUserAfterLogin hook/
+    https://joomla.stackexchange.com/questions/18938/user-plugin-onuserafterlogin
+    -Check if agreement is signed when a user in a certain user group logs in. If not valid then redirect them to the sign page. 
+    If a standard member tries, then redirect them to a page saying contact club to sign agrement.
 ☐ Add form for members to update their club
 ☐ Add agreement page for club members
 ☐ Allow editing the form from admin page

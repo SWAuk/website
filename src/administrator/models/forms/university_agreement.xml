@@ -9,21 +9,20 @@
 			readonly="true"
 			class="readonly"
 			description="JGLOBAL_FIELD_ID_DESC"/>
-			
-		<field name="university_id" 
-			type="sql"
-			key_field="id"
-			value_field="name"
-			query="SELECT name FROM #__swa_university"
-			label="User"
-			required="true"
-			filter="safehtml"
-			/>
+
+        <field name="university_id"
+               type="sql"
+               key_field="id"
+               value_field="name"
+               query="SELECT id, name FROM #__swa_university"
+               label="University"
+               filter="safehtml"
+        />
 
 		<field name="member_id"
 			type="sql"
 			key_field="id"
-			value_field="member_uni"
+			value_field="member_name"
 			query="SELECT member.id AS id, user.name AS member_name
 			FROM #__swa_member AS member
 			INNER JOIN #__users AS user ON member.user_id = user.id
@@ -33,31 +32,23 @@
 			filter="safehtml"
 		/>
 
-		<field name="university_id" 
-			type="text"
-			label="Override"
-			readonly="true"
-			class="readonly"
-		/>
 
-		<field name="date" 
+		<field name="date"
 			type="date"
 			label="Date Signed"
-			readonly="true"
-			class="readonly" />>
+            default="yyyy-mm-dd"
+			/>>
 
-		<field name="signed" 
+		<field name="signed"
 			type="text"
 			label="Signed"
-			readonly="true"
-			class="readonly"
+            default="0"
 		/>
-			
-		<field name="override" 
+
+		<field name="override"
 			type="text"
 			label="Override"
-			readonly="true"
-			class="readonly"
+            default="0"
 		/>
 
 	</fieldset>

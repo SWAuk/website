@@ -50,7 +50,7 @@ class SwaViewUniversity_Agreements extends JViewLegacy
 		JToolBarHelper::title(JText::_('University agreements title'), 'university_agreements.png');
 
 		// Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university_agreement'; //TODO: Add
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university_agreement';
 		if (file_exists($formPath))
 		{
 			if ($canDo->get('core.create'))

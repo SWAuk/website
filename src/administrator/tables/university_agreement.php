@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die;
 
-class SwaTableUniversity_Agreements extends JTable
+class SwaTableUniversity_Agreement extends JTable
 {
 
 	/**
@@ -10,7 +10,7 @@ class SwaTableUniversity_Agreements extends JTable
 	 */
 	public function __construct(&$db)
 	{
-		parent::__construct('#__swa_university_agreements', 'id', $db);
+		parent::__construct('#__university_agreements', 'id', $db);
 	}
 
 	/**

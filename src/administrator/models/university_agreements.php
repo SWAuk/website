@@ -93,14 +93,7 @@ class SwaModelUniversity_Agreements extends JModelList
 			{
 				$query->where('a.id = ' . (int) substr($search, 3));
 			}
-			else
-			{
-				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where(
-					'1=1'
-					// '( user.name LIKE ' . $search . '  OR  user.username LIKE ' . $search . ' )'
-				);
-			}
+
 		}
 
 		// Add the list ordering clause.
