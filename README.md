@@ -78,6 +78,13 @@ If you are having issues with installing dependency versions, use the following 
 docker run --rm -it -v %CD%:/app composer install --ignore-platform-reqs
 ```
 
+### Runtime Errors
+
+If you are having issues with post-update-cmd, use the following command:
+```sh
+git clone -c core.autocrlf=false https://github.com/SWAuk/website.git
+```
+
 ## Development - Environment
 
 The recommended dev environment uses docker-compose.
