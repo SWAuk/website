@@ -74,21 +74,24 @@ if (!$valid) {
 			->where($db->quoteName('smem.user_id') . ' = ' . $db->quote($user_id));
 
 	$db->setQuery($committee_check);
-
+	$content = null;
 	$results = $db->loadResult(); //if results = 1 then the user is commitee.
 
 	if ($results == 1) {
 		$status = 'No agreement, and is committee';//committee to sign agreement
 		$status .= '\n Will show update form.';
+		$content = file_get_contents(JUri::base() . '/components/com_swa/assets/forms/UpdateClubDetailsForm.php');
 	} else {
 		//show page saying please get committee to sign agreement
 		$status = 'No agreement, and is NOT committee';
 		$status .= '\n Will show message telling to contact club.';
+		$content = "<h2>Contact club or something</h2>";
 	}
 }else{
 	$status = 'How did you get here? Please continue with your day.';
 }
 echo "<H3>" . $status . "</H3>";
+echo $content
 //echo "<h3> Query For commitee used: " . str_replace('#_', 'swana', var_dump((string)$committee_check)) . "</h3><br>";
 //echo "<h3> Query For agreement used: " . str_replace('#_', 'swana', var_dump((string)$agreement_check)) . "</h3>";
 

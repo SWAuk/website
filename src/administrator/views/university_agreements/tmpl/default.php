@@ -79,7 +79,7 @@ if (!empty($this->extra_sidebar)) {
 					<button class="btn hasTooltip" type="button" title="Edit Update Form"
 							onclick="
 							var queryParams = new URLSearchParams(window.location.search);
-							queryParams.set('view', 'club_update_form');
+							queryParams.set('view', 'club_update_forms');
 							window.location.replace(window.location.origin + window.location.pathname + '?' + queryParams);">
 						<a >Edit Update Form</a></button>
 				</div>
