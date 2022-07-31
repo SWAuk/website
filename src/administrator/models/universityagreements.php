@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
 
-class SwaModelUniversity_Agreements extends JModelList
+class SwaModelUniversityAgreements extends JModelList
 {
 	/**
 	 * @param   array $config An optional associative array of configuration settings.
@@ -93,7 +93,6 @@ class SwaModelUniversity_Agreements extends JModelList
 			{
 				$query->where('a.id = ' . (int) substr($search, 3));
 			}
-
 		}
 
 		// Add the list ordering clause.

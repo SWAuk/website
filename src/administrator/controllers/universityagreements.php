@@ -6,12 +6,12 @@ jimport('joomla.application.component.controlleradmin');
 /**
  * University_Agreements list controller class.
  */
-class SwaControllerUniversity_Agreements extends SwaControllerAdmin
+class SwaControllerUniversityAgreements extends SwaControllerAdmin
 {
 	/**
 	 * Proxy for getModel.
 	 */
-	public function getModel($name = 'University_Agreements', $prefix = 'SwaModel')
+	public function getModel($name = 'UniversityAgreements', $prefix = 'SwaModel')
 	{
 		$model = parent::getModel($name, $prefix, array('ignore_request' => true));
 

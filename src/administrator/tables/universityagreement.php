@@ -2,7 +2,7 @@
 
 defined('_JEXEC') or die;
 
-class SwaTableUniversity_Agreement extends JTable
+class SwaTableUniversityAgreement extends JTable
 {
 
 	/**

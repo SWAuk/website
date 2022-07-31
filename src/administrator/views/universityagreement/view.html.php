@@ -7,7 +7,7 @@ jimport('joomla.application.component.view');
 /**
  * View to edit
  */
-class SwaViewUniversity_agreement extends JViewLegacy
+class SwaViewUniversityagreement extends JViewLegacy
 {
 	protected $state;
 
@@ -43,12 +43,12 @@ class SwaViewUniversity_agreement extends JViewLegacy
 
 		$isNew = ($this->item->id == 0);
 
-		JToolBarHelper::title(JText::_('University Agreement'), 'university_agreement.png');
+		JToolBarHelper::title(JText::_('University Agreement'), 'universityagreement.png');
 
-		JToolBarHelper::apply('university_agreement.apply', 'JTOOLBAR_APPLY');
-		JToolBarHelper::save('university_agreement.save', 'JTOOLBAR_SAVE');
+		JToolBarHelper::apply('universityagreement.apply', 'JTOOLBAR_APPLY');
+		JToolBarHelper::save('universityagreement.save', 'JTOOLBAR_SAVE');
 		JToolBarHelper::custom(
-			'university_agreement.save2new',
+			'universityagreement.save2new',
 			'save-new.png',
 			'save-new_f2.png',
 			'JTOOLBAR_SAVE_AND_NEW',
@@ -59,7 +59,7 @@ class SwaViewUniversity_agreement extends JViewLegacy
 		if (!$isNew)
 		{
 			JToolBarHelper::custom(
-				'university_agreement.save2copy',
+				'universityagreement.save2copy',
 				'save-copy.png',
 				'save-copy_f2.png',
 				'JTOOLBAR_SAVE_AS_COPY',
@@ -68,11 +68,11 @@ class SwaViewUniversity_agreement extends JViewLegacy
 		}
 		if (empty($this->item->id))
 		{
-			JToolBarHelper::cancel('university_agreement.cancel', 'JTOOLBAR_CANCEL');
+			JToolBarHelper::cancel('universityagreement.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
-			JToolBarHelper::cancel('university_agreement.cancel', 'JTOOLBAR_CLOSE');
+			JToolBarHelper::cancel('universityagreement.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 

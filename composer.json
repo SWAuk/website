@@ -55,6 +55,6 @@
 		"mediawiki/minus-x": "^1.1",
 		"phpunit/phpunit": "^9.0",
 		"phpunit/phpunit-selenium": "^9.0",
-		"facebook/webdriver": "^1.7"
+		"php-webdriver/webdriver": "^1.12"
 	}
 }

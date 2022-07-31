@@ -7,7 +7,7 @@ jimport('joomla.application.component.view');
 /**
  * View class for a list of Swa.
  */
-class SwaViewUniversity_Agreements extends JViewLegacy
+class SwaViewUniversityAgreements extends JViewLegacy
 {
 	protected $items;
 
@@ -31,7 +31,7 @@ class SwaViewUniversity_Agreements extends JViewLegacy
 		}
 
 		require_once JPATH_COMPONENT . '/helpers/swa.php';
-		SwaHelper::addSubmenu('university_agreements');
+		SwaHelper::addSubmenu('universityagreements');
 
 		$this->addToolbar();
 
@@ -47,24 +47,24 @@ class SwaViewUniversity_Agreements extends JViewLegacy
 	{
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title(JText::_('University agreements title'), 'university_agreements.png');
+		JToolBarHelper::title(JText::_('University agreements title'), 'universityagreements.png');
 
 		// Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university_agreement';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/universityagreement';
 		if (file_exists($formPath))
 		{
 			if ($canDo->get('core.create'))
 			{
-				JToolBarHelper::addNew('university_agreement.add', 'JTOOLBAR_NEW');
+				JToolBarHelper::addNew('universityagreement.add', 'JTOOLBAR_NEW');
 			}
 
 			if ($canDo->get('core.edit') && isset($this->items[0]))
 			{
-				JToolBarHelper::editList('university_agreement.edit', 'JTOOLBAR_EDIT');
+				JToolBarHelper::editList('universityagreement.edit', 'JTOOLBAR_EDIT');
 			}
 		}
 
-		JToolBarHelper::deleteList('', 'university_agreement.delete', 'JTOOLBAR_DELETE');
+		JToolBarHelper::deleteList('', 'universityagreement.delete', 'JTOOLBAR_DELETE');
 
 		if ($canDo->get('core.admin'))
 		{
@@ -72,7 +72,7 @@ class SwaViewUniversity_Agreements extends JViewLegacy
 		}
 
 		// Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction('index.php?option=com_swa&view=university_agreement');
+		JHtmlSidebar::setAction('index.php?option=com_swa&view=universityagreement');
 
 		$this->extra_sidebar = '';
 

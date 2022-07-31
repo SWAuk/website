@@ -61,7 +61,7 @@ class SwaHelper
 			'index.php?option=com_swa&view=individualresults', $vName == 'individualresults');
 
 		JHtmlSidebar::addEntry(	JText::_('University Agreements'),
-			'index.php?option=com_swa&view=university_agreements', $vName == 'university_agreements');
+			'index.php?option=com_swa&view=universityagreements', $vName == 'universityagreements');
 
 	}
 

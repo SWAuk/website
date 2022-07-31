@@ -112,7 +112,7 @@
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/TeamResults">
 				COM_SWA_TITLE_TEAMRESULTS
 			</menu>
-			<menu link="option=com_swa&amp;view=university_agreements" view="university_agreements"
+			<menu link="option=com_swa&amp;view=universityagreements" view="university_agreements"
 				  img="components/com_swa/assets/images/s_default.png"
 				  alt="Swa/UniversityAgreements">
 				COM_SWA_TITLE_UNIVERSITY_AGREEMENTS

@@ -19,13 +19,13 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 	});
 
 	Joomla.submitbutton = function (task) {
-		if (task == 'university_agreement.cancel') {
-			Joomla.submitform(task, document.getElementById('university_agreement-form'));
+		if (task == 'universityagreement.cancel') {
+			Joomla.submitform(task, document.getElementById('universityagreement-form'));
 		}
 		else {
 
-			if (task != 'university_agreement.cancel' && document.formvalidator.isValid(document.id('university_agreement-form'))) {
-				Joomla.submitform(task, document.getElementById('university_agreement-form'));
+			if (task != 'universityagreement.cancel' && document.formvalidator.isValid(document.id('universityagreement-form'))) {
+				Joomla.submitform(task, document.getElementById('universityagreement-form'));
 			}
 			else {
 				alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')); ?>');

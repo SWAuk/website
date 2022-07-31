@@ -40,7 +40,7 @@ if (!empty($this->extra_sidebar)) {
 }
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_swa&view=university_agreements'); ?>" method="post"
+<form action="<?php echo JRoute::_('index.php?option=com_swa&view=universityagreements'); ?>" method="post"
 	  name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar)) :
 	?>
@@ -121,7 +121,7 @@ if (!empty($this->extra_sidebar)) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="university_agreements_list">
+			<table class="table table-striped" id="universityagreements_list">
 				<thead>
 				<tr>
 					<?php if (isset($this->items[0]->ordering)) :
@@ -203,7 +203,8 @@ if (!empty($this->extra_sidebar)) {
 				<?php
 				if (isset($this->items[0])) {
 					$colspan = count(get_object_vars($this->items[0]));
-				} else {
+				}
+else {
 					$colspan = 10;
 				}
 				?>
@@ -269,7 +270,7 @@ if (!empty($this->extra_sidebar)) {
 							<?php echo $this->escape($item->override); ?>
 						</td>
 						<td class="center hidden-phone">
-							<?php echo (int)$item->id; ?>
+							<?php echo (int) $item->id; ?>
 						</td>
 					</tr>
 				<?php endforeach; ?>
