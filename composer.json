@@ -47,7 +47,7 @@
 		]
 	},
 	"require": {
-		"stripe/stripe-php": "7.67.*"
+		"stripe/stripe-php": "^8.10"
 	},
 	"require-dev": {
 		"php-parallel-lint/php-parallel-lint": "^1.2",
