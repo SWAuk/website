@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+    <field
+        name="message"
+        type="text"
+        label="Enter message"
+        size="40"
+        class="inputbox"
+        required="true" />
+    <field name="email"
+           type="email"
+           label="Enter email"
+           required="true"
+           size="40"
+           class="inputbox" />
+    <field name="telephone"
+           type="tel"
+           label="Enter telephone number"
+           required="true"
+           size="40"
+           class="inputbox"
+           validate="tel" />
+    </fieldset>
+</form>
