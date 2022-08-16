@@ -69,9 +69,14 @@ docker run --rm -it -v %CD%:/app composer <command here>
 
 ### Install composer dependencies
 
+#### Before installing dependencies, you need to install an APT package to decrypt the template file.
+```sh
+docker-compose exec joomla /bin/bash -c "apt-get update && apt-get -y install p7zip*
+```
 ```sh
 composer install
 ```
+>**Note**: The password to decrypt the template is Taffys first name.
 
 If you are having issues with installing dependency versions, use the following command:
 ```sh
