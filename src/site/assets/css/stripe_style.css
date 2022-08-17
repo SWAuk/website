@@ -63,7 +63,7 @@ input {
 }
 /* Buttons and links */
 .stripe-button {
-	background: #5469d4;
+	background: #0381d5;
 	color: #ffffff;
 	font-family: Arial, sans-serif;
 	border-radius: 0 0 4px 4px;
@@ -76,6 +76,9 @@ input {
 	transition: all 0.2s ease;
 	box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
 	width: 100%;
+}
+.stripe-button > span {
+	color: #FFF;
 }
 .stripe-button:hover {
 	filter: contrast(115%);

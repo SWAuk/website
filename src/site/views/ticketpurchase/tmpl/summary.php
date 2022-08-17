@@ -24,6 +24,7 @@ $ticket = null;
 $ticketId = $app->input->getString('ticketId');
 
 $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
+$document->addStyleSheet('components/com_swa/assets/css/simple_grid.css');
 
 foreach ($this->items as $item) {
 	if ($item->id == $ticketId) {
@@ -220,74 +221,53 @@ if ($ticket == null) {
 <style>
 
 	.loader {
-		display: flex;
-		padding: 5rem;
-		justify-content: flex-end;
-		width: 60px;
-		height: 40px;
-		position: relative;
+		margin: 100px auto 0;
+		width: 70px;
+		text-align: center;
+		align-self: center;
+		margin-left: 48.5%;
+	}
+
+	.loader > div {
+		width: 18px;
+		height: 18px;
+		background-color: #1271b0;
+
+		border-radius: 100%;
 		display: inline-block;
-		--base-color: #FFF; /*use your base color*/
+		-webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+		animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 	}
 
-	.loader::before {
-		content: '';
-		left: 0;
-		top: 0;
-		position: absolute;
-		width: 36px;
-		height: 36px;
-		border-radius: 50%;
-		background-color: #000000;
-		background-image: radial-gradient(circle 8px at 18px 18px,
-		var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 18px 0px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 0px 18px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 36px 18px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 18px 36px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 30px 5px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 30px 5px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 30px 30px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 5px 30px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 4px at 5px 5px, var(--base-color) 100%, transparent 0);
-		background-repeat: no-repeat;
-		box-sizing: border-box;
-		animation: rotationBack 3s linear infinite;
+	.loader .bounce1 {
+		-webkit-animation-delay: -0.32s;
+		animation-delay: -0.32s;
 	}
 
-	.loader::after {
-		content: '';
-		left: 35px;
-		top: 15px;
-		position: absolute;
-		width: 24px;
-		height: 24px;
-		border-radius: 50%;
-		background-color: #000000;
-		background-image: radial-gradient(circle 5px at 12px 12px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 12px 0px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 0px 12px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 24px 12px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 12px 24px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 20px 3px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 20px 3px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 20px 20px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 3px 20px, var(--base-color) 100%, transparent 0),
-		radial-gradient(circle 2.5px at 3px 3px, var(--base-color) 100%, transparent 0);
-		background-repeat: no-repeat;
-		box-sizing: border-box;
-		animation: rotationBack 4s linear infinite reverse;
+	.loader .bounce2 {
+		-webkit-animation-delay: -0.16s;
+		animation-delay: -0.16s;
 	}
 
-	@keyframes rotationBack {
-		0% {
-			transform: rotate(0deg);
+	@-webkit-keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0)
 		}
-		100% {
-			transform: rotate(-360deg);
+		40% {
+			-webkit-transform: scale(1.0)
 		}
 	}
 
+	@keyframes sk-bouncedelay {
+		0%, 80%, 100% {
+			-webkit-transform: scale(0);
+			transform: scale(0);
+		}
+		40% {
+			-webkit-transform: scale(1.0);
+			transform: scale(1.0);
+		}
+	}
 
 	h1 {
 		text-align: center;
@@ -316,16 +296,16 @@ if ($ticket == null) {
 
 	.button {
 		padding: 0.7rem 1.5rem;
-		border: 1px solid #4361ee;
-		background-color: #4361ee;
+		border: 1px solid #1271b0;
+		background-color: #1271b0;
 		color: #fff;
 		border-radius: 5px;
 		cursor: pointer;
 	}
 
 	.stripe-button-btn {
-		border: 1px solid #0e9594;
-		background-color: #0e9594;
+		border: 1px solid #1271b0;
+		background-color: #1271b0;
 	}
 
 	.mt-3 {
@@ -413,7 +393,7 @@ if ($ticket == null) {
 	}
 
 	.form-stepper-horizontal li.form-stepper-completed:after {
-		background-color: #4da3ff;
+		background-color: #1271b0;
 	}
 
 	.form-stepper-horizontal li:last-child {
@@ -432,7 +412,7 @@ if ($ticket == null) {
 	}
 
 	.form-stepper .form-stepper-active .form-stepper-circle {
-		background-color: #4361ee !important;
+		background-color: #0c7edc !important;
 		color: #fff;
 	}
 
@@ -441,16 +421,16 @@ if ($ticket == null) {
 	}
 
 	.form-stepper .form-stepper-active .form-stepper-circle:hover {
-		background-color: #4361ee !important;
+		background-color: #22a8ff !important;
 		color: #fff !important;
 	}
 
 	.form-stepper .form-stepper-unfinished .form-stepper-circle {
-		background-color: #f8f7ff;
+		background-color: #6bc2fc;
 	}
 
 	.form-stepper .form-stepper-completed .form-stepper-circle {
-		background-color: #0e9594 !important;
+		background-color: #1271b0 !important;
 		color: #fff;
 	}
 
@@ -458,7 +438,7 @@ if ($ticket == null) {
 	/*	color: grey !important;*/
 	/*}*/
 	.form-stepper .form-stepper-completed .form-stepper-circle:hover {
-		background-color: #0e9594 !important;
+		background-color: #1271b0 !important;
 		color: #fff !important;
 	}
 
@@ -482,7 +462,7 @@ if ($ticket == null) {
 </style>
 
 <div>
-	<h1>Checkout</h1>
+	<h1 style="text-align: left">Checkout</h1>
 	<div id="multi-step-form-container">
 		<!-- Form Steps / Progress Bar -->
 		<ul class="form-stepper form-stepper-horizontal text-center mx-auto pl-0">
@@ -603,7 +583,11 @@ if ($ticket == null) {
 			</section>
 			<!-- Step 2 Content, default hidden on page load. -->
 			<section id="step-2" class="d-none">
-				<span class="loader" id="loader"></span>
+				<div id="loader" class="loader">
+					<div class="bounce1"></div>
+					<div class="bounce2"></div>
+					<div class="bounce3"></div>
+				</div>
 			</section>
 			<!-- Step 3 Content, default hidden on page load. -->
 			<section id="step-3" class="form-step d-none">
@@ -624,21 +608,24 @@ if ($ticket == null) {
 				</form>
 
 				<div class="mt-3">
-					<div class="col">
-						<div class="row-6">
+					<!--					<div class="container" style="align-items: right">-->
+					<div class="" style="display: flex; justify-content: flex-end">
+						<div style="position: sticky; right: 4rem">
+						<div style="display: inline-block; margin: 6px;">
 							<button id="edit_order_button" class="stripe-button" step_number="1">
 								Cancel
 							</button>
 						</div>
-						<div class="row-6">
-
+						<div style="display: inline-block; margin: 6px">
 							<button class="stripe-button" id="stripe-button">
 								<div class="spinner hidden" id="spinner"></div>
 								<span id="payment-button-text">Pay</span>
 							</button>
 						</div>
-
+						</div>
 					</div>
+
+					<!--					</div>-->
 				</div>
 			</section>
 		</form>
@@ -656,10 +643,8 @@ if ($ticket == null) {
 
 	var processOrder = async function (paymentIntentId) {
 		loading(true);
-		console.log("processing order");
-		console.log(paymentIntentId);
 		document.querySelector(".result-message").classList.remove("hidden");
-		document.querySelector("#stripe-button").disabled = true;
+		document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = true);
 		var result = await fetch("<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
 			method: "POST",
 			headers: {
@@ -671,26 +656,22 @@ if ($ticket == null) {
 		});
 		if (result.ok) {
 			var response = await result.json();
-			console.log(response)
 			if (response.messages) {
 				Joomla.renderMessages(response.messages);
 			}
 			if (response.success) {
-				console.log("payment success");
 				window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
 			} else {
-				console.log("payment failure");
 				showError(response.message);
 				console.error(response.message);
 				document.querySelector(".result-message").classList.add("hidden");
 				stripButtonPermanentDisable = true;
-				document.querySelector("#stripe-button").disabled = true;
+				document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = true);
 			}
 		} else {
-			console.log("result not okay");
 			var text = await result.text();
 			stripButtonPermanentDisable = true;
-			document.querySelector("#stripe-button").disabled = true;
+			document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = true);
 			Joomla.renderMessages({
 				"error": [text]
 			});
@@ -713,11 +694,11 @@ if ($ticket == null) {
 	var loading = function (isLoading) {
 		if (isLoading) {
 			// Disable the button and show a spinner
-			document.querySelector("#stripe-button").disabled = true;
+			document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = true);
 			document.querySelector("#spinner").classList.remove("hidden");
 			document.querySelector("#payment-button-text").classList.add("hidden");
 		} else {
-			document.querySelector("#stripe-button").disabled = false;
+			document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = false);
 			document.querySelector("#spinner").classList.add("hidden");
 			document.querySelector("#payment-button-text").classList.remove("hidden");
 		}
@@ -726,8 +707,6 @@ if ($ticket == null) {
 	var payment_result;
 	var elements;
 	var response;
-
-	console.log("Functions initialised");
 
 	async function createPaymentIntent(addons) {
 		const response = await fetch("<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase.createPaymentIntent') ?>", {
@@ -749,24 +728,19 @@ if ($ticket == null) {
 		event.preventDefault();
 
 		document.getElementById("loader").classList.remove("hidden");
-		console.log("Will navigate to step 2");
 
 		const stepNumber = parseInt(confirm_order.getAttribute("step_number"));
 		navigateToFormStep(stepNumber);
 
-		console.log("Getting intent");
 		var addons = $generateAddonsArray();
 		intent = await createPaymentIntent(addons);
-		console.log("Got intent");
 		//update intent here
 		if (intent.ok) {
 			response = await intent.json();
-			console.log(response)
 			if (response.messages) {
 				Joomla.renderMessages(response.messages);
 			}
 			if (response.success) {
-				console.log("Response is okay");
 				///loading in checkout
 				const options = {
 					clientSecret: response.data.clientSecret, //todo add extra error reporting
@@ -776,18 +750,14 @@ if ($ticket == null) {
 
 				// Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 2
 				elements = stripe.elements(options);
-				console.log("loading elements");
 
 				// Create and mount the Payment Element
 				const paymentElement = elements.create('payment');
-				console.log("creating payment");
 
 				paymentElement.mount('#payment-element');
 
 				//create intent and mount
 				document.getElementById("loader").classList.add("hidden");
-				console.log(parseInt(confirm_order.getAttribute("step_number")) + 1);
-				console.log("Will navigate to step " + (stepNumber + 1));
 				navigateToFormStep(stepNumber + 1);
 			} else {
 				showError(response.message);
@@ -802,7 +772,6 @@ if ($ticket == null) {
 	});
 
 	edit_order.addEventListener("click", function (event) {
-		console.log("Will navigate to step 1");
 		event.preventDefault();
 		const stepNumber = parseInt(edit_order.getAttribute("step_number"));
 		navigateToFormStep(stepNumber);
@@ -813,16 +782,13 @@ if ($ticket == null) {
 		loading(true)
 		event.preventDefault();
 
-		console.log("starting payment");
 		//actually perform the payment
-
 		const {error} = await stripe.confirmPayment({
 			//`Elements` instance that was used to create the Payment Element
 			elements,
 			confirmParams: {return_url: 'https://swa.co.uk',}, redirect: 'if_required'
 		});
 
-		console.log("payment confirmed");
 		if (error) {
 			// This point will only be reached if there is an immediate error when
 			// confirming the payment. Show error to your customer (for example, payment
@@ -830,7 +796,6 @@ if ($ticket == null) {
 			const messageContainer = document.querySelector('#error-message');
 			messageContainer.textContent = error.message;
 		} else {
-			console.log("starting process");
 			processOrder(response.data.intentId);
 		}
 
