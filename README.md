@@ -58,13 +58,13 @@ The easiest way to use `composer` to install the required libs is via the offici
 For linux and bashy systems that would be:
 
 ```sh
-docker run --rm -it -v $PWD:/app composer <command here>
+docker run --env-file ./.env --rm -it -v $PWD:/app composer <command here>
 ```
 
 If you are on windows using CMD that would be:
 
 ```sh
-docker run --rm -it -v %CD%:/app composer <command here>
+docker run --env-file ./.env --rm -it -v %CD%:/app composer <command here>
 ```
 
 ### Install composer dependencies
@@ -80,7 +80,7 @@ composer install
 
 If you are having issues with installing dependency versions, use the following command:
 ```sh
-docker run --rm -it -v %CD%:/app composer install --ignore-platform-reqs
+docker run --env-file ./.env --rm -it -v %CD%:/app composer install --ignore-platform-reqs
 ```
 
 ### Runtime Errors

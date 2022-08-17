@@ -14,7 +14,7 @@ echo 'Fetching latest template'
 # https://www.matthuisman.nz/2019/01/download-google-drive-files-wget-curl.html
 export fileid=13gIz0RuwZDVffNu_Cjpz2qntkM0fkdW5
 curl --progress-bar -L -o favourite.tar.7z 'https://docs.google.com/uc?export=download&id='$fileid
-7z x favourite.tar.7z
+7z x favourite.tar.7z -p${TAFFYS_NAME}
 
 rm -rf ./.docker/www/templates/favourite
 mkdir -p ./.docker/www/templates/favourite
