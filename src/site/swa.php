@@ -56,7 +56,7 @@ require_once __DIR__ . '/ModelForm.php';
 require_once __DIR__ . '/libraries/stripe/init.php';
 $jconfig = JFactory::getConfig();
 \Stripe\Stripe::setApiKey($jconfig->get('stripe_secret_key'));
-\Stripe\Stripe::setApiVersion("2017-05-25");
+\Stripe\Stripe::setApiVersion("2022-08-01");
 
 // Execute the task.
 $controller = JControllerLegacy::getInstance('Swa');

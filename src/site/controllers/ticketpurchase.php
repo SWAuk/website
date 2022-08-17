@@ -137,6 +137,7 @@ class SwaControllerTicketPurchase extends SwaController
 		$details = json_encode($details, JSON_UNESCAPED_SLASHES);
 		try {
 			$paymentIntent = \Stripe\PaymentIntent::create([
+				'automatic_payment_methods' => ['enabled' => true],
 				'description'          => $ticket->event_name . ' - ' . $ticket->ticket_name,
 				// Stripe amount is in pence
 				'amount'               => $totalCost * 100,
@@ -154,6 +155,7 @@ class SwaControllerTicketPurchase extends SwaController
 			]);
 			$output = [
 				'clientSecret' => $paymentIntent->client_secret,
+				'intentId' => $paymentIntent->id
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 		}
@@ -204,10 +206,15 @@ class SwaControllerTicketPurchase extends SwaController
 		$app = JFactory::getApplication();
 		$jinput = $this->input->json;
 		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
-		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+		try {
+			$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
+		}
+catch (\Stripe\Exception\ApiErrorException $e) {
+			JLog::add("Error handling payment intent: " . $paymentIntentId . ". Full error: " . $e->getMessage());
+		}
 
 		if ($paymentIntent->status != 'succeeded') {
-			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from 
+			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			 and a ticket was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
@@ -243,7 +250,7 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if ($result === false) {
 			JLog::add(
-				"Ticket paid for but failed to add ticket db. Member ID: {$memberId}. 
+				"Ticket paid for but failed to add ticket db. Member ID: {$memberId}.
 				Event Ticket ID: {$eventTicketId}. Details: {$details}",
 				JLog::ERROR,
 				'com_swa.payment_process'
@@ -287,7 +294,7 @@ class SwaControllerTicketPurchase extends SwaController
 
 		if ($result === false) {
 			JLog::add(
-				"Ticket processed but failed to add ticket to the db. Member ID: {$memberId}. 
+				"Ticket processed but failed to add ticket to the db. Member ID: {$memberId}.
 				Event Ticket ID: {$eventTicketId}. Details: {$tixDetails}",
 				JLog::ERROR,
 				'com_swa.payment_process'
