@@ -591,6 +591,7 @@ if ($ticket == null) {
 			</section>
 			<!-- Step 3 Content, default hidden on page load. -->
 			<section id="step-3" class="form-step d-none">
+				<!--STRIPE PAYMENT DOM-->
 				<form id="payment-form" data-secret="" method="POST" enctype="multipart/form-data">
 
 					<div id="payment-element">
@@ -606,33 +607,32 @@ if ($ticket == null) {
 						Processing order, please do not navigate away from this page...
 					</p>
 				</form>
+				<!--END STRIPE PAYMENT DOM-->
+
 
 				<div class="mt-3">
-					<!--					<div class="container" style="align-items: right">-->
 					<div class="" style="display: flex; justify-content: flex-end">
 						<div style="position: sticky; right: 4rem">
-						<div style="display: inline-block; margin: 6px;">
-							<button id="edit_order_button" class="stripe-button" step_number="1">
-								Cancel
-							</button>
-						</div>
-						<div style="display: inline-block; margin: 6px">
-							<button class="stripe-button" id="stripe-button">
-								<div class="spinner hidden" id="spinner"></div>
-								<span id="payment-button-text">Pay</span>
-							</button>
-						</div>
+							<div style="display: inline-block; margin: 6px;">
+								<button id="edit_order_button" class="stripe-button" step_number="1">
+									Cancel
+								</button>
+							</div>
+							<div style="display: inline-block; margin: 6px">
+								<button class="stripe-button" id="stripe-button">
+									<div class="spinner hidden" id="spinner"></div>
+									<span id="payment-button-text">Pay</span>
+								</button>
+							</div>
 						</div>
 					</div>
-
-					<!--					</div>-->
 				</div>
 			</section>
 		</form>
 	</div>
 </div>
 
-
+<!-- PAYMENT UTILS -->
 <script type="text/javascript">
 	// A reference to Stripe.js initialized with the publishable API key loaded from the Joomla configuration.php file.
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
@@ -641,11 +641,11 @@ if ($ticket == null) {
 	var edit_order = document.getElementById("edit_order_button");
 	var pay_order = document.getElementById("stripe-button");
 
-	var processOrder = async function (paymentIntentId) {
+	var processOrder = async function (action, redirect_route, paymentIntentId) {
 		loading(true);
 		document.querySelector(".result-message").classList.remove("hidden");
 		document.querySelectorAll(".stripe-button").forEach((e) => e.disabled = true);
-		var result = await fetch("<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase.addTicketToDb') ?>", {
+		var result = await fetch(action, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -660,7 +660,7 @@ if ($ticket == null) {
 				Joomla.renderMessages(response.messages);
 			}
 			if (response.success) {
-				window.location.href = "<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>";
+				window.location.href = redirect_route;
 			} else {
 				showError(response.message);
 				console.error(response.message);
@@ -685,7 +685,7 @@ if ($ticket == null) {
 
 	var showError = function (errorMsgText) {
 		loading(false);
-		var errorMsg = document.querySelector("#card-error");
+		var errorMsg = document.querySelector("#error-message");
 		errorMsg.textContent = errorMsgText;
 		setTimeout(function () {
 			errorMsg.textContent = "";
@@ -722,6 +722,33 @@ if ($ticket == null) {
 		});
 		return response;
 	}
+
+	// Complete payment when the stripe-button button is clicked
+	pay_order.addEventListener("click", async function (event) {
+		loading(true)
+		event.preventDefault();
+
+		//actually perform the payment
+		const {error} = await stripe.confirmPayment({
+			//`Elements` instance that was used to create the Payment Element
+			elements,
+			confirmParams: {return_url: 'https://swa.co.uk',}, redirect: 'if_required'
+		});
+
+		if (error) {
+			// This point will only be reached if there is an immediate error when
+			// confirming the payment. Show error to your customer (for example, payment
+			// details incomplete)
+			showError(error.message);
+		} else {
+			processOrder("<?php echo JRoute::_('index.php?option=com_swa&task=ticketpurchase.addTicketToDb') ?>",
+				"<?php echo JRoute::_('index.php?option=com_swa&view=membertickets') ?>",
+				response.data.intentId);
+		}
+
+	});
+
+	// END PAYMENT UTILS //
 
 	//move the user to step 2 in the multistep form. We will make the intent then allow them to continue
 	confirm_order.addEventListener("click", async function (event) {
@@ -777,27 +804,5 @@ if ($ticket == null) {
 		navigateToFormStep(stepNumber);
 	});
 
-	// Complete payment when the stripe-button button is clicked
-	pay_order.addEventListener("click", async function (event) {
-		loading(true)
-		event.preventDefault();
 
-		//actually perform the payment
-		const {error} = await stripe.confirmPayment({
-			//`Elements` instance that was used to create the Payment Element
-			elements,
-			confirmParams: {return_url: 'https://swa.co.uk',}, redirect: 'if_required'
-		});
-
-		if (error) {
-			// This point will only be reached if there is an immediate error when
-			// confirming the payment. Show error to your customer (for example, payment
-			// details incomplete)
-			const messageContainer = document.querySelector('#error-message');
-			messageContainer.textContent = error.message;
-		} else {
-			processOrder(response.data.intentId);
-		}
-
-	});
 </script>

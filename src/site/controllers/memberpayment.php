@@ -57,6 +57,7 @@ class SwaControllerMemberPayment extends SwaController
 			);
 			$output = [
 				'clientSecret' => $paymentIntent->client_secret,
+				'intentId' => $paymentIntent->id
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 			jexit();
@@ -85,7 +86,7 @@ class SwaControllerMemberPayment extends SwaController
 		$member_id = $member->id;
 
 		if ($paymentIntent->status != 'succeeded') {
-			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from 
+			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			and membership was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');

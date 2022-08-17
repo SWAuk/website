@@ -28,19 +28,28 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 <h1>Membership Payment</h1>
 
 <script src="https://js.stripe.com/v3/"></script>
-<form id="payment-form" method="POST" enctype="multipart/form-data">
-	<div id="card-element">
-		<!--Stripe.js injects the Card Element-->
+<form id="payment-form" data-secret="" method="POST" enctype="multipart/form-data">
+
+	<div id="payment-element">
+		<!-- Elements will create form elements here -->
 	</div>
-	<button id="stripe-button">
-		<div class="spinner hidden" id="spinner"></div>
-		<span id="button-text">Pay</span>
-	</button>
-	<p id="card-error" role="alert"></p>
+
+
+	<div id="error-message">
+		<!-- Display error message to your customers here -->
+	</div>
+
 	<p class="result-message hidden">
 		Processing order, please do not navigate away from this page...
 	</p>
-	<h2 id="payment-total">Total: 5 GBP</h2>
+	<div style="margin-top: 4rem">
+					<button class="stripe-button" disabled="true" id="stripe-button">
+						<div class="spinner hidden" id="spinner"></div>
+						<span id="payment-button-text">Pay</span>
+					</button>
+		</div>
+
+		<h2 id="payment-total">Total: 5 GBP</h2>
 </form>
 
 
@@ -49,98 +58,86 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 	// A reference to Stripe.js initialized with your real test publishable API key.
 	var stripe = Stripe("<?php echo $jConfig->get('stripe_publishable_key'); ?>");
 	var stripButtonPermanentDisable = false;
+	var paymentRequest;
+	var intent;
+	var payment_result;
+	var elements;
+	var response;
 
-	// Disable the button until we have Stripe set up on the page
-	document.querySelector("#stripe-button").disabled = true;
-
-	var elements = stripe.elements();
-	var style = {
-		base: {
-			color: "#32325d",
-			fontFamily: 'Arial, sans-serif',
-			fontSmoothing: "antialiased",
-			fontSize: "16px",
-			"::placeholder": {
-				color: "#32325d"
-			}
-		},
-		invalid: {
-			fontFamily: 'Arial, sans-serif',
-			color: "#fa755a",
-			iconColor: "#fa755a"
+	jQuery(window).on('load', async function () {
+		//This is slightly different as the endpoint is different.
+		async function createPaymentIntent() {
+			const response = await fetch("<?php echo JRoute::_('index.php?option=com_swa&task=memberpayment.createPaymentIntent') ?>");
+			return response;
 		}
-	};
-	var card = elements.create("card", {
-		style: style
-	});
-	// Stripe injects an iframe into the DOM
-	card.mount("#card-element");
-	card.on("change", function(event) {
-		// Disable the Pay button if there are no card details in the Element
-		document.querySelector("#stripe-button").disabled = event.empty || stripButtonPermanentDisable;
-		document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
-	});
 
-	fetch("<?php echo JRoute::_('index.php??option=com_swa&task=memberpayment.createPaymentIntent') ?>")
-		.then(function(result) {
-			if (result.ok) {
-				return result.json().then(function(response) {
-					console.log(response)
-					if (response.messages) {
-						Joomla.renderMessages(response.messages);
-					}
-					if (response.success) {
-						var form = document.getElementById("payment-form");
-						form.addEventListener("submit", function(event) {
-							event.preventDefault();
-							// Complete payment when the submit button is clicked
-							payWithCard(stripe, card, response.data.clientSecret);
-						});
-					} else {
-						showError(response.message);
-						console.error(response.message);
-						stripButtonPermanentDisable = true;
-						document.querySelector("#stripe-button").disabled = true;
-					}
-				})
-			} else {
-				stripButtonPermanentDisable = true
-				document.querySelector("#stripe-button").disabled = true;
-				return result.text().then(text => {
-					Joomla.renderMessages({"error": [text]
-					});
-				})
+		// Disable the button until we have Stripe set up on the page
+		intent = await createPaymentIntent();
+		//update intent here
+		if (intent.ok) {
+			response = await intent.json();
+			if (response.messages) {
+				Joomla.renderMessages(response.messages);
 			}
+			if (response.success) {
+				///loading in checkout
+				const options = {
+					clientSecret: response.data.clientSecret, //todo add extra error reporting
+					// Fully customizable with appearance API.
+					appearance: {/*...*/},
+				};
+
+				// Set up Stripe.js and Elements to use in checkout form, passing the client secret obtained in step 2
+				elements = stripe.elements(options);
+
+				// Create and mount the Payment Element
+				const paymentElement = elements.create('payment');
+				paymentElement.mount('#payment-element');
+				document.querySelector("#stripe-button").disabled = false;
+			} else {
+				showError(response.message);
+				console.error(response.message);
+			}
+		} else {
+			console.log("intent is not okay");
+			var text = await intent.text();
+			Joomla.renderMessages({
+				"error": [text]
+			});
+		}
+
+
+		var pay_order = document.getElementById("stripe-button")
+		// Complete payment when the stripe-button button is clicked
+		pay_order.addEventListener("click", async function (event) {
+			loading(true)
+			event.preventDefault();
+			//actually perform the payment
+			const {error} = await stripe.confirmPayment({
+				//`Elements` instance that was used to create the Payment Element
+				elements,
+				confirmParams: {return_url: 'https://swa.co.uk',}, redirect: 'if_required'
+			});
+
+			if (error) {
+				// This point will only be reached if there is an immediate error when
+				// confirming the payment. Show error to your customer (for example, payment
+				// details incomplete)
+				showError(error.message);
+			} else {
+				processOrder("<?php echo JRoute::_('index.php??option=com_swa&task=memberpayment.setMemberPaid') ?>",
+					"<?php echo JRoute::_('index.php?option=com_swa') ?>",
+					response.data.intentId);
+			}
+
 		});
 
-	// Calls stripe.confirmCardPayment
-	// If the card requires authentication Stripe shows a pop-up modal to
-	// prompt the user to enter authentication details without leaving your page.
-	var payWithCard = function(stripe, card, clientSecret) {
-		loading(true);
-		stripe
-			.confirmCardPayment(clientSecret, {
-				payment_method: {
-					card: card
-				}
-			})
-			.then(function(result) {
-				if (result.error) {
-					// Show error to your customer
-					showError(result.error.message);
-				} else {
-					// The payment succeeded!
-					processOrder(result.paymentIntent.id);
-				}
-			});
-	};
-	/* ------- UI helpers ------- */
-	// Shows a success message when the payment is complete
-	var processOrder = function(paymentIntentId) {
-		loading(true);
-		document.querySelector(".result-message").classList.remove("hidden");
-		document.querySelector("#stripe-button").disabled = true;
-		fetch("<?php echo JRoute::_('index.php??option=com_swa&task=memberpayment.setMemberPaid') ?>", {
+
+		var processOrder = async function (action, redirect_route, paymentIntentId) {
+			loading(true);
+			document.querySelector(".result-message").classList.remove("hidden");
+			document.querySelector("#stripe-button").disabled = true;
+			var result = await fetch(action, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json"
@@ -148,58 +145,60 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 				body: JSON.stringify({
 					paymentIntentId: paymentIntentId,
 				})
-			})
-			.then(function(result) {
-				if (result.ok) {
-					return result.json().then(function(response) {
-						console.log(response)
-						if (response.messages) {
-							Joomla.renderMessages(response.messages);
-						}
-						if (response.success) {
-							window.location.href = "<?php echo JRoute::_('index.php?option=com_swa') ?>";
-						} else {
-							showError(response.message);
-							console.error(response.message);
-							document.querySelector(".result-message").classList.add("hidden");
-							stripButtonPermanentDisable = true;
-							document.querySelector("#stripe-button").disabled = true;
-						}
-					})
-				} else {
-					return result.text().then(text => {
-						stripButtonPermanentDisable = false;
-						document.querySelector("#stripe-button").disabled = true;
-						Joomla.renderMessages({"error": [text]});
-						msg = "Order Failed. You may have lost connection. \n\r Please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> "
-						msg += "if your bank shows you have been charged for this transaction. Otherwise, please try again."
-						Joomla.renderMessages({"error": [msg]});
-					})
-				}
 			});
-	};
-	// Show the customer the error from Stripe if their card fails to charge
-	var showError = function(errorMsgText) {
-		loading(false);
-		var errorMsg = document.querySelector("#card-error");
-		errorMsg.textContent = errorMsgText;
-		setTimeout(function() {
-			errorMsg.textContent = "";
-		}, 4000);
-	};
-	// Show a spinner on payment submission
-	var loading = function(isLoading) {
-		if (isLoading) {
-			// Disable the button and show a spinner
-			document.querySelector("button").disabled = true;
-			document.querySelector("#spinner").classList.remove("hidden");
-			document.querySelector("#button-text").classList.add("hidden");
-		} else {
-			document.querySelector("button").disabled = false;
-			document.querySelector("#spinner").classList.add("hidden");
-			document.querySelector("#button-text").classList.remove("hidden");
-		}
-	};
+			if (result.ok) {
+				var response = await result.json();
+				if (response.messages) {
+					Joomla.renderMessages(response.messages);
+				}
+				if (response.success) {
+					window.location.href = redirect_route;
+				} else {
+					showError(response.message);
+					console.error(response.message);
+					document.querySelector(".result-message").classList.add("hidden");
+					stripButtonPermanentDisable = true;
+					document.querySelector("#stripe-button").disabled = true;
+
+				}
+			} else {
+				var text = await result.text();
+				stripButtonPermanentDisable = true;
+				document.querySelector("#stripe-button").disabled = true;
+				Joomla.renderMessages({
+					"error": [text]
+				});
+				msg = "Oops! You may have lost connection. \n\r Please check Account>My Tickets to see if the order went through. \r\n"
+				msg += "If it did not go through, and you have still been charged, please contact <a href='mailto:webmaster@swa.co.uk'>webmaster@swa.co.uk</a> to resolve this"
+				Joomla.renderMessages({
+					"error": [msg]
+				});
+			}
+		};
+
+		// Show the customer the error from Stripe if their card fails to charge
+		var showError = function (errorMsgText) {
+			loading(false);
+			var errorMsg = document.querySelector("#error-message");
+			errorMsg.textContent = errorMsgText;
+			setTimeout(function () {
+				errorMsg.textContent = "";
+			}, 4000);
+		};
+		// Show a spinner on payment submission
+		var loading = function (isLoading) {
+			if (isLoading) {
+				// Disable the button and show a spinner
+				document.querySelector("#stripe-button").disabled = true;
+				document.querySelector("#spinner").classList.remove("hidden");
+				document.querySelector("#payment-button-text").classList.add("hidden");
+			} else {
+				document.querySelector("#stripe-button").disabled = false;
+				document.querySelector("#spinner").classList.add("hidden");
+				document.querySelector("#payment-button-text").classList.remove("hidden");
+			}
+		};
+	});
 </script>
 
 <p>Note: If you have been redirected here after already paying try refreshing.</p>
