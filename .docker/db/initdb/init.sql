@@ -1978,16 +1978,24 @@ INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `d
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+										`id` int(11) NOT NULL AUTO_INCREMENT,
+										`name` varchar(200) NOT NULL,
+										`url` varchar(200) DEFAULT NULL,
+										`au_address` varchar(200) DEFAULT NULL,
+										`au_additional_address` varchar(200) DEFAULT NULL,
+										`au_postcode` varchar(10) DEFAULT NULL,
+										`club_email_1` varchar(100) DEFAULT NULL,
+										`club_email_2` varchar(100) DEFAULT NULL,
+										`club_contact_name` varchar(100) DEFAULT NULL,
+										`club_contact_method` varchar(25) DEFAULT NULL,
+										`club_contact_value` varchar(100) DEFAULT NULL,
+										PRIMARY KEY (`id`),
+										UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `swana_swa_university` (`id`, `name`, `url`) VALUES
-(1,	'University1',	''),
-(2,	'University2',	'');
+INSERT INTO `swana_swa_university` (`id`, `name`, `url`, `au_address`, `au_additional_address`, `au_postcode`, `club_email_1`, `club_email_2`, `club_contact_name`, `club_contact_method`, `club_contact_value`) VALUES
+(1,	'University1',	'',	'Ex quia quia ut tota',	'Fugit in ea qui odi',	'Et laborum',	'rylaqygov@mailinator.com',	'qokenu@mailinator.com',	'Hayfa Black',	'Email',	'jehuwe'),
+(2,	'University2',	'',	'testaddress',	'',	'testcode',	'testmail@mail.com',	'testmail@mail.com',	'testname',	'SMS',	'999');
 
 DROP TABLE IF EXISTS `swana_swa_university_member`;
 CREATE TABLE `swana_swa_university_member` (

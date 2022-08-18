@@ -61,7 +61,7 @@
                class="inputbox"
                label="Email 2"
                filter="safehtml"
-               required="true"
+               required="false"
         />
 
         <field name="club_email_2_confirm"
@@ -70,7 +70,7 @@
                class="inputbox"
                label="Confirm Email 2"
                filter="safehtml"
-               required="true"
+               required="false"
         />
 
         <field name="club_contact_name"
