@@ -128,7 +128,10 @@ $memberId = $this->get('Member')->id;
 			<td><?php echo $this->form->getInput('club_information_agree'); ?></td>
 		</tr>
 		<tr>
-			<td><?php echo $this->form->getLabel('club_agreements_agree'); ?></td>
+			<td>
+				<?php echo $this->form->getLabel('club_agreements_agree'); ?>
+				<p> You can view a copy of the agreement <a href="<?php echo JURI::base() . 'components/com_swa/assets/resources/swaterms.pdf' ?>">here</a></p>
+			</td>
 			<td><?php echo $this->form->getInput('club_agreements_agree'); ?></td>
 		</tr>
 		<tr>
@@ -139,11 +142,6 @@ $memberId = $this->get('Member')->id;
 			<td><label>Submitted by</label></td>
 			<td><?php echo $this->user->name; ?></td>
 		</tr>
-		<tr>
-			<td><?php echo $this->form->getLabel('id'); ?></td>
-			<td><?php echo $this->form->getInput('id'); ?></td>
-		</tr>
-
 
 		<tr>
 			<td>
