@@ -1362,10 +1362,11 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2208,	'main',	'COM_SWA_TITLE_UNIVERSITIES',	'com-swa-title-universities',	'',	'com-swa/com-swa-title-universities',	'index.php?option=com_swa&view=universities',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	228,	229,	0,	'',	1),
 (2209,	'main',	'COM_SWA_TITLE_SEASONS',	'com-swa-title-seasons',	'',	'com-swa/com-swa-title-seasons',	'index.php?option=com_swa&view=seasons',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	230,	231,	0,	'',	1),
 (2210,	'main',	'COM_SWA_TITLE_COMPETITIONS',	'com-swa-title-competitions',	'',	'com-swa/com-swa-title-competitions',	'index.php?option=com_swa&view=competitions',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	232,	233,	0,	'',	1),
-(2211,	'main',	'COM_SWA_TITLE_COMPETITIONTYPES',	'com-swa-title-competitiontypes',	'',	'com-swa/com-swa-title-competitiontypes',	'index.php?option=com_swa&view=competitiontypes',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	234,	235,	0,	'',	1),
+(2211,	'main',	'COM_SWA_TITLE_COMPETITIOTYPES',	'com-swa-title-competitiontypes',	'',	'com-swa/com-swa-title-competitiontypes',	'index.php?option=com_swa&view=competitiontypes',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	234,	235,	0,	'',	1),
 (2212,	'main',	'COM_SWA_TITLE_TEAMRESULTS',	'com-swa-title-teamresults',	'',	'com-swa/com-swa-title-teamresults',	'index.php?option=com_swa&view=teamresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	236,	237,	0,	'',	1),
 (2213,	'main',	'COM_SWA_TITLE_INDIVIDUALRESULTS',	'com-swa-title-individualresults',	'',	'com-swa/com-swa-title-individualresults',	'index.php?option=com_swa&view=individualresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	238,	239,	0,	'',	1),
 (2214,	'main',	'COM_AKEEBA',	'com-akeeba',	'',	'com-akeeba',	'index.php?option=com_akeeba',	'component',	1,	1,	1,	10015,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	241,	242,	0,	'',	1);
+(4785,	'main-nav-bar',	'Update Club Agreement',	'club-agreement',	'',	'club/agreement',	'index.php?option=com_swa&view=clubagreement',	'component',	1,	2458,	3,	10052,	14657,	'2022-05-21 13:35:23',	0,	1,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_image_css\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	151,	152,	0,	'*',	0);
 
 DROP TABLE IF EXISTS `swana_menu_types`;
 CREATE TABLE `swana_menu_types` (
@@ -1977,16 +1978,24 @@ INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `d
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+										`id` int(11) NOT NULL AUTO_INCREMENT,
+										`name` varchar(200) NOT NULL,
+										`url` varchar(200) DEFAULT NULL,
+										`au_address` varchar(200) DEFAULT NULL,
+										`au_additional_address` varchar(200) DEFAULT NULL,
+										`au_postcode` varchar(10) DEFAULT NULL,
+										`club_email_1` varchar(100) DEFAULT NULL,
+										`club_email_2` varchar(100) DEFAULT NULL,
+										`club_contact_name` varchar(100) DEFAULT NULL,
+										`club_contact_method` varchar(25) DEFAULT NULL,
+										`club_contact_value` varchar(100) DEFAULT NULL,
+										PRIMARY KEY (`id`),
+										UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `swana_swa_university` (`id`, `name`, `url`) VALUES
-(1,	'University1',	''),
-(2,	'University2',	'');
+INSERT INTO `swana_swa_university` (`id`, `name`, `url`, `au_address`, `au_additional_address`, `au_postcode`, `club_email_1`, `club_email_2`, `club_contact_name`, `club_contact_method`, `club_contact_value`) VALUES
+(1,	'University1',	'',	'Ex quia quia ut tota',	'Fugit in ea qui odi',	'Et laborum',	'rylaqygov@mailinator.com',	'qokenu@mailinator.com',	'Hayfa Black',	'Email',	'jehuwe'),
+(2,	'University2',	'',	'testaddress',	'',	'testcode',	'testmail@mail.com',	'testmail@mail.com',	'testname',	'SMS',	'999');
 
 DROP TABLE IF EXISTS `swana_swa_university_member`;
 CREATE TABLE `swana_swa_university_member` (
@@ -2364,3 +2373,29 @@ INSERT INTO `swana_viewlevels` (`id`, `title`, `ordering`, `rules`) VALUES
 (8,	'Org Committee',	0,	'[]');
 
 -- 2019-02-10 17:17:48
+
+
+DROP TABLE IF EXISTS `swana_university_agreements`;
+CREATE TABLE `swana_university_agreements` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `signed` BIT NOT NULL DEFAULT 0,
+  `date` DATE,
+  `university_id` int(11),
+  `member_id` int(11) COLLATE utf8mb4_unicode_ci,
+  `override` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `swana_university_agreements` (`id`,`signed`,`date`,`university_id`, `member_id`, `override`) VALUES
+(1 ,0 ,NULL,NULL,NULL, 0),
+(2 ,1 ,'2019-02-10',9 ,1,0);
+
+
+-- `signed`
+-- --'Whether the agreement has been signed'
+-- `date`
+-- -- 'The date the agreement was last signed'
+-- `member_id`
+-- -- 'The member that signed the agreement',
+-- override, the values this takes mean; 0=nothing, 1=give access, 2=remove access

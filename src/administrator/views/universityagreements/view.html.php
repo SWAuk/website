@@ -1,4 +1,5 @@
 <?php
+
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
@@ -6,7 +7,7 @@ jimport('joomla.application.component.view');
 /**
  * View class for a list of Swa.
  */
-class SwaViewUniversities extends JViewLegacy
+class SwaViewUniversityAgreements extends JViewLegacy
 {
 	protected $items;
 
@@ -30,7 +31,7 @@ class SwaViewUniversities extends JViewLegacy
 		}
 
 		require_once JPATH_COMPONENT . '/helpers/swa.php';
-		SwaHelper::addSubmenu('universities');
+		SwaHelper::addSubmenu('universityagreements');
 
 		$this->addToolbar();
 
@@ -46,24 +47,24 @@ class SwaViewUniversities extends JViewLegacy
 	{
 		$canDo = SwaHelper::getActions();
 
-		JToolBarHelper::title(JText::_('Universities'), 'universities.png');
+		JToolBarHelper::title(JText::_('University agreements title'), 'universityagreements.png');
 
 		// Check if the form exists before showing the add/edit buttons
-		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/university';
+		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/universityagreement';
 		if (file_exists($formPath))
 		{
 			if ($canDo->get('core.create'))
 			{
-				JToolBarHelper::addNew('university.add', 'JTOOLBAR_NEW');
+				JToolBarHelper::addNew('universityagreement.add', 'JTOOLBAR_NEW');
 			}
 
 			if ($canDo->get('core.edit') && isset($this->items[0]))
 			{
-				JToolBarHelper::editList('university.edit', 'JTOOLBAR_EDIT');
+				JToolBarHelper::editList('universityagreement.edit', 'JTOOLBAR_EDIT');
 			}
 		}
 
-		JToolBarHelper::deleteList('', 'universities.delete', 'JTOOLBAR_DELETE');
+		JToolBarHelper::deleteList('', 'universityagreement.delete', 'JTOOLBAR_DELETE');
 
 		if ($canDo->get('core.admin'))
 		{
@@ -71,7 +72,7 @@ class SwaViewUniversities extends JViewLegacy
 		}
 
 		// Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction('index.php?option=com_swa&view=universities');
+		JHtmlSidebar::setAction('index.php?option=com_swa&view=universityagreement');
 
 		$this->extra_sidebar = '';
 
@@ -82,15 +83,6 @@ class SwaViewUniversities extends JViewLegacy
 		return array(
 			'a.id'   => JText::_('JGRID_HEADING_ID'),
 			'a.name' => JText::_('Name'),
-			'a.url'  => JText::_('Url'),
-			'a.au_address'  => JText::_('au_address'),
-			'a.au_additional_address'  => JText::_('au_additional_address'),
-			'a.au_postcode'  => JText::_('au_postcode'),
-			'a.club_email_1'  => JText::_('club_email_1'),
-			'a.club_email_2'  => JText::_('club_email_2'),
-			'a.club_contact_name'  => JText::_('club_contact_name'),
-			'a.club_contact_method'  => JText::_('club_contact_method'),
-			'a.club_contact_value'  => JText::_('club_contact_value')
 		);
 	}
 

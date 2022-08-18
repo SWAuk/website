@@ -1,11 +1,11 @@
 <?php
+
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
 
-class SwaModelUniversities extends JModelList
+class SwaModelUniversityAgreements extends JModelList
 {
-
 	/**
 	 * @param   array $config An optional associative array of configuration settings.
 	 *
@@ -15,34 +15,16 @@ class SwaModelUniversities extends JModelList
 	{
 		if (empty($config['filter_fields']))
 		{
-			$config['filter_fields'] = [
+			$config['filter_fields'] = array(
 				'id',
 				'a.id',
-				'name',
-				'a.name',
-				'code',
-				'a.code',
-				'url',
-				'a.url',
-				'password',
-				'a.password',
-				'au_address',
-				'a.au_address',
-				'au_additional_address',
-				'a.au_additional_address',
-				'au_postcode',
-				'a.au_postcode',
-				'club_email_1',
-				'a.club_email_1',
-				'club_email_2',
-				'a.club_email_2',
-				'club_contact_name',
-				'a.club_contact_name',
-				'club_contact_method',
-				'a.club_contact_method',
-				'club_contact_value',
-				'a.club_contact_value',
-			];
+				'member_id',
+				'a.member_id',
+				'university_id',
+				'a.university_id',
+				'signed',
+				'a.signed',
+			);
 		}
 
 		parent::__construct($config);
@@ -96,7 +78,12 @@ class SwaModelUniversities extends JModelList
 				'DISTINCT a.*'
 			)
 		);
-		$query->from('`#__swa_university` AS a');
+		$query->from('`#__university_agreements` AS a');
+		$query->join('LEFT', '#__swa_member AS member ON member.id = a.member_id');
+		$query->join('LEFT', '#__users AS user ON user.id = member.user_id');
+		$query->join('LEFT', '#__swa_university AS university ON university.id = a.university_id');
+		$query->select('user.name AS user');
+		$query->select('university.name AS university_name');
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
@@ -105,11 +92,6 @@ class SwaModelUniversities extends JModelList
 			if (stripos($search, 'id:') === 0)
 			{
 				$query->where('a.id = ' . (int) substr($search, 3));
-			}
-			else
-			{
-				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where('( a.name LIKE ' . $search . ' OR  a.url LIKE ' . $search . ' )');
 			}
 		}
 

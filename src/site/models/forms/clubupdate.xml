@@ -1,30 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
-	<fieldset>
+    <fieldset>
 
-		<field name="id"
-			type="text"
-			default="0"
-			label="ID"
-			readonly="true"
-			class="readonly"
-			description="JGLOBAL_FIELD_ID_DESC"/>
-
-		<field name="name"
-			type="text"
-			size="40"
-			class="inputbox"
-			label="Name"
-			required="true"
-			filter="safehtml"/>
-
-		<field name="url"
-			type="text"
-			size="40"
-			class="inputbox"
-			label="Url"
-			validate="url"
-			filter="safehtml"/>
+        <field name="club_name"
+               type="text"
+               size="23"
+               class="inputbox"
+               label="Club Name"
+               filter="safehtml"
+               required="true"
+        />
 
         <field name="au_address"
                type="text"
@@ -61,6 +46,14 @@
                filter="safehtml"
                required="true"
         />
+        <field name="club_email_1_confirm"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Confirm Email 1"
+               filter="safehtml"
+               required="true"
+        />
 
         <field name="club_email_2"
                type="email"
@@ -68,7 +61,16 @@
                class="inputbox"
                label="Email 2"
                filter="safehtml"
-               required="true"
+               required="false"
+        />
+
+        <field name="club_email_2_confirm"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Confirm Email 2"
+               filter="safehtml"
+               required="false"
         />
 
         <field name="club_contact_name"
@@ -100,6 +102,35 @@
                filter="safehtml"
                required="true"
         />
+
+        <field name="club_contact_value_confirm"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Confirm Above"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_information_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I confirm the above information is correct."
+               required="true"
+        />
+        <field name="club_contact_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I confirm all owners of contact methods provided give consent to be contacted by the SWA regarding SWA business."
+               required="true"
+        />
+        <field name="club_agreements_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I agree on the clubs behalf to the Club Affiliation Terms and Conditions, and I confirm I have the authority to do so."
+               required="true"
+        />
+
 
     </fieldset>
 

@@ -11,7 +11,6 @@ defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 JHtml::_('behavior.framework', true);
-
 // Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
@@ -19,8 +18,40 @@ $lang->load('com_swa', JPATH_ADMINISTRATOR);
 $jConfig = JFactory::getConfig();
 $app = JFactory::getApplication();
 $document = JFactory::getDocument();
-$ticket = null;
+$app = JFactory::getApplication();
+$user = JFactory::getUser();
+$db = JFactory::getDbo();
+$valid_agreement = $db->getQuery(true);
+$valid_agreement
+    ->select('agr.*')
+    ->from($db->quoteName('#__swa_member', 'smem'))
+    ->join('INNER', $db->quoteName('#__swa_university_member', 'suni')
+				. " ON " . $db->quoteName('smem.id') . ' = ' . $db->quoteName('suni.member_id') . ' AND ' . $db->quoteName('smem.university_id') .
+				' = ' . $db->quoteName('suni.university_id'))
+    ->join('INNER', $db->quoteName('#__university_agreements', 'agr') . " ON " .
+				$db->quoteName('smem.university_id') . ' = ' . $db->quoteName('agr.university_id')
+		)
+    ->where($db->quoteName('smem.user_id') . ' = ' . $db->quote($user->id));
 
+$db->setQuery($valid_agreement);
+$results = $db->loadObject();
+// Check if valid agreement
+$valid = false;
+if (is_null($results)){
+	$valid = false;
+}
+elseif ($results->override == 1) {
+	$valid = true;
+}
+elseif ($results->signed == 1 && $results->date != null) {
+	if (strtotime($results->date) > strtotime('-1 year')) {
+		// If valid agreement
+		$valid = true;
+	}
+}
+
+
+$ticket = null;
 $ticketId = $app->input->getString('ticketId');
 
 $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
@@ -35,6 +66,9 @@ foreach ($this->items as $item) {
 
 if ($ticket == null) {
 	$app->enqueueMessage('Purchase failed because the session expired - please try again.', 'Error');
+	$app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
+}
+	elseif (!$valid){
 	$app->redirect(JRoute::_('index.php?option=com_swa&view=ticketpurchase'));
 }
 ?>

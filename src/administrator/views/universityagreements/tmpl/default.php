@@ -1,4 +1,5 @@
 <?php
+
 defined('_JEXEC') or die;
 
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
@@ -15,19 +16,9 @@ $userId = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
 $listDirn = $this->state->get('list.direction');
 $canOrder = $user->authorise('core.edit.state', 'com_swa');
-$saveOrder = $listOrder == 'a.ordering';
-if ($saveOrder) {
-	$saveOrderingUrl = 'index.php?option=com_swa&task=universities.saveOrderAjax&tmpl=component';
-	JHtml::_(
-			'sortablelist.sortable',
-			'universityList',
-			'adminForm',
-			strtolower($listDirn),
-			$saveOrderingUrl
-	);
-}
 $sortFields = $this->getSortFields();
 ?>
+
 <script type="text/javascript">
 	Joomla.orderTable = function () {
 		table = document.getElementById("sortTable");
@@ -43,29 +34,29 @@ $sortFields = $this->getSortFields();
 </script>
 
 <?php
-// Code to allow adding non select list filters
+// Joomla Component Creator code to allow adding non select list filters
 if (!empty($this->extra_sidebar)) {
 	$this->sidebar .= $this->extra_sidebar;
 }
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_swa&view=universities'); ?>"
-	  method="post" name="adminForm" id="adminForm">
-	<?php if (!empty($this->sidebar))
-	:
+<form action="<?php echo JRoute::_('index.php?option=com_swa&view=universityagreements'); ?>" method="post"
+	  name="adminForm" id="adminForm">
+	<?php if (!empty($this->sidebar)) :
 	?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
 	<div id="j-main-container" class="span10">
-		<?php else
-		:
+		<?php else :
 		?>
 		<div id="j-main-container">
 			<?php endif; ?>
 			<div id="adminview-description">
-				<p>Here you can see and add universities that members can be a member of.</p>
+				<p>here you can view and override the agreements for each uni.</p>
+				<p>override, the values this takes mean; 0=nothing, 1=give access, 2=remove access</p>
 			</div>
+
 			<div id="filter-bar" class="btn-toolbar">
 				<div class="filter-search btn-group pull-left">
 					<label for="filter_search" class="element-invisible">
@@ -80,10 +71,17 @@ if (!empty($this->extra_sidebar)) {
 					<button class="btn hasTooltip" type="submit"
 							title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>">
 						<i class="icon-search"></i></button>
-					<button class="btn hasTooltip" type="button"
-							title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
+					<button class="btn hasTooltip" type="button" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
 							onclick="getElementById('filter_search').value='';this.form.submit();">
 						<i class="icon-remove"></i></button>
+				</div>
+				<div class="btn-group pull-left">
+					<button class="btn hasTooltip" type="button" title="Edit Update Form"
+							onclick="
+							var queryParams = new URLSearchParams(window.location.search);
+							queryParams.set('view', 'club_update_forms');
+							window.location.replace(window.location.origin + window.location.pathname + '?' + queryParams);">
+						<a >Edit Update Form</a></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
 					<label for="limit" class="element-invisible">
@@ -110,8 +108,7 @@ if (!empty($this->extra_sidebar)) {
 					<label for="sortTable" class="element-invisible">
 						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
 					</label>
-					<select name="sortTable" id="sortTable" class="input-medium"
-							onchange="Joomla.orderTable()">
+					<select name="sortTable" id="sortTable" class="input-medium" onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
 						<?php echo JHtml::_(
 								'select.options',
@@ -124,11 +121,10 @@ if (!empty($this->extra_sidebar)) {
 				</div>
 			</div>
 			<div class="clearfix"></div>
-			<table class="table table-striped" id="universityList">
+			<table class="table table-striped" id="universityagreements_list">
 				<thead>
 				<tr>
-					<?php if (isset($this->items[0]->ordering))
-						:
+					<?php if (isset($this->items[0]->ordering)) :
 						?>
 						<th width="1%" class="nowrap center hidden-phone">
 							<?php echo JHtml::_(
@@ -145,15 +141,14 @@ if (!empty($this->extra_sidebar)) {
 					<?php endif; ?>
 					<th width="1%" class="hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value=""
-							   title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-							   onclick="Joomla.checkAll(this)"/>
+							   title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)"/>
 					</th>
 
 					<th class='left'>
 						<?php echo JHtml::_(
 								'grid.sort',
-								'Name',
-								'a.name',
+								'University',
+								'a.university_id',
 								$listDirn,
 								$listOrder
 						); ?>
@@ -161,68 +156,8 @@ if (!empty($this->extra_sidebar)) {
 					<th class='left'>
 						<?php echo JHtml::_(
 								'grid.sort',
-								'Url',
-								'a.url',
-								$listDirn,
-								$listOrder
-						); ?>
-					</th>
-
-
-					<th class='left'>
-						<?php echo JHtml::_(
-								'grid.sort',
-								'AU Address',
-								'a.au_address',
-								$listDirn,
-								$listOrder
-						); ?>
-					</th>
-
-					<th class='left'>
-						<?php echo JHtml::_(
-								'grid.sort',
-								'AU Additional Address',
-								'a.au_additional_address',
-								$listDirn,
-								$listOrder
-						); ?>
-					</th>
-
-					<th class='left'>
-						<?php echo JHtml::_(
-								'grid.sort',
-								'AU Postcode',
-								'a.au_postcode',
-								$listDirn,
-								$listOrder
-						); ?>
-					</th>
-					<th class='left'>
-					<?php echo JHtml::_(
-							'grid.sort',
-							'Contact Email 1',
-							'a.club_email_1',
-							$listDirn,
-							$listOrder
-					); ?>
-					</th>
-
-					<th class='left'>
-						<?php echo JHtml::_(
-								'grid.sort',
-								'Contact Email 2',
-								'a.club_email_2',
-								$listDirn,
-								$listOrder
-						); ?>
-					</th>
-
-					<th class='left'>
-						<?php echo JHtml::_(
-								'grid.sort',
-								'Contact Name',
-								'a.club_contact_name',
+								'Member Approved',
+								'a.member_name',
 								$listDirn,
 								$listOrder
 						); ?>
@@ -230,25 +165,29 @@ if (!empty($this->extra_sidebar)) {
 					<th class='left'>
 						<?php echo JHtml::_(
 								'grid.sort',
-								'Contact Method',
-								'a.club_contact_method',
+								'Date Signed',
+								'a.date',
+								$listDirn,
+								$listOrder
+						); ?>
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'Agreement Status',
+								'a.signed',
+								$listDirn,
+								$listOrder
+						); ?>
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'Override',
+								'a.override',
 								$listDirn,
 								$listOrder
 						); ?>
 					</th>
-
-					<th class='left'
-					">
-					<?php echo JHtml::_(
-							'grid.sort',
-							'Contact Value',
-							'a.club_contact_value',
-							$listDirn,
-							$listOrder
-					); ?>
 					</th>
-
-
 					<th width="1%" class="nowrap center hidden-phone">
 						<?php echo JHtml::_(
 								'grid.sort',
@@ -276,8 +215,7 @@ else {
 				</tr>
 				</tfoot>
 				<tbody>
-				<?php foreach ($this->items as $i => $item)
-					:
+				<?php foreach ($this->items as $i => $item) :
 					$ordering = ($listOrder == 'a.ordering');
 					$canCreate = $user->authorise('core.create', 'com_swa');
 					$canEdit = $user->authorise('core.edit', 'com_swa');
@@ -286,33 +224,27 @@ else {
 					?>
 					<tr class="row<?php echo $i % 2; ?>">
 
-						<?php if (isset($this->items[0]->ordering))
-							:
+						<?php if (isset($this->items[0]->ordering)) :
 							?>
 							<td class="order nowrap center hidden-phone">
-								<?php if ($canChange)
-									:
+								<?php if ($canChange) :
 									$disableClassName = '';
 									$disabledLabel = '';
-									if (!$saveOrder)
-										:
+									if (!$saveOrder) :
 										$disabledLabel = JText::_('JORDERINGDISABLED');
 										$disableClassName = 'inactive tip-top';
 									endif; ?>
-									<span
-											class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
-											title="<?php echo $disabledLabel ?>">
-							<i class="icon-menu"></i>
-						</span>
+									<span class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
+										  title="<?php echo $disabledLabel ?>">
+														<i class="icon-menu"></i>
+													</span>
 									<input type="text" style="display:none" name="order[]" size="5"
-										   value="<?php echo $item->ordering; ?>"
-										   class="width-20 text-area-order "/>
-								<?php else
-									:
+										   value="<?php echo $item->ordering; ?>" class="width-20 text-area-order "/>
+								<?php else :
 									?>
 									<span class="sortable-handler inactive">
-							<i class="icon-menu"></i>
-						</span>
+														<i class="icon-menu"></i>
+													</span>
 								<?php endif; ?>
 							</td>
 						<?php endif; ?>
@@ -321,54 +253,25 @@ else {
 						</td>
 
 						<td>
-							<?php if ($canEdit)
-								:
-								?>
-								<a href="<?php echo JRoute::_(
-										'index.php?option=com_swa&task=university.edit&id=' .
-										(int) $item->id
-								); ?>">
-									<?php echo $this->escape($item->name); ?></a>
-							<?php else
-								:
-								?>
-								<?php echo $this->escape($item->name); ?>
-							<?php endif; ?>
+							<?php echo $this->escape($item->university_name); ?>
+						</td>
+
 						</td>
 						<td>
-
-							<?php echo $item->url; ?>
+							<?php echo $this->escape($item->user); ?>
 						</td>
-
-
-						<td class="center hidden-phone">
-							<?php echo $item->au_address; ?>
+						<td>
+							<?php echo $this->escape($item->date); ?>
 						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->au_additional_address; ?>
+						<td>
+							<?php echo $this->escape($item->signed); ?>
 						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->au_postcode; ?>
-						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->club_email_1; ?>
-						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->club_email_2; ?>
-						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->club_contact_name; ?>
-						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->club_contact_method; ?>
-						</td>
-						<td class="center hidden-phone">
-							<?php echo $item->club_contact_value; ?>
+						<td>
+							<?php echo $this->escape($item->override); ?>
 						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>
 						</td>
-
 					</tr>
 				<?php endforeach; ?>
 				</tbody>
@@ -379,5 +282,5 @@ else {
 			<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
 			<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
 			<?php echo JHtml::_('form.token'); ?>
-		</div>
+			<div>
 </form>

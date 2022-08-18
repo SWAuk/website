@@ -7,13 +7,13 @@ services:
     depends_on:
       - db
     volumes:
-      - ./.docker/www:/var/www/html
-      - ./.docker/configuration.php:/var/www/html/configuration.php
-      - ./src/administrator:/var/www/html/administrator/components/com_swa
-      - ./src/site:/var/www/html/components/com_swa
-      - ./src/plugin:/var/www/html/plugins/swa/viewlevels
-      - ./src/templates:/var/www/html/templates
-      - ./.docker/www-logs:/var/logs/joomla
+      - ./.docker/www:/var/www/html:cached
+      - ./.docker/configuration.php:/var/www/html/configuration.php:cached
+      - ./src/administrator:/var/www/html/administrator/components/com_swa:cached
+      - ./src/site:/var/www/html/components/com_swa:cached
+      - ./src/plugin:/var/www/html/plugins/swa/
+      - ./src/templates/favourite:/var/www/html/templates/favourite:cached
+      - ./.docker/www-logs:/var/logs/joomla:cached
     ports:
       - ${JOOMLA_PORT:-5555}:80
     environment:

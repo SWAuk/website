@@ -126,6 +126,8 @@ docker-compose up -d
 ### Other Plugins
 
 You will need to install these plugins to reach parity with the live site
+> If you are having issues installing plugins or changing settings, go to **System Information->Permissions**
+> <br> You want all of these to be green! If there are any not green, navigate to the html directory, and run this command `chmod -R o+w DIRNAME`
 
 * Folcomedia - Cookies Alert
 
