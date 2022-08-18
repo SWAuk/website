@@ -160,8 +160,8 @@ else {
 else {
 			$this->logAuditFrontend('Updated club details on university ' . $club_id);
 		}
-		$app->enqueueMessage('<img width="100%" src="https://c.tenor.com/98MF-TLHnv0AAAAC/wind-surf-wind-skate-board.gif" alt="thank you">', '&#84;hank you for your response!');
-
+		$app->enqueueMessage('<img width="30%" src="https://c.tenor.com/98MF-TLHnv0AAAAC/wind-surf-wind-skate-board.gif" alt="thank you">', '&#84;hank you for your response!');
+		$app->redirect(JRoute::_('index.php'));
 	}
 
 }
