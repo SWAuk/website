@@ -9,7 +9,7 @@ class JConfig {
 	public $captcha = '0';
 	public $list_limit = '20';
 	public $access = '1';
-	public $debug = '0';
+	public $debug = '1';
 	public $debug_lang = '0';
 	public $debug_lang_const = '1';
 	public $dbtype = 'mysqli';
@@ -21,12 +21,11 @@ class JConfig {
 	public $live_site = '';
 	public $secret = 'OTgoOdaYEbNwWJAK';
 	public $gzip = '0';
-	public $error_reporting = E_ALL | E_STRICT;
+	public $error_reporting = 'development';
 	public $helpurl = 'https://help.joomla.org/proxy?keyref=Help{major}{minor}:{keyref}&lang={langcode}';
 	public $ftp_host = '';
 	public $ftp_port = '';
 	public $ftp_user = '';
-	public $ftp_pass = '';
 	public $ftp_root = '';
 	public $ftp_enable = '0';
 	public $offset = 'UTC';
@@ -37,7 +36,6 @@ class JConfig {
 	public $sendmail = '0';
 	public $smtpauth = '0';
 	public $smtpuser = '';
-	public $smtppass = '';
 	public $smtphost = 'localhost';
 	public $smtpsecure = 'none';
 	public $smtpport = '25';
@@ -57,12 +55,46 @@ class JConfig {
 	public $unicodeslugs = '0';
 	public $feed_limit = '10';
 	public $feed_email = 'none';
-	public $log_path = '/var/logs/joomla';
+	public $log_path = '/var/www/html/logs/joomla';
 	public $tmp_path = '/var/www/html/tmp';
 	public $lifetime = '15';
 	public $session_handler = 'database';
 	public $shared_session = '0';
-
+	public $memcache_persist = '1';
+	public $memcache_compress = '0';
+	public $memcache_server_host = 'localhost';
+	public $memcache_server_port = '11211';
+	public $memcached_persist = '1';
+	public $memcached_compress = '0';
+	public $memcached_server_host = 'localhost';
+	public $memcached_server_port = '11211';
+	public $redis_persist = '1';
+	public $redis_server_host = 'localhost';
+	public $redis_server_port = '6379';
+	public $redis_server_db = '0';
+	public $proxy_enable = '0';
+	public $proxy_host = '';
+	public $proxy_port = '';
+	public $proxy_user = '';
+	public $proxy_pass = '';
+	public $massmailoff = '0';
+	public $replyto = '';
+	public $replytoname = '';
+	public $MetaRights = '';
+	public $sitename_pagetitles = '0';
+	public $force_ssl = '0';
+	public $session_memcache_server_host = 'localhost';
+	public $session_memcache_server_port = '11211';
+	public $session_memcached_server_host = 'localhost';
+	public $session_memcached_server_port = '11211';
+	public $session_redis_persist = '1';
+	public $session_redis_server_host = 'localhost';
+	public $session_redis_server_port = '6379';
+	public $session_redis_server_db = '0';
+	public $frontediting = '1';
+	public $cookie_domain = '';
+	public $cookie_path = '';
+	public $asset_id = '1';
 	public $stripe_publishable_key = null;
 	public $stripe_secret_key = null;
 
@@ -71,4 +103,5 @@ class JConfig {
 		$this->stripe_publishable_key = getenv('JCONFIG_STRIPE_PUBLISHABLE_KEY');
 		$this->stripe_secret_key = getenv('JCONFIG_STRIPE_SECRET_KEY');
 	}
+
 }

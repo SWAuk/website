@@ -24,6 +24,7 @@ class SwaViewClubUpdate extends JViewLegacy
 		$this->state  = $this->get('State');
 		$this->form   = $this->get('Form');
 		$this->params = $app->getParams('com_swa');
+		$this->member = $this->get('Member');
 
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
@@ -39,13 +40,10 @@ class SwaViewClubUpdate extends JViewLegacy
 			$app->redirect(JRoute::_($url, false));
 		}
 
-//		// Redirect to memberpayment if not paid
-//		$this->member = $this->get('Member');
-//
-//		if (!$this->member->paid)
-//		{
-//			$app->redirect(JRoute::_('index.php?option=com_swa&view=memberpayment'));
-//		}
+		if (!$this->member->club_committee)
+		{
+			throw new Exception('You must be a committee member to view this page.');
+		}
 
 		parent::display($tpl);
 	}

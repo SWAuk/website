@@ -83,6 +83,14 @@ class SwaViewUniversities extends JViewLegacy
 			'a.id'   => JText::_('JGRID_HEADING_ID'),
 			'a.name' => JText::_('Name'),
 			'a.url'  => JText::_('Url'),
+			'a.au_address'  => JText::_('au_address'),
+			'a.au_additional_address'  => JText::_('au_additional_address'),
+			'a.au_postcode'  => JText::_('au_postcode'),
+			'a.club_email_1'  => JText::_('club_email_1'),
+			'a.club_email_2'  => JText::_('club_email_2'),
+			'a.club_contact_name'  => JText::_('club_contact_name'),
+			'a.club_contact_method'  => JText::_('club_contact_method'),
+			'a.club_contact_value'  => JText::_('club_contact_value')
 		);
 	}
 

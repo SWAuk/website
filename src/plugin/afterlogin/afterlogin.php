@@ -9,6 +9,7 @@ class PlgSwaAfterlogin extends JPlugin
 	public function onUserAfterLogin($options)
 	{
 
+		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		$isroot = $user->authorise('core.admin');
 
@@ -44,15 +45,13 @@ class PlgSwaAfterlogin extends JPlugin
 
 		$db->setQuery($agreement_check);
 		$results = $db->loadRow();
-		JFactory::getApplication()->enqueueMessage(json_encode($results));
-
 		// Check if valid agreement
 		$valid = false;
 		if ($results['override'] == 1) {
 			$valid = true;
 		}
 elseif ($results['signed'] == 1 && $results['date'] != null) {
-			if (strtotime($results['date']) < strtotime('-1 year')) {
+			if (strtotime($results['date']) > strtotime('-1 year')) {
 				// If valid agreement
 				$valid = true;
 					}
@@ -75,22 +74,16 @@ elseif ($results['signed'] == 1 && $results['date'] != null) {
 
 			if ($results == 1) {
 				$status = 'No agreement, and is committee';
-				// Committee to sign agreement
+				$app->redirect(JRoute::_('index.php?option=com_swa&view=clubupdate', false));
 			}
 else {
 				// Show page saying please get committee to sign agreement
-				$status = 'No agreement, and is NOT committee';
+				$app->enqueueMessage("You will not be able to purchase tickets until your club lead has updated
+				their details and agreed to the SWA terms. Please alert them.");
+							$status = 'No agreement, and is NOT committee';
 			}
 		}
 
-		JFactory::getApplication()->enqueueMessage('The user ID is: ' . $user_id);
-		JFactory::getApplication()->enqueueMessage($status);
-
-		/*
-		$allGroups is a string containing all the groups
-		Write to txt file
-		Set cookie for the same
-		*/
 	}
 }
 

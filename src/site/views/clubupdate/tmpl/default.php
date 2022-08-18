@@ -9,9 +9,11 @@ JHtml::_('formbehavior.chosen', 'select');
 
 // Load admin language file
 $lang = JFactory::getLanguage();
+$user = JFactory::getUser();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 $doc = JFactory::getDocument();
 $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
+$memberId = $this->get('Member')->id;
 ?>
 
 <!--</style>-->
@@ -47,6 +49,14 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 		<tr>
 			<td><?php echo $this->form->getLabel('club_name'); ?></td>
 			<td><?php echo $this->form->getInput('club_name'); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo $this->form->getLabel('au_address'); ?></td>
+			<td><?php echo $this->form->getInput('au_address'); ?></td>
+		</tr>
+		<tr>
+			<td><?php echo $this->form->getLabel('au_additional_address'); ?></td>
+			<td><?php echo $this->form->getInput('au_additional_address'); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo $this->form->getLabel('au_postcode'); ?></td>
@@ -86,8 +96,8 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			</td>
 		</tr>
 		<tr>
-			<td><?php echo $this->form->getLabel('club_poc_name'); ?></td>
-			<td><?php echo $this->form->getInput('club_poc_name'); ?></td>
+			<td><?php echo $this->form->getLabel('club_contact_name'); ?></td>
+			<td><?php echo $this->form->getInput('club_contact_name'); ?></td>
 		</tr>
 		<tr>
 			<td><?php echo $this->form->getLabel('club_contact_method'); ?></td>
@@ -122,6 +132,10 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 			<td><?php echo $this->form->getInput('club_agreements_agree'); ?></td>
 		</tr>
 		<tr>
+			<td><?php echo $this->form->getLabel('club_contact_agree'); ?></td>
+			<td><?php echo $this->form->getInput('club_contact_agree'); ?></td>
+		</tr>
+		<tr>
 			<td><label>Submitted by</label></td>
 			<td><?php echo $this->user->name; ?></td>
 		</tr>
@@ -150,7 +164,7 @@ $doc->addScript(JUri::base() . '/components/com_swa/assets/js/form.js');
 	</table>
 
 	<input type="hidden" name="option" value="com_swa"/>
-	<!--	<input type="hidden" name="id" value=--><?php //$this->user->id?><!--/>-->
+	<input type="hidden" readonly name="id" value="<?php echo $memberId?>"/>
 	<input type="hidden" name="task" value="clubupdate.submit"/>
 	<?php echo JHtml::_('form.token'); ?>
 </form>

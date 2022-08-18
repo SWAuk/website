@@ -26,6 +26,81 @@
 			validate="url"
 			filter="safehtml"/>
 
-	</fieldset>
+        <field name="au_address"
+               type="text"
+               size="55"
+               class="inputbox"
+               label="SU/AU Address"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="au_additional_address"
+               type="text"
+               size="55"
+               class="inputbox"
+               label="SU/AU Address (If complicated)"
+               filter="safehtml"
+               required="false"
+        />
+
+        <field name="au_postcode"
+               type="text"
+               size="9"
+               class="inputbox"
+               label="SU/AU Postcode"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_email_1"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Email 1"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_email_2"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Email 2"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_contact_name"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Name"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_contact_method"
+               type="list"
+               label="What is your nominated point of contact’s most reliable and preferred method of communication for the SWA to contact them via?"
+               default="None"
+               required="true">
+            <option value="Email">Email</option>
+            <option value="Facebook messenger">Facebook messenger</option>
+            <option value="Instagram Direct">Instagram Direct</option>
+            <option value="Whatsapp">Whatsapp</option>
+            <option value="SMS">SMS</option>
+        </field>
+
+        <field name="club_contact_value"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Username/Email/Phone Number"
+               filter="safehtml"
+               required="true"
+        />
+
+    </fieldset>
 
 </form>
