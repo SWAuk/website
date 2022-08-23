@@ -49,7 +49,7 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 					</button>
 		</div>
 
-		<h2 id="payment-total">Total: 5 GBP</h2>
+		<h2 id="payment-total">Total: </h2>
 </form>
 
 
@@ -63,6 +63,39 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 	var payment_result;
 	var elements;
 	var response;
+	var totalPrice;
+
+
+	// Show a spinner on payment submission
+	var loading = function (isLoading) {
+		if (isLoading) {
+			// Disable the button and show a spinner
+			document.querySelector("#stripe-button").disabled = true;
+			document.querySelector("#spinner").classList.remove("hidden");
+			document.querySelector("#payment-button-text").classList.add("hidden");
+		} else {
+			document.querySelector("#stripe-button").disabled = false;
+			document.querySelector("#spinner").classList.add("hidden");
+			document.querySelector("#payment-button-text").classList.remove("hidden");
+		}
+	};
+
+
+	// Show the customer the error from Stripe if their card fails to charge
+	var showError = function (errorMsgText) {
+		loading(false);
+		var errorMsg = document.querySelector("#error-message");
+		errorMsg.textContent = errorMsgText;
+		setTimeout(function () {
+			errorMsg.textContent = "";
+		}, 4000);
+	};
+
+	$updateTicketPrice = function () {
+		// stripe amount is in pence
+		document.getElementById("payment-total").innerHTML = "Total: " + totalPrice.toFixed(2) + " GBP";
+		document.getElementById("payment-button-text").innerHTML = "Pay £" + totalPrice.toFixed(2);
+	};
 
 	jQuery(window).on('load', async function () {
 		//This is slightly different as the endpoint is different.
@@ -80,6 +113,8 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 				Joomla.renderMessages(response.messages);
 			}
 			if (response.success) {
+				totalPrice = response.data.price;
+				$updateTicketPrice();
 				///loading in checkout
 				const options = {
 					clientSecret: response.data.clientSecret, //todo add extra error reporting
@@ -176,28 +211,8 @@ $document->addStyleSheet('components/com_swa/assets/css/stripe_style.css');
 			}
 		};
 
-		// Show the customer the error from Stripe if their card fails to charge
-		var showError = function (errorMsgText) {
-			loading(false);
-			var errorMsg = document.querySelector("#error-message");
-			errorMsg.textContent = errorMsgText;
-			setTimeout(function () {
-				errorMsg.textContent = "";
-			}, 4000);
-		};
-		// Show a spinner on payment submission
-		var loading = function (isLoading) {
-			if (isLoading) {
-				// Disable the button and show a spinner
-				document.querySelector("#stripe-button").disabled = true;
-				document.querySelector("#spinner").classList.remove("hidden");
-				document.querySelector("#payment-button-text").classList.add("hidden");
-			} else {
-				document.querySelector("#stripe-button").disabled = false;
-				document.querySelector("#spinner").classList.add("hidden");
-				document.querySelector("#payment-button-text").classList.remove("hidden");
-			}
-		};
+
+
 	});
 </script>
 
