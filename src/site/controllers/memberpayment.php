@@ -68,12 +68,12 @@ class SwaControllerMemberPayment extends SwaController
 			$price = intval($price[0]);
 			$membership_type = "";
 
-			if ($price = 50) {
+			if ($price == 50) {
 				$membership_type = "XSWA";
 				$app->enqueueMessage("You might have noticed your membership price has changed.
 				This is due to being a " . $membership_type . " member.");
 			}
-			elseif ($price = 40) {
+			elseif ($price == 40) {
 				$membership_type = "UoL";
 				$app->enqueueMessage("You might have noticed your membership price has changed.
 				This is due to being a " . $membership_type . " member.");
@@ -85,7 +85,7 @@ class SwaControllerMemberPayment extends SwaController
 			$paymentIntent = \Stripe\PaymentIntent::create(
 				array(
 					'description' => "SWA Membership for {$user->name}",
-					'amount' => 500,
+					'amount' => $price * 100,
 					'currency' => 'GBP',
 					'statement_descriptor' => $membership_type . " Membership",
 					'metadata' => array(
