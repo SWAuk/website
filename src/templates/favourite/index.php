@@ -27,9 +27,12 @@ JHtml::_('jquery.framework');
 $doc->addStyleSheet($this->baseurl. '/templates/' .$this->template. '/bootstrap/favth-bootstrap.css');
 $doc->addScript($this->baseurl. '/templates/' .$this->template. '/bootstrap/favth-bootstrap.js');
 // Add page class suffix
-$itemid = JRequest::getVar('Itemid');
+//$itemid = JRequest::getVar('Itemid');
+
 $menu = $app->getMenu();
-$active = $menu->getItem($itemid);
+
+//$active = $menu->getItem($itemid);
+$active = $menu->getActive();
 if (isset($active)) {
   $params = $menu->getParams( $active->id );
   $pageclass = $params->get( 'pageclass_sfx' );
