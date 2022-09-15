@@ -49,10 +49,10 @@ foreach ($sponsor_array as $row) {
 	echo '</tr>';
 }
 
-echo '<td>Industry Associate</td><td> <img width="200px" height="200px" src="https://www.studentwindsurfing.co.uk/images/stories/sponsors/rya.jpg" alt="rya"></td>
-<td>The RYA is windsurfing’s governing body. They have lots of advice and offer loads of support to the SWA. If you get a Windsurfing membership with the RYA, 
+echo '<td>Industry Associate</td><td> <img width="200px" height="200px" src="https://www.studentwindsurfing.co.uk/images/logos/sponsors/rya.png" alt="rya"></td>
+<td>The RYA is windsurfing’s governing body. They have lots of advice and offer loads of support to the SWA. If you get a Windsurfing membership with the RYA,
 it includes <a href="http://www.rya.org.uk/joinrenew/benefitsnew/personal/Pages/windthirdpartyins.aspx">
-3rd party insurance cover</a> and many other benefits. Check out their windsurfing pages 
+3rd party insurance cover</a> and many other benefits. Check out their windsurfing pages
 <a href="http://www.rya.org.uk/startboating/Pages/Windsurf.aspx">here</a>...</td>
 </tr>';
 echo '</tbody></table>';
