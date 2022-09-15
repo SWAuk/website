@@ -19,7 +19,9 @@ class SwaControllerMemberPayment extends SwaController
 		$app = JFactory::getApplication();
 		$user = JFactory::getUser();
 		/** @var SwaModelMemberPayment $model */
-		$model  = $this->getModel('MemberPayment');
+		$model = $this->getModel('MemberPayment');
+
+		$db = JFactory::getDbo();
 		$member = $model->getMember();
 
 		// Check successfully got the user and all the info we need to process the transaction
@@ -42,21 +44,62 @@ class SwaControllerMemberPayment extends SwaController
 		}
 
 		try {
+			/*
+			UoL ID: 91
+			if UOL then 40£
+			 if grduated (xswa) then £50
+			otherwise £5
+			*/
+			$price = 5;
+			$priceQuery = $db->getQuery(true);
+			$priceQuery->select(
+				'CASE WHEN university_id = 91 THEN 40
+    						   WHEN graduated = 1 THEN 50
+    						ELSE 5 END')
+				->from($db->qn('#__swa_university_member'), 'sum')
+				->where('member_id = ' . $db->quote($member->id));
+
+			$db->setQuery($priceQuery);
+			$price = $db->loadRow();
+			if (is_null($price)) {
+				$price = ["5"];
+			}
+
+			$price = intval($price[0]);
+			$membership_type = "";
+
+			if ($price == 50) {
+				$membership_type = "XSWA";
+				$app->enqueueMessage("You might have noticed your membership price has changed.
+				This is due to being a " . $membership_type . " member.");
+			}
+			elseif ($price == 40) {
+				$membership_type = "UoL";
+				$app->enqueueMessage("You might have noticed your membership price has changed.
+				This is due to being a " . $membership_type . " member.");
+			}
+			else {
+				$membership_type = "SWA";
+			}
+
 			$paymentIntent = \Stripe\PaymentIntent::create(
 				array(
-					'description'          => "SWA Membership for {$user->name}",
-					'amount'               => 500,
-					'currency'             => 'GBP',
-					'receipt_email'        => $user->email,
-					'statement_descriptor' => "SWA Membership",
-					'metadata'             => array(
-						'user_id'   => $user->id,
-						'user_name' => $user->name
+					'description' => "SWA Membership for {$user->name}",
+					'amount' => $price * 100,
+					'currency' => 'GBP',
+					'statement_descriptor' => $membership_type . " Membership",
+					'metadata' => array(
+						'user_id' => $user->id,
+						'receipt_email' => $user->email,
+						'user_name' => $user->name,
+						'member_object' => json_encode($member),
 					)
 				)
 			);
 			$output = [
 				'clientSecret' => $paymentIntent->client_secret,
+				'intentId' => $paymentIntent->id,
+				"price" => $price
 			];
 			echo new \Joomla\CMS\Response\JsonResponse($output);
 			jexit();
@@ -80,12 +123,12 @@ class SwaControllerMemberPayment extends SwaController
 		$jinput = $this->input->json;
 		$paymentIntentId = $jinput->get('paymentIntentId', "", 'string');
 		$paymentIntent = \Stripe\PaymentIntent::retrieve($paymentIntentId);
-		$model  = $this->getModel('MemberPayment');
+		$model = $this->getModel('MemberPayment');
 		$member = $model->getMember();
 		$member_id = $member->id;
 
 		if ($paymentIntent->status != 'succeeded') {
-			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from 
+			$message = "PaymentIntent creation did not succeed or is still processing and so the user was prevented from
 			completing payment. You should check this payment and the database to make sure the user was not charged
 			and membership was not bought";
 			JLog::add($message, JLog::ERROR, 'com_swa.payment_process');
@@ -97,11 +140,11 @@ class SwaControllerMemberPayment extends SwaController
 		};
 
 		// Update the membership status for the member!
-		$db    = JFactory::getDbo();
+		$db = JFactory::getDbo();
 		$query = $db->getQuery(true);
 
-		$now        = time();
-		$seasonEnd  = strtotime("1st June");
+		$now = time();
+		$seasonEnd = strtotime("1st June");
 		$seasonName = $now < $seasonEnd ? date("Y", strtotime('-1 year', $now)) : date("Y", $now);
 
 		$subQuery = $db->getQuery(true)
@@ -110,7 +153,7 @@ class SwaControllerMemberPayment extends SwaController
 			->where($db->qn('season.year') . ' LIKE "' . $seasonName . '%"');
 
 		$columns = array('member_id', 'season_id');
-		$values  = array($db->q($member_id), '(' . $subQuery . ')');
+		$values = array($db->q($member_id), '(' . $subQuery . ')');
 
 		$query
 			->insert($db->quoteName('#__swa_membership'))

@@ -61,6 +61,42 @@ $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 						<div class="controls"><?php echo $this->form->getInput('url'); ?></div>
 					</div>
 
+
+
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('au_address'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('au_address'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('au_additional_address'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('au_additional_address'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('au_postcode'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('au_postcode'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('club_email_1'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('club_email_1'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('club_email_2'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('club_email_2'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('club_contact_name'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('club_contact_name'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('club_contact_method'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('club_contact_method'); ?></div>
+					</div>
+					<div class="control-group">
+						<div class="control-label"><?php echo $this->form->getLabel('club_contact_value'); ?></div>
+						<div class="controls"><?php echo $this->form->getInput('club_contact_value'); ?></div>
+					</div>
+
+
 				</fieldset>
 			</div>
 		</div>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+
+        <field name="club_name"
+               type="text"
+               size="23"
+               class="inputbox"
+               label="Club Name"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="au_address"
+               type="text"
+               size="55"
+               class="inputbox"
+               label="SU/AU Address"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="au_additional_address"
+               type="text"
+               size="55"
+               class="inputbox"
+               label="SU/AU Address (If complicated)"
+               filter="safehtml"
+               required="false"
+        />
+
+        <field name="au_postcode"
+               type="text"
+               size="9"
+               class="inputbox"
+               label="SU/AU Postcode"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_email_1"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Email 1"
+               filter="safehtml"
+               required="true"
+        />
+        <field name="club_email_1_confirm"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Confirm Email 1"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_email_2"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Email 2"
+               filter="safehtml"
+               required="false"
+        />
+
+        <field name="club_email_2_confirm"
+               type="email"
+               size="23"
+               class="inputbox"
+               label="Confirm Email 2"
+               filter="safehtml"
+               required="false"
+        />
+
+        <field name="club_contact_name"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Name"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_contact_method"
+               type="list"
+               label="What is your nominated point of contact’s most reliable and preferred method of communication for the SWA to contact them via?"
+               default="None"
+               required="true">
+            <option value="Email">Email</option>
+            <option value="Facebook messenger">Facebook messenger</option>
+            <option value="Instagram Direct">Instagram Direct</option>
+            <option value="Whatsapp">Whatsapp</option>
+            <option value="SMS">SMS</option>
+        </field>
+
+        <field name="club_contact_value"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Username/Email/Phone Number"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_contact_value_confirm"
+               type="text"
+               size="25"
+               class="inputbox"
+               label="Confirm Above"
+               filter="safehtml"
+               required="true"
+        />
+
+        <field name="club_information_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I confirm the above information is correct."
+               required="true"
+        />
+        <field name="club_contact_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I confirm all owners of contact methods provided give consent to be contacted by the SWA regarding SWA business."
+               required="true"
+        />
+        <field name="club_agreements_agree"
+               type="checkbox"
+               class="inputbox"
+               label="I agree on the clubs behalf to the Club Affiliation Terms and Conditions, and I confirm I have the authority to do so."
+               required="true"
+        />
+
+
+    </fieldset>
+
+</form>

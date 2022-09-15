@@ -27,6 +27,8 @@ jobs:
 
     - name: Install dependencies
       run: composer install --no-progress --no-suggest
+      env:
+        TAFFYS_NAME: ${{ secrets.TAFFYS_NAME }}
 
 # Run all of the tests and checks (excluding browser)
     - run: composer minus-x:check

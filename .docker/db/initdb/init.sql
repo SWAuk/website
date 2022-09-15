@@ -25,6 +25,7 @@ CREATE TABLE `swana_action_logs` (
   KEY `idx_extension_item_id` (`extension`,`item_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+
 DROP TABLE IF EXISTS `swana_action_logs_extensions`;
 CREATE TABLE `swana_action_logs_extensions` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -1251,7 +1252,7 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (1,	'',	'Menu_Item_Root',	'root',	'',	'',	'',	'',	1,	0,	0,	0,	0,	'0000-00-00 00:00:00',	0,	0,	'',	0,	'',	0,	243,	0,	'*',	0),
 (587,	'main-nav-bar',	'My Tickets',	'my-tickets',	'',	'account/my-tickets',	'index.php?option=com_swa&view=membertickets',	'component',	1,	589,	2,	803,	4255,	'2019-02-10 15:59:14',	0,	2,	'',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	96,	97,	0,	'*',	0),
 (589,	'main-nav-bar',	'Account',	'account',	'',	'account',	'',	'heading',	1,	1,	1,	0,	4255,	'2019-02-10 15:59:08',	0,	2,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1}',	91,	100,	0,	'*',	0),
-(590,	'main-nav-bar',	'Sponsors',	'sponsors',	'',	'the-swa/sponsors',	'index.php?option=com_swa&view=sponsors',	'component',	1,	660,	2,	22,	0,	'0000-00-00 00:00:00',	0,	1,	' ',	0,	'{\"show_title\":\"\",\"link_titles\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_vote\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_hits\":\"\",\"show_tags\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_image_css\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	8,	9,	0,	'*',	0),
+(590,	'main-nav-bar',	'Sponsors',	'sponsors',	'',	'the-swa/sponsors',	'index.php?option=com_content&view=article&id=752',	'component',	1,	660,	2,	22,	0,	'0000-00-00 00:00:00',	0,	1,	' ',	0,	'{\"show_title\":\"\",\"link_titles\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"info_block_show_title\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_associations\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_vote\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_hits\":\"\",\"show_tags\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_image_css\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	8,	9,	0,	'*',	0),
 (591,	'main-nav-bar',	'Club',	'club',	'',	'club',	'',	'heading',	1,	1,	1,	0,	4255,	'2019-02-10 15:58:42',	0,	7,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"menu_show\":1}',	57,	70,	0,	'*',	0),
 (602,	'main-nav-bar',	'How to attract freshers',	'how-to-attract-freshers',	'',	'club/how-to-attract-freshers',	'index.php?option=com_content&view=article&id=518',	'component',	-2,	591,	2,	22,	0,	'0000-00-00 00:00:00',	0,	7,	' ',	0,	'{\"show_title\":\"0\",\"link_titles\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_vote\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_hits\":\"\",\"show_tags\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":\"1\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	62,	63,	0,	'*',	0),
 (603,	'main-nav-bar',	'How to (legally) make money',	'how-to-legally-make-money',	'',	'club/how-to-legally-make-money',	'index.php?option=com_content&view=article&id=517',	'component',	-2,	591,	2,	22,	0,	'0000-00-00 00:00:00',	0,	7,	' ',	0,	'{\"show_title\":\"0\",\"link_titles\":\"\",\"show_intro\":\"\",\"info_block_position\":\"\",\"show_category\":\"\",\"link_category\":\"\",\"show_parent_category\":\"\",\"link_parent_category\":\"\",\"show_author\":\"\",\"link_author\":\"\",\"show_create_date\":\"\",\"show_modify_date\":\"\",\"show_publish_date\":\"\",\"show_item_navigation\":\"\",\"show_vote\":\"\",\"show_icons\":\"\",\"show_print_icon\":\"\",\"show_email_icon\":\"\",\"show_hits\":\"\",\"show_tags\":\"\",\"show_noauth\":\"\",\"urls_position\":\"\",\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_text\":1,\"page_title\":\"\",\"show_page_heading\":\"1\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	64,	65,	0,	'*',	0),
@@ -1349,7 +1350,7 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2135,	'main',	'COM_FAQBOOKPRO_SUBMENU_TOPICS',	'com-faqbookpro-submenu-topics',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-topics',	'index.php?option=com_faqbookpro&view=topics',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:topics',	0,	'{}',	196,	197,	0,	'',	1),
 (2136,	'main',	'COM_FAQBOOKPRO_SUBMENU_QUESTIONS',	'com-faqbookpro-submenu-questions',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-questions',	'index.php?option=com_faqbookpro&view=questions',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:questions',	0,	'{}',	198,	199,	0,	'',	1),
 (2137,	'main',	'COM_FAQBOOKPRO_SUBMENU_ABOUT',	'com-faqbookpro-submenu-about',	'',	'com-faqbookpro-admin-menu/com-faqbookpro-submenu-about',	'index.php?option=com_faqbookpro&view=about',	'component',	1,	2133,	2,	10007,	0,	'0000-00-00 00:00:00',	0,	1,	'class:about',	0,	'{}',	200,	201,	0,	'',	1),
-(2195,	'main',	'COM_SWA',	'com-swa',	'',	'com-swa',	'index.php?option=com_swa',	'component',	1,	1,	1,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_com_swa.png',	0,	'{}',	203,	242,	0,	'',	1),
+(2195,	'main',	'COM_SWA',	'com-swa',	'',	'com-swa',	'index.php?option=com_swa',	'component',	1,	1,	1,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_com_swa.png',	0,	'{}',	203,	240,	0,	'',	1),
 (2196,	'main',	'COM_SWA_TITLE_MEMBERS',	'com-swa-title-members',	'',	'com-swa/com-swa-title-members',	'index.php?option=com_swa&view=members',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	204,	205,	0,	'',	1),
 (2197,	'main',	'COM_SWA_TITLE_COMMITTEE',	'com-swa-title-committee',	'',	'com-swa/com-swa-title-committee',	'index.php?option=com_swa&view=committeemembers',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	206,	207,	0,	'',	1),
 (2198,	'main',	'COM_SWA_TITLE_UNIVERSITYMEMBERS',	'com-swa-title-universitymembers',	'',	'com-swa/com-swa-title-universitymembers',	'index.php?option=com_swa&view=universitymembers',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	208,	209,	0,	'',	1),
@@ -1366,7 +1367,8 @@ INSERT INTO `swana_menu` (`id`, `menutype`, `title`, `alias`, `note`, `path`, `l
 (2212,	'main',	'COM_SWA_TITLE_TEAMRESULTS',	'com-swa-title-teamresults',	'',	'com-swa/com-swa-title-teamresults',	'index.php?option=com_swa&view=teamresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	236,	237,	0,	'',	1),
 (2213,	'main',	'COM_SWA_TITLE_INDIVIDUALRESULTS',	'com-swa-title-individualresults',	'',	'com-swa/com-swa-title-individualresults',	'index.php?option=com_swa&view=individualresults',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	238,	239,	0,	'',	1),
 (2215,	'main',	'COM_SWA_TITLE_SPONSORS',	'com-swa-title-sponsors',	'',	'com-swa/com-swa-title-sponsors',	'index.php?option=com_swa&view=sponsors',	'component',	1,	2195,	2,	803,	0,	'0000-00-00 00:00:00',	0,	1,	'components/com_swa/assets/images/s_default.png',	0,	'{}',	240,	241,	0,	'',	1),
-(2214,	'main',	'COM_AKEEBA',	'com-akeeba',	'',	'com-akeeba',	'index.php?option=com_akeeba',	'component',	1,	1,	1,	10015,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	241,	242,	0,	'',	1);
+(2214,	'main',	'COM_AKEEBA',	'com-akeeba',	'',	'com-akeeba',	'index.php?option=com_akeeba',	'component',	1,	1,	1,	10015,	0,	'0000-00-00 00:00:00',	0,	1,	'class:component',	0,	'{}',	241,	242,	0,	'',	1),
+(4785,	'main-nav-bar',	'Update Club Agreement',	'club-agreement',	'',	'club/agreement',	'index.php?option=com_swa&view=clubagreement',	'component',	1,	2458,	3,	10052,	14657,	'2022-05-21 13:35:23',	0,	1,	' ',	0,	'{\"menu-anchor_title\":\"\",\"menu-anchor_css\":\"\",\"menu_image\":\"\",\"menu_image_css\":\"\",\"menu_text\":1,\"menu_show\":1,\"page_title\":\"\",\"show_page_heading\":\"\",\"page_heading\":\"\",\"pageclass_sfx\":\"\",\"menu-meta_description\":\"\",\"menu-meta_keywords\":\"\",\"robots\":\"\",\"secure\":0}',	151,	152,	0,	'*',	0);
 
 DROP TABLE IF EXISTS `swana_menu_types`;
 CREATE TABLE `swana_menu_types` (
@@ -1992,16 +1994,24 @@ INSERT INTO `swana_swa_ticket` (`id`, `member_id`, `event_ticket_id`, `paid`, `d
 
 DROP TABLE IF EXISTS `swana_swa_university`;
 CREATE TABLE `swana_swa_university` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(200) NOT NULL,
-  `url` varchar(200) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name_UNIQUE` (`name`)
+										`id` int(11) NOT NULL AUTO_INCREMENT,
+										`name` varchar(200) NOT NULL,
+										`url` varchar(200) DEFAULT NULL,
+										`au_address` varchar(200) DEFAULT NULL,
+										`au_additional_address` varchar(200) DEFAULT NULL,
+										`au_postcode` varchar(10) DEFAULT NULL,
+										`club_email_1` varchar(100) DEFAULT NULL,
+										`club_email_2` varchar(100) DEFAULT NULL,
+										`club_contact_name` varchar(100) DEFAULT NULL,
+										`club_contact_method` varchar(25) DEFAULT NULL,
+										`club_contact_value` varchar(100) DEFAULT NULL,
+										PRIMARY KEY (`id`),
+										UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `swana_swa_university` (`id`, `name`, `url`) VALUES
-(1,	'University1',	''),
-(2,	'University2',	'');
+INSERT INTO `swana_swa_university` (`id`, `name`, `url`, `au_address`, `au_additional_address`, `au_postcode`, `club_email_1`, `club_email_2`, `club_contact_name`, `club_contact_method`, `club_contact_value`) VALUES
+(1,	'University1',	'',	'Ex quia quia ut tota',	'Fugit in ea qui odi',	'Et laborum',	'rylaqygov@mailinator.com',	'qokenu@mailinator.com',	'Hayfa Black',	'Email',	'jehuwe'),
+(2,	'University2',	'',	'testaddress',	'',	'testcode',	'testmail@mail.com',	'testmail@mail.com',	'testname',	'SMS',	'999');
 
 DROP TABLE IF EXISTS `swana_swa_university_member`;
 CREATE TABLE `swana_swa_university_member` (
@@ -2379,3 +2389,29 @@ INSERT INTO `swana_viewlevels` (`id`, `title`, `ordering`, `rules`) VALUES
 (8,	'Org Committee',	0,	'[]');
 
 -- 2019-02-10 17:17:48
+
+
+DROP TABLE IF EXISTS `swana_university_agreements`;
+CREATE TABLE `swana_university_agreements` (
+  `id` int(10) NOT NULL AUTO_INCREMENT COMMENT 'Primary Key',
+  `signed` BIT NOT NULL DEFAULT 0,
+  `date` DATE,
+  `university_id` int(11),
+  `member_id` int(11) COLLATE utf8mb4_unicode_ci,
+  `override` TINYINT NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+INSERT INTO `swana_university_agreements` (`id`,`signed`,`date`,`university_id`, `member_id`, `override`) VALUES
+(1 ,0 ,NULL,NULL,NULL, 0),
+(2 ,1 ,'2019-02-10',9 ,1,0);
+
+
+-- `signed`
+-- --'Whether the agreement has been signed'
+-- `date`
+-- -- 'The date the agreement was last signed'
+-- `member_id`
+-- -- 'The member that signed the agreement',
+-- override, the values this takes mean; 0=nothing, 1=give access, 2=remove access

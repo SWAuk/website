@@ -7,7 +7,6 @@ $ARTICLE_ID = 726;
 // Load admin language file
 $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
-
 // Load the article model
 JLoader::import('joomla.application.component.model');
 JModelLegacy::addIncludePath(JPATH_SITE . '/components/com_content/models', 'ContentModel');

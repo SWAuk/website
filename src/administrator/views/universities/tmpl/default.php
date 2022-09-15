@@ -10,21 +10,20 @@ JHtml::_('formbehavior.chosen', 'select');
 $document = JFactory::getDocument();
 $document->addStyleSheet('components/com_swa/assets/css/swa.css');
 
-$user      = JFactory::getUser();
-$userId    = $user->get('id');
+$user = JFactory::getUser();
+$userId = $user->get('id');
 $listOrder = $this->state->get('list.ordering');
-$listDirn  = $this->state->get('list.direction');
-$canOrder  = $user->authorise('core.edit.state', 'com_swa');
+$listDirn = $this->state->get('list.direction');
+$canOrder = $user->authorise('core.edit.state', 'com_swa');
 $saveOrder = $listOrder == 'a.ordering';
-if ($saveOrder)
-{
+if ($saveOrder) {
 	$saveOrderingUrl = 'index.php?option=com_swa&task=universities.saveOrderAjax&tmpl=component';
 	JHtml::_(
-		'sortablelist.sortable',
-		'universityList',
-		'adminForm',
-		strtolower($listDirn),
-		$saveOrderingUrl
+			'sortablelist.sortable',
+			'universityList',
+			'adminForm',
+			strtolower($listDirn),
+			$saveOrderingUrl
 	);
 }
 $sortFields = $this->getSortFields();
@@ -45,14 +44,13 @@ $sortFields = $this->getSortFields();
 
 <?php
 // Code to allow adding non select list filters
-if (!empty($this->extra_sidebar))
-{
+if (!empty($this->extra_sidebar)) {
 	$this->sidebar .= $this->extra_sidebar;
 }
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_swa&view=universities'); ?>"
-      method="post" name="adminForm" id="adminForm">
+	  method="post" name="adminForm" id="adminForm">
 	<?php if (!empty($this->sidebar))
 	:
 	?>
@@ -74,17 +72,17 @@ if (!empty($this->extra_sidebar))
 						<?php echo JText::_('JSEARCH_FILTER'); ?>
 					</label>
 					<input type="search" name="filter_search" id="filter_search"
-					       placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
+						   placeholder="<?php echo JText::_('JSEARCH_FILTER'); ?>"
 						   value="<?php echo $this->escape($this->state->get('filter.search')); ?>"
 						   title="<?php echo JText::_('JSEARCH_FILTER'); ?>"/>
 				</div>
 				<div class="btn-group pull-left">
 					<button class="btn hasTooltip" type="submit"
-					        title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>">
+							title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>">
 						<i class="icon-search"></i></button>
 					<button class="btn hasTooltip" type="button"
-					        title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
-					        onclick="getElementById('filter_search').value='';this.form.submit();">
+							title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"
+							onclick="getElementById('filter_search').value='';this.form.submit();">
 						<i class="icon-remove"></i></button>
 				</div>
 				<div class="btn-group pull-right hidden-phone">
@@ -98,14 +96,12 @@ if (!empty($this->extra_sidebar))
 						<?php echo JText::_('JFIELD_ORDERING_DESC'); ?>
 					</label>
 					<select name="directionTable" id="directionTable" class="input-medium"
-					        onchange="Joomla.orderTable()">
+							onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JFIELD_ORDERING_DESC'); ?></option>
-						<option value="asc" <?php if ($listDirn == 'asc')
-						{
+						<option value="asc" <?php if ($listDirn == 'asc') {
 							echo 'selected="selected"';
 						} ?>><?php echo JText::_('JGLOBAL_ORDER_ASCENDING'); ?></option>
-						<option value="desc" <?php if ($listDirn == 'desc')
-						{
+						<option value="desc" <?php if ($listDirn == 'desc') {
 							echo 'selected="selected"';
 						} ?>><?php echo JText::_('JGLOBAL_ORDER_DESCENDING'); ?></option>
 					</select>
@@ -115,14 +111,14 @@ if (!empty($this->extra_sidebar))
 						<?php echo JText::_('JGLOBAL_SORT_BY'); ?>
 					</label>
 					<select name="sortTable" id="sortTable" class="input-medium"
-					        onchange="Joomla.orderTable()">
+							onchange="Joomla.orderTable()">
 						<option value=""><?php echo JText::_('JGLOBAL_SORT_BY'); ?></option>
 						<?php echo JHtml::_(
-							'select.options',
-							$sortFields,
-							'value',
-							'text',
-							$listOrder
+								'select.options',
+								$sortFields,
+								'value',
+								'text',
+								$listOrder
 						); ?>
 					</select>
 				</div>
@@ -136,60 +132,140 @@ if (!empty($this->extra_sidebar))
 						?>
 						<th width="1%" class="nowrap center hidden-phone">
 							<?php echo JHtml::_(
-								'grid.sort',
-								'<i class="icon-menu-2"></i>',
-								'a.ordering',
-								$listDirn,
-								$listOrder,
-								null,
-								'asc',
-								'JGRID_HEADING_ORDERING'
+									'grid.sort',
+									'<i class="icon-menu-2"></i>',
+									'a.ordering',
+									$listDirn,
+									$listOrder,
+									null,
+									'asc',
+									'JGRID_HEADING_ORDERING'
 							); ?>
 						</th>
 					<?php endif; ?>
 					<th width="1%" class="hidden-phone">
 						<input type="checkbox" name="checkall-toggle" value=""
-						       title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
-						       onclick="Joomla.checkAll(this)"/>
+							   title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>"
+							   onclick="Joomla.checkAll(this)"/>
 					</th>
 
 					<th class='left'>
 						<?php echo JHtml::_(
-							'grid.sort',
-							'Name',
-							'a.name',
-							$listDirn,
-							$listOrder
+								'grid.sort',
+								'Name',
+								'a.name',
+								$listDirn,
+								$listOrder
 						); ?>
 					</th>
 					<th class='left'>
 						<?php echo JHtml::_(
-							'grid.sort',
-							'Url',
-							'a.url',
-							$listDirn,
-							$listOrder
+								'grid.sort',
+								'Url',
+								'a.url',
+								$listDirn,
+								$listOrder
 						); ?>
 					</th>
-					<th width="1%" class="nowrap center hidden-phone">
+
+
+					<th class='left'>
 						<?php echo JHtml::_(
+								'grid.sort',
+								'AU Address',
+								'a.au_address',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'AU Additional Address',
+								'a.au_additional_address',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'AU Postcode',
+								'a.au_postcode',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+					<th class='left'>
+					<?php echo JHtml::_(
 							'grid.sort',
-							'JGRID_HEADING_ID',
-							'a.id',
+							'Contact Email 1',
+							'a.club_email_1',
 							$listDirn,
 							$listOrder
+					); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'Contact Email 2',
+								'a.club_email_2',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'Contact Name',
+								'a.club_contact_name',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+					<th class='left'>
+						<?php echo JHtml::_(
+								'grid.sort',
+								'Contact Method',
+								'a.club_contact_method',
+								$listDirn,
+								$listOrder
+						); ?>
+					</th>
+
+					<th class='left'
+					">
+					<?php echo JHtml::_(
+							'grid.sort',
+							'Contact Value',
+							'a.club_contact_value',
+							$listDirn,
+							$listOrder
+					); ?>
+					</th>
+
+
+					<th width="1%" class="nowrap center hidden-phone">
+						<?php echo JHtml::_(
+								'grid.sort',
+								'JGRID_HEADING_ID',
+								'a.id',
+								$listDirn,
+								$listOrder
 						); ?>
 					</th>
 				</tr>
 				</thead>
 				<tfoot>
 				<?php
-				if (isset($this->items[0]))
-				{
+				if (isset($this->items[0])) {
 					$colspan = count(get_object_vars($this->items[0]));
 				}
-				else
-				{
+else {
 					$colspan = 10;
 				}
 				?>
@@ -220,17 +296,17 @@ if (!empty($this->extra_sidebar))
 									$disabledLabel = '';
 									if (!$saveOrder)
 										:
-										$disabledLabel    = JText::_('JORDERINGDISABLED');
+										$disabledLabel = JText::_('JORDERINGDISABLED');
 										$disableClassName = 'inactive tip-top';
 									endif; ?>
 									<span
-										class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
-										title="<?php echo $disabledLabel ?>">
+											class="sortable-handler hasTooltip <?php echo $disableClassName ?>"
+											title="<?php echo $disabledLabel ?>">
 							<i class="icon-menu"></i>
 						</span>
 									<input type="text" style="display:none" name="order[]" size="5"
-									       value="<?php echo $item->ordering; ?>"
-									       class="width-20 text-area-order "/>
+										   value="<?php echo $item->ordering; ?>"
+										   class="width-20 text-area-order "/>
 								<?php else
 									:
 									?>
@@ -249,8 +325,8 @@ if (!empty($this->extra_sidebar))
 								:
 								?>
 								<a href="<?php echo JRoute::_(
-									'index.php?option=com_swa&task=university.edit&id=' .
-									(int) $item->id
+										'index.php?option=com_swa&task=university.edit&id=' .
+										(int) $item->id
 								); ?>">
 									<?php echo $this->escape($item->name); ?></a>
 							<?php else
@@ -263,9 +339,36 @@ if (!empty($this->extra_sidebar))
 
 							<?php echo $item->url; ?>
 						</td>
+
+
+						<td class="center hidden-phone">
+							<?php echo $item->au_address; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->au_additional_address; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->au_postcode; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->club_email_1; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->club_email_2; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->club_contact_name; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->club_contact_method; ?>
+						</td>
+						<td class="center hidden-phone">
+							<?php echo $item->club_contact_value; ?>
+						</td>
 						<td class="center hidden-phone">
 							<?php echo (int) $item->id; ?>
 						</td>
+
 					</tr>
 				<?php endforeach; ?>
 				</tbody>

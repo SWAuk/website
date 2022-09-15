@@ -15,7 +15,7 @@ class SwaModelUniversities extends JModelList
 	{
 		if (empty($config['filter_fields']))
 		{
-			$config['filter_fields'] = array(
+			$config['filter_fields'] = [
 				'id',
 				'a.id',
 				'name',
@@ -26,8 +26,23 @@ class SwaModelUniversities extends JModelList
 				'a.url',
 				'password',
 				'a.password',
-
-			);
+				'au_address',
+				'a.au_address',
+				'au_additional_address',
+				'a.au_additional_address',
+				'au_postcode',
+				'a.au_postcode',
+				'club_email_1',
+				'a.club_email_1',
+				'club_email_2',
+				'a.club_email_2',
+				'club_contact_name',
+				'a.club_contact_name',
+				'club_contact_method',
+				'a.club_contact_method',
+				'club_contact_value',
+				'a.club_contact_value',
+			];
 		}
 
 		parent::__construct($config);
