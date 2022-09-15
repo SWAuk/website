@@ -8,7 +8,7 @@ services:
       - db
     volumes:
       - ./.docker/www:/var/www/html:cached
-      - ./.docker/configuration.php:/var/www/html/configuration.php:cached
+      - ./.docker/configuration.php:/var/www/html/configuration.php
       - ./src/administrator:/var/www/html/administrator/components/com_swa:cached
       - ./src/site:/var/www/html/components/com_swa:cached
       - ./src/plugin:/var/www/html/plugins/swa/

@@ -1,6 +1,9 @@
 {
 	"name": "swauk/com_swa",
 	"description": "Joomla component holding SWA website functionality",
+	"config": {
+		"process-timeout": 600
+	},
 	"scripts": {
 		"build": [
 			"composer build:component",

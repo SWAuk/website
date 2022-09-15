@@ -19,11 +19,11 @@ echo 'Fetching Joomla'
 
 curl --progress-bar -L -o joomla.zip $joomtoget
 
-rm -rf ./.docker/www
+rm -rf ./.docker/www/
 mkdir -p ./.docker/www
 
 echo "Unzipping:"
-unzip joomla.zip -d ./.docker/www | awk 'BEGIN {ORS=" "} {if(NR%10==0)print "."}'
+unzip joomla.zip -d ./.docker/www #| awk 'BEGIN {ORS=" "} {if(NR%10==0)print "."}'
 echo ""
 mv ./.docker/www/*/* ./.docker/www/
 
