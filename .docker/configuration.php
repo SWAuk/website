@@ -102,6 +102,6 @@ class JConfig {
 	{
 		$this->stripe_publishable_key = getenv('JCONFIG_STRIPE_PUBLISHABLE_KEY');
 		$this->stripe_secret_key = getenv('JCONFIG_STRIPE_SECRET_KEY');
-	}
+}
 
 }

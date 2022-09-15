@@ -100,6 +100,10 @@
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Seasons">
 				COM_SWA_TITLE_SEASONS
 			</menu>
+			<menu link="option=com_swa&amp;view=sponsors" view="sponsors"
+				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Sponsors">
+				COM_SWA_TITLE_SPONSORS
+			</menu>
 			<menu link="option=com_swa&amp;view=competitions" view="competitions"
 				  img="components/com_swa/assets/images/s_default.png" alt="Swa/Competitions">
 				COM_SWA_TITLE_COMPETITIONS

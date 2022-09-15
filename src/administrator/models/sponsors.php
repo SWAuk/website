@@ -4,7 +4,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modellist');
 
-class SwaModelTickets extends JModelList
+class SwaModelSponsors extends JModelList
 {
 
 	/**
@@ -14,15 +14,10 @@ class SwaModelTickets extends JModelList
 	 */
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields']))
-		{
+		if (empty($config['filter_fields'])) {
 			$config['filter_fields'] = array(
 				'id',
-				'name',
-				'uni',
-				'event',
-				'ticket_type',
-				'paid',
+				'name'
 			);
 		}
 
@@ -37,7 +32,7 @@ class SwaModelTickets extends JModelList
 			$app->getUserStateFromRequest($this->context . '.filter.search', 'filter_search')
 		);
 		$this->setState('params', JComponentHelper::getParams('com_swa'));
-		parent::populateState('ticket.id', 'desc');
+		parent::populateState('sponsor.id', 'desc');
 	}
 
 	/**
@@ -75,51 +70,35 @@ class SwaModelTickets extends JModelList
 			$this->getState(
 				'list.select',
 				$db->quoteName(
-					array('user.name', 'event.name', 'uni.name', 'event_ticket.name', 'ticket.paid', 'ticket.id'),
-					array('name', 'event', 'uni', 'ticket_type', 'paid', 'id')
+					array('name', 'sponsor_level', 'blurb', 'logo_url', 'id')
 				)
 			)
 		);
-		$query->from($db->quoteName('#__swa_ticket', 'ticket'));
-		$query->leftJoin($db->qn('#__swa_member', 'member') .
-			' ON ticket.member_id = member.id');
-		$query->leftJoin($db->qn('#__users', 'user') . ' ON member.user_id = user.id');
-		$query->leftJoin(
-			$db->qn('#__swa_event_ticket', 'event_ticket') . ' ON ticket.event_ticket_id = event_ticket.id'
-		);
-		$query->leftJoin($db->qn('#__swa_event', 'event') . ' ON event_ticket.event_id = event.id');
-		$query->leftJoin(
-			$db->qn('#__swa_university_member', 'uni_member') . ' ON uni_member.member_id = member.id'
-		);
-		$query->leftJoin(
-			$db->qn('#__swa_university', 'uni') . ' ON uni.id = uni_member.university_id'
-		);
+		$query->from($db->quoteName('#__swa_sponsors', 'sponsor'));
 
 		// Filter by search in title
 		$search = $this->getState('filter.search');
-		if (!empty($search))
-		{
-			if (stripos($search, 'id:') === 0)
-			{
-				$query->where('ticket.id = ' . (int) substr($search, 3));
+		if (!empty($search)) {
+			if (stripos($search, 'id:') === 0) {
+				$query->where('sponsor.id = ' . (int) substr($search, 3));
 			}
-			else
-			{
+else {
+				/*
 				$search = $db->Quote('%' . $db->escape($search, true) . '%');
-				$query->where(
-					'( user.name LIKE ' . $search .
-					' OR  user.username LIKE ' . $search .
-					' OR  event.name LIKE ' . $search .
-					' )'
-				);
+				// $query->where(
+				// 	'( user.name LIKE ' . $search .
+				// 	' OR  user.username LIKE ' . $search .
+				// 	' OR  event.name LIKE ' . $search .
+				// 	' )'
+				// );
+				*/
 			}
 		}
 
 		// Add the list ordering clause.
 		$orderCol  = $this->state->get('list.ordering');
 		$orderDirn = $this->state->get('list.direction');
-		if ($orderCol && $orderDirn)
-		{
+		if ($orderCol && $orderDirn) {
 			$query->order($db->escape($orderCol . ' ' . $orderDirn));
 		}
 
@@ -132,5 +111,4 @@ class SwaModelTickets extends JModelList
 
 		return $items;
 	}
-
 }
