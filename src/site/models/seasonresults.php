@@ -5,7 +5,7 @@ jimport('joomla.application.component.modellist');
 
 class SwaModelSeasonResults extends SwaModelList
 {
-	private $seasonId = 21;
+	private $seasonId = 22;
 
 	private $cachedMethodDbMap = array();
 

@@ -182,12 +182,12 @@ class SwaModelEvent extends SwaModelItem
 		$db    = $this->getDbo();
 		$query = $db->getQuery(true);
 
-		$cols = array('Name', 'Uni', 'Ticket', 'Level', 'Gender', 'RacingCategory', 'Dietary', 'EmergencyContact', 'EmergencyNumber', 'Details');
+		$cols = array('Name', 'Uni', 'Ticket', 'Level', 'Gender', 'RacingCategory', 'Dietary','ContactNumber', 'EmergencyContact', 'EmergencyNumber', 'Details');
 
 		$query->select(
 			$query->qn(
 				array('user.name', 'uni.name', 'event_ticket.name', 'member.level', 'member.gender', 'member.race',
-				'member.dietary', 'member.econtact', 'member.enumber', 'ticket.details'),
+				'member.dietary','member.tel', 'member.econtact', 'member.enumber', 'ticket.details'),
 				$cols
 			)
 		);
