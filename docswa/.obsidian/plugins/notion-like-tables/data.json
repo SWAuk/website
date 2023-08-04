@@ -1,0 +1,13 @@
+{
+  "shouldDebug": false,
+  "createAtObsidianAttachmentFolder": true,
+  "customFolderForNewFiles": "",
+  "exportRenderMarkdown": true,
+  "defaultEmbedWidth": "100%",
+  "defaultEmbedHeight": "340px",
+  "hasMigratedTo800": true,
+  "showWelcomeModal": false,
+  "showDonationModal": false,
+  "showWhatsNewModal": false,
+  "pluginVersion": "8.1.0"
+}
