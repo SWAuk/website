@@ -37,7 +37,7 @@
 			"composer post-update-cmd:images"
 		],
 		"post-update-cmd:stripe": ".build/stripe.sh",
-		"post-update-cmd:joomla": ".build/joomla.sh",
+		"post-update-cmd:joomla": ["Composer\\Config::disableProcessTimeout", ".build/joomla.sh"],
 		"post-update-cmd:joomlaPluginHack": ".build/onJAccessGetAuthorisedViewLevels.sh",
 		"post-update-cmd:template": ".build/template.sh",
 		"post-update-cmd:images": ".build/images.sh"
