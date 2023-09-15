@@ -10,21 +10,31 @@ $lang = JFactory::getLanguage();
 $lang->load('com_swa', JPATH_ADMINISTRATOR);
 $item = $this->item;
 
+function llog($txt)
+{
+	echo "<script>console.log('" . $txt . "');</script>";
+}
 
 function addonTable($addonString)
 {
+	$headers = [];
+	$quantities = [];
+    $options = [];
     $obj = json_decode($addonString, true);
-    $headers = array_map(function ($key): string {
-        return "<td>" . $key . "</td>";
+	if (!is_null($obj))
+	{
+	$headers = array_map(function ($key): string {
+			return "<td>" . $key . "</td>";
     }, array_keys($obj["addons"]));
 
-    $quantities = [];
-    $options = [];
-
     foreach ($obj["addons"] as $addon) {
-        array_push($quantities, array_key_exists("qty", $addon) ? $addon["qty"] : 0);
-        array_push($options, array_key_exists("option", $addon) ? $addon["option"] : "");
+			if (!is_null($addon))
+			{
+			array_push($quantities, array_key_exists("qty", $addon) ? $addon["qty"] : 0);
+			array_push($options, array_key_exists("option", $addon) ? ($addon["option"] ?? "" ) : "");
+				}
     }
+}
 
 /*
 Uncomment to include headers
