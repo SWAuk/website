@@ -14,8 +14,8 @@
 		"minus-x:check": "minus-x check .",
 		"minus-x:fix": "minus-x fix .",
 		"lint": "parallel-lint ./src",
-		"phpcs": "phpcs -p -s",
-		"phpcbf": "phpcbf",
+		"phpcs": "phpcs -p -s --ignore=*/node_modules/*",
+		"phpcbf": "phpcbf --ignore=*/node_modules/*",
 		"phpunit:unit": "phpunit tests/unit",
 		"phpunit:browser": "phpunit tests/browser",
 		"fix": [

@@ -26,10 +26,33 @@ class SwaControllerMemberDetails extends SwaController
 		$data  = $input->getArray();
 
 		$submittedMemberId = $data['jform']['id'];
+		$oldLevel = $member->level;
+		$newLevel = $data['jform']['level'];
+		$validForm = true;
 
+		if ($oldLevel == "Intermediate")
+		{
+			if ($newLevel == "Beginner")
+			{
+				JFactory::getApplication()->enqueueMessage("You cannot decrease your level. Please contact webmaster@swa.co.uk to change.", "error");
+				$validForm = false;
+			}
+		}
+
+		if ($oldLevel == "Advanced")
+		{
+			if ($newLevel == "Beginner")
+			{
+				JFactory::getApplication()->enqueueMessage("You cannot decrease your level. Please contact webmaster@swa.co.uk to change.", "error");
+				$validForm = false;
+			}
+		}
+
+		if ($validForm)
+		{
 		if ($submittedMemberId != $member->id)
 		{
-			throw new Exception('You\'re trying to submit data for someone else?');
+				throw new Exception('You\'re trying to submit data for someone else?');
 		}
 
 		$newGender        = $data['jform']['gender'];
@@ -62,20 +85,21 @@ class SwaControllerMemberDetails extends SwaController
 
 		if (!$db->execute())
 		{
-			JLog::add(
+				JLog::add(
 				__CLASS__ . ' failed to update member details: ' . $member->id,
 				JLog::INFO,
 				'com_swa'
-			);
+					);
 		}
 		else
 		{
-			$this->logAuditFrontend('Updated member details ' . $member->id);
+				$this->logAuditFrontend('Updated member details ' . $member->id);
 		}
 
 		$this->setRedirect(
 			JRoute::_('index.php?option=com_swa&view=memberdetails&layout=default', false)
 		);
+		}
 
 	}
 
