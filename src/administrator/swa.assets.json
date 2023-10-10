@@ -1,0 +1,13 @@
+{
+    "$schema" : "https://developer.joomla.org/schemas/json-schema/web_assets.json",
+    "name": "com_swa",
+    "version": "4.0.0",
+    "description": "Joomla CMS",
+    "assets": [
+        {
+            "name": "swa_css",
+            "type": "style",
+            "uri": "com_swa/administrator/assets/css/swa.css"
+        }
+    ]
+}

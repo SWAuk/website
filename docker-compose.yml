@@ -3,7 +3,7 @@ version: '3.7'
 services:
   joomla:
     image: joomla:3
-    restart: always
+    restart: on-failure
     depends_on:
       - db
     volumes:
@@ -24,7 +24,7 @@ services:
 
   db:
     image: mysql:5.6
-    restart: always
+    restart: on-failure
     volumes:
       - db-volume:/var/lib/mysql
       - ./.docker/db/initdb:/docker-entrypoint-initdb.d
@@ -39,7 +39,7 @@ services:
     depends_on:
       - db
     build: ./.docker/adminer
-    restart: always
+    restart: on-failure
     ports:
       - ${ADMINER_PORT:-5556}:8080
 

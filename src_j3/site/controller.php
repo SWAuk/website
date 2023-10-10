@@ -1,27 +1,28 @@
 <?php
+namespace Joomla\CMS\swa\Controller;
+
 defined('_JEXEC') or die;
 
-jimport('joomla.application.component.controller');
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
 
-class SwaController extends JControllerLegacy
+class SwaController extends BaseController
 {
-
 	/**
 	 * Method to display a view.
 	 *
 	 * @param   boolean $cachable  If true, the view output will be cached
-	 * @param   array   $urlparams An array of safe url parameters and their variable types, for
-	 *                             valid values see {@link JFilterInput::clean()}.
+	 * @param   array   $urlparams An array of safe URL parameters and their variable types.
 	 *
-	 * @return    JController        This object to support chaining.
-	 * @since    1.5
+	 * @return  BaseController  This object to support chaining.
+	 * @since   1.5
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
 		require_once JPATH_COMPONENT . '/helpers/swa.php';
 
-		$view = JFactory::getApplication()->input->getCmd('view', 'home');
-		JFactory::getApplication()->input->set('view', $view);
+		$view = Factory::getApplication()->input->getCmd('view', 'home');
+		Factory::getApplication()->input->set('view', $view);
 
 		parent::display($cachable, $urlparams);
 
@@ -30,18 +31,17 @@ class SwaController extends JControllerLegacy
 
 	/**
 	 * Logs the given message to the frontend audit log.
-	 * Automatically adds the current users name
+	 * Automatically adds the current user's name.
 	 *
 	 * @param   string $message
 	 */
 	protected function logAuditFrontend($message)
 	{
-		$user = JFactory::getUser();
+		$user = Factory::getUser();
 		JLog::add(
 			$user->name . ' ' . $message,
 			JLog::INFO,
 			'com_swa.audit_frontend'
 		);
 	}
-
 }
