@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+
+		<field name="id"
+			type="text"
+			default="0"
+			label="ID"
+			readonly="true"
+			class="readonly"
+			description="JGLOBAL_FIELD_ID_DESC"/>
+
+		<field name="member_id"
+			type="sql"
+			key_field="id"
+			value_field="member_uni"
+			query="SELECT member.id AS id, CONCAT(user.name, ' - ', uni.name) AS member_uni
+			FROM #__swa_member AS member
+			INNER JOIN #__users AS user ON member.user_id = user.id
+			INNER JOIN #__swa_university_member AS uni_member ON uni_member.member_id = member.id
+			INNER JOIN #__swa_university AS uni ON uni_member.university_id = uni.id
+			ORDER BY member.id DESC"
+			label="User"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="position"
+			type="text"
+			size="50"
+			class="inputbox"
+			label="Position"
+			required="true"
+			filter="safehtml"/>
+
+		<field name="blurb"
+			type="editor"
+			size="2000"
+			width="300"
+			class="inputbox"
+			label="Blurb"
+			required="true"
+			filter="safehtml"/>
+			
+		<field name="image" 
+			type="media"
+			label="Image URL"
+			directory="committee"
+			preview="tooltip"/>
+
+	</fieldset>
+
+</form>

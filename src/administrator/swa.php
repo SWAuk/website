@@ -31,10 +31,14 @@ Log::addLogger(
 	// The log category which should be recorded in this file
 	array( 'com_swa.audit_backend' )
 );
+
+
 $document = Factory::getDocument();
 $webAssetManager = $document->getWebAssetManager();
 $webAssetManager->getRegistry()->addRegistryFile("./swa.assets.json");
-
-$controller = BaseController::getInstance( 'Swa' );
-$controller->execute( $app->input->get( 'task' ) );
-$controller->redirect();
+$view = $app->input->getCmd('view', 'home');
+$app->input->set('view', $view);
+//
+//$controller = BaseController::getInstance( 'Swa' );
+//$controller->execute( $app->input->get( 'task' ) );
+//$controller->redirect();

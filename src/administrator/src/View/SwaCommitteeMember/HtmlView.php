@@ -1,21 +1,26 @@
 <?php
-namespace SwaUK\Component\Swa\Administrator\View\Event;
+namespace SwaUK\Component\Swa\Administrator\View\SwaCommitteeMember;
 
-use Exception;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
-use Joomla\CMS\MVC\View\HtmlView;
-use Joomla\CMS\Toolbar\ToolbarHelper;
-use JToolbarHelper;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.view');
 
 /**
- * View to edit
+ * @package     Joomla.Administrator
+ * @subpackage  com_swa
+ *
+ * @copyright   Copyright (C) 2020 John Smith. All rights reserved.
+ * @license     GNU General Public License version 3; see LICENSE
  */
-class SwaEventView extends HtmlView
+
+/**
+ * Main "Hello World" Admin View
+ */
+class HtmlView extends BaseHtmlView
 {
 	protected $state;
 
@@ -25,9 +30,9 @@ class SwaEventView extends HtmlView
 
 	/**
 	 * Display the view
+	 * @throws Exception
 	 */
-	public function display($tpl = null)
-	{
+	public function display($tpl = null): void {
 		$this->state = $this->get('State');
 		$this->item  = $this->get('Item');
 		$this->form  = $this->get('Form');
@@ -50,11 +55,12 @@ class SwaEventView extends HtmlView
 
 		$isNew = ($this->item->id == 0);
 
-		JToolBarHelper::title(Text::_('Event'), 'event.png');
-		JToolBarHelper::apply('event.apply', 'JTOOLBAR_APPLY');
-		JToolBarHelper::save('event.save', 'JTOOLBAR_SAVE');
+		JToolbarHelper::title( Text::_('Committee Member'), 'committeemember.png');
+
+		JToolBarHelper::apply('committeemember.apply', 'JTOOLBAR_APPLY');
+		JToolBarHelper::save('committeemember.save', 'JTOOLBAR_SAVE');
 		JToolBarHelper::custom(
-			'event.save2new',
+			'committeemember.save2new',
 			'save-new.png',
 			'save-new_f2.png',
 			'JTOOLBAR_SAVE_AND_NEW',
@@ -65,7 +71,7 @@ class SwaEventView extends HtmlView
 		if (!$isNew)
 		{
 			JToolBarHelper::custom(
-				'event.save2copy',
+				'committeemember.save2copy',
 				'save-copy.png',
 				'save-copy_f2.png',
 				'JTOOLBAR_SAVE_AS_COPY',
@@ -74,11 +80,11 @@ class SwaEventView extends HtmlView
 		}
 		if (empty($this->item->id))
 		{
-			JToolBarHelper::cancel('event.cancel', 'JTOOLBAR_CANCEL');
+			JToolBarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
-			JToolBarHelper::cancel('event.cancel', 'JTOOLBAR_CLOSE');
+			JToolBarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 

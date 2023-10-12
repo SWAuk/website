@@ -29,18 +29,9 @@
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>swa.php</filename>
-		<filename>controller.php</filename>
-		<filename>router.php</filename>
-		<filename>ModelItem.php</filename>
-		<filename>ModelList.php</filename>
-		<filename>ModelForm.php</filename>
-		<filename>SwaFactory.php</filename>
-		<filename>SwaModelMemberTrait.php</filename>
-		<folder>views</folder>
-		<folder>models</folder>
-		<folder>controllers</folder>
-		<folder>helpers</folder>
 		<folder>assets</folder>
+		<folder>src</folder>
+		<folder>tmpl</folder>
 		<folder>language</folder>
 		<folder>libraries</folder>
 	</files>
@@ -129,14 +120,15 @@
 		<files folder="administrator">
 			<filename>config.xml</filename>
 			<filename>access.xml</filename>
-			<filename>controller.php</filename>
 			<filename>index.html</filename>
-			<filename>swa.php</filename>
+			<filename>swa.assets.json</filename>
+			<filename plugin="swa">swa.php</filename>
 			<folder>assets</folder>
+			<folder>services</folder>
+			<folder>tmpl</folder>
 			<folder>language</folder>
 			<folder>sql</folder>
 			<folder>src</folder>
-			<folder>tmpl</folder>
 		</files>
 
 		<languages folder="administrator">

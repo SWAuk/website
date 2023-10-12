@@ -1,7 +1,6 @@
 <?php
 namespace SwaUK\Component\Swa\Administrator\Model;
 
-use Exception;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
@@ -11,7 +10,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
 
-class SwaModelEvent extends AdminModel
+class SwaCommitteeMemberModel extends AdminModel
 {
 	/**
 	 * @var        string    The prefix to use with controller messages.
@@ -21,13 +20,13 @@ class SwaModelEvent extends AdminModel
 	/**
 	 * Returns a reference to the Table object, always creating it.
 	 *
-	 * @param   string $type   The table type to instantiate
-	 * @param   string $prefix A prefix for the table class name. Optional.
-	 * @param   array  $config Configuration array for model. Optional.
+	 * @param   string  $type    The table type to instantiate
+	 * @param   string  $prefix  A prefix for the table class name. Optional.
+	 * @param   array   $config  Configuration array for model. Optional.
 	 *
-	 * @return    Table    A database object
+	 * @return Table A database object
 	 */
-	public function getTable($type = 'Event', $prefix = 'SwaTable', $config = array()): Table {
+	public function getTable($type = 'Committee', $prefix = 'SwaTable', $config = array()): \Joomla\CMS\Table\Table {
 		return Table::getInstance($type, $prefix, $config);
 	}
 
@@ -38,15 +37,15 @@ class SwaModelEvent extends AdminModel
 	 * @param   boolean  $loadData  True if the form is to load its own data (default case), false
 	 *                              if not.
 	 *
-	 * @return false|Form A JForm object on success, false on failure
+	 * @return Form|false A JForm object on success, false on failure
 	 * @throws Exception
 	 */
-	public function getForm($data = array(), $loadData = true): false|Form {
+	public function getForm($data = array(), $loadData = true): Form|false {
 		// Get the form.
 		$form =
 			$this->loadForm(
-				'com_swa.event',
-				'event',
+				'com_swa.committeemember',
+				'committeemember',
 				array('control' => 'jform', 'load_data' => $loadData)
 			);
 
@@ -65,7 +64,7 @@ class SwaModelEvent extends AdminModel
 	 */
 	protected function loadFormData(): mixed {
 		// Check the session for previously entered form data.
-		$data = Factory::getApplication()->getUserState('com_swa.edit.event.data', array());
+		$data = Factory::getApplication()->getUserState('com_swa.edit.committeemembers.data', array());
 
 		if (empty($data))
 		{
@@ -75,4 +74,27 @@ class SwaModelEvent extends AdminModel
 		return $data;
 	}
 
+	/**
+	 * Prepare and sanitise the table data prior to saving.
+	 *
+	 * @param   \JTable $table A reference to a \JTable object.
+	 *
+	 * @return  void
+	 */
+	protected function prepareTable($table): void {
+		// Set ordering to the last item if not set
+		if (empty($table->ordering))
+		{
+			$db    = $this->getDatabase();
+			$query = $db->getQuery(true);
+
+			$query->select('MAX(ordering)');
+			$query->from('#__swa_committee');
+
+			$db->setQuery($query);
+			$max = $db->loadResult();
+
+			$table->ordering = $max + 1;
+		}
+	}
 }
