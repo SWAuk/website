@@ -20,7 +20,7 @@ return new class implements ServiceProviderInterface {
 		));
 		$namespace = '\\SwaUK\\Component\\Swa';
 		$container->registerServiceProvider( new MVCFactory( $namespace ) );
-		$container->registerServiceProvider( new RouterFactory($namespace));
+//		$container->registerServiceProvider( new RouterFactory($namespace));
 		$container->registerServiceProvider( new ComponentDispatcherFactory($namespace));
 
 		$container->set(
@@ -28,7 +28,7 @@ return new class implements ServiceProviderInterface {
 			function ( Container $container ) {
 				$component = new SwaComponent( $container->get( ComponentDispatcherFactoryInterface::class ) );
 				$component->setMVCFactory( $container->get( MVCFactoryInterface::class ) );
-				$component->setRouterFactory($container->get(RouterFactory::class));
+//				$component->setRouterFactory($container->get(RouterFactory::class));
 				$component->setRegistry($container->get(Registry::class));
 				return $component;
 			}
