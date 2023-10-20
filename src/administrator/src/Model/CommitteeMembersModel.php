@@ -4,6 +4,7 @@ namespace SwaUK\Component\Swa\Administrator\Model;
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Database\QueryInterface;
 
@@ -11,12 +12,12 @@ defined( '_JEXEC' ) or die;
 
 jimport( 'joomla.application.component.modellist' );
 
-class SwaCommitteeMembersModel extends ListModel {
+class CommitteeMembersModel extends ListModel {
 
 	/**
 	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @see        JController
+	 * @see        BaseController
 	 */
 	public function __construct( $config = array() ) {
 		if ( empty( $config['filter_fields'] ) )

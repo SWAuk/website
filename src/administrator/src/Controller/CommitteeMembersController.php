@@ -1,4 +1,5 @@
 <?php
+namespace SwaUK\Component\Swa\Administrator\Controller;
 
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
@@ -10,7 +11,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controlleradmin');
 
-class SwaCommitteeMembersController extends SwaAdminController
+class CommitteeMembersController extends SwaAdminController
 {/**
  * The default view.
  *

@@ -1,6 +1,7 @@
 <?php
 namespace SwaUK\Component\Swa\Administrator\Model;
 
+use Exception;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
@@ -10,7 +11,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modeladmin');
 
-class SwaCommitteeMemberModel extends AdminModel
+class CommitteeMemberModel extends AdminModel
 {
 	/**
 	 * @var        string    The prefix to use with controller messages.

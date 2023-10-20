@@ -1,5 +1,8 @@
 <?php
 
+use Joomla\CMS\Factory;
+use Joomla\CMS\Log\Log;
+
 class SwaControllerForm extends JControllerForm
 {
 
@@ -7,16 +10,16 @@ class SwaControllerForm extends JControllerForm
 	{
 		$saveResult = parent::save($key, $urlVar);
 
-		JLog::add(
+		Log::add(
 			implode(
 				', ',
-				array(
-					JFactory::getUser()->name,
+				[
+					Factory::getApplication()->getIdentity()->name,
 					get_called_class() . '::' . __FUNCTION__,
-					json_encode($this->input->post->get('jform', array(), 'array')),
-				)
+					json_encode($this->input->post->get('jform', [], 'array')),
+				]
 			),
-			JLog::INFO,
+			Log::INFO,
 			'com_swa.audit_backend'
 		);
 

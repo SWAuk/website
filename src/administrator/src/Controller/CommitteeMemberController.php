@@ -1,12 +1,11 @@
 <?php
-
-use SwaUK\Component\Swa\Administrator\Controller\SwaFormController;
+namespace SwaUK\Component\Swa\Administrator\Controller;
 
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.controllerform');
 
-class SwaCommiteeMemberController extends SwaFormController
+class CommitteeMemberController extends SwaFormController
 {
 
 	public function __construct()

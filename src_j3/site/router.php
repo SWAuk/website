@@ -1,4 +1,6 @@
 <?php
+namespace SwaUK\Component\Swa\Services;
+
 defined('_JEXEC') or die;
 
 /**

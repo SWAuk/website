@@ -1,9 +1,11 @@
 <?php
-namespace SwaUK\Component\Swa\Administrator\View\SwaCommitteeMember;
+namespace SwaUK\Component\Swa\Administrator\View\CommitteeMember;
 
+use Exception;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 
 defined('_JEXEC') or die;
 
@@ -55,11 +57,11 @@ class HtmlView extends BaseHtmlView
 
 		$isNew = ($this->item->id == 0);
 
-		JToolbarHelper::title( Text::_('Committee Member'), 'committeemember.png');
+		ToolbarHelper::title( Text::_('Committee Member'), 'committeemember.png');
 
-		JToolBarHelper::apply('committeemember.apply', 'JTOOLBAR_APPLY');
-		JToolBarHelper::save('committeemember.save', 'JTOOLBAR_SAVE');
-		JToolBarHelper::custom(
+		ToolbarHelper::apply('committeemember.apply', 'JTOOLBAR_APPLY');
+		ToolbarHelper::save('committeemember.save', 'JTOOLBAR_SAVE');
+		ToolbarHelper::custom(
 			'committeemember.save2new',
 			'save-new.png',
 			'save-new_f2.png',
@@ -70,7 +72,7 @@ class HtmlView extends BaseHtmlView
 		// If an existing item, can save to a copy.
 		if (!$isNew)
 		{
-			JToolBarHelper::custom(
+			ToolbarHelper::custom(
 				'committeemember.save2copy',
 				'save-copy.png',
 				'save-copy_f2.png',
@@ -80,11 +82,11 @@ class HtmlView extends BaseHtmlView
 		}
 		if (empty($this->item->id))
 		{
-			JToolBarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CANCEL');
+			ToolbarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CANCEL');
 		}
 		else
 		{
-			JToolBarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CLOSE');
+			ToolbarHelper::cancel('committeemember.cancel', 'JTOOLBAR_CLOSE');
 		}
 	}
 

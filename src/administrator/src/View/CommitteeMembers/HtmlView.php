@@ -1,6 +1,6 @@
 <?php
 
-namespace SwaUK\Component\Swa\Administrator\View\SwaCommitteeMembers;
+namespace SwaUK\Component\Swa\Administrator\View\CommitteeMembers;
 
 use Exception;
 use JHtmlSidebar;
