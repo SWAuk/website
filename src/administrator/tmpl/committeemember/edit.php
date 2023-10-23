@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\Router\Route;
 
 defined('_JEXEC') or die;
@@ -31,7 +32,7 @@ $document = Factory::getDocument();
 				Joomla.submitform(task, document.getElementById('committeemember-form'));
 			}
 			else {
-				alert('<?= $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED')) ?>');
+				alert('<?= $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED')) ?>');
 			}
 		}
 	}
@@ -46,7 +47,7 @@ $document = Factory::getDocument();
 		<?= JHtml::_('bootstrap.startTabSet', 'myTab', array( 'active' => 'general')) ?>
 
 		<?= JHtml::_('bootstrap.addTab',	'myTab', 'general',
-			JText::_('Committee Member', true)) ?>
+			Text::_('Committee Member', true)) ?>
 
 		<div class="row-fluid">
 			<div class="span10 form-horizontal">

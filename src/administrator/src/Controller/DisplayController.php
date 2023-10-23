@@ -42,14 +42,11 @@ class DisplayController extends BaseController
 			$prefix = $this->app->getName();
 		}
 
-		Log::add("View prefix: " .$prefix);
-
 		$viewFormat = $document->getType();
 		$view = $this->getView($viewName, $viewFormat);
 		$this->input->set("view", $view);
-//
-//		$view->setModel($this->getModel('Message'), true);
 
+		$view->setModel($this->getModel($viewName), true);
 		$view->document = $document;
 		$view->display();
 	}

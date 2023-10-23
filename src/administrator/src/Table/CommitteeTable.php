@@ -8,7 +8,7 @@ use Joomla\Registry\Registry;
 
 defined('_JEXEC') or die;
 
-class CommitteeTable extends Table
+class CommitteeMemberTable extends Table
 {
 
 	/**

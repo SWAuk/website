@@ -1,6 +1,7 @@
 <?php
 
 use Joomla\CMS\Extension\ComponentInterface;
+use Joomla\CMS\Extension\Service\Provider\CategoryFactory;
 use Joomla\CMS\Extension\Service\Provider\ComponentDispatcherFactory;
 use Joomla\CMS\Extension\Service\Provider\MVCFactory;
 use Joomla\CMS\Dispatcher\ComponentDispatcherFactoryInterface;
@@ -19,6 +20,7 @@ return new class implements ServiceProviderInterface {
 			'text_file' => "com_swa.log.all"
 		));
 		$namespace = '\\SwaUK\\Component\\Swa';
+		$container->registerServiceProvider(new CategoryFactory($namespace));
 		$container->registerServiceProvider( new MVCFactory( $namespace ) );
 //		$container->registerServiceProvider( new RouterFactory($namespace));
 		$container->registerServiceProvider( new ComponentDispatcherFactory($namespace));

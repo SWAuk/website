@@ -50,7 +50,7 @@ $twofactormethods = UsersHelper::getTwoFactorMethods();
     <!-- custom -->
     <link rel="stylesheet" href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template;?>/css/custom.css" type="text/css" />
 
-		<?php require("admin/params.php"); ?>
+		<?php require( "admin/params.php" ); ?>
 
 </head>
 <body id="fav-offlinewrap" class="fav-container">

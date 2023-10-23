@@ -2,16 +2,15 @@
 
 namespace SwaUK\Component\Swa\Administrator\View\CommitteeMembers;
 
-use Exception;
 use JHtmlSidebar;
-use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\Toolbar;
 use Joomla\CMS\Toolbar\ToolbarHelper;
-use JToolbarHelper;
+use RuntimeException;
 
 defined( '_JEXEC' ) or die;
 
@@ -25,9 +24,6 @@ jimport( 'joomla.application.component.view' );
  * @license     GNU General Public License version 3; see LICENSE
  */
 
-/**
- * Main "Hello World" Admin View
- */
 class HtmlView extends BaseHtmlView {
 	protected $items;
 
@@ -38,26 +34,30 @@ class HtmlView extends BaseHtmlView {
 	/**
 	 * Display the view
 	 */
-	public function display( $tpl = null ) {
-		$this->state      = $this->get( 'State' );
-		$this->items      = $this->get( 'Items' );
-		$this->pagination = $this->get( 'Pagination' );
+	function display($tpl = null)
+	{
+		$this->state = $this->get('State');
+		$this->items = $this->get('Items');
+		$this->pagination = $this->get('Pagination');
 
 		// Check for errors.
-		if ( count( $errors = $this->get( 'Errors' ) ) )
+		if (!empty($errors = $this->get('Errors')))
 		{
-			throw new GenericDataException( implode( "\n", $errors ), 500 );
+			throw new RuntimeException(implode("\n", $errors), 500);
 		}
 
-
+		// Include the helper and add submenu
 //		require_once JPATH_COMPONENT . '/helpers/swa.php';
-//		SwaHelper::addSubmenu('committeemembers');
+//		\SwaHelper::addSubmenu('committeemembers');
 
+		// Load the toolbar and sidebar
 		$this->addToolbar();
-
 		$this->sidebar = JHtmlSidebar::render();
-		parent::display( $tpl );
+
+		// Render the view
+		parent::display($tpl);
 	}
+
 
 	/**
 	 * Add the page title and toolbar.

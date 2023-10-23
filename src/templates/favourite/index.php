@@ -77,7 +77,7 @@ $favcolumns = 6;
     <link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css"
 
   <!-- PARAMETERS -->
-  <?php require("admin/params.php"); ?>
+  <?php require( "admin/params.php" ); ?>
 
   <!-- GOOGLE ANALYTICS TRACKING CODE -->
   <?php if($analytics_code) { echo '<script type="text/javascript">'.$analytics_code.'</script>';}?>

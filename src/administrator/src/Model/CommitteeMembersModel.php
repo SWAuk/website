@@ -4,6 +4,7 @@ namespace SwaUK\Component\Swa\Administrator\Model;
 
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Log\Log;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\Database\QueryInterface;
@@ -66,6 +67,7 @@ class CommitteeMembersModel extends ListModel {
 	 * @return    \Joomla\Database\QueryInterface
 	 */
 	protected function getListQuery() {
+		Log::add("getting commem list query");
 		// Create a new query object.
 		$db    = $this->getDatabase();
 		$query = $db->getQuery( true );
@@ -108,7 +110,8 @@ class CommitteeMembersModel extends ListModel {
 		{
 			$query->order( $db->escape( $orderCol . ' ' . $orderDirn ) );
 		}
-
+		Log::add($query->toQuerySet());
+		Log::add(json_encode($query));
 		return $query;
 	}
 
@@ -116,25 +119,4 @@ class CommitteeMembersModel extends ListModel {
 		return parent::getItems();
 	}
 
-
-//	Do we even need this function
-
-	/**
-	 * Prepare a helloworld record for saving in the database
-	 */
-	protected function prepareTable( $table ): void {
-		// Set ordering to the last item if not set
-		if ( empty( $table->ordering ) )
-		{
-			$db    = $this->getDatabase();
-			$query = $db->getQuery( true )
-			            ->select( 'MAX(ordering)' )
-			            ->from( '#__helloworld' );
-
-			$db->setQuery( $query );
-			$max = $db->loadResult();
-
-			$table->ordering = $max + 1;
-		}
-	}
 }
