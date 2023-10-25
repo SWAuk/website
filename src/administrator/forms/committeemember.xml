@@ -35,17 +35,18 @@
 		<field name="blurb"
 			type="editor"
 			size="2000"
-			width="300"
+			width="1000"
 			class="inputbox"
 			label="Blurb"
 			required="true"
 			filter="safehtml"/>
-			
-		<field name="image" 
+
+		<field name="image"
 			type="media"
 			label="Image URL"
 			directory="committee"
-			preview="tooltip"/>
+            preview="tooltip"
+			/>
 
 	</fieldset>
 

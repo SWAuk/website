@@ -9,6 +9,7 @@
 
 namespace SwaUK\Component\Swa\Administrator\Extension;
 
+use AE\Component\Helloapis\Administrator\Service\HTML\AdministratorService;
 use Joomla\CMS\Component\Router\RouterServiceInterface;
 use Joomla\CMS\Component\Router\RouterServiceTrait;
 use Joomla\CMS\Extension\BootableExtensionInterface;
@@ -37,5 +38,6 @@ class SwaComponent extends MVCComponent implements
 	 */
 	public function boot(ContainerInterface $container)
 	{
+		$this->getRegistry()->register('swaadministrator', new AdministratorService);
 	}
 }

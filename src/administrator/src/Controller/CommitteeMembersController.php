@@ -1,7 +1,9 @@
 <?php
 namespace SwaUK\Component\Swa\Administrator\Controller;
 
+use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
 use Joomla\CMS\MVC\Model\BaseDatabaseModel;
 use Joomla\CMS\Router\Route;
 use Joomla\CMS\User\CurrentUserInterface;
@@ -43,7 +45,7 @@ class CommitteeMembersController extends SwaAdminController
 			$this->setMessage(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID', $id), 'error');
 			$this->setRedirect(Route::_('index.php?option=com_swa&view=swacommitteemembers', false));
 
-			return false;
+			return $this;
 		}
 
 		return parent::display();
@@ -60,8 +62,26 @@ class CommitteeMembersController extends SwaAdminController
 	 *
 	 * @since   1.6
 	 */
-	public function getModel($name = 'SwaCommitteeMembers', $prefix = 'Administrator', $config = array('ignore_request' => true))
+	public function getModel($name = 'CommitteeMembers', $prefix = 'Administrator', $config = array('ignore_request' => true))
 	{
 		return parent::getModel($name, $prefix, $config);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param   array                $config   An optional associative array of configuration settings.
+	 * Recognized key values include 'name', 'default_task', 'model_path', and
+	 * 'view_path' (this list is not meant to be comprehensive).
+	 * @param   MVCFactoryInterface  $factory  The factory.
+	 * @param   CMSApplication       $app      The JApplication for the dispatcher
+	 * @param   \JInput              $input    Input
+	 *
+	 * @since  0.1.0
+	 */
+	public function __construct($config = array(), MVCFactoryInterface $factory = null, $app = null, $input = null)
+	{
+		parent::__construct($config, $factory, $app, $input);
+
 	}
 }

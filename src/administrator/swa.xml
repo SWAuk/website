@@ -126,6 +126,7 @@
 			<folder>assets</folder>
 			<folder>services</folder>
 			<folder>tmpl</folder>
+			<folder>forms</folder>
 			<folder>language</folder>
 			<folder>sql</folder>
 			<folder>src</folder>

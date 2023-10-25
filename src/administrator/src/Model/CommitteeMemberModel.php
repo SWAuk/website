@@ -4,6 +4,7 @@ namespace SwaUK\Component\Swa\Administrator\Model;
 use Exception;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Form\Form;
+use Joomla\CMS\Log\Log;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
 
@@ -27,9 +28,16 @@ class CommitteeMemberModel extends AdminModel
 	 *
 	 * @return Table A database object
 	 */
-	public function getTable($type = 'Committee', $prefix = 'SwaTable', $config = array()): \Joomla\CMS\Table\Table {
-		return Table::getInstance($type, $prefix, $config);
-	}
+//	public function getTable($type = 'CommitteeMember', $prefix = 'Table', $config = array()): \Joomla\CMS\Table\Table {
+//		try {
+//			$table = Table::getInstance($type, $prefix, $config);
+//		} catch (Exception $e) {
+//			// Handle the error here, e.g., log it or throw an exception.
+//			return null;
+//		}
+//
+//		return $table;
+//	}
 
 	/**
 	 * Method to get the record form.
@@ -65,6 +73,7 @@ class CommitteeMemberModel extends AdminModel
 	 */
 	protected function loadFormData(): mixed {
 		// Check the session for previously entered form data.
+		Log::add("LoadFormData");
 		$data = Factory::getApplication()->getUserState('com_swa.edit.committeemembers.data', array());
 
 		if (empty($data))

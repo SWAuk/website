@@ -8,6 +8,11 @@
             "name": "swa_css",
             "type": "style",
             "uri": "com_swa/administrator/assets/css/swa.css"
+        },
+        {
+            "name": "formjs",
+            "type": "script",
+            "uri": "com_swa/administrator/assets/js/form.js"
         }
     ]
 }

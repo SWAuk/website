@@ -1,35 +1,37 @@
 <?php
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
-use Joomla\Router\Route;
+use Joomla\CMS\Router\Route;
 
 defined('_JEXEC') or die;
 
-//JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-JHtml::_('behavior.tooltip');
-JHtml::_('behavior.formvalidation');
-JHtml::_('formbehavior.chosen', 'select');
-JHtml::_('behavior.keepalive');
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+HTMLHelper::_('formbehavior.chosen', 'select');
+HTMLHelper::_('behavior.keepalive');
+HTMLHelper::_('behavior.formvalidator');
 
 // Import CSS
 $document = Factory::getDocument();
-//$document->addStyleSheet('components/com_swa/assets/css/swa.css');
+$webAssetManager = $document->getWebAssetManager();
+\Joomla\CMS\Log\Log::add("Detailing webasset manager assets");
+\Joomla\CMS\Log\Log::add( json_encode($webAssetManager->getAssets("script")));
+\Joomla\CMS\Log\Log::add( json_encode($webAssetManager->getAssets("style")));
+//$webAssetManager->useStyle("swa_css"); //TODO Re-enable this
 ?>
 <script type="text/javascript">
-	js = jQuery.noConflict();
-	js(document).ready(function () {
-
-	});
-
 	Joomla.submitbutton = function (task) {
-		if (task == 'committeemember.cancel') {
-			Joomla.submitform(task, document.getElementById('committeemember-form'));
+		let form = document.getElementById('committeemember-form');
+		console.log("got form");
+		console.log(form);
+		if (task === 'committeemember.cancel') {
+			Joomla.submitform(task, form);
 		}
 		else {
 
-			if (task != 'committeemember.cancel' && document.formvalidator.isValid(document.id('committeemember-form'))) {
-				Joomla.submitform(task, document.getElementById('committeemember-form'));
+			if (task !== 'committeemember.cancel' && document.formvalidator.isValid(form)) {
+				Joomla.submitform(task, form);
 			}
 			else {
 				alert('<?= $this->escape(Text::_('JGLOBAL_VALIDATION_FORM_FAILED')) ?>');
@@ -44,9 +46,9 @@ $document = Factory::getDocument();
       class="form-validate">
 
 	<div class="form-horizontal">
-		<?= JHtml::_('bootstrap.startTabSet', 'myTab', array( 'active' => 'general')) ?>
+		<?= HTMLHelper::_('bootstrap.startTabSet', 'myTab', array( 'active' => 'general')) ?>
 
-		<?= JHtml::_('bootstrap.addTab',	'myTab', 'general',
+		<?= HTMLHelper::_('bootstrap.addTab',	'myTab', 'general',
 			Text::_('Committee Member', true)) ?>
 
 		<div class="row-fluid">
@@ -73,11 +75,11 @@ $document = Factory::getDocument();
 				</fieldset>
 			</div>
 		</div>
-		<?= JHtml::_('bootstrap.endTab') ?>
-		<?= JHtml::_('bootstrap.endTabSet') ?>
+		<?= HTMLHelper::_('bootstrap.endTab') ?>
+		<?= HTMLHelper::_('bootstrap.endTabSet') ?>
 
 		<input type="hidden" name="task" value=""/>
-		<?= JHtml::_('form.token') ?>
+		<?= HTMLHelper::_('form.token') ?>
 
 	</div>
 </form>

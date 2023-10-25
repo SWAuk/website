@@ -4,6 +4,7 @@ namespace SwaUK\Component\Swa\Administrator\View\CommitteeMember;
 
 use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Log\Log;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 use RuntimeException;
@@ -35,9 +36,9 @@ class HtmlView extends BaseHtmlView {
 		$this->form  = $this->get( 'Form' );
 
 		// Check for errors.
-		if (!empty($errors = $this->get('Errors')))
+		if ( ! empty( $errors = $this->get( 'Errors' ) ) )
 		{
-			throw new RuntimeException(implode("\n", $errors), 500);
+			throw new RuntimeException( implode( "\n", $errors ), 500 );
 		}
 
 		$this->addToolbar();
@@ -53,31 +54,18 @@ class HtmlView extends BaseHtmlView {
 		$isNew = ( $this->item->id == 0 );
 
 		ToolbarHelper::title( Text::_( 'Committee Member' ), 'committeemember.png' );
-
-		ToolbarHelper::apply( 'committeemember.apply', 'JTOOLBAR_APPLY' );
-		ToolbarHelper::save( 'committeemember.save', 'JTOOLBAR_SAVE' );
-		ToolbarHelper::custom(
-			'committeemember.save2new',
-			'save-new.png',
-			'save-new_f2.png',
-			'JTOOLBAR_SAVE_AND_NEW',
-			false
-		);
+		ToolbarHelper::apply( 'committeemember.apply' );
+		ToolbarHelper::save( 'committeemember.save' );
+		ToolbarHelper::save2new( 'committeemember.save2new' );
 
 		// If an existing item, can save to a copy.
 		if ( ! $isNew )
 		{
-			ToolbarHelper::custom(
-				'committeemember.save2copy',
-				'save-copy.png',
-				'save-copy_f2.png',
-				'JTOOLBAR_SAVE_AS_COPY',
-				false
-			);
+			ToolbarHelper::save2copy( 'committeemember.save2copy' );
 		}
 		if ( empty( $this->item->id ) )
 		{
-			ToolbarHelper::cancel( 'committeemember.cancel', 'JTOOLBAR_CANCEL' );
+			ToolbarHelper::cancel( 'committeemember.cancel' );
 		}
 		else
 		{

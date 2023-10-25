@@ -3,12 +3,15 @@
 namespace SwaUK\Component\Swa\Administrator\View\CommitteeMembers;
 
 use JHtmlSidebar;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Helper\ContentHelper;
+use Joomla\CMS\HTML\Helpers\Sidebar;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\View\GenericDataException;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\Toolbar;
+use Joomla\CMS\Toolbar\ToolbarFactoryInterface;
 use Joomla\CMS\Toolbar\ToolbarHelper;
 use RuntimeException;
 
@@ -52,7 +55,7 @@ class HtmlView extends BaseHtmlView {
 
 		// Load the toolbar and sidebar
 		$this->addToolbar();
-		$this->sidebar = JHtmlSidebar::render();
+		$this->sidebar = Sidebar::render();
 
 		// Render the view
 		parent::display($tpl);
@@ -65,23 +68,17 @@ class HtmlView extends BaseHtmlView {
 	 */
 	protected function addToolbar(): void {
 		// Get the toolbar object instance
-		$toolbar = Toolbar::getInstance( 'toolbar' );
-		ToolbarHelper::title( Text::_( 'COM_SWA_COMMITTEE_MEMBERS_PAGE_TITLE' ), 'committeemembers.png' );
-
+		$toolbar = Factory::getContainer()->get(ToolbarFactoryInterface::class)->createToolbar('toolbar');
+		ToolbarHelper::title( Text::_( 'COM_SWA_TITLE_COMMITTEE' ), 'committeemembers.png' );
 		$canDo = ContentHelper::getActions( 'com_swa' );
 		// Check if the form exists before showing the add/edit buttons
 		$formPath = JPATH_COMPONENT_ADMINISTRATOR . '/views/committeemember';
 
-		if ( $canDo->get( 'core.create' ) && file_exists( $formPath ) )
+		if ( isset( $this->items[0] ) )
 		{
-			$toolbar->addNew( 'committeemember.add' );
-
-			if ( isset( $this->items[0] ) )
-			{
-				$toolbar->addNew( 'committeemember.edit', 'JTOOLBAR_EDIT' );
-			}
-			$toolbar->addNew( 'committeemembers.delete', 'JTOOLBAR_DELETE' );
+			ToolbarHelper::editList("committeemember.edit");
 		}
+		ToolbarHelper::deleteList("committeemember.delete");
 
 		if ($canDo->get('core.admin'))
 		{
@@ -89,7 +86,7 @@ class HtmlView extends BaseHtmlView {
 		}
 
 		// Set sidebar action - New in 3.0
-		JHtmlSidebar::setAction( 'index.php?option=com_swa&view=committeemembers' );
+		Sidebar::setAction( 'index.php?option=com_swa&view=committeemembers' );
 
 		$this->extra_sidebar = '';
 

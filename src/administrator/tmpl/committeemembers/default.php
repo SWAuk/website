@@ -1,14 +1,16 @@
 <?php
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Session\Session;
 
 defined('_JEXEC') or die;
 
-//JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.multiselect');
-JHtml::_('formbehavior.chosen', 'select');
+HTMLHelper::addIncludePath(JPATH_COMPONENT . '/helpers/html');
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('behavior.multiselect');
+HTMLHelper::_('formbehavior.chosen', 'select');
 
 $user   = Factory::getApplication()->getIdentity();
 $userId = $user->id;
@@ -20,8 +22,8 @@ $canChange = $user->authorise('core.edit.state', 'com_swa');
 $saveOrder = $listOrder == 'ordering';
 if ($saveOrder)
 {
-	$saveOrderingUrl = 'index.php?option=com_swa&task=committeemembers.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'committeememberList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+	$saveOrderingUrl = 'index.php?option=com_swa&task=committeemembers.saveOrderAjax&tmpl=component'. Session::getFormToken() . '=1';
+	HTMLHelper::_('sortablelist.sortable', 'committeememberList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 
 $sortFields = $this->getSortFields();
@@ -119,7 +121,7 @@ if (!empty($this->extra_sidebar))
 					<select name="sortTable" id="sortTable" class="input-medium"
 					        onchange="Joomla.orderTable()">
 						<option value=""><?= Text::_('JGLOBAL_SORT_BY') ?></option>
-						<?= JHtml::_('select.options', $sortFields, 'value', 'text', $listOrder) ?>
+						<?= HTMLHelper::_('select.options', $sortFields, 'value', 'text', $listOrder) ?>
 					</select>
 				</div>
 			</div>
@@ -129,7 +131,7 @@ if (!empty($this->extra_sidebar))
 				<thead>
 				<tr>
 					<th class="nowrap center hidden-phone">
-						<?= JHtml::_(
+						<?= HTMLHelper::_(
 							'grid.sort',
 							'<i class="icon-menu-2"></i>',
 							'ordering',
@@ -141,16 +143,16 @@ if (!empty($this->extra_sidebar))
 						) ?>
 					</th>
 					<th class="hidden-phone">
-						<?= JHtml::_('grid.checkall') ?>
+						<?= HTMLHelper::_('grid.checkall') ?>
 					</th>
 					<th class="nowrap center hidden-phone">
-						<?= JHtml::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder) ?>
+						<?= HTMLHelper::_('grid.sort', 'JGRID_HEADING_ID', 'id', $listDirn, $listOrder) ?>
 					</th>
 					<th class='left'>
-						<?= JHtml::_('grid.sort', 'Member', 'member', $listDirn, $listOrder) ?>
+						<?= HTMLHelper::_('grid.sort', 'Member', 'member', $listDirn, $listOrder) ?>
 					</th>
 					<th class='left'>
-						<?= JHtml::_('grid.sort', 'Position', 'position', $listDirn, $listOrder) ?>
+						<?= HTMLHelper::_('grid.sort', 'Position', 'position', $listDirn, $listOrder) ?>
 					</th>
 				</tr>
 				</thead>
@@ -179,7 +181,7 @@ if (!empty($this->extra_sidebar))
 							}
 							elseif (!$saveOrder)
 							{
-								$orderingDisabled = JHtml::_('tooltipText', 'JORDERINGDISABLED');
+								$orderingDisabled = HTMLHelper::_('tooltipText', 'JORDERINGDISABLED');
 								$iconClass        = ' inactive tip-top hasTooltip" title="' . $orderingDisabled;
 							}
 							?>
@@ -189,12 +191,14 @@ if (!empty($this->extra_sidebar))
 							<?php if ($canReorder && $saveOrder)
 								:
 								?>
-								<input name="order[]" class="width-20 text-area-order" type="text"
-								       style="display:none" size="5" value="<?= $item->ordering ?>"/>
+								<label>
+									<input name="order[]" class="width-20 text-area-order" type="text"
+										   style="display:none" size="5" value="<?= $item->ordering ?>"/>
+								</label>
 							<?php endif; ?>
 						</td>
 						<td class="center hidden-phone">
-							<?= JHtml::_('grid.id', $i, $item->id) ?>
+							<?= HTMLHelper::_('grid.id', $i, $item->id) ?>
 						</td>
 						<td class="center hidden-phone">
 							<?= (int) $item->id ?>
@@ -217,7 +221,7 @@ if (!empty($this->extra_sidebar))
 			<input type="hidden" name="boxchecked" value="0"/>
 			<input type="hidden" name="filter_order" value="<?= $listOrder ?>"/>
 			<input type="hidden" name="filter_order_Dir" value="<?= $listDirn ?>"/>
-			<?= JHtml::_('form.token') ?>
+			<?= HTMLHelper::_('form.token') ?>
 		</div>
 </form>
 
