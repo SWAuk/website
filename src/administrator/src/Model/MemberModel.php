@@ -5,7 +5,7 @@ jimport('joomla.application.component.modeladmin');
 
 class CommitteeMemberModel extends SwaAdminModel
 {
-	protected string $form_name = 'committeemember';
-	protected string $table_name = '#__swa_committee';
+	protected string $form_name = 'member';
+	protected string $table_name = '#__swa_member';
 
 }

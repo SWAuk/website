@@ -1,22 +1,13 @@
 <?php
 
-namespace SwaUK\Component\Swa\Administrator\Table;
-
-use Joomla\CMS\Log\Log;
-use Joomla\CMS\Service\Provider\Database;
-use Joomla\CMS\Table\Table;
-use Joomla\Database\DatabaseDriver;
 use Joomla\Registry\Registry;
+use SwaUK\Component\Swa\Administrator\Table\SwaTable;
 
 defined( '_JEXEC' ) or die;
 
-class CommitteeMemberTable extends SwaTable {
-
-	/**
-	 * @param   DatabaseDriver  $db  A database connector object
-	 */
+class MemberTable extends SwaTable {
 	public function __construct( &$db ) {
-		parent::__construct( '#__swa_committee', 'id', $db );
+		parent::__construct( '#__swa_member', 'id', $db );
 	}
 
 	/**
@@ -25,12 +16,17 @@ class CommitteeMemberTable extends SwaTable {
 	 * @param   array  $array  Named array
 	 *
 	 * @return    bool    null is operation was satisfactory, otherwise returns an error
-	 * @see        JTable:bind
+	 * @see        \Joomla\CMS\Table\Table:bind
 	 */
-	public function bind( $array, $ignore = '' ): bool {
+	public function bind( $array, $ignore = '' ) {
+		// Support for checkbox field: paid
+		if ( ! isset( $array['paid'] ) )
+		{
+			$array['paid'] = 0;
+		}
 		if ( isset( $array['params'] ) && is_array( $array['params'] ) )
 		{
-			$registry        = new Registry($array['params']);
+			$registry        = new Registry( $array['params'] );
 			$array['params'] = (string) $registry;
 		}
 
