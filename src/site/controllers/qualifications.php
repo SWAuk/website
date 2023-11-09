@@ -38,11 +38,13 @@ class SwaControllerQualifications extends SwaController
 		{
 			$input->enqueueMessage('Couldn\'t get member id to view qualification image', 'error');
 			$input->redirect(JRoute::_('index.php'));
-		} else if ($qualification->member_id != $currentMember->id)
+		}
+		elseif ($qualification->member_id != $currentMember->id)
 		{
 			$input->enqueueMessage('Tried to get qualification image for another member...', 'error');
 			$input->redirect(JRoute::_('index.php'));
-		} else {
+		}
+		else {
 			// Output the file
 			header("Content-type: " . $qualification->file_type);
 			print($qualification->file);
