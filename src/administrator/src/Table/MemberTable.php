@@ -1,7 +1,7 @@
 <?php
+namespace SwaUK\Component\Swa\Administrator\Table;
 
 use Joomla\Registry\Registry;
-use SwaUK\Component\Swa\Administrator\Table\SwaTable;
 
 defined( '_JEXEC' ) or die;
 

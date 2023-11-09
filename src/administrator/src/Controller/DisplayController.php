@@ -8,7 +8,7 @@
  */
 
 namespace SwaUK\Component\Swa\Administrator\Controller;
-defined('_JEXEC') or die;
+defined( '_JEXEC' ) or die;
 
 use Joomla\CMS\Application\CMSApplication;
 use Joomla\CMS\Factory;
@@ -19,8 +19,7 @@ use Joomla\CMS\MVC\Factory\LegacyFactory;
 use Joomla\CMS\MVC\Factory\MVCFactoryInterface;
 use Joomla\Input\Input;
 
-class DisplayController extends BaseController
-{
+class DisplayController extends BaseController {
 	/**
 	 * The default view for the display method.
 	 *
@@ -28,19 +27,24 @@ class DisplayController extends BaseController
 	 */
 	protected $default_view = 'home';
 
-	public function display($cachable = false, $urlparams = array()) {
-		Log::addLogger(array(
+	public function display( $cachable = false, $urlparams = array() ) {
+		Log::addLogger( array(
 			'text_file' => "com_swa.log.all"
-		));
-		$document = Factory::getDocument();
-		$viewName = $this->input->get('view', $this->default_view);
-		$layoutName = $this->input->get('layout', $this->default_view);
+		) );
+		$document   = Factory::getDocument();
+		$viewName   = $this->input->get( 'view', $this->default_view );
+		$layoutName = $this->input->get( 'layout', $this->default_view );
 		$viewFormat = $document->getType();
-		$view = $this->getView($viewName, $viewFormat);
-		$view->setLayout($layoutName);
-		$view->setModel($this->getModel($viewName), true);
+		$view       = $this->getView( $viewName, $viewFormat );
+		$view->setLayout( $layoutName );
+
+		$model = $this->getModel( $viewName );
+		if ( $model )
+		{
+			$view->setModel( $model, true );
+		}
 		$view->document = $document;
-		$this->input->set("view", $view);
+		$this->input->set( "view", $view );
 		$view->display();
 	}
 }

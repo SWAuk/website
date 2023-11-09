@@ -6,6 +6,8 @@ jimport( 'joomla.application.component.controlleradmin' );
 /**
  * Member list controller class.
  */
-class MembersController extends SwaFormController {
-	protected string $view_name = 'members';
+class MembersController extends SwaAdminController {
+	protected $default_view = 'members';
+	protected string $model_view = "Members";
+	protected $model_prefix = "Administrator";
 }

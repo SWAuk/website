@@ -23,8 +23,6 @@ $webAssetManager = $document->getWebAssetManager();
 <script type="text/javascript">
 	Joomla.submitbutton = function (task) {
 		let form = document.getElementById('committeemember-form');
-		console.log("got form");
-		console.log(form);
 		if (task === 'committeemember.cancel') {
 			Joomla.submitform(task, form);
 		}
