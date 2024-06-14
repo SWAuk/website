@@ -27,6 +27,7 @@ class SwaControllerQualifications extends SwaController
 		{
 			$input->enqueueMessage('Something went wrong selecting the image', 'error');
 			$input->redirect(JRoute::_('index.php'));
+			exit();
 		}
 
 		$qualification = $db->loadObject();
@@ -38,17 +39,17 @@ class SwaControllerQualifications extends SwaController
 			$input->enqueueMessage('Couldn\'t get member id to view qualification image', 'error');
 			$input->redirect(JRoute::_('index.php'));
 		}
-
-		if ($qualification->member_id != $currentMember->id)
+		elseif ($qualification->member_id != $currentMember->id)
 		{
 			$input->enqueueMessage('Tried to get qualification image for another member...', 'error');
 			$input->redirect(JRoute::_('index.php'));
 		}
-
-		// Output the file
-		header("Content-type: " . $qualification->file_type);
-		print($qualification->file);
-		exit();
+		else {
+			// Output the file
+			header("Content-type: " . $qualification->file_type);
+			print($qualification->file);
+			exit();
+		}
 	}
 
 	public function checkUniqueQualification($data)
