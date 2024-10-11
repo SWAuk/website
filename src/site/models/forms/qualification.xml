@@ -8,6 +8,7 @@
 			required="true"
 			filter="safehtml">
 			<option value="Powerboat Level 2">Powerboat Level 2</option>
+            <option value="First Aid">First Aid</option>
 			<option value="Safety Boat">Safety Boat</option>
 			<option value="Start Windsurfing Instructor">Start Windsurfing Instructor</option>
 			<option value="Intermediate Windsurfing Instructor">Intermediate Windsurfing
